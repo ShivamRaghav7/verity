@@ -30,3 +30,29 @@ jobs:
       - run: pip install -r requirements-lock.txt numpy==2.4.2 psutil==7.2.2
       - run: pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cpu
       - run: python -m unittest discover -s tests -p test_trainer.py -v
+  deployment-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      # Ephemeral loopback fixture; never use this token for an actual deployment.
+      EDITGUARD_ADMIN_TOKEN: 'isolated-ci-fixture-only'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: docker build --tag editguard:ci .
+      - run: docker run --detach --name editguard-ci --publish 127.0.0.1:8001:8000 --volume editguard-ci-data:/app/runtime --env EDITGUARD_ADMIN_TOKEN editguard:ci
+      - run: python scripts/verify_deployment.py --base-url http://127.0.0.1:8001 --admin-token-env EDITGUARD_ADMIN_TOKEN --output reports/deployment-smoke-ci.json
+      - run: docker restart editguard-ci
+      - run: python scripts/verify_persistence.py --base-url http://127.0.0.1:8001 --reference reports/deployment-smoke-ci.json --output reports/deployment-restart-ci.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: structured-deployment-smoke
+          path: reports/deployment-*-ci.json
+          if-no-files-found: ignore
+      - run: docker logs editguard-ci || true
+        if: always()
+      - run: docker stop editguard-ci || true
+        if: always()

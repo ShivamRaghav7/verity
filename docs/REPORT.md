@@ -48,13 +48,17 @@ missing predictions in denominators and separate structured from generated evide
 
 The UI provides customer questions, scoped before/after comparisons, an approval
 workflow, history, conflict resolution and exports. Minimal infrastructure consists
-of FastAPI, Pydantic, SQLite and build-free static assets. Docker and CI definitions
-are included; their execution must be recorded independently.
+of FastAPI, Pydantic, SQLite and build-free static assets. The core regression and
+CPU optimizer/resume CI jobs passed for commit `c89e528`; the source record is
+`reports/ci-c89e528.json`. Deployment CI execution is recorded separately.
 
 The complete workflow was exercised in a separate browser fixture, including
 conflict rejection and restoration. Mobile layout had no horizontal overflow and
-the browser reported no console errors. Docker CLI 29.2.1 was available, but its
-Linux daemon was stopped; the container has not been built or run on this host.
+the browser reported no console errors. Docker Desktop's Linux engine later started
+successfully. The structured image passed 23 isolated HTTP workflow checks and
+three checks after restart, preserving revision 7 and both withdrawn corrections.
+It ran as UID 1000 on Python 3.12.15 with a dedicated volume. See
+[deployment records](DEPLOYMENT.md); these checks make no neural-deployment claim.
 
 ## Initial profiling observations
 

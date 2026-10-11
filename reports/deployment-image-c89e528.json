@@ -1,0 +1,42 @@
+{
+  "recorded_at": "2026-10-11T14:53:30.276176+00:00",
+  "purpose": "structured_container_deployment_verification",
+  "build_status": "passed",
+  "command": [
+    "docker",
+    "build",
+    "--progress=plain",
+    "--tag",
+    "editguard:smoke-c89e528",
+    "."
+  ],
+  "image_id": "sha256:fe156ec9902efac27ca88beff72dcea64f19fbd6ffe631eec8a2a194bf85d5dc",
+  "observed_base_image": "python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+  "git_application_commit": "c89e528c66d018549378cd16c593e86775aa652e",
+  "uncommitted_build_input_changes": [
+    ".dockerignore"
+  ],
+  "working_copy_build_input_sha256": {
+    "Dockerfile": "58d2dead245f57ab1f1b78755475f7ede666360a440c1587ac45e8aa1ad0fbee",
+    ".dockerignore": "76a199e2e0a8af9722a94c8363e48be66bbc809de2d0b7a940cbab76fcc98345",
+    "requirements-lock.txt": "fc7708909465654065d8a32e09b15c398e8edb8d3a392404cf2b31f151639c85",
+    "data/catalogue.json": "69b721e5945019127a89981de6e232f783f71bc1af38e0b3337e8f81737f577c"
+  },
+  "environment": {
+    "uid": 1000,
+    "python": "3.12.15"
+  },
+  "docker_server_version": "29.2.1",
+  "container_name": "editguard-deployment-c89e528",
+  "named_volume": "editguard-deployment-c89e528",
+  "loopback_origin": "http://127.0.0.1:8001",
+  "workflow_evidence": "reports/deployment-smoke-c89e528.json",
+  "restart_evidence": "reports/deployment-restart-c89e528.json",
+  "neural_deployment_verified": false,
+  "container_state_after_verification": {
+    "Status": "exited",
+    "StartedAt": "2026-10-11T14:49:54.476156369Z",
+    "FinishedAt": "2026-10-11T14:53:32.606445481Z",
+    "ExitCode": 0
+  }
+}

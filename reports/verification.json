@@ -80,10 +80,28 @@
   "structured_http_benchmark": "reports/structured-http.json",
   "docker": {
     "client_version": "29.2.1",
-    "daemon": "stopped",
-    "build_and_run": "not_verified"
+    "daemon": "running",
+    "build_and_run": "passed for structured application",
+    "runtime_python": "3.12.15",
+    "runtime_uid": 1000,
+    "workflow_checks_passed": 23,
+    "workflow_checks_total": 23,
+    "restart_checks_passed": 3,
+    "restart_checks_total": 3,
+    "normal_workspace_revision_after_checks": 1,
+    "verification_container": "stopped; dedicated volume and image retained",
+    "image_evidence": "reports/deployment-image-c89e528.json",
+    "workflow_evidence": "reports/deployment-smoke-c89e528.json",
+    "restart_evidence": "reports/deployment-restart-c89e528.json",
+    "neural_deployment_verified": false
   },
-  "ci": "configured; remote outcome not yet recorded",
+  "ci": {
+    "verified_commit": "c89e528c66d018549378cd16c593e86775aa652e",
+    "status": "passed",
+    "jobs": ["test", "optimizer-resume"],
+    "evidence": "reports/ci-c89e528.json",
+    "run_url": "https://github.com/ShivamRaghav7/verity/actions/runs/38148065549"
+  },
   "learned_models": "No reviewed-data-trained eligible auxiliary artifacts; synthetic smoke exports are ineligible.",
   "dataset_review": {
     "status": "pending",

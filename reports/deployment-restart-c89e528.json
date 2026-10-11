@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "purpose": "structured_restart_persistence_check",
+  "started_at": "2026-10-11T14:51:35.193883+00:00",
+  "ml_results": null,
+  "cases": [
+    {
+      "phase": "ready_after_restart",
+      "passed": true,
+      "status": "passed"
+    },
+    {
+      "phase": "authoritative_snapshot_preserved",
+      "passed": true,
+      "status": "passed"
+    },
+    {
+      "phase": "rollback_stays_restored",
+      "passed": true,
+      "status": "passed"
+    }
+  ],
+  "disclaimer": "Read-only engineering check; restart must be performed separately.",
+  "base_url": "http://127.0.0.1:8001",
+  "reference_sha256": "7cd46b9bbe4f4fc051ff0f62eaa8151969b43897f45a44eb7b9d029442604bd3",
+  "before_snapshot_sha256": "2b1a6d558a970feb990b256e8aba513a8fe24eb99969e85a5614e85eb076ed91",
+  "before_revision": 7,
+  "readiness": {
+    "status": "passed",
+    "attempts": 1,
+    "max_attempts": 30,
+    "timeout_seconds": 30,
+    "elapsed_seconds": 0.051,
+    "reason": null
+  },
+  "after_snapshot_sha256": "2b1a6d558a970feb990b256e8aba513a8fe24eb99969e85a5614e85eb076ed91",
+  "after_revision": 7,
+  "status": "passed",
+  "counts": {
+    "passed": 3,
+    "total": 3
+  },
+  "requests": [
+    {
+      "phase": "startup_readiness",
+      "method": "GET",
+      "path": "/api/health",
+      "http_status": 200,
+      "response_status": "ok",
+      "request_timeout_seconds": 5,
+      "latency_ms": 50.608,
+      "body": {
+        "status": "ok",
+        "revision": 7,
+        "models": {
+          "scope": "not_trained",
+          "answer": "not_trained"
+        },
+        "neural_inference": "disabled",
+        "answer_mode": "deterministic_structured"
+      },
+      "error": null
+    },
+    {
+      "phase": "workflow",
+      "method": "GET",
+      "path": "/api/export",
+      "http_status": 200,
+      "response_status": null,
+      "request_timeout_seconds": 5,
+      "latency_ms": 32.473,
+      "body": {
+        "schema_version": 1,
+        "dataset": "controlled_fictional_demonstration",
+        "models": {
+          "scope": "not_trained",
+          "answer": "not_trained"
+        },
+        "facts": [
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2024-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v1-devices",
+            "lineage_id": "nimbus-basic-v1-devices",
+            "plan": "Basic",
+            "relation": "device_limit",
+            "source": "Fictional archived Nimbus support handbook v1, section 1.1",
+            "unit": "devices",
+            "value": "5",
+            "version": "v1"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2024-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v1-price",
+            "lineage_id": "nimbus-basic-v1-price",
+            "plan": "Basic",
+            "relation": "price_monthly",
+            "source": "Fictional archived Nimbus support handbook v1, section 1.2",
+            "unit": "USD/month",
+            "value": "7",
+            "version": "v1"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-devices",
+            "lineage_id": "nimbus-basic-v2-devices",
+            "plan": "Basic",
+            "relation": "device_limit",
+            "source": "Fictional Nimbus support handbook v2, section 1.1",
+            "unit": "devices",
+            "value": "5",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-price",
+            "lineage_id": "nimbus-basic-v2-price",
+            "plan": "Basic",
+            "relation": "price_monthly",
+            "source": "Fictional Nimbus support handbook v2, section 1.2",
+            "unit": "USD/month",
+            "value": "9",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-storage",
+            "lineage_id": "nimbus-basic-v2-storage",
+            "plan": "Basic",
+            "relation": "storage_gb",
+            "source": "Fictional Nimbus support handbook v2, section 1.3",
+            "unit": "GB",
+            "value": "50",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-support",
+            "lineage_id": "nimbus-basic-v2-support",
+            "plan": "Basic",
+            "relation": "support_hours",
+            "source": "Fictional Nimbus support handbook v2, section 1.4",
+            "unit": "hours/day",
+            "value": "8",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Mini Cloud",
+              "Mini platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus-mini",
+            "entity_name": "Nimbus Mini",
+            "fact_id": "nimbus-mini-basic-v2-devices",
+            "lineage_id": "nimbus-mini-basic-v2-devices",
+            "plan": "Basic",
+            "relation": "device_limit",
+            "source": "Fictional Nimbus Mini support handbook v2, section 1.1",
+            "unit": "devices",
+            "value": "2",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Mini Cloud",
+              "Mini platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus-mini",
+            "entity_name": "Nimbus Mini",
+            "fact_id": "nimbus-mini-basic-v2-price",
+            "lineage_id": "nimbus-mini-basic-v2-price",
+            "plan": "Basic",
+            "relation": "price_monthly",
+            "source": "Fictional Nimbus Mini support handbook v2, section 1.2",
+            "unit": "USD/month",
+            "value": "4",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-pro-v2-devices",
+            "lineage_id": "nimbus-pro-v2-devices",
+            "plan": "Pro",
+            "relation": "device_limit",
+            "source": "Fictional Nimbus support handbook v2, section 2.1",
+            "unit": "devices",
+            "value": "12",
+            "version": "v2"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-pro-v2-price",
+            "lineage_id": "nimbus-pro-v2-price",
+            "plan": "Pro",
+            "relation": "price_monthly",
+            "source": "Fictional Nimbus support handbook v2, section 2.2",
+            "unit": "USD/month",
+            "value": "19",
+            "version": "v2"
+          }
+        ],
+        "edits": [
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "corrected_value": "3",
+            "effective_from": "2026-10-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-devices",
+            "lineage_id": "nimbus-basic-v2-devices",
+            "original_value": "5",
+            "plan": "Basic",
+            "reason": "Controlled isolated deployment verification",
+            "relation": "device_limit",
+            "source": "controlled://deployment-smoke/device-limit",
+            "supersedes": null,
+            "unit": "devices",
+            "version": "v2",
+            "edit_id": "44d48c9b-fa06-4c7a-9f5f-438cd2d2d0d8",
+            "status": "withdrawn",
+            "created_at": "2026-10-11T14:49:29.249914+00:00",
+            "approved_at": "2026-10-11T14:49:29.267841+00:00"
+          },
+          {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "corrected_value": "4",
+            "effective_from": "2026-10-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-devices",
+            "lineage_id": "nimbus-basic-v2-devices",
+            "original_value": "3",
+            "plan": "Basic",
+            "reason": "Controlled isolated deployment verification",
+            "relation": "device_limit",
+            "source": "controlled://deployment-smoke/contradictory-draft",
+            "supersedes": null,
+            "unit": "devices",
+            "version": "v2",
+            "edit_id": "745effb6-7942-441b-a6eb-96992d5f4600",
+            "status": "withdrawn",
+            "created_at": "2026-10-11T14:49:29.422367+00:00",
+            "approved_at": null
+          }
+        ],
+        "events": [
+          {
+            "revision": 1,
+            "event_id": "c03ea324-a824-468a-8dbe-251c0831ce92",
+            "event_type": "catalogue_seeded",
+            "actor": "system",
+            "created_at": "2026-10-11T14:44:36.711318+00:00",
+            "details": {
+              "dataset_id": "editguard-controlled-nimbus-v0.1",
+              "fact_ids": [
+                "nimbus-basic-v2-devices",
+                "nimbus-basic-v2-price",
+                "nimbus-basic-v2-storage",
+                "nimbus-basic-v2-support",
+                "nimbus-pro-v2-devices",
+                "nimbus-pro-v2-price",
+                "nimbus-basic-v1-devices",
+                "nimbus-basic-v1-price",
+                "nimbus-mini-basic-v2-devices",
+                "nimbus-mini-basic-v2-price"
+              ]
+            }
+          },
+          {
+            "revision": 2,
+            "event_id": "9145a65b-8439-4184-bae1-d555828dd685",
+            "event_type": "correction_created",
+            "actor": "administrator",
+            "created_at": "2026-10-11T14:49:29.250170+00:00",
+            "details": {
+              "edit_id": "44d48c9b-fa06-4c7a-9f5f-438cd2d2d0d8",
+              "fact_id": "nimbus-basic-v2-devices"
+            }
+          },
+          {
+            "revision": 3,
+            "event_id": "8a1a7c3e-91dc-4c04-99c3-e3b81da42962",
+            "event_type": "correction_approved",
+            "actor": "administrator",
+            "created_at": "2026-10-11T14:49:29.268000+00:00",
+            "details": {
+              "edit_id": "44d48c9b-fa06-4c7a-9f5f-438cd2d2d0d8"
+            }
+          },
+          {
+            "revision": 4,
+            "event_id": "420047c3-2031-4877-b0ab-af45332c6527",
+            "event_type": "correction_created",
+            "actor": "administrator",
+            "created_at": "2026-10-11T14:49:29.422514+00:00",
+            "details": {
+              "edit_id": "745effb6-7942-441b-a6eb-96992d5f4600",
+              "fact_id": "nimbus-basic-v2-devices"
+            }
+          },
+          {
+            "revision": 5,
+            "event_id": "01017cc0-c62f-4cfd-915c-1614ba8d78dd",
+            "event_type": "approval_rejected",
+            "actor": "administrator",
+            "created_at": "2026-10-11T14:49:29.436383+00:00",
+            "details": {
+              "edit_id": "745effb6-7942-441b-a6eb-96992d5f4600",
+              "reason": "Contradictory overlapping corrections require administrator resolution; draft retained"
+            }
+          },
+          {
+            "revision": 6,
+            "event_id": "b32b3267-0190-4e12-bace-3ad83d925bfd",
+            "event_type": "correction_withdrawn",
+            "actor": "administrator",
+            "created_at": "2026-10-11T14:49:29.472674+00:00",
+            "details": {
+              "edit_id": "745effb6-7942-441b-a6eb-96992d5f4600",
+              "prior_status": "draft"
+            }
+          },
+          {
+            "revision": 7,
+            "event_id": "91b0a0f3-fdb2-4e0d-860a-0647666e1145",
+            "event_type": "correction_withdrawn",
+            "actor": "administrator",
+            "created_at": "2026-10-11T14:49:29.514478+00:00",
+            "details": {
+              "edit_id": "44d48c9b-fa06-4c7a-9f5f-438cd2d2d0d8",
+              "prior_status": "approved"
+            }
+          }
+        ],
+        "revision": 7,
+        "evaluation": {
+          "status": "passed",
+          "disclaimer": "Isolated deterministic workflow regression. These are engineering checks, not learned-model accuracy or end-to-end HTTP latency measurements.",
+          "metrics": [
+            {
+              "name": "Workflow checks passed",
+              "value": 14,
+              "denominator": 14,
+              "unit": "checks"
+            },
+            {
+              "name": "Fixture service latency p50",
+              "value": 0.804,
+              "unit": "ms"
+            },
+            {
+              "name": "Fixture service latency p95",
+              "value": 3.842,
+              "unit": "ms"
+            }
+          ],
+          "cases": [
+            {
+              "name": "Initial catalogue value",
+              "passed": true,
+              "expected": "Nimbus Basic v2 supports up to 5 devices.",
+              "actual": "Nimbus Basic v2 supports up to 5 devices."
+            },
+            {
+              "name": "Draft is not authoritative",
+              "passed": true,
+              "expected": "Nimbus Basic v2 supports up to 5 devices.",
+              "actual": "Nimbus Basic v2 supports up to 5 devices."
+            },
+            {
+              "name": "Approved correction applies",
+              "passed": true,
+              "expected": "Nimbus Basic v2 supports up to 3 devices.",
+              "actual": "Nimbus Basic v2 supports up to 3 devices."
+            },
+            {
+              "name": "Supported paraphrase applies",
+              "passed": true,
+              "expected": "Nimbus Basic v2 supports up to 3 devices.",
+              "actual": "Nimbus Basic v2 supports up to 3 devices."
+            },
+            {
+              "name": "Capacity question endorsed correctly",
+              "passed": true,
+              "expected": "No. Nimbus Basic v2 supports up to 3 devices.",
+              "actual": "No. Nimbus Basic v2 supports up to 3 devices."
+            },
+            {
+              "name": "Different property retained",
+              "passed": true,
+              "expected": "Nimbus Basic v2 costs 9 USD/month.",
+              "actual": "Nimbus Basic v2 costs 9 USD/month."
+            },
+            {
+              "name": "Different tier retained",
+              "passed": true,
+              "expected": "Nimbus Pro v2 supports up to 12 devices.",
+              "actual": "Nimbus Pro v2 supports up to 12 devices."
+            },
+            {
+              "name": "Historical version retained",
+              "passed": true,
+              "expected": "Nimbus Basic v1 supports up to 5 devices.",
+              "actual": "Nimbus Basic v1 supports up to 5 devices."
+            },
+            {
+              "name": "Ambiguous tier clarifies",
+              "passed": true,
+              "expected": "clarification",
+              "actual": "clarification"
+            },
+            {
+              "name": "Conflicting approval rejected",
+              "passed": true,
+              "expected": true,
+              "actual": true
+            },
+            {
+              "name": "Conflict is explicit",
+              "passed": true,
+              "expected": "conflict",
+              "actual": "conflict"
+            },
+            {
+              "name": "Conflict resolution restores approved answer",
+              "passed": true,
+              "expected": "Nimbus Basic v2 supports up to 3 devices.",
+              "actual": "Nimbus Basic v2 supports up to 3 devices."
+            },
+            {
+              "name": "Rollback restores initial answer",
+              "passed": true,
+              "expected": "Nimbus Basic v2 supports up to 5 devices.",
+              "actual": "Nimbus Basic v2 supports up to 5 devices."
+            },
+            {
+              "name": "Answers explicitly structured",
+              "passed": true,
+              "expected": "deterministic_structured",
+              "actual": "deterministic_structured"
+            }
+          ],
+          "sample_count": 13,
+          "ml_results": null,
+          "revision": 7
+        }
+      },
+      "error": null
+    },
+    {
+      "phase": "workflow",
+      "method": "POST",
+      "path": "/api/ask",
+      "http_status": 200,
+      "response_status": "answered",
+      "request_timeout_seconds": 5,
+      "latency_ms": 4.684,
+      "body": {
+        "question": "How many devices does Basic support?",
+        "status": "answered",
+        "answer": "Nimbus Basic v2 supports up to 5 devices.",
+        "before_answer": "Nimbus Basic v2 supports up to 5 devices.",
+        "answer_kind": "deterministic_structured",
+        "route": "initial_catalogue",
+        "fact": {
+          "aliases": [
+            "Nimbus Cloud",
+            "Nimbus platform"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "nimbus",
+          "entity_name": "Nimbus",
+          "fact_id": "nimbus-basic-v2-devices",
+          "lineage_id": "nimbus-basic-v2-devices",
+          "plan": "Basic",
+          "relation": "device_limit",
+          "source": "Fictional Nimbus support handbook v2, section 1.1",
+          "unit": "devices",
+          "value": "5",
+          "version": "v2"
+        },
+        "applicable_corrections": [],
+        "revision": 7,
+        "explanation": "Structured answer from the scoped fact store. No neural answer was generated.",
+        "latency_ms": 0.62
+      },
+      "error": null
+    }
+  ],
+  "mutation_attempted": false,
+  "completed_at": "2026-10-11T14:51:35.312050+00:00",
+  "elapsed_seconds": 0.118
+}

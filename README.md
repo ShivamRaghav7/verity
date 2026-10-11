@@ -105,9 +105,10 @@ node --check editguard/static/app.js
 .\.venv\Scripts\python.exe scripts/prepare_data.py --output data/generated/controlled-v1
 ```
 
-GitHub Actions defines the Python regression suite, JS syntax check and a separate
-CPU optimizer/resume regression job that uses tiny synthetic models without
-pretrained downloads. GPU backbone smoke remains a separate local check. Tests cover
+GitHub Actions defines the Python regression suite, JS syntax check, a separate
+CPU optimizer/resume regression job and a Docker workflow/restart verification job.
+The optimizer job uses tiny synthetic models without pretrained downloads.
+GPU backbone smoke remains a separate local check. Tests cover
 authority, exact scope, historical dates, half-open intervals, conflicting drafts,
 supersession, rollback, persistence, concurrent revisions, API token checks,
 leakage constraints and hash-bound review/freeze gates. The dashboard runs an
@@ -163,8 +164,11 @@ persistent SQLite volume and localhost port mapping. Container definitions are
 provided; a Docker build is not claimed unless recorded in verification evidence.
 GPU training stays outside this lightweight application image.
 
-On the inspected host, Docker's CLI is installed and its daemon is stopped;
-container build/run verification is pending. The local Python app was verified.
+The structured image was built and verified locally with Docker 29.2.1,
+Python 3.12.15 and UID 1000. All 23 isolated HTTP lifecycle checks passed, as did
+three restart/persistence checks. The verification container is stopped; its
+dedicated volume and image remain available. [Deployment evidence and reproduction](docs/DEPLOYMENT.md)
+distinguish this structured image from optional local neural inference.
 
 ## Project records
 
