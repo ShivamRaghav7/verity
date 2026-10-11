@@ -37,7 +37,10 @@ def main():
     figure.tight_layout(rect=[0, .13, 1, .94])
     args.output.parent.mkdir(parents=True, exist_ok=True)
     for suffix in [".png", ".svg"]:
-        figure.savefig(args.output.with_suffix(suffix), dpi=180, bbox_inches="tight")
+        output = args.output.with_suffix(suffix)
+        figure.savefig(output, dpi=180, bbox_inches="tight")
+        if suffix == ".svg":
+            output.write_text("\n".join(line.rstrip() for line in output.read_text(encoding="utf-8").splitlines()) + "\n", encoding="utf-8")
     plt.close(figure)
     print(f"Saved {args.output}.png and .svg")
 
