@@ -26,7 +26,9 @@ registry must identify this base separately from the fine-tuned answer model.
 | Conditional answer and frozen generator candidate | `google/flan-t5-small` | [Official model card](https://huggingface.co/google/flan-t5-small). Separate frozen and fine-tuned artifacts; revision not selected. |
 | Conditional generation alternative | `google-t5/t5-small` | [Official T5 documentation](https://huggingface.co/docs/transformers/model_doc/t5). Evaluate only if the initial candidate has a diagnosed feasibility issue. |
 
-These model IDs are candidates, not installed or trained model claims. Capture
+The scope and answer pretrained candidates have now been downloaded and profiled
+on a synthetic batch. Exact revisions and measurements are in
+[PROFILING.md](PROFILING.md). No EditGuard-trained checkpoint exists. Capture
 resolved revision, download checksum where available, license and tokenizer
 version at first real-checkpoint use. Existing pretraining may introduce bias or
 unsupported generations; the bounded task and evaluation do not remove that risk.
@@ -62,8 +64,8 @@ screenshot, are the reproducible deliverable.
 
 | Record | Status |
 |---|---|
-| Trained scope checkpoint and training resource measurements | Not available |
-| Trained answer checkpoint and training resource measurements | Not available |
+| Trained scope checkpoint and training resource measurements | Not available; small feasibility profile recorded separately |
+| Trained answer checkpoint and training resource measurements | Not available; small feasibility profile recorded separately |
 | Calibration parameters, threshold and margin | Not selected |
 | Frozen test and scorer/config/model hashes | Not frozen |
 | Five-configuration component and end-to-end comparison | Not performed |

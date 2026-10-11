@@ -38,8 +38,11 @@ schema and avoid separate incompatible notebooks as the primary pipeline.
 | G: Freeze and final evaluation | Lock model/config/scorer/test hashes and thresholds; run once across five configurations | Raw per-question outputs, denominators, paired uncertainty, resource/latency records and disclosed exclusions | Test failures cannot trigger test-guided tuning of this release. |
 | H: Presentation | Polish UI, render scientific graphs from results, complete cards/report/demo/container/docs | Clean checkout reproduction, locally deployable app, real saved weights, report and tested demonstration | Resume numbers exist only when backed by recorded results. |
 
-Current delivery begins A and B. D–H require measured runs and resulting
-artifacts; they cannot honestly be marked complete during scaffolding.
+Current delivery implements A's contracts/draft data pipeline and B's complete
+structured workflow. Label review and final split freezing remain pending. C's
+full five-configuration generator harness is next. D/E candidates have small
+real-checkpoint synthetic profiles; neither auxiliary is trained. D–H cannot
+honestly be marked complete during scaffolding.
 
 ## Bound the experiments
 

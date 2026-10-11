@@ -39,6 +39,25 @@ workflow, history, conflict resolution and exports. Minimal infrastructure consi
 of FastAPI, Pydantic, SQLite and build-free static assets. Docker and CI definitions
 are included; their execution must be recorded independently.
 
+The complete workflow was exercised in a separate browser fixture, including
+conflict rejection and restoration. Mobile layout had no horizontal overflow and
+the browser reported no console errors. Docker CLI 29.2.1 was available, but its
+Linux daemon was stopped; the container has not been built or run on this host.
+
+## Initial profiling observations
+
+Real DistilBERT and FLAN-T5-small checkpoints completed one warmup and three
+measured float32 optimizer steps at batch 2/input length 192 (answer length 48).
+Peak allocated GPU memory was 1.274 and 1.462 GiB respectively. Synthetic shapes
+and short runs establish feasibility only; no checkpoint or accuracy result was
+produced. [Raw profiling and limitations](PROFILING.md) include resolved revisions.
+
+A separate 30-request engineering benchmark of the structured app observed
+HTTP p50 15.592 ms and p95 19.616 ms, with zero errors/abstentions in the selected
+supported forms. This result includes HTTP/JSON overhead and excludes ML inference.
+
+![Structured application HTTP latency](../reports/structured-http-latency.png)
+
 ## Experiments and results
 
 | Required result | Current evidence |

@@ -1,0 +1,51 @@
+{
+  "hardware": {
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "cpu_threads": 12,
+    "packages": {
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1",
+      "fastapi": "0.121.0",
+      "pydantic": "2.12.4",
+      "psutil": "7.2.2"
+    },
+    "ram_gib": 23.71,
+    "available_ram_gib": 12.12,
+    "cuda_available": true,
+    "torch_cuda": "13.0",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_memory_gib": 6.0,
+    "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 581.86"
+  },
+  "profile": {
+    "component": "answer",
+    "backbone": "google/flan-t5-small",
+    "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+    "device": "cuda",
+    "batch_size": 2,
+    "input_length": 192,
+    "target_length": 48,
+    "precision": "float32",
+    "measured_optimizer_steps": 3,
+    "warmup_seconds": 0.9468931999999768,
+    "step_seconds": [
+      0.13114690000020346,
+      0.13439999999991414,
+      0.12644460000001345
+    ],
+    "median_step_seconds": 0.13114690000020346,
+    "peak_allocated_gpu_gib": 1.4623923301696777,
+    "peak_reserved_gpu_gib": 1.607421875,
+    "losses_for_debugging_only": [
+      2.421708106994629,
+      2.0288848876953125,
+      1.6540427207946777,
+      1.9756865501403809
+    ],
+    "checkpoint_written": false,
+    "limitations": "Synthetic repeated batch; excludes downloads, epoch validation, generation, checkpoint I/O, and realistic length mix. Not a training-time promise or accuracy result."
+  },
+  "status": "profile_complete",
+  "recorded_at": "2026-10-11T07:29:27.493724+00:00"
+}

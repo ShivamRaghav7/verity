@@ -1,0 +1,23 @@
+{
+  "hardware": {
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "cpu_threads": 12,
+    "packages": {
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1",
+      "fastapi": "0.121.0",
+      "pydantic": "2.12.4",
+      "psutil": "7.2.2"
+    },
+    "ram_gib": 23.71,
+    "available_ram_gib": 12.59,
+    "cuda_available": true,
+    "torch_cuda": "13.0",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_memory_gib": 6.0,
+    "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 581.86"
+  },
+  "profile": null,
+  "status": "hardware_inventory_only"
+}

@@ -1,5 +1,5 @@
 {
-  "status": "candidates_pending_profile_and_training",
+  "status": "synthetic_shape_profiles_complete_pending_reviewed_pilot_and_training",
   "embedding_candidate": "sentence-transformers/all-MiniLM-L6-v2",
   "scope_candidate": "distilbert/distilbert-base-uncased",
   "answer_candidate": "google/flan-t5-small",
@@ -11,7 +11,10 @@
   "scope_threshold": null,
   "ambiguity_margin": null,
   "calibration_artifact": null,
-  "model_revisions": null,
+  "model_revisions": {
+    "scope": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "answer": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab"
+  },
   "profile": {
     "measured_gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
     "gpu_memory_gib_nominal": 6,
@@ -22,6 +25,10 @@
     "cuda_available": true,
     "transformers": "5.16.1",
     "training_runtime_estimate": null,
-    "peak_training_memory": null
+    "peak_training_memory": null,
+    "feasibility_records": [
+      "reports/scope-profile.json",
+      "reports/answer-profile.json"
+    ]
   }
 }

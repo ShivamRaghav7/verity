@@ -27,6 +27,8 @@ Adding an approved correction will update memory without per-edit retraining.
 [Architecture and adaptations](docs/ARCHITECTURE.md) explain why this is
 SERAC-inspired rather than a faithful reproduction.
 
+![Evaluation interface showing actual engineering checks and untrained-model status](docs/images/evaluation-demo.jpg)
+
 ## Run locally
 
 Python 3.12+; the application was tested here with Python 3.14.3 on Windows.
@@ -99,7 +101,8 @@ supersession, rollback, persistence, concurrent revisions, API token checks,
 leakage constraints and hash-bound review/freeze gates. The dashboard runs an
 isolated engineering fixture and never mutates live memory.
 
-The independent data pipeline starts with 80 fictional entity families. It splits
+The independent data pipeline starts with 80 fictional entity families, 4,800 scope
+pairs and 1,920 short answer examples. It splits
 families before augmentation, keeps all variants together, and generates a human
 review queue. Training and final-test locking reject unresolved or stale review
 records. Generated labels are not automatically accepted as truth.
@@ -109,8 +112,10 @@ records. Generated labels are not automatically accepted as truth.
 
 The observed host has an RTX 4050 Laptop GPU with 6 GB VRAM, 23.71 GiB RAM and
 12 logical CPU threads. [Hardware inventory](reports/hardware.json) records the
-actual inspected environment. Exact backbones remain candidates until finite
-real-checkpoint profiles pass. Profiling does not create a trained checkpoint.
+actual inspected environment. The initial DistilBERT and FLAN-T5-small profiles
+passed at batch size 2, with peak GPU allocation of 1.27 and 1.46 GiB respectively.
+Profiling does not create a trained checkpoint. See the exact shapes, revisions and
+limitations in [profiling evidence](docs/PROFILING.md).
 
 `scripts/profile_models.py` profiles at most ten optimizer steps with bounded
 batch/length settings; defaults require cached weights. It writes timing, peak
@@ -118,6 +123,9 @@ CUDA memory, package versions and model revision. It never reads the test set.
 The first measured profile uses the existing host ML installation, separately
 from the isolated application environment; full training must use its own pinned
 environment and data/config hashes.
+
+[Training preflight](docs/TRAINING_PREFLIGHT.md) validates reviewed inputs and
+finite run cards without pretending to implement training or checkpoint restore.
 
 Substantial GPU commands will be released only with a concrete run card: purpose,
 reviewed inputs, outputs, profile-based runtime/memory estimate, checkpoint/resume
@@ -142,6 +150,9 @@ persistent SQLite volume and localhost port mapping. Container definitions are
 provided; a Docker build is not claimed unless recorded in verification evidence.
 GPU training stays outside this lightweight application image.
 
+On the inspected host, Docker's CLI is installed and its daemon is stopped;
+container build/run verification is pending. The local Python app was verified.
+
 ## Project records
 
 - [Five-person roles and finite A–H milestones](docs/PROJECT_PLAN.md)
@@ -150,6 +161,7 @@ GPU training stays outside this lightweight application image.
 - [Dataset card](docs/DATASET_CARD.md) and [model card](docs/MODEL_CARD.md)
 - [Evaluation protocol](docs/EVALUATION_PROTOCOL.md)
 - [Failure analysis](docs/FAILURE_ANALYSIS.md) and [interim report](docs/REPORT.md)
+- [Measured profiling](docs/PROFILING.md) and [structured HTTP samples](reports/structured-http.json)
 
 Stage A/B implementation is an initial milestone. Scientific performance graphs,
 trained checkpoint artifacts and a final results report are pending actual runs.
