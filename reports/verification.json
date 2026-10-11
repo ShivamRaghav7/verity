@@ -1,14 +1,16 @@
 {
   "date": "2026-10-11",
-  "stage": "engineering_vertical_slice_and_feasibility",
+  "stage": "baseline_integration_and_auxiliary_trainer_verification",
   "python": "3.14.3",
   "application_environment": ".venv, isolated, requirements-lock.txt",
   "unit_and_integration_tests": {
-    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
-    "tests": 50,
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -q",
+    "tests": 140,
+    "skipped": 2,
+    "skip_reason": "Optional ML optimizer tests require the isolated ML environment and explicit opt-in.",
     "failures": 0,
     "errors": 0,
-    "elapsed_seconds": 6.087,
+    "elapsed_seconds": 19.460,
     "status": "passed"
   },
   "javascript_syntax": "passed: node --check editguard/static/app.js",
@@ -23,6 +25,56 @@
     "console_errors": 0,
     "mobile_horizontal_overflow": false
   },
+  "neural_browser_workflow": {
+    "structured_default": "passed",
+    "updated_rag_before_after": "passed",
+    "generated_answer_label": "passed",
+    "retrieved_fact_cards_and_trace": "passed",
+    "missing_auxiliary_returns_503": "passed",
+    "desktop_viewport_width": 1280,
+    "mobile_viewport_width": 390,
+    "mobile_horizontal_overflow": false,
+    "evidence": "docs/images/neural-baseline-demo.jpg",
+    "live_memory_mutated": false
+  },
+  "isolated_ml_environment": ".venv-ml; Torch 2.9.0+cu130 installed from the official CUDA 13.0 index; other dependencies in requirements-ml-lock.txt",
+  "ml_optimizer_regressions": {
+    "command": "EDITGUARD_RUN_ML_TESTS=1 .venv-ml/Scripts/python.exe -m unittest discover -s tests -p test_trainer.py -v",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 7.439,
+    "status": "passed",
+    "overlap_with_core_suite": "Five tests also occur in the core suite; do not sum these counts as independent tests.",
+    "evidence": "reports/trainer-smoke.json"
+  },
+  "pretrained_trainer_smoke": {
+    "purpose": "developer_smoke_verification",
+    "status": "passed",
+    "scope_optimizer_steps": 4,
+    "answer_optimizer_steps": 4,
+    "checkpoint_at_step": 2,
+    "resumed_to_original_cap": 4,
+    "cpu_model_and_tokenizer_export_roundtrip": "passed for both tasks",
+    "runtime_rejects_smoke_artifacts": true,
+    "human_reviewed_data_read": false,
+    "test_rows_read": false,
+    "evidence": "reports/trainer-smoke.json",
+    "accuracy_claim": false
+  },
+  "frozen_neural_inference_smoke": {
+    "purpose": "engineering_smoke",
+    "status": "completed",
+    "questions": 6,
+    "configuration_records": 30,
+    "model_generated_answers": 18,
+    "unavailable_editor_records": 12,
+    "base_weights_unchanged": true,
+    "test_rows_read": false,
+    "evidence": "reports/neural-smoke-v2/manifest.json",
+    "failed_prior_attempt_preserved": "reports/neural-smoke/manifest.json",
+    "limitations": "Curated engineering fixtures, unavailable auxiliary models, and unreviewed answer fragments; not a final or validation performance estimate."
+  },
   "scope_feasibility_profile": "reports/scope-profile.json",
   "answer_feasibility_profile": "reports/answer-profile.json",
   "structured_http_benchmark": "reports/structured-http.json",
@@ -32,9 +84,17 @@
     "build_and_run": "not_verified"
   },
   "ci": "configured; remote outcome not yet recorded",
-  "learned_models": "not_trained",
-  "dataset_review": "pending",
+  "learned_models": "No reviewed-data-trained eligible auxiliary artifacts; synthetic smoke exports are ineligible.",
+  "dataset_review": {
+    "status": "pending",
+    "pilot_dataset_id": "editguard-controlled-v1-pilot-v1-42-7b7a9b1b",
+    "scope_rows": 360,
+    "answer_rows": 144,
+    "reviewed_rows": 0,
+    "portable_review_pages": 4,
+    "test_partition_in_pilot": false
+  },
   "test_set": "not_frozen",
-  "five_baseline_ml_comparison": "not_implemented",
+  "five_baseline_ml_comparison": "Runner and matched records implemented; frozen-model engineering smoke completed. Reviewed validation and final comparisons remain pending eligible auxiliaries and calibration.",
   "full_project_completion": false
 }

@@ -3,8 +3,8 @@
 `scripts/preflight_training.py` checks a concrete finite run card and performs no
 training, model import or download. It is preparatory validation. A successful
 preflight does **not** mean a training loop, checkpoint restoration or model
-quality has been verified. The next ML stage must implement and test those before
-providing substantial user-executed commands.
+quality has been verified. Trainer execution and exact-state restoration checks
+are separate evidence required before substantial user-executed commands.
 
 The card requires explicit absolute paths for data directory, task-specific
 training/validation JSONL, review registry, profile and output directory. Include
@@ -26,11 +26,14 @@ Its latency/memory establish bounded shape feasibility, with explicit limitation
 They do not establish reviewed-data length distribution, final accuracy or complete
 training wall time. Preflight preserves those limitations in its output.
 
-Checkpoint plans include model, optimizer, scheduler, RNG, global step, data hashes
-and configuration hash; add scaler state if mixed precision is later introduced.
+Checkpoint plans include model, optimizer, scheduler, RNG, sampler order/cursor,
+global step, data hashes, configuration hash and run identity covering
+run/data/review/model/environment/source hashes; add scaler state if mixed
+precision is later introduced.
 An intended resume path must be under the declared output directory and contain
 matching task/model/data/review metadata with a step below the stopping cap.
-Preflight checks declared metadata; restoration itself remains next-stage work.
+Preflight checks declared metadata; restoration is verified by trainer regression
+and bounded smoke runs rather than this script.
 
 Expected artifacts include `model`, `training_log.jsonl`, `run_card.json` and
 `checkpoints`. The output directory must not overwrite the input dataset. No

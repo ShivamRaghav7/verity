@@ -63,7 +63,8 @@ class TrainingRunCardTests(unittest.TestCase):
             path, card = self.make_card(task)
             result = validate_run_card(path)
             self.assertTrue(result["preflight_valid"])
-            self.assertFalse(result["training_implementation_ready"])
+            self.assertTrue(result["preflight_does_not_verify_training_loop"])
+            self.assertFalse(result["training_execution_requested"])
             self.assertGreater(result["reviewed_train_rows"], 0)
             self.assertFalse(Path(card["output_dir"]).exists())
 

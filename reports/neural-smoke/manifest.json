@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "purpose": "engineering_smoke",
+  "status": "failed",
+  "started_at": "2026-10-11T14:16:57.169253+00:00",
+  "dataset_id": "engineering-nimbus-smoke",
+  "configuration_sha256": "c129c5420be9278455d4299a9e0f96eb92a244e99dd3e9892f142cd913ed2c4e",
+  "scorer_version": "editguard-short-facts-v2",
+  "scorer_sha256": "b2c595a7d5ae9efc463a86c4ad6498553a7efa536a48152cef2afd2ac31b0ab1",
+  "questions": 6,
+  "configurations": [
+    "unchanged_base",
+    "updated_rag",
+    "prompt_only",
+    "similarity_editor",
+    "trained_scope_editor"
+  ],
+  "memory_policy": "single_focal_edit_plus_at_most_8_foreign_product_distractors",
+  "oracle_answer_diagnostic": true,
+  "selection": "curated_fixture_order",
+  "test_rows_read": false,
+  "base_parameter_sha256_before": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+  "torch_version": "2.9.0+cu130",
+  "device": "cuda",
+  "missing_auxiliaries": true,
+  "inference_config": {
+    "schema_version": 1,
+    "base_model_id": "google/flan-t5-small",
+    "base_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+    "embedding_model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "device": "cuda",
+    "cache_dir": "runtime/hf-cache/hub",
+    "local_files_only": true,
+    "max_input_tokens": 384,
+    "max_new_tokens": 48,
+    "retrieval_k": 3,
+    "prompt_edit_k": 3,
+    "similarity_threshold": null,
+    "scope_artifact": null,
+    "answer_artifact": null,
+    "calibration_artifact": null,
+    "input_format_version": "editguard-input-v1"
+  },
+  "failure": {
+    "type": "ValueError",
+    "reason": "Unavailable routes omitted request_context; aggregation refused mismatched paired conditions. Fixed before neural-smoke-v2."
+  }
+}

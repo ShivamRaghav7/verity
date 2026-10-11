@@ -1,0 +1,605 @@
+{
+  "completed_at": "2026-10-11T14:15:50.446003+00:00",
+  "cpu_exact_resume_regression": {
+    "checks": [
+      "uninterrupted and resumed parameters",
+      "losses",
+      "batch order",
+      "validation selection",
+      "subsequent RNG draws",
+      "corrupt checkpoint rejection"
+    ],
+    "command": [
+      "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv-ml\\Scripts\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_trainer.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "log_path": "runtime\\trainer-smoke-cpu-regression.log",
+    "process_seconds": 8.870303499999977
+  },
+  "limitations": [
+    "Literal synthetic fixtures; no human-reviewed data or test set is read.",
+    "No trained-model accuracy, generalization, or calibration claim.",
+    "CUDA checkpoint recovery is exercised, but CUDA uninterrupted-versus-resumed tensor equality is not compared in this verification.",
+    "The separate tiny CPU regression compares exact parameter, loss, selection, and RNG equality.",
+    "Loop timings include validation/checkpoint writes; optimizer timings exclude those costs.",
+    "Four steps and validation every step are a feasibility check, not a full-training runtime forecast."
+  ],
+  "purpose": "developer_smoke_verification",
+  "question": "Do the real cached pretrained backbones complete bounded optimizer updates, interrupted checkpoints, and resume through the unchanged four-step cap?",
+  "schema_version": 1,
+  "started_at": "2026-10-11T14:11:58.347438+00:00",
+  "status": "passed",
+  "tasks": {
+    "answer": {
+      "checkpoint_sizes": [
+        {
+          "directory_bytes": 1055374138,
+          "state_bytes": 1055372295,
+          "step": "step-00000003"
+        },
+        {
+          "directory_bytes": 1055374138,
+          "state_bytes": 1055372295,
+          "step": "step-00000004"
+        }
+      ],
+      "completed_steps": 4,
+      "environment": {
+        "attention_implementation": "eager",
+        "cpu_threads": 2,
+        "cublas_workspace_config": ":4096:8",
+        "cuda_devices": [
+          "NVIDIA GeForce RTX 4050 Laptop GPU"
+        ],
+        "cuda_visible_devices": null,
+        "deterministic_algorithms": true,
+        "device": "cuda",
+        "machine": "AMD64",
+        "nvidia_driver_uuid_identity": [
+          "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+        ],
+        "packages": {
+          "numpy": "2.4.2",
+          "safetensors": "0.8.0",
+          "tokenizers": "0.23.3",
+          "torch": "2.9.0+cu130",
+          "transformers": "5.16.1"
+        },
+        "platform": "Windows-11-10.0.26300-SP0",
+        "precision": "float32",
+        "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "tf32": false,
+        "torch_cuda": "13.0"
+      },
+      "export_bytes": 310295648,
+      "export_roundtrip": {
+        "artifact_purpose": "smoke_test",
+        "checked_at": "2026-10-11T14:27:47.225811+00:00",
+        "claim": "Official HF model/tokenizer export reload and finite synthetic forward only; no accuracy measurement or runtime eligibility.",
+        "device": "cpu",
+        "expected_tensor_state_sha256": "250729885b3b7bdfc916bc3cd23edd82ab2f5ec352801766896a03b68a3015fd",
+        "expected_tokenizer_sha256": "c472508a1103b3b5f2d64e4a04faaea37260579dd044f6bb5f38a664c7cfb0d5",
+        "forward_logits_shape": [
+          2,
+          48,
+          32128
+        ],
+        "loader_class": "AutoModelForSeq2SeqLM",
+        "local_files_only": true,
+        "manifest_sha256_before": "66a2aefae8064be44bc6611db227272455d0c2cad085fb0c91c70ef69929476e",
+        "manifest_unchanged": true,
+        "model_path": "runtime\\smoke-answer\\model",
+        "process_work_seconds": 3.8897142999999232,
+        "status": "passed",
+        "synthetic_forward_finite": true,
+        "synthetic_forward_loss": 1.366711139678955,
+        "tensor_state_exact_match": true,
+        "tensor_state_sha256": "250729885b3b7bdfc916bc3cd23edd82ab2f5ec352801766896a03b68a3015fd",
+        "tokenization": {
+          "input_truncated_rows": 0,
+          "max_input_tokens": 81,
+          "max_target_tokens": 16,
+          "rows": 2,
+          "target_truncated_rows": 0
+        },
+        "tokenizer_identity_exact_match": true,
+        "tokenizer_path": "runtime\\smoke-answer\\tokenizer",
+        "tokenizer_sha256": "c472508a1103b3b5f2d64e4a04faaea37260579dd044f6bb5f38a664c7cfb0d5"
+      },
+      "input_length": 192,
+      "manifest_sha256": "66a2aefae8064be44bc6611db227272455d0c2cad085fb0c91c70ef69929476e",
+      "max_steps": 4,
+      "model_id": "google/flan-t5-small",
+      "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+      "output_directory": "runtime\\smoke-answer",
+      "runtime_rejection": {
+        "reason": "A completed trained auxiliary artifact is required; smoke/pretrained weights are ineligible.",
+        "rejected": true
+      },
+      "segments": [
+        {
+          "command": [
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv-ml\\Scripts\\python.exe",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\scripts\\train_auxiliary.py",
+            "--smoke",
+            "--task",
+            "answer",
+            "--output",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-answer",
+            "--device",
+            "cuda",
+            "--max-steps",
+            "4",
+            "--stop-after-steps",
+            "2"
+          ],
+          "completed_steps": 2,
+          "exit_code": 0,
+          "log_path": "runtime\\trainer-smoke-answer-stop_after_step_2.log",
+          "process_seconds": 34.04219640000008,
+          "purpose": "smoke_test",
+          "selection": {
+            "checkpoint": "step-00000002",
+            "global_step": 2,
+            "metric": "validation_loss",
+            "value": 1.4581315517425537
+          },
+          "stage": "stop_after_step_2",
+          "status": "interrupted",
+          "training": {
+            "best_validation": {
+              "checkpoint": "step-00000002",
+              "global_step": 2,
+              "metric": "validation_loss",
+              "value": 1.4581315517425537
+            },
+            "elapsed_training_seconds": 18.9217271,
+            "final_state_sha256": "4c422e53188ab97b0e86796499c480eefa0ea7861bc5803d2ae0430455288bc8",
+            "global_step": 2,
+            "last_checkpoint": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-answer\\checkpoints\\step-00000002",
+            "resources": {
+              "peak_allocated_gpu_bytes": 1619646464,
+              "peak_reserved_gpu_bytes": 1786773504,
+              "process_rss_bytes": 2506608640
+            },
+            "status": "interrupted"
+          }
+        },
+        {
+          "command": [
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv-ml\\Scripts\\python.exe",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\scripts\\train_auxiliary.py",
+            "--smoke",
+            "--task",
+            "answer",
+            "--output",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-answer",
+            "--device",
+            "cuda",
+            "--max-steps",
+            "4",
+            "--resume",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-answer\\checkpoints\\step-00000002"
+          ],
+          "completed_steps": 4,
+          "exit_code": 0,
+          "log_path": "runtime\\trainer-smoke-answer-resume_to_step_4.log",
+          "process_seconds": 63.36442280000006,
+          "purpose": "smoke_test",
+          "selection": {
+            "checkpoint": "step-00000004",
+            "global_step": 4,
+            "metric": "validation_loss",
+            "value": 1.4134870767593384
+          },
+          "stage": "resume_to_step_4",
+          "status": "completed",
+          "training": {
+            "best_validation": {
+              "checkpoint": "step-00000004",
+              "global_step": 4,
+              "metric": "validation_loss",
+              "value": 1.4134870767593384
+            },
+            "elapsed_training_seconds": 32.71775809999997,
+            "final_state_sha256": "250729885b3b7bdfc916bc3cd23edd82ab2f5ec352801766896a03b68a3015fd",
+            "global_step": 4,
+            "last_checkpoint": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-answer\\checkpoints\\step-00000004",
+            "resources": {
+              "peak_allocated_gpu_bytes": 1614075904,
+              "peak_reserved_gpu_bytes": 1774190592,
+              "process_rss_bytes": 2748801024
+            },
+            "status": "completed"
+          }
+        }
+      ],
+      "source_hashes": {
+        "editguard/training.py": "aa3430dbdac6d7d76bb9d43515f8d45bdae55455cec76dbf29c04c41993f7c23",
+        "scripts/preflight_training.py": "6487176c6f8c879ee3e0574c6eae8b2a8e6f55518fed02c587c5d6e7f3049535",
+        "scripts/prepare_data.py": "4f690b412edc32886d575071d96dd6f0b1b500fac506ecebf018d14aa85167cd",
+        "scripts/train_auxiliary.py": "f22b46055290bd756a32595c4ceaf91d1abcc898436286921e2a36c3fb78c3b4"
+      },
+      "step_observations": [
+        {
+          "batch_indices": [
+            1,
+            0
+          ],
+          "elapsed_training_seconds": 1.173786199999995,
+          "global_step": 1,
+          "gradient_norm": 10.453147888183594,
+          "learning_rate_after_step": 1.5000000000000002e-05,
+          "loss": 1.8822230100631714,
+          "optimizer_seconds": 1.102715699999976,
+          "peak_allocated_gpu_bytes": 1614338048,
+          "peak_reserved_gpu_bytes": 1786773504,
+          "process_rss_bytes": 1555197952,
+          "sampler_cursor": 2,
+          "sampler_epoch": 0,
+          "validation_loss": 1.5023356676101685
+        },
+        {
+          "batch_indices": [
+            1,
+            0
+          ],
+          "elapsed_training_seconds": 9.012600299999917,
+          "global_step": 2,
+          "gradient_norm": 11.176661491394043,
+          "learning_rate_after_step": 1e-05,
+          "loss": 1.7633730173110962,
+          "optimizer_seconds": 0.3801641999999674,
+          "peak_allocated_gpu_bytes": 1619646464,
+          "peak_reserved_gpu_bytes": 1786773504,
+          "process_rss_bytes": 2064232448,
+          "sampler_cursor": 2,
+          "sampler_epoch": 1,
+          "validation_loss": 1.4581315517425537
+        },
+        {
+          "batch_indices": [
+            0,
+            1
+          ],
+          "elapsed_training_seconds": 0.7529813999999533,
+          "global_step": 3,
+          "gradient_norm": 9.757317543029785,
+          "learning_rate_after_step": 5e-06,
+          "loss": 1.8046501874923706,
+          "optimizer_seconds": 0.7126770999999508,
+          "peak_allocated_gpu_bytes": 1614075904,
+          "peak_reserved_gpu_bytes": 1774190592,
+          "process_rss_bytes": 2150764544,
+          "sampler_cursor": 2,
+          "sampler_epoch": 2,
+          "validation_loss": 1.4275325536727905
+        },
+        {
+          "batch_indices": [
+            1,
+            0
+          ],
+          "elapsed_training_seconds": 25.81109349999997,
+          "global_step": 4,
+          "gradient_norm": 11.66376781463623,
+          "learning_rate_after_step": 0.0,
+          "loss": 1.3460606336593628,
+          "optimizer_seconds": 0.34595359999991615,
+          "peak_allocated_gpu_bytes": 1614075904,
+          "peak_reserved_gpu_bytes": 1774190592,
+          "process_rss_bytes": 2450935808,
+          "sampler_cursor": 2,
+          "sampler_epoch": 3,
+          "validation_loss": 1.4134870767593384
+        }
+      ],
+      "target_length": 48,
+      "tokenization": {
+        "train": {
+          "input_truncated_rows": 0,
+          "max_input_tokens": 81,
+          "max_target_tokens": 16,
+          "rows": 2,
+          "target_truncated_rows": 0
+        },
+        "validation": {
+          "input_truncated_rows": 0,
+          "max_input_tokens": 82,
+          "max_target_tokens": 14,
+          "rows": 1,
+          "target_truncated_rows": 0
+        }
+      }
+    },
+    "scope": {
+      "checkpoint_sizes": [
+        {
+          "directory_bytes": 803602299,
+          "state_bytes": 803600443,
+          "step": "step-00000003"
+        },
+        {
+          "directory_bytes": 803602299,
+          "state_bytes": 803600443,
+          "step": "step-00000004"
+        }
+      ],
+      "completed_steps": 4,
+      "environment": {
+        "attention_implementation": "eager",
+        "cpu_threads": 2,
+        "cublas_workspace_config": ":4096:8",
+        "cuda_devices": [
+          "NVIDIA GeForce RTX 4050 Laptop GPU"
+        ],
+        "cuda_visible_devices": null,
+        "deterministic_algorithms": true,
+        "device": "cuda",
+        "machine": "AMD64",
+        "nvidia_driver_uuid_identity": [
+          "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+        ],
+        "packages": {
+          "numpy": "2.4.2",
+          "safetensors": "0.8.0",
+          "tokenizers": "0.23.3",
+          "torch": "2.9.0+cu130",
+          "transformers": "5.16.1"
+        },
+        "platform": "Windows-11-10.0.26300-SP0",
+        "precision": "float32",
+        "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+        "tf32": false,
+        "torch_cuda": "13.0"
+      },
+      "export_bytes": 268545255,
+      "export_roundtrip": {
+        "artifact_purpose": "smoke_test",
+        "checked_at": "2026-10-11T14:27:43.254438+00:00",
+        "claim": "Official HF model/tokenizer export reload and finite synthetic forward only; no accuracy measurement or runtime eligibility.",
+        "device": "cpu",
+        "expected_tensor_state_sha256": "f2aa02a85c0ce6c95481a96a0ae1d6c897b69b5015d8343004f695045c26458f",
+        "expected_tokenizer_sha256": "1d45349456e84298623ed80806eff7e5f13a4ab8a26aacc805719a61a0f0d040",
+        "forward_logits_shape": [
+          4,
+          2
+        ],
+        "loader_class": "AutoModelForSequenceClassification",
+        "local_files_only": true,
+        "manifest_sha256_before": "9cfb8353c7cb6d3bce955bd7147c3c4be0d7bfb434db445fee2f577364040213",
+        "manifest_unchanged": true,
+        "model_path": "runtime\\smoke-scope\\model",
+        "process_work_seconds": 3.7221819000001233,
+        "status": "passed",
+        "synthetic_forward_finite": true,
+        "synthetic_forward_loss": 0.688088059425354,
+        "tensor_state_exact_match": true,
+        "tensor_state_sha256": "f2aa02a85c0ce6c95481a96a0ae1d6c897b69b5015d8343004f695045c26458f",
+        "tokenization": {
+          "input_truncated_rows": 0,
+          "max_input_tokens": 53,
+          "max_target_tokens": null,
+          "rows": 4,
+          "target_truncated_rows": 0
+        },
+        "tokenizer_identity_exact_match": true,
+        "tokenizer_path": "runtime\\smoke-scope\\tokenizer",
+        "tokenizer_sha256": "1d45349456e84298623ed80806eff7e5f13a4ab8a26aacc805719a61a0f0d040"
+      },
+      "input_length": 192,
+      "manifest_sha256": "9cfb8353c7cb6d3bce955bd7147c3c4be0d7bfb434db445fee2f577364040213",
+      "max_steps": 4,
+      "model_id": "distilbert/distilbert-base-uncased",
+      "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+      "output_directory": "runtime\\smoke-scope",
+      "runtime_rejection": {
+        "reason": "A completed trained auxiliary artifact is required; smoke/pretrained weights are ineligible.",
+        "rejected": true
+      },
+      "segments": [
+        {
+          "command": [
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv-ml\\Scripts\\python.exe",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\scripts\\train_auxiliary.py",
+            "--smoke",
+            "--task",
+            "scope",
+            "--output",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-scope",
+            "--device",
+            "cuda",
+            "--max-steps",
+            "4",
+            "--stop-after-steps",
+            "2"
+          ],
+          "completed_steps": 2,
+          "exit_code": 0,
+          "log_path": "runtime\\trainer-smoke-scope-stop_after_step_2.log",
+          "process_seconds": 88.60806849999994,
+          "purpose": "smoke_test",
+          "selection": {
+            "checkpoint": "step-00000002",
+            "global_step": 2,
+            "metric": "validation_loss",
+            "value": 0.6948685646057129
+          },
+          "stage": "stop_after_step_2",
+          "status": "interrupted",
+          "training": {
+            "best_validation": {
+              "checkpoint": "step-00000002",
+              "global_step": 2,
+              "metric": "validation_loss",
+              "value": 0.6948685646057129
+            },
+            "elapsed_training_seconds": 13.217241899999976,
+            "final_state_sha256": "7ad9d71d77c00598803344ff7755d9e56c9bcd0809bd6de1b656d8628cee34dc",
+            "global_step": 2,
+            "last_checkpoint": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-scope\\checkpoints\\step-00000002",
+            "resources": {
+              "peak_allocated_gpu_bytes": 1415690240,
+              "peak_reserved_gpu_bytes": 1514143744,
+              "process_rss_bytes": 1780424704
+            },
+            "status": "interrupted"
+          }
+        },
+        {
+          "command": [
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv-ml\\Scripts\\python.exe",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\scripts\\train_auxiliary.py",
+            "--smoke",
+            "--task",
+            "scope",
+            "--output",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-scope",
+            "--device",
+            "cuda",
+            "--max-steps",
+            "4",
+            "--resume",
+            "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-scope\\checkpoints\\step-00000002"
+          ],
+          "completed_steps": 4,
+          "exit_code": 0,
+          "log_path": "runtime\\trainer-smoke-scope-resume_to_step_4.log",
+          "process_seconds": 36.992143899999974,
+          "purpose": "smoke_test",
+          "selection": {
+            "checkpoint": "step-00000003",
+            "global_step": 3,
+            "metric": "validation_loss",
+            "value": 0.6947009563446045
+          },
+          "stage": "resume_to_step_4",
+          "status": "completed",
+          "training": {
+            "best_validation": {
+              "checkpoint": "step-00000003",
+              "global_step": 3,
+              "metric": "validation_loss",
+              "value": 0.6947009563446045
+            },
+            "elapsed_training_seconds": 13.32759569999996,
+            "final_state_sha256": "c364df00a3b360186b931b92d8c9b260340611dc4aec399afe60888cd7a6d949",
+            "global_step": 4,
+            "last_checkpoint": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\smoke-scope\\checkpoints\\step-00000004",
+            "resources": {
+              "peak_allocated_gpu_bytes": 1415690240,
+              "peak_reserved_gpu_bytes": 1514143744,
+              "process_rss_bytes": 1880457216
+            },
+            "status": "completed"
+          }
+        }
+      ],
+      "source_hashes": {
+        "editguard/training.py": "aa3430dbdac6d7d76bb9d43515f8d45bdae55455cec76dbf29c04c41993f7c23",
+        "scripts/preflight_training.py": "6487176c6f8c879ee3e0574c6eae8b2a8e6f55518fed02c587c5d6e7f3049535",
+        "scripts/prepare_data.py": "4f690b412edc32886d575071d96dd6f0b1b500fac506ecebf018d14aa85167cd",
+        "scripts/train_auxiliary.py": "f22b46055290bd756a32595c4ceaf91d1abcc898436286921e2a36c3fb78c3b4"
+      },
+      "step_observations": [
+        {
+          "batch_indices": [
+            2,
+            1
+          ],
+          "elapsed_training_seconds": 0.8482893000000331,
+          "global_step": 1,
+          "gradient_norm": 2.3806679248809814,
+          "learning_rate_after_step": 1.5000000000000002e-05,
+          "loss": 0.6583152413368225,
+          "optimizer_seconds": 0.8219364999999925,
+          "peak_allocated_gpu_bytes": 1415690240,
+          "peak_reserved_gpu_bytes": 1514143744,
+          "process_rss_bytes": 1241280512,
+          "sampler_cursor": 2,
+          "sampler_epoch": 0,
+          "validation_loss": 0.6949044466018677
+        },
+        {
+          "batch_indices": [
+            3,
+            0
+          ],
+          "elapsed_training_seconds": 7.221065199999998,
+          "global_step": 2,
+          "gradient_norm": 2.068293333053589,
+          "learning_rate_after_step": 1e-05,
+          "loss": 0.6642269492149353,
+          "optimizer_seconds": 0.3346364999999878,
+          "peak_allocated_gpu_bytes": 1415690240,
+          "peak_reserved_gpu_bytes": 1514143744,
+          "process_rss_bytes": 1511280640,
+          "sampler_cursor": 4,
+          "sampler_epoch": 0,
+          "validation_loss": 0.6948685646057129
+        },
+        {
+          "batch_indices": [
+            3,
+            2
+          ],
+          "elapsed_training_seconds": 0.3876639999999725,
+          "global_step": 3,
+          "gradient_norm": 2.245386838912964,
+          "learning_rate_after_step": 5e-06,
+          "loss": 0.66996169090271,
+          "optimizer_seconds": 0.3724046999999473,
+          "peak_allocated_gpu_bytes": 1415690240,
+          "peak_reserved_gpu_bytes": 1514143744,
+          "process_rss_bytes": 1762557952,
+          "sampler_cursor": 2,
+          "sampler_epoch": 1,
+          "validation_loss": 0.6947009563446045
+        },
+        {
+          "batch_indices": [
+            0,
+            1
+          ],
+          "elapsed_training_seconds": 6.234967299999994,
+          "global_step": 4,
+          "gradient_norm": 2.5456392765045166,
+          "learning_rate_after_step": 0.0,
+          "loss": 0.6677223443984985,
+          "optimizer_seconds": 0.36439369999993687,
+          "peak_allocated_gpu_bytes": 1415690240,
+          "peak_reserved_gpu_bytes": 1514143744,
+          "process_rss_bytes": 1838620672,
+          "sampler_cursor": 4,
+          "sampler_epoch": 1,
+          "validation_loss": 0.6949547529220581
+        }
+      ],
+      "target_length": null,
+      "tokenization": {
+        "train": {
+          "input_truncated_rows": 0,
+          "max_input_tokens": 53,
+          "max_target_tokens": null,
+          "rows": 4,
+          "target_truncated_rows": 0
+        },
+        "validation": {
+          "input_truncated_rows": 0,
+          "max_input_tokens": 53,
+          "max_target_tokens": null,
+          "rows": 2,
+          "target_truncated_rows": 0
+        }
+      }
+    }
+  }
+}

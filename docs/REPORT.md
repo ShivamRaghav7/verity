@@ -1,6 +1,7 @@
 # EditGuard: interim project report
 
-**Status: engineering foundation and first workflow. Final ML experiments pending.**
+**Status: working workflow, frozen neural baselines and finite training/evaluation
+implementation. Reviewed-data training and final ML experiments pending.**
 
 ## Problem and registered topic
 
@@ -16,7 +17,10 @@ The architecture is SERAC-inspired: a frozen base assistant is wrapped by approv
 external memory, a learned applicability classifier and a correction-conditioned
 generator. Our governance and temporal compatibility rules are adaptations. See
 [architecture](ARCHITECTURE.md) for the primary-paper reading and full diagram.
-The prototype currently exercises those governance rules with structured answers.
+The prototype exercises those governance rules with structured answers and
+optional frozen neural baselines. Updated RAG applies approved facts before
+retrieval; prompt-only correction receives the same approved descriptors.
+[Comparison contracts](COMPARISONS.md) disclose routing and benchmark boundaries.
 
 ## Data and protocol
 
@@ -33,6 +37,14 @@ rollback, neighboring scope retention, persistence, authority checks and coheren
 concurrent reads. The live dashboard exposes actual isolated workflow checks,
 their denominators and fixture service latency. These checks demonstrate database
 and API behavior, not learned editing performance.
+
+The new trainer implements both pretrained auxiliary tasks, fixed stopping caps,
+validation-loss selection and atomic full-state resume with data, configuration,
+environment, source-code and pretrained-state identities. The scorer rejects
+wrong subjects/relations/polarity, contradictory assertions and unendorsed target
+mentions. Unsupported fragments enter a blinded hash-bound review queue and remain
+uncredited until adjudicated. [Scorer rules](SCORER.md) retain abstentions and
+missing predictions in denominators and separate structured from generated evidence.
 
 The UI provides customer questions, scoped before/after comparisons, an approval
 workflow, history, conflict resolution and exports. Minimal infrastructure consists
@@ -56,7 +68,22 @@ A separate 30-request engineering benchmark of the structured app observed
 HTTP p50 15.592 ms and p95 19.616 ms, with zero errors/abstentions in the selected
 supported forms. This result includes HTTP/JSON overhead and excludes ML inference.
 
+Both actual auxiliary trainers subsequently completed four real CUDA steps through
+an interrupted two-step segment and resumed two-step segment. The separate CPU
+regression matched uninterrupted/resumed parameters, losses, selection and RNG.
+These synthetic checkpoints are explicitly rejected by the runtime. Actual
+timings, memory and checkpoint I/O are in [TRAINER_SMOKE.md](TRAINER_SMOKE.md).
+They do not establish a full-training runtime estimate.
+
+The frozen neural smoke completed six questions across the three available
+baselines, preserving explicit unavailability of the two editors. Base parameter
+fingerprints remained identical. [NEURAL_SMOKE.md](NEURAL_SMOKE.md) records wrong
+answers and uncredited fragments, with all raw inputs and outputs retained.
+No result in that engineering fixture is a final accuracy claim.
+
 ![Structured application HTTP latency](../reports/structured-http-latency.png)
+
+![Measured four-step synthetic trainer resources](../reports/trainer-smoke-resources.png)
 
 ## Experiments and results
 
@@ -68,7 +95,7 @@ supported forms. This result includes HTTP/JSON overhead and excludes ML inferen
 | Raw scope precision/recall, false application and calibration | Not measured |
 | Oracle answer and end-to-end factual accuracy | Not measured |
 | Heldout paraphrases, entity generalization and baseline retention | Not measured |
-| Five fair configurations with paired uncertainty | Not run |
+| Five fair configurations with paired uncertainty | Harness smoke completed with two editors unavailable; reviewed comparison pending |
 | Conflict/rollback consistency | Engineering regression and local demonstration |
 | Structured service/HTTP latency | Engineering-only benchmark artifacts when run |
 

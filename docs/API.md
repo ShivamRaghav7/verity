@@ -29,12 +29,24 @@ administrator identity; production accounts and session management are future wo
 {"question":"Can I connect four devices on Basic?","entity_id":"nimbus","plan":"Basic","version":"v2","as_of":"2026-10-11","mode":"structured"}
 ```
 
-Response includes `status` (`answered`, `clarification`, `conflict`), `answer`,
+Response includes `status` (`answered`, `clarification`, `conflict`, `error`, `abstention`), `answer`,
 `before_answer`, `answer_kind`, `route`, `fact`, `applicable_corrections`, `revision`,
-`latency_ms` and `explanation`. Current answer kind is `deterministic_structured`.
-Latency covers the service call; it excludes HTTP transport. `learned` mode is
-503 until model registration/calibration is implemented. No checkpoint is implied
-by a route label. Explicit question scope conflicting with a selector clarifies.
+`latency_ms` and `explanation`. Structured mode uses `deterministic_structured`.
+Optional modes are `unchanged_base`, `updated_rag`, `prompt_only`,
+`similarity_editor` and `learned`. Set `EDITGUARD_INFERENCE_CONFIG` and use the
+isolated ML environment to load neural inference. Missing trained artifacts or
+calibration return 503. Model-generated responses retain the original generated
+text and use `model_generated`; clarification uses `deterministic_clarification`.
+No checkpoint is implied by a route label.
+
+Neural responses also include `before_answer_kind`, `before_trace`, exact
+`input_text`, retrieved facts/scores/sources, correction candidates, scope scores,
+generation token/truncation trace, and `api_latency_ms`. Route `latency_ms` excludes
+the original-answer generation and model initialization; API processing time
+includes them and excludes HTTP transport. The comparison uses one coherent
+memory revision. Explicit question scope conflicting with a selector clarifies.
+Pending conflicts conservatively block neural output throughout their scoped
+product/plan/version/date; see [COMPARISONS.md](COMPARISONS.md).
 
 `POST /api/edits` example:
 

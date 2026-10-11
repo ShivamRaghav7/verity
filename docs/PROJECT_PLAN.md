@@ -40,9 +40,11 @@ schema and avoid separate incompatible notebooks as the primary pipeline.
 
 Current delivery implements A's contracts/draft data pipeline and B's complete
 structured workflow. Label review and final split freezing remain pending. C's
-full five-configuration generator harness is next. D/E candidates have small
-real-checkpoint synthetic profiles; neither auxiliary is trained. D–H cannot
-honestly be marked complete during scaffolding.
+five-configuration harness, optional frozen baselines, scoring and aggregation are
+implemented; reviewed validation acceptance remains pending. D/E have real finite
+training loops, exact-state resume, pinned candidates and a small pending review
+pilot. Synthetic optimizer smoke remains separate from reviewed-data training.
+Neither auxiliary is eligible as trained; D–H remain incomplete.
 
 ## Bound the experiments
 

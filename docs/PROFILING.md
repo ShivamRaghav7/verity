@@ -60,8 +60,13 @@ characterize concurrency, production service load or neural inference latency.
 
 ## Reproduction
 
-Run the app, then use the bounded `scripts/benchmark_http.py` command described in
-the README. `scripts/plot_measurements.py` reads saved JSON and writes PNG/SVG;
+Run the app, then measure a fresh bounded structured benchmark:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/benchmark_http.py --samples 30 --warmup 3 --output reports/structured-http-new.json
+```
+
+`scripts/plot_measurements.py` reads saved JSON and writes PNG/SVG;
 install `requirements-plots.txt` in a separate plotting environment if needed.
 Its output checks require a completed stable structured benchmark.
 

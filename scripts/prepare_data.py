@@ -307,12 +307,15 @@ def dataset_files(dataset: dict) -> dict[str, bytes]:
 
 
 def _validate_review(row: dict, record: dict | None) -> bool:
-    if not record or record.get("decision") != "accept":
+    if not isinstance(record, dict) or record.get("decision") != "accept":
         return False
-    if not record.get("reviewer", "").strip() or record.get("row_sha256") != content_hash(row):
+    reviewer = record.get("reviewer")
+    if not isinstance(reviewer, str) or not reviewer.strip() or record.get("row_sha256") != content_hash(row):
         return False
     try:
-        datetime.fromisoformat(record["reviewed_at"].replace("Z", "+00:00"))
+        timestamp = datetime.fromisoformat(record["reviewed_at"].replace("Z", "+00:00"))
+        if timestamp.tzinfo is None or timestamp.utcoffset() is None:
+            return False
     except (KeyError, ValueError, AttributeError):
         return False
     return True
@@ -332,9 +335,9 @@ def load_reviewed_rows(path: Path, registry_path: Path, *, require_all: bool = T
         record = records.get(row["id"])
         if _validate_review(row, record):
             accepted.append({**row, "reviewed": True, "review_status": "accepted"})
-        elif (record and record.get("decision") == "reject"
-              and record.get("reason", "").strip()
-              and record.get("reviewer", "").strip()
+        elif (isinstance(record, dict) and record.get("decision") == "reject"
+              and isinstance(record.get("reason"), str) and record["reason"].strip()
+              and isinstance(record.get("reviewer"), str) and record["reviewer"].strip()
               and record.get("row_sha256") == content_hash(row)):
             # Apply the same timestamp/provenance checks as accepted rows.
             if _validate_review(row, {**record, "decision": "accept"}):

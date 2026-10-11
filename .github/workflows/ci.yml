@@ -15,3 +15,18 @@ jobs:
         with:
           node-version: '22'
       - run: node --check editguard/static/app.js
+  optimizer-resume:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      EDITGUARD_RUN_ML_TESTS: '1'
+      HF_HUB_OFFLINE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements-lock.txt numpy==2.4.2 psutil==7.2.2
+      - run: pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m unittest discover -s tests -p test_trainer.py -v

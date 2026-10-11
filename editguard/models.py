@@ -108,7 +108,7 @@ class AskRequest(StrictModel):
     plan: str | None = Field(default=None, min_length=1, max_length=80)
     version: str | None = Field(default=None, min_length=1, max_length=80)
     as_of: date | None = None
-    mode: Literal["structured", "learned"] = "structured"
+    mode: Literal["structured", "learned", "unchanged_base", "updated_rag", "prompt_only", "similarity_editor"] = "structured"
 
     _date = field_validator("as_of", mode="before")(
         lambda value: None if value is None else iso_date(value)

@@ -16,16 +16,26 @@ resolution, history, conflict resolution, rollback and JSON export. The applicat
 uses a curated fictional Nimbus handbook. The dataset and products are controlled
 demonstrations, not claims about real companies.
 
-**Answers currently use deterministic structured templates. Neither auxiliary
-model is trained.** Learned mode deliberately returns HTTP 503. Engineering
-regression checks are not ML accuracy. The final project's completion criteria
-still require both trained models and the five fair baseline comparisons.
+**Structured answers remain the default. Neither auxiliary model has completed
+reviewed-data training.** Optional frozen FLAN-T5/MiniLM modes implement the
+unchanged base, properly updated RAG and prompt-only correction. Real scope and
+answer training loops, full-state resume, conservative scoring and fixed-denominator
+metrics are implemented. Learned modes return HTTP 503 until eligible trained
+artifacts and calibration are installed. Engineering checks and synthetic optimizer
+smoke are not ML accuracy or project completion.
 
-The planned editor wraps a frozen retrieval-based assistant with approved memory,
+The editor wraps a frozen retrieval-based assistant with approved memory,
 a trained pair scope classifier and a trained edit-conditioned seq2seq generator.
 Adding an approved correction will update memory without per-edit retraining.
 [Architecture and adaptations](docs/ARCHITECTURE.md) explain why this is
 SERAC-inspired rather than a faithful reproduction.
+
+[ML setup](docs/ML_SETUP.md), [matched comparisons](docs/COMPARISONS.md),
+[trainer and resume](docs/TRAINER.md), [scoring rules](docs/SCORER.md) and
+[human data review](docs/DATA_REVIEW.md) document the next runnable stage.
+The finite pilot contains 360 scope and 144 answer examples across disjoint
+training/validation families; all labels are pending review. It contains no test
+partition. The four portable review pages are linked from the data-review guide.
 
 ![Evaluation interface showing actual engineering checks and untrained-model status](docs/images/evaluation-demo.jpg)
 
@@ -55,7 +65,7 @@ export EDITGUARD_ADMIN_TOKEN='replace-with-your-local-admin-token'
 
 Open [the application](http://127.0.0.1:8000) or
 [interactive API documentation](http://127.0.0.1:8000/docs).
-Enter the administrator token in the sidebar to enable mutation requests.
+Enter the administrator token in the Correction editor to enable mutation requests.
 If no token is configured, the **localhost-only demo default** is `local-demo-only`.
 The shared token is a demonstration boundary, not production identity management.
 
@@ -95,7 +105,9 @@ node --check editguard/static/app.js
 .\.venv\Scripts\python.exe scripts/prepare_data.py --output data/generated/controlled-v1
 ```
 
-GitHub Actions runs the Python regression suite and JS syntax check. Tests cover
+GitHub Actions defines the Python regression suite, JS syntax check and a separate
+CPU optimizer/resume regression job that uses tiny synthetic models without
+pretrained downloads. GPU backbone smoke remains a separate local check. Tests cover
 authority, exact scope, historical dates, half-open intervals, conflicting drafts,
 supersession, rollback, persistence, concurrent revisions, API token checks,
 leakage constraints and hash-bound review/freeze gates. The dashboard runs an
@@ -125,7 +137,8 @@ from the isolated application environment; full training must use its own pinned
 environment and data/config hashes.
 
 [Training preflight](docs/TRAINING_PREFLIGHT.md) validates reviewed inputs and
-finite run cards without pretending to implement training or checkpoint restore.
+finite run cards. The separate [trainer](docs/TRAINER.md) implements training and
+checkpoint restoration; preflight alone does not verify a completed training run.
 
 Substantial GPU commands will be released only with a concrete run card: purpose,
 reviewed inputs, outputs, profile-based runtime/memory estimate, checkpoint/resume
@@ -163,7 +176,9 @@ container build/run verification is pending. The local Python app was verified.
 - [Failure analysis](docs/FAILURE_ANALYSIS.md) and [interim report](docs/REPORT.md)
 - [Measured profiling](docs/PROFILING.md) and [structured HTTP samples](reports/structured-http.json)
 
-Stage A/B implementation is an initial milestone. Scientific performance graphs,
-trained checkpoint artifacts and a final results report are pending actual runs.
+Stages A/B are implemented, and stage C's baseline and evaluation mechanics are
+available. Both auxiliary trainers passed bounded synthetic GPU verification.
+Scientific performance graphs, eligible trained artifacts and a final results
+report are pending reviewed-data runs.
 Resume claims must follow those artifacts. No arbitrary-question accuracy guarantee
 or numerical ML improvement is claimed.

@@ -1,0 +1,2325 @@
+{
+  "schema_version": 1,
+  "metrics_version": "editguard-fixed-denominators-v2",
+  "record_count": 30,
+  "question_count": 6,
+  "disclaimer": "Uncredited abstentions, unavailable/error outputs and pending human reviews remain in answerable accuracy denominators. Model-generated answer accuracy uses the entire answerable population and excludes deterministic answers from its numerator. Calibration/latency with missing measurements is explicitly incomplete; absent scope labels are disclosed rather than inferred.",
+  "configurations": {
+    "prompt_only": {
+      "count": 6,
+      "answerable_count": 6,
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "selective_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "automatic_correct": 0,
+      "human_adjudicated_correct": 0,
+      "human_adjudicated_count": 0,
+      "pending_review": 6,
+      "abstentions": 0,
+      "errors": 0,
+      "unavailable": 0,
+      "counts": {
+        "total": 6,
+        "input_records": 6,
+        "missing_records": 0,
+        "answerable": 6,
+        "answered": 6,
+        "correct": 0,
+        "pending_review": 6,
+        "abstentions": 0,
+        "errors": 0,
+        "unavailable": 0,
+        "missing_score": 0
+      },
+      "status_counts": {
+        "answered": 6
+      },
+      "subsets": {
+        "comparison": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "direct": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "out_of_scope": {
+          "count": 3,
+          "answerable_count": 3,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 3,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "paraphrase": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "direct_corrected": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        }
+      },
+      "by_answer_kind": {
+        "model_generated": {
+          "count": 6,
+          "answerable_count": 6,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 6,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        }
+      },
+      "retrieval_recall": {
+        "1": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "3": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        }
+      },
+      "false_correction_application_rate": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "output_preservation": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "preservation_parsed_pair_count": 0,
+      "baseline_available": true,
+      "handling_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "handling_labels_available": 0,
+      "scope": null,
+      "scope_labeled_records": 0,
+      "scope_label_coverage": null,
+      "latency": {
+        "unit": "ms",
+        "total_count": 6,
+        "sample_count": 6,
+        "missing_count": 0,
+        "complete": true,
+        "p50_ms": 176.369,
+        "p95_ms": 320.55,
+        "observed_only_p50_ms": 176.369,
+        "observed_only_p95_ms": 320.55
+      }
+    },
+    "similarity_editor": {
+      "count": 6,
+      "answerable_count": 6,
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "selective_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "model_generated_answer_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_coverage": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "automatic_correct": 0,
+      "human_adjudicated_correct": 0,
+      "human_adjudicated_count": 0,
+      "pending_review": 0,
+      "abstentions": 0,
+      "errors": 0,
+      "unavailable": 6,
+      "counts": {
+        "total": 6,
+        "input_records": 6,
+        "missing_records": 0,
+        "answerable": 6,
+        "answered": 0,
+        "correct": 0,
+        "pending_review": 0,
+        "abstentions": 0,
+        "errors": 0,
+        "unavailable": 6,
+        "missing_score": 0
+      },
+      "status_counts": {
+        "unavailable": 6
+      },
+      "subsets": {
+        "comparison": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        },
+        "direct": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        },
+        "out_of_scope": {
+          "count": 3,
+          "answerable_count": 3,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 3
+        },
+        "paraphrase": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        },
+        "direct_corrected": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        }
+      },
+      "by_answer_kind": {
+        "model_generated": {
+          "count": 6,
+          "answerable_count": 6,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 6
+        }
+      },
+      "retrieval_recall": {},
+      "false_correction_application_rate": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "output_preservation": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "preservation_parsed_pair_count": 0,
+      "baseline_available": true,
+      "handling_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "handling_labels_available": 0,
+      "scope": null,
+      "scope_labeled_records": 0,
+      "scope_label_coverage": null,
+      "latency": {
+        "unit": "ms",
+        "total_count": 6,
+        "sample_count": 6,
+        "missing_count": 0,
+        "complete": true,
+        "p50_ms": 0.0075,
+        "p95_ms": 0.010499999999999999,
+        "observed_only_p50_ms": 0.0075,
+        "observed_only_p95_ms": 0.010499999999999999
+      }
+    },
+    "trained_scope_editor": {
+      "count": 6,
+      "answerable_count": 6,
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "selective_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "model_generated_answer_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_coverage": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "automatic_correct": 0,
+      "human_adjudicated_correct": 0,
+      "human_adjudicated_count": 0,
+      "pending_review": 0,
+      "abstentions": 0,
+      "errors": 0,
+      "unavailable": 6,
+      "counts": {
+        "total": 6,
+        "input_records": 6,
+        "missing_records": 0,
+        "answerable": 6,
+        "answered": 0,
+        "correct": 0,
+        "pending_review": 0,
+        "abstentions": 0,
+        "errors": 0,
+        "unavailable": 6,
+        "missing_score": 0
+      },
+      "status_counts": {
+        "unavailable": 6
+      },
+      "subsets": {
+        "comparison": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        },
+        "direct": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        },
+        "out_of_scope": {
+          "count": 3,
+          "answerable_count": 3,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 3
+        },
+        "paraphrase": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        },
+        "direct_corrected": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 1
+        }
+      },
+      "by_answer_kind": {
+        "model_generated": {
+          "count": 6,
+          "answerable_count": 6,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 6
+        }
+      },
+      "retrieval_recall": {},
+      "false_correction_application_rate": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "output_preservation": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "preservation_parsed_pair_count": 0,
+      "baseline_available": true,
+      "handling_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "handling_labels_available": 0,
+      "scope": {
+        "population": "raw_labeled_pairs",
+        "threshold": 0.5,
+        "bins": 10,
+        "counts": {
+          "total": 6,
+          "positive": 3,
+          "negative": 3,
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 3,
+          "missing_probability": 6
+        },
+        "precision": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "recall": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "false_positive_rate": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "specificity": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "accuracy": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "probability_coverage": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": 0.0
+        },
+        "calibration_complete": false,
+        "brier": {
+          "numerator": 0,
+          "denominator": 6,
+          "value": null,
+          "reason": "Missing probabilities; full-population calibration unavailable."
+        },
+        "ece": {
+          "numerator": 0.0,
+          "denominator": 6,
+          "value": null,
+          "reason": "Missing probabilities; full-population calibration unavailable."
+        },
+        "observed_only_brier": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "observed_only_ece": {
+          "numerator": 0.0,
+          "denominator": 0,
+          "value": null
+        },
+        "reliability_bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "upper_inclusive": false,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "upper_inclusive": true,
+            "count": 0,
+            "mean_probability": null,
+            "empirical_applicability": null
+          }
+        ]
+      },
+      "scope_labeled_records": 6,
+      "scope_label_coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "latency": {
+        "unit": "ms",
+        "total_count": 6,
+        "sample_count": 6,
+        "missing_count": 0,
+        "complete": true,
+        "p50_ms": 0.006500000000000001,
+        "p95_ms": 0.009,
+        "observed_only_p50_ms": 0.006500000000000001,
+        "observed_only_p95_ms": 0.009
+      }
+    },
+    "unchanged_base": {
+      "count": 6,
+      "answerable_count": 6,
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "selective_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "automatic_correct": 0,
+      "human_adjudicated_correct": 0,
+      "human_adjudicated_count": 0,
+      "pending_review": 6,
+      "abstentions": 0,
+      "errors": 0,
+      "unavailable": 0,
+      "counts": {
+        "total": 6,
+        "input_records": 6,
+        "missing_records": 0,
+        "answerable": 6,
+        "answered": 6,
+        "correct": 0,
+        "pending_review": 6,
+        "abstentions": 0,
+        "errors": 0,
+        "unavailable": 0,
+        "missing_score": 0
+      },
+      "status_counts": {
+        "answered": 6
+      },
+      "subsets": {
+        "comparison": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "direct": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "out_of_scope": {
+          "count": 3,
+          "answerable_count": 3,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 3,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "paraphrase": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "direct_corrected": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        }
+      },
+      "by_answer_kind": {
+        "model_generated": {
+          "count": 6,
+          "answerable_count": 6,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 6,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        }
+      },
+      "retrieval_recall": {},
+      "false_correction_application_rate": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "output_preservation": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "preservation_parsed_pair_count": 0,
+      "baseline_available": true,
+      "handling_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "handling_labels_available": 0,
+      "scope": null,
+      "scope_labeled_records": 0,
+      "scope_label_coverage": null,
+      "latency": {
+        "unit": "ms",
+        "total_count": 6,
+        "sample_count": 6,
+        "missing_count": 0,
+        "complete": true,
+        "p50_ms": 248.36950000000002,
+        "p95_ms": 859.962,
+        "observed_only_p50_ms": 248.36950000000002,
+        "observed_only_p95_ms": 859.962
+      }
+    },
+    "updated_rag": {
+      "count": 6,
+      "answerable_count": 6,
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "selective_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_accuracy": {
+        "numerator": 0,
+        "denominator": 6,
+        "value": 0.0
+      },
+      "model_generated_answer_coverage": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "automatic_correct": 0,
+      "human_adjudicated_correct": 0,
+      "human_adjudicated_count": 0,
+      "pending_review": 6,
+      "abstentions": 0,
+      "errors": 0,
+      "unavailable": 0,
+      "counts": {
+        "total": 6,
+        "input_records": 6,
+        "missing_records": 0,
+        "answerable": 6,
+        "answered": 6,
+        "correct": 0,
+        "pending_review": 6,
+        "abstentions": 0,
+        "errors": 0,
+        "unavailable": 0,
+        "missing_score": 0
+      },
+      "status_counts": {
+        "answered": 6
+      },
+      "subsets": {
+        "comparison": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "direct": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "out_of_scope": {
+          "count": 3,
+          "answerable_count": 3,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 3,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 3,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "paraphrase": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        },
+        "direct_corrected": {
+          "count": 1,
+          "answerable_count": 1,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 1,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        }
+      },
+      "by_answer_kind": {
+        "model_generated": {
+          "count": 6,
+          "answerable_count": 6,
+          "accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "coverage": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          },
+          "selective_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_accuracy": {
+            "numerator": 0,
+            "denominator": 6,
+            "value": 0.0
+          },
+          "model_generated_answer_coverage": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          },
+          "automatic_correct": 0,
+          "human_adjudicated_correct": 0,
+          "human_adjudicated_count": 0,
+          "pending_review": 6,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 0
+        }
+      },
+      "retrieval_recall": {
+        "1": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "3": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        }
+      },
+      "false_correction_application_rate": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "output_preservation": {
+        "numerator": 0,
+        "denominator": 3,
+        "value": 0.0
+      },
+      "preservation_parsed_pair_count": 0,
+      "baseline_available": true,
+      "handling_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "handling_labels_available": 0,
+      "scope": null,
+      "scope_labeled_records": 0,
+      "scope_label_coverage": null,
+      "latency": {
+        "unit": "ms",
+        "total_count": 6,
+        "sample_count": 6,
+        "missing_count": 0,
+        "complete": true,
+        "p50_ms": 181.131,
+        "p95_ms": 277.6575,
+        "observed_only_p50_ms": 181.131,
+        "observed_only_p95_ms": 277.6575
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "left": "prompt_only",
+      "right": "similarity_editor",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "prompt_only",
+      "right": "trained_scope_editor",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "prompt_only",
+      "right": "unchanged_base",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "prompt_only",
+      "right": "updated_rag",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "similarity_editor",
+      "right": "trained_scope_editor",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "similarity_editor",
+      "right": "unchanged_base",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "similarity_editor",
+      "right": "updated_rag",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "trained_scope_editor",
+      "right": "unchanged_base",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "trained_scope_editor",
+      "right": "updated_rag",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    },
+    {
+      "left": "unchanged_base",
+      "right": "updated_rag",
+      "metric": "fixed_denominator_answer_accuracy",
+      "direction": "right_minus_left",
+      "difference": 0.0,
+      "difference_percentage_points": 0.0,
+      "matched_ids": 6,
+      "matched_answerable": 6,
+      "left_unmatched": 0,
+      "right_unmatched": 0,
+      "family_count": 1,
+      "seed": 42,
+      "resamples": 2000,
+      "confidence_level": 0.95,
+      "ci95": null,
+      "answer_kind_counts": {
+        "left": {
+          "model_generated": 6
+        },
+        "right": {
+          "model_generated": 6
+        }
+      },
+      "interval_status": "At least two paired families are required for a meaningful cluster interval."
+    }
+  ],
+  "oracle_answer_diagnostic": {
+    "schema_version": 1,
+    "metrics_version": "editguard-fixed-denominators-v2",
+    "record_count": 3,
+    "question_count": 3,
+    "disclaimer": "Uncredited abstentions, unavailable/error outputs and pending human reviews remain in answerable accuracy denominators. Model-generated answer accuracy uses the entire answerable population and excludes deterministic answers from its numerator. Calibration/latency with missing measurements is explicitly incomplete; absent scope labels are disclosed rather than inferred.",
+    "configurations": {
+      "oracle_answer": {
+        "count": 3,
+        "answerable_count": 3,
+        "accuracy": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "selective_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "model_generated_answer_accuracy": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "model_generated_answer_coverage": {
+          "numerator": 0,
+          "denominator": 3,
+          "value": 0.0
+        },
+        "automatic_correct": 0,
+        "human_adjudicated_correct": 0,
+        "human_adjudicated_count": 0,
+        "pending_review": 0,
+        "abstentions": 0,
+        "errors": 0,
+        "unavailable": 3,
+        "counts": {
+          "total": 3,
+          "input_records": 3,
+          "missing_records": 0,
+          "answerable": 3,
+          "answered": 0,
+          "correct": 0,
+          "pending_review": 0,
+          "abstentions": 0,
+          "errors": 0,
+          "unavailable": 3,
+          "missing_score": 0
+        },
+        "status_counts": {
+          "unavailable": 3
+        },
+        "subsets": {
+          "comparison": {
+            "count": 1,
+            "answerable_count": 1,
+            "accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "selective_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "model_generated_answer_coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "automatic_correct": 0,
+            "human_adjudicated_correct": 0,
+            "human_adjudicated_count": 0,
+            "pending_review": 0,
+            "abstentions": 0,
+            "errors": 0,
+            "unavailable": 1
+          },
+          "direct": {
+            "count": 1,
+            "answerable_count": 1,
+            "accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "selective_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "model_generated_answer_coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "automatic_correct": 0,
+            "human_adjudicated_correct": 0,
+            "human_adjudicated_count": 0,
+            "pending_review": 0,
+            "abstentions": 0,
+            "errors": 0,
+            "unavailable": 1
+          },
+          "paraphrase": {
+            "count": 1,
+            "answerable_count": 1,
+            "accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "selective_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "model_generated_answer_coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "automatic_correct": 0,
+            "human_adjudicated_correct": 0,
+            "human_adjudicated_count": 0,
+            "pending_review": 0,
+            "abstentions": 0,
+            "errors": 0,
+            "unavailable": 1
+          },
+          "out_of_scope": {
+            "count": 0,
+            "answerable_count": 0,
+            "accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "coverage": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "selective_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_coverage": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "automatic_correct": 0,
+            "human_adjudicated_correct": 0,
+            "human_adjudicated_count": 0,
+            "pending_review": 0,
+            "abstentions": 0,
+            "errors": 0,
+            "unavailable": 0
+          },
+          "direct_corrected": {
+            "count": 1,
+            "answerable_count": 1,
+            "accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "selective_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_accuracy": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "model_generated_answer_coverage": {
+              "numerator": 0,
+              "denominator": 1,
+              "value": 0.0
+            },
+            "automatic_correct": 0,
+            "human_adjudicated_correct": 0,
+            "human_adjudicated_count": 0,
+            "pending_review": 0,
+            "abstentions": 0,
+            "errors": 0,
+            "unavailable": 1
+          }
+        },
+        "by_answer_kind": {
+          "model_generated": {
+            "count": 3,
+            "answerable_count": 3,
+            "accuracy": {
+              "numerator": 0,
+              "denominator": 3,
+              "value": 0.0
+            },
+            "coverage": {
+              "numerator": 0,
+              "denominator": 3,
+              "value": 0.0
+            },
+            "selective_accuracy": {
+              "numerator": 0,
+              "denominator": 0,
+              "value": null
+            },
+            "model_generated_answer_accuracy": {
+              "numerator": 0,
+              "denominator": 3,
+              "value": 0.0
+            },
+            "model_generated_answer_coverage": {
+              "numerator": 0,
+              "denominator": 3,
+              "value": 0.0
+            },
+            "automatic_correct": 0,
+            "human_adjudicated_correct": 0,
+            "human_adjudicated_count": 0,
+            "pending_review": 0,
+            "abstentions": 0,
+            "errors": 0,
+            "unavailable": 3
+          }
+        },
+        "retrieval_recall": {},
+        "false_correction_application_rate": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
+        "baseline_correct_retention": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "output_preservation": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "preservation_parsed_pair_count": 0,
+        "baseline_available": false,
+        "handling_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        },
+        "handling_labels_available": 0,
+        "scope": null,
+        "scope_labeled_records": 0,
+        "scope_label_coverage": null,
+        "latency": {
+          "unit": "ms",
+          "total_count": 3,
+          "sample_count": 3,
+          "missing_count": 0,
+          "complete": true,
+          "p50_ms": 0.006,
+          "p95_ms": 0.0078,
+          "observed_only_p50_ms": 0.006,
+          "observed_only_p95_ms": 0.0078
+        }
+      }
+    },
+    "paired_comparisons": []
+  }
+}

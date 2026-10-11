@@ -5,6 +5,7 @@
   const state = { facts: [], edits: [], events: [], conflicts: [], revision: null, health: null, initialized: false, busy: false, lastAnswerRevision: null };
   const viewNames = { assistant: "SUPPORT ASSISTANT", corrections: "CORRECTION EDITOR", history: "VERSION HISTORY", conflicts: "RESOLVE CONFLICTS", evaluation: "EVALUATION LAB" };
   const relationNames = { device_limit: "Device limit", price_monthly: "Monthly price", storage_gb: "Storage allowance", support_hours: "Support hours" };
+  const modeNames = { structured: "Structured facts", unchanged_base: "Frozen initial handbook", updated_rag: "Updated RAG", prompt_only: "Correction prompt", similarity_editor: "Similarity editor", learned: "Learned scope editor", trained_scope_editor: "Learned scope editor" };
 
   function node(tag, text, className) {
     const element = document.createElement(tag);
@@ -297,19 +298,38 @@
     finally { byId("create-button").textContent = "Create correction draft ＋"; setBusy(false); }
   }
   function renderAnswer(result) {
+    const mode = result.configuration || byId("ask-mode").value;
+    const kind = result.answer_kind || (mode === "structured" ? "deterministic_structured" : "model_generated");
+    const beforeKind = result.before_answer_kind || (mode === "structured" ? "deterministic_structured" : "model_generated");
+    function kindLabel(answerKind) {
+      if (answerKind === "model_generated") return "Model-generated answer · retrieved sources do not verify prose";
+      if (answerKind === "deterministic_structured") return "Deterministic structured answer · direct fact-store lookup";
+      return "Deterministic clarification · no model-generated fact endorsed";
+    }
     byId("answer-placeholder").hidden = true;
     byId("answer-results").hidden = false;
     byId("before-answer").textContent = result.before_answer || "The base assistant could not resolve a unique answer.";
-    byId("after-answer").textContent = result.answer || "Additional information is required.";
+    byId("after-answer").textContent = result.answer || (result.status === "error" ? "Model generation failed. Inspect the inference evidence." : result.status === "abstention" ? "The model generated no answer." : "Additional information is required.");
+    byId("before-answer-kind").textContent = `Fixed initial handbook · ${kindLabel(beforeKind)}`;
+    byId("after-answer-kind").textContent = kindLabel(kind);
+    byId("after-answer-mode").textContent = modeNames[mode] || readable(mode);
     const status = byId("answer-status");
-    status.textContent = result.status === "answered" ? "Answered · structured" : result.status === "conflict" ? "Conflict · resolve required" : "Clarification needed";
+    status.textContent = result.status === "answered" ? `Answered · ${kind === "model_generated" ? "model-generated" : "structured"}` : result.status === "conflict" ? "Conflict · resolve required" : result.status === "error" ? "Generation error" : result.status === "abstention" ? "No answer · abstention" : "Clarification needed";
     status.className = `pill pill-${result.status || "clarification"}`;
-    byId("answer-latency").textContent = typeof result.latency_ms === "number" ? `${result.latency_ms.toFixed(1)} ms · API processing` : "";
+    const apiLatency = result.api_latency_ms ?? result.latency_ms;
+    byId("answer-latency").textContent = typeof apiLatency === "number" ? `${apiLatency.toFixed(1)} ms · API processing` : "";
     byId("answer-revision").textContent = `REVISION ${printable(result.revision)}`;
     byId("answer-explanation").textContent = [result.explanation, result.route ? `Route: ${printable(result.route)}` : ""].filter(Boolean).join(" ");
     const fact = byId("answer-fact");
     fact.replaceChildren();
     if (result.fact) fact.append(factDetails(result.fact));
+    else (result.retrieved_facts || []).forEach((hit, index) => {
+      const item = node("div", undefined, "evidence-item");
+      item.append(node("strong", `Retrieved fact ${index + 1} · ${hit.fact_id}`),
+        node("p", hit.fact ? `${factName(hit.fact)} · ${hit.value} ${hit.fact.unit}` : `Value: ${hit.value}`),
+        node("p", `Source: ${hit.source || "Unavailable"}${hit.applied_edit_id ? ` · Applied correction: ${hit.applied_edit_id}` : ""}`));
+      fact.append(item);
+    });
     const edits = byId("answer-edits");
     edits.replaceChildren();
     (result.applicable_corrections || []).forEach(edit => {
@@ -318,19 +338,31 @@
       else item.append(node("strong", `Correction ${edit.edit_id} · ${edit.corrected_value}`), node("p", `Source: ${edit.source || "Unavailable"} · ${dateWindow(edit)}`));
       edits.append(item);
     });
-    if (!(result.applicable_corrections || []).length) edits.append(node("p", result.status === "answered" ? "No approved correction applies. The current answer uses the initial catalogue fact." : "No corrected answer is endorsed until the ambiguity or conflict is resolved.", "muted"));
+    if (!(result.applicable_corrections || []).length) edits.append(node("p", result.status === "answered" ? (kind === "model_generated" ? "No correction was selected as an applicable edit. Inspect the retrieval evidence for the selected mode." : "No approved correction applies. The current answer uses the initial catalogue fact.") : "No corrected answer is endorsed until the ambiguity, conflict or generation failure is resolved.", "muted"));
+    const evidence = byId("neural-evidence");
+    evidence.hidden = mode === "structured";
+    evidence.open = false;
+    byId("neural-evidence-data").textContent = evidence.hidden ? "" : JSON.stringify({
+      mode, answer_kind: kind, request_context: result.request_context,
+      input_text: result.input_text, retrieved_facts: result.retrieved_facts,
+      correction_candidates: result.retrieval_candidates_raw,
+      eligible_correction_candidates: result.retrieval_candidates_eligible,
+      scope_scores: result.scope_scores, generation: result.generation_trace,
+      before_generation: result.before_trace?.generation_trace,
+      error: result.error || null
+    }, null, 2);
     state.lastAnswerRevision = result.revision;
   }
   async function askQuestion(event) {
     event.preventDefault();
     const button = byId("ask-button");
     if (button.disabled) return;
-    const payload = { question: byId("question").value.trim(), as_of: byId("ask-date").value, mode: "structured" };
+    const payload = { question: byId("question").value.trim(), as_of: byId("ask-date").value, mode: byId("ask-mode").value };
     if (!payload.question) { byId("question").focus(); return; }
     for (const [field, id] of [["entity_id", "ask-entity"], ["plan", "ask-plan"], ["version", "ask-version"]]) if (byId(id).value) payload[field] = byId(id).value;
     clearNotice();
     button.disabled = true;
-    button.textContent = "Resolving scoped facts…";
+    button.textContent = payload.mode === "structured" ? "Resolving scoped facts…" : "Generating model comparison…";
     const started = performance.now();
     try {
       const result = await api("/api/ask", { method: "POST", body: JSON.stringify(payload) });
@@ -338,7 +370,11 @@
       const elapsed = performance.now() - started;
       byId("answer-latency").textContent += `${byId("answer-latency").textContent ? " · " : ""}${elapsed.toFixed(0)} ms browser round trip`;
       if (typeof result.revision === "number") { state.revision = result.revision; setHealth(); }
-    } catch (error) { notify(error.message, "error"); }
+    } catch (error) {
+      byId("answer-results").hidden = true;
+      byId("answer-placeholder").hidden = false;
+      notify(error.status === 503 ? `Answer mode unavailable (HTTP 503). ${error.message}` : error.message, "error");
+    }
     finally { button.disabled = false; button.textContent = "Compare answers →"; }
   }
   async function runEvaluation() {
@@ -415,6 +451,11 @@
     try { if (await loadData()) notify("Workspace records refreshed."); } finally { button.disabled = false; }
   }));
   byId("ask-form").addEventListener("submit", askQuestion);
+  byId("ask-mode").addEventListener("change", () => {
+    const mode = byId("ask-mode").value;
+    byId("ask-mode-label").textContent = mode === "structured" ? "STRUCTURED MODE" : "MODEL-GENERATED MODE";
+    byId("ask-mode-hint").textContent = mode === "structured" ? "Structured answers use approved facts directly. Generated neural text is evaluated separately." : `${modeNames[mode]} requires configured local models. Missing checkpoints return an unavailable error; retrieved sources do not verify generated prose.`;
+  });
   byId("correction-form").addEventListener("submit", createCorrection);
   byId("correction-fact").addEventListener("change", selectedFactChanged);
   byId("supersedes").addEventListener("change", () => {

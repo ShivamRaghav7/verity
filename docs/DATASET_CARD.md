@@ -43,6 +43,12 @@ rows are not 4,800 independent observations; uncertainty is grouped by family.
 Start training with a reviewed pilot and use the full draft only after review and
 a working pipeline. Do not increase scale to disguise model errors.
 
+The implemented [human review and pilot tool](DATA_REVIEW.md) derives a finite
+four-training/two-validation-family pilot. It contains 360 scope pairs and 144
+answer rows, records exact source/derived hashes, and remains pending human review.
+Foreign negative references are explicitly rerouted inside selected families;
+the source dataset and candidate test partition remain unchanged.
+
 ## Explicit ground truth and row schema
 
 Facts include `fact_id`, `entity_id`, display name, aliases, relation, numeric

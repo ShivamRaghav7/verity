@@ -22,7 +22,7 @@ except ModuleNotFoundError:
 
 RESUME_FIELDS = {
     "model", "optimizer", "scheduler", "rng", "global_step",
-    "data_hashes", "configuration_hash",
+    "data_hashes", "configuration_hash", "sampler", "identity",
 }
 
 
@@ -178,7 +178,7 @@ def validate_run_card(card_path: Path) -> dict:
             raise ValueError("Resume checkpoint must be an existing directory under output_dir.")
         metadata_path = resume / "metadata.json"
         if not metadata_path.is_file():
-            raise ValueError("Resume metadata is required; exact-state restoration is not yet implemented.")
+            raise ValueError("Resume metadata is required for exact-state restoration.")
         metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
         for field in ("task", "model_id", "model_revision", "manifest_sha256", "reviews_sha256"):
             if metadata.get(field) != card[field]:
@@ -186,8 +186,9 @@ def validate_run_card(card_path: Path) -> dict:
         if type(metadata.get("global_step")) is not int or not 0 <= metadata["global_step"] < max_steps:
             raise ValueError("Resume global_step must precede the declared stopping cap.")
 
-    return {"preflight_valid": True, "training_implementation_ready": False,
-            "disclaimer": "No training ran. A verified training loop and complete run card are still required before releasing a substantial command.",
+    return {"preflight_valid": True, "preflight_does_not_verify_training_loop": True,
+            "training_execution_requested": False,
+            "disclaimer": "No training ran. This preflight checks declared inputs and run planning; trainer and exact-state restoration verification remain separate evidence.",
             "task": task, "dataset_id": card["dataset_id"], "model_id": card["model_id"],
             "model_revision": revision, "reviewed_train_rows": len(train_rows),
             "reviewed_validation_rows": len(validation_rows),

@@ -72,3 +72,33 @@ class APITests(unittest.TestCase):
             self.assertIn(result.status_code, [400, 422], value)
         self.assertEqual(self.ask(as_of="2026-99-99").status_code, 422)
         self.assertEqual(self.client.post("/api/ask", json={"question": "Basic devices", "approved_correction": self.payload}).status_code, 422)
+
+    def test_optional_neural_api_uses_same_approved_lifecycle_and_explicit_labels(self):
+        from editguard.comparison import ComparisonRunner
+        from tests.test_comparison import FakeGenerator, FakeRetriever
+        runner = ComparisonRunner(FakeGenerator(), FakeRetriever())
+        app = create_app(Path(self.temporary.name) / "neural.sqlite3", "test-token", runner)
+        with TestClient(app) as client:
+            payload = {"question": "How many devices does Nimbus Basic version v2 support?",
+                       "entity_id": "nimbus", "plan": "Basic", "version": "v2", "as_of": "2026-10-12"}
+
+            def ask(mode):
+                return client.post("/api/ask", json={**payload, "mode": mode})
+
+            self.assertEqual(ask("unchanged_base").json()["before_trace"], None)
+            self.assertEqual(ask("structured").json()["answer_kind"], "deterministic_structured")
+            self.assertEqual(ask("learned").status_code, 503)
+            draft = client.post("/api/edits", json=self.payload, headers=self.headers).json()
+            self.assertIn("supports 5 devices", ask("updated_rag").json()["input_text"])
+            client.post(f"/api/edits/{draft['edit_id']}/approve", headers=self.headers)
+            result = ask("updated_rag").json()
+            self.assertIn("supports 3 devices", result["input_text"])
+            self.assertIn("supports 5 devices", result["before_trace"]["input_text"])
+            self.assertEqual(result["answer_kind"], "model_generated")
+            conflict = client.post("/api/edits", json={**self.payload, "original_value": "3", "corrected_value": "4",
+                                                       "effective_from": "2026-10-12"}, headers=self.headers).json()
+            self.assertEqual(ask("prompt_only").json()["status"], "conflict")
+            client.post(f"/api/edits/{conflict['edit_id']}/withdraw", headers=self.headers)
+            self.assertEqual(ask("updated_rag").json()["status"], "answered")
+            client.post(f"/api/edits/{draft['edit_id']}/withdraw", headers=self.headers)
+            self.assertIn("supports 5 devices", ask("updated_rag").json()["input_text"])

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "base_model_id": "google/flan-t5-small",
+  "base_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+  "embedding_model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "device": "cuda",
+  "cache_dir": "runtime/hf-cache/hub",
+  "local_files_only": true,
+  "max_input_tokens": 384,
+  "max_new_tokens": 48,
+  "retrieval_k": 3,
+  "prompt_edit_k": 3,
+  "similarity_threshold": null,
+  "scope_artifact": null,
+  "answer_artifact": null,
+  "calibration_artifact": null,
+  "input_format_version": "editguard-input-v1"
+}
