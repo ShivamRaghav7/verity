@@ -1,0 +1,27 @@
+{
+  "status": "candidates_pending_profile_and_training",
+  "embedding_candidate": "sentence-transformers/all-MiniLM-L6-v2",
+  "scope_candidate": "distilbert/distilbert-base-uncased",
+  "answer_candidate": "google/flan-t5-small",
+  "answer_alternative": "google-t5/t5-small",
+  "base_generator_candidate": "google/flan-t5-small",
+  "base_weights_frozen": true,
+  "scope_checkpoint": null,
+  "answer_checkpoint": null,
+  "scope_threshold": null,
+  "ambiguity_margin": null,
+  "calibration_artifact": null,
+  "model_revisions": null,
+  "profile": {
+    "measured_gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_memory_gib_nominal": 6,
+    "cpu_logical_threads": 12,
+    "host_ram_gib": 23.71,
+    "free_ram_gib_at_inspection": 11.0,
+    "torch": "2.9.0+cu130",
+    "cuda_available": true,
+    "transformers": "5.16.1",
+    "training_runtime_estimate": null,
+    "peak_training_memory": null
+  }
+}

@@ -1,0 +1,5 @@
+-r requirements-dev.txt
+# Install the CUDA-specific PyTorch wheel separately after the hardware profile.
+transformers==5.16.1
+scikit-learn==1.8.0
+psutil==7.2.2

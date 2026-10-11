@@ -1,0 +1,11 @@
+services:
+  editguard:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      EDITGUARD_ADMIN_TOKEN: ${EDITGUARD_ADMIN_TOKEN:?Set an administrator token before starting}
+    volumes:
+      - editguard-data:/app/runtime
+volumes:
+  editguard-data:

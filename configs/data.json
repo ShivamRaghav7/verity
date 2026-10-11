@@ -1,0 +1,15 @@
+{
+  "dataset_id": "editguard-controlled-v1",
+  "generator_version": 2,
+  "seed": 42,
+  "entity_families": 80,
+  "split_ratios": {"train": 0.7, "validation": 0.15, "test": 0.15},
+  "split_unit": "entity_family_before_augmentation",
+  "relations": ["device_limit", "price_monthly", "storage_gb", "support_hours"],
+  "planned_scope_rows": 4800,
+  "planned_answer_rows": 1920,
+  "planned_challenge_drafts": 96,
+  "review_required": true,
+  "generated_labels_are_human_reviewed": false,
+  "output": "data/generated/controlled-v1"
+}

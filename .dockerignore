@@ -1,0 +1,7 @@
+.git
+.venv
+runtime
+models
+artifacts
+data/generated
+__pycache__
