@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT))
 
 from editguard.formatting import INPUT_FORMAT_VERSION, correction_text
 from editguard.neural import calibrated_probability, file_sha256, validate_artifact
-from scripts.prepare_data import content_hash, load_reviewed_rows
+from scripts.prepare_data import REVIEW_POLICIES, content_hash, load_reviewed_rows
 from scripts.review_dataset import checked_rows, read_json
 
 CALIBRATION_VERSION = "editguard-validation-calibration-v1"
@@ -103,7 +103,7 @@ def fit_calibration(labels, probabilities):
             "declared_costs": dict(COSTS), "rows": len(labels)}
 
 
-def reviewed_inputs(scope_artifact: Path, dataset: Path, reviews: Path, *, max_rows: int):
+def reviewed_inputs(scope_artifact: Path, dataset: Path, reviews: Path, *, max_rows: int, review_policy: str = "human"):
     """Validate before model import; only the fixed validation filename is read."""
     if type(max_rows) is not int or not 2 <= max_rows <= 10000:
         raise ValueError("max_rows must be an integer between 2 and 10000.")
@@ -115,8 +115,8 @@ def reviewed_inputs(scope_artifact: Path, dataset: Path, reviews: Path, *, max_r
     # checked_rows enforces manifest integrity, duplicate-ID/key checks and exact
     # validation split tags before the existing complete human-review gate.
     original = checked_rows(dataset, "scope", "validation")
-    read_json(reviews)  # Reject duplicate registry keys before the legacy loader.
-    accepted = load_reviewed_rows(dataset / "scope_validation.jsonl", reviews, require_all=True)
+    registry = read_json(reviews)  # Reject duplicate registry keys before the review loader.
+    accepted = load_reviewed_rows(dataset / "scope_validation.jsonl", reviews, require_all=True, review_policy=review_policy)
     accepted_ids = {row["id"] for row in accepted}
     rows = [row for row in original if row["id"] in accepted_ids]
     if len(rows) > max_rows:
@@ -132,9 +132,12 @@ def reviewed_inputs(scope_artifact: Path, dataset: Path, reviews: Path, *, max_r
         raise ValueError("Accepted validation rows must contain positive and negative pairs.")
     bindings = {"dataset_id": manifest["dataset_id"], "dataset_manifest_sha256": manifest_hash,
                 "validation_file_sha256": file_sha256(dataset / "scope_validation.jsonl"),
-                "review_registry_sha256": file_sha256(reviews),
+                "review_registry_sha256": file_sha256(reviews), "review_policy": review_policy,
+                "human_reviewed_data": review_policy == "human", "review_audit_sha256": registry.get("audit_sha256"),
                 "scope_manifest_sha256": file_sha256(scope_artifact / "manifest.json"),
                 "scope_selected_model_state_sha256": scope_manifest.get("selected_model_state_sha256"),
+                "scope_training_review_policy": scope_manifest.get("review_policy", "human"),
+                "scope_training_human_reviewed_data": scope_manifest.get("human_reviewed_data", scope_manifest.get("review_policy", "human") == "human"),
                 "accepted_row_sha256": {row["id"]: content_hash(row) for row in rows},
                 "source_validation_rows": len(original), "accepted_validation_rows": len(rows),
                 "reviewed_rejected_rows": len(original) - len(rows), "max_rows": max_rows,
@@ -159,6 +162,8 @@ def main():
     parser.add_argument("--scope-artifact", type=Path, required=True)
     parser.add_argument("--dataset", type=Path, required=True)
     parser.add_argument("--reviews", type=Path, required=True)
+    parser.add_argument("--review-policy", choices=REVIEW_POLICIES, default="human",
+                        help="Human review by default; automated_development requires an explicitly typed machine registry")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--max-rows", type=int, default=2000,
                         help="Hard cap on the complete accepted validation partition; no truncation")
@@ -167,7 +172,7 @@ def main():
     args = parser.parse_args()
     try:
         _safe_output(args.output, args.scope_artifact, args.dataset, args.reviews)
-        rows, bindings = reviewed_inputs(args.scope_artifact, args.dataset, args.reviews, max_rows=args.max_rows)
+        rows, bindings = reviewed_inputs(args.scope_artifact, args.dataset, args.reviews, max_rows=args.max_rows, review_policy=args.review_policy)
         if args.preflight_only:
             print(json.dumps({"preflight_valid": True, "model_execution_requested": False, **bindings}, indent=2))
             return
@@ -177,7 +182,8 @@ def main():
         started = perf_counter()
         raw = [{"id": row["id"], "family_id": row["family_id"], "split": "validation", "label": row["label"],
                 "scope_probability": scope.score(row["question"], correction_text(row["correction"])),
-                "row_sha256": content_hash(row)} for row in rows]
+                "row_sha256": content_hash(row), "review_policy": args.review_policy,
+                "human_reviewed_data": args.review_policy == "human"} for row in rows]
         fit = fit_calibration([row["label"] for row in raw], [row["scope_probability"] for row in raw])
         # Prevent committing a calibration if on-disk inputs changed mid-run.
         current = {"scope_manifest_sha256": file_sha256(args.scope_artifact / "manifest.json"),
@@ -203,14 +209,16 @@ def main():
         probability_path = args.output / "validation_probabilities.jsonl"
         probability_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in raw), encoding="utf-8")
         candidate_path = args.output / "selection_grid.json"
-        candidate_path.write_text(json.dumps(fit, indent=2) + "\n", encoding="utf-8")
+        candidate_path.write_text(json.dumps({**fit, "review_policy": args.review_policy,
+            "human_reviewed_data": args.review_policy == "human", "review_registry_sha256": bindings["review_registry_sha256"]}, indent=2) + "\n", encoding="utf-8")
         artifact.update(probabilities_sha256=file_sha256(probability_path), selection_grid_sha256=file_sha256(candidate_path))
         temporary = args.output / "calibration.json.tmp"
         temporary.write_text(json.dumps(artifact, indent=2) + "\n", encoding="utf-8")
         os.replace(temporary, args.output / "calibration.json")
         print(json.dumps({"output": str(args.output), "accepted_validation_rows": len(rows),
                           "temperature": artifact["temperature"], "threshold": artifact["threshold"],
-                          "ambiguity_margin": artifact["ambiguity_margin"], "test_rows_read": False}, indent=2))
+                          "ambiguity_margin": artifact["ambiguity_margin"], "test_rows_read": False,
+                          "review_policy": args.review_policy, "human_reviewed_data": args.review_policy == "human"}, indent=2))
     except (ValueError, OSError, KeyError, TypeError, RuntimeError) as error:
         parser.error(str(error))
 

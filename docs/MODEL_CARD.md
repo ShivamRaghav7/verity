@@ -2,6 +2,11 @@
 
 **Status:** Real training, inference and evaluation mechanics are implemented.
 No reviewed-data-trained scope or answer checkpoint is eligible for deployment.
+The active pilot has explicitly automated development review, with no human
+approval claim. Four-step pilot profiles save `smoke_test` artifacts which remain
+ineligible. The initial finite run cards are in [PILOT_TRAINING.md](PILOT_TRAINING.md).
+Future trained artifacts and answer traces disclose training review policy;
+machine-reviewed development results must not be presented as human validation.
 Developer smoke checkpoints are explicitly ineligible. Structured answers are the
 default; frozen neural baselines are optional. No final accuracy claim exists.
 

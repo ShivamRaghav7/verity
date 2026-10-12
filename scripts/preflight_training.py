@@ -12,7 +12,14 @@ import json
 import math
 import re
 from pathlib import Path
+import sys
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from editguard.formatting import INPUT_FORMAT_VERSION, conditional_input, correction_text
 
 try:
     from scripts.prepare_data import load_reviewed_rows
@@ -87,10 +94,15 @@ def validate_run_card(card_path: Path) -> dict:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if card.get("dataset_id") != manifest.get("dataset_id"):
         raise ValueError("Run-card dataset identity differs from the manifest.")
+    if manifest.get("input_format_version") != INPUT_FORMAT_VERSION:
+        raise ValueError("Dataset manifest differs from the current model input format; use the versioned review packet.")
     for path in (train_path, validation_path):
         _assert_hash(path, manifest.get("files", {}).get(path.name), path.name)
-    train_rows = load_reviewed_rows(train_path, reviews_path)
-    validation_rows = load_reviewed_rows(validation_path, reviews_path)
+    review_policy = card.get("review_policy", "human")
+    if review_policy not in ("human", "automated_development"):
+        raise ValueError("Declare a supported review_policy.")
+    train_rows = load_reviewed_rows(train_path, reviews_path, review_policy=review_policy)
+    validation_rows = load_reviewed_rows(validation_path, reviews_path, review_policy=review_policy)
     split_families, split_entities, split_lineages = {}, {}, {}
     for split, rows in (("train", train_rows), ("validation", validation_rows)):
         families, entities, lineages = set(), set(), set()
@@ -104,11 +116,16 @@ def validate_run_card(card_path: Path) -> dict:
                 families.add(row["question_family_id"])
             lineages.add(row["lineage_id"])
             entities.update((row["correction"]["entity_id"], row["expected_fact"]["entity_id"]))
-            if task == "scope" and row.get("label") not in (0, 1):
+            if row.get("correction_text") != correction_text(row["correction"]):
+                raise ValueError("Reviewed correction descriptor differs from the runtime formatter.")
+            if task == "scope" and (type(row.get("label")) is not int or row["label"] not in (0, 1)):
                 raise ValueError("Scope labels must be binary.")
             if task == "answer" and not all(isinstance(row.get(key), str) and row[key].strip()
                                              for key in ("input_text", "target_text")):
                 raise ValueError("Answer rows require nonempty input_text and target_text.")
+            if task == "answer" and row["input_text"] != conditional_input(
+                    row["question"], row["correction"], row.get("supporting_context", []), row["request_context"]["as_of"]):
+                raise ValueError("Reviewed answer input differs from the runtime formatter.")
         split_families[split], split_entities[split], split_lineages[split] = families, entities, lineages
     if any(populations["train"] & populations["validation"]
            for populations in (split_families, split_entities, split_lineages)):
@@ -190,6 +207,7 @@ def validate_run_card(card_path: Path) -> dict:
             "training_execution_requested": False,
             "disclaimer": "No training ran. This preflight checks declared inputs and run planning; trainer and exact-state restoration verification remain separate evidence.",
             "task": task, "dataset_id": card["dataset_id"], "model_id": card["model_id"],
+            "review_policy": review_policy, "human_reviewed_data": review_policy == "human",
             "model_revision": revision, "reviewed_train_rows": len(train_rows),
             "reviewed_validation_rows": len(validation_rows),
             "optimizer_step_extrapolation_seconds": optimizer_estimate,

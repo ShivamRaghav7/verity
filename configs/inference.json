@@ -12,8 +12,9 @@
   "retrieval_k": 3,
   "prompt_edit_k": 3,
   "similarity_threshold": null,
+  "similarity_calibration_artifact": null,
   "scope_artifact": null,
   "answer_artifact": null,
   "calibration_artifact": null,
-  "input_format_version": "editguard-input-v1"
+  "input_format_version": "editguard-input-v2"
 }

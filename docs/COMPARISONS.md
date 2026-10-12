@@ -27,6 +27,14 @@ records; no pretrained auxiliary model is substituted. Generation uses the same
 profiled training artifact, while the frozen base has a declared 384-token cap.
 Token truncation is logged and included in failure analysis.
 
+The similarity baseline accepts a frozen validation selection artifact, rather
+than an unbound threshold in inference configuration. Integrity checks bind the
+score rows, selection grid, review policy, routing settings, model revision,
+loaded embedding tensors/tokenizer and current source. Cosine scores are not
+probabilities. Its initial calibration population is single focal pairs, so it
+does not establish dense-memory retrieval quality. See
+[similarity selection](SIMILARITY_CALIBRATION.md).
+
 Approved ancestor corrections are suppressed only while a compatible descendant
 is effective. Date intervals are half open. Withdrawal or expiry restores the
 applicable predecessor. Updated RAG applies current corrections before ranking
@@ -44,7 +52,9 @@ until the learned routing has evidence sufficient to refine it.
 
 - `--smoke`: six literal Nimbus engineering fixtures, no dataset partition read.
 - Reviewed validation: manifest-checked scope validation rows and hash-bound
-  human decisions; no test path option. A bounded selection alternates positive
+  typed review decisions; human is the default, with explicit
+  `--review-policy automated_development` for the reviewed development pilot.
+  Every output discloses that policy; no test path option. A bounded selection alternates positive
   and negative examples and discloses its selection rule.
 
 The initial validation scenario uses one focal correction plus at most eight

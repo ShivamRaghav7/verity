@@ -26,9 +26,13 @@ retrieval; prompt-only correction receives the same approved descriptors.
 
 The independent fictional training catalogue is separate from the ten-fact Nimbus
 UI fixture. Entity families are partitioned before questions and counterfactual
-values are augmented. Hash-bound human review controls eligibility; the test
-partition is not frozen yet. See [dataset card](DATASET_CARD.md) and
-[evaluation protocol](EVALUATION_PROTOCOL.md). All generated labels remain pending.
+values are augmented. Typed, hash-bound review controls eligibility; human review
+is the default. The user authorized an independent automated development review
+of the corrected 504-row pilot: 504 accepted, zero flagged, with an additional
+144-target assertion check. The immutable source flags remain pending human
+review; the separate registry explicitly discloses machine review. The test
+partition is not frozen. See [dataset card](DATASET_CARD.md),
+[per-row review](PILOT_V2_REVIEW.md) and [evaluation protocol](EVALUATION_PROTOCOL.md).
 
 ## Engineering evidence
 
@@ -51,6 +55,9 @@ workflow, history, conflict resolution and exports. Minimal infrastructure consi
 of FastAPI, Pydantic, SQLite and build-free static assets. The core regression and
 CPU optimizer/resume CI jobs passed for commit `c89e528`; the source record is
 `reports/ci-c89e528.json`. Deployment CI execution is recorded separately.
+All three jobs also passed for `6f32ee4`, including container lifecycle and restart
+verification; [that CI run](https://github.com/ShivamRaghav7/verity/actions/runs/38149158719)
+is distinct from the current local changes.
 
 The complete workflow was exercised in a separate browser fixture, including
 conflict rejection and restoration. Mobile layout had no horizontal overflow and
@@ -85,9 +92,31 @@ fingerprints remained identical. [NEURAL_SMOKE.md](NEURAL_SMOKE.md) records wron
 answers and uncredited fragments, with all raw inputs and outputs retained.
 No result in that engineering fixture is a final accuracy claim.
 
+Actual four-step pilot profiles now include the full reviewed validation partitions
+and checkpoint writes. Peak allocations were 1.318 GiB (scope) and 1.508 GiB
+(answer); checkpoint operations took 8.22–9.62 and 10.27–17.07 seconds.
+[Finite run cards](PILOT_TRAINING.md) stop at 360/240 updates, with conditional
+planning estimates of 441/432 seconds. These are estimates, not measured full
+training times. Profile artifacts remain ineligible for deployment.
+
+The frozen MiniLM baseline selected cosine threshold 0.46 using all 120 reviewed
+validation pairs: 48 positive and 72 negative. Without compatibility gates it
+applied 47 correct and 48 incorrect corrections; with gates it applied 47 correct
+and zero incorrect corrections, missing one positive. Sixty incompatible pairs
+were rejected by metadata. This is validation selection on single focal pairs,
+not test performance, full-memory retrieval or generated-answer accuracy. Raw
+score/grid artifacts are in `reports/similarity-pilot-v2`; no trained-auxiliary
+superiority claim follows from this result.
+
 ![Structured application HTTP latency](../reports/structured-http-latency.png)
 
 ![Measured four-step synthetic trainer resources](../reports/trainer-smoke-resources.png)
+
+![Similarity routing on 120 development validation pairs, with explicit denominators and scope gates](../reports/similarity-pilot-v2/operating-points.png)
+
+[The baseline result record](SIMILARITY_RESULTS.md) documents the missed
+paraphrase, raw/gated behavior and selection limitations. It makes no generated
+answer or final-test claim.
 
 ## Experiments and results
 
@@ -96,7 +125,7 @@ No result in that engineering fixture is a final accuracy claim.
 | Trained auxiliary weights | Pending; absent |
 | Real training time and memory | Pending full runs; finite profiling recorded separately |
 | Applicable-edit retrieval recall | Not measured |
-| Raw scope precision/recall, false application and calibration | Not measured |
+| Raw scope precision/recall, false application and calibration | Learned classifier pending; embedding threshold baseline measured on reviewed validation pairs |
 | Oracle answer and end-to-end factual accuracy | Not measured |
 | Heldout paraphrases, entity generalization and baseline retention | Not measured |
 | Five fair configurations with paired uncertainty | Harness smoke completed with two editors unavailable; reviewed comparison pending |

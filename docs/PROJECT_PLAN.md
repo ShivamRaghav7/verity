@@ -43,7 +43,10 @@ structured workflow. Label review and final split freezing remain pending. C's
 five-configuration harness, optional frozen baselines, scoring and aggregation are
 implemented; reviewed validation acceptance remains pending. D/E have real finite
 training loops, exact-state resume, pinned candidates and a small pending review
-pilot. Synthetic optimizer smoke remains separate from reviewed-data training.
+pilot. Its 504 labels now have a separate independent automated development review
+authorized by the user; no human approval is claimed. Actual four-step pilot
+profiles and finite run cards prepare user-executed training. Synthetic optimizer
+smoke and pilot profiles remain separate from eligible trained-model artifacts.
 Neither auxiliary is eligible as trained; D–H remain incomplete.
 
 ## Bound the experiments

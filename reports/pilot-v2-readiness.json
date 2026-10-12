@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "purpose": "development_training_readiness",
+  "status": "ready_for_user_executed_finite_runs",
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "review_policy": "automated_development",
+  "human_reviewed_data": false,
+  "reviewed_rows": 504,
+  "accepted_rows": 504,
+  "flagged_rows": 0,
+  "target_assertions_cross_checked": 144,
+  "core_regression": {
+    "discovered": 216,
+    "passed": 214,
+    "skipped_optional_ml": 2,
+    "failed": 0,
+    "seconds": 64.243,
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v"
+  },
+  "cpu_optimizer_resume_regression": {
+    "executed": 7,
+    "passed": 7,
+    "failed": 0,
+    "seconds": 6.154,
+    "overlap_with_core_tests": 5,
+    "additional_skipped_core_cases_executed": 2,
+    "command": ".venv-ml/Scripts/python.exe -m unittest discover -s tests -p test_trainer.py -v"
+  },
+  "syntax_checks": {"python_compileall": "passed", "application_javascript": "passed", "git_diff_whitespace": "passed"},
+  "actual_pilot_profiles": {
+    "scope": {"optimizer_steps": 4, "full_validation_passes": 2, "checkpoint_writes": 2, "report": "reports/pilot-v2-scope-profile.json", "runtime_eligible": false},
+    "answer": {"optimizer_steps": 4, "full_validation_passes": 2, "checkpoint_writes": 2, "report": "reports/pilot-v2-answer-profile.json", "runtime_eligible": false}
+  },
+  "finite_run_cards": {
+    "scope": {"path": "configs/run_cards/pilot-v2/scope.json", "max_steps": 360, "preflight": "passed", "current_source_and_environment_match_profile": true},
+    "answer": {"path": "configs/run_cards/pilot-v2/answer.json", "max_steps": 240, "preflight": "passed", "current_source_and_environment_match_profile": true}
+  },
+  "powershell_wrapper_preflight_only": "passed_without_training",
+  "similarity_validation_selection": {"rows": 120, "threshold": 0.46, "embedding_weights_unchanged": true, "artifact_integrity_validation": "passed", "report_directory": "reports/similarity-pilot-v2"},
+  "native_application": {"url": "http://127.0.0.1:8000", "health": "ok", "revision": 1, "unknown_named_product_with_conflicting_ui_selector": "deterministic_clarification"},
+  "eligible_trained_auxiliary_models": 0,
+  "full_training_executed": false,
+  "test_or_challenge_corpus_read": false,
+  "limitations": [
+    "Review is automated development review, not independent human approval.",
+    "Profiling and validation threshold selection are not final ML performance.",
+    "Time/memory plans are conditional estimates; no full-run measurement or accuracy guarantee.",
+    "GitHub CI for this milestone is checked after push, separately from these local records."
+  ]
+}

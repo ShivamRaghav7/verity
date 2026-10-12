@@ -33,8 +33,8 @@ def reviewed_inputs(card_path):
     if declared_device != profile["device"]:
         raise ValueError("Declared training device differs from the measured profile")
     card["device"] = declared_device
-    train = load_reviewed_rows(Path(card["train_path"]), Path(card["reviews_path"]))
-    validation = load_reviewed_rows(Path(card["validation_path"]), Path(card["reviews_path"]))
+    train = load_reviewed_rows(Path(card["train_path"]), Path(card["reviews_path"]), review_policy=card.get("review_policy", "human"))
+    validation = load_reviewed_rows(Path(card["validation_path"]), Path(card["reviews_path"]), review_policy=card.get("review_policy", "human"))
     return card, train, validation, preflight
 
 

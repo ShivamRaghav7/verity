@@ -102,7 +102,7 @@ class ReviewToolingTests(unittest.TestCase):
     def test_explicit_import_preserves_unknown_registry_fields_and_is_idempotent(self):
         row = checked_rows(self.source, "scope", "train")[0]
         registry = self.root / "reviews.json"
-        unknown = {"dataset_id": "editguard-controlled-v1", "future_metadata": {"team": "fixture"},
+        unknown = {"dataset_id": read_json(self.source / "manifest.json")["dataset_id"], "future_metadata": {"team": "fixture"},
                    "rows": {"foreign-preserved-id": {"future_field": True}}}
         registry.write_text(json.dumps(unknown), encoding="utf-8")
         incoming = self.incoming({row["id"]: self.decision(row)})

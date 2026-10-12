@@ -1,0 +1,2478 @@
+{
+  "schema_version": 1,
+  "audit_type": "independent_machine_audit_advisory_only",
+  "audit_id": "pilot-independent-structured-v1",
+  "dataset_id": "editguard-controlled-v1-pilot-v1-42-7b7a9b1b",
+  "created_at": "2026-10-11T15:52:34.332399+00:00",
+  "status": "structured_checks_pass_with_surface_and_coverage_findings",
+  "human_review_status": "pending; no human decisions recorded or invented",
+  "eligible_for_training_changed": false,
+  "dataset_modified": false,
+  "test_or_challenge_rows_read": false,
+  "review_registry_read_or_written": false,
+  "model_or_gpu_used": false,
+  "row_counts": {
+    "scope_train.jsonl": 240,
+    "scope_validation.jsonl": 120,
+    "answer_train.jsonl": 96,
+    "answer_validation.jsonl": 48
+  },
+  "total_rows": 504,
+  "catalogue_facts_read": 96,
+  "source_hashes": {
+    "data/generated/pilot-v1/scope_train.jsonl": "e81edbd16d9d9c26beb1ab2b3ac35bf3c1fcd730cc22737f8611ce632be736d3",
+    "data/generated/pilot-v1/scope_validation.jsonl": "54afacff79d60e036460fd4d5ecb4e60f1dbd7f779a0f2853f41417b55ee6c94",
+    "data/generated/pilot-v1/answer_train.jsonl": "fafa53459535e90bce45f9fdbd952c3b7b9d57c2efb6c0504a61c0b039cd8989",
+    "data/generated/pilot-v1/answer_validation.jsonl": "d9fe2253dbaa7f75e7dfe55d3c0de07d13a71155729b3ada4f3bdc633d686492",
+    "data/generated/pilot-v1/catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "data/generated/pilot-v1/manifest.json": "80ce36e5cebaee15096d088e11a8dbe215a1f34dcb526b857efda84d063f5c89",
+    "data/generated/pilot-v1/derivation.json": "f02ce5fad49522847eb180b2ca1dc86e4f04755f0796916648d2dc72e218d8ac",
+    "data/generated/pilot-v1/selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "data/generated/pilot-v1/split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1",
+    "scripts/prepare_data.py": "4f690b412edc32886d575071d96dd6f0b1b500fac506ecebf018d14aa85167cd",
+    "scripts/review_dataset.py": "496e4cd103e273fac5f7504b2551447d1a6d02df614cc6836bf0881c6d0f486f"
+  },
+  "method": {
+    "id": "pilot-independent-structured-v1",
+    "implementation": "Ad hoc Python standard-library audit, independent full-question regex parsing and catalogue scope resolution; Decimal numeric inequalities; direct target assertion parsing. No prepare_data/review_dataset/scorer function is imported or called.",
+    "question_patterns": [
+      {
+        "id": "devices_direct",
+        "relation": "device_limit",
+        "style": "direct",
+        "regex": "How many devices does (?P<subject>.+) support\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "devices_paraphrase",
+        "relation": "device_limit",
+        "style": "paraphrase",
+        "regex": "What is the device allowance on (?P<subject>.+)\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "devices_comparison",
+        "relation": "device_limit",
+        "style": "comparison",
+        "regex": "Can I connect (?P<quantity>\\d+) devices on (?P<subject>.+)\\?",
+        "comparison_operator": "requested_le_limit"
+      },
+      {
+        "id": "price_direct",
+        "relation": "price_monthly",
+        "style": "direct",
+        "regex": "What is the monthly price of (?P<subject>.+)\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "price_paraphrase",
+        "relation": "price_monthly",
+        "style": "paraphrase",
+        "regex": "How much would I pay each month for (?P<subject>.+)\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "price_comparison",
+        "relation": "price_monthly",
+        "style": "comparison",
+        "regex": "Does (?P<subject>.+) cost at most (?P<quantity>\\d+) USD per month\\?",
+        "comparison_operator": "price_le_budget"
+      },
+      {
+        "id": "storage_direct",
+        "relation": "storage_gb",
+        "style": "direct",
+        "regex": "How much storage is included with (?P<subject>.+)\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "storage_paraphrase",
+        "relation": "storage_gb",
+        "style": "paraphrase",
+        "regex": "What is the storage quota for (?P<subject>.+)\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "storage_comparison",
+        "relation": "storage_gb",
+        "style": "comparison",
+        "regex": "Can I store (?P<quantity>\\d+) GB on (?P<subject>.+)\\?",
+        "comparison_operator": "requested_le_limit"
+      },
+      {
+        "id": "support_direct",
+        "relation": "support_hours",
+        "style": "direct",
+        "regex": "How many support hours per day does (?P<subject>.+) include\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "support_paraphrase",
+        "relation": "support_hours",
+        "style": "paraphrase",
+        "regex": "For how many hours each day is support available on (?P<subject>.+)\\?",
+        "comparison_operator": null
+      },
+      {
+        "id": "support_comparison",
+        "relation": "support_hours",
+        "style": "comparison",
+        "regex": "Does (?P<subject>.+) include at least (?P<quantity>\\d+) support hours per day\\?",
+        "comparison_operator": "requested_le_limit"
+      }
+    ],
+    "answer_patterns": [
+      {
+        "relation": "device_limit",
+        "regex": "(?P<subject>.+) supports (?P<value>\\d+) devices\\."
+      },
+      {
+        "relation": "price_monthly",
+        "regex": "(?P<subject>.+) costs (?P<value>\\d+) USD per month\\."
+      },
+      {
+        "relation": "storage_gb",
+        "regex": "(?P<subject>.+) includes (?P<value>\\d+) GB of storage\\."
+      },
+      {
+        "relation": "support_hours",
+        "regex": "(?P<subject>.+) includes (?P<value>\\d+) support hours per day\\."
+      }
+    ],
+    "checked_rows": "Every row in the four explicitly named pilot train/validation task files. Pilot catalogue/manifest/derivation metadata are read; original/test/challenge datasets and review registries are not read.",
+    "temporal_rule": "Half-open effective interval; effective_from <= as_of < effective_to, or no end.",
+    "scope_rule": "Question parsed entity, property, plan and version all equal correction scope, and effective interval contains as_of.",
+    "comparison_rule": "price_monthly: corrected price <= requested budget; devices/storage/support: requested quantity <= corrected limit.",
+    "limitation": "Machine parsing assesses the controlled templates and stated limit semantics, not arbitrary language or human comprehension."
+  },
+  "method_sha256": "9c19a582d479e5248904cdc446e72e95af08e39333a039e2a26a5492271e3c4c",
+  "checks": {
+    "question_matches_exactly_one_independently_parsed_form": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "question_subject_relation_resolves_to_one_pilot_fact": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "question_metadata_matches_parsed_relation_subject_plan_version": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "question_fact_date_compatible": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "scope_label_or_answer_applicability_matches_independent_scope": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "expected_fact_identity_and_unit_match_parsed_question": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "expected_numeric_value_matches_scenario_not_target_string": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "correction_original_value_and_scoped_metadata_match_base_fact": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "all_fact_references_stay_in_row_split": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "row_and_correction_remain_pending_not_human_approved": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "correction_descriptor_independently_parses_to_structured_edit": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "noncomparison_has_no_polarity": {
+      "denominator": 360,
+      "passed": 360,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "derived_row_hash_matches_pilot_derivation_record": {
+      "denominator": 504,
+      "passed": 504,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "comparison_polarity_from_independent_numeric_inequality": {
+      "denominator": 144,
+      "passed": 144,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "hard_negative_type_has_the_declared_independent_difference": {
+      "denominator": 216,
+      "passed": 216,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "answer_target_is_one_complete_assertion": {
+      "denominator": 144,
+      "passed": 144,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "answer_endorses_requested_subject_relation_value_unit_polarity": {
+      "denominator": 144,
+      "passed": 144,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "answer_supporting_context_is_two_unmodified_different_property_facts": {
+      "denominator": 144,
+      "passed": 144,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "answer_input_preserves_edit_question_date_and_support_without_extra_target": {
+      "denominator": 144,
+      "passed": 144,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "answer_has_identical_positive_scope_counterpart": {
+      "denominator": 144,
+      "passed": 144,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "input_file_matches_pilot_manifest_hash": {
+      "denominator": 8,
+      "passed": 8,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "question_id_uniqueness": {
+      "denominator": 1,
+      "passed": 1,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "train_validation_family_disjoint": {
+      "denominator": 1,
+      "passed": 1,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "train_validation_entity_disjoint": {
+      "denominator": 1,
+      "passed": 1,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "train_validation_edit_lineage_disjoint": {
+      "denominator": 1,
+      "passed": 1,
+      "failed": 0,
+      "failed_row_ids": []
+    },
+    "counterfactual_edits_have_distinct_values_and_scenarios_within_one_split": {
+      "denominator": 12,
+      "passed": 12,
+      "failed": 0,
+      "failed_row_ids": []
+    }
+  },
+  "structured_failed_checks": 0,
+  "unique_template_count": 12,
+  "template_inspection": [
+    {
+      "template_id": "devices_direct",
+      "relation": "device_limit",
+      "style": "direct",
+      "independent_regex": "How many devices does (?P<subject>.+) support\\?",
+      "count": 84,
+      "split_counts": {
+        "train": 56,
+        "validation": 28
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p0",
+          "question": "How many devices does Aster 015 Basic version v2 support?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 supports 5 devices.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "5"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p0",
+          "question": "How many devices does Aster 044 Basic version v2 support?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 supports 1 devices.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "4",
+            "corrected_value": "1"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Names the requested property and explicit product/plan/version; answer must endorse that scoped property."
+    },
+    {
+      "template_id": "devices_paraphrase",
+      "relation": "device_limit",
+      "style": "paraphrase",
+      "independent_regex": "What is the device allowance on (?P<subject>.+)\\?",
+      "count": 24,
+      "split_counts": {
+        "train": 16,
+        "validation": 8
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p1",
+          "question": "What is the device allowance on A015 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 supports 5 devices.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "5"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p1",
+          "question": "What is the device allowance on A044 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 supports 1 devices.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "4",
+            "corrected_value": "1"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Uses the recorded entity alias and a relation-specific synonym; scope is identical to its direct counterpart."
+    },
+    {
+      "template_id": "devices_comparison",
+      "relation": "device_limit",
+      "style": "comparison",
+      "independent_regex": "Can I connect (?P<quantity>\\d+) devices on (?P<subject>.+)\\?",
+      "count": 48,
+      "split_counts": {
+        "train": 32,
+        "validation": 16
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p2",
+          "question": "Can I connect 5 devices on Aster 015 Basic version v2?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 015 Basic version v2 supports 5 devices.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "5"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+          "question": "Can I connect 1 devices on Aster 044 Basic version v2?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 044 Basic version v2 supports 1 devices.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "4",
+            "corrected_value": "1"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Tests one inclusive numeric inequality against the corrected fact; price uses <= budget, limits use requested quantity <= allowance."
+    },
+    {
+      "template_id": "price_direct",
+      "relation": "price_monthly",
+      "style": "direct",
+      "independent_regex": "What is the monthly price of (?P<subject>.+)\\?",
+      "count": 60,
+      "split_counts": {
+        "train": 40,
+        "validation": 20
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:price_monthly:variant-0:p0",
+          "question": "What is the monthly price of Aster 015 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 costs 19 USD per month.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "price_monthly",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "12",
+            "corrected_value": "19"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:price_monthly:variant-0:p0",
+          "question": "What is the monthly price of Aster 044 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 costs 7 USD per month.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "price_monthly",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "44",
+            "corrected_value": "7"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Names the requested property and explicit product/plan/version; answer must endorse that scoped property."
+    },
+    {
+      "template_id": "price_paraphrase",
+      "relation": "price_monthly",
+      "style": "paraphrase",
+      "independent_regex": "How much would I pay each month for (?P<subject>.+)\\?",
+      "count": 12,
+      "split_counts": {
+        "train": 8,
+        "validation": 4
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:price_monthly:variant-0:p1",
+          "question": "How much would I pay each month for A015 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 costs 19 USD per month.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "price_monthly",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "12",
+            "corrected_value": "19"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:price_monthly:variant-0:p1",
+          "question": "How much would I pay each month for A044 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 costs 7 USD per month.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "price_monthly",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "44",
+            "corrected_value": "7"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Uses the recorded entity alias and a relation-specific synonym; scope is identical to its direct counterpart."
+    },
+    {
+      "template_id": "price_comparison",
+      "relation": "price_monthly",
+      "style": "comparison",
+      "independent_regex": "Does (?P<subject>.+) cost at most (?P<quantity>\\d+) USD per month\\?",
+      "count": 24,
+      "split_counts": {
+        "train": 16,
+        "validation": 8
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:price_monthly:variant-0:p2",
+          "question": "Does Aster 015 Basic version v2 cost at most 19 USD per month?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 015 Basic version v2 costs 19 USD per month.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "price_monthly",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "12",
+            "corrected_value": "19"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:price_monthly:variant-0:p2",
+          "question": "Does Aster 044 Basic version v2 cost at most 7 USD per month?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 044 Basic version v2 costs 7 USD per month.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "price_monthly",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "44",
+            "corrected_value": "7"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Tests one inclusive numeric inequality against the corrected fact; price uses <= budget, limits use requested quantity <= allowance."
+    },
+    {
+      "template_id": "storage_direct",
+      "relation": "storage_gb",
+      "style": "direct",
+      "independent_regex": "How much storage is included with (?P<subject>.+)\\?",
+      "count": 84,
+      "split_counts": {
+        "train": 56,
+        "validation": 28
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p0",
+          "question": "How much storage is included with Aster 015 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 includes 60 GB of storage.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "storage_gb",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "180",
+            "corrected_value": "60"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-0:p0",
+          "question": "How much storage is included with Aster 044 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 includes 20 GB of storage.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "storage_gb",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "50",
+            "corrected_value": "20"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Names the requested property and explicit product/plan/version; answer must endorse that scoped property."
+    },
+    {
+      "template_id": "storage_paraphrase",
+      "relation": "storage_gb",
+      "style": "paraphrase",
+      "independent_regex": "What is the storage quota for (?P<subject>.+)\\?",
+      "count": 24,
+      "split_counts": {
+        "train": 16,
+        "validation": 8
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p1",
+          "question": "What is the storage quota for A015 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 includes 60 GB of storage.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "storage_gb",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "180",
+            "corrected_value": "60"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-0:p1",
+          "question": "What is the storage quota for A044 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 includes 20 GB of storage.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "storage_gb",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "50",
+            "corrected_value": "20"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Uses the recorded entity alias and a relation-specific synonym; scope is identical to its direct counterpart."
+    },
+    {
+      "template_id": "storage_comparison",
+      "relation": "storage_gb",
+      "style": "comparison",
+      "independent_regex": "Can I store (?P<quantity>\\d+) GB on (?P<subject>.+)\\?",
+      "count": 48,
+      "split_counts": {
+        "train": 32,
+        "validation": 16
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p2",
+          "question": "Can I store 60 GB on Aster 015 Basic version v2?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 015 Basic version v2 includes 60 GB of storage.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "storage_gb",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "180",
+            "corrected_value": "60"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-0:p2",
+          "question": "Can I store 20 GB on Aster 044 Basic version v2?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 044 Basic version v2 includes 20 GB of storage.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "storage_gb",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "50",
+            "corrected_value": "20"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Tests one inclusive numeric inequality against the corrected fact; price uses <= budget, limits use requested quantity <= allowance."
+    },
+    {
+      "template_id": "support_direct",
+      "relation": "support_hours",
+      "style": "direct",
+      "independent_regex": "How many support hours per day does (?P<subject>.+) include\\?",
+      "count": 60,
+      "split_counts": {
+        "train": 40,
+        "validation": 20
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:support_hours:variant-0:p0",
+          "question": "How many support hours per day does Aster 015 Basic version v2 include?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 includes 8 support hours per day.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "support_hours",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "8"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:support_hours:variant-0:p0",
+          "question": "How many support hours per day does Aster 044 Basic version v2 include?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 includes 3 support hours per day.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "support_hours",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "3"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Names the requested property and explicit product/plan/version; answer must endorse that scoped property."
+    },
+    {
+      "template_id": "support_paraphrase",
+      "relation": "support_hours",
+      "style": "paraphrase",
+      "independent_regex": "For how many hours each day is support available on (?P<subject>.+)\\?",
+      "count": 12,
+      "split_counts": {
+        "train": 8,
+        "validation": 4
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:support_hours:variant-0:p1",
+          "question": "For how many hours each day is support available on A015 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 015 Basic version v2 includes 8 support hours per day.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "support_hours",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "8"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:support_hours:variant-0:p1",
+          "question": "For how many hours each day is support available on A044 Basic version v2?",
+          "expected_polarity": null,
+          "target_text": "Aster 044 Basic version v2 includes 3 support hours per day.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "support_hours",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "3"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Uses the recorded entity alias and a relation-specific synonym; scope is identical to its direct counterpart."
+    },
+    {
+      "template_id": "support_comparison",
+      "relation": "support_hours",
+      "style": "comparison",
+      "independent_regex": "Does (?P<subject>.+) include at least (?P<quantity>\\d+) support hours per day\\?",
+      "count": 24,
+      "split_counts": {
+        "train": 16,
+        "validation": 8
+      },
+      "representatives": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:support_hours:variant-0:p2",
+          "question": "Does Aster 015 Basic version v2 include at least 8 support hours per day?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 015 Basic version v2 includes 8 support hours per day.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-015-core",
+            "relation": "support_hours",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "8"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:support_hours:variant-0:p2",
+          "question": "Does Aster 044 Basic version v2 include at least 3 support hours per day?",
+          "expected_polarity": "yes",
+          "target_text": "Yes. Aster 044 Basic version v2 includes 3 support hours per day.",
+          "scope_label": 1,
+          "correction_scope": {
+            "entity_id": "aster-044-core",
+            "relation": "support_hours",
+            "plan": "Basic",
+            "version": "v2",
+            "original_value": "7",
+            "corrected_value": "3"
+          }
+        }
+      ],
+      "semantic_inspection_note": "Tests one inclusive numeric inequality against the corrected fact; price uses <= budget, limits use requested quantity <= allowance."
+    }
+  ],
+  "coverage": {
+    "train": {
+      "row_count": 336,
+      "families": [
+        "family-015",
+        "family-037",
+        "family-055",
+        "family-073"
+      ],
+      "entities": [
+        "aster-015-core",
+        "aster-015-plus",
+        "aster-037-core",
+        "aster-037-plus",
+        "aster-055-core",
+        "aster-055-plus",
+        "aster-073-core",
+        "aster-073-plus"
+      ],
+      "lineages": [
+        "aster-015-core:Basic:device_limit",
+        "aster-015-core:Basic:price_monthly",
+        "aster-015-core:Basic:storage_gb",
+        "aster-015-core:Basic:support_hours",
+        "aster-037-core:Basic:device_limit",
+        "aster-037-core:Basic:price_monthly",
+        "aster-037-core:Basic:storage_gb",
+        "aster-037-core:Basic:support_hours",
+        "aster-055-core:Basic:device_limit",
+        "aster-055-core:Basic:price_monthly",
+        "aster-055-core:Basic:storage_gb",
+        "aster-055-core:Basic:support_hours",
+        "aster-073-core:Basic:device_limit",
+        "aster-073-core:Basic:price_monthly",
+        "aster-073-core:Basic:storage_gb",
+        "aster-073-core:Basic:support_hours"
+      ],
+      "templates": [
+        "devices_comparison",
+        "devices_direct",
+        "devices_paraphrase",
+        "price_comparison",
+        "price_direct",
+        "price_paraphrase",
+        "storage_comparison",
+        "storage_direct",
+        "storage_paraphrase",
+        "support_comparison",
+        "support_direct",
+        "support_paraphrase"
+      ],
+      "correction_plans": [
+        "Basic"
+      ],
+      "correction_versions": [
+        "v2"
+      ],
+      "as_of_dates": [
+        "2026-10-11"
+      ],
+      "effective_from_dates": [
+        "2026-09-01"
+      ],
+      "values_by_relation": {
+        "device_limit": {
+          "original": [
+            "7",
+            "8",
+            "10"
+          ],
+          "corrected": [
+            "1",
+            "2",
+            "5",
+            "6",
+            "8",
+            "9"
+          ]
+        },
+        "price_monthly": {
+          "original": [
+            "7",
+            "12",
+            "17"
+          ],
+          "corrected": [
+            "7",
+            "19",
+            "29"
+          ]
+        },
+        "storage_gb": {
+          "original": [
+            "40",
+            "60",
+            "180",
+            "240"
+          ],
+          "corrected": [
+            "20",
+            "25",
+            "60",
+            "75",
+            "100",
+            "120",
+            "150"
+          ]
+        },
+        "support_hours": {
+          "original": [
+            "7",
+            "8",
+            "9",
+            "14"
+          ],
+          "corrected": [
+            "3",
+            "7",
+            "8",
+            "12"
+          ]
+        }
+      }
+    },
+    "validation": {
+      "row_count": 168,
+      "families": [
+        "family-044",
+        "family-045"
+      ],
+      "entities": [
+        "aster-044-core",
+        "aster-044-plus",
+        "aster-045-core",
+        "aster-045-plus"
+      ],
+      "lineages": [
+        "aster-044-core:Basic:device_limit",
+        "aster-044-core:Basic:price_monthly",
+        "aster-044-core:Basic:storage_gb",
+        "aster-044-core:Basic:support_hours",
+        "aster-045-core:Basic:device_limit",
+        "aster-045-core:Basic:price_monthly",
+        "aster-045-core:Basic:storage_gb",
+        "aster-045-core:Basic:support_hours"
+      ],
+      "templates": [
+        "devices_comparison",
+        "devices_direct",
+        "devices_paraphrase",
+        "price_comparison",
+        "price_direct",
+        "price_paraphrase",
+        "storage_comparison",
+        "storage_direct",
+        "storage_paraphrase",
+        "support_comparison",
+        "support_direct",
+        "support_paraphrase"
+      ],
+      "correction_plans": [
+        "Basic"
+      ],
+      "correction_versions": [
+        "v2"
+      ],
+      "as_of_dates": [
+        "2026-10-11"
+      ],
+      "effective_from_dates": [
+        "2026-09-01"
+      ],
+      "values_by_relation": {
+        "device_limit": {
+          "original": [
+            "4",
+            "10"
+          ],
+          "corrected": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "price_monthly": {
+          "original": [
+            "9",
+            "44"
+          ],
+          "corrected": [
+            "7",
+            "12"
+          ]
+        },
+        "storage_gb": {
+          "original": [
+            "50",
+            "60"
+          ],
+          "corrected": [
+            "20",
+            "25",
+            "40"
+          ]
+        },
+        "support_hours": {
+          "original": [
+            "7",
+            "8"
+          ],
+          "corrected": [
+            "3",
+            "4"
+          ]
+        }
+      }
+    }
+  },
+  "negative_counts": {
+    "same_entity_different_property": 36,
+    "different_entity_same_property": 36,
+    "similar_name": 36,
+    "wrong_tier": 36,
+    "wrong_version": 36,
+    "ordinary": 36
+  },
+  "positive_scope_count": 144,
+  "negative_scope_count": 216,
+  "comparison_counts": {
+    "all_task_rows": 144,
+    "by_task_file": {
+      "scope_train.jsonl": 48,
+      "scope_validation.jsonl": 24,
+      "answer_train.jsonl": 48,
+      "answer_validation.jsonl": 24
+    },
+    "polarity": {
+      "yes": 72,
+      "no": 72
+    },
+    "meaning": "Each answer comparison duplicates a positive scope question; these counts are audit rows, not independent samples."
+  },
+  "negative_numeric_collision": {
+    "count": 6,
+    "denominator": 216,
+    "row_ids": [
+      "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:storage_gb:variant-0:n:ordinary",
+      "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:support_hours:variant-0:n:similar_name",
+      "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:price_monthly:variant-0:n:wrong_version",
+      "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:support_hours:variant-0:n:ordinary",
+      "pilot-v1:42:scope:edit:aster-045-core:Basic:v2:device_limit:variant-1:n:similar_name",
+      "pilot-v1:42:scope:edit:aster-045-core:Basic:v2:device_limit:variant-1:n:wrong_tier"
+    ],
+    "meaning": "An out-of-scope fact can coincidentally equal the corrected numeric value; labels correctly depend on subject/property/tier/version, not target-value presence."
+  },
+  "counterfactual_lineages": {
+    "two_variant_count": 12,
+    "total_lineages": 24,
+    "examples": [
+      {
+        "lineage_id": "aster-015-core:Basic:device_limit",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-015-core:Basic:v2:device_limit:variant-0",
+            "scenario_id": "scenario:aster-015-core:Basic:v2:device_limit:0",
+            "corrected_value": "5",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p0",
+            "direct_target": "Aster 015 Basic version v2 supports 5 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p2",
+                "question": "Can I connect 5 devices on Aster 015 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 015 Basic version v2 supports 5 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p3",
+                "question": "Can I connect 6 devices on Aster 015 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 015 Basic version v2 supports 5 devices."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-015-core:Basic:v2:device_limit:variant-1",
+            "scenario_id": "scenario:aster-015-core:Basic:v2:device_limit:1",
+            "corrected_value": "6",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-1:p0",
+            "direct_target": "Aster 015 Basic version v2 supports 6 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-1:p2",
+                "question": "Can I connect 6 devices on Aster 015 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 015 Basic version v2 supports 6 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-1:p3",
+                "question": "Can I connect 7 devices on Aster 015 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 015 Basic version v2 supports 6 devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-015-core:Basic:storage_gb",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-015-core:Basic:v2:storage_gb:variant-0",
+            "scenario_id": "scenario:aster-015-core:Basic:v2:storage_gb:0",
+            "corrected_value": "60",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p0",
+            "direct_target": "Aster 015 Basic version v2 includes 60 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p2",
+                "question": "Can I store 60 GB on Aster 015 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 015 Basic version v2 includes 60 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p3",
+                "question": "Can I store 61 GB on Aster 015 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 015 Basic version v2 includes 60 GB of storage."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-015-core:Basic:v2:storage_gb:variant-1",
+            "scenario_id": "scenario:aster-015-core:Basic:v2:storage_gb:1",
+            "corrected_value": "75",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-1:p0",
+            "direct_target": "Aster 015 Basic version v2 includes 75 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-1:p2",
+                "question": "Can I store 75 GB on Aster 015 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 015 Basic version v2 includes 75 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-1:p3",
+                "question": "Can I store 76 GB on Aster 015 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 015 Basic version v2 includes 75 GB of storage."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-037-core:Basic:device_limit",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-037-core:Basic:v2:device_limit:variant-0",
+            "scenario_id": "scenario:aster-037-core:Basic:v2:device_limit:0",
+            "corrected_value": "5",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:device_limit:variant-0:p0",
+            "direct_target": "Aster 037 Basic version v2 supports 5 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:device_limit:variant-0:p2",
+                "question": "Can I connect 5 devices on Aster 037 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 037 Basic version v2 supports 5 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:device_limit:variant-0:p3",
+                "question": "Can I connect 6 devices on Aster 037 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 037 Basic version v2 supports 5 devices."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-037-core:Basic:v2:device_limit:variant-1",
+            "scenario_id": "scenario:aster-037-core:Basic:v2:device_limit:1",
+            "corrected_value": "6",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:device_limit:variant-1:p0",
+            "direct_target": "Aster 037 Basic version v2 supports 6 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:device_limit:variant-1:p2",
+                "question": "Can I connect 6 devices on Aster 037 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 037 Basic version v2 supports 6 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:device_limit:variant-1:p3",
+                "question": "Can I connect 7 devices on Aster 037 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 037 Basic version v2 supports 6 devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-037-core:Basic:storage_gb",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-037-core:Basic:v2:storage_gb:variant-0",
+            "scenario_id": "scenario:aster-037-core:Basic:v2:storage_gb:0",
+            "corrected_value": "75",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:storage_gb:variant-0:p0",
+            "direct_target": "Aster 037 Basic version v2 includes 75 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:storage_gb:variant-0:p2",
+                "question": "Can I store 75 GB on Aster 037 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 037 Basic version v2 includes 75 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:storage_gb:variant-0:p3",
+                "question": "Can I store 76 GB on Aster 037 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 037 Basic version v2 includes 75 GB of storage."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-037-core:Basic:v2:storage_gb:variant-1",
+            "scenario_id": "scenario:aster-037-core:Basic:v2:storage_gb:1",
+            "corrected_value": "100",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:storage_gb:variant-1:p0",
+            "direct_target": "Aster 037 Basic version v2 includes 100 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:storage_gb:variant-1:p2",
+                "question": "Can I store 100 GB on Aster 037 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 037 Basic version v2 includes 100 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-037-core:Basic:v2:storage_gb:variant-1:p3",
+                "question": "Can I store 101 GB on Aster 037 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 037 Basic version v2 includes 100 GB of storage."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-044-core:Basic:device_limit",
+        "split": "validation",
+        "variants": [
+          {
+            "edit_id": "edit:aster-044-core:Basic:v2:device_limit:variant-0",
+            "scenario_id": "scenario:aster-044-core:Basic:v2:device_limit:0",
+            "corrected_value": "1",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p0",
+            "direct_target": "Aster 044 Basic version v2 supports 1 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+                "question": "Can I connect 1 devices on Aster 044 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 044 Basic version v2 supports 1 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p3",
+                "question": "Can I connect 2 devices on Aster 044 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 044 Basic version v2 supports 1 devices."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-044-core:Basic:v2:device_limit:variant-1",
+            "scenario_id": "scenario:aster-044-core:Basic:v2:device_limit:1",
+            "corrected_value": "2",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-1:p0",
+            "direct_target": "Aster 044 Basic version v2 supports 2 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-1:p2",
+                "question": "Can I connect 2 devices on Aster 044 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 044 Basic version v2 supports 2 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-1:p3",
+                "question": "Can I connect 3 devices on Aster 044 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 044 Basic version v2 supports 2 devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-044-core:Basic:storage_gb",
+        "split": "validation",
+        "variants": [
+          {
+            "edit_id": "edit:aster-044-core:Basic:v2:storage_gb:variant-0",
+            "scenario_id": "scenario:aster-044-core:Basic:v2:storage_gb:0",
+            "corrected_value": "20",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-0:p0",
+            "direct_target": "Aster 044 Basic version v2 includes 20 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-0:p2",
+                "question": "Can I store 20 GB on Aster 044 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 044 Basic version v2 includes 20 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-0:p3",
+                "question": "Can I store 21 GB on Aster 044 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 044 Basic version v2 includes 20 GB of storage."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-044-core:Basic:v2:storage_gb:variant-1",
+            "scenario_id": "scenario:aster-044-core:Basic:v2:storage_gb:1",
+            "corrected_value": "25",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-1:p0",
+            "direct_target": "Aster 044 Basic version v2 includes 25 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-1:p2",
+                "question": "Can I store 25 GB on Aster 044 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 044 Basic version v2 includes 25 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:storage_gb:variant-1:p3",
+                "question": "Can I store 26 GB on Aster 044 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 044 Basic version v2 includes 25 GB of storage."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-045-core:Basic:device_limit",
+        "split": "validation",
+        "variants": [
+          {
+            "edit_id": "edit:aster-045-core:Basic:v2:device_limit:variant-0",
+            "scenario_id": "scenario:aster-045-core:Basic:v2:device_limit:0",
+            "corrected_value": "2",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:device_limit:variant-0:p0",
+            "direct_target": "Aster 045 Basic version v2 supports 2 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:device_limit:variant-0:p2",
+                "question": "Can I connect 2 devices on Aster 045 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 045 Basic version v2 supports 2 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:device_limit:variant-0:p3",
+                "question": "Can I connect 3 devices on Aster 045 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 045 Basic version v2 supports 2 devices."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-045-core:Basic:v2:device_limit:variant-1",
+            "scenario_id": "scenario:aster-045-core:Basic:v2:device_limit:1",
+            "corrected_value": "3",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:device_limit:variant-1:p0",
+            "direct_target": "Aster 045 Basic version v2 supports 3 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:device_limit:variant-1:p2",
+                "question": "Can I connect 3 devices on Aster 045 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 045 Basic version v2 supports 3 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:device_limit:variant-1:p3",
+                "question": "Can I connect 4 devices on Aster 045 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 045 Basic version v2 supports 3 devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-045-core:Basic:storage_gb",
+        "split": "validation",
+        "variants": [
+          {
+            "edit_id": "edit:aster-045-core:Basic:v2:storage_gb:variant-0",
+            "scenario_id": "scenario:aster-045-core:Basic:v2:storage_gb:0",
+            "corrected_value": "25",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:storage_gb:variant-0:p0",
+            "direct_target": "Aster 045 Basic version v2 includes 25 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:storage_gb:variant-0:p2",
+                "question": "Can I store 25 GB on Aster 045 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 045 Basic version v2 includes 25 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:storage_gb:variant-0:p3",
+                "question": "Can I store 26 GB on Aster 045 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 045 Basic version v2 includes 25 GB of storage."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-045-core:Basic:v2:storage_gb:variant-1",
+            "scenario_id": "scenario:aster-045-core:Basic:v2:storage_gb:1",
+            "corrected_value": "40",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:storage_gb:variant-1:p0",
+            "direct_target": "Aster 045 Basic version v2 includes 40 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:storage_gb:variant-1:p2",
+                "question": "Can I store 40 GB on Aster 045 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 045 Basic version v2 includes 40 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-045-core:Basic:v2:storage_gb:variant-1:p3",
+                "question": "Can I store 41 GB on Aster 045 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 045 Basic version v2 includes 40 GB of storage."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-055-core:Basic:device_limit",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-055-core:Basic:v2:device_limit:variant-0",
+            "scenario_id": "scenario:aster-055-core:Basic:v2:device_limit:0",
+            "corrected_value": "1",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p0",
+            "direct_target": "Aster 055 Basic version v2 supports 1 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p2",
+                "question": "Can I connect 1 devices on Aster 055 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 055 Basic version v2 supports 1 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p3",
+                "question": "Can I connect 2 devices on Aster 055 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 055 Basic version v2 supports 1 devices."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-055-core:Basic:v2:device_limit:variant-1",
+            "scenario_id": "scenario:aster-055-core:Basic:v2:device_limit:1",
+            "corrected_value": "2",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-1:p0",
+            "direct_target": "Aster 055 Basic version v2 supports 2 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-1:p2",
+                "question": "Can I connect 2 devices on Aster 055 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 055 Basic version v2 supports 2 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-1:p3",
+                "question": "Can I connect 3 devices on Aster 055 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 055 Basic version v2 supports 2 devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-055-core:Basic:storage_gb",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-055-core:Basic:v2:storage_gb:variant-0",
+            "scenario_id": "scenario:aster-055-core:Basic:v2:storage_gb:0",
+            "corrected_value": "20",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:storage_gb:variant-0:p0",
+            "direct_target": "Aster 055 Basic version v2 includes 20 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:storage_gb:variant-0:p2",
+                "question": "Can I store 20 GB on Aster 055 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 055 Basic version v2 includes 20 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:storage_gb:variant-0:p3",
+                "question": "Can I store 21 GB on Aster 055 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 055 Basic version v2 includes 20 GB of storage."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-055-core:Basic:v2:storage_gb:variant-1",
+            "scenario_id": "scenario:aster-055-core:Basic:v2:storage_gb:1",
+            "corrected_value": "25",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:storage_gb:variant-1:p0",
+            "direct_target": "Aster 055 Basic version v2 includes 25 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:storage_gb:variant-1:p2",
+                "question": "Can I store 25 GB on Aster 055 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 055 Basic version v2 includes 25 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:storage_gb:variant-1:p3",
+                "question": "Can I store 26 GB on Aster 055 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 055 Basic version v2 includes 25 GB of storage."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-073-core:Basic:device_limit",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-073-core:Basic:v2:device_limit:variant-0",
+            "scenario_id": "scenario:aster-073-core:Basic:v2:device_limit:0",
+            "corrected_value": "8",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:device_limit:variant-0:p0",
+            "direct_target": "Aster 073 Basic version v2 supports 8 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:device_limit:variant-0:p2",
+                "question": "Can I connect 8 devices on Aster 073 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 073 Basic version v2 supports 8 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:device_limit:variant-0:p3",
+                "question": "Can I connect 9 devices on Aster 073 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 073 Basic version v2 supports 8 devices."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-073-core:Basic:v2:device_limit:variant-1",
+            "scenario_id": "scenario:aster-073-core:Basic:v2:device_limit:1",
+            "corrected_value": "9",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:device_limit:variant-1:p0",
+            "direct_target": "Aster 073 Basic version v2 supports 9 devices.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:device_limit:variant-1:p2",
+                "question": "Can I connect 9 devices on Aster 073 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 073 Basic version v2 supports 9 devices."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:device_limit:variant-1:p3",
+                "question": "Can I connect 10 devices on Aster 073 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 073 Basic version v2 supports 9 devices."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "lineage_id": "aster-073-core:Basic:storage_gb",
+        "split": "train",
+        "variants": [
+          {
+            "edit_id": "edit:aster-073-core:Basic:v2:storage_gb:variant-0",
+            "scenario_id": "scenario:aster-073-core:Basic:v2:storage_gb:0",
+            "corrected_value": "120",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:storage_gb:variant-0:p0",
+            "direct_target": "Aster 073 Basic version v2 includes 120 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:storage_gb:variant-0:p2",
+                "question": "Can I store 120 GB on Aster 073 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 073 Basic version v2 includes 120 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:storage_gb:variant-0:p3",
+                "question": "Can I store 121 GB on Aster 073 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 073 Basic version v2 includes 120 GB of storage."
+              }
+            ]
+          },
+          {
+            "edit_id": "edit:aster-073-core:Basic:v2:storage_gb:variant-1",
+            "scenario_id": "scenario:aster-073-core:Basic:v2:storage_gb:1",
+            "corrected_value": "150",
+            "direct_row_id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:storage_gb:variant-1:p0",
+            "direct_target": "Aster 073 Basic version v2 includes 150 GB of storage.",
+            "comparison_cases": [
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:storage_gb:variant-1:p2",
+                "question": "Can I store 150 GB on Aster 073 Basic version v2?",
+                "polarity": "yes",
+                "target": "Yes. Aster 073 Basic version v2 includes 150 GB of storage."
+              },
+              {
+                "id": "pilot-v1:42:answer:edit:aster-073-core:Basic:v2:storage_gb:variant-1:p3",
+                "question": "Can I store 151 GB on Aster 073 Basic version v2?",
+                "polarity": "no",
+                "target": "No. Aster 073 Basic version v2 includes 150 GB of storage."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "meaning": "Variants are mutually exclusive single-edit worlds; they must never be coactivated as simultaneous approved facts."
+  },
+  "derived_foreign_negative_reroutes": {
+    "count": 60,
+    "denominator": 504,
+    "policy": "reroute"
+  },
+  "surface_defects": [
+    {
+      "code": "singular_one_with_plural_devices",
+      "severity": "surface_grammar",
+      "field": "question",
+      "affected_count": 4,
+      "denominator": 504,
+      "factual_label_changed": false,
+      "recommendation": "Human reviewers should flag the grammatical form. If regenerated with singular/plural agreement, refresh row hashes/review exports before recording decisions. This audit changes no rows.",
+      "affected_rows": [
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "train",
+          "field": "question",
+          "text": "Can I connect 1 devices on Aster 055 Basic version v2?",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "validation",
+          "field": "question",
+          "text": "Can I connect 1 devices on Aster 044 Basic version v2?",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "train",
+          "field": "question",
+          "text": "Can I connect 1 devices on Aster 055 Basic version v2?",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "validation",
+          "field": "question",
+          "text": "Can I connect 1 devices on Aster 044 Basic version v2?",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        }
+      ]
+    },
+    {
+      "code": "singular_one_with_plural_devices",
+      "severity": "surface_grammar",
+      "field": "correction_text",
+      "affected_count": 28,
+      "denominator": 504,
+      "factual_label_changed": false,
+      "recommendation": "Human reviewers should flag the grammatical form. If regenerated with singular/plural agreement, refresh row hashes/review exports before recording decisions. This audit changes no rows.",
+      "affected_rows": [
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:p0",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:p1",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:p3",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:n:same_entity_different_property",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:n:different_entity_same_property",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:n:similar_name",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:n:wrong_tier",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:n:wrong_version",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-055-core:Basic:v2:device_limit:variant-0:n:ordinary",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:p0",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:p1",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:p3",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:n:same_entity_different_property",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:n:different_entity_same_property",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:n:similar_name",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:n:wrong_tier",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:n:wrong_version",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:scope:edit:aster-044-core:Basic:v2:device_limit:variant-0:n:ordinary",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p0",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p1",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p3",
+          "split": "train",
+          "field": "correction_text",
+          "text": "Correction for Aster 055 (aliases: A055), Basic, version v2: device_limit changed from 10 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-055/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p0",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p1",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p3",
+          "split": "validation",
+          "field": "correction_text",
+          "text": "Correction for Aster 044 (aliases: A044), Basic, version v2: device_limit changed from 4 to 1 devices, effective from 2026-09-01. Source: controlled://corrections/family-044/device_limit/0.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        }
+      ]
+    },
+    {
+      "code": "singular_one_with_plural_devices",
+      "severity": "surface_grammar",
+      "field": "target_text",
+      "affected_count": 8,
+      "denominator": 144,
+      "factual_label_changed": false,
+      "recommendation": "Human reviewers should flag the grammatical form. If regenerated with singular/plural agreement, refresh row hashes/review exports before recording decisions. This audit changes no rows.",
+      "affected_rows": [
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p0",
+          "split": "train",
+          "field": "target_text",
+          "text": "Aster 055 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p1",
+          "split": "train",
+          "field": "target_text",
+          "text": "Aster 055 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "train",
+          "field": "target_text",
+          "text": "Yes. Aster 055 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-055-core:Basic:v2:device_limit:variant-0:p3",
+          "split": "train",
+          "field": "target_text",
+          "text": "No. Aster 055 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-055-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p0",
+          "split": "validation",
+          "field": "target_text",
+          "text": "Aster 044 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p1",
+          "split": "validation",
+          "field": "target_text",
+          "text": "Aster 044 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p2",
+          "split": "validation",
+          "field": "target_text",
+          "text": "Yes. Aster 044 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        },
+        {
+          "id": "pilot-v1:42:answer:edit:aster-044-core:Basic:v2:device_limit:variant-0:p3",
+          "split": "validation",
+          "field": "target_text",
+          "text": "No. Aster 044 Basic version v2 supports 1 devices.",
+          "scope": {
+            "entity_id": "aster-044-core",
+            "relation": "device_limit",
+            "plan": "Basic",
+            "version": "v2",
+            "corrected_value": "1"
+          }
+        }
+      ]
+    }
+  ],
+  "coverage_findings": [
+    {
+      "code": "no_unfamiliar_wording_in_development_pilot",
+      "counts": {
+        "templates_total": 12,
+        "templates_train": 12,
+        "templates_validation": 12,
+        "validation_only_templates": 0
+      },
+      "meaning": "All twelve question forms are shared across train and validation. Entity separation does not establish unseen-wording generalization. Manually authored unfamiliar questions remain a later independent review/evaluation requirement; none are inspected here."
+    },
+    {
+      "code": "corrections_only_core_basic_v2",
+      "counts": {
+        "edit_scenarios": 36,
+        "plans": [
+          "Basic"
+        ],
+        "versions": [
+          "v2"
+        ]
+      },
+      "meaning": "Wrong-tier/version and near-name negatives are present, but approved correction examples do not cover Pro, historical v1 or Plus edits. Do not claim generalization to edits in those scopes from this pilot."
+    },
+    {
+      "code": "constant_temporal_metadata",
+      "counts": {
+        "as_of_dates": 1,
+        "effective_from_dates": 1
+      },
+      "meaning": "No before-effective or expired correction applicability examples are present. Date handling must be attributed to deterministic gates and tested engineering workflows, not learned temporal reasoning."
+    }
+  ],
+  "no_performance_claim": "Pass counts are data-rule consistency checks, not ML accuracy, generalization, calibration, panel readiness or human approval.",
+  "comparison_examples_each_relation_and_polarity": [
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p2",
+      "question": "Can I connect 5 devices on Aster 015 Basic version v2?",
+      "target_text": "Yes. Aster 015 Basic version v2 supports 5 devices.",
+      "expected_polarity": "yes",
+      "original_value": "7",
+      "corrected_value": "5"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:device_limit:variant-0:p3",
+      "question": "Can I connect 6 devices on Aster 015 Basic version v2?",
+      "target_text": "No. Aster 015 Basic version v2 supports 5 devices.",
+      "expected_polarity": "no",
+      "original_value": "7",
+      "corrected_value": "5"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:price_monthly:variant-0:p2",
+      "question": "Does Aster 015 Basic version v2 cost at most 19 USD per month?",
+      "target_text": "Yes. Aster 015 Basic version v2 costs 19 USD per month.",
+      "expected_polarity": "yes",
+      "original_value": "12",
+      "corrected_value": "19"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:price_monthly:variant-0:p3",
+      "question": "Does Aster 015 Basic version v2 cost at most 18 USD per month?",
+      "target_text": "No. Aster 015 Basic version v2 costs 19 USD per month.",
+      "expected_polarity": "no",
+      "original_value": "12",
+      "corrected_value": "19"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p2",
+      "question": "Can I store 60 GB on Aster 015 Basic version v2?",
+      "target_text": "Yes. Aster 015 Basic version v2 includes 60 GB of storage.",
+      "expected_polarity": "yes",
+      "original_value": "180",
+      "corrected_value": "60"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:storage_gb:variant-0:p3",
+      "question": "Can I store 61 GB on Aster 015 Basic version v2?",
+      "target_text": "No. Aster 015 Basic version v2 includes 60 GB of storage.",
+      "expected_polarity": "no",
+      "original_value": "180",
+      "corrected_value": "60"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:support_hours:variant-0:p2",
+      "question": "Does Aster 015 Basic version v2 include at least 8 support hours per day?",
+      "target_text": "Yes. Aster 015 Basic version v2 includes 8 support hours per day.",
+      "expected_polarity": "yes",
+      "original_value": "7",
+      "corrected_value": "8"
+    },
+    {
+      "id": "pilot-v1:42:answer:edit:aster-015-core:Basic:v2:support_hours:variant-0:p3",
+      "question": "Does Aster 015 Basic version v2 include at least 9 support hours per day?",
+      "target_text": "No. Aster 015 Basic version v2 includes 8 support hours per day.",
+      "expected_polarity": "no",
+      "original_value": "7",
+      "corrected_value": "8"
+    }
+  ],
+  "negative_type_representatives": {
+    "same_entity_different_property": {
+      "id": "pilot-v1:42:scope:edit:aster-015-core:Basic:v2:device_limit:variant-0:n:same_entity_different_property",
+      "question": "What is the monthly price of Aster 015 Basic version v2?",
+      "label": 0,
+      "correction_scope": {
+        "entity_id": "aster-015-core",
+        "relation": "device_limit",
+        "plan": "Basic",
+        "version": "v2",
+        "corrected_value": "5"
+      },
+      "expected_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-015-core",
+        "fact_id": "aster-015-core:Basic:v2:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "unit": "USD/month",
+        "value": "12",
+        "version": "v2"
+      }
+    },
+    "different_entity_same_property": {
+      "id": "pilot-v1:42:scope:edit:aster-015-core:Basic:v2:device_limit:variant-0:n:different_entity_same_property",
+      "question": "How many devices does Aster 037 Basic version v2 support?",
+      "label": 0,
+      "correction_scope": {
+        "entity_id": "aster-015-core",
+        "relation": "device_limit",
+        "plan": "Basic",
+        "version": "v2",
+        "corrected_value": "5"
+      },
+      "expected_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-037-core",
+        "fact_id": "aster-037-core:Basic:v2:device_limit",
+        "plan": "Basic",
+        "relation": "device_limit",
+        "unit": "devices",
+        "value": "8",
+        "version": "v2"
+      }
+    },
+    "similar_name": {
+      "id": "pilot-v1:42:scope:edit:aster-015-core:Basic:v2:device_limit:variant-0:n:similar_name",
+      "question": "How many devices does Aster 015 Plus Basic version v2 support?",
+      "label": 0,
+      "correction_scope": {
+        "entity_id": "aster-015-core",
+        "relation": "device_limit",
+        "plan": "Basic",
+        "version": "v2",
+        "corrected_value": "5"
+      },
+      "expected_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-015-plus",
+        "fact_id": "aster-015-plus:Basic:v2:device_limit",
+        "plan": "Basic",
+        "relation": "device_limit",
+        "unit": "devices",
+        "value": "10",
+        "version": "v2"
+      }
+    },
+    "wrong_tier": {
+      "id": "pilot-v1:42:scope:edit:aster-015-core:Basic:v2:device_limit:variant-0:n:wrong_tier",
+      "question": "How many devices does Aster 015 Pro version v2 support?",
+      "label": 0,
+      "correction_scope": {
+        "entity_id": "aster-015-core",
+        "relation": "device_limit",
+        "plan": "Basic",
+        "version": "v2",
+        "corrected_value": "5"
+      },
+      "expected_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-015-core",
+        "fact_id": "aster-015-core:Pro:v2:device_limit",
+        "plan": "Pro",
+        "relation": "device_limit",
+        "unit": "devices",
+        "value": "12",
+        "version": "v2"
+      }
+    },
+    "wrong_version": {
+      "id": "pilot-v1:42:scope:edit:aster-015-core:Basic:v2:device_limit:variant-0:n:wrong_version",
+      "question": "How many devices does Aster 015 Basic version v1 support?",
+      "label": 0,
+      "correction_scope": {
+        "entity_id": "aster-015-core",
+        "relation": "device_limit",
+        "plan": "Basic",
+        "version": "v2",
+        "corrected_value": "5"
+      },
+      "expected_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-015-core",
+        "fact_id": "aster-015-core:Basic:v1:device_limit",
+        "plan": "Basic",
+        "relation": "device_limit",
+        "unit": "devices",
+        "value": "1",
+        "version": "v1"
+      }
+    },
+    "ordinary": {
+      "id": "pilot-v1:42:scope:edit:aster-015-core:Basic:v2:device_limit:variant-0:n:ordinary",
+      "question": "What is the monthly price of Aster 073 Plus Basic version v2?",
+      "label": 0,
+      "correction_scope": {
+        "entity_id": "aster-015-core",
+        "relation": "device_limit",
+        "plan": "Basic",
+        "version": "v2",
+        "corrected_value": "5"
+      },
+      "expected_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-073-plus",
+        "fact_id": "aster-073-plus:Basic:v2:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "unit": "USD/month",
+        "value": "17",
+        "version": "v2"
+      }
+    }
+  },
+  "assumptions_requiring_human_confirmation": [
+    "Connect/store comparison questions refer to the total plan allowance, without current usage, hardware or other restrictions.",
+    "Daily support-hours wording denotes the controlled catalogue's daily support allowance/availability; it does not specify a time-of-day schedule.",
+    "Every correction is one simulated approved single-edit world; counterfactual variants are mutually exclusive, not a real administrator approval history.",
+    "Catalogue values and product aliases are fictional demonstration truth and remain pending review alongside question labels."
+  ],
+  "source_unchanged_after_audit": true
+}

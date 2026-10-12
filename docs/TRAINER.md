@@ -4,8 +4,9 @@
 answer model. The structured app imports no ML package through this module.
 Production training is deliberately gated on reviewed train/validation data and
 a preflight-valid run card. No frozen test file is read by the trainer. No
-substantial run command is released yet: a reviewed pilot and measurements from
-this actual trainer must justify its runtime, memory and checkpoint estimates.
+substantial command is released without reviewed inputs and actual trainer
+measurements. The [pilot run instructions](PILOT_TRAINING.md) contain the initial
+finite commands and their conditional estimates.
 
 ## Implemented optimizer path
 
@@ -54,7 +55,10 @@ The existing `scripts/preflight_training.py` checks exact manifest, row-file,
 review-registry and profile hashes; train/validation family, entity and lineage
 separation; model revision; profiled batch/lengths/precision; finite `max_steps`;
 and the checkpoint plan. `train_auxiliary.py` calls this before importing Torch.
-Accepted rows must have current hash-bound human review. Passing preflight is
+Accepted rows must have current hash-bound decisions under the declared review
+policy. Human review remains the default. The user-authorized
+`automated_development` policy requires typed machine decisions and an independent
+audit hash, and writes `human_reviewed_data=false` to model artifacts. Passing preflight is
 not a claim that training, calibration or final evaluation succeeded.
 
 The actual device must match the completed profile. New optional run-card

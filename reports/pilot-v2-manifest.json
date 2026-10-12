@@ -1,0 +1,72 @@
+{
+  "counts": {
+    "answer": {
+      "train": 96,
+      "validation": 48
+    },
+    "scope": {
+      "train": 240,
+      "validation": 120
+    }
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "eligible_for_final_evaluation": false,
+  "eligible_for_training": false,
+  "family_counts": {
+    "train": 4,
+    "validation": 2
+  },
+  "files": {
+    "answer_train.jsonl": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+    "answer_validation.jsonl": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7",
+    "catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "derivation.json": "31457c6549b8d6efd301bbb0c04807408133227d5345605982f6a3881edfce9f",
+    "scope_train.jsonl": "f061e979322400b28d7cbad162c7f3d6e4ae6e69e6e97c70b4407f58b32b66cd",
+    "scope_validation.jsonl": "e4060769f69916e4abdd4126c10fb9bbe4e8862f0948942c4df168f22571f7e3",
+    "selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1"
+  },
+  "human_review_decisions": {
+    "accept": 0,
+    "pending": 504,
+    "reject": 0
+  },
+  "input_format_version": "editguard-input-v2",
+  "origin_dataset_id": "editguard-controlled-v1-pilot-v1-42-7b7a9b1b",
+  "origin_hashes": {
+    "answer_train.jsonl": "fafa53459535e90bce45f9fdbd952c3b7b9d57c2efb6c0504a61c0b039cd8989",
+    "answer_validation.jsonl": "d9fe2253dbaa7f75e7dfe55d3c0de07d13a71155729b3ada4f3bdc633d686492",
+    "catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "derivation.json": "f02ce5fad49522847eb180b2ca1dc86e4f04755f0796916648d2dc72e218d8ac",
+    "manifest.json": "80ce36e5cebaee15096d088e11a8dbe215a1f34dcb526b857efda84d063f5c89",
+    "scope_train.jsonl": "e81edbd16d9d9c26beb1ab2b3ac35bf3c1fcd730cc22737f8611ce632be736d3",
+    "scope_validation.jsonl": "54afacff79d60e036460fd4d5ecb4e60f1dbd7f779a0f2853f41417b55ee6c94",
+    "selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1"
+  },
+  "pilot_version": 2,
+  "purpose": "development_pilot_not_final_evaluation",
+  "repair_policy": "display grammar only; every review row gets a new ID/hash; structured entity/fact/edit/lineage IDs and labels are retained",
+  "repair_version": 1,
+  "review_status": "pending_independent_human_decisions",
+  "schema_version": 1,
+  "semantic_changes": false,
+  "source_code_sha256": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "scripts/prepare_data.py": "a1fb004c1cf017c64fc708e0bb7bb0bfd2402cf38d4fbedc58f8c2a4132712a8",
+    "scripts/repair_pilot.py": "670a75fd618dd9286e93cd10b3c7c03c9690e9314e5ff74f3ba02bdec9627e8c"
+  },
+  "source_input_format_version": "editguard-input-v1",
+  "tasks": [
+    "scope",
+    "answer"
+  ],
+  "test_files_included": false,
+  "test_frozen": false,
+  "text_change_counts": {
+    "correction_text": 28,
+    "input_text": 8,
+    "question": 4,
+    "target_text": 8
+  }
+}

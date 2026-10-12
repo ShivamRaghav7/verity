@@ -113,10 +113,10 @@ def integrity_flags(row: dict, catalogue: dict[str, dict] | None = None) -> list
             flags.append("support_split_leakage")
     polarity = row.get("expected_polarity")
     if row.get("question_type") == "comparison":
-        patterns = {"device_limit": r"connect (\d+(?:\.\d+)?) devices",
+        patterns = {"device_limit": r"connect (\d+(?:\.\d+)?) devices?\b",
                     "price_monthly": r"at most (\d+(?:\.\d+)?) USD",
                     "storage_gb": r"store (\d+(?:\.\d+)?) GB",
-                    "support_hours": r"at least (\d+(?:\.\d+)?) support hours"}
+                    "support_hours": r"at least (\d+(?:\.\d+)?) support hours?\b"}
         match = re.search(patterns.get(expected["relation"], r"(?!)"), row["question"], re.I)
         if not match:
             flags.append("comparison_requires_manual_semantic_check")
@@ -133,10 +133,10 @@ def integrity_flags(row: dict, catalogue: dict[str, dict] | None = None) -> list
     if "target_text" in row:
         target = row["target_text"]
         value = re.escape(str(expected["value"]))
-        predicates = {"device_limit": rf"supports {value} devices\.",
+        predicates = {"device_limit": rf"supports {value} devices?\.",
                       "price_monthly": rf"costs {value} USD per month\.",
                       "storage_gb": rf"includes {value} GB of storage\.",
-                      "support_hours": rf"includes {value} support hours per day\."}
+                      "support_hours": rf"includes {value} support hours? per day\."}
         subject = f"{edit['entity_name']} {expected['plan']} version {expected['version']}"
         if subject not in target or not re.search(predicates.get(expected["relation"], r"(?!)"), target):
             flags.append("target_subject_relation_or_value_mismatch")
@@ -224,17 +224,88 @@ body{font:16px/1.55 system-ui,sans-serif;margin:0;background:#f1f5f9;color:#0f17
 article{background:white;border:1px solid #cbd5e1;border-radius:12px;padding:20px;margin:20px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f8fafc;padding:12px}
 label{display:block;margin:10px 0}input,select,button{font:inherit;padding:8px;margin:4px}button{cursor:pointer;border:1px solid #64748b;border-radius:6px;background:#fff}
 .notice{border-left:5px solid #2563eb;padding:12px;background:#eff6ff}.flags{color:#9a3412}h2{overflow-wrap:anywhere}a{color:#1d4ed8}
+.toolbar{border:1px solid #cbd5e1;border-radius:12px;padding:12px;background:white}.toolbar label{display:inline-block}progress{width:min(420px,100%)}.record-info{font-size:14px;color:#475569}
 </style></head><body><main><h1>EditGuard human dataset review</h1>
-<p class="notice">No row is accepted automatically. Rule checks are integrity flags, not semantic review. Inspect question, correction, scope, truth, polarity and supporting facts before deciding. Export decisions and import them with the CLI to enforce hashes and preserve the authoritative registry.</p>
+<p class="notice">This page records human review only. No row is accepted automatically. Rule checks are integrity flags, not semantic review. Inspect question, correction, scope, truth, polarity and supporting facts before deciding. Export decisions and import them with the CLI to enforce hashes and preserve the authoritative registry. Automated development review registries cannot be loaded here.</p>
 <p id="summary"></p><label>Your reviewer name <input id="reviewer" autocomplete="name" required></label>
-<button id="export" type="button">Export explicit decisions as JSON</button><p id="status" role="status" aria-live="polite"></p><nav id="navigation" aria-label="Review rows"></nav><div id="cards"></div>
+<div class="toolbar"><label>Resume from this page's exported decision JSON <input id="load-decisions" type="file" accept=".json,application/json"></label>
+<button id="export" type="button">Export explicit decisions as JSON</button>
+<p id="progress-counts" aria-live="polite"></p><progress id="progress" value="0" aria-label="Rows with explicit decisions"></progress>
+<nav id="navigation" aria-label="Review rows"><label>Go to any row <select id="all-rows"><option value="">Choose a row</option></select></label><button id="next-pending" type="button">Next pending row</button></nav></div>
+<p id="status" role="status" aria-live="polite">Decisions exist only in this page until you export them. There is no automatic save.</p><div id="cards"></div>
 </main><script type="application/json" id="review-data">__DATA__</script><script>
 "use strict";
-const payload=JSON.parse(document.getElementById("review-data").textContent),decisions={};
+const payload=JSON.parse(document.getElementById("review-data").textContent),decisions=Object.create(null);
 document.getElementById("summary").textContent=payload.dataset_id+" · "+payload.task+" · "+payload.split+" · "+payload.rows.length+" rows. These records remain pending until explicit human decisions are imported.";
-const cards=document.getElementById("cards"),navigation=document.getElementById("navigation");
+const cards=document.getElementById("cards"),rowNavigation=document.getElementById("all-rows"),rowItems=new Map(payload.rows.map(item=>[item.row.id,item])),controls=new Map(),loadedRows=new Set();
+const MAX_DECISION_BYTES=2*1024*1024;let lastVisited=-1;
+function setStatus(message){document.getElementById("status").textContent=message}
+function plainObject(value){return value!==null&&typeof value==="object"&&!Array.isArray(value)}
+function zonedTimestamp(value){
+ if(typeof value!=="string")return false;
+ const match=/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(?:[.][0-9]{1,6})?(Z|[+-][0-9]{2}:[0-9]{2})$/.exec(value);if(!match)return false;
+ const [year,month,day,hour,minute,second]=match.slice(1,7).map(Number),leap=year%4===0&&(year%100!==0||year%400===0),days=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+ const zone=match[7];return year>0&&month>=1&&month<=12&&day>=1&&day<=days[month-1]&&hour<24&&minute<60&&second<60&&(zone==="Z"||(Number(zone.slice(1,3))<24&&Number(zone.slice(4,6))<60))&&Number.isFinite(Date.parse(value));
+}
+function validateLoadedRecord(rowId,record){
+ if(!rowItems.has(rowId))throw new Error("Unknown row for this page: "+rowId+". Load the export for this task, split and row selection.");
+ if(!plainObject(record)||!['accept','reject'].includes(record.decision))throw new Error("Each loaded row needs an explicit accept or reject decision.");
+ if(Object.keys(record).some(key=>!['decision','reviewer','reviewer_type','reviewed_at','row_sha256','reason'].includes(key)))throw new Error("A loaded decision contains unsupported fields.");
+ if(record.reviewer_type!==undefined&&record.reviewer_type!=="human")throw new Error("This page resumes human decisions only; automated review records cannot be relabeled as human.");
+ if(typeof record.reviewer!=="string"||!record.reviewer.trim())throw new Error("Every loaded decision requires its original reviewer name.");
+ if(!zonedTimestamp(record.reviewed_at))throw new Error("Every loaded timestamp must be a valid ISO date/time with an explicit timezone.");
+ if(record.row_sha256!==rowItems.get(rowId).row_sha256)throw new Error("Stale or incorrect row hash: "+rowId);
+ if(record.reason!==undefined&&typeof record.reason!=="string")throw new Error("A decision reason must be text.");
+ if(record.decision==='reject'&&(!record.reason||!record.reason.trim()))throw new Error("Every rejected row requires a reason.");
+}
+function equalRecords(first,second){return JSON.stringify(Object.keys(first).sort().map(key=>[key,first[key]]))===JSON.stringify(Object.keys(second).sort().map(key=>[key,second[key]]))}
+function parseDecisionJSON(text){
+ const parsed=JSON.parse(text);let position=0;
+ const whitespace=()=>{while(position<text.length&&[' ','\\t','\\r','\\n'].includes(text[position]))position++};
+ function stringToken(){const start=position++;while(position<text.length){if(text[position]==='"'){position++;return JSON.parse(text.slice(start,position))}if(text[position].charCodeAt(0)===92)position+=2;else position++}throw new Error("Unterminated JSON string.")}
+ function visit(depth){
+  if(depth>64)throw new Error("Decision JSON nesting exceeds the page limit.");whitespace();const token=text[position];
+  if(token==='{'){position++;whitespace();const keys=new Set();if(text[position]==='}'){position++;return}while(position<text.length){whitespace();const key=stringToken();if(keys.has(key))throw new Error("Duplicate JSON key: "+key);keys.add(key);whitespace();position++;visit(depth+1);whitespace();if(text[position]==='}'){position++;return}position++}}
+  else if(token==='['){position++;whitespace();if(text[position]===']'){position++;return}while(position<text.length){visit(depth+1);whitespace();if(text[position]===']'){position++;return}position++}}
+  else if(token==='"')stringToken();else{while(position<text.length&&![' ', '\\t', '\\r', '\\n', ',', '}', ']'].includes(text[position]))position++}
+ }
+ visit(0);return parsed;
+}
+function updateProgress(){
+ const records=Object.values(decisions),accepted=records.filter(record=>record.decision==='accept').length,rejected=records.length-accepted,pending=payload.rows.length-records.length;
+ document.getElementById("progress-counts").textContent=records.length+" / "+payload.rows.length+" reviewed · "+accepted+" accepted · "+rejected+" rejected · "+pending+" pending. Export before closing.";
+ const progress=document.getElementById("progress");progress.max=payload.rows.length;progress.value=records.length;
+ for(const [rowId,control] of controls){const record=decisions[rowId];control.option.textContent="Row "+(control.index+1)+" · "+(record?record.decision:"pending")+" · "+rowId}
+}
+function syncRecord(rowId){
+ const control=controls.get(rowId),record=decisions[rowId];if(!control||!record)return;
+ control.select.value=record.decision;control.reason.value=record.reason||"";
+ const loaded=loadedRows.has(rowId);control.select.disabled=loaded;control.reason.disabled=loaded;control.save.disabled=loaded;
+ control.info.textContent=(loaded?"Loaded and preserved":"Recorded in this page")+": "+record.decision+" by "+record.reviewer+" at "+record.reviewed_at+(loaded?". Loaded decisions cannot be replaced here; conflicting changes require explicit CLI/registry resolution.":". Export to keep this decision.");
+}
+function loadDecisionText(text){
+ if(typeof text!=="string"||new TextEncoder().encode(text).length>MAX_DECISION_BYTES)throw new Error("Decision JSON exceeds the 2 MiB page limit.");
+ const incoming=parseDecisionJSON(text);
+ if(!plainObject(incoming)||incoming.dataset_id!==payload.dataset_id||incoming.origin_manifest_sha256!==payload.manifest_sha256)throw new Error("The dataset ID and manifest hash must exactly match this page.");
+ if((incoming.review_policy!==undefined&&incoming.review_policy!=="human")||(incoming.human_reviewed_data!==undefined&&incoming.human_reviewed_data!==true))throw new Error("This page resumes human decisions only; machine review registries are separate.");
+ if(!plainObject(incoming.rows)||!Object.keys(incoming.rows).length)throw new Error("The export must contain a nonempty rows object.");
+ const entries=Object.entries(incoming.rows);if(entries.length>payload.rows.length)throw new Error("The export contains more decisions than rows on this page.");
+ for(const [rowId,record] of entries){validateLoadedRecord(rowId,record);if(decisions[rowId]&&!equalRecords(decisions[rowId],record))throw new Error("Conflicting existing decision for "+rowId+". Nothing was loaded; no silent replacement.")}
+ let added=0;for(const [rowId,record] of entries){if(!decisions[rowId]){decisions[rowId]=record;added++}loadedRows.add(rowId);syncRecord(rowId)}
+ updateProgress();setStatus("Loaded "+added+" new decisions; "+entries.length+" original records preserved with their reviewer and timestamp. No automatic save or registry write.");return added;
+}
+function visitRow(index){if(!Number.isInteger(index)||index<0||index>=payload.rows.length)return;lastVisited=index;rowNavigation.value=String(index);const article=document.getElementById("row-"+index);article.scrollIntoView({behavior:"smooth",block:"start"});article.focus({preventScroll:true})}
+document.getElementById("load-decisions").addEventListener("change",async event=>{
+ const file=event.target.files&&event.target.files[0];if(!file)return;
+ try{if(file.size>MAX_DECISION_BYTES)throw new Error("Decision JSON exceeds the 2 MiB page limit.");loadDecisionText(await file.text())}catch(error){setStatus("Could not load decisions: "+error.message)}finally{event.target.value=""}
+});
+rowNavigation.addEventListener("change",()=>{if(rowNavigation.value!=="")visitRow(Number(rowNavigation.value))});
+document.getElementById("next-pending").addEventListener("click",()=>{
+ for(let offset=1;offset<=payload.rows.length;offset++){const index=(lastVisited+offset)%payload.rows.length;if(!decisions[payload.rows[index].row.id]){visitRow(index);setStatus("Pending row "+(index+1)+" of "+payload.rows.length+". Inspect it before deciding.");return}}
+ setStatus("Every row on this page has an explicit decision. Export before closing.");
+});
 for(const [index,item] of payload.rows.entries()){
- const row=item.row,article=document.createElement("article");article.id="row-"+index;
+ const row=item.row,article=document.createElement("article");article.id="row-"+index;article.tabIndex=-1;
  const heading=document.createElement("h2");heading.textContent=(index+1)+". "+row.id;article.append(heading);
  const question=document.createElement("p");question.textContent=row.question;article.append(question);
  const flags=document.createElement("p");flags.className="flags";flags.textContent="Automated integrity flags: "+(item.integrity_flags.join(", ")||"none; human semantic review still required");article.append(flags);
@@ -242,18 +313,23 @@ for(const [index,item] of payload.rows.entries()){
  const label=document.createElement("label");label.textContent="Decision for row "+(index+1)+" ";
  const select=document.createElement("select");for(const [value,text] of [["","Pending"],["accept","Accept after inspection"],["reject","Reject with reason"]]){const option=document.createElement("option");option.value=value;option.textContent=text;select.append(option)}label.append(select);article.append(label);
  const reasonLabel=document.createElement("label");reasonLabel.textContent="Rejection reason or optional acceptance note ";const reason=document.createElement("input");reason.type="text";reason.size=60;reasonLabel.append(reason);article.append(reasonLabel);
+ const info=document.createElement("p");info.className="record-info";info.textContent="Pending: no explicit decision recorded.";article.append(info);
  const save=document.createElement("button");save.type="button";save.textContent="Record this explicit decision";save.addEventListener("click",()=>{
  const reviewer=document.getElementById("reviewer").value.trim();if(!reviewer||!select.value||(select.value==="reject"&&!reason.value.trim())){document.getElementById("status").textContent="Provide your name, an explicit decision and a rejection reason when needed.";return}
- const record={decision:select.value,reviewer,reviewed_at:new Date().toISOString(),row_sha256:item.row_sha256};if(reason.value.trim())record.reason=reason.value.trim();
- if(decisions[row.id]&&!window.confirm("Replace your unsaved decision for this row? The authoritative CLI rejects conflicts with previously imported decisions."))return;
- decisions[row.id]=record;document.getElementById("status").textContent="Explicit decisions recorded in this page: "+Object.keys(decisions).length+". Export them before closing; no automatic save.";
+ if(loadedRows.has(row.id)){setStatus("This loaded decision is preserved. Resolve any conflicting replacement explicitly in the CLI/registry workflow.");return}
+ const previous=decisions[row.id];if(previous&&previous.decision===select.value&&previous.reviewer===reviewer&&(previous.reason||"")===reason.value.trim()){setStatus("This decision is already recorded; its original timestamp is preserved.");return}
+ const record={decision:select.value,reviewer,reviewer_type:"human",reviewed_at:new Date().toISOString(),row_sha256:item.row_sha256};if(reason.value.trim())record.reason=reason.value.trim();
+ if(previous&&!window.confirm("Replace your unsaved decision for this row? The authoritative CLI rejects conflicts with previously imported decisions."))return;
+ decisions[row.id]=record;lastVisited=index;syncRecord(row.id);updateProgress();setStatus("Explicit decision recorded. Export before closing; no automatic save.");
  });article.append(save);cards.append(article);
- if(index<20){const link=document.createElement("a");link.href="#row-"+index;link.textContent="Row "+(index+1)+" ";navigation.append(link)}
+ const option=document.createElement("option");option.value=String(index);rowNavigation.append(option);controls.set(row.id,{index,select,reason,save,info,option});
 }
+updateProgress();
 document.getElementById("export").addEventListener("click",()=>{
  if(!Object.keys(decisions).length){document.getElementById("status").textContent="No explicit decisions to export.";return}
- const result={dataset_id:payload.dataset_id,origin_manifest_sha256:payload.manifest_sha256,rows:decisions};
- const blob=new Blob([JSON.stringify(result,null,2)+"\\n"],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="review-decisions.json";a.click();URL.revokeObjectURL(url);
+ const result={dataset_id:payload.dataset_id,origin_manifest_sha256:payload.manifest_sha256,review_policy:"human",human_reviewed_data:true,rows:decisions};
+ const safeName=value=>String(value).replace(/[^a-zA-Z0-9_-]+/g,"-");
+ const blob=new Blob([JSON.stringify(result,null,2)+"\\n"],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="review-decisions-"+safeName(payload.dataset_id)+"-"+safeName(payload.task)+"-"+safeName(payload.split)+".json";a.click();URL.revokeObjectURL(url);setStatus("Decision JSON exported. Import it with the CLI to update the authoritative registry.");
 });
 </script></body></html>'''
 
@@ -428,6 +504,8 @@ def build_pilot(source: Path, output: Path, *, task: str = "both", train_familie
                 "review_status": "pending_independent_human_decisions", "eligible_for_training": False,
                 "test_frozen": False, "test_files_included": False,
                 "files": {name: hashlib.sha256(contents).hexdigest() for name, contents in files.items()}}
+    if "input_format_version" in source_manifest:
+        manifest["input_format_version"] = source_manifest["input_format_version"]
     files["manifest.json"] = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
     if (output / "test_lock.json").exists():
         raise ValueError("Cannot change a frozen dataset directory into a pilot.")

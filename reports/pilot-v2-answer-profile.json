@@ -1,0 +1,125 @@
+{
+  "data_files_sha256": {
+    "train": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+    "validation": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7"
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "environment": {
+    "attention_implementation": "eager",
+    "cpu_threads": 2,
+    "cublas_workspace_config": ":4096:8",
+    "cuda_devices": [
+      "NVIDIA GeForce RTX 4050 Laptop GPU"
+    ],
+    "cuda_visible_devices": null,
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "machine": "AMD64",
+    "nvidia_driver_uuid_identity": [
+      "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+    ],
+    "packages": {
+      "numpy": "2.4.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.3",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "precision": "float32",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "tf32": false,
+    "torch_cuda": "13.0"
+  },
+  "environment_sha256": "57abe36515dd32e0fd37b77b5dc26b268df7f8629de71051de2fbe178524c9a0",
+  "hardware": {
+    "available_ram_gib": 11.49,
+    "cpu_threads": 12,
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_memory_gib": 6.0,
+    "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 581.86",
+    "packages": {
+      "fastapi": "0.121.0",
+      "psutil": "7.2.2",
+      "pydantic": "2.12.4",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "ram_gib": 23.71,
+    "torch_cuda": "13.0"
+  },
+  "human_reviewed_data": false,
+  "input_format_version": "editguard-input-v2",
+  "manifest_sha256": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+  "model_config_sha256": "499d90feede6ec931d908eb60aaacefc80e866e04fa2dc71f5b6630a0f090781",
+  "profile": {
+    "backbone": "google/flan-t5-small",
+    "batch_size": 2,
+    "checkpoint_measurements": [
+      {
+        "global_step": 2,
+        "seconds": 10.270547400000396
+      },
+      {
+        "global_step": 4,
+        "seconds": 17.065289299999677
+      }
+    ],
+    "checkpoint_state_bytes": 1055372615,
+    "component": "answer",
+    "device": "cuda",
+    "export_bytes": 310295648,
+    "full_validation_measurements": [
+      {
+        "global_step": 2,
+        "rows": 48,
+        "seconds": 1.9816577999999936
+      },
+      {
+        "global_step": 4,
+        "rows": 48,
+        "seconds": 2.4200652999998056
+      }
+    ],
+    "input_length": 192,
+    "limitations": "Four updates; three steady samples and two full validations/checkpoint writes. Extrapolation is uncertain; no generated-answer accuracy, final test or full-run measurement.",
+    "load_tokenize_export_overhead_seconds": 38.67358979999972,
+    "measured_optimizer_steps": 3,
+    "median_step_seconds": 0.3294980000000578,
+    "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+    "peak_allocated_gpu_gib": 1.508413314819336,
+    "peak_reserved_gpu_gib": 1.6640625,
+    "precision": "float32",
+    "step_seconds": [
+      0.3249968000000081,
+      0.3294980000000578,
+      0.3323934999998528
+    ],
+    "target_length": 48,
+    "train_rows": 96,
+    "validation_rows": 48,
+    "warmup_seconds": 1.5368803999999727,
+    "whole_process_work_seconds": 72.95712449999974
+  },
+  "profile_artifact_purpose": "smoke_test",
+  "profile_run_identity": "e4f7fe0a817d1338dba77b68e96dd101a906c802fc77eefb4f1b9a30bc065c85",
+  "profile_script_sha256": "ba9acf03c5e01ac39f0a243f993cf9bb49ae11a97cd53ff81d7b97bd9792427f",
+  "purpose": "actual_trainer_development_profile",
+  "recorded_at": "2026-10-12T10:55:35.965573+00:00",
+  "review_policy": "automated_development",
+  "reviews_sha256": "a43554b6b39268472bb7c467e6bc502f0a0301efd6cdd880deb1958a7c824688",
+  "runtime_eligible": false,
+  "schema_version": 1,
+  "status": "profile_complete",
+  "test_rows_read": false,
+  "trainer_source_sha256": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/training.py": "52952f6ec9e4c383c71b39e77e097f2e7c8bd98d2a6bfb60d742026f0e658218",
+    "scripts/preflight_training.py": "eff85d83dee44e34b5cc8a31b1dd31c861dd5604d1a60b84d9168e2c3240b40d",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  }
+}

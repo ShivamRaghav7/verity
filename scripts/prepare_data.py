@@ -10,6 +10,8 @@ import argparse
 import hashlib
 import json
 import random
+import re
+import sys
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -17,6 +19,12 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from editguard.formatting import (INPUT_FORMAT_VERSION, conditional_input,
+                                  correction_text, fact_text, quantity_word)
+
 RELATIONS = ("device_limit", "price_monthly", "storage_gb", "support_hours")
 UNITS = {
     "device_limit": "devices",
@@ -107,33 +115,17 @@ def question_for(fact: dict, style: int = 0, comparison: int | None = None) -> s
     if comparison is None:
         raise ValueError("A comparison question requires a quantity.")
     comparisons = {
-        "device_limit": f"Can I connect {comparison} devices on {subject}?",
+        "device_limit": f"Can I connect {comparison} {quantity_word(comparison, 'device', 'devices')} on {subject}?",
         "price_monthly": f"Does {subject} cost at most {comparison} USD per month?",
         "storage_gb": f"Can I store {comparison} GB on {subject}?",
-        "support_hours": f"Does {subject} include at least {comparison} support hours per day?",
+        "support_hours": f"Does {subject} include at least {comparison} support {quantity_word(comparison, 'hour', 'hours')} per day?",
     }
     return comparisons[fact["relation"]]
 
 
 def answer_for(fact: dict, value: str, polarity: str | None = None) -> str:
-    subject = _subject(fact)
-    answers = {
-        "device_limit": f"{subject} supports {value} devices.",
-        "price_monthly": f"{subject} costs {value} USD per month.",
-        "storage_gb": f"{subject} includes {value} GB of storage.",
-        "support_hours": f"{subject} includes {value} support hours per day.",
-    }
     prefix = f"{polarity.capitalize()}. " if polarity else ""
-    return prefix + answers[fact["relation"]]
-
-
-def correction_text(edit: dict) -> str:
-    return (f"Correction for {edit['entity_name']} (aliases: "
-            f"{', '.join(edit['entity_aliases'])}), {edit['plan']}, "
-            f"version {edit['version']}: {edit['relation']} changed from "
-            f"{edit['original_value']} to {edit['corrected_value']} "
-            f"{edit['unit']}, effective from {edit['effective_from']}. "
-            f"Source: {edit['source']}.")
+    return prefix + fact_text({**fact, "value": value})
 
 
 def _expected_fact(fact: dict, value: str | None = None) -> dict:
@@ -209,6 +201,7 @@ def build_dataset(seed: int = 42, family_count: int = 80) -> dict:
                 common = {"split": split, "family_id": family,
                           "edit_id": edit["edit_id"], "lineage_id": fact["lineage_id"],
                           "correction": edit, "correction_text": correction_text(edit),
+                          "input_format_version": INPUT_FORMAT_VERSION,
                           "reviewed": False, "review_status": "pending"}
                 for style in range(4):
                     # Every scenario has both polarities; relation or variant is
@@ -231,13 +224,10 @@ def build_dataset(seed: int = 42, family_count: int = 80) -> dict:
                                        "expected_polarity": polarity})
                     supporting = [index[(family, "core", "Basic", "v2", rel)]
                                   for rel in RELATIONS if rel != relation][:2]
-                    support_text = " ".join(answer_for(row, row["value"]) for row in supporting)
                     answer_rows.append({**common, "id": f"answer:{edit['edit_id']}:p{style}",
                                         "question": question, "request_context": _context(fact),
                                         "supporting_context": supporting,
-                                        "input_text": (f"answer correction: {correction_text(edit)} "
-                                                       f"Question: {question} As of: {AS_OF}. "
-                                                       f"Unchanged context: {support_text}"),
+                                        "input_text": conditional_input(question, edit, supporting, AS_OF),
                                         "target_text": answer_for(fact, value, polarity),
                                         "expected_fact": expected, "expected_polarity": polarity,
                                         "question_type": ("direct", "paraphrase", "comparison", "comparison")[style]})
@@ -306,11 +296,16 @@ def dataset_files(dataset: dict) -> dict[str, bytes]:
     return files
 
 
-def _validate_review(row: dict, record: dict | None) -> bool:
+REVIEW_POLICIES = ("human", "automated_development")
+
+
+def _validate_review(row: dict, record: dict | None, review_policy: str = "human") -> bool:
     if not isinstance(record, dict) or record.get("decision") != "accept":
         return False
     reviewer = record.get("reviewer")
     if not isinstance(reviewer, str) or not reviewer.strip() or record.get("row_sha256") != content_hash(row):
+        return False
+    if record.get("reviewer_type", "human") != review_policy:
         return False
     try:
         timestamp = datetime.fromisoformat(record["reviewed_at"].replace("Z", "+00:00"))
@@ -321,32 +316,41 @@ def _validate_review(row: dict, record: dict | None) -> bool:
     return True
 
 
-def load_reviewed_rows(path: Path, registry_path: Path, *, require_all: bool = True) -> list[dict]:
-    """Gate experiments on human decisions bound to exact row content.
+def load_reviewed_rows(path: Path, registry_path: Path, *, require_all: bool = True, review_policy: str = "human") -> list[dict]:
+    """Gate experiments on explicit typed decisions bound to exact row content.
 
     Rejected rows may be excluded only with a documented review decision.
     Pending, malformed, or stale decisions are fatal by default.
     """
+    if review_policy not in REVIEW_POLICIES:
+        raise ValueError("Review policy must be human or explicitly automated_development.")
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    if review_policy == "automated_development" and (registry.get("review_policy") != review_policy
+            or registry.get("human_reviewed_data") is not False
+            or not isinstance(registry.get("audit_sha256"), str)
+            or not re.fullmatch(r"[0-9a-f]{64}", registry["audit_sha256"])):
+        raise ValueError("Automated development review requires an explicit machine-review registry and audit hash.")
     records = registry.get("rows", {})
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
     accepted, unresolved = [], []
     for row in rows:
         record = records.get(row["id"])
-        if _validate_review(row, record):
-            accepted.append({**row, "reviewed": True, "review_status": "accepted"})
+        if _validate_review(row, record, review_policy):
+            accepted.append({**row, "reviewed": True, "review_status": "accepted",
+                             "review_policy": review_policy, "human_reviewed": review_policy == "human"})
         elif (isinstance(record, dict) and record.get("decision") == "reject"
               and isinstance(record.get("reason"), str) and record["reason"].strip()
               and isinstance(record.get("reviewer"), str) and record["reviewer"].strip()
               and record.get("row_sha256") == content_hash(row)):
             # Apply the same timestamp/provenance checks as accepted rows.
-            if _validate_review(row, {**record, "decision": "accept"}):
+            if _validate_review(row, {**record, "decision": "accept"}, review_policy):
                 continue
             unresolved.append(row["id"])
         else:
             unresolved.append(row["id"])
     if require_all and unresolved:
-        raise ValueError(f"{len(unresolved)} rows lack valid human review in {path.name}.")
+        description = "human review" if review_policy == "human" else "automated development review"
+        raise ValueError(f"{len(unresolved)} rows lack valid {description} in {path.name}.")
     if not accepted:
         raise ValueError(f"No accepted reviewed rows in {path.name}.")
     return accepted
@@ -369,7 +373,8 @@ def write_dataset(output: Path, *, seed: int = 42, family_count: int = 80,
             raise ValueError(f"{name} differs; use a new version or explicit --overwrite before freezing.")
     counts = {task: dict(Counter(row["split"] for row in dataset[task]))
               for task in ("scope", "answer")}
-    manifest = {"dataset_id": "editguard-controlled-v1", "generator_version": 2,
+    manifest = {"dataset_id": "editguard-controlled-v2", "generator_version": 3,
+                "input_format_version": INPUT_FORMAT_VERSION,
                 "seed": seed, "family_count": family_count,
                 "split_unit": "entity_family_before_augmentation", "counts": counts,
                 "facts": len(dataset["facts"]), "edit_scenarios": len(dataset["edits"]),
@@ -414,7 +419,7 @@ def freeze_test(output: Path, registry_path: Path, evaluation_config: Path) -> d
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "data/generated/controlled-v1")
+    parser.add_argument("--output", type=Path, default=ROOT / "data/generated/controlled-v2")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--families", type=int, default=80)
     parser.add_argument("--overwrite", action="store_true")

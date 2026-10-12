@@ -36,7 +36,7 @@ class TrainingRunCardTests(unittest.TestCase):
             "median_step_seconds": 0.2, "peak_allocated_gpu_gib": 2.5,
             "limitations": "Synthetic test fixture, never an actual profile."}}), encoding="utf-8")
         card = {"schema_version": 1, "question": "Test fixture: are declared run inputs internally consistent?",
-                "task": task, "dataset_id": "editguard-controlled-v1", "data_dir": str(self.data),
+                "task": task, "dataset_id": json.loads((self.data / "manifest.json").read_text(encoding="utf-8"))["dataset_id"], "data_dir": str(self.data),
                 "train_path": str(self.data / f"{task}_train.jsonl"),
                 "validation_path": str(self.data / f"{task}_validation.jsonl"),
                 "reviews_path": str(reviews), "profile_path": str(profile),
@@ -85,6 +85,37 @@ class TrainingRunCardTests(unittest.TestCase):
             file.write("\n")
         with self.assertRaisesRegex(ValueError, "does not match"):
             validate_run_card(path)
+
+    def test_old_input_format_cannot_be_relabeled_as_current_training(self):
+        path, card = self.make_card()
+        manifest_path = self.data / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["input_format_version"] = "archived-input-format"
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+        card["manifest_sha256"] = file_hash(manifest_path)
+        self.rewrite(path, card)
+        with self.assertRaisesRegex(ValueError, "model input format"):
+            validate_run_card(path)
+
+    def test_reviewed_but_inconsistent_model_text_is_rejected(self):
+        for task, field in (("scope", "correction_text"), ("answer", "input_text")):
+            path, card = self.make_card(task)
+            row_path = Path(card["train_path"])
+            rows = [json.loads(line) for line in row_path.read_text(encoding="utf-8").splitlines()]
+            rows[0][field] = "Fixture wrong-format text; not a reviewed research label."
+            row_path.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+            manifest_path = self.data / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"][row_path.name] = file_hash(row_path)
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            reviews_path = Path(card["reviews_path"])
+            reviews = json.loads(reviews_path.read_text(encoding="utf-8"))
+            reviews["rows"][rows[0]["id"]]["row_sha256"] = content_hash(rows[0])
+            reviews_path.write_text(json.dumps(reviews), encoding="utf-8")
+            card.update(manifest_sha256=file_hash(manifest_path), reviews_sha256=file_hash(reviews_path))
+            self.rewrite(path, card)
+            with self.assertRaisesRegex(ValueError, "runtime formatter"):
+                validate_run_card(path)
 
     def test_profile_backbone_revision_batch_lengths_precision_must_match(self):
         path, original = self.make_card("answer")

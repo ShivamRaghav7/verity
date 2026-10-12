@@ -10,9 +10,16 @@ The card requires explicit absolute paths for data directory, task-specific
 training/validation JSONL, review registry, profile and output directory. Include
 exact manifest/review/profile SHA-256 hashes, resolved 40-character model revision,
 model ID, batch size, input/target lengths and precision matching the measured
-profile. Only accepted human-reviewed training/validation rows are eligible;
-pending decisions or stale content hashes fail. Test inputs are rejected, and
+profile. Only accepted training/validation rows under the declared review policy
+are eligible; human review is the default, and `automated_development` explicitly
+requires a machine registry and audit hash. Pending decisions or stale content
+hashes fail. Test inputs are rejected, and
 reviewed families/entities/lineages must be disjoint between train and validation.
+
+The dataset input-format version and every correction/conditional input must match
+the runtime formatter. New pilot cards bind the measured source and environment;
+the trainer rejects changes before optimizer updates. Machine review remains
+disclosed and cannot silently pass through the default human gate.
 
 Declare a concrete experimental question, seed, learning rate, positive finite
 step cap (initial guard: at most 100,000), checkpoint interval within the cap,

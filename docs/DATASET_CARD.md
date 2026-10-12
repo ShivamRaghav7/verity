@@ -1,10 +1,19 @@
-# Dataset card: EditGuard Controlled Support v1
+# Dataset card: EditGuard Controlled Support
 
-**Status:** Independent generated draft for a controlled fictional demonstration.
-No generated label has been human-reviewed by creating these files. This is not
-customer data, an external benchmark, or evidence of real-world support accuracy.
+**Status:** Controlled fictional demonstration data. The active 504-row pilot v2
+has separate automated development review (504 accepted, 0 flagged); source rows
+remain pending human review. No human review or trained-model accuracy is claimed.
+This is not customer data, an external benchmark or real-world support evidence.
 
-Version v1 / generator 2 replaces the unreviewed v0 draft before any test freeze:
+Default new generation is `controlled-v2`, generator 3, using `editguard-input-v2`
+for singular device/hour grammar. The active pilot v2 derives from the archived
+v1 pilot; it does not replace the full historical dataset. Grammar changed in 28
+correction descriptors, 4 questions, 8 targets and 8 answer inputs; structured
+facts, labels and splits were retained. All 504 rows have fresh review IDs/hashes,
+with source human decisions pending. The exact packet and manifest are preserved
+in `data/pilots/pilot-v2-source.zip` and `reports/pilot-v2-manifest.json`.
+
+Historically, v1 / generator 2 replaced the unreviewed v0 draft before any test freeze:
 v0 had disjoint old/new numeric supports and unbalanced comparison polarity.
 Neither draft supports performance claims. The version change records the label
 shortcut correction rather than silently presenting it as the same dataset.
@@ -43,9 +52,14 @@ rows are not 4,800 independent observations; uncertainty is grouped by family.
 Start training with a reviewed pilot and use the full draft only after review and
 a working pipeline. Do not increase scale to disguise model errors.
 
-The implemented [human review and pilot tool](DATA_REVIEW.md) derives a finite
+The implemented [review and pilot tool](DATA_REVIEW.md) derives a finite
 four-training/two-validation-family pilot. It contains 360 scope pairs and 144
-answer rows, records exact source/derived hashes, and remains pending human review.
+answer rows and records exact source/derived hashes. Active v2 source remains
+pending human review; the separately typed automated registry authorizes bounded
+development under an explicit policy. Its independent audit inspected 504/504
+rows and accepted 504 with zero flagged. This is data consistency evidence,
+not trained-model correctness. No input truncated in the tokenizer audit at
+192 tokens (504 inputs), nor did any answer target truncate at 48 (144 targets).
 Foreign negative references are explicitly rerouted inside selected families;
 the source dataset and candidate test partition remain unchanged.
 
@@ -108,7 +122,10 @@ against its structured truth. New test entities and edits are never training row
 Current paraphrase templates are shared across splits. This controls entity and
 edit leakage but does not remove template familiarity. Numeric names and a small
 relation vocabulary can make the problem easier than natural support language.
-Held-out entities therefore do not imply novel wording. Effective dates in the
+Held-out entities therefore do not imply novel wording. All current edit scenarios
+target the core Basic-v2 context; Pro, v1 and the
+near-name Plus product appear as rejection cases, not edited positive scopes.
+This does not demonstrate editing those other contexts. Effective dates in the
 generated pairs are constant; historical behavior is tested through deterministic
 governance and application cases. No temporal learning claim follows from these rows.
 Original and corrected values share the same per-relation numeric pools with
@@ -144,6 +161,7 @@ Human decisions live in a registry bound to exact canonical row content:
     "scope:example-id": {
       "decision": "accept",
       "reviewer": "actual reviewer name",
+      "reviewer_type": "human",
       "reviewed_at": "2026-10-11T12:00:00+05:30",
       "row_sha256": "sha256 of canonical JSON for this exact row"
     }
@@ -156,6 +174,18 @@ from a generated `reviewed` flag. `load_reviewed_rows()` rejects pending,
 malformed or stale review decisions and returns accepted rows; unresolved rows
 are fatal by default. This is a procedural gate, not a cryptographic identity
 system. Never populate reviewer entries automatically as if a human inspected them.
+
+The user authorized separate automated development review of pilot v2. Its
+independent method, per-row checks and hashes are recorded in
+`reports/pilot-v2-independent-review.json`; registered decisions live in
+`reports/pilot-v2-reviews.automated.json`. The latter declares
+`review_policy=automated_development`, `human_reviewed_data=false`, typed machine
+reviewers and the audit hash. The default human gate rejects these records.
+Development CLIs require explicit `--review-policy automated_development`; run
+cards likewise declare that policy. Outputs preserve review provenance. Human
+assessment, unfamiliar wording and final evaluation approval remain outstanding.
+Human HTML pages resume prior human JSON with strict hash/conflict checks and
+retain original timestamps; they explicitly refuse automated registries.
 
 Training inputs may use accepted training rows; development/calibration uses
 accepted validation rows. Tensor-shape smoke profiling on unreviewed drafts must
@@ -171,7 +201,21 @@ be labeled as such, with no quality metric or learned result reported.
 The manifest records SHA-256 hashes for catalogue, edits, assignment and all
 JSONL files. No timestamp affects generated content. Existing differing outputs
 require explicit overwrite before freezing or a new output directory. The test
-set is currently a candidate test partition, **not frozen or evaluated**.
+set is currently a candidate test partition, **not frozen or evaluated**. Archived
+v1 test/challenge question files were not read or changed during pilot repair,
+automated review or tokenization measurement. The automated development registry
+does not represent human approval of final testing.
+
+Restore exact active development bytes on a clean checkout:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/pilot_bundle.py unpack --source data/pilots/pilot-v2-source.zip --manifest reports/pilot-v2-manifest.json --output data/generated/pilot-v2
+```
+
+The bounded offline bundle verifies hashes and excludes reviews, models and
+test/challenge files. Existing outputs are refused. An archival v1 bundle remains
+separate. A new repair build records current source-code hashes and can have a
+different manifest; unpack the recorded packet to reproduce measured v2 bytes.
 
 After independent review and final configuration/scoring decisions, set the
 evaluation configuration status to `frozen`, record concrete model/checkpoint and

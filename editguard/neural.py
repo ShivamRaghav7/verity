@@ -123,6 +123,21 @@ class EmbeddingRetriever:
         self._lock = RLock()
         self.last_trace = {}
 
+    def parameter_fingerprint(self):
+        digest = hashlib.sha256()
+        with self._lock:
+            for name, tensor in sorted(self.model.state_dict().items()):
+                digest.update(name.encode())
+                digest.update(str((tensor.dtype, tuple(tensor.shape))).encode())
+                digest.update(tensor.detach().cpu().contiguous().view(self.torch.uint8).numpy().tobytes())
+        return digest.hexdigest()
+
+    def tokenizer_fingerprint(self):
+        state = {"vocabulary": self.tokenizer.get_vocab(), "special_tokens": self.tokenizer.special_tokens_map,
+                 "padding_side": self.tokenizer.padding_side, "truncation_side": self.tokenizer.truncation_side}
+        encoded = json.dumps(state, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        return hashlib.sha256(encoded).hexdigest()
+
     def encode(self, texts):
         with self._lock, self.torch.inference_mode():
             results = []
@@ -182,6 +197,15 @@ class AnswerCheckpoint(FrozenGenerator):
                          max_input_tokens=manifest["input_length"], max_new_tokens=max_new_tokens,
                          tokenizer_path=root / manifest.get("tokenizer_path", "tokenizer"))
         self.manifest = manifest
+        self.artifact_manifest_sha256 = file_sha256(root / "manifest.json")
+
+    def generate(self, input_text):
+        answer = super().generate(input_text)
+        self.last_trace.update(artifact_purpose=self.manifest["purpose"],
+                               training_review_policy=self.manifest.get("review_policy", "unspecified"),
+                               human_reviewed_training_data=self.manifest.get("human_reviewed_data"),
+                               artifact_manifest_sha256=self.artifact_manifest_sha256)
+        return answer
 
 
 def calibrated_probability(probability, temperature):

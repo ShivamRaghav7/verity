@@ -15,7 +15,8 @@ from editguard.comparison import CONFIGURATIONS, ComparisonRunner
 from editguard.formatting import conditional_input
 from editguard.neural import file_sha256
 from editguard.scoring import SCORER_VERSION, score_answer
-from scripts.prepare_data import content_hash, load_reviewed_rows
+from scripts.prepare_data import REVIEW_POLICIES, content_hash, load_reviewed_rows
+from scripts.review_dataset import checked_rows, read_json
 
 
 def smoke_scenarios():
@@ -48,12 +49,16 @@ def smoke_scenarios():
     return facts, rows
 
 
-def reviewed_validation(dataset, reviews):
-    manifest = json.loads((dataset / "manifest.json").read_text(encoding="utf-8"))
+def reviewed_validation(dataset, reviews, review_policy="human"):
+    manifest = read_json(dataset / "manifest.json")
     for name in ("catalogue.json", "scope_validation.jsonl"):
         if file_sha256(dataset / name) != manifest["files"][name]:
             raise ValueError(f"Dataset manifest integrity failed: {name}")
-    rows = load_reviewed_rows(dataset / "scope_validation.jsonl", reviews)
+    original = checked_rows(dataset, "scope", "validation")
+    read_json(reviews)  # Duplicate keys cannot silently replace a review record.
+    accepted = load_reviewed_rows(dataset / "scope_validation.jsonl", reviews, review_policy=review_policy)
+    accepted_ids = {row["id"] for row in accepted}
+    rows = [row for row in original if row["id"] in accepted_ids]
     if any(row["split"] != "validation" for row in rows):
         raise ValueError("Only validation rows are permitted in this development runner")
     facts = json.loads((dataset / "catalogue.json").read_text(encoding="utf-8"))
@@ -173,6 +178,8 @@ def main():
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--dataset", type=Path)
     parser.add_argument("--reviews", type=Path)
+    parser.add_argument("--review-policy", choices=REVIEW_POLICIES, default="human",
+                        help="Human review by default; automated_development requires an explicitly typed machine registry")
     parser.add_argument("--max-questions", type=int, default=6)
     parser.add_argument("--configurations", nargs="+", choices=CONFIGURATIONS, default=list(CONFIGURATIONS))
     parser.add_argument("--oracle-answer", action="store_true", help="Separate generator diagnostic on applicable questions only")
@@ -184,12 +191,14 @@ def main():
     if args.smoke:
         if args.dataset or args.reviews:
             parser.error("Smoke fixtures cannot be mixed with dataset/review inputs")
+        if args.review_policy != "human":
+            parser.error("Smoke fixtures are unreviewed engineering examples; review policy applies only to validation data")
         facts, rows = smoke_scenarios()
         manifest = {"dataset_id": "engineering-nimbus-smoke", "purpose": "engineering_smoke_not_performance_evaluation"}
     else:
         if not args.dataset or not args.reviews:
             parser.error("Reviewed validation requires --dataset and --reviews; test runs are unavailable here")
-        facts, rows, manifest = reviewed_validation(args.dataset, args.reviews)
+        facts, rows, manifest = reviewed_validation(args.dataset, args.reviews, args.review_policy)
     selected = rows[:args.max_questions] if args.smoke else bounded_selection(rows, args.max_questions)
     runner = ComparisonRunner.from_config(args.config)
     before = runner.base.parameter_fingerprint()
@@ -201,6 +210,9 @@ def main():
     metadata = {"schema_version": 1, "purpose": "engineering_smoke" if args.smoke else "validation_development",
                 "status": "running", "started_at": datetime.now(timezone.utc).isoformat(),
                 "dataset_id": manifest["dataset_id"], "configuration_sha256": file_sha256(args.config),
+                "review_policy": None if args.smoke else args.review_policy,
+                "human_reviewed_data": not args.smoke and args.review_policy == "human",
+                "reviewed_data": not args.smoke,
                 "scorer_version": SCORER_VERSION, "scorer_sha256": file_sha256(ROOT / "editguard/scoring.py"),
                 "questions": len(selected), "configurations": args.configurations,
                 "memory_policy": "single_focal_edit_plus_at_most_8_foreign_product_distractors",
@@ -211,7 +223,10 @@ def main():
                 "inference_config": json.loads(args.config.read_text(encoding="utf-8"))}
     if args.reviews:
         metadata["review_registry_sha256"] = file_sha256(args.reviews)
+        metadata["review_audit_sha256"] = read_json(args.reviews).get("audit_sha256")
         metadata["dataset_manifest_sha256"] = file_sha256(args.dataset / "manifest.json")
+        metadata["accepted_row_sha256"] = {row["id"]: content_hash(row) for row in rows}
+        metadata["selected_row_sha256"] = {row["id"]: content_hash(row) for row in selected}
     (args.output / "manifest.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     records, oracle_records = [], []
     with (args.output / "predictions.jsonl").open("w", encoding="utf-8") as stream:
@@ -220,14 +235,17 @@ def main():
             for configuration in args.configurations:
                 result = runner.answer(row["question"], row["request_context"], facts, memory, configuration=configuration)
                 record = score_record(result, row, facts, runner)
+                record.update(review_policy=metadata["review_policy"], human_reviewed_data=metadata["human_reviewed_data"])
                 records.append(record)
                 stream.write(json.dumps(record, ensure_ascii=False) + "\n")
                 stream.flush()
                 print(json.dumps({"id": row["id"], "configuration": configuration, "status": result["status"],
-                                  "latency_ms": result["latency_ms"], "answer": result["answer"]}), flush=True)
+                                  "latency_ms": result["latency_ms"], "answer": result["answer"],
+                                  "review_policy": metadata["review_policy"], "human_reviewed_data": metadata["human_reviewed_data"]}), flush=True)
             if args.oracle_answer and row["label"]:
                 result = oracle_answer_result(runner, row, facts)
                 record = score_record(result, row, facts, runner)
+                record.update(review_policy=metadata["review_policy"], human_reviewed_data=metadata["human_reviewed_data"])
                 record["retrieval_hits"] = {}  # Oracle routing is not retrieval evidence.
                 oracle_records.append(record)
     from editguard.metrics import aggregate_predictions
@@ -238,6 +256,8 @@ def main():
         metrics["oracle_answer_diagnostic"] = aggregate_predictions(oracle_records)
         (args.output / "oracle_predictions.jsonl").write_text(
             "".join(json.dumps(record, ensure_ascii=False) + "\n" for record in oracle_records), encoding="utf-8")
+    metrics.update(review_policy=metadata["review_policy"], human_reviewed_data=metadata["human_reviewed_data"],
+                   reviewed_data=metadata["reviewed_data"], purpose=metadata["purpose"])
     (args.output / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n", encoding="utf-8")
     metadata.update(status="completed", completed_at=datetime.now(timezone.utc).isoformat(),
                     base_parameter_sha256_after=runner.base.parameter_fingerprint(),

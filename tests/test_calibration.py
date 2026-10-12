@@ -8,6 +8,7 @@ from unittest.mock import patch
 from pathlib import Path
 
 from editguard.neural import file_sha256
+from editguard.formatting import INPUT_FORMAT_VERSION
 from scripts.calibrate_scope import COSTS, MARGINS, TEMPERATURES, THRESHOLDS, fit_calibration, operating_metrics, reviewed_inputs, _safe_output
 from scripts.prepare_data import content_hash, write_dataset
 
@@ -88,8 +89,9 @@ class CalibrationInputGateTests(unittest.TestCase):
             path.parent.mkdir(exist_ok=True)
             path.write_text(content, encoding="utf-8")
         self.manifest = {"artifact_type": "editguard_auxiliary", "purpose": "trained", "status": "completed", "task": "scope",
-                         "dataset_id": "editguard-controlled-v1", "manifest_sha256": file_sha256(self.dataset / "manifest.json"),
-                         "input_format_version": "editguard-input-v1", "input_length": 192,
+                         "dataset_id": json.loads((self.dataset / "manifest.json").read_text())["dataset_id"],
+                         "manifest_sha256": file_sha256(self.dataset / "manifest.json"),
+                         "input_format_version": INPUT_FORMAT_VERSION, "input_length": 192,
                          "files_sha256": {str(path.relative_to(self.artifact)).replace("\\", "/"): file_sha256(path)
                                           for path in self.artifact.rglob("*") if path.is_file()}}
         self.save_manifest()
@@ -199,6 +201,11 @@ class CalibrationInputGateTests(unittest.TestCase):
         self.assertEqual(artifact["probabilities_sha256"], file_sha256(output / "validation_probabilities.jsonl"))
         self.assertEqual(artifact["validation_operating_metrics"]["counts"]["total"], len(self.raw))
         self.assertFalse(artifact["test_rows_read"])
+        self.assertEqual(artifact["review_policy"], "human")
+        self.assertTrue(artifact["human_reviewed_data"])
+        grid = json.loads((output / "selection_grid.json").read_text())
+        self.assertEqual(grid["review_policy"], "human")
+        self.assertTrue(grid["human_reviewed_data"])
         self.assertFalse((output / "calibration.json.tmp").exists())
 
 

@@ -32,10 +32,14 @@ SERAC-inspired rather than a faithful reproduction.
 
 [ML setup](docs/ML_SETUP.md), [matched comparisons](docs/COMPARISONS.md),
 [trainer and resume](docs/TRAINER.md), [scoring rules](docs/SCORER.md) and
-[human data review](docs/DATA_REVIEW.md) document the next runnable stage.
+[data review](docs/DATA_REVIEW.md) document the next runnable stage.
 The finite pilot contains 360 scope and 144 answer examples across disjoint
-training/validation families; all labels are pending review. It contains no test
-partition. The four portable review pages are linked from the data-review guide.
+training/validation families and no test partition. All 504 labels received an
+independent **automated development review**, followed by integrity and target
+checks. The separate registry records 504 accepted and zero flagged; no human
+approval or model accuracy is claimed. Immutable source rows retain their pending
+human-review flags. [Per-row evidence](reports/pilot-v2-independent-review.json)
+and four portable human-review pages are linked from the data-review guide.
 
 ![Evaluation interface showing actual engineering checks and untrained-model status](docs/images/evaluation-demo.jpg)
 
@@ -102,7 +106,7 @@ capability will be assessed after training; it is not inferred from this demo.
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 node --check editguard/static/app.js
-.\.venv\Scripts\python.exe scripts/prepare_data.py --output data/generated/controlled-v1
+.\.venv\Scripts\python.exe scripts/prepare_data.py --output data/generated/controlled-v2
 ```
 
 GitHub Actions defines the Python regression suite, JS syntax check, a separate
@@ -117,8 +121,10 @@ isolated engineering fixture and never mutates live memory.
 The independent data pipeline starts with 80 fictional entity families, 4,800 scope
 pairs and 1,920 short answer examples. It splits
 families before augmentation, keeps all variants together, and generates a human
-review queue. Training and final-test locking reject unresolved or stale review
-records. Generated labels are not automatically accepted as truth.
+review queue. Training rejects unresolved or stale review records and defaults to
+human review. The explicitly selected `automated_development` policy preserves
+machine-review provenance in development runs; final-test locking still requires
+human review. Generated labels are not automatically accepted as truth.
 [Dataset card](docs/DATASET_CARD.md) describes counts, provenance and limitations.
 
 ## Training and evaluation stages
@@ -141,9 +147,16 @@ environment and data/config hashes.
 finite run cards. The separate [trainer](docs/TRAINER.md) implements training and
 checkpoint restoration; preflight alone does not verify a completed training run.
 
-Substantial GPU commands will be released only with a concrete run card: purpose,
-reviewed inputs, outputs, profile-based runtime/memory estimate, checkpoint/resume
-rules and a finite step/epoch limit. The user executes those long runs.
+[Initial pilot training instructions](docs/PILOT_TRAINING.md) provide the concrete
+questions, reviewed inputs, measurements, conditional runtime/memory estimates,
+artifacts and exact-resume rules. The user executes the finite GPU runs; the
+default caps are 360 scope updates and 240 answer updates. Four-step profiles
+remain ineligible as trained deployment artifacts.
+
+[Measured embedding-baseline curves](docs/SIMILARITY_RESULTS.md) show raw and
+compatibility-gated behavior on 120 development validation pairs, with explicit
+denominators and the missed question. They are threshold-selection evidence,
+not final-test or generated-answer performance.
 
 The five final configurations are unchanged base, properly updated RAG,
 prompt-only corrections, embedding retrieval corrections and trained scope-aware

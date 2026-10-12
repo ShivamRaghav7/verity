@@ -9,11 +9,90 @@ from pathlib import Path
 from threading import RLock
 from time import perf_counter
 
-from .formatting import conditional_input, correction_text, fact_text
+from .formatting import INPUT_FORMAT_VERSION, conditional_input, correction_text, fact_text
 from .neural import (AnswerCheckpoint, EmbeddingRetriever, FrozenGenerator,
                      ModelUnavailable, ScopeCheckpoint, calibrated_probability, file_sha256)
 
 CONFIGURATIONS = ("unchanged_base", "updated_rag", "prompt_only", "similarity_editor", "trained_scope_editor")
+
+
+def load_similarity_calibration(path, config):
+    """Validate recorded validation selection before any heavyweight model load."""
+    artifact_path = Path(path)
+    artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+    routing = {
+        "embedding_model_id": config["embedding_model_id"],
+        "embedding_revision": config["embedding_revision"],
+        "embedding_max_tokens": 256, "pooling": "masked_mean_l2",
+        "input_format_version": INPUT_FORMAT_VERSION,
+        "routing_policy": "top_compatible_cosine_gte_threshold_v1",
+        "retrieval_k": config["retrieval_k"], "prompt_edit_k": config["prompt_edit_k"],
+    }
+    required = {"artifact_type": "editguard_similarity_threshold",
+                "purpose": "similarity_validation_calibration", "split": "validation", "status": "frozen",
+                "score_type": "cosine_similarity_not_probability", "uncertainty_band": None,
+                "population": "single_focal_question_correction_pairs", **routing}
+    if any(key not in artifact or artifact[key] != value for key, value in required.items()):
+        raise ModelUnavailable("Similarity selection must be frozen, validation-only and bound to this embedding and routing policy.")
+    threshold = artifact.get("threshold")
+    if (isinstance(threshold, bool) or not isinstance(threshold, (int, float))
+            or not math.isfinite(threshold) or not -1 <= threshold <= 1.01):
+        raise ModelUnavailable("Similarity threshold must be finite in [-1, 1.01].")
+    if artifact.get("test_rows_read") is not False or artifact.get("embedding_weights_unchanged") is not True:
+        raise ModelUnavailable("Similarity evidence must exclude test data and preserve the frozen embedding weights.")
+    review_policy = artifact.get("review_policy")
+    if review_policy not in ("human", "automated_development") or artifact.get("human_reviewed_data") is not (review_policy == "human"):
+        raise ModelUnavailable("Similarity selection must disclose its validation review policy.")
+    if review_policy == "automated_development" and not re.fullmatch(r"[0-9a-f]{64}", str(artifact.get("review_audit_sha256", ""))):
+        raise ModelUnavailable("Automated similarity selection requires its independent review audit hash.")
+    digest_fields = ("routing_config_sha256", "dataset_manifest_sha256", "validation_file_sha256",
+                     "review_registry_sha256", "tokenizer_sha256", "embedding_state_sha256_before",
+                     "embedding_state_sha256_after", "pair_scores_sha256", "selection_grid_sha256")
+    if any(not isinstance(artifact.get(key), str) or not re.fullmatch(r"[0-9a-f]{64}", artifact[key])
+           for key in digest_fields):
+        raise ModelUnavailable("Similarity selection lacks valid integrity/provenance hashes.")
+    if artifact["embedding_state_sha256_before"] != artifact["embedding_state_sha256_after"]:
+        raise ModelUnavailable("Embedding state changed during similarity selection.")
+    import hashlib
+    routing_bytes = json.dumps(routing, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    if artifact["routing_config_sha256"] != hashlib.sha256(routing_bytes).hexdigest():
+        raise ModelUnavailable("Similarity routing configuration hash differs from inference.")
+    source_root = Path(__file__).resolve().parents[1]
+    for field, relative in (("policy_source_sha256", "editguard/comparison.py"),
+                            ("embedding_source_sha256", "editguard/neural.py"),
+                            ("formatter_source_sha256", "editguard/formatting.py"),
+                            ("script_sha256", "scripts/calibrate_similarity.py")):
+        if artifact.get(field) != file_sha256(source_root / relative):
+            raise ModelUnavailable(f"Similarity evidence was selected with a different source: {relative}.")
+    for name, field in (("validation_cosine_scores.jsonl", "pair_scores_sha256"),
+                        ("selection_grid.json", "selection_grid_sha256")):
+        sibling = artifact_path.parent / name
+        if not sibling.is_file() or file_sha256(sibling) != artifact[field]:
+            raise ModelUnavailable(f"Similarity selection evidence integrity failed: {name}.")
+    grid = json.loads((artifact_path.parent / "selection_grid.json").read_text(encoding="utf-8"))
+    row_hashes = artifact.get("accepted_row_sha256")
+    accepted = artifact.get("accepted_validation_rows")
+    if (type(accepted) is not int or accepted < 2 or not isinstance(row_hashes, dict)
+            or len(row_hashes) != accepted
+            or any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value) for value in row_hashes.values())
+            or grid.get("threshold") != threshold or grid.get("rows") != accepted):
+        raise ModelUnavailable("Similarity selection lacks consistent reviewed-row or operating-point evidence.")
+    records = [json.loads(line) for line in (artifact_path.parent / "validation_cosine_scores.jsonl").read_text(encoding="utf-8").splitlines() if line]
+    seen = set()
+    for record in records:
+        row_id, score = record.get("id"), record.get("cosine_score")
+        if (row_id in seen or row_id not in row_hashes or record.get("row_sha256") != row_hashes[row_id]
+                or record.get("split") != "validation" or type(record.get("label")) is not int or record["label"] not in (0, 1)
+                or type(record.get("compatible")) is not bool or isinstance(score, bool)
+                or not isinstance(score, (int, float)) or not math.isfinite(score) or not -1.000001 <= score <= 1.000001):
+            raise ModelUnavailable("Similarity score rows disagree with reviewed validation provenance.")
+        seen.add(row_id)
+    if len(records) != accepted or seen != set(row_hashes) or {row["label"] for row in records} != {0, 1}:
+        raise ModelUnavailable("Similarity score population differs from accepted validation rows.")
+    for field in ("raw_pair_metrics", "compatibility_gated_metrics", "declared_costs"):
+        if not isinstance(artifact.get(field), dict) or artifact[field] != grid.get(field):
+            raise ModelUnavailable("Similarity operating metrics disagree with the hashed selection grid.")
+    return artifact
 
 
 def effective(record, as_of):
@@ -27,7 +106,7 @@ def compatible(record, context):
 def resolve_context(question, requested, facts):
     """Resolve product/tier/version/date only; relation remains a retrieval task."""
     context = {key: str(value) for key, value in requested.items() if value is not None}
-    text = question.lower()
+    text = question.lower().replace("’", "'")
     hits = {(m.start(), m.end(), f["entity_id"]) for f in facts
             for alias in [f["entity_name"], f["entity_id"], *f.get("aliases", [])]
             for m in re.finditer(r"(?<!\w)" + re.escape(alias.lower()) + r"(?!\w)", text)}
@@ -42,13 +121,48 @@ def resolve_context(question, requested, facts):
     # Selectors cannot authorize silently replacing an explicit unknown tier.
     explicit_tiers = re.findall(r"\b([a-z][a-z0-9_-]*)\s+(?:subscription\s+)?(?:plan|tier)\b", text)
     version_tiers = re.findall(r"\b([a-z][a-z0-9_-]*)\s+(?:version\s+)?v\d", text)
-    ignored = {"the", "my", "our", "a", "which", "this", "that", "version"}
+    ignored = {"the", "my", "our", "a", "which", "this", "that", "version", "plan", "tier", "subscription"}
     product_words = {word for fact in facts for alias in [fact["entity_name"], fact["entity_id"], *fact.get("aliases", [])]
                      for word in alias.lower().split()}
     if (any(token not in known_plans | ignored for token in explicit_tiers)
             or any(token not in known_plans | ignored | product_words for token in version_tiers)):
         raise ValueError("Unknown subscription tier; select or name a supported plan.")
-    if not products and plans:
+    # Explicit subjects in the bounded support forms need a known catalogue
+    # alias or a known bare tier. Selectors cannot turn an unsupported name in
+    # one of these forms into an authoritative question about another scope.
+    subject_forms = (
+        r"how many devices does (?P<subject>.+?) support",
+        r"how many support hours per day does (?P<subject>.+?) include",
+        r"what is (?:the )?(?:monthly price|price|device limit|device allowance|storage quota|storage limit|support hours) (?:of|for|on|with) (?P<subject>.+)",
+        r"what(?: is|'s) (?P<subject>.+?)'s (?:monthly price|price|device limit|device allowance|storage quota|storage limit|support hours)",
+        r"what is (?:the )?(?:device allowance|storage quota) (?:on|for) (?P<subject>.+)",
+        r"how much storage is included with (?P<subject>.+)",
+        r"how much would i pay each month for (?P<subject>.+)",
+        r"for how many hours each day is support available on (?P<subject>.+)",
+        r"can i connect [\w.-]+ devices on (?P<subject>.+)",
+        r"can i store [\w.-]+ gb on (?P<subject>.+)",
+        r"does (?P<subject>.+?) cost at most [\w.-]+ usd per month",
+        r"does (?P<subject>.+?) include at least [\w.-]+ support hours per day",
+        r"how many devices (?:are (?:allowed|permitted|supported)|can i connect) (?:on|with|under|for) (?P<subject>.+)",
+    )
+    bounded_question = re.sub(r"\s+as of \d{4}-\d{2}-\d{2}(?=[?.]?$)", "", text).strip().rstrip("?.")
+    explicit_subjects = {match["subject"].strip() for pattern in subject_forms
+                         if (match := re.fullmatch(pattern, bounded_question))}
+    plan_pattern = "(?:" + "|".join(re.escape(plan) for plan in sorted(known_plans, key=len, reverse=True)) + ")"
+    version_pattern = r"(?:version\s+v?[a-z0-9][a-z0-9_.-]*|v\d[\w.-]*)"
+    aliases = sorted({alias.lower() for fact in facts
+                      for alias in [fact["entity_name"], fact["entity_id"], *fact.get("aliases", [])]}, key=len, reverse=True)
+    for subject in explicit_subjects:
+        subject = re.sub(r"^(?:the|my|our)\s+", "", subject)
+        if re.fullmatch(plan_pattern + rf"(?:\s+(?:plan|tier))?(?:\s+{version_pattern})?", subject):
+            continue
+        alias = next((alias for alias in aliases if re.match(re.escape(alias) + r"(?=$|\s)", subject)), None)
+        if alias is None:
+            raise ValueError("Unrecognized product or subscription tier in the question; select or name a supported scope.")
+        suffix = subject[len(alias):].strip()
+        if suffix and not re.fullmatch(rf"(?:{plan_pattern}(?:\s+(?:plan|tier))?(?:\s+{version_pattern})?|{version_pattern})", suffix):
+            raise ValueError("Unknown subscription tier or unsupported product scope in the question.")
+    if not products and plans and not explicit_subjects:
         # Bounded support forms: a named product before a known tier must be a
         # catalogue alias. Bare tier questions (e.g. 'on Basic') remain valid.
         first_plan = min(re.finditer(r"\b(?:" + "|".join(map(re.escape, known_plans)) + r")\b", text), key=lambda m: m.start())
@@ -151,26 +265,42 @@ class ComparisonRunner:
     @classmethod
     def from_config(cls, path):
         config = json.loads(Path(path).read_text(encoding="utf-8"))
-        options = {key: config[key] for key in ("device", "local_files_only", "cache_dir")}
-        base = FrozenGenerator(config["base_model_id"], config["base_revision"], **options,
-                               max_input_tokens=config["max_input_tokens"], max_new_tokens=config["max_new_tokens"])
-        retriever = EmbeddingRetriever(config["embedding_model_id"], config["embedding_revision"], **options)
-        scope = ScopeCheckpoint(config["scope_artifact"], config["device"]) if config.get("scope_artifact") else None
-        answer = AnswerCheckpoint(config["answer_artifact"], config["device"], config["max_new_tokens"]) if config.get("answer_artifact") else None
+        if config.get("input_format_version") != INPUT_FORMAT_VERSION:
+            raise ModelUnavailable("Inference configuration differs from the versioned input formatter.")
+        for key in ("retrieval_k", "prompt_edit_k", "max_input_tokens", "max_new_tokens"):
+            if type(config.get(key)) is not int or config[key] <= 0:
+                raise ModelUnavailable("Inference retrieval and token budgets must be positive integers.")
+        if config.get("similarity_threshold") is not None:
+            raise ModelUnavailable("Configure a reviewed validation selection artifact; a bare similarity threshold is ineligible.")
+        similarity = (load_similarity_calibration(config["similarity_calibration_artifact"], config)
+                      if config.get("similarity_calibration_artifact") else None)
         calibration = None
         if config.get("calibration_artifact"):
             calibration = json.loads(Path(config["calibration_artifact"]).read_text(encoding="utf-8"))
-            if (not scope or calibration.get("purpose") != "validation_calibration"
+            if (not config.get("scope_artifact") or calibration.get("purpose") != "validation_calibration"
                     or calibration.get("split") != "validation" or calibration.get("status") != "frozen"
                     or calibration.get("scope_manifest_sha256") != file_sha256(Path(config["scope_artifact"]) / "manifest.json")):
                 raise ModelUnavailable("Calibration must be validation-only, frozen, and bound to this scope artifact.")
             for key in ("threshold", "ambiguity_margin"):
-                if not isinstance(calibration.get(key), (int, float)) or not 0 <= calibration[key] <= 1:
+                value = calibration.get(key)
+                if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 <= value <= 1:
                     raise ModelUnavailable("Invalid calibration operating point.")
-            calibrated_probability(.5, calibration.get("temperature", 1))
+            temperature = calibration.get("temperature")
+            if isinstance(temperature, bool) or not isinstance(temperature, (int, float)) or not math.isfinite(temperature) or temperature <= 0:
+                raise ModelUnavailable("Calibration requires an explicit finite positive temperature.")
+            calibrated_probability(.5, temperature)
+        options = {key: config[key] for key in ("device", "local_files_only", "cache_dir")}
+        retriever = EmbeddingRetriever(config["embedding_model_id"], config["embedding_revision"], **options)
+        if similarity and (retriever.parameter_fingerprint() != similarity["embedding_state_sha256_before"]
+                           or retriever.tokenizer_fingerprint() != similarity["tokenizer_sha256"]):
+            raise ModelUnavailable("Loaded embedding weights/tokenizer differ from validation selection.")
+        base = FrozenGenerator(config["base_model_id"], config["base_revision"], **options,
+                               max_input_tokens=config["max_input_tokens"], max_new_tokens=config["max_new_tokens"])
+        scope = ScopeCheckpoint(config["scope_artifact"], config["device"]) if config.get("scope_artifact") else None
+        answer = AnswerCheckpoint(config["answer_artifact"], config["device"], config["max_new_tokens"]) if config.get("answer_artifact") else None
         return cls(base, retriever, scope=scope, answer_model=answer, calibration=calibration,
                    retrieval_k=config["retrieval_k"], prompt_edit_k=config["prompt_edit_k"],
-                   similarity_threshold=config.get("similarity_threshold"))
+                   similarity_threshold=similarity["threshold"] if similarity else None)
 
     def answer(self, question, requested_context, facts, edits, *, configuration, revision=0, conflicts=()):
         if configuration not in CONFIGURATIONS:

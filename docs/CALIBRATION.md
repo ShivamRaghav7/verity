@@ -2,11 +2,19 @@
 
 `scripts/calibrate_scope.py` prepares a validation-only operating point for a
 completed trained scope classifier. It requires an integrity-checked auxiliary
-artifact, the exact declared dataset manifest and the complete human decisions
+artifact, the exact declared dataset manifest and complete typed review decisions
 for `scope_validation.jsonl`. It refuses smoke-purpose models, test-tagged rows,
 stale/pending reviews, duplicate IDs, changed files and different datasets.
 The input formatter must match training and runtime. Only questions and correction
 descriptors enter the classifier; labels enter the subsequent calibration fit.
+
+The default policy is `human`. The user-authorized pilot-v2 automated registry,
+`reports/pilot-v2-reviews.automated.json`, is a separate development record:
+504/504 reviewed, 504 accepted and zero flagged, with no human review claimed.
+Use it only with explicit `--review-policy automated_development`; a policy mismatch
+or invalid machine-registry/audit metadata is refused before model loading. Source
+rows remain pending human review and immutable. The active v2 input format is
+`editguard-input-v2`; archived v1 calibration inputs/pages are not silently rewritten.
 
 No calibration model run has been executed yet. Pure numerical fitting and input
 gate tests use explicitly synthetic fixtures and do not establish model quality.
@@ -49,10 +57,11 @@ selective population has an unavailable rate rather than perfect accuracy.
 
 This template checks future reviewed inputs without loading model packages or
 writing results. Replace placeholders with the actual completed artifact and
-human-review registry when available:
+review registry. This example explicitly selects automated development review;
+the trained artifact remains a placeholder until a completed eligible run exists:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/calibrate_scope.py --scope-artifact path/to/completed-scope-run --dataset data/generated/pilot-v1 --reviews path/to/human-reviews.json --output reports/scope-calibration-run-1 --max-rows 120 --preflight-only
+.\.venv\Scripts\python.exe scripts/calibrate_scope.py --scope-artifact path/to/completed-scope-run --dataset data/generated/pilot-v2 --reviews reports/pilot-v2-reviews.automated.json --review-policy automated_development --output reports/scope-calibration-run-1 --max-rows 120 --preflight-only
 ```
 
 The row cap applies to the whole accepted validation partition. A larger
@@ -61,7 +70,14 @@ Both positive and negative pairs must be present. The output directory must be
 fresh and separate from the model and dataset source directories. The default
 device for future inference is CPU; choosing CUDA requires the isolated ML
 environment and an explicit device argument. An execution command will be
-prepared after trained scope artifacts and genuine reviewed inputs exist.
+prepared after the trained artifact and a matching measured run plan exist.
+For actual human review, supply its registry and omit `--review-policy` (or select
+`human` explicitly). Neither policy permits test rows in this development tool.
+
+The exact current packet can be restored on a clean checkout with the bounded,
+offline `scripts/pilot_bundle.py unpack` command in [DATA_REVIEW.md](DATA_REVIEW.md).
+It verifies `data/pilots/pilot-v2-source.zip` against
+`reports/pilot-v2-manifest.json`; an existing output is refused.
 
 ## Recorded artifacts and limits
 
@@ -69,8 +85,12 @@ Execution produces `validation_probabilities.jsonl`, `selection_grid.json` and
 `calibration.json`. The frozen calibration records the scope manifest SHA-256,
 dataset manifest and validation-file hashes, review registry hash, original row
 hashes, grid, costs, script hash, selected operating metrics and measured elapsed
-time. The final calibration file is published atomically after the detailed
-artifacts. The runtime accepts it only for the corresponding scope artifact. Set
+time. Probability records, selection grid, artifact and printed summary state
+`review_policy` and `human_reviewed_data`; automated development output records
+`false` and binds `review_audit_sha256`. Scope-training review policy is recorded
+separately from validation review policy. The final calibration file is published
+atomically after the detailed artifacts. The runtime accepts it only for the
+corresponding scope artifact. Set
 `calibration_artifact` in an inference configuration to the eventual
 `calibration.json` path. Inputs are checked again before publication if their
 files changed during inference.

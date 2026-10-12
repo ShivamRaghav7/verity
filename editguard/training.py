@@ -22,6 +22,8 @@ import sys
 from time import perf_counter
 from uuid import uuid4
 
+from .formatting import INPUT_FORMAT_VERSION
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKPOINT_FIELDS = {
@@ -351,6 +353,7 @@ def train_loop(model, encoded_train, encoded_validation, *, config, identity, ou
     started = perf_counter()
     checkpoint_root = output_dir / "checkpoints"
     last_checkpoint = None
+    validation_measurements, checkpoint_measurements = [], []
     while step < max_steps:
         indices = sampler.next_indices(config["batch_size"])
         batch = _batch(encoded_train, indices, device)
@@ -374,7 +377,12 @@ def train_loop(model, encoded_train, encoded_validation, *, config, identity, ou
         val = None
         should_validate = step % config["validation_every_steps"] == 0 or step == max_steps
         if should_validate:
+            validation_started = perf_counter()
             val = validation_loss(model, encoded_validation, config["batch_size"], device, config["task"])
+            if device == "cuda":
+                torch.cuda.synchronize()
+            validation_measurements.append({"global_step": step, "rows": len(encoded_validation["labels"]),
+                                            "seconds": perf_counter() - validation_started})
             if best is None or val < best["value"]:
                 best = {"metric": "validation_loss", "value": val, "global_step": step,
                         "checkpoint": f"step-{step:08d}"}
@@ -388,16 +396,20 @@ def train_loop(model, encoded_train, encoded_validation, *, config, identity, ou
             log.flush()
         stopping = stop_after_steps is not None and step >= stop_after_steps
         if should_validate or step % config["checkpoint_every_steps"] == 0 or step == max_steps or stopping:
+            checkpoint_started = perf_counter()
             last_checkpoint = save_checkpoint(checkpoint_root / f"step-{step:08d}", model=model, optimizer=optimizer,
                 scheduler=scheduler, sampler=sampler, global_step=step, identity=identity, best_validation=best)
             atomic_json(output_dir / "latest_checkpoint.json", {"path": str(last_checkpoint.resolve()), "global_step": step})
             _prune_checkpoints(checkpoint_root, config["keep_last_checkpoints"], best)
+            checkpoint_measurements.append({"global_step": step, "seconds": perf_counter() - checkpoint_started})
         if stopping:
             break
     return {"global_step": step, "best_validation": best,
             "status": "completed" if step == max_steps else "interrupted",
             "last_checkpoint": str(last_checkpoint.resolve()) if last_checkpoint else None,
             "elapsed_training_seconds": perf_counter() - started, "final_state_sha256": state_digest(model.state_dict()),
+            "validation_measurements_this_process": validation_measurements,
+            "checkpoint_measurements_this_process": checkpoint_measurements,
             "resources": _resources(device)}
 
 
@@ -497,6 +509,14 @@ def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
     validation, validation_statistics = tokenize_rows(validation_rows, task=task, tokenizer=tokenizer,
                                            input_length=card["input_length"], target_length=card.get("target_length"))
     environment = environment_record(device)
+    if purpose == "trained" and card.get("profile_environment_sha256") is not None:
+        if card["profile_environment_sha256"] != canonical_hash(environment):
+            raise ValueError("Training environment differs from the measured pilot profile; reprofile before training.")
+        source_names = ("editguard/training.py", "scripts/train_auxiliary.py", "scripts/preflight_training.py",
+                        "scripts/prepare_data.py", "editguard/formatting.py")
+        sources = {name: file_hash(ROOT / name) for name in source_names}
+        if card.get("profile_source_sha256") != sources:
+            raise ValueError("Training sources differ from the measured pilot profile; reprofile before training.")
     config = {**card, "validation_every_steps": card.get("validation_every_steps", card["checkpoint_every_steps"])}
     for name in ("checkpoint_every_steps", "validation_every_steps", "keep_last_checkpoints", "cpu_threads"):
         value = config.get(name, 2 if name == "cpu_threads" else None)
@@ -527,14 +547,20 @@ def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
     output.mkdir(parents=True, exist_ok=True)
     base_manifest = {"schema_version": 1, "artifact_type": "editguard_auxiliary", **identity,
                      "status": "running", "model_path": "model", "tokenizer_path": "tokenizer",
-                     "environment": environment, "input_format_version": "editguard-input-v1",
+                     "environment": environment, "input_format_version": INPUT_FORMAT_VERSION,
                      "input_format": "question_then_correction_pair" if task == "scope" else "dataset_input_text_v1",
                      "positive_class_index": 1 if task == "scope" else None,
                      "num_labels": 2 if task == "scope" else None,
                      "tokenization": {"train": train_statistics, "validation": validation_statistics},
                      "input_length": card["input_length"], "target_length": card.get("target_length"),
                      "max_steps": card["max_steps"], "reviewed_inputs": purpose == "trained",
-                     "disclaimer": "Synthetic developer fixture; no ML performance claim and runtime must reject this artifact." if purpose == "smoke_test" else "Validation-loss model selection; scope calibration and frozen test evaluation remain separate."}
+                     "review_policy": card.get("review_policy", "human") if purpose == "trained" or card.get("purpose") == "pilot_profile" else None,
+                     "human_reviewed_data": card.get("review_policy", "human") == "human" if purpose == "trained" or card.get("purpose") == "pilot_profile" else False,
+                     "disclaimer": ("Four-step development pilot profile; no accuracy claim and runtime must reject this artifact."
+                                    if card.get("purpose") == "pilot_profile" else
+                                    "Synthetic developer fixture; no ML performance claim and runtime must reject this artifact."
+                                    if purpose == "smoke_test" else
+                                    "Validation-loss model selection; scope calibration and frozen test evaluation remain separate. Review policy is disclosed; automated development review is not human review.")}
     # Resume identity must be validated before modifying any existing run artifact.
     if resume_checkpoint:
         metadata = json.loads((resume_checkpoint / "metadata.json").read_text(encoding="utf-8"))
