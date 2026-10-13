@@ -90,4 +90,3 @@ Question forms and catalogue size remain limited; removing this observed
 shortcut does not establish broad natural-language reliability. A subsequent
 finite validation experiment should resolve whether direct-edit detection
 improves while false applications and other question forms remain acceptable.
-
