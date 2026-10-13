@@ -38,16 +38,30 @@ schema and avoid separate incompatible notebooks as the primary pipeline.
 | G: Freeze and final evaluation | Lock model/config/scorer/test hashes and thresholds; run once across five configurations | Raw per-question outputs, denominators, paired uncertainty, resource/latency records and disclosed exclusions | Test failures cannot trigger test-guided tuning of this release. |
 | H: Presentation | Polish UI, render scientific graphs from results, complete cards/report/demo/container/docs | Clean checkout reproduction, locally deployable app, real saved weights, report and tested demonstration | Resume numbers exist only when backed by recorded results. |
 
-Current delivery implements A's contracts/draft data pipeline and B's complete
-structured workflow. Label review and final split freezing remain pending. C's
-five-configuration harness, optional frozen baselines, scoring and aggregation are
-implemented; reviewed validation acceptance remains pending. D/E have real finite
-training loops, exact-state resume, pinned candidates and a small pending review
-pilot. Its 504 labels now have a separate independent automated development review
-authorized by the user; no human approval is claimed. Actual four-step pilot
-profiles and finite run cards prepare user-executed training. Synthetic optimizer
-smoke and pilot profiles remain separate from eligible trained-model artifacts.
-Neither auxiliary is eligible as trained; D–H remain incomplete.
+Current delivery implements A's contracts and B's complete structured workflow.
+C's five-configuration harness has recorded 600 model-generated validation
+answers and a separate 48-question oracle diagnostic. D/E completed the initial
+user-executed pilot-v2 runs: 360 scope updates and 240 answer updates, with selected
+checkpoints at steps 120 and 240. Both models are eligible local trained artifacts;
+synthetic optimizer smoke remains ineligible. Training used separately recorded,
+user-authorized automated development review of 504 labels, with no independent
+human-review claim. [Training](PILOT_TRAINING_RESULTS.md) and
+[validation evidence](PILOT_VALIDATION_RESULTS.md) document the actual results.
+
+F integrates the learned editor, trained-artifact provenance and a read-only
+validation dashboard while retaining separate deterministic answer labels.
+Initial scope recall is 36/48, with 12 direct-form misses. Oracle answer credit
+is 31/48, including 12 wrong comparison endorsements. The
+[exploratory short-QA diagnostic](SHORT_QA.md) gives updated RAG the highest
+observed requested-QA result; no learned superiority claim is made.
+
+The first [bounded scope-data revision](SCOPE_DATA_REVISION.md) derives pilot-v3
+by balancing existing negative wording, preserving the same 504 rows, families,
+splits and facts. It establishes no new trained-model result. Independent review,
+profiling and finite user-executed training remain separate gates. G's independent
+human-reviewed challenges, final configuration/scorer freeze and single held-out
+test run remain pending. H has measured development graphs and documentation,
+but the final report and release reproduction are incomplete.
 
 ## Bound the experiments
 
@@ -86,11 +100,12 @@ No training-time or memory promise is made before profiling.
   If no remote or credentials exist, record the exact missing condition and keep
   the local change reviewable; do not pretend a push succeeded.
 
-Suggested truthful resume wording before measurements: "Built a SERAC-inspired
-support knowledge editing platform with versioned corrections, trained scope and
-answer models, transactional rollback, and leakage-controlled evaluation." Use
-that wording only after both models are actually trained. Before then say
-"Implemented the editing workflow and reproducible data/evaluation scaffolding."
+Truthful current resume wording: "Built a SERAC-inspired support knowledge editor
+with transactional correction memory and rollback; trained compact applicability
+and correction-conditioned answer models and evaluated five configurations on a
+controlled held-out development population." Describe the deployable structured
+container and optional local neural application separately. Numerical improvement
+and final-test claims require their corresponding reviewed, frozen evidence.
 
 ## Report structure
 

@@ -16,13 +16,26 @@ resolution, history, conflict resolution, rollback and JSON export. The applicat
 uses a curated fictional Nimbus handbook. The dataset and products are controlled
 demonstrations, not claims about real companies.
 
-**Structured answers remain the default. Neither auxiliary model has completed
-reviewed-data training.** Optional frozen FLAN-T5/MiniLM modes implement the
-unchanged base, properly updated RAG and prompt-only correction. Real scope and
-answer training loops, full-state resume, conservative scoring and fixed-denominator
-metrics are implemented. Learned modes return HTTP 503 until eligible trained
-artifacts and calibration are installed. Engineering checks and synthetic optimizer
-smoke are not ML accuracy or project completion.
+**Both auxiliary models completed the user-executed pilot-v2 training runs.**
+The compact scope classifier and correction-conditioned answer model have
+validation-selected local exports, calibration and integrated inference.
+Structured answers remain the default. Optional neural modes implement the
+unchanged base, properly updated RAG, prompt-only correction, similarity editor
+and trained scope editor. Missing or invalid required artifacts return HTTP 503.
+Model binaries are local ignored artifacts; Git contains their configuration,
+recorded identities and reproduction tooling. A clean checkout needs verified
+exports or reproduced training to enable learned inference.
+
+The initial measured validation uses two held-out entity families and shared
+question forms. Scope precision is 36/36 and recall 36/48; all 12 missed
+applicable questions are direct requests. The answer model has 31/48 credited
+answers with oracle routing, including 12 incorrect `No` → `Yes` endorsements.
+Strict complete-assertion scoring leaves short fragments pending and uncredited;
+zero credited baseline assertions does not mean zero factual correctness.
+An explicitly exploratory request-bound QA analysis credits updated RAG on
+110/120 questions and the trained scope editor on 91/120. The learned editor
+does not outperform RAG in that diagnostic. These are automated development
+measurements, not final-test results or arbitrary-question guarantees.
 
 The editor wraps a frozen retrieval-based assistant with approved memory,
 a trained pair scope classifier and a trained edit-conditioned seq2seq generator.
@@ -32,16 +45,29 @@ SERAC-inspired rather than a faithful reproduction.
 
 [ML setup](docs/ML_SETUP.md), [matched comparisons](docs/COMPARISONS.md),
 [trainer and resume](docs/TRAINER.md), [scoring rules](docs/SCORER.md) and
-[data review](docs/DATA_REVIEW.md) document the next runnable stage.
+[data review](docs/DATA_REVIEW.md) document the reproducible pipeline.
 The finite pilot contains 360 scope and 144 answer examples across disjoint
 training/validation families and no test partition. All 504 labels received an
 independent **automated development review**, followed by integrity and target
 checks. The separate registry records 504 accepted and zero flagged; no human
-approval or model accuracy is claimed. Immutable source rows retain their pending
+approval is claimed. Immutable source rows retain their pending
 human-review flags. [Per-row evidence](reports/pilot-v2-independent-review.json)
 and four portable human-review pages are linked from the data-review guide.
 
-![Evaluation interface showing actual engineering checks and untrained-model status](docs/images/evaluation-demo.jpg)
+[Training results](docs/PILOT_TRAINING_RESULTS.md),
+[validation and failure analysis](docs/PILOT_VALIDATION_RESULTS.md) and
+[exploratory short QA](docs/SHORT_QA.md) disclose denominators, limitations and
+all five comparisons. [Pilot-v3](docs/SCOPE_DATA_REVISION.md) repairs the observed
+scope question-form imbalance without adding rows or changing facts. It is the
+first bounded development revision; no v3 trained-model result exists yet.
+Its fresh machine review and four-step resource profile are complete;
+[scope revision training](docs/SCOPE_REVISION_TRAINING.md) gives the verified
+360-step command, measured planning budgets and exact-state recovery instructions.
+An [isolated learned-workflow check](docs/LEARNED_WORKFLOW.md) also exposes a
+same-product/different-property false application: a device correction was used
+for Nimbus's price. Workflow consistency checks do not imply answer correctness.
+
+![Measured pilot-v2 training loss and resource use](reports/pilot-v2-figures/training-resources.png)
 
 ## Run locally
 
@@ -78,6 +104,21 @@ seeding never reactivates withdrawn corrections. No answer cache is used, and
 revision-consistent snapshots keep responses and exports coherent with history.
 Server binds to localhost; public deployment requires proper authentication.
 
+With the isolated [ML environment](docs/ML_SETUP.md), cached pinned backbones and
+verified local pilot-v2 exports present, start the optional learned application:
+
+```powershell
+$env:EDITGUARD_INFERENCE_CONFIG = 'configs/inference-pilot-v2.json'
+$env:EDITGUARD_EVALUATION_REPORT = 'reports/pilot-v2-evaluation.json'
+.\.venv-ml\Scripts\python.exe -m editguard
+```
+
+The Evaluation lab loads recorded validation diagnostics alongside a separate
+deterministic regression. It performs no training or model evaluation on refresh.
+It shows checkpoint selection, automated-review provenance, full denominators,
+pending fragments, calibration, oracle answers, matched configurations and
+exportable evidence. Retrieved sources do not verify generated prose.
+
 ## Panel demonstration
 
 1. Select Nimbus / Basic / v2 and date 2026-10-11. Ask “How many devices does Basic
@@ -99,7 +140,9 @@ Server binds to localhost; public deployment requires proper authentication.
 Supported structured grammar intentionally covers short factual questions and
 “Can I connect four devices on Basic?”. Unsupported wording, unknown tiers,
 comparative capacity phrases and ambiguous scopes clarify. General natural-language
-capability will be assessed after training; it is not inferred from this demo.
+capability is limited by the measured pilot results; it is not inferred from this
+structured demonstration. Switch answer modes to inspect real generated outputs
+and their routing, including documented scope and comparison-polarity failures.
 
 ## Tests and reproducibility
 
@@ -116,7 +159,8 @@ GPU backbone smoke remains a separate local check. Tests cover
 authority, exact scope, historical dates, half-open intervals, conflicting drafts,
 supersession, rollback, persistence, concurrent revisions, API token checks,
 leakage constraints and hash-bound review/freeze gates. The dashboard runs an
-isolated engineering fixture and never mutates live memory.
+isolated engineering fixture and never mutates live memory. Its optional ML
+summary is read-only recorded validation evidence, separate from those checks.
 
 The independent data pipeline starts with 80 fictional entity families, 4,800 scope
 pairs and 1,920 short answer examples. It splits
@@ -149,16 +193,19 @@ checkpoint restoration; preflight alone does not verify a completed training run
 
 [Initial pilot training instructions](docs/PILOT_TRAINING.md) provide the concrete
 questions, reviewed inputs, measurements, conditional runtime/memory estimates,
-artifacts and exact-resume rules. The user executes the finite GPU runs; the
-default caps are 360 scope updates and 240 answer updates. Four-step profiles
-remain ineligible as trained deployment artifacts.
+artifacts and exact-resume rules. Those initial user-executed runs completed at
+360 scope updates and 240 answer updates; selected checkpoints are steps 120 and
+240 respectively. [Actual training measurements](docs/PILOT_TRAINING_RESULTS.md)
+replace the planning estimates for these runs. Four-step profiles remain
+ineligible as trained deployment artifacts. The v3 revision requires its own
+reviewed inputs, bounded run card and profile-based estimates before execution.
 
 [Measured embedding-baseline curves](docs/SIMILARITY_RESULTS.md) show raw and
 compatibility-gated behavior on 120 development validation pairs, with explicit
 denominators and the missed question. They are threshold-selection evidence,
 not final-test or generated-answer performance.
 
-The five final configurations are unchanged base, properly updated RAG,
+The five comparison configurations are unchanged base, properly updated RAG,
 prompt-only corrections, embedding retrieval corrections and trained scope-aware
 editing. All updated baselines receive the same approved memory and context.
 [Evaluation protocol](docs/EVALUATION_PROTOCOL.md) separates retrieval, raw scope,
@@ -193,9 +240,10 @@ distinguish this structured image from optional local neural inference.
 - [Failure analysis](docs/FAILURE_ANALYSIS.md) and [interim report](docs/REPORT.md)
 - [Measured profiling](docs/PROFILING.md) and [structured HTTP samples](reports/structured-http.json)
 
-Stages A/B are implemented, and stage C's baseline and evaluation mechanics are
-available. Both auxiliary trainers passed bounded synthetic GPU verification.
-Scientific performance graphs, eligible trained artifacts and a final results
-report are pending reviewed-data runs.
-Resume claims must follow those artifacts. No arbitrary-question accuracy guarantee
-or numerical ML improvement is claimed.
+Stages A/B and the baseline harness are implemented; D/E completed their initial
+real training and validation runs, and learned inference is integrated. Scientific
+graphs and an honest development report are available. Final independently
+reviewed challenges, frozen-test evaluation, broader uncertainty evidence and
+the polished final report remain pending. Resume claims can describe the models
+trained and five configurations evaluated; no superiority or final numerical
+improvement claim follows from this pilot.

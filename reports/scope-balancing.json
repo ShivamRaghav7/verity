@@ -1,0 +1,101 @@
+{
+  "answer_inputs_or_targets_changed": false,
+  "artifact_type": "editguard_scope_data_revision",
+  "changed_field_counts": {
+    "expected_polarity": 216,
+    "question": 162,
+    "question_type": 216
+  },
+  "counts": {
+    "answer": {
+      "train": 96,
+      "validation": 48
+    },
+    "scope": {
+      "train": 240,
+      "validation": 120
+    }
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+  "derived_manifest_sha256": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+  "gpu_used": false,
+  "limitations": [
+    "This is a finite validation-informed development revision, not an accuracy result.",
+    "Balancing question forms removes one observed label shortcut, not every possible shortcut.",
+    "All 504 new review decisions remain pending; old review hashes cannot authorize these rows.",
+    "Catalogue families and templates remain small and controlled; no frozen-test result is reported."
+  ],
+  "model_weights_loaded": false,
+  "origin_dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "origin_hashes": {
+    "answer_train.jsonl": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+    "answer_validation.jsonl": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7",
+    "catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "derivation.json": "31457c6549b8d6efd301bbb0c04807408133227d5345605982f6a3881edfce9f",
+    "manifest.json": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+    "scope_train.jsonl": "f061e979322400b28d7cbad162c7f3d6e4ae6e69e6e97c70b4407f58b32b66cd",
+    "scope_validation.jsonl": "e4060769f69916e4abdd4126c10fb9bbe4e8862f0948942c4df168f22571f7e3",
+    "selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1"
+  },
+  "positive_questions_changed": false,
+  "purpose": "bounded_development_revision",
+  "review_decisions": {
+    "accept": 0,
+    "pending": 504,
+    "reject": 0
+  },
+  "review_registry_copied": false,
+  "revision_version": 1,
+  "scope_labels_changed": false,
+  "scope_style_balance": {
+    "train": {
+      "comparison_no": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      },
+      "comparison_yes": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      },
+      "direct": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      },
+      "paraphrase": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      }
+    },
+    "validation": {
+      "comparison_no": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      },
+      "comparison_yes": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      },
+      "direct": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      },
+      "paraphrase": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      }
+    }
+  },
+  "source_unchanged": true,
+  "status": "completed",
+  "structured_fact_truth_changed": false,
+  "test_or_challenge_files_read_or_written": false
+}

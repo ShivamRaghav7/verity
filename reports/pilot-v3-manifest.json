@@ -1,0 +1,137 @@
+{
+  "answer_inputs_or_targets_changed": false,
+  "changed_field_counts": {
+    "expected_polarity": 216,
+    "question": 162,
+    "question_type": 216
+  },
+  "counts": {
+    "answer": {
+      "train": 96,
+      "validation": 48
+    },
+    "scope": {
+      "train": 240,
+      "validation": 120
+    }
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+  "eligible_for_final_evaluation": false,
+  "eligible_for_training": false,
+  "family_counts": {
+    "train": 4,
+    "validation": 2
+  },
+  "files": {
+    "answer_train.jsonl": "4dce14eacf08f477295aae691db25d75e70fbd4556f6d8d2f5e0a1b2e10c1e8b",
+    "answer_validation.jsonl": "3fb5728bf69cf27be59712855a37159db2adcc1b23232947ee8ee643be073f4c",
+    "catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "derivation.json": "8beef61e8c9ae1b8e91d544bb06e6c5f2bfac5e15d5597ad9372d7701aa0db71",
+    "scope_train.jsonl": "a47f9ed7b8849c7c8071419f4a13649d802a219ee8ac13a4bd2a47c1e8abaf04",
+    "scope_validation.jsonl": "683f840682c2b62f12fbc36d9fc208a405c5cfd2d0d1b2dbff4d8b0f07630a39",
+    "selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1"
+  },
+  "human_review_decisions": {
+    "accept": 0,
+    "pending": 504,
+    "reject": 0
+  },
+  "human_reviewed_data": false,
+  "input_format_version": "editguard-input-v2",
+  "negative_type_order": [
+    "same_entity_different_property",
+    "different_entity_same_property",
+    "similar_name",
+    "wrong_tier",
+    "wrong_version",
+    "ordinary"
+  ],
+  "origin_dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "origin_hashes": {
+    "answer_train.jsonl": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+    "answer_validation.jsonl": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7",
+    "catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "derivation.json": "31457c6549b8d6efd301bbb0c04807408133227d5345605982f6a3881edfce9f",
+    "manifest.json": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+    "scope_train.jsonl": "f061e979322400b28d7cbad162c7f3d6e4ae6e69e6e97c70b4407f58b32b66cd",
+    "scope_validation.jsonl": "e4060769f69916e4abdd4126c10fb9bbe4e8862f0948942c4df168f22571f7e3",
+    "selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1"
+  },
+  "pilot_version": 3,
+  "positive_questions_changed": false,
+  "purpose": "development_pilot_not_final_evaluation",
+  "question_style_order": [
+    "direct",
+    "paraphrase",
+    "comparison_yes",
+    "comparison_no"
+  ],
+  "review_policy": "pending",
+  "review_status": "pending_independent_decisions",
+  "revision_policy": "bounded wording balance in existing negatives; new row identities; no prior review decisions migrated",
+  "revision_version": 1,
+  "rotation": "style=(sorted_edit_index_within_split+negative_type_index)%4",
+  "schema_version": 1,
+  "scope_labels_changed": false,
+  "scope_style_balance": {
+    "train": {
+      "comparison_no": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      },
+      "comparison_yes": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      },
+      "direct": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      },
+      "paraphrase": {
+        "negative": 36,
+        "positive": 24,
+        "positive_prior": 0.4
+      }
+    },
+    "validation": {
+      "comparison_no": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      },
+      "comparison_yes": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      },
+      "direct": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      },
+      "paraphrase": {
+        "negative": 18,
+        "positive": 12,
+        "positive_prior": 0.4
+      }
+    }
+  },
+  "source_code_sha256": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "scripts/balance_scope_questions.py": "ed45475bed4083cd6e5ee47258ae90091c4c22d4a61ad10b985ebd8950b1b276",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/review_dataset.py": "0e40fb72e35d41042c11ed0e2789ae42efadbcabe662e37ecdc2fc41c3651313"
+  },
+  "structured_fact_truth_changed": false,
+  "tasks": [
+    "scope",
+    "answer"
+  ],
+  "test_files_included": false,
+  "test_frozen": false
+}

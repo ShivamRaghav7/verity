@@ -24,11 +24,11 @@ def _validate(files, expected_manifest):
     if files["manifest.json"] != expected_manifest.read_bytes():
         raise ValueError("Bundled manifest differs from the recorded source manifest.")
     manifest = json.loads(files["manifest.json"])
-    if (manifest.get("pilot_version") not in (1, 2) or manifest.get("test_files_included") is not False
+    if (manifest.get("pilot_version") not in (1, 2, 3) or manifest.get("test_files_included") is not False
             or manifest.get("test_frozen") is not False or manifest.get("eligible_for_training") is not False
             or manifest.get("purpose") != "development_pilot_not_final_evaluation"
             or set(manifest.get("files", {})) != ALLOWED - {"manifest.json"}):
-        raise ValueError("Bundle must be an archived pending pilot-v1/v2 development packet.")
+        raise ValueError("Bundle must be an archived pending pilot-v1/v2/v3 development packet.")
     for name, expected in manifest["files"].items():
         if hashlib.sha256(files[name]).hexdigest() != expected:
             raise ValueError(f"Bundled source integrity failed: {name}")

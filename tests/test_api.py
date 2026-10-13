@@ -42,7 +42,7 @@ class APITests(unittest.TestCase):
     def test_learned_mode_is_unavailable_and_not_mislabeled(self):
         self.assertEqual(self.ask(mode="learned").status_code, 503)
         self.assertEqual(self.ask().json()["answer_kind"], "deterministic_structured")
-        self.assertEqual(self.client.get("/api/health").json()["models"]["scope"], "not_trained")
+        self.assertEqual(self.client.get("/api/health").json()["models"]["scope"], "not_configured")
 
     def test_unknown_and_conflicting_scope_clarifies(self):
         for question in ["What is the warranty?", "Compare Basic and Pro device limits", "Nimbus and Nimbus Mini Basic devices"]:

@@ -22,14 +22,18 @@ COMMON_CHECKS = {"one_question_form", "one_scoped_catalogue_fact", "question_sco
                  "applicability_label_or_answer", "expected_identity_unit_date", "independently_selected_numeric_value",
                  "edit_original_and_scoped_metadata", "all_references_within_split", "source_flags_pending_and_simulated",
                  "input_format_v2", "edit_text_matches_metadata_and_noun_agreement", "independent_comparison_polarity",
-                 "question_type", "v2_row_derivation_hash"}
+                 "question_type"}
 ANSWER_CHECKS = {"target_endorsed_subject_relation_value_unit_polarity", "two_unchanged_other_property_support_facts",
                  "input_exact_edit_question_date_support", "positive_scope_counterpart"}
 
 
-def _crosscheck_accepted_observation(decision, row, catalogue):
+def _crosscheck_accepted_observation(decision, row, catalogue, pilot_version=2):
     checks = decision.get("checks")
     required = set(COMMON_CHECKS)
+    required.add(f"v{pilot_version}_row_derivation_hash")
+    if pilot_version == 3:
+        required.update({"v2_truth_scope_lineage_and_answer_preserved", "derivation_changed_fields_and_style",
+                         "scope_style_matches_computed_polarity"})
     if row.get("question_type") == "comparison":
         required.add("comparison_noun_agreement")
     if row.get("label") == 0:
@@ -51,6 +55,11 @@ def _crosscheck_accepted_observation(decision, row, catalogue):
             or any(observed.get(key) != fact[key] for key in ("fact_id", "entity_id", "entity_name", "relation", "plan", "version", "value", "unit"))
             or observed.get("as_of") != row["request_context"]["as_of"]):
         raise ValueError("Recorded parsed question fact differs from the unchanged catalogue and request.")
+    if pilot_version == 3:
+        expected_style = ("comparison_" + row["expected_polarity"]
+                          if row["question_type"] == "comparison" else row["question_type"])
+        if expected_style not in ("direct", "paraphrase", "comparison_yes", "comparison_no") or decision.get("computed_question_style") != expected_style:
+            raise ValueError("Recorded independently parsed question style differs from the revised row.")
 
 
 def register(dataset, audit_path, output):
@@ -59,12 +68,14 @@ def register(dataset, audit_path, output):
     if dataset.resolve() in output.resolve().parents or output.resolve() in dataset.resolve().parents or output.resolve() == dataset.resolve():
         raise ValueError("The automated registry must remain separate from the pending source dataset.")
     audit, manifest = read_json(audit_path), read_json(dataset / "manifest.json")
+    version = manifest.get("pilot_version") if isinstance(manifest, dict) else None
     if (not isinstance(audit, dict) or not isinstance(manifest, dict)
-            or manifest.get("pilot_version") != 2 or manifest.get("input_format_version") != "editguard-input-v2"
+            or type(version) is not int or version not in (2, 3) or manifest.get("input_format_version") != "editguard-input-v2"
             or manifest.get("purpose") != "development_pilot_not_final_evaluation"
             or manifest.get("test_files_included") is not False or manifest.get("test_frozen") is not False
-            or not isinstance(manifest.get("files"), dict) or set(manifest["files"]) != SOURCE_FILES):
-        raise ValueError("Automated registration is restricted to the complete unfrozen pilot-v2 development dataset.")
+            or not isinstance(manifest.get("files"), dict) or set(manifest["files"]) != SOURCE_FILES
+            or {path.name for path in dataset.iterdir()} != SOURCE_FILES | {"manifest.json"}):
+        raise ValueError("Automated registration is restricted to the complete unfrozen pilot-v2 development dataset or its supported pilot-v3 revision.")
     if (audit.get("reviewer_type") != "automated_development" or audit.get("human_review_performed") is not False
             or audit.get("human_approval_claimed") is not False or audit.get("test_or_challenge_rows_read") is not False
             or audit.get("dataset_id") != manifest["dataset_id"] or type(audit.get("total_rows")) is not int
@@ -75,13 +86,23 @@ def register(dataset, audit_path, output):
             or method.get("sha256") != hashlib.sha256(method["source"].encode()).hexdigest()):
         raise ValueError("Independent review method source hash differs.")
     global_checks = audit.get("global_checks")
-    required_global = {"exact504_unique_rows", "partition_counts", "v2_development_only",
+    required_global = {"exact504_unique_rows", "partition_counts", f"v{version}_development_only",
                        "disjoint:family", "disjoint:entity", "disjoint:lineage"} | {"manifest_hash:" + name for name in SOURCE_FILES}
+    if version == 3:
+        required_global.update({"unique_catalogue_and_derivations", "origin_catalogue_selection_and_splits_unchanged",
+                                "four_train_two_validation_families", "complete36_edit_worlds",
+                                "matched_style_prior:train", "matched_style_prior:validation",
+                                "style_manifest_matches:train", "style_manifest_matches:validation"})
+        expected_origin_hashes = {"data/generated/pilot-v2/" + name: value
+                                  for name, value in manifest.get("origin_hashes", {}).items()}
+        if (not expected_origin_hashes or audit.get("origin_source_hashes") != expected_origin_hashes
+                or audit.get("sources_unchanged_after_review") is not True):
+            raise ValueError("Pilot-v3 review must bind the unchanged complete pilot-v2 origin.")
     if (not isinstance(global_checks, dict) or not required_global <= global_checks.keys()
             or any(value is not True for value in global_checks.values())):
         raise ValueError("Independent dataset/hash/split checks must be complete and passing.")
     for name in (*manifest["files"], "manifest.json"):
-        key = "data/generated/pilot-v2/" + name
+        key = f"data/generated/pilot-v{version}/" + name
         if audit.get("source_hashes", {}).get(key) != file_hash(dataset / name):
             raise ValueError(f"Review source hashes differ: {name}")
     catalogue = {fact["fact_id"]: fact for fact in read_json(dataset / "catalogue.json")}
@@ -102,7 +123,7 @@ def register(dataset, audit_path, output):
         if decision["decision"] == "accept":
             if flags:
                 raise ValueError("Accepted decision disagrees with an independent or integration check.")
-            _crosscheck_accepted_observation(decision, row, catalogue)
+            _crosscheck_accepted_observation(decision, row, catalogue, version)
             if "target_text" in row:
                 fact = {**catalogue[row["expected_fact"]["fact_id"]], **row["expected_fact"]}
                 score = score_answer(row["target_text"], fact, aliases=fact.get("aliases", []),

@@ -26,6 +26,17 @@ class PilotBundleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "fresh output"):
             unpack(self.bundle, target, self.manifest)
 
+    def test_scope_revision_bundle_is_exact_and_creates_no_reviews(self):
+        bundle = ROOT / "data/pilots/pilot-v3-source.zip"
+        if not bundle.exists():
+            self.skipTest("Revision packet has not been published yet.")
+        target = self.root / "revision"
+        manifest = ROOT / "reports/pilot-v3-manifest.json"
+        result = unpack(bundle, target, manifest)
+        self.assertEqual(result["review_decisions_created"], 0)
+        self.assertEqual((target / "manifest.json").read_bytes(), manifest.read_bytes())
+        self.assertFalse((target / "reviews.json").exists())
+
     def test_traversal_or_duplicate_or_test_entries_fail_before_writing(self):
         with zipfile.ZipFile(self.bundle) as source:
             original = {entry.filename: source.read(entry) for entry in source.infolist()}

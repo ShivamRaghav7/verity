@@ -2,7 +2,7 @@
 
 (() => {
   const byId = id => document.getElementById(id);
-  const state = { facts: [], edits: [], events: [], conflicts: [], revision: null, health: null, initialized: false, busy: false, lastAnswerRevision: null };
+  const state = { facts: [], edits: [], events: [], conflicts: [], revision: null, health: null, mlReport: null, initialized: false, busy: false, lastAnswerRevision: null };
   const viewNames = { assistant: "SUPPORT ASSISTANT", corrections: "CORRECTION EDITOR", history: "VERSION HISTORY", conflicts: "RESOLVE CONFLICTS", evaluation: "EVALUATION LAB" };
   const relationNames = { device_limit: "Device limit", price_monthly: "Monthly price", storage_gb: "Storage allowance", support_hours: "Support hours" };
   const modeNames = { structured: "Structured facts", unchanged_base: "Frozen initial handbook", updated_rag: "Updated RAG", prompt_only: "Correction prompt", similarity_editor: "Similarity editor", learned: "Learned scope editor", trained_scope_editor: "Learned scope editor" };
@@ -130,6 +130,21 @@
     byId("supersedes").value = "";
     updatePredecessors();
   }
+  function trainingSummary(model) {
+    if (!model || !["trained", "loaded_unvalidated"].includes(model.status)) return model?.error || "No validated training artifact is configured for this application.";
+    if (model.status === "loaded_unvalidated") return "Loaded runner lacks validated training provenance. No trained-model claim is made.";
+    const review = model.review_policy === "automated_development" ? "Automated development labels · no human review" : model.review_policy === "human" && model.human_reviewed_data === true ? "Human-reviewed development labels" : "Training review provenance unspecified";
+    return [typeof model.completed_steps === "number" ? `${model.completed_steps} optimizer steps completed` : "Completed training artifact",
+      typeof model.selected_step === "number" ? `selected step ${model.selected_step}` : "", review,
+      model.loaded ? "Loaded for inference" : "Artifact validated; inference not loaded"].filter(Boolean).join(" · ");
+  }
+  function updateModeHint() {
+    const mode = byId("ask-mode").value;
+    byId("ask-mode-label").textContent = mode === "structured" ? "STRUCTURED MODE" : "MODEL-GENERATED MODE";
+    const status = state.health?.modes?.[mode]?.status;
+    byId("ask-mode-hint").textContent = mode === "structured" ? "Structured answers use approved facts directly. Generated neural text is evaluated separately." :
+      `${modeNames[mode]} · ${status === "available" ? "loaded" : status === "load_required" ? "configured; models load on the first request" : "currently unavailable"}. Generated prose can be incorrect; retrieved sources do not verify it.`;
+  }
   function setHealth() {
     const health = state.health;
     const live = health && health.status === "ok";
@@ -140,9 +155,19 @@
     if (state.lastAnswerRevision !== null && state.lastAnswerRevision !== state.revision) {
       byId("answer-revision").textContent = `COMPARISON REVISION ${state.lastAnswerRevision} · ASK AGAIN FOR REVISION ${state.revision}`;
     }
-    const models = health?.models || {};
-    byId("scope-model-state").textContent = models.scope ? readable(models.scope) : "Not trained";
-    byId("answer-model-state").textContent = models.answer ? readable(models.answer) : "Not trained";
+    const models = health?.model_details || {};
+    const labels = { trained: "Trained artifact", not_configured: "Not configured", missing: "Artifact missing", invalid: "Artifact invalid", loaded_unvalidated: "Loaded · unvalidated" };
+    for (const task of ["scope", "answer"]) {
+      byId(`${task}-model-state`).textContent = health ? (labels[models[task]?.status] || readable(models[task]?.status) || "Status unavailable") : "API unavailable";
+      byId(`${task}-model-description`).textContent = trainingSummary(models[task]);
+    }
+    const trained = [models.scope, models.answer].every(model => model?.status === "trained");
+    byId("model-stage-title").textContent = trained ? "Trained pilot models · final test pending" : "Structured workflow · optional local models";
+    byId("model-stage-description").textContent = trained ?
+      `Scope and answer artifacts are validated. ${[models.scope, models.answer].some(model => model.review_policy === "automated_development") ? "Training used automated development review; no human-reviewed training claim. " : ""}Neural inference: ${readable(health.neural_inference)}. Generated answers may be incorrect; final frozen-test evaluation remains pending.` :
+      `Neural inference: ${readable(health?.neural_inference || "status unavailable")}. Structured mode uses approved facts directly. Missing or invalid model dependencies remain explicit; final ML evaluation is pending.`;
+    byId("model-stage-status").textContent = trained ? "Pilot trained" : "Development";
+    updateModeHint();
   }
   async function loadData(reportErrors = true) {
     const endpoints = ["/api/health", "/api/facts", "/api/edits", "/api/conflicts"];
@@ -340,6 +365,15 @@
     });
     if (!(result.applicable_corrections || []).length) edits.append(node("p", result.status === "answered" ? (kind === "model_generated" ? "No correction was selected as an applicable edit. Inspect the retrieval evidence for the selected mode." : "No approved correction applies. The current answer uses the initial catalogue fact.") : "No corrected answer is endorsed until the ambiguity, conflict or generation failure is resolved.", "muted"));
     const evidence = byId("neural-evidence");
+    let training = byId("answer-training");
+    if (!training) { training = node("div", undefined, "model-provenance"); training.id = "answer-training"; evidence.before(training); }
+    training.replaceChildren();
+    training.hidden = mode === "structured" || !result.model_training;
+    if (!training.hidden) {
+      training.append(node("h3", "Configured auxiliary training provenance"));
+      for (const task of ["scope", "answer"]) training.append(node("p", `${task === "scope" ? "Scope classifier" : "Answer model"}: ${trainingSummary(result.model_training[task])}`));
+      training.append(node("p", `Answer route: ${readable(result.route)}. These records describe training provenance and do not verify the generated answer.`, "field-hint"));
+    }
     evidence.hidden = mode === "structured";
     evidence.open = false;
     byId("neural-evidence-data").textContent = evidence.hidden ? "" : JSON.stringify({
@@ -349,6 +383,7 @@
       eligible_correction_candidates: result.retrieval_candidates_eligible,
       scope_scores: result.scope_scores, generation: result.generation_trace,
       before_generation: result.before_trace?.generation_trace,
+      auxiliary_training: result.model_training,
       error: result.error || null
     }, null, 2);
     state.lastAnswerRevision = result.revision;
@@ -375,15 +410,109 @@
       byId("answer-placeholder").hidden = false;
       notify(error.status === 503 ? `Answer mode unavailable (HTTP 503). ${error.message}` : error.message, "error");
     }
-    finally { button.disabled = false; button.textContent = "Compare answers →"; }
+    finally {
+      button.disabled = false; button.textContent = "Compare answers →";
+      if (payload.mode !== "structured") { try { state.health = await api("/api/health"); setHealth(); } catch { /* Keep the last observed status; answer errors are already shown. */ } }
+    }
+  }
+  function rateLabel(rate, percentage = true) {
+    if (!rate || rate.value === null || rate.value === undefined) return "Unavailable";
+    return percentage ? `${(rate.value * 100).toFixed(1)}%` : rate.value.toFixed(4);
+  }
+  function ratePopulation(rate) {
+    if (!rate) return "Denominator unavailable";
+    if (rate.value === null && rate.denominator > 0) return `Population: ${rate.denominator} · metric unavailable`;
+    const numerator = typeof rate.numerator === "number" && !Number.isInteger(rate.numerator) ? rate.numerator.toFixed(4) : printable(rate.numerator);
+    return `${numerator} / ${printable(rate.denominator)}`;
+  }
+  function appendRateCard(container, label, rate, description, percentage = true) {
+    const card = node("article", undefined, "metric-card");
+    card.append(node("label", label), node("strong", rateLabel(rate, percentage)),
+      node("small", `${percentage ? "Count" : "Metric sum"}: ${ratePopulation(rate)}`));
+    if (description) card.append(node("small", description));
+    container.append(card);
+  }
+  function renderDevelopmentReport(evaluation) {
+    const descriptor = evaluation.ml_report || { status: "not_configured" };
+    const report = evaluation.ml_results;
+    state.mlReport = report || null;
+    byId("ml-results").hidden = !report;
+    const status = byId("ml-report-status");
+    status.textContent = report ? "Validation only" : readable(descriptor.status);
+    status.className = `pill ${report ? "pill-draft" : ["invalid", "incompatible"].includes(descriptor.status) ? "pill-failed" : "pill-subtle"}`;
+    const description = byId("ml-report-description");
+    if (!report) {
+      description.textContent = descriptor.error || "No recorded ML validation report is configured. Trained checkpoint metadata does not establish answer accuracy; final evaluation remains pending.";
+      return;
+    }
+    description.textContent = `Automated development review; no human-reviewed training claim. ${report.questions} validation questions and ${report.oracle_questions} oracle-routed applicable questions. Frozen test data has not been evaluated.${descriptor.configuration_matches === false ? " The current inference settings differ from the recorded run; results describe that recorded configuration." : ""}`;
+    const population = byId("ml-population");
+    population.replaceChildren(node("h3", "Recorded population & model identities"),
+      node("p", `Dataset: ${report.dataset_id}`));
+    for (const task of ["scope", "answer"]) {
+      const artifact = report.model_artifacts[task];
+      population.append(node("p", `${task === "scope" ? "Scope classifier" : "Answer model"}: ${artifact.completed_steps} optimizer steps · selected step ${artifact.selected_step} · manifest ${artifact.manifest_sha256.slice(0, 12)}…`));
+    }
+    const scope = byId("scope-metrics");
+    scope.replaceChildren();
+    [["Precision", "precision", "Applicable among predicted-applicable pairs"],
+      ["Recall", "recall", "Detected among actually applicable pairs"],
+      ["False positive rate", "false_positive_rate", "Predicted applicable among negative pairs"],
+      ["Brier score", "brier", "Mean squared probability error", false],
+      ["Calibration error", "ece", "Expected calibration error; lower is better", false]].forEach(
+      ([label, key, detail, percentage = true]) => appendRateCard(scope, label, report.scope[key], detail, percentage));
+    const oracle = byId("oracle-metrics");
+    oracle.replaceChildren();
+    [["Strict corrected accuracy", "accuracy"], ["Direct questions", "direct_accuracy"],
+      ["Paraphrased questions", "paraphrase_accuracy"], ["Comparison questions", "comparison_accuracy"],
+      ["Answer coverage", "coverage"]].forEach(([label, key]) => appendRateCard(oracle, label, report.oracle[key]));
+    const wrapper = node("div", undefined, "evaluation-table-wrapper");
+    const table = node("table", undefined, "evaluation-table ml-comparison-table");
+    const head = node("thead");
+    const headings = node("tr");
+    ["Configuration", "Strict accuracy", "Coverage", "Out-of-scope accuracy", "Baseline-correct retention", "False edit application", "Route latency p50 / p95", "Review pending", "Errors", "Unavailable"].forEach(label => {
+      const cell = node("th", label); cell.scope = "col"; headings.append(cell);
+    });
+    head.append(headings);
+    const body = node("tbody");
+    report.configurations.forEach(item => {
+      const row = node("tr");
+      row.append(node("th", modeNames[item.configuration] || readable(item.configuration)));
+      row.firstChild.scope = "row";
+      for (const key of ["accuracy", "coverage", "out_of_scope_accuracy", "baseline_correct_retention", "false_application_rate"]) {
+        const cell = node("td");
+        cell.append(node("strong", rateLabel(item[key])), node("small", ratePopulation(item[key])));
+        if (item[key].reason) { cell.title = item[key].reason; cell.append(node("small", item[key].reason)); }
+        row.append(cell);
+      }
+      const latency = item.p50_ms === null || item.p95_ms === null ? "Unavailable" : `${item.p50_ms.toFixed(1)} / ${item.p95_ms.toFixed(1)} ms`;
+      row.append(node("td", latency));
+      for (const key of ["pending_review", "errors", "unavailable"]) row.append(node("td", `${item[key]} / ${report.questions}`));
+      body.append(row);
+    });
+    table.append(head, body); wrapper.append(table); byId("ml-comparisons").replaceChildren(wrapper);
+    byId("ml-limitations").replaceChildren(...report.limitations.map(text => node("li", text)));
+    byId("ml-provenance").textContent = JSON.stringify({ ...report.provenance,
+      report_sha256: descriptor.report_sha256, configuration_matches: descriptor.configuration_matches,
+      model_artifacts: report.model_artifacts, review_policy: report.review_policy,
+      human_reviewed_data: report.human_reviewed_data, test_rows_read: report.test_rows_read }, null, 2);
+  }
+  function downloadJson(payload, filename) {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }));
+    const anchor = node("a");
+    anchor.href = url; anchor.download = filename;
+    document.body.append(anchor); anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   async function runEvaluation() {
     const button = byId("run-evaluation");
     button.disabled = true;
-    button.textContent = "Running regression…";
+    button.textContent = "Loading evidence…";
     clearNotice();
     try {
       const evaluation = await api("/api/evaluation");
+      if (evaluation.model_readiness) { state.health = evaluation.model_readiness; setHealth(); }
+      renderDevelopmentReport(evaluation);
       const status = byId("evaluation-status");
       status.textContent = readable(evaluation.status || "Complete");
       status.className = `pill ${evaluation.status === "failed" ? "pill-failed" : "pill-teal"}`;
@@ -418,8 +547,8 @@
         });
         table.append(head, body); wrapper.append(table); cases.append(wrapper);
       }
-    } catch (error) { notify(error.message, "error"); byId("evaluation-status").textContent = "Request failed"; }
-    finally { button.disabled = false; button.textContent = "Run slice regression →"; }
+    } catch (error) { notify(error.message, "error"); byId("evaluation-status").textContent = "Request failed"; renderDevelopmentReport({ ml_report: { status: "request_failed", error: error.message } }); }
+    finally { button.disabled = false; button.textContent = "Load results & regression →"; }
   }
   async function exportData() {
     const button = byId("export-button");
@@ -427,13 +556,8 @@
     clearNotice();
     try {
       const exported = await api("/api/export");
-      const url = URL.createObjectURL(new Blob([JSON.stringify(exported, null, 2)], { type: "application/json" }));
-      const anchor = node("a");
-      anchor.href = url;
-      anchor.download = `editguard-export-revision-${state.revision ?? "unknown"}.json`;
-      document.body.append(anchor); anchor.click(); anchor.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      notify("Workspace data and available slice evaluation exported as JSON.");
+      downloadJson(exported, `editguard-export-revision-${state.revision ?? "unknown"}.json`);
+      notify("Workspace data, training provenance and available evaluation evidence exported as JSON.");
     } catch (error) { notify(error.message, "error"); }
     finally { button.disabled = false; }
   }
@@ -451,11 +575,7 @@
     try { if (await loadData()) notify("Workspace records refreshed."); } finally { button.disabled = false; }
   }));
   byId("ask-form").addEventListener("submit", askQuestion);
-  byId("ask-mode").addEventListener("change", () => {
-    const mode = byId("ask-mode").value;
-    byId("ask-mode-label").textContent = mode === "structured" ? "STRUCTURED MODE" : "MODEL-GENERATED MODE";
-    byId("ask-mode-hint").textContent = mode === "structured" ? "Structured answers use approved facts directly. Generated neural text is evaluated separately." : `${modeNames[mode]} requires configured local models. Missing checkpoints return an unavailable error; retrieved sources do not verify generated prose.`;
-  });
+  byId("ask-mode").addEventListener("change", updateModeHint);
   byId("correction-form").addEventListener("submit", createCorrection);
   byId("correction-fact").addEventListener("change", selectedFactChanged);
   byId("supersedes").addEventListener("change", () => {
@@ -464,6 +584,7 @@
     byId("original-value").value = edit ? edit.corrected_value : fact?.value || "";
   });
   byId("run-evaluation").addEventListener("click", runEvaluation);
+  byId("download-ml-report").addEventListener("click", () => { if (state.mlReport) downloadJson(state.mlReport, "editguard-validation-development-summary.json"); });
   byId("export-button").addEventListener("click", exportData);
   selectView(location.hash.slice(1) || "assistant", false);
   loadData().catch(error => notify(`Workspace initialization failed: ${error.message}`, "error"));

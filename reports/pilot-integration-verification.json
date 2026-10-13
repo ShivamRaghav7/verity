@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "purpose": "pilot_integration_and_revision_preparation_engineering",
+  "recorded_at": "2026-10-13T06:32:28.615702+00:00",
+  "core_unittest": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+    "total": 273,
+    "passed": 271,
+    "skipped": 2,
+    "elapsed_seconds": 78.05,
+    "optional_ml_tests_skipped": true,
+    "log_sha256": "595d0ffcb72f0e4ea4c49eac4749fb75a264d15d7b8796633a7b6864252cfeb7"
+  },
+  "node_syntax_check": {
+    "command": "node --check editguard/static/app.js",
+    "passed": true
+  },
+  "git_diff_whitespace_check_passed": true,
+  "actual_learned_workflow": {
+    "passed": 31,
+    "checks": 31,
+    "report_sha256": "d359129f96da28837f7199b8e188f9c18d5151449056dde53cba3992fd0f3a37",
+    "model_correctness_is_separate": true,
+    "live_application_accessed": false
+  },
+  "plot_reproduction": {
+    "exports": 6,
+    "byte_identical": true,
+    "uses_only_tracked_evidence": true,
+    "output_sha256": {
+      "validation-outcomes.png": "23b45d9402f217e7bf27cfeaf8105e3f6ae24083ba24b627f57c2f518e01fea1",
+      "validation-outcomes.svg": "322f99fee803dc681fb5c7069213aa63e605b80a57dd58d7210e64e75f065021",
+      "scope-calibration.png": "77bf6053b63f8a5023e45ff3ba2ffba5c415b19a019689bb3b72405352041600",
+      "scope-calibration.svg": "5905acbae582d46790acd4db3520fdac61a4cf55e4b3768956116dfb533583b2",
+      "training-resources.png": "187898f8b6b8d6a16e015288860bcbae39198c8f6e98770617175e7076ec4c51",
+      "training-resources.svg": "971a6630ba2dac96a2484edf769133d6a98a6f33b203c96b00d8145eaf48cfba"
+    }
+  },
+  "scope_revision": {
+    "preflight_passed": true,
+    "wrapper_preflight_passed": true,
+    "wrong_run_resume_refused_before_training": true,
+    "profile_optimizer_steps": 4,
+    "profile_runtime_eligible": false,
+    "max_training_steps": 360,
+    "estimated_total_seconds": 200,
+    "estimated_peak_gpu_gib": 2.0,
+    "disk_budget_gib": 5,
+    "substantial_training_executed": false,
+    "run_card_sha256": "c279c6cd2dbea90ea5bc8a7ed50ef4f18ae05496413ab2905b2f5f88d65a7e33",
+    "profile_sha256": "ce044aa1b59414045a390514d9863c5f3d4f7410476d6ca3740c3e9e33e6c8d6"
+  },
+  "browser_layout_checks": {
+    "desktop_viewport": [
+      1280,
+      900
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "document_overflow": false,
+    "default_viewport_restored": true,
+    "screenshots": [
+      "reports/ui/pilot-v2-dashboard-desktop.png",
+      "reports/ui/pilot-v2-dashboard-mobile.png"
+    ]
+  },
+  "notes": [
+    "The first full-suite attempt hit a transient Windows directory-rename denial under OneDrive. Synthetic scope-balancing fixtures were moved to the operating-system temporary directory; the complete subsequent suite passed.",
+    "Frozen final test and unfamiliar-wording challenges remain unevaluated.",
+    "Governance checks and exploratory demonstration answers are not model accuracy estimates."
+  ]
+}

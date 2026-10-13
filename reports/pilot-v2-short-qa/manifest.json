@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "purpose": "exploratory_validation_short_qa",
+  "generated_at": "2026-10-13T05:56:20.199192+00:00",
+  "diagnostic_version": "editguard-request-bound-short-qa-v1",
+  "diagnostic_source_sha256": "1dc85463c29cff1c44169f22cd93ffca97787e67441fb01f71a9777de6edfd8f",
+  "analysis_source_sha256": "e1796c53e4c6bc320cc299c6d30e132c92642016bc9828667797dc66c7e976b5",
+  "primary_scorer_version": "editguard-short-facts-v2",
+  "primary_scorer_sha256": "b2c595a7d5ae9efc463a86c4ad6498553a7efa536a48152cef2afd2ac31b0ab1",
+  "input_directory": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\pilot-v2-validation-initial",
+  "source_sha256": {
+    "manifest.json": "1a935428262ccf62e88dab438d0e8eaf00845d7e3bdda98c55b8d6a919c25f3f",
+    "metrics.json": "b00aec77250480cc8c97b3700e3db540cc1b323e3d4066b160baf241785f6fdb",
+    "predictions.jsonl": "5bdcda40e6f929a0acac5ab4e213aaffaeb21cb471e0a3931b535972121a7548",
+    "oracle_predictions.jsonl": "a542a4cdfefe2cf43606b319498ecf72804f28e6e83281c9ea8b2a1a423f5afc"
+  },
+  "output_sha256": {
+    "predictions.jsonl": "cd87d55b4bae99e4568e1c5b0cc95903e75b7bf49f4389bfa8532853441949a8",
+    "oracle_predictions.jsonl": "83dba2d698cf49fa8d7c42fc1dab0038f117208cfed22ed7f78ac2fc0686dc14",
+    "summary.json": "de4ceb4ba79b0f75290771d8629651670d27faaf55b0da50450d4b5f71b615d5",
+    "summary.csv": "43ec62bae498315de52a3b1a1e1f91b2e6c55a089b0e650c8b553b2b715c2e06"
+  },
+  "source_files_unchanged": true,
+  "training_or_inference_executed": false,
+  "human_semantic_review": false,
+  "test_rows_read": false,
+  "post_hoc_policy": true,
+  "prediction_records": 600,
+  "oracle_records": 48
+}

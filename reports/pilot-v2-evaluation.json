@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "artifact_type": "editguard_development_evaluation",
+  "purpose": "validation_development",
+  "status": "completed",
+  "review_policy": "automated_development",
+  "human_reviewed_data": false,
+  "test_rows_read": false,
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "questions": 120,
+  "oracle_questions": 48,
+  "model_artifacts": {
+    "scope": {
+      "manifest_sha256": "fffe66966da4e6d0b2f0f84638d17390ec84a910d7a8d8f014eb566370a71c12",
+      "completed_steps": 360,
+      "selected_step": 120
+    },
+    "answer": {
+      "manifest_sha256": "bb34bd5c0e514d98bdb801cef8d6f08d953e70783eb698171d53b77c4e69a863",
+      "completed_steps": 240,
+      "selected_step": 240
+    }
+  },
+  "scope": {
+    "precision": {
+      "numerator": 36,
+      "denominator": 36,
+      "value": 1.0
+    },
+    "recall": {
+      "numerator": 36,
+      "denominator": 48,
+      "value": 0.75
+    },
+    "false_positive_rate": {
+      "numerator": 0,
+      "denominator": 72,
+      "value": 0.0
+    },
+    "brier": {
+      "numerator": 11.791822940714786,
+      "denominator": 120,
+      "value": 0.09826519117262321
+    },
+    "ece": {
+      "numerator": 10.004081892094431,
+      "denominator": 120,
+      "value": 0.08336734910078693
+    }
+  },
+  "configurations": [
+    {
+      "configuration": "unchanged_base",
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 120,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "p50_ms": 159.992,
+      "p95_ms": 282.15685,
+      "pending_review": 120,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "updated_rag",
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 120,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "p50_ms": 143.262,
+      "p95_ms": 248.7135,
+      "pending_review": 120,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "prompt_only",
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 120,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "p50_ms": 150.65800000000002,
+      "p95_ms": 275.17019999999997,
+      "pending_review": 120,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "similarity_editor",
+      "accuracy": {
+        "numerator": 30,
+        "denominator": 120,
+        "value": 0.25
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "p50_ms": 213.8275,
+      "p95_ms": 867.8399999999999,
+      "pending_review": 78,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "trained_scope_editor",
+      "accuracy": {
+        "numerator": 19,
+        "denominator": 120,
+        "value": 0.15833333333333333
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "p50_ms": 201.71,
+      "p95_ms": 849.9635499999999,
+      "pending_review": 89,
+      "errors": 0,
+      "unavailable": 0
+    }
+  ],
+  "oracle": {
+    "accuracy": {
+      "numerator": 31,
+      "denominator": 48,
+      "value": 0.6458333333333334
+    },
+    "coverage": {
+      "numerator": 48,
+      "denominator": 48,
+      "value": 1.0
+    },
+    "direct_accuracy": {
+      "numerator": 12,
+      "denominator": 12,
+      "value": 1.0
+    },
+    "paraphrase_accuracy": {
+      "numerator": 7,
+      "denominator": 12,
+      "value": 0.5833333333333334
+    },
+    "comparison_accuracy": {
+      "numerator": 12,
+      "denominator": 24,
+      "value": 0.5
+    }
+  },
+  "provenance": {
+    "config_sha256": "d190efdf2282cf20ddb4cfb574168f47c9e33078f9911c76073b33ad6494726a",
+    "scorer_version": "editguard-short-facts-v2",
+    "raw_manifest_path": "reports/pilot-v2-validation-initial/manifest.json",
+    "raw_manifest_sha256": "1a935428262ccf62e88dab438d0e8eaf00845d7e3bdda98c55b8d6a919c25f3f",
+    "predictions_sha256": "5bdcda40e6f929a0acac5ab4e213aaffaeb21cb471e0a3931b535972121a7548",
+    "metrics_sha256": "b00aec77250480cc8c97b3700e3db540cc1b323e3d4066b160baf241785f6fdb",
+    "base_weights_unchanged": true
+  },
+  "limitations": [
+    "Development validation on two entity families and shared question forms; no final-test claim.",
+    "Labels have automated development review, not independent human approval.",
+    "Strict scores are complete-fact endorsement lower bounds. All120 frozen-baseline answers await semantic review; zero credited is not zero factual correctness.",
+    "Short-answer QA is a separate post-hoc diagnostic and cannot replace these primary scores.",
+    "Scope temperature/threshold were selected on the same validation population; estimates are optimistic for generalization.",
+    "CLI latency excludes model loading, scoring, extra scope diagnostics and HTTP. Fixed order/shared caches prevent a controlled independent latency comparison.",
+    "Baseline-correct retention is undefined when no baseline complete assertions are automatically credited.",
+    "Answer generation fails comparison polarity in12 oracle cases; the classifier misses all12 direct edit questions."
+  ]
+}
