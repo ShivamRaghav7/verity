@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "frozen",
+  "purpose": "final_packet_lock_before_inference",
+  "frozen_at": "2026-10-14T14:35:00.038752+00:00",
+  "protocol_path": "reports/final/protocol-v2.json",
+  "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+  "packet_path": "data/final/final-v2",
+  "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+  "packet_files_sha256": {
+    "answer_test.jsonl": "7456d802f4fc52fc00c0df79180667f33b4ada9c510e0d54b1d1b8ec05c96e3e",
+    "audit.json": "b7aed2c048acd9b6e6a0a8219522b2e97f11c4bad00aab6dafd685d56b2db581",
+    "catalogue.json": "9c9c7fdbc152393efe92b150d9de246bc0e8f5b08330b5f5de366c3958ca3a22",
+    "challenge_test.jsonl": "39ed37d94638e5aadabd220e4a1b5af84022bd808b05f4ebb558e23888f95fda",
+    "derivation.json": "9dd1591bdb1527703c04c2fd5b8743e27449ccb52cda5af68e1b246a45776d93",
+    "edits.json": "e769db017db17575b11f37f658a0ae8ddb98f5d99657cf04bb8a5acef65fcce7",
+    "reviews.json": "7a76a7a9eb10eb1f957aab2aad543c641624a88749757ee9471b262fc7a2cbf8",
+    "scope_test.jsonl": "9f35015c8194a7770cf6cae876950275bf0994fb3c5afd6af8d99fc79d7c0a10",
+    "split_assignments.json": "90eca9dd854404363636d856412b951933781dc48941eaf6c7b9388762782cc7"
+  },
+  "counts": {
+    "answer": 288,
+    "challenge": 96,
+    "scope": 720
+  },
+  "review_counts": {
+    "accepted": 1104,
+    "flagged": 0
+  },
+  "review_policy": "automated_final",
+  "human_reviewed_data": false,
+  "inference_started": false,
+  "startup_amendment": "reports/final/startup-amendment.json",
+  "question_truth_and_derivation_bytes_unchanged": {
+    "scope_test.jsonl": true,
+    "answer_test.jsonl": true,
+    "challenge_test.jsonl": true,
+    "catalogue.json": true,
+    "edits.json": true,
+    "split_assignments.json": true,
+    "derivation.json": true
+  }
+}
