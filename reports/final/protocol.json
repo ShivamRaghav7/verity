@@ -1,0 +1,323 @@
+{
+  "calibration_source_sha256": {
+    "reports/scope-neutral2-runtime/calibration.json": "ab1a639dc427c630448dbe30e06d57fe245f5c6afb2db3419c16d25f513df299",
+    "reports/scope-neutral2-runtime/selection_grid.json": "dbf0b92f92882cda2b681bd8146fba49de3aeb9d108dbeb0af0dfab04def4600",
+    "reports/scope-neutral2-runtime/validation_probabilities.jsonl": "5ef3e0096045b575eb51755244c05653fe88752992d07dccb7109975c680cf79",
+    "reports/similarity-pilot-v3-current/calibration.json": "91e60f09a64184d72e041c7329771ec42cd0be2a0935890d40fd02fc551b1791",
+    "reports/similarity-pilot-v3-current/selection_grid.json": "696af1d5b01c43a1bf229d5745f689ce51b68ec3164f3bc2dcbc6f40f84a935a",
+    "reports/similarity-pilot-v3-current/validation_cosine_scores.jsonl": "9fea7e5007eb23a02707e565798374d937b134df92e83b734ddf2cf2b9052dd5"
+  },
+  "calibrations": {
+    "scope": {
+      "path": "reports/scope-neutral2-runtime/calibration.json",
+      "sha256": "ab1a639dc427c630448dbe30e06d57fe245f5c6afb2db3419c16d25f513df299"
+    },
+    "similarity": {
+      "path": "reports/similarity-pilot-v3-current/calibration.json",
+      "sha256": "91e60f09a64184d72e041c7329771ec42cd0be2a0935890d40fd02fc551b1791"
+    }
+  },
+  "configuration": {
+    "path": "configs/inference-final.json",
+    "sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134"
+  },
+  "development_directory": "data/generated/pilot-v3",
+  "development_evaluation": {
+    "path": "reports/targeted-candidate-v3-scored/manifest.json",
+    "sha256": "1549b8faf08659decbfe41ce190e800e29cce51d516bbc66b9a3260538c73c6f"
+  },
+  "development_families": {
+    "train": [
+      "family-015",
+      "family-037",
+      "family-055",
+      "family-073"
+    ],
+    "validation": [
+      "family-044",
+      "family-045"
+    ]
+  },
+  "development_source_sha256": {
+    "data/generated/pilot-v3/answer_train.jsonl": "4dce14eacf08f477295aae691db25d75e70fbd4556f6d8d2f5e0a1b2e10c1e8b",
+    "data/generated/pilot-v3/answer_validation.jsonl": "3fb5728bf69cf27be59712855a37159db2adcc1b23232947ee8ee643be073f4c",
+    "data/generated/pilot-v3/catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "data/generated/pilot-v3/manifest.json": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+    "data/generated/pilot-v3/scope_train.jsonl": "a47f9ed7b8849c7c8071419f4a13649d802a219ee8ac13a4bd2a47c1e8abaf04",
+    "data/generated/pilot-v3/scope_validation.jsonl": "683f840682c2b62f12fbc36d9fc208a405c5cfd2d0d1b2dbff4d8b0f07630a39",
+    "data/generated/pilot-v3/selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+    "data/generated/pilot-v3/split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1"
+  },
+  "evaluation": {
+    "answer_budget_tokens": 48,
+    "bootstrap": {
+      "cluster_unit": "entity_family",
+      "confidence": 0.95,
+      "paired": true,
+      "resamples": 2000,
+      "seed": 42
+    },
+    "configurations": [
+      "unchanged_base",
+      "updated_rag",
+      "prompt_only",
+      "similarity_editor",
+      "trained_scope_editor"
+    ],
+    "expected_base_parameter_fingerprint_sha256": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1
+    },
+    "latency": {
+      "policy": "complete per-request retrieval/scope/generation; first-use latency retained and labeled; load time recorded separately",
+      "warmup_requests": 0
+    },
+    "matched_populations": [
+      "scope",
+      "challenge"
+    ],
+    "matched_questions": 816,
+    "max_final_runs": 1,
+    "memory_policy": "single_focal_edit_plus_at_most_8_foreign_product_distractors",
+    "oracle_populations": [
+      "answer",
+      "challenge"
+    ],
+    "oracle_questions": 384,
+    "order": "population_then_row_id_ascending",
+    "policy": "One frozen final evaluation; no threshold/model/scorer changes or test-guided tuning after question access.",
+    "question_counts": {
+      "answer": 288,
+      "challenge": 96,
+      "scope": 720
+    }
+  },
+  "execution": {
+    "ledger_path": "runtime/final-evaluation-ledger.json",
+    "output_directory": "reports/final/evaluation"
+  },
+  "frozen_at": "2026-10-14T14:22:29.217257+00:00",
+  "human_reviewed_data": false,
+  "limitations": [
+    "Controlled fictional catalogue and finite question forms do not establish unrestricted-language reliability.",
+    "Automated final consistency review is not independent human semantic review.",
+    "Original challenge records remain agent-authored drafts; machine audit does not make them human-authored.",
+    "Entity-neutral classifier adaptation can create same-label abstracted overlap; report this separately from raw entity separation."
+  ],
+  "models": {
+    "answer": {
+      "artifact": "artifacts/answer/pilot-v2-polarity1",
+      "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+      "dataset_manifest_sha256": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+      "files_sha256": {
+        "model/config.json": "446075e2cea597f828604c07287be89fa8ea2bc0d6993f8522935cf9ed197ceb",
+        "model/generation_config.json": "8ca2843db044c98e0f2e08a5fc4c42cd34173c66dae250c99b45b30909dabe4e",
+        "model/model.safetensors": "6e6fbd867ed32adf2372e8b587b92d30c7078f8ff318ef3d1ba0348e07bdea86",
+        "tokenizer/tokenizer.json": "2432e8aa83414a69884a5cbd54a68f528c042d1f30780affbefcbb85091f022e",
+        "tokenizer/tokenizer_config.json": "7d016030202fb3ebbd5554fb910b5281ef4f55a92e08a8cdd001af0598d487be"
+      },
+      "human_reviewed_data": false,
+      "manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "model_id": "google/flan-t5-small",
+      "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+      "run_card_sha256": "facb95bbdb26e660f1955af2231d2853fd1967a4e3d266262c6408396092731f",
+      "scope_input_overlap": null,
+      "scope_input_policy": null,
+      "selected_model_state_sha256": "f4a3bc76c38c101ff8451524ccdbdf45305f872f91f541c9d3aab5aeefa8d6be",
+      "training_data_directory": "data/generated/pilot-v2",
+      "training_implementation_sha256": {
+        "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+        "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+        "editguard/training.py": "d899f4e348dffed7b6811bf6eeaaca33f24ec6a4d77e312f6c45e618026c414b",
+        "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+        "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+        "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+      },
+      "training_profile": {
+        "path": "reports/profiles/guarded-answer-polarity.json",
+        "sha256": "435e4cf12b17e6e1674afd9c64adb4e1d362f31dbc69a02c3e292457c2d979a3"
+      },
+      "training_review_policy": "automated_development",
+      "training_sources_sha256": {
+        "artifacts/answer/pilot-v2-polarity1/run_card.json": "facb95bbdb26e660f1955af2231d2853fd1967a4e3d266262c6408396092731f",
+        "data/generated/pilot-v2/answer_train.jsonl": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+        "data/generated/pilot-v2/answer_validation.jsonl": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7",
+        "data/generated/pilot-v2/catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+        "data/generated/pilot-v2/derivation.json": "31457c6549b8d6efd301bbb0c04807408133227d5345605982f6a3881edfce9f",
+        "data/generated/pilot-v2/manifest.json": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+        "data/generated/pilot-v2/scope_train.jsonl": "f061e979322400b28d7cbad162c7f3d6e4ae6e69e6e97c70b4407f58b32b66cd",
+        "data/generated/pilot-v2/scope_validation.jsonl": "e4060769f69916e4abdd4126c10fb9bbe4e8862f0948942c4df168f22571f7e3",
+        "data/generated/pilot-v2/selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+        "data/generated/pilot-v2/split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1",
+        "reports/pilot-v2-reviews.automated.json": "a43554b6b39268472bb7c467e6bc502f0a0301efd6cdd880deb1958a7c824688"
+      }
+    },
+    "scope": {
+      "artifact": "artifacts/scope/pilot-v3-neutral2",
+      "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+      "dataset_manifest_sha256": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+      "files_sha256": {
+        "model/config.json": "430f9d988107cb393a7d80ca9a2b9e08725120e4eee38d933f8cb8d19281e4f9",
+        "model/model.safetensors": "2f536d84c41c96a0f9d94290af91ab911f22daec7dc7fc0877310405c28e6550",
+        "tokenizer/tokenizer.json": "f83a7f24eee69f73e1a5cad5a09dac6e3c6731c461540cb3498b22285d3ca6ed",
+        "tokenizer/tokenizer_config.json": "b568faa40e8980cc2daf9019ca9e631972ad6cb9835068fb1106a3b8b4c83c1b"
+      },
+      "human_reviewed_data": false,
+      "manifest_sha256": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459",
+      "model_id": "distilbert/distilbert-base-uncased",
+      "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+      "run_card_sha256": "3c4787060ea4ff3d9eb226759eed277e8bbda76878e3ee3adb96ce4884298c61",
+      "scope_input_overlap": {
+        "cross_split": {
+          "contradictory_label_pairs": 0,
+          "identical_input_pairs": 8,
+          "same_label_pairs": 8,
+          "train_rows_with_shared_pair": 8,
+          "validation_rows_with_shared_pair": 8
+        },
+        "disclaimer": "Raw reviewed entity and lineage splits remain unchanged. Identical abstracted inputs may occur across those splits; same-label overlap is disclosed and is not evidence of unseen logical forms.",
+        "scope_input_policy": "entity_neutral_v1",
+        "train": {
+          "contradictory_label_pairs": 0,
+          "rows": 240,
+          "same_label_duplicate_groups": 0,
+          "same_label_duplicate_rows": 0,
+          "unique_pairs": 240
+        },
+        "validation": {
+          "contradictory_label_pairs": 0,
+          "rows": 120,
+          "same_label_duplicate_groups": 0,
+          "same_label_duplicate_rows": 0,
+          "unique_pairs": 120
+        }
+      },
+      "scope_input_policy": "entity_neutral_v1",
+      "selected_model_state_sha256": "7d938e98388087d0d209e3f4b953452241f4011f46a15a0e8e843cf2cd64ca5d",
+      "training_data_directory": "data/generated/pilot-v3",
+      "training_implementation_sha256": {
+        "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+        "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+        "editguard/training.py": "d899f4e348dffed7b6811bf6eeaaca33f24ec6a4d77e312f6c45e618026c414b",
+        "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+        "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+        "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+      },
+      "training_profile": {
+        "path": "reports/profiles/guarded-scope-neutral.json",
+        "sha256": "6559685bd4812bac156ca0126dd79a27caa46bf046c9cc7f81736d01eb0f4a78"
+      },
+      "training_review_policy": "automated_development",
+      "training_sources_sha256": {
+        "artifacts/scope/pilot-v3-neutral2/run_card.json": "3c4787060ea4ff3d9eb226759eed277e8bbda76878e3ee3adb96ce4884298c61",
+        "data/generated/pilot-v3/answer_train.jsonl": "4dce14eacf08f477295aae691db25d75e70fbd4556f6d8d2f5e0a1b2e10c1e8b",
+        "data/generated/pilot-v3/answer_validation.jsonl": "3fb5728bf69cf27be59712855a37159db2adcc1b23232947ee8ee643be073f4c",
+        "data/generated/pilot-v3/catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+        "data/generated/pilot-v3/derivation.json": "8beef61e8c9ae1b8e91d544bb06e6c5f2bfac5e15d5597ad9372d7701aa0db71",
+        "data/generated/pilot-v3/manifest.json": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+        "data/generated/pilot-v3/scope_train.jsonl": "a47f9ed7b8849c7c8071419f4a13649d802a219ee8ac13a4bd2a47c1e8abaf04",
+        "data/generated/pilot-v3/scope_validation.jsonl": "683f840682c2b62f12fbc36d9fc208a405c5cfd2d0d1b2dbff4d8b0f07630a39",
+        "data/generated/pilot-v3/selection.json": "10dcf6355ae008238fbe696ca1d4229efe2f889b35bb1b405e175df1623f6b17",
+        "data/generated/pilot-v3/split_assignments.json": "7f3553f0b828e00fa415de6b7d25a13e10e90ee6a736cb1fac53bbc6ec6fbaa1",
+        "reports/pilot-v3-reviews.automated.json": "3bcff20d4e82cfae18d04445fa51123ee43aa2592a8dacf93aeaf536d6f84546"
+      }
+    }
+  },
+  "original": {
+    "dataset_id": "editguard-controlled-v1",
+    "directory": "data/generated/controlled-v1",
+    "files_sha256": {
+      "answer_test.jsonl": "8b7d2abb54d0ba034ca9b20ff8f374d821ba0f195fc72c4aec00e2eb83aea646",
+      "answer_train.jsonl": "bd8e22e4ae2394b2947a27e90e8c10ea503c775e53fc7423f472f9f90d5c92f3",
+      "answer_validation.jsonl": "f7bb5108983d239b8b7e457155f6745821abc4108792cd96d31125358c4c183f",
+      "catalogue.json": "da5eee118a167eb9a7976d066d80fbf361a3decc916b874bba2b5ed2295a0870",
+      "challenge_drafts.jsonl": "c6ac8831bcecbdb44845a46d4e2a3f09d2f720a444176173dabae3505fc77e55",
+      "edits.json": "67f39d30a3eb2a5b6ffbaf10a3be5c9d7adbbabb1cab0e406800ce4d77fb8b72",
+      "scope_test.jsonl": "49b60b9acd0cecd24c1ab965aefa9ec45816f94d7a8cdafa3234930c639976c6",
+      "scope_train.jsonl": "1046124570131fd6d90003298097968927cef031f01f0c336e9ede9f02db6e12",
+      "scope_validation.jsonl": "4b7f5972161161925febdddc6751874478618455f88c957b0daf21f49c09f861",
+      "split_assignments.json": "35e761f25473d4c6749bb97d0b067aa9041f342bddede3bd9661e5215364a458"
+    },
+    "manifest_sha256": "2c5882490ac5f29c45c2bf20f97128d46cc3e0974c84a4838d47bd3ac8aaa42d"
+  },
+  "original_question_content_deserialized_during_freeze": false,
+  "preprocessing_disclosure": {
+    "development_overlap": {
+      "cross_split": {
+        "contradictory_label_pairs": 0,
+        "identical_input_pairs": 8,
+        "same_label_pairs": 8,
+        "train_rows_with_shared_pair": 8,
+        "validation_rows_with_shared_pair": 8
+      },
+      "disclaimer": "Raw reviewed entity and lineage splits remain unchanged. Identical abstracted inputs may occur across those splits; same-label overlap is disclosed and is not evidence of unseen logical forms.",
+      "scope_input_policy": "entity_neutral_v1",
+      "train": {
+        "contradictory_label_pairs": 0,
+        "rows": 240,
+        "same_label_duplicate_groups": 0,
+        "same_label_duplicate_rows": 0,
+        "unique_pairs": 240
+      },
+      "validation": {
+        "contradictory_label_pairs": 0,
+        "rows": 120,
+        "same_label_duplicate_groups": 0,
+        "same_label_duplicate_rows": 0,
+        "unique_pairs": 120
+      }
+    },
+    "policy": "Raw entity/family/lineage separation remains required. Shared logical forms and same-label transformed inputs are disclosed; contradictory transformed pairs are forbidden. Test transformed overlap is reported after packet preparation, without model tuning.",
+    "scope_input_policy": "entity_neutral_v1"
+  },
+  "protocol_id": "editguard-final-67ad084df9ce096f",
+  "purpose": "frozen_final_evaluation_protocol",
+  "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "review_authorization": "User explicitly authorized a fully disclosed automated final audit; no human review or independent human challenge authorship is claimed.",
+  "review_policy": "automated_final",
+  "runtime_packages": {
+    "huggingface-hub": "1.33.0",
+    "numpy": "2.4.2",
+    "psutil": "7.2.2",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.3",
+    "torch": "2.9.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "schema_version": 1,
+  "scoring": {
+    "abstentions": "uncredited in full denominator on answerable rows",
+    "pending_semantic_review": "uncredited in full denominator; no model judge or invented human decisions",
+    "primary_sha256": "7b4de8fa2fd7065eeaabe488e96253da24fc63272c86ad409f83bdde41e6218a",
+    "primary_version": "editguard-short-facts-v3",
+    "short_qa_role": "separate request-bound controlled-form metric; bare answers do not prove complete fact endorsement",
+    "short_qa_sha256": "1dc85463c29cff1c44169f22cd93ffca97787e67441fb01f71a9777de6edfd8f",
+    "short_qa_version": "editguard-request-bound-short-qa-v1",
+    "structured_answers": "never count as learned model generation evidence"
+  },
+  "source_sha256": {
+    "editguard/__init__.py": "4f3c0ed5a4d96704e09d49570a16cbc1438e9b5990e53e91a23b93fba98035c5",
+    "editguard/comparison.py": "23000aaf5d590f8cc246bf0b609f3f709700f14e1566b45869ce80035b6c5f99",
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/metrics.py": "7f7eb8fba72f920845cdcc2d326c83dd4312eec005ce16597d910e5dff1e334c",
+    "editguard/neural.py": "4d4ea6af3bdc33b31b72c86643ce472758bbc093751137662efffa5ddd326fa7",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+    "editguard/scoring.py": "7b4de8fa2fd7065eeaabe488e96253da24fc63272c86ad409f83bdde41e6218a",
+    "editguard/short_qa.py": "1dc85463c29cff1c44169f22cd93ffca97787e67441fb01f71a9777de6edfd8f",
+    "editguard/training.py": "d899f4e348dffed7b6811bf6eeaaca33f24ec6a4d77e312f6c45e618026c414b",
+    "scripts/aggregate_evaluation.py": "5c7928845705ad7e4a141b57547bae25ec7e56e71a3f295e64863a9b7fdb400e",
+    "scripts/analyze_short_qa.py": "e1796c53e4c6bc320cc299c6d30e132c92642016bc9828667797dc66c7e976b5",
+    "scripts/audit_pilot_v3.py": "9bafc7c3e621d59684aea64c7af1fa24b45231d3a7d5b69ef17df9975cf2e725",
+    "scripts/final_label_audit.py": "ebf633664eb84d44c87fbd07e0970e8c7c4ab5fb155469c2a51d39adcc27bff0",
+    "scripts/final_protocol.py": "f85a74de59c137c7e3c96f6d3ca80ae7bbe6d9bb0965aa4050991b64ec47bde3",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/prepare_final_packet.py": "67372b9bddcce1a2b04fa34e50d52bb750fb72a20f62660d560f268d2e831477",
+    "scripts/review_dataset.py": "0e40fb72e35d41042c11ed0e2789ae42efadbcabe662e37ecdc2fc41c3651313",
+    "scripts/run_comparison.py": "d7495b8d8529dc11da5b69b7ea7277fa15800cbd1160b32602dcbf1af59d33de",
+    "scripts/run_final_evaluation.py": "6898d24ded731644125802a38edbf701eec3e0e8ff516e32110ccd24ec96fb85",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  },
+  "status": "frozen"
+}
