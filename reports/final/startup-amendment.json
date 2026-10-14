@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "event": "startup_rejection_before_inference",
+  "original_protocol_sha256": "e74ec6d82897520a8edf25cf888b47f822a0a142a20fa07144a3599f4106d4f6",
+  "reason": "Protocol listed exact inference dependencies; runner still required all application modules. Guard rejected before packet loading, model construction and ledger creation.",
+  "model_inference_calls": 0,
+  "training_executed": false,
+  "model_or_threshold_or_scorer_changes": false,
+  "question_or_label_changes": false,
+  "old_runner_sha256": "6898d24ded731644125802a38edbf701eec3e0e8ff516e32110ccd24ec96fb85",
+  "new_runner_sha256": "fa1b9560dd1341947c8a596c5bcf5ece5d6c56fce146fb3832493b5d9fe64c4e",
+  "fix": "Use one shared dependency inventory and add actual freeze-packet-runner handoff regression coverage.",
+  "amendment_policy": "Preserve rejected protocol/packet/log; publish a new source-bound protocol and identical question rows before any final inference."
+}

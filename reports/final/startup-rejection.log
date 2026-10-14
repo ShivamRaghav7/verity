@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 585, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 579, in main
+    result = run_final(args.protocol, args.protocol_sha256, args.packet, resume=args.resume, export_only=args.export_only)
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 341, in run_final
+    return _run_final_locked(protocol_path, protocol_sha256, packet, resume=resume, export_only=export_only,
+                             root=root, runner_factory=runner_factory)
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 347, in _run_final_locked
+    protocol, packet_manifest, facts, populations = locked_inputs(protocol_path, protocol_sha256, packet, root=root)
+                                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 117, in locked_inputs
+    raise ValueError("Final protocol must bind all runner/scorer sources and explicitly disclose automated review")
+ValueError: Final protocol must bind all runner/scorer sources and explicitly disclose automated review

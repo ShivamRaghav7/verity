@@ -109,6 +109,17 @@ class FinalProtocolPacketTests(unittest.TestCase):
         manifest["files"][changed_name] = protocol_tool.file_hash(self.packet / changed_name)
         self.write(self.packet / "manifest.json", manifest)
 
+    def test_actual_frozen_packet_handoff_matches_runner_dependency_inventory(self):
+        from scripts.run_final_evaluation import locked_inputs, REQUIRED_SOURCES
+        self.prepare()
+        protocol, manifest, facts, populations = locked_inputs(
+            self.protocol, protocol_tool.file_hash(self.protocol), self.packet, root=self.root)
+        self.assertEqual(REQUIRED_SOURCES, set(protocol_tool.SOURCE_NAMES))
+        self.assertEqual(set(protocol["source_sha256"]), REQUIRED_SOURCES)
+        self.assertEqual({name: len(rows) for name, rows in populations.items()}, manifest["counts"])
+        self.assertTrue(facts)
+        self.assertEqual(protocol["evaluation"]["matched_questions"], len(populations["scope"]) + len(populations["challenge"]))
+
     def test_freeze_does_not_deserialize_questions_and_binds_single_attempt(self):
         original_reader = protocol_tool.read_json
         forbidden = {"scope_test.jsonl", "answer_test.jsonl", "challenge_drafts.jsonl"}

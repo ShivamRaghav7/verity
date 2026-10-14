@@ -33,12 +33,9 @@ from scripts.analyze_short_qa import summarize as short_summary
 from scripts.prepare_data import content_hash
 from scripts.review_dataset import read_json
 from scripts.run_comparison import oracle_answer_result, scenario_memory, score_record
+from scripts.final_protocol import SOURCE_NAMES
 
-REQUIRED_SOURCES = {str(path.relative_to(ROOT)).replace("\\", "/") for path in (ROOT / "editguard").glob("*.py")} | {
-    "scripts/run_comparison.py", "scripts/analyze_short_qa.py", "scripts/aggregate_evaluation.py",
-    "scripts/prepare_data.py", "scripts/review_dataset.py", "scripts/audit_pilot_v3.py",
-    "scripts/final_protocol.py", "scripts/prepare_final_packet.py", "scripts/final_label_audit.py",
-    "scripts/run_final_evaluation.py"}
+REQUIRED_SOURCES = set(SOURCE_NAMES)
 ANSWERED_STATUSES = {"answered", "ok", "success", "generated"}
 OUTPUT_NAMES = ("predictions.jsonl", "oracle_predictions.jsonl", "metrics.json", "short_qa_metrics.json")
 
