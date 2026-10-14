@@ -15,6 +15,36 @@ from editguard.neural import file_sha256, validate_artifact
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def runtime_policy_fixture(case, total=10, positives=4):
+    """Synthetic saved probabilities only; no model or project data is loaded."""
+    from scripts.calibrate_scope_runtime import ROUTING_POLICY, fit_calibration
+    from scripts.prepare_data import content_hash
+    labels = [1] * positives + [0] * (total - positives)
+    probabilities = [.55] * (total - 1) + [.1]
+    fit = fit_calibration(labels, probabilities, [True] * positives + [False] * (total - positives - 1) + [True])
+    records = [{"id": f"synthetic-pair-{index}", "split": "validation", "label": label,
+                "scope_probability": probability, "row_sha256": content_hash({"synthetic_index": index})}
+               for index, (label, probability) in enumerate(zip(labels, probabilities))]
+    raw_path, grid_path = case.root / "validation_probabilities.jsonl", case.root / "selection_grid.json"
+    raw_path.write_text("".join(json.dumps(record) + "\n" for record in records), encoding="utf-8")
+    grid = {**fit, "routing_policy": ROUTING_POLICY}
+    grid_path.write_text(json.dumps(grid), encoding="utf-8")
+    source_names = ("editguard/comparison.py", "editguard/neural.py", "editguard/formatting.py",
+                    "scripts/calibrate_scope.py", "scripts/calibrate_similarity.py")
+    calibration = {"purpose": "validation_calibration", "status": "frozen", "split": "validation", "test_rows_read": False,
+        "dataset_id": case.manifests["scope"]["dataset_id"], "population": "single_focal_question_correction_pairs",
+        "routing_policy": ROUTING_POLICY, "scope_manifest_sha256": file_sha256(case.root / "scope/manifest.json"),
+        "threshold": fit["threshold"], "ambiguity_margin": fit["ambiguity_margin"], "temperature": fit["temperature"],
+        "raw_pair_metrics": fit["raw_pair_metrics"], "compatibility_gated_metrics": fit["compatibility_gated_metrics"],
+        "validation_operating_metrics": fit["compatibility_gated_metrics"], "declared_costs": fit["declared_costs"],
+        "accepted_validation_rows": total, "accepted_row_sha256": {record["id"]: record["row_sha256"] for record in records},
+        "probabilities_sha256": file_sha256(raw_path), "selection_grid_sha256": file_sha256(grid_path),
+        "policy_source_sha256": {name: file_sha256(ROOT / name) for name in source_names},
+        "script_sha256": file_sha256(ROOT / "scripts/calibrate_scope_runtime.py")}
+    case.calibration.write_text(json.dumps(calibration), encoding="utf-8")
+    return calibration
+
+
 class ModelStatusTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -88,6 +118,29 @@ class ModelStatusTests(unittest.TestCase):
             file.write_bytes(original)
             self.assertEqual(client.get("/api/health").json()["models"]["scope"], "trained")
             self.assertEqual(validate.call_count, 6)
+
+    def test_routing_policy_metadata_checks_source_files_without_model_execution(self):
+        runtime_policy_fixture(self)
+        client = self.client()
+        with patch("editguard.comparison.ComparisonRunner.from_config", side_effect=AssertionError("No model execution")):
+            self.assertEqual(client.get("/api/health").json()["calibrations"]["scope"], "validated")
+            raw = self.root / "validation_probabilities.jsonl"
+            original = raw.read_bytes()
+            raw.write_bytes(original + b"\n")
+            self.assertEqual(client.get("/api/health").json()["calibrations"]["scope"], "invalid")
+            raw.write_bytes(original)
+            self.assertEqual(client.get("/api/health").json()["calibrations"]["scope"], "validated")
+
+    def test_unknown_routing_policy_and_unbound_policy_source_are_invalid(self):
+        calibration = runtime_policy_fixture(self)
+        client = self.client()
+        original = json.loads(json.dumps(calibration))
+        for change in (lambda value: value.update(routing_policy="unknown"),
+                       lambda value: value["policy_source_sha256"].update({"editguard/neural.py": "f" * 64})):
+            calibration = json.loads(json.dumps(original))
+            change(calibration)
+            self.calibration.write_text(json.dumps(calibration), encoding="utf-8")
+            self.assertEqual(client.get("/api/health").json()["calibrations"]["scope"], "invalid")
 
     def test_missing_invalid_and_smoke_artifacts_keep_learned_mode_unavailable(self):
         client = self.client()
@@ -299,6 +352,14 @@ class DevelopmentReportTests(unittest.TestCase):
     def save_report(self):
         self.report_path.write_text(json.dumps(self.report), encoding="utf-8")
 
+    def add_scope_policy(self):
+        calibration = runtime_policy_fixture(self)
+        self.report["scope_policy"] = {key: calibration[key] for key in ("temperature", "threshold", "ambiguity_margin",
+            "routing_policy", "population", "scope_manifest_sha256", "raw_pair_metrics", "compatibility_gated_metrics")}
+        self.report["scope_policy"].update(calibration_path=str(self.calibration), calibration_sha256=file_sha256(self.calibration))
+        self.save_report()
+        return calibration
+
     def client(self):
         client = TestClient(create_app(self.root / "report.sqlite3", "test-token", inference_config=self.config_path,
                                      evaluation_report=self.report_path))
@@ -320,6 +381,69 @@ class DevelopmentReportTests(unittest.TestCase):
         self.assertEqual(result["final_evaluation"], "pending")
         self.assertEqual(result["ml_results"]["configurations"][0]["accuracy"]["denominator"], 10)
         self.assertEqual(result["ml_results"]["configurations"][0]["pending_review"], 3)
+
+    def test_scope_policy_separates_raw_failures_from_deterministic_gates(self):
+        self.add_scope_policy()
+        client = self.client()
+        with patch("editguard.comparison.ComparisonRunner.from_config", side_effect=AssertionError("No model execution")):
+            result = client.get("/api/evaluation").json()
+        self.assertEqual(result["ml_report"]["status"], "available", result["ml_report"])
+        policy = result["ml_results"]["scope_policy"]
+        self.assertEqual(policy["raw_pair_metrics"]["counts"]["false_application"], 5)
+        self.assertEqual(policy["compatibility_gated_metrics"]["counts"]["false_application"], 0)
+        self.assertEqual(policy["raw_pair_metrics"]["false_application_rate"]["denominator"], 6)
+        self.assertEqual(policy["compatibility_gated_metrics"]["false_application_rate"]["denominator"], 6)
+
+    def test_scope_policy_omissions_and_altered_denominators_are_rejected(self):
+        self.add_scope_policy()
+        client = self.client()
+        original = json.loads(json.dumps(self.report))
+        mutations = (lambda value: value["scope_policy"].pop("raw_pair_metrics"),
+            lambda value: value["scope_policy"]["compatibility_gated_metrics"]["counts"].update(total=8),
+            lambda value: value["scope_policy"]["raw_pair_metrics"]["false_application_rate"].update(denominator=10, value=.5),
+            lambda value: value["scope_policy"].update(scope_manifest_sha256="f" * 64),
+            lambda value: value["scope_policy"].update(calibration_sha256="f" * 64))
+        for mutation in mutations:
+            self.report = json.loads(json.dumps(original))
+            mutation(self.report)
+            self.save_report()
+            self.assertIsNone(client.get("/api/evaluation").json()["ml_results"])
+
+    def test_scope_policy_counts_and_clarifications_require_consistent_rates(self):
+        from editguard.api import DevelopmentReportCache
+        self.add_scope_policy()
+        metrics = self.report["scope_policy"]["raw_pair_metrics"]
+        for change in (lambda value: value["counts"].update(clarification_positive=1),
+                       lambda value: value["precision"].update(value=1),
+                       lambda value: value["false_application_rate"].update(numerator=0, denominator=6, value=0),
+                       lambda value: value["coverage"].update(numerator=9, denominator=9, value=1)):
+            changed = json.loads(json.dumps(metrics))
+            change(changed)
+            with self.assertRaises(ValueError):
+                DevelopmentReportCache.scope_policy_metrics(changed, 10, 4)
+
+    def test_scope_policy_must_match_current_configured_calibration(self):
+        calibration = self.add_scope_policy()
+        client = self.client()
+        self.assertIsNotNone(client.get("/api/evaluation").json()["ml_results"])
+        calibration["synthetic_new_snapshot"] = True
+        different = self.root / "different-calibration.json"
+        different.write_text(json.dumps(calibration), encoding="utf-8")
+        self.config["calibration_artifact"] = str(different)
+        self.save_config()
+        result = client.get("/api/evaluation").json()
+        self.assertIsNone(result["ml_results"])
+        self.assertEqual(result["ml_report"]["status"], "incompatible")
+
+    def test_scope_policy_evidence_changes_invalidate_cached_report(self):
+        self.add_scope_policy()
+        client = self.client()
+        self.assertIsNotNone(client.get("/api/evaluation").json()["ml_results"])
+        raw = self.root / "validation_probabilities.jsonl"
+        raw.write_text(raw.read_text() + "\n", encoding="utf-8")
+        result = client.get("/api/evaluation").json()
+        self.assertIsNone(result["ml_results"])
+        self.assertEqual(result["ml_report"]["status"], "invalid")
 
     def test_missing_corrupted_or_changed_model_evidence_suppresses_accuracy(self):
         client = self.client()
@@ -407,6 +531,11 @@ class DevelopmentReportTests(unittest.TestCase):
         self.assertIn("Baseline-correct retention", script)
         self.assertIn("Frozen test data has not been evaluated", script)
         self.assertIn("configuration_matches === false", script)
+        self.assertIn('id="scope-policy-panel"', page)
+        self.assertIn("does not measure learned boundary accuracy", page)
+        self.assertIn("full memory routing", page)
+        self.assertIn("Raw classifier + uncertainty", script)
+        self.assertIn("Approval & compatibility gates + classifier", script)
 
 
 if __name__ == "__main__":

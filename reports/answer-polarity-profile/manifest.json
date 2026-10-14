@@ -1,0 +1,165 @@
+{
+  "artifact_type": "editguard_auxiliary",
+  "completed_steps": 4,
+  "configuration_hash": "cb40f85c67eba6fbac9e957f9f30bc35ba91ee01cc730308e4ff6b603e00fdf2",
+  "data_hashes": {
+    "train_rows": "1473cd7ad6621b7c4565fe50d16f981187dded1ee13755eb6df3fc5a2f9ac4c1",
+    "validation_rows": "b5d0f70cf36d5041118c3dc21824d2ddf1bc27698c4f0a55074a0eed8ca0b757"
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "disclaimer": "Four-step development pilot profile; no accuracy claim and runtime must reject this artifact.",
+  "environment": {
+    "attention_implementation": "eager",
+    "cpu_threads": 2,
+    "cublas_workspace_config": ":4096:8",
+    "cuda_devices": [
+      "NVIDIA GeForce RTX 4050 Laptop GPU"
+    ],
+    "cuda_visible_devices": null,
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "machine": "AMD64",
+    "nvidia_driver_uuid_identity": [
+      "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+    ],
+    "packages": {
+      "numpy": "2.4.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.3",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "precision": "float32",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "tf32": false,
+    "torch_cuda": "13.0"
+  },
+  "environment_hash": "57abe36515dd32e0fd37b77b5dc26b268df7f8629de71051de2fbe178524c9a0",
+  "files_sha256": {
+    "model/config.json": "446075e2cea597f828604c07287be89fa8ea2bc0d6993f8522935cf9ed197ceb",
+    "model/generation_config.json": "8ca2843db044c98e0f2e08a5fc4c42cd34173c66dae250c99b45b30909dabe4e",
+    "model/model.safetensors": "2b40658d67a9d069e02245e4d9b3e0e3ab02e6dc5bdb63ce15cdbc561b084991",
+    "tokenizer/tokenizer.json": "2432e8aa83414a69884a5cbd54a68f528c042d1f30780affbefcbb85091f022e",
+    "tokenizer/tokenizer_config.json": "7d016030202fb3ebbd5554fb910b5281ef4f55a92e08a8cdd001af0598d487be"
+  },
+  "human_reviewed_data": false,
+  "input_format": "dataset_input_text_v1",
+  "input_format_version": "editguard-input-v2",
+  "input_length": 192,
+  "loss_objective": {
+    "comparison_first_token_weight": 8,
+    "normalization": "sum_weighted_token_nll_over_sum_weights",
+    "policy": "comparison_first_token_8x",
+    "rule": "first target token of reviewed comparison yes/no rows has weight 8; other valid tokens 1; padding 0",
+    "schema_version": 1
+  },
+  "manifest_sha256": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+  "max_steps": 4,
+  "model_id": "google/flan-t5-small",
+  "model_path": "model",
+  "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+  "num_labels": null,
+  "positive_class_index": null,
+  "pretrained_state_sha256": "639acba07cf6255cd52e1af1e8953de065b4a95e29ebff59d26afe7f16b94e19",
+  "purpose": "smoke_test",
+  "review_policy": "automated_development",
+  "reviewed_inputs": false,
+  "reviews_sha256": "a43554b6b39268472bb7c467e6bc502f0a0301efd6cdd880deb1958a7c824688",
+  "run_card_sha256": "d9ad80a0007ef8fe55a649417f5edfec65cd57f3326930b16ac4e66e9759623b",
+  "schema_version": 1,
+  "selected_model_state_sha256": "241c74b6e8528bba30425b267217d6e024821b020ac7180b798fa8b5a251c708",
+  "selection": {
+    "checkpoint": "step-00000004",
+    "global_step": 4,
+    "metric": "validation_weighted_token_loss",
+    "value": 1.083372459059856
+  },
+  "status": "completed",
+  "target_length": 48,
+  "task": "answer",
+  "tokenization": {
+    "train": {
+      "input_truncated_rows": 0,
+      "loss_weight_sum": 1976.0,
+      "max_input_tokens": 132,
+      "max_target_tokens": 20,
+      "rows": 96,
+      "target_truncated_rows": 0,
+      "weighted_polarity_rows": {
+        "no": 24,
+        "yes": 24
+      }
+    },
+    "validation": {
+      "input_truncated_rows": 0,
+      "loss_weight_sum": 976.0,
+      "max_input_tokens": 127,
+      "max_target_tokens": 19,
+      "rows": 48,
+      "target_truncated_rows": 0,
+      "weighted_polarity_rows": {
+        "no": 12,
+        "yes": 12
+      }
+    }
+  },
+  "tokenizer_hash": "c472508a1103b3b5f2d64e4a04faaea37260579dd044f6bb5f38a664c7cfb0d5",
+  "tokenizer_path": "tokenizer",
+  "trainer_source_hashes": {
+    "editguard/training.py": "15da33779cca62bddb5b3951215fd25fbadac2576a27a16d8ad705153c75593d",
+    "scripts/preflight_training.py": "030e32fa60a05ec0de7bf1bf20c85fd5cf8b6264f71452ebda9b1ca0d189bf48",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  },
+  "training": {
+    "best_validation": {
+      "checkpoint": "step-00000004",
+      "global_step": 4,
+      "metric": "validation_weighted_token_loss",
+      "value": 1.083372459059856
+    },
+    "checkpoint_measurements_this_process": [
+      {
+        "global_step": 2,
+        "seconds": 82.46626520000063
+      },
+      {
+        "global_step": 4,
+        "seconds": 90.3299791999998
+      }
+    ],
+    "elapsed_training_seconds": 180.43652210000073,
+    "final_state_sha256": "241c74b6e8528bba30425b267217d6e024821b020ac7180b798fa8b5a251c708",
+    "global_step": 4,
+    "last_checkpoint": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\profiles\\pilot-v2-answer-polarity\\checkpoints\\step-00000004",
+    "loss_objective": {
+      "comparison_first_token_weight": 8,
+      "normalization": "sum_weighted_token_nll_over_sum_weights",
+      "policy": "comparison_first_token_8x",
+      "rule": "first target token of reviewed comparison yes/no rows has weight 8; other valid tokens 1; padding 0",
+      "schema_version": 1
+    },
+    "resources": {
+      "peak_allocated_gpu_bytes": 1614600704,
+      "peak_reserved_gpu_bytes": 1778384896,
+      "process_rss_bytes": 2526793728
+    },
+    "status": "completed",
+    "validation_measurements_this_process": [
+      {
+        "global_step": 2,
+        "loss_weight_sum": 976.0,
+        "rows": 48,
+        "seconds": 2.4196246999999858
+      },
+      {
+        "global_step": 4,
+        "loss_weight_sum": 976.0,
+        "rows": 48,
+        "seconds": 2.483107600000949
+      }
+    ]
+  },
+  "updated_at": "2026-10-13T13:06:53.992836+00:00"
+}

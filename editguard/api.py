@@ -58,6 +58,62 @@ class ArtifactStatusCache:
                 "input_format_version": manifest.get("input_format_version"),
                 "artifact_manifest_sha256": manifest_hash}
 
+    @staticmethod
+    def scope_runtime_evidence(path, calibration, watched):
+        """Optional new policy evidence is file-validated without loading models."""
+        if "routing_policy" not in calibration:
+            return  # Preserve the archived legacy calibration contract.
+        from .neural import file_sha256
+        if (calibration.get("routing_policy") != "approved_compatible_then_scope_uncertainty_v1"
+            or calibration.get("population") != "single_focal_question_correction_pairs"
+            or calibration.get("test_rows_read") is not False):
+            raise ValueError("Scope routing policy must describe validation-only approved compatible pairs.")
+        source_root = Path(__file__).resolve().parents[1]
+        source_names = {"editguard/comparison.py", "editguard/neural.py", "editguard/formatting.py",
+                        "scripts/calibrate_scope.py", "scripts/calibrate_similarity.py"}
+        source_hashes = calibration.get("policy_source_sha256")
+        if not isinstance(source_hashes, dict) or set(source_hashes) != source_names:
+            raise ValueError("Scope routing evidence lacks its exact policy source identities.")
+        sources = [(source_root / name, expected) for name, expected in source_hashes.items()]
+        sources.append((source_root / "scripts/calibrate_scope_runtime.py", calibration.get("script_sha256")))
+        evidence = [(path.parent / "validation_probabilities.jsonl", calibration.get("probabilities_sha256")),
+                    (path.parent / "selection_grid.json", calibration.get("selection_grid_sha256")), *sources]
+        watched.extend(file for file, _ in evidence)
+        for file, expected in evidence:
+            if (not re.fullmatch(r"[0-9a-f]{64}", str(expected)) or not file.is_file()
+                or file_sha256(file) != expected):
+                raise ValueError(f"Scope routing evidence integrity failed: {file.name}.")
+        total = calibration.get("accepted_validation_rows")
+        if type(total) is not int or not 2 <= total <= 2000:
+            raise ValueError("Scope policy must retain a finite accepted pair population.")
+        for key in ("raw_pair_metrics", "compatibility_gated_metrics"):
+            DevelopmentReportCache.scope_policy_metrics(calibration.get(key), total)
+        if calibration.get("validation_operating_metrics") != calibration["compatibility_gated_metrics"]:
+            raise ValueError("Scope validation metrics must disclose the combined deterministic and learned policy.")
+        grid = json.loads((path.parent / "selection_grid.json").read_text(encoding="utf-8"))
+        if (grid.get("rows") != total or grid.get("routing_policy") != calibration["routing_policy"]
+            or any(grid.get(key) != calibration.get(key) for key in ("temperature", "threshold", "ambiguity_margin",
+                "declared_costs", "raw_pair_metrics", "compatibility_gated_metrics"))):
+            raise ValueError("Scope policy metrics disagree with the hashed selection grid.")
+        records = [json.loads(line) for line in (path.parent / "validation_probabilities.jsonl").read_text(encoding="utf-8").splitlines() if line]
+        hashes = calibration.get("accepted_row_sha256")
+        if not isinstance(hashes, dict) or len(hashes) != total:
+            raise ValueError("Scope policy lacks complete reviewed validation row identities.")
+        seen = set()
+        for record in records:
+            row_id, probability = record.get("id"), record.get("scope_probability")
+            if (row_id in seen or row_id not in hashes or record.get("row_sha256") != hashes[row_id]
+                or not re.fullmatch(r"[0-9a-f]{64}", str(hashes[row_id])) or record.get("split") != "validation"
+                or type(record.get("label")) is not int or record["label"] not in (0, 1)
+                or isinstance(probability, bool) or not isinstance(probability, (int, float))
+                or not math.isfinite(probability) or not 0 <= probability <= 1):
+                raise ValueError("Scope policy probability records differ from reviewed validation evidence.")
+            seen.add(row_id)
+        if len(records) != total or seen != set(hashes):
+            raise ValueError("Scope policy omitted or duplicated validation pairs.")
+        if sum(record["label"] for record in records) != calibration["raw_pair_metrics"]["counts"]["positive"]:
+            raise ValueError("Scope policy class counts differ from the saved probability population.")
+
     def snapshot(self):
         with self.lock:
             signature = self._signature()
@@ -124,6 +180,7 @@ class ArtifactStatusCache:
                                     if (isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value)
                                         or (not 0 <= value <= 1 if name != "temperature" else value <= 0)):
                                         raise ValueError("Invalid scope calibration operating point.")
+                                self.scope_runtime_evidence(calibration_path, calibration, self.watched)
                             result["calibrations"][kind] = "validated"
                             result["calibration_sha256"][kind] = file_sha256(calibration_path)
                         except Exception as exc:
@@ -172,6 +229,63 @@ class DevelopmentReportCache:
         elif (isinstance(observed, bool) or not isinstance(observed, (int, float)) or not math.isfinite(observed)
               or abs(observed - numerator / denominator) > 1e-8):
             raise ValueError("Rate value does not match its disclosed denominator.")
+
+    @classmethod
+    def scope_policy_metrics(cls, metrics, total, positives=None):
+        if not isinstance(metrics, dict) or not isinstance(metrics.get("counts"), dict):
+            raise ValueError("Scope policy requires explicit full-population confusion and clarification counts.")
+        counts = metrics["counts"]
+        required = ("total", "positive", "negative", "true_application", "false_application", "true_rejection",
+                    "missed_positive", "clarification_positive", "clarification_negative")
+        if any(type(counts.get(key)) is not int or not 0 <= counts[key] <= total for key in required):
+            raise ValueError("Scope policy counts must be nonnegative integers within the pair population.")
+        tp, fp, tn, fn, cp, cn = (counts[key] for key in required[3:])
+        if (counts["total"] != total or counts["positive"] + counts["negative"] != total
+            or tp + fn + cp != counts["positive"] or fp + tn + cn != counts["negative"]
+            or (positives is not None and counts["positive"] != positives)):
+            raise ValueError("Scope policy must retain all applicable, incompatible and clarified pairs.")
+        expected = {"precision": (tp, tp + fp), "recall_including_clarification_as_missed": (tp, counts["positive"]),
+            "false_application_rate": (fp, counts["negative"]), "coverage": (total - cp - cn, total),
+            "clarification_rate": (cp + cn, total), "accuracy_including_clarification_as_unsuccessful": (tp + tn, total),
+            "selective_accuracy": (tp + tn, total - cp - cn)}
+        for key, (numerator, denominator) in expected.items():
+            cls.rate(metrics.get(key))
+            if (metrics[key]["numerator"] != numerator or metrics[key]["denominator"] != denominator
+                or metrics[key]["value"] is None and denominator > 0):
+                raise ValueError(f"Scope policy {key} differs from its full confusion and clarification counts.")
+
+    def scope_policy(self, report):
+        if "scope_policy" not in report:
+            return
+        from .neural import file_sha256
+        policy = report["scope_policy"]
+        if (not isinstance(policy, dict) or policy.get("routing_policy") != "approved_compatible_then_scope_uncertainty_v1"
+            or policy.get("population") != "single_focal_question_correction_pairs"
+            or policy.get("scope_manifest_sha256") != report["model_artifacts"]["scope"]["manifest_sha256"]
+            or not re.fullmatch(r"[0-9a-f]{64}", str(policy.get("calibration_sha256")))):
+            raise ValueError("Recorded scope policy must be bound to its exact scope model and pair-selection population.")
+        path = Path(policy["calibration_path"])
+        if not path.is_absolute():
+            path = Path(__file__).resolve().parents[1] / path
+        self.watched.append(path)
+        if not path.is_file() or file_sha256(path) != policy["calibration_sha256"]:
+            raise ValueError("Recorded scope policy calibration integrity failed.")
+        calibration = json.loads(path.read_text(encoding="utf-8"))
+        if (calibration.get("purpose") != "validation_calibration" or calibration.get("status") != "frozen"
+            or calibration.get("split") != "validation" or calibration.get("dataset_id") != report["dataset_id"]):
+            raise ValueError("Recorded scope policy must retain the same validation dataset.")
+        for name in ("temperature", "threshold", "ambiguity_margin"):
+            value = policy.get(name)
+            if (isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value)
+                or (not 0 <= value <= 1 if name != "temperature" else value <= 0)):
+                raise ValueError("Recorded scope policy operating point is invalid.")
+        for key in ("scope_manifest_sha256", "temperature", "threshold", "ambiguity_margin", "routing_policy",
+                    "population", "raw_pair_metrics", "compatibility_gated_metrics"):
+            if policy.get(key) != calibration.get(key):
+                raise ValueError(f"Recorded scope policy differs from its hashed calibration: {key}.")
+        for key in ("raw_pair_metrics", "compatibility_gated_metrics"):
+            self.scope_policy_metrics(policy.get(key), report["questions"], report["oracle_questions"])
+        ArtifactStatusCache.scope_runtime_evidence(path, calibration, self.watched)
 
     def snapshot(self, model_status):
         with self.lock:
@@ -239,6 +353,7 @@ class DevelopmentReportCache:
                                 or type(artifact["completed_steps"]) is not int or artifact["completed_steps"] <= 0
                                 or type(artifact["selected_step"]) is not int or not 1 <= artifact["selected_step"] <= artifact["completed_steps"]):
                                 raise ValueError("Report trained-model identities must be explicit.")
+                        self.scope_policy(report)
                         provenance = report["provenance"]
                         for key in ("config_sha256", "raw_manifest_sha256", "predictions_sha256"):
                             if not re.fullmatch(r"[0-9a-f]{64}", str(provenance[key])):
@@ -275,6 +390,10 @@ class DevelopmentReportCache:
                         or configured.get("completed_steps") != measured["completed_steps"] or configured.get("selected_step") != measured["selected_step"]):
                         descriptor.update(status="incompatible", error="Report model artifacts differ from the configured trained checkpoints.")
                         return None, descriptor
+                if report.get("scope_policy") and (model_status.get("calibrations", {}).get("scope") != "validated"
+                    or model_status.get("calibration_sha256", {}).get("scope") != report["scope_policy"]["calibration_sha256"]):
+                    descriptor.update(status="incompatible", error="Report scope routing policy differs from the configured calibration.")
+                    return None, descriptor
                 descriptor["configuration_matches"] = model_status.get("configuration_sha256") == report["provenance"]["config_sha256"]
             return report, descriptor
 

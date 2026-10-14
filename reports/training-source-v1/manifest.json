@@ -1,0 +1,12 @@
+{
+  "purpose": "historical_source_bytes_for_completed_training",
+  "git_revision": "350db38f4b704588f06fc075286944c47a9cc0a7",
+  "files_sha256": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/training.py": "52952f6ec9e4c383c71b39e77e097f2e7c8bd98d2a6bfb60d742026f0e658218",
+    "scripts/preflight_training.py": "eff85d83dee44e34b5cc8a31b1dd31c861dd5604d1a60b84d9168e2c3240b40d",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  },
+  "executable_reproduction": "Checkout the recorded Git revision; these copies are read-only audit references, not a standalone training package."
+}

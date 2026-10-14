@@ -1,0 +1,177 @@
+{
+  "data_files_sha256": {
+    "train": "a47f9ed7b8849c7c8071419f4a13649d802a219ee8ac13a4bd2a47c1e8abaf04",
+    "validation": "683f840682c2b62f12fbc36d9fc208a405c5cfd2d0d1b2dbff4d8b0f07630a39"
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+  "environment": {
+    "attention_implementation": "eager",
+    "cpu_threads": 2,
+    "cublas_workspace_config": ":4096:8",
+    "cuda_devices": [
+      "NVIDIA GeForce RTX 4050 Laptop GPU"
+    ],
+    "cuda_visible_devices": null,
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "machine": "AMD64",
+    "nvidia_driver_uuid_identity": [
+      "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+    ],
+    "packages": {
+      "numpy": "2.4.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.3",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "precision": "float32",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "tf32": false,
+    "torch_cuda": "13.0"
+  },
+  "environment_sha256": "57abe36515dd32e0fd37b77b5dc26b268df7f8629de71051de2fbe178524c9a0",
+  "hardware": {
+    "available_ram_gib": 9.84,
+    "cpu_threads": 12,
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_memory_gib": 6.0,
+    "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 581.86",
+    "packages": {
+      "fastapi": "0.121.0",
+      "psutil": "7.2.2",
+      "pydantic": "2.12.4",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "ram_gib": 23.71,
+    "torch_cuda": "13.0"
+  },
+  "human_reviewed_data": false,
+  "input_format_version": "editguard-input-v2",
+  "manifest_sha256": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+  "model_config_sha256": "499d90feede6ec931d908eb60aaacefc80e866e04fa2dc71f5b6630a0f090781",
+  "profile": {
+    "backbone": "distilbert/distilbert-base-uncased",
+    "batch_size": 2,
+    "checkpoint_measurements": [
+      {
+        "global_step": 2,
+        "seconds": 41.144911300001695
+      },
+      {
+        "global_step": 4,
+        "seconds": 49.22186289999809
+      }
+    ],
+    "checkpoint_state_bytes": 803601851,
+    "component": "scope",
+    "device": "cuda",
+    "export_bytes": 268545255,
+    "full_validation_measurements": [
+      {
+        "global_step": 2,
+        "loss_weight_sum": 120,
+        "rows": 120,
+        "seconds": 1.2033529999971506
+      },
+      {
+        "global_step": 4,
+        "loss_weight_sum": 120,
+        "rows": 120,
+        "seconds": 1.5360491999999795
+      }
+    ],
+    "input_length": 192,
+    "limitations": "Four updates; three steady samples and two full validations/checkpoint writes. Extrapolation is uncertain; no generated-answer accuracy, final test or full-run measurement.",
+    "load_tokenize_export_overhead_seconds": 35.551721499999985,
+    "measured_optimizer_steps": 3,
+    "median_step_seconds": 0.11670540000341134,
+    "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "peak_allocated_gpu_gib": 1.3184642791748047,
+    "peak_reserved_gpu_gib": 1.41015625,
+    "precision": "float32",
+    "scope_input_policy": "entity_neutral_v1",
+    "scope_input_policy_version": "editguard-scope-input-v1",
+    "scope_input_source_sha256": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+    "step_seconds": [
+      0.0991424999992887,
+      0.24616489999971236,
+      0.11670540000341134
+    ],
+    "target_length": null,
+    "tokenization": {
+      "train": {
+        "input_truncated_rows": 0,
+        "max_input_tokens": 45,
+        "max_target_tokens": null,
+        "rows": 240,
+        "scope_contradictory_label_pairs": 0,
+        "scope_cross_split_overlap": {
+          "contradictory_label_pairs": 0,
+          "identical_input_pairs": 8,
+          "same_label_pairs": 8,
+          "train_rows_with_shared_pair": 8,
+          "validation_rows_with_shared_pair": 8
+        },
+        "scope_input_policy": "entity_neutral_v1",
+        "scope_input_policy_version": "editguard-scope-input-v1",
+        "scope_input_source_sha256": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+        "scope_pair_text_sha256": "42ae3425664eee4a56da307dcf39881293f3043928847018e3f9977ff11ec283",
+        "scope_same_label_duplicate_groups": 0,
+        "scope_same_label_duplicate_rows": 0,
+        "target_truncated_rows": 0,
+        "unique_scope_pairs": 240
+      },
+      "validation": {
+        "input_truncated_rows": 0,
+        "max_input_tokens": 44,
+        "max_target_tokens": null,
+        "rows": 120,
+        "scope_contradictory_label_pairs": 0,
+        "scope_cross_split_overlap": {
+          "contradictory_label_pairs": 0,
+          "identical_input_pairs": 8,
+          "same_label_pairs": 8,
+          "train_rows_with_shared_pair": 8,
+          "validation_rows_with_shared_pair": 8
+        },
+        "scope_input_policy": "entity_neutral_v1",
+        "scope_input_policy_version": "editguard-scope-input-v1",
+        "scope_input_source_sha256": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+        "scope_pair_text_sha256": "ba9cd1ad230fa6b3d519822f289be8c1b49023c19e7f33c9a13d3e3916a834e1",
+        "scope_same_label_duplicate_groups": 0,
+        "scope_same_label_duplicate_rows": 0,
+        "target_truncated_rows": 0,
+        "unique_scope_pairs": 120
+      }
+    },
+    "train_rows": 240,
+    "validation_rows": 120,
+    "warmup_seconds": 0.8643632999992406,
+    "whole_process_work_seconds": 130.0095876000014
+  },
+  "profile_artifact_purpose": "smoke_test",
+  "profile_run_identity": "053e4adbe5451712570c5c31388be059ade8de26e972abe795223ee5971bfc5d",
+  "profile_script_sha256": "88566e8459a37a43b870d38610983fe7d578cedc89709c427d1a027ceaa45f40",
+  "purpose": "actual_trainer_development_profile",
+  "recorded_at": "2026-10-13T13:38:01.503767+00:00",
+  "review_policy": "automated_development",
+  "reviews_sha256": "3bcff20d4e82cfae18d04445fa51123ee43aa2592a8dacf93aeaf536d6f84546",
+  "runtime_eligible": false,
+  "schema_version": 1,
+  "status": "profile_complete",
+  "test_rows_read": false,
+  "trainer_source_sha256": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+    "editguard/training.py": "298a215340312d0b3b416eef01f8032c9c3bdd5be372950dd153c13af751891d",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  }
+}

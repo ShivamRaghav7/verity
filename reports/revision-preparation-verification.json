@@ -1,0 +1,130 @@
+{
+  "purpose": "targeted_revision_preparation_not_performance",
+  "status": "prepared",
+  "test_rows_read": false,
+  "human_reviewed_data": false,
+  "full_training_executed": false,
+  "tests": {
+    "app_discovered": 368,
+    "app_passed": 351,
+    "optional_checks_skipped_in_app": 17,
+    "ml_suite_executed": 34,
+    "optional_numerical_checks_executed": 17,
+    "ml_suite_passed": 34,
+    "overlapping_contract_tests_are_not_extra_unique_tests": true,
+    "javascript_syntax": "passed"
+  },
+  "trainer_source_sha256": {
+    "editguard/training.py": "d899f4e348dffed7b6811bf6eeaaca33f24ec6a4d77e312f6c45e618026c414b",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3"
+  },
+  "preflight": {
+    "scope": {
+      "preflight_valid": true,
+      "preflight_does_not_verify_training_loop": true,
+      "training_execution_requested": false,
+      "disclaimer": "No training ran. This preflight checks declared inputs and run planning; trainer and exact-state restoration verification remain separate evidence.",
+      "task": "scope",
+      "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+      "model_id": "distilbert/distilbert-base-uncased",
+      "loss_objective": {
+        "schema_version": 1,
+        "policy": "uniform",
+        "comparison_first_token_weight": 1,
+        "normalization": "original_model_loss",
+        "rule": "Use model.loss unchanged; scope validation weights rows, answer validation weights valid target tokens."
+      },
+      "scope_input_policy": "entity_neutral_v1",
+      "transformed_scope_input_overlap": {
+        "scope_input_policy": "entity_neutral_v1",
+        "train": {
+          "rows": 240,
+          "unique_pairs": 240,
+          "same_label_duplicate_rows": 0,
+          "same_label_duplicate_groups": 0,
+          "contradictory_label_pairs": 0
+        },
+        "validation": {
+          "rows": 120,
+          "unique_pairs": 120,
+          "same_label_duplicate_rows": 0,
+          "same_label_duplicate_groups": 0,
+          "contradictory_label_pairs": 0
+        },
+        "cross_split": {
+          "identical_input_pairs": 8,
+          "same_label_pairs": 8,
+          "contradictory_label_pairs": 0,
+          "train_rows_with_shared_pair": 8,
+          "validation_rows_with_shared_pair": 8
+        },
+        "disclaimer": "Raw reviewed entity and lineage splits remain unchanged. Identical abstracted inputs may occur across those splits; same-label overlap is disclosed and is not evidence of unseen logical forms."
+      },
+      "review_policy": "automated_development",
+      "human_reviewed_data": false,
+      "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+      "reviewed_train_rows": 240,
+      "reviewed_validation_rows": 120,
+      "optimizer_step_extrapolation_seconds": 38.142000000002554,
+      "declared_total_estimate_seconds": 1331.0,
+      "profile_limitations": "Four updates; three steady samples and two full validations/checkpoint writes. Extrapolation is uncertain; no generated-answer accuracy, final test or full-run measurement.",
+      "output_dir": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\scope\\pilot-v3-neutral2",
+      "finite_stopping_condition": "global_step reaches 360",
+      "expected_artifacts": [
+        "model",
+        "tokenizer",
+        "manifest.json",
+        "training_log.jsonl",
+        "run_card.json",
+        "checkpoints"
+      ]
+    },
+    "answer": {
+      "preflight_valid": true,
+      "preflight_does_not_verify_training_loop": true,
+      "training_execution_requested": false,
+      "disclaimer": "No training ran. This preflight checks declared inputs and run planning; trainer and exact-state restoration verification remain separate evidence.",
+      "task": "answer",
+      "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+      "model_id": "google/flan-t5-small",
+      "loss_objective": {
+        "schema_version": 1,
+        "policy": "comparison_first_token_8x",
+        "comparison_first_token_weight": 8,
+        "normalization": "sum_weighted_token_nll_over_sum_weights",
+        "rule": "first target token of reviewed comparison yes/no rows has weight 8; other valid tokens 1; padding 0"
+      },
+      "scope_input_policy": "raw_v1",
+      "transformed_scope_input_overlap": null,
+      "review_policy": "automated_development",
+      "human_reviewed_data": false,
+      "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+      "reviewed_train_rows": 96,
+      "reviewed_validation_rows": 48,
+      "optimizer_step_extrapolation_seconds": 92.4042720000034,
+      "declared_total_estimate_seconds": 532.0,
+      "profile_limitations": "Four updates; three steady samples and two full validations/checkpoint writes. Extrapolation is uncertain; no generated-answer accuracy, final test or full-run measurement.",
+      "output_dir": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1",
+      "finite_stopping_condition": "global_step reaches 240",
+      "expected_artifacts": [
+        "model",
+        "tokenizer",
+        "manifest.json",
+        "training_log.jsonl",
+        "run_card.json",
+        "checkpoints"
+      ]
+    }
+  },
+  "resume_guard": "Completed/capped/malformed/outside resumes refuse before ML initialization and preserve existing artifacts.",
+  "limitations": [
+    "No trained improvement for either new policy.",
+    "Four-update profiles cannot guarantee full-run resource use.",
+    "Scope profile overlapped application regression checks.",
+    "Automated development review, not human-reviewed final evidence."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "matched_records": {
+    "predictions.jsonl": 600,
+    "oracle_predictions.jsonl": 48
+  },
+  "record_counts": {
+    "predictions.jsonl": [
+      600,
+      600
+    ],
+    "oracle_predictions.jsonl": [
+      48,
+      48
+    ]
+  },
+  "base_weights_unchanged": true,
+  "test_rows_read": false,
+  "new_training_executed": false
+}

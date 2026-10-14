@@ -68,6 +68,26 @@ class TrainingRunCardTests(unittest.TestCase):
             self.assertGreater(result["reviewed_train_rows"], 0)
             self.assertFalse(Path(card["output_dir"]).exists())
 
+    def test_weighted_policy_requires_matching_profile_objective_before_release(self):
+        from editguard.training import loss_objective
+        path, card = self.make_card("answer")
+        card["loss_policy"] = "comparison_first_token_8x"
+        card["loss_objective"] = loss_objective("answer", card["loss_policy"])
+        self.rewrite(path, card)
+        with self.assertRaisesRegex(ValueError, "differs from the measured"):
+            validate_run_card(path)
+        profile = Path(card["profile_path"])
+        record = json.loads(profile.read_text())
+        record["profile"].update(loss_policy=card["loss_policy"], loss_objective=card["loss_objective"])
+        profile.write_text(json.dumps(record), encoding="utf-8")
+        card["profile_sha256"] = file_hash(profile)
+        self.rewrite(path, card)
+        self.assertTrue(validate_run_card(path)["preflight_valid"])
+        card["loss_objective"]["comparison_first_token_weight"] = 1
+        self.rewrite(path, card)
+        with self.assertRaisesRegex(ValueError, "metadata must bind"):
+            validate_run_card(path)
+
     def test_unreviewed_or_stale_decisions_cannot_release_run(self):
         path, card = self.make_card()
         reviews = Path(card["reviews_path"])

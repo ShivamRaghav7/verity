@@ -8,6 +8,7 @@ from pathlib import Path
 from threading import RLock
 
 from .formatting import INPUT_FORMAT_VERSION
+from .scope_inputs import DEFAULT_SCOPE_INPUT_POLICY, scope_pair, validate_scope_policy
 
 
 class ModelUnavailable(RuntimeError):
@@ -35,6 +36,11 @@ def validate_artifact(path, task):
         raise ModelUnavailable("Artifact input format differs from the inference formatter.")
     if (type(manifest.get("input_length")) is not int or not 1 <= manifest["input_length"] <= 4096):
         raise ModelUnavailable("Artifact input length is invalid.")
+    if task == "scope":
+        try:
+            validate_scope_policy(manifest)
+        except ValueError as exc:
+            raise ModelUnavailable("Scope artifact input policy version/source differs from preprocessing.") from exc
     for name, expected in hashes.items():
         target = (root / name).resolve()
         if root not in target.parents or not target.is_file() or file_sha256(target) != expected:
@@ -169,10 +175,11 @@ class EmbeddingRetriever:
 
 class ScopeCheckpoint:
     def __init__(self, path, device="cpu"):
-        import torch
-        from transformers import AutoModelForSequenceClassification, AutoTokenizer
         root = Path(path).resolve()
         self.manifest = validate_artifact(root, "scope")
+        self.scope_input_policy = self.manifest.get("scope_input_policy", DEFAULT_SCOPE_INPUT_POLICY)
+        import torch
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
         self.torch, self.device = torch, device
         self.tokenizer = AutoTokenizer.from_pretrained(root / self.manifest.get("tokenizer_path", "tokenizer"), local_files_only=True)
         self.model = AutoModelForSequenceClassification.from_pretrained(root / self.manifest.get("model_path", "model"), local_files_only=True).to(device).eval()
@@ -184,6 +191,7 @@ class ScopeCheckpoint:
             parameter.requires_grad_(False)
 
     def score(self, question, correction):
+        question, correction = scope_pair(question, correction, self.scope_input_policy)
         with self._lock, self.torch.inference_mode():
             inputs = self.tokenizer(question, correction, truncation=True, max_length=self.input_length, return_tensors="pt").to(self.device)
             return float(self.model(**inputs).logits.softmax(-1)[0, 1].cpu())

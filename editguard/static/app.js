@@ -437,6 +437,7 @@
     const report = evaluation.ml_results;
     state.mlReport = report || null;
     byId("ml-results").hidden = !report;
+    byId("scope-policy-panel").hidden = !report?.scope_policy;
     const status = byId("ml-report-status");
     status.textContent = report ? "Validation only" : readable(descriptor.status);
     status.className = `pill ${report ? "pill-draft" : ["invalid", "incompatible"].includes(descriptor.status) ? "pill-failed" : "pill-subtle"}`;
@@ -461,6 +462,31 @@
       ["Brier score", "brier", "Mean squared probability error", false],
       ["Calibration error", "ece", "Expected calibration error; lower is better", false]].forEach(
       ([label, key, detail, percentage = true]) => appendRateCard(scope, label, report.scope[key], detail, percentage));
+    const policy = report.scope_policy;
+    if (policy) {
+      byId("scope-policy-point").textContent = `Temperature ${policy.temperature} · threshold ${policy.threshold} · uncertainty margin ${policy.ambiguity_margin}. Same ${policy.raw_pair_metrics.counts.total} validation pairs select and report the operating point; this is development evidence.`;
+      const wrapper = node("div", undefined, "evaluation-table-wrapper");
+      const table = node("table", undefined, "evaluation-table scope-policy-table");
+      const head = node("thead");
+      const headings = node("tr");
+      ["Policy", "Precision", "Recall", "False application", "Clarification", "Decision coverage"].forEach(label => {
+        const cell = node("th", label); cell.scope = "col"; headings.append(cell);
+      });
+      head.append(headings);
+      const body = node("tbody");
+      [["Raw classifier + uncertainty", policy.raw_pair_metrics],
+        ["Approval & compatibility gates + classifier", policy.compatibility_gated_metrics]].forEach(([label, metrics]) => {
+        const row = node("tr");
+        const name = node("th", label); name.scope = "row"; row.append(name);
+        for (const key of ["precision", "recall_including_clarification_as_missed", "false_application_rate", "clarification_rate", "coverage"]) {
+          const cell = node("td");
+          cell.append(node("strong", rateLabel(metrics[key])), node("small", ratePopulation(metrics[key])));
+          row.append(cell);
+        }
+        body.append(row);
+      });
+      table.append(head, body); wrapper.append(table); byId("scope-policy-table").replaceChildren(wrapper);
+    }
     const oracle = byId("oracle-metrics");
     oracle.replaceChildren();
     [["Strict corrected accuracy", "accuracy"], ["Direct questions", "direct_accuracy"],
@@ -494,7 +520,7 @@
     byId("ml-limitations").replaceChildren(...report.limitations.map(text => node("li", text)));
     byId("ml-provenance").textContent = JSON.stringify({ ...report.provenance,
       report_sha256: descriptor.report_sha256, configuration_matches: descriptor.configuration_matches,
-      model_artifacts: report.model_artifacts, review_policy: report.review_policy,
+      model_artifacts: report.model_artifacts, scope_policy: report.scope_policy || null, review_policy: report.review_policy,
       human_reviewed_data: report.human_reviewed_data, test_rows_read: report.test_rows_read }, null, 2);
   }
   function downloadJson(payload, filename) {

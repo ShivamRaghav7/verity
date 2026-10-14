@@ -1,0 +1,4985 @@
+{
+  "artifact_type": "editguard_scope_revision_diagnosis",
+  "checks": {
+    "human_reviewed_data": false,
+    "input_order": "question_then_correction",
+    "origin_comparison_counts": {
+      "train": {
+        "negative_changed_question": 108,
+        "negative_unchanged_question": 36,
+        "positive_unchanged_question": 96
+      },
+      "validation": {
+        "negative_changed_question": 54,
+        "negative_unchanged_question": 18,
+        "positive_unchanged_question": 48
+      }
+    },
+    "partition_overlaps": {
+      "edit_id": [],
+      "family_id": [],
+      "identical_question_correction_pairs": 0,
+      "lineage_id": [],
+      "queried_entity_id": [],
+      "queried_fact_id": []
+    },
+    "positive_class_index": 1,
+    "review_policy": "automated_development",
+    "scope_pair_count": 360,
+    "test_rows_read": false
+  },
+  "created_at": "2026-10-13T06:55:32.200998+00:00",
+  "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+  "device": "cuda",
+  "finite_cap": 720,
+  "limitations": [
+    "Both models are evaluated on the same v3 pairs; v2 training used different negative wording.",
+    "The initial model's recorded validation loss used v2; do not directly compare it with v3 selection loss.",
+    "All positive questions and corrections are unchanged across v2/v3; the complete negative sets are not identical.",
+    "Train metrics are an exported-model diagnostic, not generalization evidence.",
+    "Only four train and two validation families; template-based automated development data, no human-review claim.",
+    "The revised operating point, if supplied, was selected on these validation pairs; its metrics are optimistic.",
+    "Compatibility gating is deterministic; pair diagnostics do not establish full retrieved routing performance.",
+    "No new parameter search, optimizer updates or test/challenge access. No latency comparison is claimed."
+  ],
+  "models": {
+    "initial_v2": {
+      "train": {
+        "by": {
+          "family_id": {
+            "family-015": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 457.0,
+                "value": 0.5289351851851852
+              },
+              "binary_negative_log_likelihood": 1.4868216922797177,
+              "brier_score": 0.46081737075735,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9455797672271729,
+                "mean": 0.6729312733643584,
+                "median": 0.917229026556015,
+                "minimum": 0.03126046806573868
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9449378252029419,
+                "mean": 0.6867379893859228,
+                "median": 0.9283776879310608,
+                "minimum": 0.03172063082456589
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 26,
+                  "value": 0.7222222222222222
+                },
+                "false_negative": 6,
+                "false_positive": 26,
+                "precision": {
+                  "denominator": 44,
+                  "numerator": 18,
+                  "value": 0.4090909090909091
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 18,
+                  "value": 0.75
+                },
+                "true_negative": 10,
+                "true_positive": 18
+              }
+            },
+            "family-037": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 474.0,
+                "value": 0.5486111111111112
+              },
+              "binary_negative_log_likelihood": 1.4623148825079337,
+              "brier_score": 0.45675195858005796,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9455146789550781,
+                "mean": 0.6677342818842994,
+                "median": 0.9091589748859406,
+                "minimum": 0.03188152611255646
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9453967213630676,
+                "mean": 0.6848026074779531,
+                "median": 0.9278504252433777,
+                "minimum": 0.03160258010029793
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 25,
+                  "value": 0.6944444444444444
+                },
+                "false_negative": 7,
+                "false_positive": 25,
+                "precision": {
+                  "denominator": 42,
+                  "numerator": 17,
+                  "value": 0.40476190476190477
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 17,
+                  "value": 0.7083333333333334
+                },
+                "true_negative": 11,
+                "true_positive": 17
+              }
+            },
+            "family-055": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 455.0,
+                "value": 0.5266203703703703
+              },
+              "binary_negative_log_likelihood": 1.4859316638903672,
+              "brier_score": 0.46054988211329545,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9452646970748901,
+                "mean": 0.6714707490884595,
+                "median": 0.9183787405490875,
+                "minimum": 0.03142309933900833
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9449754953384399,
+                "mean": 0.6852298920663694,
+                "median": 0.9280693233013153,
+                "minimum": 0.031625568866729736
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 25,
+                  "value": 0.6944444444444444
+                },
+                "false_negative": 7,
+                "false_positive": 25,
+                "precision": {
+                  "denominator": 42,
+                  "numerator": 17,
+                  "value": 0.40476190476190477
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 17,
+                  "value": 0.7083333333333334
+                },
+                "true_negative": 11,
+                "true_positive": 17
+              }
+            },
+            "family-073": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 488.0,
+                "value": 0.5648148148148148
+              },
+              "binary_negative_log_likelihood": 1.4648241111601883,
+              "brier_score": 0.45743931196938165,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9455580711364746,
+                "mean": 0.6688738489109609,
+                "median": 0.9088557958602905,
+                "minimum": 0.031460508704185486
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.945382297039032,
+                "mean": 0.6845040585224828,
+                "median": 0.9285567998886108,
+                "minimum": 0.031411636620759964
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 25,
+                  "value": 0.6944444444444444
+                },
+                "false_negative": 7,
+                "false_positive": 25,
+                "precision": {
+                  "denominator": 42,
+                  "numerator": 17,
+                  "value": 0.40476190476190477
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 17,
+                  "value": 0.7083333333333334
+                },
+                "true_negative": 11,
+                "true_positive": 17
+              }
+            }
+          },
+          "negative_type": {
+            "applicable_positive": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.9240359939084032,
+              "brier_score": 0.2477881259931062,
+              "negative": 0,
+              "negative_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "positive": 96,
+              "positive_probability": {
+                "count": 96,
+                "maximum": 0.9453967213630676,
+                "mean": 0.685318636863182,
+                "median": 0.9285567998886108,
+                "minimum": 0.031411636620759964
+              },
+              "rows": 96,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 96,
+                  "numerator": 69,
+                  "value": 0.71875
+                },
+                "false_application_rate": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "false_negative": 27,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 69,
+                  "numerator": 69,
+                  "value": 1.0
+                },
+                "recall": {
+                  "denominator": 96,
+                  "numerator": 69,
+                  "value": 0.71875
+                },
+                "true_negative": 0,
+                "true_positive": 69
+              }
+            },
+            "different_entity_same_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.9891397872101546,
+              "brier_score": 0.6422479940263927,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.9455580711364746,
+                "mean": 0.7020464291175207,
+                "median": 0.9260666370391846,
+                "minimum": 0.031460508704185486
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 6,
+                  "value": 0.25
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 18,
+                  "value": 0.75
+                },
+                "false_negative": 0,
+                "false_positive": 18,
+                "precision": {
+                  "denominator": 18,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 6,
+                "true_positive": 0
+              }
+            },
+            "ordinary": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.6997137442729553,
+              "brier_score": 0.5649638087555078,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.9443766474723816,
+                "mean": 0.6420269752852619,
+                "median": 0.9007208943367004,
+                "minimum": 0.031396493315696716
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 8,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 16,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 16,
+                "precision": {
+                  "denominator": 16,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 8,
+                "true_positive": 0
+              }
+            },
+            "same_entity_different_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.7871096010585774,
+              "brier_score": 0.5783867573191747,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.9451130628585815,
+                "mean": 0.6508172441584369,
+                "median": 0.9225803315639496,
+                "minimum": 0.03126046806573868
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 8,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 16,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 16,
+                "precision": {
+                  "denominator": 16,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 8,
+                "true_positive": 0
+              }
+            },
+            "similar_name": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.8052937780251144,
+              "brier_score": 0.5855341467057497,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.9450507760047913,
+                "mean": 0.6613886100240052,
+                "median": 0.9019799530506134,
+                "minimum": 0.032074399292469025
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 8,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 16,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 16,
+                "precision": {
+                  "denominator": 16,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 8,
+                "true_positive": 0
+              }
+            },
+            "wrong_tier": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.9301775463940567,
+              "brier_score": 0.6328314762995123,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.9455797672271729,
+                "mean": 0.6967755000417432,
+                "median": 0.9142003655433655,
+                "minimum": 0.032424185425043106
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 6,
+                  "value": 0.25
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 18,
+                  "value": 0.75
+                },
+                "false_negative": 0,
+                "false_positive": 18,
+                "precision": {
+                  "denominator": 18,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 6,
+                "true_positive": 0
+              }
+            },
+            "wrong_version": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.842152442001046,
+              "brier_score": 0.5937796214714507,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.9449639916419983,
+                "mean": 0.6684604712451497,
+                "median": 0.9084823727607727,
+                "minimum": 0.0319342166185379
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 7,
+                  "value": 0.2916666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 17,
+                  "value": 0.7083333333333334
+                },
+                "false_negative": 0,
+                "false_positive": 17,
+                "precision": {
+                  "denominator": 17,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 7,
+                "true_positive": 0
+              }
+            }
+          },
+          "question_style": {
+            "comparison_no": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 523.0,
+                "value": 0.6053240740740741
+              },
+              "binary_negative_log_likelihood": 1.6801351392637613,
+              "brier_score": 0.5267316849215524,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9455797672271729,
+                "mean": 0.9356655544704862,
+                "median": 0.9441684484481812,
+                "minimum": 0.8969298601150513
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9453967213630676,
+                "mean": 0.9419187307357788,
+                "median": 0.9442594945430756,
+                "minimum": 0.9352226853370667
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 24,
+                  "value": 0.4
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 36,
+                  "value": 1.0
+                },
+                "false_negative": 0,
+                "false_positive": 36,
+                "precision": {
+                  "denominator": 60,
+                  "numerator": 24,
+                  "value": 0.4
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "true_negative": 0,
+                "true_positive": 24
+              }
+            },
+            "comparison_yes": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 526.0,
+                "value": 0.6087962962962963
+              },
+              "binary_negative_log_likelihood": 1.6793210526535844,
+              "brier_score": 0.5266429872381653,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.945454478263855,
+                "mean": 0.9355868183904223,
+                "median": 0.9434094130992889,
+                "minimum": 0.898727297782898
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9452580809593201,
+                "mean": 0.9419089630246162,
+                "median": 0.9442871510982513,
+                "minimum": 0.935462236404419
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 24,
+                  "value": 0.4
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 36,
+                  "value": 1.0
+                },
+                "false_negative": 0,
+                "false_positive": 36,
+                "precision": {
+                  "denominator": 60,
+                  "numerator": 24,
+                  "value": 0.4
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "true_negative": 0,
+                "true_positive": 24
+              }
+            },
+            "direct": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 464.0,
+                "value": 0.5370370370370371
+              },
+              "binary_negative_log_likelihood": 1.3653074574488895,
+              "brier_score": 0.37333466923098385,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.03925018757581711,
+                "mean": 0.034517981629404754,
+                "median": 0.03461002558469772,
+                "minimum": 0.03126046806573868
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.039781466126441956,
+                "mean": 0.03484088865419229,
+                "median": 0.03450840339064598,
+                "minimum": 0.031411636620759964
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 36,
+                  "value": 0.6
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 24,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "true_negative": 36,
+                "true_positive": 0
+              }
+            },
+            "paraphrase": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 548.0,
+                "value": 0.6342592592592593
+              },
+              "binary_negative_log_likelihood": 1.1751287004719717,
+              "brier_score": 0.40884918202938353,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.91941237449646,
+                "mean": 0.775239798757765,
+                "median": 0.8739826083183289,
+                "minimum": 0.2769084572792053
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.921890914440155,
+                "mean": 0.8226059650381407,
+                "median": 0.8779586255550385,
+                "minimum": 0.48493072390556335
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 29,
+                  "value": 0.8055555555555556
+                },
+                "false_negative": 3,
+                "false_positive": 29,
+                "precision": {
+                  "denominator": 50,
+                  "numerator": 21,
+                  "value": 0.42
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 21,
+                  "value": 0.875
+                },
+                "true_negative": 7,
+                "true_positive": 21
+              }
+            }
+          },
+          "relation": {
+            "device_limit": {
+              "auroc": {
+                "denominator": 1280,
+                "numerator": 681.0,
+                "value": 0.53203125
+              },
+              "binary_negative_log_likelihood": 1.4998514604833564,
+              "brier_score": 0.4595112129570819,
+              "negative": 40,
+              "negative_probability": {
+                "count": 40,
+                "maximum": 0.9449236392974854,
+                "mean": 0.6979706700891256,
+                "median": 0.910221666097641,
+                "minimum": 0.0319342166185379
+              },
+              "positive": 32,
+              "positive_probability": {
+                "count": 32,
+                "maximum": 0.945382297039032,
+                "mean": 0.699485769495368,
+                "median": 0.9106146097183228,
+                "minimum": 0.0319368913769722
+              },
+              "rows": 72,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 72,
+                  "numerator": 34,
+                  "value": 0.4722222222222222
+                },
+                "false_application_rate": {
+                  "denominator": 40,
+                  "numerator": 30,
+                  "value": 0.75
+                },
+                "false_negative": 8,
+                "false_positive": 30,
+                "precision": {
+                  "denominator": 54,
+                  "numerator": 24,
+                  "value": 0.4444444444444444
+                },
+                "recall": {
+                  "denominator": 32,
+                  "numerator": 24,
+                  "value": 0.75
+                },
+                "true_negative": 10,
+                "true_positive": 24
+              }
+            },
+            "price_monthly": {
+              "auroc": {
+                "denominator": 512,
+                "numerator": 350.0,
+                "value": 0.68359375
+              },
+              "binary_negative_log_likelihood": 1.5907330484073379,
+              "brier_score": 0.5060151644976517,
+              "negative": 32,
+              "negative_probability": {
+                "count": 32,
+                "maximum": 0.9376887679100037,
+                "mean": 0.7030025741551071,
+                "median": 0.9187981486320496,
+                "minimum": 0.03613640367984772
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.9380051493644714,
+                "mean": 0.7086436522658914,
+                "median": 0.9293042719364166,
+                "minimum": 0.039195213466882706
+              },
+              "rows": 48,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 48,
+                  "numerator": 20,
+                  "value": 0.4166666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 32,
+                  "numerator": 24,
+                  "value": 0.75
+                },
+                "false_negative": 4,
+                "false_positive": 24,
+                "precision": {
+                  "denominator": 36,
+                  "numerator": 12,
+                  "value": 0.3333333333333333
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 12,
+                  "value": 0.75
+                },
+                "true_negative": 8,
+                "true_positive": 12
+              }
+            },
+            "storage_gb": {
+              "auroc": {
+                "denominator": 1280,
+                "numerator": 628.0,
+                "value": 0.490625
+              },
+              "binary_negative_log_likelihood": 1.4946865038823403,
+              "brier_score": 0.46028736776409346,
+              "negative": 40,
+              "negative_probability": {
+                "count": 40,
+                "maximum": 0.9455797672271729,
+                "mean": 0.7006479108706116,
+                "median": 0.913056343793869,
+                "minimum": 0.034661877900362015
+              },
+              "positive": 32,
+              "positive_probability": {
+                "count": 32,
+                "maximum": 0.9453967213630676,
+                "mean": 0.7019875455880538,
+                "median": 0.9136078357696533,
+                "minimum": 0.036420371383428574
+              },
+              "rows": 72,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 72,
+                  "numerator": 34,
+                  "value": 0.4722222222222222
+                },
+                "false_application_rate": {
+                  "denominator": 40,
+                  "numerator": 30,
+                  "value": 0.75
+                },
+                "false_negative": 8,
+                "false_positive": 30,
+                "precision": {
+                  "denominator": 54,
+                  "numerator": 24,
+                  "value": 0.4444444444444444
+                },
+                "recall": {
+                  "denominator": 32,
+                  "numerator": 24,
+                  "value": 0.75
+                },
+                "true_negative": 10,
+                "true_positive": 24
+              }
+            },
+            "support_hours": {
+              "auroc": {
+                "denominator": 512,
+                "numerator": 329.0,
+                "value": 0.642578125
+              },
+              "binary_negative_log_likelihood": 1.2923254423418762,
+              "brier_score": 0.40873511869569157,
+              "negative": 32,
+              "negative_probability": {
+                "count": 32,
+                "maximum": 0.9343066811561584,
+                "mean": 0.5648606220493093,
+                "median": 0.7089344263076782,
+                "minimum": 0.03126046806573868
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.9369302988052368,
+                "mean": 0.600321538746357,
+                "median": 0.7306042909622192,
+                "minimum": 0.031411636620759964
+              },
+              "rows": 48,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 48,
+                  "numerator": 24,
+                  "value": 0.5
+                },
+                "false_application_rate": {
+                  "denominator": 32,
+                  "numerator": 17,
+                  "value": 0.53125
+                },
+                "false_negative": 7,
+                "false_positive": 17,
+                "precision": {
+                  "denominator": 26,
+                  "numerator": 9,
+                  "value": 0.34615384615384615
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 9,
+                  "value": 0.5625
+                },
+                "true_negative": 15,
+                "true_positive": 9
+              }
+            }
+          }
+        },
+        "policies": {
+          "initial_v2_fixed": {
+            "ambiguity_margin": 0.0,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 198,
+                "value": 0.825
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 18,
+                "missed_positive": 24,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 72,
+                "true_rejection": 126
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 240,
+                "value": 1.0
+              },
+              "deterministic_rejected_pairs": 120,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 18,
+                "value": 0.125
+              },
+              "precision": {
+                "denominator": 90,
+                "numerator": 72,
+                "value": 0.8
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 72,
+                "value": 0.75
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 108,
+                "value": 0.45
+              },
+              "ambiguity_margin": 0.0,
+              "clarification_rate": {
+                "denominator": 240,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 108,
+                "missed_positive": 24,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 72,
+                "true_rejection": 36
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 240,
+                "value": 1.0
+              },
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 108,
+                "value": 0.75
+              },
+              "mean_cost": {
+                "denominator": 240,
+                "numerator": 456.0,
+                "value": 1.9
+              },
+              "precision": {
+                "denominator": 180,
+                "numerator": 72,
+                "value": 0.4
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 72,
+                "value": 0.75
+              },
+              "selective_accuracy": {
+                "denominator": 240,
+                "numerator": 108,
+                "value": 0.45
+              },
+              "threshold": 0.11,
+              "total_cost": 456.0
+            },
+            "temperature": 1.5,
+            "threshold": 0.11
+          },
+          "revision1_validation_selected": {
+            "ambiguity_margin": 0.1,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 196,
+                "value": 0.8166666666666667
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 2,
+                "false_application": 16,
+                "missed_positive": 26,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 68,
+                "true_rejection": 128
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 238,
+                "value": 0.9916666666666667
+              },
+              "deterministic_rejected_pairs": 120,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 16,
+                "value": 0.1111111111111111
+              },
+              "precision": {
+                "denominator": 84,
+                "numerator": 68,
+                "value": 0.8095238095238095
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 68,
+                "value": 0.7083333333333334
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 110,
+                "value": 0.4583333333333333
+              },
+              "ambiguity_margin": 0.1,
+              "clarification_rate": {
+                "denominator": 240,
+                "numerator": 4,
+                "value": 0.016666666666666666
+              },
+              "counts": {
+                "clarification_negative": 2,
+                "clarification_positive": 2,
+                "false_application": 100,
+                "missed_positive": 26,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 68,
+                "true_rejection": 42
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 236,
+                "value": 0.9833333333333333
+              },
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 100,
+                "value": 0.6944444444444444
+              },
+              "mean_cost": {
+                "denominator": 240,
+                "numerator": 427.0,
+                "value": 1.7791666666666666
+              },
+              "precision": {
+                "denominator": 168,
+                "numerator": 68,
+                "value": 0.40476190476190477
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 68,
+                "value": 0.7083333333333334
+              },
+              "selective_accuracy": {
+                "denominator": 236,
+                "numerator": 110,
+                "value": 0.4661016949152542
+              },
+              "threshold": 0.58,
+              "total_cost": 427.0
+            },
+            "temperature": 0.5,
+            "threshold": 0.58
+          }
+        },
+        "raw": {
+          "auroc": {
+            "denominator": 13824,
+            "numerator": 7463.0,
+            "value": 0.5398582175925926
+          },
+          "binary_negative_log_likelihood": 1.474973087459552,
+          "brier_score": 0.45888963085502127,
+          "negative": 144,
+          "negative_probability": {
+            "count": 144,
+            "maximum": 0.9455797672271729,
+            "mean": 0.6702525383120196,
+            "median": 0.9158911108970642,
+            "minimum": 0.03126046806573868
+          },
+          "positive": 96,
+          "positive_probability": {
+            "count": 96,
+            "maximum": 0.9453967213630676,
+            "mean": 0.685318636863182,
+            "median": 0.9285567998886108,
+            "minimum": 0.031411636620759964
+          },
+          "rows": 240,
+          "threshold_0_5": {
+            "accuracy": {
+              "denominator": 240,
+              "numerator": 112,
+              "value": 0.4666666666666667
+            },
+            "false_application_rate": {
+              "denominator": 144,
+              "numerator": 101,
+              "value": 0.7013888888888888
+            },
+            "false_negative": 27,
+            "false_positive": 101,
+            "precision": {
+              "denominator": 170,
+              "numerator": 69,
+              "value": 0.40588235294117647
+            },
+            "recall": {
+              "denominator": 96,
+              "numerator": 69,
+              "value": 0.71875
+            },
+            "true_negative": 43,
+            "true_positive": 69
+          }
+        }
+      },
+      "validation": {
+        "by": {
+          "family_id": {
+            "family-044": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 460.0,
+                "value": 0.5324074074074074
+              },
+              "binary_negative_log_likelihood": 1.4870195678142542,
+              "brier_score": 0.46081502099165156,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9456896781921387,
+                "mean": 0.6720121757437786,
+                "median": 0.9186552464962006,
+                "minimum": 0.03152314946055412
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9450235366821289,
+                "mean": 0.685587253421545,
+                "median": 0.9276743829250336,
+                "minimum": 0.031635258346796036
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 25,
+                  "value": 0.6944444444444444
+                },
+                "false_negative": 7,
+                "false_positive": 25,
+                "precision": {
+                  "denominator": 42,
+                  "numerator": 17,
+                  "value": 0.40476190476190477
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 17,
+                  "value": 0.7083333333333334
+                },
+                "true_negative": 11,
+                "true_positive": 17
+              }
+            },
+            "family-045": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 479.0,
+                "value": 0.5543981481481481
+              },
+              "binary_negative_log_likelihood": 1.4677429059514513,
+              "brier_score": 0.457569698612449,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.9451559782028198,
+                "mean": 0.6689872591652803,
+                "median": 0.9108721911907196,
+                "minimum": 0.03168078884482384
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.9454625248908997,
+                "mean": 0.6855562568331758,
+                "median": 0.9279923141002655,
+                "minimum": 0.031322646886110306
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 28,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 25,
+                  "value": 0.6944444444444444
+                },
+                "false_negative": 7,
+                "false_positive": 25,
+                "precision": {
+                  "denominator": 42,
+                  "numerator": 17,
+                  "value": 0.40476190476190477
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 17,
+                  "value": 0.7083333333333334
+                },
+                "true_negative": 11,
+                "true_positive": 17
+              }
+            }
+          },
+          "negative_type": {
+            "applicable_positive": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.9241854199809785,
+              "brier_score": 0.24772566852760028,
+              "negative": 0,
+              "negative_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "positive": 48,
+              "positive_probability": {
+                "count": 48,
+                "maximum": 0.9454625248908997,
+                "mean": 0.6855717551273605,
+                "median": 0.9276743829250336,
+                "minimum": 0.031322646886110306
+              },
+              "rows": 48,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 48,
+                  "numerator": 34,
+                  "value": 0.7083333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "false_negative": 14,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 34,
+                  "numerator": 34,
+                  "value": 1.0
+                },
+                "recall": {
+                  "denominator": 48,
+                  "numerator": 34,
+                  "value": 0.7083333333333334
+                },
+                "true_negative": 0,
+                "true_positive": 34
+              }
+            },
+            "different_entity_same_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.9946802434810271,
+              "brier_score": 0.6432730411099862,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.9451485276222229,
+                "mean": 0.7025569289301833,
+                "median": 0.9272919595241547,
+                "minimum": 0.03168078884482384
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 3,
+                  "value": 0.25
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 9,
+                  "value": 0.75
+                },
+                "false_negative": 0,
+                "false_positive": 9,
+                "precision": {
+                  "denominator": 9,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 3,
+                "true_positive": 0
+              }
+            },
+            "ordinary": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.7079283050014604,
+              "brier_score": 0.5663713111117138,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.9452396631240845,
+                "mean": 0.6428290515517195,
+                "median": 0.903074711561203,
+                "minimum": 0.0315621979534626
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 4,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 8,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 8,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 4,
+                "true_positive": 0
+              }
+            },
+            "same_entity_different_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.7905821714673742,
+              "brier_score": 0.5789307716699511,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.9456896781921387,
+                "mean": 0.6512862499803305,
+                "median": 0.9227727055549622,
+                "minimum": 0.03152314946055412
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 4,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 8,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 8,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 4,
+                "true_positive": 0
+              }
+            },
+            "similar_name": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.80217579044014,
+              "brier_score": 0.5849574702289906,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.9449817538261414,
+                "mean": 0.6609851894900203,
+                "median": 0.9011458456516266,
+                "minimum": 0.032313790172338486
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 4,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 8,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 8,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 4,
+                "true_positive": 0
+              }
+            },
+            "wrong_tier": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.9369815784478293,
+              "brier_score": 0.6339505721041215,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.9456207156181335,
+                "mean": 0.6974319449315468,
+                "median": 0.9162827432155609,
+                "minimum": 0.03271159157156944
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 3,
+                  "value": 0.25
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 9,
+                  "value": 0.75
+                },
+                "false_negative": 0,
+                "false_positive": 9,
+                "precision": {
+                  "denominator": 9,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 3,
+                "true_positive": 0
+              }
+            },
+            "wrong_version": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 1.8447226000667831,
+              "brier_score": 0.5935377576853385,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.9451559782028198,
+                "mean": 0.6679089398433765,
+                "median": 0.9096523523330688,
+                "minimum": 0.03251349925994873
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 4,
+                  "value": 0.3333333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 8,
+                  "value": 0.6666666666666666
+                },
+                "false_negative": 0,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 8,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 4,
+                "true_positive": 0
+              }
+            }
+          },
+          "question_style": {
+            "comparison_no": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 136.0,
+                "value": 0.6296296296296297
+              },
+              "binary_negative_log_likelihood": 1.681527167340311,
+              "brier_score": 0.5269548100567978,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.9456207156181335,
+                "mean": 0.9358733693758646,
+                "median": 0.9441340267658234,
+                "minimum": 0.9029057025909424
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.9454625248908997,
+                "mean": 0.9419978012641271,
+                "median": 0.9444355666637421,
+                "minimum": 0.935217559337616
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 12,
+                  "value": 0.4
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 18,
+                  "value": 1.0
+                },
+                "false_negative": 0,
+                "false_positive": 18,
+                "precision": {
+                  "denominator": 30,
+                  "numerator": 12,
+                  "value": 0.4
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "true_negative": 0,
+                "true_positive": 12
+              }
+            },
+            "comparison_yes": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 134.0,
+                "value": 0.6203703703703703
+              },
+              "binary_negative_log_likelihood": 1.6837717209214047,
+              "brier_score": 0.5273023708781955,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.9456896781921387,
+                "mean": 0.9361856646007962,
+                "median": 0.9432554244995117,
+                "minimum": 0.9032437205314636
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.944886326789856,
+                "mean": 0.941923514008522,
+                "median": 0.9445164501667023,
+                "minimum": 0.9349212646484375
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 12,
+                  "value": 0.4
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 18,
+                  "value": 1.0
+                },
+                "false_negative": 0,
+                "false_positive": 18,
+                "precision": {
+                  "denominator": 30,
+                  "numerator": 12,
+                  "value": 0.4
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "true_negative": 0,
+                "true_positive": 12
+              }
+            },
+            "direct": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 112.0,
+                "value": 0.5185185185185185
+              },
+              "binary_negative_log_likelihood": 1.3661272507747702,
+              "brier_score": 0.3733952401664967,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.03919240087270737,
+                "mean": 0.03452443517744541,
+                "median": 0.03452534228563309,
+                "minimum": 0.03152314946055412
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.039308417588472366,
+                "mean": 0.034762149676680565,
+                "median": 0.03452819027006626,
+                "minimum": 0.031322646886110306
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 18,
+                  "value": 0.6
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 12,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "true_negative": 18,
+                "true_positive": 0
+              }
+            },
+            "paraphrase": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 140.0,
+                "value": 0.6481481481481481
+              },
+              "binary_negative_log_likelihood": 1.1780988084949255,
+              "brier_score": 0.4091170181067112,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.919946014881134,
+                "mean": 0.7754154006640116,
+                "median": 0.8747202754020691,
+                "minimum": 0.28620681166648865
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.9204275012016296,
+                "mean": 0.823603555560112,
+                "median": 0.8808524906635284,
+                "minimum": 0.4979596436023712
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 14,
+                  "value": 0.4666666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 14,
+                  "value": 0.7777777777777778
+                },
+                "false_negative": 2,
+                "false_positive": 14,
+                "precision": {
+                  "denominator": 24,
+                  "numerator": 10,
+                  "value": 0.4166666666666667
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 10,
+                  "value": 0.8333333333333334
+                },
+                "true_negative": 4,
+                "true_positive": 10
+              }
+            }
+          },
+          "relation": {
+            "device_limit": {
+              "auroc": {
+                "denominator": 320,
+                "numerator": 182.0,
+                "value": 0.56875
+              },
+              "binary_negative_log_likelihood": 1.498519516431714,
+              "brier_score": 0.4594219352186605,
+              "negative": 20,
+              "negative_probability": {
+                "count": 20,
+                "maximum": 0.9446164965629578,
+                "mean": 0.6979572338983416,
+                "median": 0.9100708961486816,
+                "minimum": 0.032313790172338486
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.9446501135826111,
+                "mean": 0.6995673233177513,
+                "median": 0.910907119512558,
+                "minimum": 0.03219902142882347
+              },
+              "rows": 36,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 36,
+                  "numerator": 17,
+                  "value": 0.4722222222222222
+                },
+                "false_application_rate": {
+                  "denominator": 20,
+                  "numerator": 15,
+                  "value": 0.75
+                },
+                "false_negative": 4,
+                "false_positive": 15,
+                "precision": {
+                  "denominator": 27,
+                  "numerator": 12,
+                  "value": 0.4444444444444444
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 12,
+                  "value": 0.75
+                },
+                "true_negative": 5,
+                "true_positive": 12
+              }
+            },
+            "price_monthly": {
+              "auroc": {
+                "denominator": 128,
+                "numerator": 86.0,
+                "value": 0.671875
+              },
+              "binary_negative_log_likelihood": 1.595741000400614,
+              "brier_score": 0.5067046430772723,
+              "negative": 16,
+              "negative_probability": {
+                "count": 16,
+                "maximum": 0.9375848174095154,
+                "mean": 0.7035652690101415,
+                "median": 0.9196773767471313,
+                "minimum": 0.03637007251381874
+              },
+              "positive": 8,
+              "positive_probability": {
+                "count": 8,
+                "maximum": 0.9375720620155334,
+                "mean": 0.7086074207909405,
+                "median": 0.9288950562477112,
+                "minimum": 0.03923405706882477
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 10,
+                  "value": 0.4166666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 16,
+                  "numerator": 12,
+                  "value": 0.75
+                },
+                "false_negative": 2,
+                "false_positive": 12,
+                "precision": {
+                  "denominator": 18,
+                  "numerator": 6,
+                  "value": 0.3333333333333333
+                },
+                "recall": {
+                  "denominator": 8,
+                  "numerator": 6,
+                  "value": 0.75
+                },
+                "true_negative": 4,
+                "true_positive": 6
+              }
+            },
+            "storage_gb": {
+              "auroc": {
+                "denominator": 320,
+                "numerator": 154.0,
+                "value": 0.48125
+              },
+              "binary_negative_log_likelihood": 1.4981938277403937,
+              "brier_score": 0.4608412672388038,
+              "negative": 20,
+              "negative_probability": {
+                "count": 20,
+                "maximum": 0.9456896781921387,
+                "mean": 0.701167800091207,
+                "median": 0.9137646853923798,
+                "minimum": 0.034761883318424225
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.9454625248908997,
+                "mean": 0.7026748741045594,
+                "median": 0.9146246910095215,
+                "minimum": 0.03653772920370102
+              },
+              "rows": 36,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 36,
+                  "numerator": 17,
+                  "value": 0.4722222222222222
+                },
+                "false_application_rate": {
+                  "denominator": 20,
+                  "numerator": 15,
+                  "value": 0.75
+                },
+                "false_negative": 4,
+                "false_positive": 15,
+                "precision": {
+                  "denominator": 27,
+                  "numerator": 12,
+                  "value": 0.4444444444444444
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 12,
+                  "value": 0.75
+                },
+                "true_negative": 5,
+                "true_positive": 12
+              }
+            },
+            "support_hours": {
+              "auroc": {
+                "denominator": 128,
+                "numerator": 81.0,
+                "value": 0.6328125
+              },
+              "binary_negative_log_likelihood": 1.2960951677554882,
+              "brier_score": 0.40886235224678286,
+              "negative": 16,
+              "negative_probability": {
+                "count": 16,
+                "maximum": 0.9351416826248169,
+                "mean": 0.5647771670483053,
+                "median": 0.6982968747615814,
+                "minimum": 0.03152314946055412
+              },
+              "positive": 8,
+              "positive_probability": {
+                "count": 8,
+                "maximum": 0.9362607598304749,
+                "mean": 0.6003387151286006,
+                "median": 0.7172064334154129,
+                "minimum": 0.031322646886110306
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 12,
+                  "value": 0.5
+                },
+                "false_application_rate": {
+                  "denominator": 16,
+                  "numerator": 8,
+                  "value": 0.5
+                },
+                "false_negative": 4,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 12,
+                  "numerator": 4,
+                  "value": 0.3333333333333333
+                },
+                "recall": {
+                  "denominator": 8,
+                  "numerator": 4,
+                  "value": 0.5
+                },
+                "true_negative": 8,
+                "true_positive": 4
+              }
+            }
+          }
+        },
+        "policies": {
+          "initial_v2_fixed": {
+            "ambiguity_margin": 0.0,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 99,
+                "value": 0.825
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 9,
+                "missed_positive": 12,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 36,
+                "true_rejection": 63
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 120,
+                "value": 1.0
+              },
+              "deterministic_rejected_pairs": 60,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 9,
+                "value": 0.125
+              },
+              "precision": {
+                "denominator": 45,
+                "numerator": 36,
+                "value": 0.8
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 36,
+                "value": 0.75
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 54,
+                "value": 0.45
+              },
+              "ambiguity_margin": 0.0,
+              "clarification_rate": {
+                "denominator": 120,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 54,
+                "missed_positive": 12,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 36,
+                "true_rejection": 18
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 120,
+                "value": 1.0
+              },
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 54,
+                "value": 0.75
+              },
+              "mean_cost": {
+                "denominator": 120,
+                "numerator": 228.0,
+                "value": 1.9
+              },
+              "precision": {
+                "denominator": 90,
+                "numerator": 36,
+                "value": 0.4
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 36,
+                "value": 0.75
+              },
+              "selective_accuracy": {
+                "denominator": 120,
+                "numerator": 54,
+                "value": 0.45
+              },
+              "threshold": 0.11,
+              "total_cost": 228.0
+            },
+            "temperature": 1.5,
+            "threshold": 0.11
+          },
+          "revision1_validation_selected": {
+            "ambiguity_margin": 0.1,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 98,
+                "value": 0.8166666666666667
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 2,
+                "false_application": 8,
+                "missed_positive": 12,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 34,
+                "true_rejection": 64
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 118,
+                "value": 0.9833333333333333
+              },
+              "deterministic_rejected_pairs": 60,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 8,
+                "value": 0.1111111111111111
+              },
+              "precision": {
+                "denominator": 42,
+                "numerator": 34,
+                "value": 0.8095238095238095
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 34,
+                "value": 0.7083333333333334
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 55,
+                "value": 0.4583333333333333
+              },
+              "ambiguity_margin": 0.1,
+              "clarification_rate": {
+                "denominator": 120,
+                "numerator": 3,
+                "value": 0.025
+              },
+              "counts": {
+                "clarification_negative": 1,
+                "clarification_positive": 2,
+                "false_application": 50,
+                "missed_positive": 12,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 34,
+                "true_rejection": 21
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 117,
+                "value": 0.975
+              },
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 50,
+                "value": 0.6944444444444444
+              },
+              "mean_cost": {
+                "denominator": 120,
+                "numerator": 212.75,
+                "value": 1.7729166666666667
+              },
+              "precision": {
+                "denominator": 84,
+                "numerator": 34,
+                "value": 0.40476190476190477
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 34,
+                "value": 0.7083333333333334
+              },
+              "selective_accuracy": {
+                "denominator": 117,
+                "numerator": 55,
+                "value": 0.4700854700854701
+              },
+              "threshold": 0.58,
+              "total_cost": 212.75
+            },
+            "temperature": 0.5,
+            "threshold": 0.58
+          }
+        },
+        "raw": {
+          "auroc": {
+            "denominator": 3456,
+            "numerator": 1876.0,
+            "value": 0.5428240740740741
+          },
+          "binary_negative_log_likelihood": 1.4773812368828527,
+          "brier_score": 0.45919235980205025,
+          "negative": 72,
+          "negative_probability": {
+            "count": 72,
+            "maximum": 0.9456896781921387,
+            "mean": 0.6704997174545295,
+            "median": 0.9182217121124268,
+            "minimum": 0.03152314946055412
+          },
+          "positive": 48,
+          "positive_probability": {
+            "count": 48,
+            "maximum": 0.9454625248908997,
+            "mean": 0.6855717551273605,
+            "median": 0.9276743829250336,
+            "minimum": 0.031322646886110306
+          },
+          "rows": 120,
+          "threshold_0_5": {
+            "accuracy": {
+              "denominator": 120,
+              "numerator": 56,
+              "value": 0.4666666666666667
+            },
+            "false_application_rate": {
+              "denominator": 72,
+              "numerator": 50,
+              "value": 0.6944444444444444
+            },
+            "false_negative": 14,
+            "false_positive": 50,
+            "precision": {
+              "denominator": 84,
+              "numerator": 34,
+              "value": 0.40476190476190477
+            },
+            "recall": {
+              "denominator": 48,
+              "numerator": 34,
+              "value": 0.7083333333333334
+            },
+            "true_negative": 22,
+            "true_positive": 34
+          }
+        }
+      }
+    },
+    "revision1_v3": {
+      "train": {
+        "by": {
+          "family_id": {
+            "family-015": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 768.0,
+                "value": 0.8888888888888888
+              },
+              "binary_negative_log_likelihood": 0.4840680465421426,
+              "brier_score": 0.1599125475438939,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5687148571014404,
+                "mean": 0.30277383720709217,
+                "median": 0.18911472707986832,
+                "minimum": 0.11279258131980896
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5726504921913147,
+                "mean": 0.5452343424161276,
+                "median": 0.550668865442276,
+                "minimum": 0.5035153031349182
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 50,
+                  "value": 0.8333333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 10,
+                  "value": 0.2777777777777778
+                },
+                "false_negative": 0,
+                "false_positive": 10,
+                "precision": {
+                  "denominator": 34,
+                  "numerator": 24,
+                  "value": 0.7058823529411765
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "true_negative": 26,
+                "true_positive": 24
+              }
+            },
+            "family-037": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 747.0,
+                "value": 0.8645833333333334
+              },
+              "binary_negative_log_likelihood": 0.4822721685180222,
+              "brier_score": 0.15939520680789257,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5642022490501404,
+                "mean": 0.2964454353269603,
+                "median": 0.18621982634067535,
+                "minimum": 0.11198105663061142
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5688583850860596,
+                "mean": 0.540671531111002,
+                "median": 0.5458662509918213,
+                "minimum": 0.49644431471824646
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 48,
+                  "value": 0.8
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 11,
+                  "value": 0.3055555555555556
+                },
+                "false_negative": 1,
+                "false_positive": 11,
+                "precision": {
+                  "denominator": 34,
+                  "numerator": 23,
+                  "value": 0.6764705882352942
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 23,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 25,
+                "true_positive": 23
+              }
+            },
+            "family-055": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 764.0,
+                "value": 0.8842592592592593
+              },
+              "binary_negative_log_likelihood": 0.4859089422574289,
+              "brier_score": 0.16088882661837892,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.561804473400116,
+                "mean": 0.3010155424061749,
+                "median": 0.1834082156419754,
+                "minimum": 0.1119035929441452
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5673307776451111,
+                "mean": 0.5401219887038072,
+                "median": 0.5467364490032196,
+                "minimum": 0.4954853355884552
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 50,
+                  "value": 0.8333333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 9,
+                  "value": 0.25
+                },
+                "false_negative": 1,
+                "false_positive": 9,
+                "precision": {
+                  "denominator": 32,
+                  "numerator": 23,
+                  "value": 0.71875
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 23,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 27,
+                "true_positive": 23
+              }
+            },
+            "family-073": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 742.0,
+                "value": 0.8587962962962963
+              },
+              "binary_negative_log_likelihood": 0.48203055184570176,
+              "brier_score": 0.1594098580964974,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5636341571807861,
+                "mean": 0.29612331713239354,
+                "median": 0.17866554111242294,
+                "minimum": 0.11140206456184387
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5701059699058533,
+                "mean": 0.5411188478271166,
+                "median": 0.5457882285118103,
+                "minimum": 0.4921882748603821
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 47,
+                  "value": 0.7833333333333333
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 11,
+                  "value": 0.3055555555555556
+                },
+                "false_negative": 2,
+                "false_positive": 11,
+                "precision": {
+                  "denominator": 33,
+                  "numerator": 22,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 22,
+                  "value": 0.9166666666666666
+                },
+                "true_negative": 25,
+                "true_positive": 22
+              }
+            }
+          },
+          "negative_type": {
+            "applicable_positive": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.6138228365877147,
+              "brier_score": 0.2105022364068775,
+              "negative": 0,
+              "negative_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "positive": 96,
+              "positive_probability": {
+                "count": 96,
+                "maximum": 0.5726504921913147,
+                "mean": 0.5417866775145134,
+                "median": 0.5474709868431091,
+                "minimum": 0.4921882748603821
+              },
+              "rows": 96,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 96,
+                  "numerator": 92,
+                  "value": 0.9583333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "false_negative": 4,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 92,
+                  "numerator": 92,
+                  "value": 1.0
+                },
+                "recall": {
+                  "denominator": 96,
+                  "numerator": 92,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 0,
+                "true_positive": 92
+              }
+            },
+            "different_entity_same_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.7568205323176055,
+              "brier_score": 0.28173819569353503,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.5573809146881104,
+                "mean": 0.5302833952009678,
+                "median": 0.5367873907089233,
+                "minimum": 0.4833822250366211
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 4,
+                  "value": 0.16666666666666666
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 20,
+                  "value": 0.8333333333333334
+                },
+                "false_negative": 0,
+                "false_positive": 20,
+                "precision": {
+                  "denominator": 20,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 4,
+                "true_positive": 0
+              }
+            },
+            "ordinary": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.1305889249964034,
+              "brier_score": 0.014988756077938856,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.12510225176811218,
+                "mean": 0.12242041031519572,
+                "median": 0.1221463531255722,
+                "minimum": 0.11954182386398315
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 24,
+                "true_positive": 0
+              }
+            },
+            "same_entity_different_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.4622108451072922,
+              "brier_score": 0.14141962782554673,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.4955567419528961,
+                "mean": 0.36198539659380913,
+                "median": 0.3857348561286926,
+                "minimum": 0.22791123390197754
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 24,
+                "true_positive": 0
+              }
+            },
+            "similar_name": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.13580123842172218,
+              "brier_score": 0.016130876340234926,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.13514508306980133,
+                "mean": 0.126979844023784,
+                "median": 0.12634525448083878,
+                "minimum": 0.12430000305175781
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 24,
+                "true_positive": 0
+              }
+            },
+            "wrong_tier": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.12273441451135392,
+              "brier_score": 0.013343421416237976,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.11788521707057953,
+                "mean": 0.11549961846321821,
+                "median": 0.11589275673031807,
+                "minimum": 0.11140206456184387
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 24,
+                "true_positive": 0
+              }
+            },
+            "wrong_version": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.7722519712030026,
+              "brier_score": 0.2893862746856535,
+              "negative": 24,
+              "negative_probability": {
+                "count": 24,
+                "maximum": 0.5687148571014404,
+                "mean": 0.5373685335119566,
+                "median": 0.5458380877971649,
+                "minimum": 0.49178266525268555
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 3,
+                  "value": 0.125
+                },
+                "false_application_rate": {
+                  "denominator": 24,
+                  "numerator": 21,
+                  "value": 0.875
+                },
+                "false_negative": 0,
+                "false_positive": 21,
+                "precision": {
+                  "denominator": 21,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 3,
+                "true_positive": 0
+              }
+            }
+          },
+          "question_style": {
+            "comparison_no": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 767.0,
+                "value": 0.8877314814814815
+              },
+              "binary_negative_log_likelihood": 0.4736840233933299,
+              "brier_score": 0.15551282930089308,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5687148571014404,
+                "mean": 0.2914215322169993,
+                "median": 0.17649372667074203,
+                "minimum": 0.11436700820922852
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5723714232444763,
+                "mean": 0.5467443590362867,
+                "median": 0.5596405267715454,
+                "minimum": 0.498515784740448
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 49,
+                  "value": 0.8166666666666667
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 10,
+                  "value": 0.2777777777777778
+                },
+                "false_negative": 1,
+                "false_positive": 10,
+                "precision": {
+                  "denominator": 33,
+                  "numerator": 23,
+                  "value": 0.696969696969697
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 23,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 26,
+                "true_positive": 23
+              }
+            },
+            "comparison_yes": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 775.0,
+                "value": 0.8969907407407407
+              },
+              "binary_negative_log_likelihood": 0.469560792310994,
+              "brier_score": 0.15347708755023776,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5642022490501404,
+                "mean": 0.2885640064875285,
+                "median": 0.17881082743406296,
+                "minimum": 0.11140206456184387
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5726504921913147,
+                "mean": 0.5481547713279724,
+                "median": 0.5606103241443634,
+                "minimum": 0.5023279786109924
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 50,
+                  "value": 0.8333333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 10,
+                  "value": 0.2777777777777778
+                },
+                "false_negative": 0,
+                "false_positive": 10,
+                "precision": {
+                  "denominator": 34,
+                  "numerator": 24,
+                  "value": 0.7058823529411765
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "true_negative": 26,
+                "true_positive": 24
+              }
+            },
+            "direct": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 770.0,
+                "value": 0.8912037037037037
+              },
+              "binary_negative_log_likelihood": 0.4931893610803528,
+              "brier_score": 0.16434388952526444,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5635955929756165,
+                "mean": 0.30975885440905887,
+                "median": 0.2094006985425949,
+                "minimum": 0.1119035929441452
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5646654367446899,
+                "mean": 0.54273538539807,
+                "median": 0.5389207303524017,
+                "minimum": 0.5219940543174744
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 48,
+                  "value": 0.8
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 12,
+                  "value": 0.3333333333333333
+                },
+                "false_negative": 0,
+                "false_positive": 12,
+                "precision": {
+                  "denominator": 36,
+                  "numerator": 24,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 24,
+                  "value": 1.0
+                },
+                "true_negative": 24,
+                "true_positive": 24
+              }
+            },
+            "paraphrase": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 756.0,
+                "value": 0.875
+              },
+              "binary_negative_log_likelihood": 0.49784553237861867,
+              "brier_score": 0.16627263269026754,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5534085035324097,
+                "mean": 0.30661373895903427,
+                "median": 0.25421828776597977,
+                "minimum": 0.11513453722000122
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5595356822013855,
+                "mean": 0.5295121942957243,
+                "median": 0.5315375626087189,
+                "minimum": 0.4921882748603821
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 48,
+                  "value": 0.8
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 9,
+                  "value": 0.25
+                },
+                "false_negative": 3,
+                "false_positive": 9,
+                "precision": {
+                  "denominator": 30,
+                  "numerator": 21,
+                  "value": 0.7
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 21,
+                  "value": 0.875
+                },
+                "true_negative": 27,
+                "true_positive": 21
+              }
+            }
+          },
+          "relation": {
+            "device_limit": {
+              "auroc": {
+                "denominator": 1280,
+                "numerator": 1115.0,
+                "value": 0.87109375
+              },
+              "binary_negative_log_likelihood": 0.5087005510550818,
+              "brier_score": 0.17081277481221147,
+              "negative": 40,
+              "negative_probability": {
+                "count": 40,
+                "maximum": 0.5572362542152405,
+                "mean": 0.32016488872468474,
+                "median": 0.27679307758808136,
+                "minimum": 0.11513453722000122
+              },
+              "positive": 32,
+              "positive_probability": {
+                "count": 32,
+                "maximum": 0.5640438795089722,
+                "mean": 0.5468926187604666,
+                "median": 0.5477188229560852,
+                "minimum": 0.5296519994735718
+              },
+              "rows": 72,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 72,
+                  "numerator": 56,
+                  "value": 0.7777777777777778
+                },
+                "false_application_rate": {
+                  "denominator": 40,
+                  "numerator": 16,
+                  "value": 0.4
+                },
+                "false_negative": 0,
+                "false_positive": 16,
+                "precision": {
+                  "denominator": 48,
+                  "numerator": 32,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 32,
+                  "numerator": 32,
+                  "value": 1.0
+                },
+                "true_negative": 24,
+                "true_positive": 32
+              }
+            },
+            "price_monthly": {
+              "auroc": {
+                "denominator": 512,
+                "numerator": 487.0,
+                "value": 0.951171875
+              },
+              "binary_negative_log_likelihood": 0.46171504835827565,
+              "brier_score": 0.1511749672154728,
+              "negative": 32,
+              "negative_probability": {
+                "count": 32,
+                "maximum": 0.5218400359153748,
+                "mean": 0.27613238897174597,
+                "median": 0.17778973281383514,
+                "minimum": 0.11436700820922852
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.5268193483352661,
+                "mean": 0.5090190544724464,
+                "median": 0.5049634277820587,
+                "minimum": 0.498515784740448
+              },
+              "rows": 48,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 48,
+                  "numerator": 45,
+                  "value": 0.9375
+                },
+                "false_application_rate": {
+                  "denominator": 32,
+                  "numerator": 2,
+                  "value": 0.0625
+                },
+                "false_negative": 1,
+                "false_positive": 2,
+                "precision": {
+                  "denominator": 17,
+                  "numerator": 15,
+                  "value": 0.8823529411764706
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 15,
+                  "value": 0.9375
+                },
+                "true_negative": 30,
+                "true_positive": 15
+              }
+            },
+            "storage_gb": {
+              "auroc": {
+                "denominator": 1280,
+                "numerator": 1170.0,
+                "value": 0.9140625
+              },
+              "binary_negative_log_likelihood": 0.5040433095406928,
+              "brier_score": 0.168448781145488,
+              "negative": 40,
+              "negative_probability": {
+                "count": 40,
+                "maximum": 0.5687148571014404,
+                "mean": 0.327471112832427,
+                "median": 0.2652219459414482,
+                "minimum": 0.11596690118312836
+              },
+              "positive": 32,
+              "positive_probability": {
+                "count": 32,
+                "maximum": 0.5726504921913147,
+                "mean": 0.5634281784296036,
+                "median": 0.5649459958076477,
+                "minimum": 0.5528273582458496
+              },
+              "rows": 72,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 72,
+                  "numerator": 56,
+                  "value": 0.7777777777777778
+                },
+                "false_application_rate": {
+                  "denominator": 40,
+                  "numerator": 16,
+                  "value": 0.4
+                },
+                "false_negative": 0,
+                "false_positive": 16,
+                "precision": {
+                  "denominator": 48,
+                  "numerator": 32,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 32,
+                  "numerator": 32,
+                  "value": 1.0
+                },
+                "true_negative": 24,
+                "true_positive": 32
+              }
+            },
+            "support_hours": {
+              "auroc": {
+                "denominator": 512,
+                "numerator": 474.0,
+                "value": 0.92578125
+              },
+              "binary_negative_log_likelihood": 0.4370187972021818,
+              "brier_score": 0.1394407476813065,
+              "negative": 32,
+              "negative_probability": {
+                "count": 32,
+                "maximum": 0.5289918184280396,
+                "mean": 0.2602255076635629,
+                "median": 0.18307270109653473,
+                "minimum": 0.11140206456184387
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.5421146154403687,
+                "mean": 0.5210594162344933,
+                "median": 0.5244587063789368,
+                "minimum": 0.4921882748603821
+              },
+              "rows": 48,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 48,
+                  "numerator": 38,
+                  "value": 0.7916666666666666
+                },
+                "false_application_rate": {
+                  "denominator": 32,
+                  "numerator": 7,
+                  "value": 0.21875
+                },
+                "false_negative": 3,
+                "false_positive": 7,
+                "precision": {
+                  "denominator": 20,
+                  "numerator": 13,
+                  "value": 0.65
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 13,
+                  "value": 0.8125
+                },
+                "true_negative": 25,
+                "true_positive": 13
+              }
+            }
+          }
+        },
+        "policies": {
+          "initial_v2_fixed": {
+            "ambiguity_margin": 0.0,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 216,
+                "value": 0.9
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 24,
+                "missed_positive": 0,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 96,
+                "true_rejection": 120
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 240,
+                "value": 1.0
+              },
+              "deterministic_rejected_pairs": 120,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 24,
+                "value": 0.16666666666666666
+              },
+              "precision": {
+                "denominator": 120,
+                "numerator": 96,
+                "value": 0.8
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 96,
+                "value": 1.0
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 96,
+                "value": 0.4
+              },
+              "ambiguity_margin": 0.0,
+              "clarification_rate": {
+                "denominator": 240,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 144,
+                "missed_positive": 0,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 96,
+                "true_rejection": 0
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 240,
+                "value": 1.0
+              },
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 144,
+                "value": 1.0
+              },
+              "mean_cost": {
+                "denominator": 240,
+                "numerator": 576.0,
+                "value": 2.4
+              },
+              "precision": {
+                "denominator": 240,
+                "numerator": 96,
+                "value": 0.4
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 96,
+                "value": 1.0
+              },
+              "selective_accuracy": {
+                "denominator": 240,
+                "numerator": 96,
+                "value": 0.4
+              },
+              "threshold": 0.11,
+              "total_cost": 576.0
+            },
+            "temperature": 1.5,
+            "threshold": 0.11
+          },
+          "revision1_validation_selected": {
+            "ambiguity_margin": 0.1,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 142,
+                "value": 0.5916666666666667
+              },
+              "counts": {
+                "clarification_negative": 2,
+                "clarification_positive": 96,
+                "false_application": 0,
+                "missed_positive": 0,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 0,
+                "true_rejection": 142
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 142,
+                "value": 0.5916666666666667
+              },
+              "deterministic_rejected_pairs": 120,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "precision": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 0,
+                "value": 0.0
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 240,
+                "numerator": 97,
+                "value": 0.4041666666666667
+              },
+              "ambiguity_margin": 0.1,
+              "clarification_rate": {
+                "denominator": 240,
+                "numerator": 143,
+                "value": 0.5958333333333333
+              },
+              "counts": {
+                "clarification_negative": 47,
+                "clarification_positive": 96,
+                "false_application": 0,
+                "missed_positive": 0,
+                "negative": 144,
+                "positive": 96,
+                "total": 240,
+                "true_application": 0,
+                "true_rejection": 97
+              },
+              "coverage": {
+                "denominator": 240,
+                "numerator": 97,
+                "value": 0.4041666666666667
+              },
+              "false_application_rate": {
+                "denominator": 144,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "mean_cost": {
+                "denominator": 240,
+                "numerator": 35.75,
+                "value": 0.14895833333333333
+              },
+              "precision": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 96,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "selective_accuracy": {
+                "denominator": 97,
+                "numerator": 97,
+                "value": 1.0
+              },
+              "threshold": 0.58,
+              "total_cost": 35.75
+            },
+            "temperature": 0.5,
+            "threshold": 0.58
+          }
+        },
+        "raw": {
+          "auroc": {
+            "denominator": 13824,
+            "numerator": 12070.0,
+            "value": 0.8731192129629629
+          },
+          "binary_negative_log_likelihood": 0.4835699272908239,
+          "brier_score": 0.1599016097666657,
+          "negative": 144,
+          "negative_probability": {
+            "count": 144,
+            "maximum": 0.5687148571014404,
+            "mean": 0.2990895330181552,
+            "median": 0.18152815848588943,
+            "minimum": 0.11140206456184387
+          },
+          "positive": 96,
+          "positive_probability": {
+            "count": 96,
+            "maximum": 0.5726504921913147,
+            "mean": 0.5417866775145134,
+            "median": 0.5474709868431091,
+            "minimum": 0.4921882748603821
+          },
+          "rows": 240,
+          "threshold_0_5": {
+            "accuracy": {
+              "denominator": 240,
+              "numerator": 195,
+              "value": 0.8125
+            },
+            "false_application_rate": {
+              "denominator": 144,
+              "numerator": 41,
+              "value": 0.2847222222222222
+            },
+            "false_negative": 4,
+            "false_positive": 41,
+            "precision": {
+              "denominator": 133,
+              "numerator": 92,
+              "value": 0.6917293233082706
+            },
+            "recall": {
+              "denominator": 96,
+              "numerator": 92,
+              "value": 0.9583333333333334
+            },
+            "true_negative": 103,
+            "true_positive": 92
+          }
+        }
+      },
+      "validation": {
+        "by": {
+          "family_id": {
+            "family-044": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 760.0,
+                "value": 0.8796296296296297
+              },
+              "binary_negative_log_likelihood": 0.4875783325053488,
+              "brier_score": 0.16171113229815623,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5663481950759888,
+                "mean": 0.3022438393284877,
+                "median": 0.18535096943378448,
+                "minimum": 0.11251480132341385
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5668452382087708,
+                "mean": 0.5397468519707521,
+                "median": 0.5452544689178467,
+                "minimum": 0.49479255080223083
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 50,
+                  "value": 0.8333333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 9,
+                  "value": 0.25
+                },
+                "false_negative": 1,
+                "false_positive": 9,
+                "precision": {
+                  "denominator": 32,
+                  "numerator": 23,
+                  "value": 0.71875
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 23,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 27,
+                "true_positive": 23
+              }
+            },
+            "family-045": {
+              "auroc": {
+                "denominator": 864,
+                "numerator": 733.0,
+                "value": 0.8483796296296297
+              },
+              "binary_negative_log_likelihood": 0.48377966976708286,
+              "brier_score": 0.16017139867702693,
+              "negative": 36,
+              "negative_probability": {
+                "count": 36,
+                "maximum": 0.5625863671302795,
+                "mean": 0.2967445097035832,
+                "median": 0.18357475847005844,
+                "minimum": 0.11189080774784088
+              },
+              "positive": 24,
+              "positive_probability": {
+                "count": 24,
+                "maximum": 0.5672516822814941,
+                "mean": 0.5393169944485029,
+                "median": 0.5451972484588623,
+                "minimum": 0.4939327836036682
+              },
+              "rows": 60,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 60,
+                  "numerator": 48,
+                  "value": 0.8
+                },
+                "false_application_rate": {
+                  "denominator": 36,
+                  "numerator": 11,
+                  "value": 0.3055555555555556
+                },
+                "false_negative": 1,
+                "false_positive": 11,
+                "precision": {
+                  "denominator": 34,
+                  "numerator": 23,
+                  "value": 0.6764705882352942
+                },
+                "recall": {
+                  "denominator": 24,
+                  "numerator": 23,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 25,
+                "true_positive": 23
+              }
+            }
+          },
+          "negative_type": {
+            "applicable_positive": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.61797227105482,
+              "brier_score": 0.212557227649283,
+              "negative": 0,
+              "negative_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "positive": 48,
+              "positive_probability": {
+                "count": 48,
+                "maximum": 0.5672516822814941,
+                "mean": 0.5395319232096275,
+                "median": 0.5451972484588623,
+                "minimum": 0.4939327836036682
+              },
+              "rows": 48,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 48,
+                  "numerator": 46,
+                  "value": 0.9583333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "false_negative": 2,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 46,
+                  "numerator": 46,
+                  "value": 1.0
+                },
+                "recall": {
+                  "denominator": 48,
+                  "numerator": 46,
+                  "value": 0.9583333333333334
+                },
+                "true_negative": 0,
+                "true_positive": 46
+              }
+            },
+            "different_entity_same_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.7608294636794112,
+              "brier_score": 0.28372471332028204,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.558778703212738,
+                "mean": 0.5321223214268684,
+                "median": 0.5389461517333984,
+                "minimum": 0.4889516234397888
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 2,
+                  "value": 0.16666666666666666
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 10,
+                  "value": 0.8333333333333334
+                },
+                "false_negative": 0,
+                "false_positive": 10,
+                "precision": {
+                  "denominator": 10,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 2,
+                "true_positive": 0
+              }
+            },
+            "ordinary": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.13020915694618,
+              "brier_score": 0.014907378196828186,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.12394529581069946,
+                "mean": 0.12208698876202106,
+                "median": 0.12273594737052917,
+                "minimum": 0.1190132349729538
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 12,
+                "true_positive": 0
+              }
+            },
+            "same_entity_different_property": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.46543178509907035,
+              "brier_score": 0.14289525384514185,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.494709312915802,
+                "mean": 0.363911389062802,
+                "median": 0.391648605465889,
+                "minimum": 0.23669545352458954
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 12,
+                "true_positive": 0
+              }
+            },
+            "similar_name": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.13568199590989719,
+              "brier_score": 0.01610121692804939,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.13045406341552734,
+                "mean": 0.12687791511416435,
+                "median": 0.12632323056459427,
+                "minimum": 0.12468920648097992
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 12,
+                "true_positive": 0
+              }
+            },
+            "wrong_tier": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.1229682845799568,
+              "brier_score": 0.013391250498689786,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.11832309514284134,
+                "mean": 0.11570644627014796,
+                "median": 0.11625033244490623,
+                "minimum": 0.11189080774784088
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "false_negative": 0,
+                "false_positive": 0,
+                "precision": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 12,
+                "true_positive": 0
+              }
+            },
+            "wrong_version": {
+              "auroc": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "binary_negative_log_likelihood": 0.7697802409283631,
+              "brier_score": 0.2881639314897923,
+              "negative": 12,
+              "negative_probability": {
+                "count": 12,
+                "maximum": 0.5663481950759888,
+                "mean": 0.5362599864602089,
+                "median": 0.5416209101676941,
+                "minimum": 0.49142318964004517
+              },
+              "positive": 0,
+              "positive_probability": {
+                "count": 0,
+                "maximum": null,
+                "mean": null,
+                "median": null,
+                "minimum": null
+              },
+              "rows": 12,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 12,
+                  "numerator": 2,
+                  "value": 0.16666666666666666
+                },
+                "false_application_rate": {
+                  "denominator": 12,
+                  "numerator": 10,
+                  "value": 0.8333333333333334
+                },
+                "false_negative": 0,
+                "false_positive": 10,
+                "precision": {
+                  "denominator": 10,
+                  "numerator": 0,
+                  "value": 0.0
+                },
+                "recall": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "true_negative": 2,
+                "true_positive": 0
+              }
+            }
+          },
+          "question_style": {
+            "comparison_no": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 186.0,
+                "value": 0.8611111111111112
+              },
+              "binary_negative_log_likelihood": 0.475839870706421,
+              "brier_score": 0.1565384935934749,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.5663481950759888,
+                "mean": 0.2917461043430699,
+                "median": 0.1811034008860588,
+                "minimum": 0.11443479359149933
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.5656416416168213,
+                "mean": 0.5442318071921667,
+                "median": 0.5561937391757965,
+                "minimum": 0.5008467435836792
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 25,
+                  "value": 0.8333333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 5,
+                  "value": 0.2777777777777778
+                },
+                "false_negative": 0,
+                "false_positive": 5,
+                "precision": {
+                  "denominator": 17,
+                  "numerator": 12,
+                  "value": 0.7058823529411765
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "true_negative": 13,
+                "true_positive": 12
+              }
+            },
+            "comparison_yes": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 191.0,
+                "value": 0.8842592592592593
+              },
+              "binary_negative_log_likelihood": 0.47264848198189985,
+              "brier_score": 0.15495048464371444,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.5625863671302795,
+                "mean": 0.2900877557694912,
+                "median": 0.1840357854962349,
+                "minimum": 0.11189080774784088
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.5672516822814941,
+                "mean": 0.5459419339895248,
+                "median": 0.5576952397823334,
+                "minimum": 0.5034812688827515
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 25,
+                  "value": 0.8333333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 5,
+                  "value": 0.2777777777777778
+                },
+                "false_negative": 0,
+                "false_positive": 5,
+                "precision": {
+                  "denominator": 17,
+                  "numerator": 12,
+                  "value": 0.7058823529411765
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "true_negative": 13,
+                "true_positive": 12
+              }
+            },
+            "direct": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 194.0,
+                "value": 0.8981481481481481
+              },
+              "binary_negative_log_likelihood": 0.494579539585337,
+              "brier_score": 0.16501611496846016,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.5586420297622681,
+                "mean": 0.31011946582131916,
+                "median": 0.2087784931063652,
+                "minimum": 0.11251480132341385
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.5601593852043152,
+                "mean": 0.541412557164828,
+                "median": 0.5351554453372955,
+                "minimum": 0.526370644569397
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 24,
+                  "value": 0.8
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 6,
+                  "value": 0.3333333333333333
+                },
+                "false_negative": 0,
+                "false_positive": 6,
+                "precision": {
+                  "denominator": 18,
+                  "numerator": 12,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 12,
+                  "value": 1.0
+                },
+                "true_negative": 12,
+                "true_positive": 12
+              }
+            },
+            "paraphrase": {
+              "auroc": {
+                "denominator": 216,
+                "numerator": 192.0,
+                "value": 0.8888888888888888
+              },
+              "binary_negative_log_likelihood": 0.49964811227120554,
+              "brier_score": 0.16725996874471674,
+              "negative": 18,
+              "negative_probability": {
+                "count": 18,
+                "maximum": 0.5519651174545288,
+                "mean": 0.30602337213026154,
+                "median": 0.2496228814125061,
+                "minimum": 0.11670295149087906
+              },
+              "positive": 12,
+              "positive_probability": {
+                "count": 12,
+                "maximum": 0.5530304312705994,
+                "mean": 0.5265413944919904,
+                "median": 0.5288956165313721,
+                "minimum": 0.4939327836036682
+              },
+              "rows": 30,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 30,
+                  "numerator": 24,
+                  "value": 0.8
+                },
+                "false_application_rate": {
+                  "denominator": 18,
+                  "numerator": 4,
+                  "value": 0.2222222222222222
+                },
+                "false_negative": 2,
+                "false_positive": 4,
+                "precision": {
+                  "denominator": 14,
+                  "numerator": 10,
+                  "value": 0.7142857142857143
+                },
+                "recall": {
+                  "denominator": 12,
+                  "numerator": 10,
+                  "value": 0.8333333333333334
+                },
+                "true_negative": 14,
+                "true_positive": 10
+              }
+            }
+          },
+          "relation": {
+            "device_limit": {
+              "auroc": {
+                "denominator": 320,
+                "numerator": 283.0,
+                "value": 0.884375
+              },
+              "binary_negative_log_likelihood": 0.5104746577819022,
+              "brier_score": 0.17166209252660217,
+              "negative": 20,
+              "negative_probability": {
+                "count": 20,
+                "maximum": 0.5534619688987732,
+                "mean": 0.3195430591702461,
+                "median": 0.2768992483615875,
+                "minimum": 0.11566264182329178
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.5588196516036987,
+                "mean": 0.5437471158802509,
+                "median": 0.5439240038394928,
+                "minimum": 0.5278801321983337
+              },
+              "rows": 36,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 36,
+                  "numerator": 28,
+                  "value": 0.7777777777777778
+                },
+                "false_application_rate": {
+                  "denominator": 20,
+                  "numerator": 8,
+                  "value": 0.4
+                },
+                "false_negative": 0,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 24,
+                  "numerator": 16,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 16,
+                  "value": 1.0
+                },
+                "true_negative": 12,
+                "true_positive": 16
+              }
+            },
+            "price_monthly": {
+              "auroc": {
+                "denominator": 128,
+                "numerator": 122.0,
+                "value": 0.953125
+              },
+              "binary_negative_log_likelihood": 0.4641597627954381,
+              "brier_score": 0.15235615050679535,
+              "negative": 16,
+              "negative_probability": {
+                "count": 16,
+                "maximum": 0.5242305397987366,
+                "mean": 0.2777344207279384,
+                "median": 0.18222016841173172,
+                "minimum": 0.11443479359149933
+              },
+              "positive": 8,
+              "positive_probability": {
+                "count": 8,
+                "maximum": 0.5271772742271423,
+                "mean": 0.5082579031586647,
+                "median": 0.5023843348026276,
+                "minimum": 0.5008467435836792
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 23,
+                  "value": 0.9583333333333334
+                },
+                "false_application_rate": {
+                  "denominator": 16,
+                  "numerator": 1,
+                  "value": 0.0625
+                },
+                "false_negative": 0,
+                "false_positive": 1,
+                "precision": {
+                  "denominator": 9,
+                  "numerator": 8,
+                  "value": 0.8888888888888888
+                },
+                "recall": {
+                  "denominator": 8,
+                  "numerator": 8,
+                  "value": 1.0
+                },
+                "true_negative": 15,
+                "true_positive": 8
+              }
+            },
+            "storage_gb": {
+              "auroc": {
+                "denominator": 320,
+                "numerator": 284.0,
+                "value": 0.8875
+              },
+              "binary_negative_log_likelihood": 0.50696378156798,
+              "brier_score": 0.1699063589227986,
+              "negative": 20,
+              "negative_probability": {
+                "count": 20,
+                "maximum": 0.5663481950759888,
+                "mean": 0.32857891395688055,
+                "median": 0.2720295637845993,
+                "minimum": 0.11650016903877258
+              },
+              "positive": 16,
+              "positive_probability": {
+                "count": 16,
+                "maximum": 0.5672516822814941,
+                "mean": 0.5612622126936913,
+                "median": 0.5627113282680511,
+                "minimum": 0.5525835156440735
+              },
+              "rows": 36,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 36,
+                  "numerator": 28,
+                  "value": 0.7777777777777778
+                },
+                "false_application_rate": {
+                  "denominator": 20,
+                  "numerator": 8,
+                  "value": 0.4
+                },
+                "false_negative": 0,
+                "false_positive": 8,
+                "precision": {
+                  "denominator": 24,
+                  "numerator": 16,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 16,
+                  "numerator": 16,
+                  "value": 1.0
+                },
+                "true_negative": 12,
+                "true_positive": 16
+              }
+            },
+            "support_hours": {
+              "auroc": {
+                "denominator": 128,
+                "numerator": 118.0,
+                "value": 0.921875
+              },
+              "binary_negative_log_likelihood": 0.4380775838608177,
+              "brier_score": 0.13999749975706133,
+              "negative": 16,
+              "negative_probability": {
+                "count": 16,
+                "maximum": 0.5313709378242493,
+                "mean": 0.25983689818531275,
+                "median": 0.18433460593223572,
+                "minimum": 0.11189080774784088
+              },
+              "positive": 8,
+              "positive_probability": {
+                "count": 8,
+                "maximum": 0.5378109812736511,
+                "mean": 0.5189149789512157,
+                "median": 0.5218211710453033,
+                "minimum": 0.4939327836036682
+              },
+              "rows": 24,
+              "threshold_0_5": {
+                "accuracy": {
+                  "denominator": 24,
+                  "numerator": 19,
+                  "value": 0.7916666666666666
+                },
+                "false_application_rate": {
+                  "denominator": 16,
+                  "numerator": 3,
+                  "value": 0.1875
+                },
+                "false_negative": 2,
+                "false_positive": 3,
+                "precision": {
+                  "denominator": 9,
+                  "numerator": 6,
+                  "value": 0.6666666666666666
+                },
+                "recall": {
+                  "denominator": 8,
+                  "numerator": 6,
+                  "value": 0.75
+                },
+                "true_negative": 13,
+                "true_positive": 6
+              }
+            }
+          }
+        },
+        "policies": {
+          "initial_v2_fixed": {
+            "ambiguity_margin": 0.0,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 108,
+                "value": 0.9
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 12,
+                "missed_positive": 0,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 48,
+                "true_rejection": 60
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 120,
+                "value": 1.0
+              },
+              "deterministic_rejected_pairs": 60,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 12,
+                "value": 0.16666666666666666
+              },
+              "precision": {
+                "denominator": 60,
+                "numerator": 48,
+                "value": 0.8
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 48,
+                "value": 1.0
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 48,
+                "value": 0.4
+              },
+              "ambiguity_margin": 0.0,
+              "clarification_rate": {
+                "denominator": 120,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "counts": {
+                "clarification_negative": 0,
+                "clarification_positive": 0,
+                "false_application": 72,
+                "missed_positive": 0,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 48,
+                "true_rejection": 0
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 120,
+                "value": 1.0
+              },
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 72,
+                "value": 1.0
+              },
+              "mean_cost": {
+                "denominator": 120,
+                "numerator": 288.0,
+                "value": 2.4
+              },
+              "precision": {
+                "denominator": 120,
+                "numerator": 48,
+                "value": 0.4
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 48,
+                "value": 1.0
+              },
+              "selective_accuracy": {
+                "denominator": 120,
+                "numerator": 48,
+                "value": 0.4
+              },
+              "threshold": 0.11,
+              "total_cost": 288.0
+            },
+            "temperature": 1.5,
+            "threshold": 0.11
+          },
+          "revision1_validation_selected": {
+            "ambiguity_margin": 0.1,
+            "compatibility_gated_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 71,
+                "value": 0.5916666666666667
+              },
+              "counts": {
+                "clarification_negative": 1,
+                "clarification_positive": 48,
+                "false_application": 0,
+                "missed_positive": 0,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 0,
+                "true_rejection": 71
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 71,
+                "value": 0.5916666666666667
+              },
+              "deterministic_rejected_pairs": 60,
+              "disclaimer": "Product/plan/version/date compatibility is deterministic. Relation is not gated. This is pair-level, not end-to-end routing.",
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "precision": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 0,
+                "value": 0.0
+              }
+            },
+            "raw_pair": {
+              "accuracy_including_clarification_as_unsuccessful": {
+                "denominator": 120,
+                "numerator": 48,
+                "value": 0.4
+              },
+              "ambiguity_margin": 0.1,
+              "clarification_rate": {
+                "denominator": 120,
+                "numerator": 72,
+                "value": 0.6
+              },
+              "counts": {
+                "clarification_negative": 24,
+                "clarification_positive": 48,
+                "false_application": 0,
+                "missed_positive": 0,
+                "negative": 72,
+                "positive": 48,
+                "total": 120,
+                "true_application": 0,
+                "true_rejection": 48
+              },
+              "coverage": {
+                "denominator": 120,
+                "numerator": 48,
+                "value": 0.4
+              },
+              "false_application_rate": {
+                "denominator": 72,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "mean_cost": {
+                "denominator": 120,
+                "numerator": 18.0,
+                "value": 0.15
+              },
+              "precision": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "recall_including_clarification_as_missed": {
+                "denominator": 48,
+                "numerator": 0,
+                "value": 0.0
+              },
+              "selective_accuracy": {
+                "denominator": 48,
+                "numerator": 48,
+                "value": 1.0
+              },
+              "threshold": 0.58,
+              "total_cost": 18.0
+            },
+            "temperature": 0.5,
+            "threshold": 0.58
+          }
+        },
+        "raw": {
+          "auroc": {
+            "denominator": 3456,
+            "numerator": 2985.0,
+            "value": 0.8637152777777778
+          },
+          "binary_negative_log_likelihood": 0.4856790011362158,
+          "brier_score": 0.16094126548759158,
+          "negative": 72,
+          "negative_probability": {
+            "count": 72,
+            "maximum": 0.5663481950759888,
+            "mean": 0.29949417451603544,
+            "median": 0.18357475847005844,
+            "minimum": 0.11189080774784088
+          },
+          "positive": 48,
+          "positive_probability": {
+            "count": 48,
+            "maximum": 0.5672516822814941,
+            "mean": 0.5395319232096275,
+            "median": 0.5451972484588623,
+            "minimum": 0.4939327836036682
+          },
+          "rows": 120,
+          "threshold_0_5": {
+            "accuracy": {
+              "denominator": 120,
+              "numerator": 98,
+              "value": 0.8166666666666667
+            },
+            "false_application_rate": {
+              "denominator": 72,
+              "numerator": 20,
+              "value": 0.2777777777777778
+            },
+            "false_negative": 2,
+            "false_positive": 20,
+            "precision": {
+              "denominator": 66,
+              "numerator": 46,
+              "value": 0.696969696969697
+            },
+            "recall": {
+              "denominator": 48,
+              "numerator": 46,
+              "value": 0.9583333333333334
+            },
+            "true_negative": 52,
+            "true_positive": 46
+          }
+        }
+      }
+    }
+  },
+  "pair_forward_passes": 720,
+  "policies": {
+    "initial_v2_fixed": {
+      "ambiguity_margin": 0.0,
+      "scope_manifest_sha256": "fffe66966da4e6d0b2f0f84638d17390ec84a910d7a8d8f014eb566370a71c12",
+      "temperature": 1.5,
+      "threshold": 0.11
+    },
+    "revision1_validation_selected": {
+      "ambiguity_margin": 0.1,
+      "scope_manifest_sha256": "2374ff41593ff6fd7a9890ddfc05cef0845a667c5651bc38664ca968c1e6cd55",
+      "temperature": 0.5,
+      "threshold": 0.58
+    }
+  },
+  "probabilities_sha256": "d9d4afddf12a9f5ee71f37872f0d92f55873479aefff16af57e3ab4b11ce3ceb",
+  "purpose": "validation_development_diagnostic",
+  "schema_version": 1,
+  "script_sha256": "bf6c96f23656ab906aac6b1e375faa356d04c829dc276882a2b542dd5aa6f0e8",
+  "sources_sha256": {
+    "artifacts\\scope\\pilot-v2-initial\\manifest.json": "fffe66966da4e6d0b2f0f84638d17390ec84a910d7a8d8f014eb566370a71c12",
+    "artifacts\\scope\\pilot-v2-initial\\training_log.jsonl": "5d06e7ce170016bdfd2891959e3de9f771d405eb0315f9d7f564d969773c14ba",
+    "artifacts\\scope\\pilot-v3-revision1\\manifest.json": "2374ff41593ff6fd7a9890ddfc05cef0845a667c5651bc38664ca968c1e6cd55",
+    "artifacts\\scope\\pilot-v3-revision1\\training_log.jsonl": "893f821ebfb7b7508c69e536a2ea0913e03d373566be429c8e2bade4572f201a",
+    "data\\generated\\pilot-v2\\manifest.json": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+    "data\\generated\\pilot-v2\\scope_train.jsonl": "f061e979322400b28d7cbad162c7f3d6e4ae6e69e6e97c70b4407f58b32b66cd",
+    "data\\generated\\pilot-v2\\scope_validation.jsonl": "e4060769f69916e4abdd4126c10fb9bbe4e8862f0948942c4df168f22571f7e3",
+    "data\\generated\\pilot-v3\\catalogue.json": "d9cdcfd80da105047416473fdd815c5f29b4d5b50899ccdb827c21e8f3fac3fa",
+    "data\\generated\\pilot-v3\\derivation.json": "8beef61e8c9ae1b8e91d544bb06e6c5f2bfac5e15d5597ad9372d7701aa0db71",
+    "data\\generated\\pilot-v3\\manifest.json": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+    "data\\generated\\pilot-v3\\scope_train.jsonl": "a47f9ed7b8849c7c8071419f4a13649d802a219ee8ac13a4bd2a47c1e8abaf04",
+    "data\\generated\\pilot-v3\\scope_validation.jsonl": "683f840682c2b62f12fbc36d9fc208a405c5cfd2d0d1b2dbff4d8b0f07630a39",
+    "editguard\\formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard\\neural.py": "e5f780dd0d258ccc442187477992d1c4b3119a8d101473adb87f737e8ebb3c51",
+    "editguard\\training.py": "52952f6ec9e4c383c71b39e77e097f2e7c8bd98d2a6bfb60d742026f0e658218",
+    "reports\\pilot-v3-reviews.automated.json": "3bcff20d4e82cfae18d04445fa51123ee43aa2592a8dacf93aeaf536d6f84546",
+    "reports\\scope-pilot-v2\\calibration.json": "b6cf65d5b8ca0760b548f8235a39271a9e9415f8095d214aca92926699a2bad5",
+    "reports\\scope-pilot-v3\\calibration.json": "ea555784a257a0866eeab692c941057dc08a26490f64581e6df53d23749dd348"
+  },
+  "status": "completed",
+  "token_audits": {
+    "initial_v2": {
+      "train": {
+        "input_length": 192,
+        "maximum_input_tokens": 85,
+        "rows": 240,
+        "truncated_rows": 0
+      },
+      "validation": {
+        "input_length": 192,
+        "maximum_input_tokens": 83,
+        "rows": 120,
+        "truncated_rows": 0
+      }
+    },
+    "revision1_v3": {
+      "train": {
+        "input_length": 192,
+        "maximum_input_tokens": 85,
+        "rows": 240,
+        "truncated_rows": 0
+      },
+      "validation": {
+        "input_length": 192,
+        "maximum_input_tokens": 83,
+        "rows": 120,
+        "truncated_rows": 0
+      }
+    }
+  },
+  "training_logs": {
+    "initial_v2": {
+      "completed_steps": 360,
+      "exported_validation_nll_minus_recorded_selection": 1.0865848801725577,
+      "last_120_stochastic_training_loss_mean": 0.42195049722213296,
+      "selected_step": 120,
+      "selected_validation_loss": 0.3907963567102949,
+      "selection_validation_dataset": "v2",
+      "training_loss_mean_disclaimer": "Training mode includes dropout and changing parameters; compare exported-model train/validation NLL instead.",
+      "validation_measurements": [
+        {
+          "step": 120,
+          "validation_loss": 0.3907963567102949
+        },
+        {
+          "step": 240,
+          "validation_loss": 0.4536316596359635
+        },
+        {
+          "step": 360,
+          "validation_loss": 0.44492429490977276
+        }
+      ]
+    },
+    "revision1_v3": {
+      "completed_steps": 360,
+      "exported_validation_nll_minus_recorded_selection": 9.212486218324045e-09,
+      "last_120_stochastic_training_loss_mean": 0.5674637907495101,
+      "selected_step": 360,
+      "selected_validation_loss": 0.4856789919237296,
+      "selection_validation_dataset": "v3",
+      "training_loss_mean_disclaimer": "Training mode includes dropout and changing parameters; compare exported-model train/validation NLL instead.",
+      "validation_measurements": [
+        {
+          "step": 120,
+          "validation_loss": 0.6780703400572141
+        },
+        {
+          "step": 240,
+          "validation_loss": 0.6401910250385602
+        },
+        {
+          "step": 360,
+          "validation_loss": 0.4856789919237296
+        }
+      ]
+    }
+  }
+}

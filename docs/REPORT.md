@@ -1,7 +1,10 @@
 # EditGuard: interim project report
 
-**Status: both auxiliary models trained, integrated and evaluated on a controlled
-development pilot. Final independently reviewed evaluation remains pending.**
+**Status: both auxiliary models are trained and integrated; the completed scope
+revision and guard-aware calibration are evaluated on the controlled pilot.
+One bounded answer-polarity experiment and the second, final scope experiment
+are prepared with profiled, preflight-valid commands, not trained.
+Final independently reviewed evaluation remains pending.**
 
 ## Problem and registered topic
 
@@ -30,9 +33,12 @@ values are augmented. Typed, hash-bound review controls eligibility; human revie
 is the default. The user authorized an independent automated development review
 of the corrected 504-row pilot: 504 accepted, zero flagged, with an additional
 144-target assertion check. The immutable source flags remain pending human
-review; the separate registry explicitly discloses machine review. The test
-partition is not frozen. See [dataset card](DATASET_CARD.md),
-[per-row review](PILOT_V2_REVIEW.md) and [evaluation protocol](EVALUATION_PROTOCOL.md).
+review; the separate registry explicitly discloses machine review. Pilot-v3
+balances the existing negative question forms, retains all 504 rows, facts and
+partitions, and has fresh automated decisions bound to its new row identities.
+All development records disclose `human_reviewed_data=false`. The test partition
+is not frozen. See [dataset card](DATASET_CARD.md),
+[current per-row review](PILOT_V3_REVIEW.md) and [evaluation protocol](EVALUATION_PROTOCOL.md).
 
 ## Engineering evidence
 
@@ -125,13 +131,14 @@ answer or final-test claim.
 
 | Required result | Current evidence |
 |---|---|
-| Trained auxiliary weights | User-executed scope/answer runs completed at 360/240 updates; selected steps 120/240; verified local exports and checkpoints |
-| Training time and memory | Loop durations 89.448/245.856 s, allocated GPU peaks 1.318464/1.508413 GiB; complete command wall time unavailable |
-| Applicable-edit retrieval recall | Recorded 47/48 at rank 1 and 48/48 at rank 3 on applicable development questions |
-| Raw calibrated scope | Precision 36/36, recall 36/48, false positives 0/72; all 12 misses are direct-form questions |
+| Trained auxiliary weights | Initial scope/answer runs completed at 360/240 updates; current scope-v3 revision also completed 360, selecting step 360; original answer selected step 240 |
+| Training time and memory | Scope-v3 loop 43.402 s, allocated/reserved CUDA peaks 1.318464/1.410156 GiB; initial answer loop 245.856 s, allocated peak 1.508413 GiB; complete command wall time unavailable |
+| Applicable-edit retrieval recall | Raw unfiltered retrieval 47/48 at rank 1 and 48/48 at rank 3; eligible routing is a separate measure |
+| Raw scope model on common v3 pairs | At 0.5, original accuracy 56/120 and NLL 1.477; revised accuracy 98/120 and NLL 0.486, AUROC 0.864; recall 46/48, precision 46/66, false positives 20/72 |
+| Validation-selected scope with guards | Temperature 0.5, threshold 0.47, margin 0.025; 46/48 positive corrections, 0/72 false applications, five clarifications, 115/120 coverage; selected on the reported validation pairs |
 | Oracle generation | Strict and exploratory QA credit 31/48; 12 incorrect comparison endorsements and five pending answers |
-| Five matched configurations | 120 questions each, 600 generated records; primary full-assertion scores and separate exploratory short-QA diagnostic |
-| Out-of-scope retention/correctness | Strict factual adjudication pending; exploratory requested-QA credit 72/72 for all configurations on this small slice |
+| Five matched configurations | 120 questions each, 600 predictions including five clarifications; strict learned-editor credit 30/120; separate exploratory QA learned 80/120, updated RAG 91/120 |
+| Out-of-scope retention/correctness | Primary strict baseline-correct retention undefined at 0/0; exploratory QA credit 50/72 learned and 53/72 base/RAG/similarity; learned retains 50/53 baseline-QA-correct answers, with three clarifications |
 | Latency and uncertainty | Serial CLI p50/p95 recorded; two-family cluster bootstrap is insufficient for precise population claims |
 | Conflict/rollback consistency | Separate deterministic/deployment checks and isolated learned-workflow evidence |
 | Final frozen-test results | Not available; final review and configuration/scorer/test freeze remain pending |
@@ -140,37 +147,110 @@ These measurements establish real training and a reproducible development
 comparison. They do not establish superiority or final-project completion.
 [Training results](PILOT_TRAINING_RESULTS.md) disclose run identities, resources,
 selection and the 87-check artifact audit.
-[Validation results](PILOT_VALIDATION_RESULTS.md) disclose the matched inputs,
-calibration, raw records, denominators and failure attribution.
+[Archived initial validation](PILOT_VALIDATION_RESULTS.md) retains the first
+measurements. [Current pilot-v3 results](PILOT_V3_RESULTS.md) disclose completed
+scope training, identical-input model comparison, calibration selection,
+all raw records, denominators and failure attribution. The historical trainer
+sources from Git `350db38` are preserved in
+[`reports/training-source-v1`](../reports/training-source-v1/manifest.json).
 
-The primary scorer requires a complete factual assertion. It credits 19/120
-learned-editor and 30/120 similarity-editor outputs; incomplete baseline
+The primary scorer requires a complete factual assertion. On pilot-v3 it credits
+30/120 learned-editor and 31/120 similarity-editor outputs; incomplete baseline
 fragments remain pending and uncredited. Zero baseline credit is not evidence
 of zero baseline factual correctness. An explicitly
 [post-hoc short-QA diagnostic](SHORT_QA.md) binds supported fragments to the
-requested subject/relation and credits properly updated RAG on 110/120 questions
-and the trained scope editor on 91/120. Updated RAG leads that exploratory
+requested subject/relation and credits properly updated RAG on 91/120 questions
+and the trained scope editor on 80/120. Updated RAG leads that exploratory
 comparison; learned superiority is not claimed. Structured/database answers
 are never credited as learned generation.
 
 The answer model makes 12 `No` → `Yes` mistakes even with oracle-correct routing,
 despite including the correct limit. Routing cannot explain these polarity
-failures. All 12 raw scope misses use direct wording. The original pilot gives
-negative labels only to direct questions, creating a wording shortcut. The first
+failures. The initial scope model missed all 12 direct positives. The original
+pilot gave negative labels only to direct questions, creating a wording shortcut. The first
 [bounded revision](SCOPE_DATA_REVISION.md) rotates those existing negatives
 across direct, paraphrase and yes/no comparison forms without adding rows or
-changing facts, splits or lineages. It prepares pilot-v3 with new review identities;
-there is no v3 training or accuracy result yet. This validation-informed repair
-does not alter the archived v2 results or read the test/challenge corpus.
+changing facts, splits or lineages. The user completed its 360-step run. When both
+exports are evaluated on the same v3 questions, NLL decreases from 1.477 to 0.486,
+raw accuracy increases from 56/120 to 98/120 and all 12 direct positives are
+detected at 0.5. Wrong-entity and wrong-version pairs account for all 20 raw false
+positives; metadata guards reject those pairs. The original v2 selected loss of
+0.391 used different negatives, so comparing it directly with 0.486 would be
+misleading. These measured development changes do not rewrite the archived v2
+results or access the test/challenge corpus.
 
-An [isolated learned-workflow check](LEARNED_WORKFLOW.md) exposed another locality
+The original calibration selector minimized operating cost across raw pairs,
+although runtime rejects incompatible edits first. Including the existing
+compatibility gate in a separate selector corrects that mismatch without fitting
+new weights or expanding the finite search grid. Its selected policy routes
+46/48 applicable edits, falsely applies 0/72 negatives and clarifies 5/120 pairs.
+All five clarifications remain uncredited in answer accuracy. Scope selection
+and its reported validation results share data, so these are optimistic
+development measures, not independent final-test estimates.
+
+The answer diagnostic reproduces mean validation token NLL near 0.044412 while
+finding first-token `No` correctness of only 2/24 on training and 0/12 on
+validation. For validation questions requiring `No`, first-token NLL is 1.0646
+versus 0.02154 for remaining tokens. A low teacher-forced mean can obscure the
+incorrect initial decision because the following fact tokens are easy to copy.
+This supports one bounded objective experiment without proving the sole cause
+of the error. [The objective specification](ANSWER_OBJECTIVE.md) gives equal
+8x emphasis to the first token of reviewed `Yes` and `No` comparison targets,
+leaving all other valid tokens at weight one and padding at zero.
+
+That answer revision is prepared and **has not trained**. Its finite cap is
+240 updates, five passes through the same 96 training rows. The
+[released run guide](ANSWER_REVISION_TRAINING.md) provides the measured guarded
+profile, exact inputs and artifacts, and checkpoint/resume behavior. Its question
+is whether equal extra emphasis on the opening Yes/No token improves generated
+comparison polarity while preserving factual answers. The conditional planning
+budget is 532 seconds, 2.25 GiB GPU and 6 GiB checkpoint/export storage. This is
+an estimate from four updates, not a full-run measurement or guarantee.
+Weighted selection loss is not comparable to the initial
+uniform loss and is not accuracy. Unweighted loss, first-token polarity, oracle
+generation and the full matched comparison must determine whether the result
+is retained; no improvement is promised.
+
+An archived [initial learned-workflow check](LEARNED_WORKFLOW.md) exposed another locality
 failure: Nimbus's price question selected a device correction and generated
 `Nimbus Basic version v2 costs 3 devices.` A four-device comparison also produced
 yes when no was expected. These actual generated failures remain separate from
 passing governance/integration checks. The pilot's 0/72 out-of-scope edit selections
-cannot be generalized to unseen products, properties or questions.
+cannot be generalized to unseen products, properties or questions. This fixture
+used the initial scope artifact and is not a new v3 workflow measurement.
 
-![Recorded pilot-v2 strict outcomes, with pending semantic review disclosed](../reports/pilot-v2-figures/validation-outcomes.png)
+A subsequent [scope-v3 Nimbus workflow](../reports/pilot-v3-learned-workflow.json)
+uses the actual completed revision and passes **31/31 governance/integration
+checks**. It nevertheless misses the approved device correction on the direct
+question, returning stale `5` instead of `3`; a device paraphrase returns
+`9 USD per month`, and capacity questions clarify. With oracle routing the answer
+model produces the correct direct `3`, but its negative comparison still says
+`Yes`. These are handpicked and partly repeated engineering cases, not a general
+accuracy estimate. Passing transactional approval and rollback checks does not
+make those generated answers correct.
+
+This evidence motivates **scope revision 2, the final scope experiment**. Its
+single adaptation is the versioned `entity_neutral_v1` classifier input policy:
+correction-referenced product/alias, plan and version selectors become consistent
+phrases, and the descriptor is normalized while relation, values and units remain
+visible. Original metadata still governs compatibility, approval, dates and
+provenance. It keeps the same pilot-v3 rows and reviews, backbone, seed, learning
+rate and 360-step cap. Facts, labels and partitions are not changed. The model
+has not trained. Its source-bound guarded profile and released card passed
+preflight; the conditional planning budget is 1,331 seconds, 2.0 GiB GPU and
+5 GiB checkpoint/export storage. The [released guide](ANSWER_REVISION_TRAINING.md)
+states the question, artifacts and recovery contract: use the unchanged card
+and latest completed checkpoint; completed exports or checkpoints at the cap
+are refused before ML initialization. It is separate from the first weighted
+answer revision, which keeps the v2 inputs and 240-step cap. Neither has measured
+improvement. Final evaluation and the polished release report remain pending.
+
+![Scope models compared on the same pilot-v3 pairs before deterministic guards](../reports/pilot-v3-figures/scope-diagnosis.png)
+
+The following plots remain archived initial pilot-v2 evidence; they are not the
+current scope-v3 metrics.
+
+![Archived pilot-v2 strict outcomes, with pending semantic review disclosed](../reports/pilot-v2-figures/validation-outcomes.png)
 
 ![Validation-selected scope calibration and operating points](../reports/pilot-v2-figures/scope-calibration.png)
 
@@ -191,5 +271,13 @@ token shortcuts and temporal errors need component diagnostics. See
 [failure analysis](FAILURE_ANALYSIS.md) for concrete findings.
 
 The finite [A–H plan](PROJECT_PLAN.md) lists ownership, run-card requirements,
-maximum development revisions and full completion criteria. This interim artifact
+maximum development revisions and full completion criteria. Complete the second,
+final scope experiment and the first prepared answer experiment, evaluate
+component quality and repeat the isolated workflow, then select or reject each
+from development evidence. Fix the model/baseline/scorer protocol, independently
+review and freeze
+the final held-out questions/challenges, then run the five-way final test once.
+Retain failures rather than tune against that test. Finish the report, graphs,
+demo, locally deployable application and CI reproduction. No third scope run or
+open-ended model search is planned. This interim artifact
 does not mark the ML-focused project complete.

@@ -1,0 +1,12 @@
+{
+  "purpose": "exact_guarded_trainer_source_snapshot",
+  "files_sha256": {
+    "editguard/training.py": "d899f4e348dffed7b6811bf6eeaaca33f24ec6a4d77e312f6c45e618026c414b",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3"
+  },
+  "no_training_result": true
+}

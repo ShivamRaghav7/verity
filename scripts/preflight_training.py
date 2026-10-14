@@ -20,6 +20,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from editguard.formatting import INPUT_FORMAT_VERSION, conditional_input, correction_text
+from editguard.training import loss_objective, scope_input_overlap
+from editguard.scope_inputs import scope_policy_identity, validate_scope_policy
 
 try:
     from scripts.prepare_data import load_reviewed_rows
@@ -73,6 +75,11 @@ def validate_run_card(card_path: Path) -> dict:
     if card.get("schema_version") != 1 or card.get("task") not in ("scope", "answer"):
         raise ValueError("Expected run card schema_version=1 and task=scope or answer.")
     task = card["task"]
+    objective = loss_objective(task, card.get("loss_policy", "uniform"))
+    scope_identity = scope_policy_identity(card.get("scope_input_policy", "raw_v1"))
+    if task != "scope" and scope_identity["scope_input_policy"] != "raw_v1":
+        raise ValueError("Scope input policies cannot change answer inputs.")
+    validate_scope_policy(card)
     if not isinstance(card.get("question"), str) or not card["question"].strip():
         raise ValueError("Declare the concrete question this run resolves.")
     data_dir = _path(card, "data_dir")
@@ -130,11 +137,30 @@ def validate_run_card(card_path: Path) -> dict:
     if any(populations["train"] & populations["validation"]
            for populations in (split_families, split_entities, split_lineages)):
         raise ValueError("Reviewed train/validation entity, family or lineage leakage.")
+    transformed_overlap = (scope_input_overlap(train_rows, validation_rows, scope_identity["scope_input_policy"])
+                           if task == "scope" and scope_identity["scope_input_policy"] != "raw_v1" else None)
 
     profile_record = json.loads(profile_path.read_text(encoding="utf-8"))
     profile = profile_record.get("profile")
     if profile_record.get("profile_error") or not isinstance(profile, dict):
         raise ValueError("A completed real-checkpoint optimizer profile is required.")
+    if card.get("profile_source_sha256") is not None:
+        source_names = ("editguard/training.py", "scripts/train_auxiliary.py", "scripts/preflight_training.py",
+                        "scripts/prepare_data.py", "editguard/formatting.py", "editguard/scope_inputs.py")
+        sources = {name: file_hash(ROOT / name) for name in source_names}
+        if card["profile_source_sha256"] != sources or profile_record.get("trainer_source_sha256") != sources:
+            raise ValueError("Training sources differ from the measured profile; reprofile before releasing training.")
+    if profile.get("loss_policy", "uniform") != objective["policy"]:
+        raise ValueError("Run-card loss objective differs from the measured profile.")
+    if objective["policy"] != "uniform" and (
+            profile.get("loss_objective") != objective or card.get("loss_objective") != objective):
+        raise ValueError("Weighted objective metadata must bind the exact profiled policy and normalization.")
+    if profile.get("scope_input_policy", "raw_v1") != scope_identity["scope_input_policy"]:
+        raise ValueError("Run-card scope input policy differs from the measured profile.")
+    validate_scope_policy(profile)
+    if scope_identity["scope_input_policy"] != "raw_v1" and any(
+            card.get(key) != value or profile.get(key) != value for key, value in scope_identity.items()):
+        raise ValueError("Scope input metadata must bind the exact profiled adaptation and source.")
     revision = card.get("model_revision")
     if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
         raise ValueError("model_revision must pin a resolved 40-character commit SHA.")
@@ -207,6 +233,9 @@ def validate_run_card(card_path: Path) -> dict:
             "training_execution_requested": False,
             "disclaimer": "No training ran. This preflight checks declared inputs and run planning; trainer and exact-state restoration verification remain separate evidence.",
             "task": task, "dataset_id": card["dataset_id"], "model_id": card["model_id"],
+            "loss_objective": objective,
+            "scope_input_policy": scope_identity["scope_input_policy"],
+            "transformed_scope_input_overlap": transformed_overlap,
             "review_policy": review_policy, "human_reviewed_data": review_policy == "human",
             "model_revision": revision, "reviewed_train_rows": len(train_rows),
             "reviewed_validation_rows": len(validation_rows),

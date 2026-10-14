@@ -47,6 +47,17 @@ def build(run, config_path, output):
                       "pending_review": current["pending_review"], "errors": current["errors"], "unavailable": current["unavailable"]})
     oracle = metrics["oracle_answer_diagnostic"]["configurations"]["oracle_answer"]
     scope = metrics["configurations"]["trained_scope_editor"]["scope"]
+    calibration_path = Path(config["calibration_artifact"])
+    calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
+    scope_policy = None
+    if calibration.get("routing_policy"):
+        if calibration.get("scope_manifest_sha256") != artifacts["scope"]["manifest_sha256"]:
+            raise ValueError("Routing policy is bound to a different scope checkpoint.")
+        scope_policy = {key: calibration[key] for key in (
+            "temperature", "threshold", "ambiguity_margin", "routing_policy", "population",
+            "raw_pair_metrics", "compatibility_gated_metrics", "scope_manifest_sha256")}
+        scope_policy.update(calibration_path=calibration_path.as_posix(),
+                            calibration_sha256=file_sha256(calibration_path))
     summary = {"schema_version": 1, "artifact_type": "editguard_development_evaluation", "purpose": "validation_development",
                "status": "completed", "review_policy": "automated_development", "human_reviewed_data": False,
                "test_rows_read": False, "dataset_id": manifest["dataset_id"], "questions": questions,
@@ -63,12 +74,14 @@ def build(run, config_path, output):
                               "base_weights_unchanged": manifest["base_weights_unchanged"]},
                "limitations": ["Development validation on two entity families and shared question forms; no final-test claim.",
                   "Labels have automated development review, not independent human approval.",
-                  "Strict scores are complete-fact endorsement lower bounds. All120 frozen-baseline answers await semantic review; zero credited is not zero factual correctness.",
+                  "Strict scores require complete scoped fact endorsements. Pending fragments remain uncredited; zero credited is not zero factual correctness.",
                   "Short-answer QA is a separate post-hoc diagnostic and cannot replace these primary scores.",
-                  "Scope temperature/threshold were selected on the same validation population; estimates are optimistic for generalization.",
+                  "Scope temperature/threshold were selected on the same validation population; estimates are optimistic for generalization. Raw threshold cards omit the uncertainty band and deterministic guards; the separate policy panel includes them.",
                   "CLI latency excludes model loading, scoring, extra scope diagnostics and HTTP. Fixed order/shared caches prevent a controlled independent latency comparison.",
                   "Baseline-correct retention is undefined when no baseline complete assertions are automatically credited.",
-                  "Answer generation fails comparison polarity in12 oracle cases; the classifier misses all12 direct edit questions."]}
+                  f"Oracle diagnostic: {oracle['accuracy']['numerator']}/{oracle['count']} credited complete assertions; {oracle['pending_review']} outputs pending review and {oracle['abstentions']} abstentions remain in the denominator."]}
+    if scope_policy:
+        summary["scope_policy"] = scope_policy
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("x", encoding="utf-8", newline="\n") as handle:
         handle.write(json.dumps(summary, indent=2) + "\n")

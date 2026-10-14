@@ -29,7 +29,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements-lock.txt numpy==2.4.2 psutil==7.2.2
       - run: pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cpu
-      - run: python -m unittest discover -s tests -p test_trainer.py -v
+      - run: python -m unittest tests.test_trainer tests.test_answer_objective tests.test_scope_training_inputs -v
   deployment-smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 10

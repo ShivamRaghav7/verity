@@ -1,0 +1,162 @@
+{
+  "data_files_sha256": {
+    "train": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+    "validation": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7"
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "environment": {
+    "attention_implementation": "eager",
+    "cpu_threads": 2,
+    "cublas_workspace_config": ":4096:8",
+    "cuda_devices": [
+      "NVIDIA GeForce RTX 4050 Laptop GPU"
+    ],
+    "cuda_visible_devices": null,
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "machine": "AMD64",
+    "nvidia_driver_uuid_identity": [
+      "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+    ],
+    "packages": {
+      "numpy": "2.4.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.3",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "precision": "float32",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "tf32": false,
+    "torch_cuda": "13.0"
+  },
+  "environment_sha256": "57abe36515dd32e0fd37b77b5dc26b268df7f8629de71051de2fbe178524c9a0",
+  "hardware": {
+    "available_ram_gib": 10.09,
+    "cpu_threads": 12,
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_memory_gib": 6.0,
+    "nvidia_smi": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 581.86",
+    "packages": {
+      "fastapi": "0.121.0",
+      "psutil": "7.2.2",
+      "pydantic": "2.12.4",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "ram_gib": 23.71,
+    "torch_cuda": "13.0"
+  },
+  "human_reviewed_data": false,
+  "input_format_version": "editguard-input-v2",
+  "manifest_sha256": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+  "model_config_sha256": "499d90feede6ec931d908eb60aaacefc80e866e04fa2dc71f5b6630a0f090781",
+  "profile": {
+    "backbone": "google/flan-t5-small",
+    "batch_size": 2,
+    "checkpoint_measurements": [
+      {
+        "global_step": 2,
+        "seconds": 11.37712819999797
+      },
+      {
+        "global_step": 4,
+        "seconds": 40.35325720000037
+      }
+    ],
+    "checkpoint_state_bytes": 1055373191,
+    "component": "answer",
+    "device": "cuda",
+    "export_bytes": 310295385,
+    "full_validation_measurements": [
+      {
+        "global_step": 2,
+        "loss_weight_sum": 976.0,
+        "rows": 48,
+        "seconds": 2.7505826000015077
+      },
+      {
+        "global_step": 4,
+        "loss_weight_sum": 976.0,
+        "rows": 48,
+        "seconds": 2.3649063000011665
+      }
+    ],
+    "input_length": 192,
+    "limitations": "Four updates; three steady samples and two full validations/checkpoint writes. Extrapolation is uncertain; no generated-answer accuracy, final test or full-run measurement.",
+    "load_tokenize_export_overhead_seconds": 38.93380209999668,
+    "loss_objective": {
+      "comparison_first_token_weight": 8,
+      "normalization": "sum_weighted_token_nll_over_sum_weights",
+      "policy": "comparison_first_token_8x",
+      "rule": "first target token of reviewed comparison yes/no rows has weight 8; other valid tokens 1; padding 0",
+      "schema_version": 1
+    },
+    "loss_policy": "comparison_first_token_8x",
+    "measured_optimizer_steps": 3,
+    "median_step_seconds": 0.3501923999974679,
+    "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+    "peak_allocated_gpu_gib": 1.5037140846252441,
+    "peak_reserved_gpu_gib": 1.65625,
+    "precision": "float32",
+    "step_seconds": [
+      0.2980403000001388,
+      0.4599329000011494,
+      0.3501923999974679
+    ],
+    "target_length": 48,
+    "tokenization": {
+      "train": {
+        "input_truncated_rows": 0,
+        "loss_weight_sum": 1976.0,
+        "max_input_tokens": 132,
+        "max_target_tokens": 20,
+        "rows": 96,
+        "target_truncated_rows": 0,
+        "weighted_polarity_rows": {
+          "no": 24,
+          "yes": 24
+        }
+      },
+      "validation": {
+        "input_truncated_rows": 0,
+        "loss_weight_sum": 976.0,
+        "max_input_tokens": 127,
+        "max_target_tokens": 19,
+        "rows": 48,
+        "target_truncated_rows": 0,
+        "weighted_polarity_rows": {
+          "no": 12,
+          "yes": 12
+        }
+      }
+    },
+    "train_rows": 96,
+    "validation_rows": 48,
+    "warmup_seconds": 1.1631288999997196,
+    "whole_process_work_seconds": 98.08106469999984
+  },
+  "profile_artifact_purpose": "smoke_test",
+  "profile_run_identity": "74879dc8a84ac6be756597c4f1d9b2c337637c38c312f521e2d40e3432f7fd79",
+  "profile_script_sha256": "88566e8459a37a43b870d38610983fe7d578cedc89709c427d1a027ceaa45f40",
+  "purpose": "actual_trainer_development_profile",
+  "recorded_at": "2026-10-13T13:41:18.750958+00:00",
+  "review_policy": "automated_development",
+  "reviews_sha256": "a43554b6b39268472bb7c467e6bc502f0a0301efd6cdd880deb1958a7c824688",
+  "runtime_eligible": false,
+  "schema_version": 1,
+  "status": "profile_complete",
+  "test_rows_read": false,
+  "trainer_source_sha256": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+    "editguard/training.py": "298a215340312d0b3b416eef01f8032c9c3bdd5be372950dd153c13af751891d",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  }
+}

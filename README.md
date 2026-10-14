@@ -16,9 +16,10 @@ resolution, history, conflict resolution, rollback and JSON export. The applicat
 uses a curated fictional Nimbus handbook. The dataset and products are controlled
 demonstrations, not claims about real companies.
 
-**Both auxiliary models completed the user-executed pilot-v2 training runs.**
-The compact scope classifier and correction-conditioned answer model have
-validation-selected local exports, calibration and integrated inference.
+**Both auxiliary models are trained and integrated; the user also completed the
+bounded pilot-v3 scope revision.** The current learned configuration uses that
+revised classifier with the original correction-conditioned answer model.
+Both have validation-selected local exports and recorded artifact identities.
 Structured answers remain the default. Optional neural modes implement the
 unchanged base, properly updated RAG, prompt-only correction, similarity editor
 and trained scope editor. Missing or invalid required artifacts return HTTP 503.
@@ -26,16 +27,22 @@ Model binaries are local ignored artifacts; Git contains their configuration,
 recorded identities and reproduction tooling. A clean checkout needs verified
 exports or reproduced training to enable learned inference.
 
-The initial measured validation uses two held-out entity families and shared
-question forms. Scope precision is 36/36 and recall 36/48; all 12 missed
-applicable questions are direct requests. The answer model has 31/48 credited
-answers with oracle routing, including 12 incorrect `No` → `Yes` endorsements.
-Strict complete-assertion scoring leaves short fragments pending and uncredited;
-zero credited baseline assertions does not mean zero factual correctness.
-An explicitly exploratory request-bound QA analysis credits updated RAG on
-110/120 questions and the trained scope editor on 91/120. The learned editor
-does not outperform RAG in that diagnostic. These are automated development
-measurements, not final-test results or arbitrary-question guarantees.
+The latest validation uses two held-out entity families and shared question
+forms. On the exact same balanced pilot-v3 pairs, raw scope accuracy at 0.5
+improves from 56/120 for the original model to 98/120 for the revision. Its
+validation loss of 0.486 is negative log-likelihood, not a 48.6% error rate.
+Raw entity/version matching remains weak. Deterministic compatibility guards and
+the validation-selected policy route 46/48 applicable corrections, falsely apply
+0/72 negatives and clarify 5/120 questions; answer coverage is 115/120. These are
+routing results selected on validation data, not generated-answer accuracy.
+
+The unchanged answer model receives strict oracle credit on 31/48 answers and
+still produces `Yes` for all 12 comparisons requiring `No`. End-to-end strict
+credit is 30/120 for the learned editor; short baseline fragments remain pending,
+so zero credited baseline assertions does not mean zero factual correctness.
+The separate exploratory short-QA analysis credits updated RAG on 91/120
+questions and the trained editor on 80/120. No superiority is claimed. All results
+use automated development review, not final-test or arbitrary-question guarantees.
 
 The editor wraps a frozen retrieval-based assistant with approved memory,
 a trained pair scope classifier and a trained edit-conditioned seq2seq generator.
@@ -51,23 +58,45 @@ training/validation families and no test partition. All 504 labels received an
 independent **automated development review**, followed by integrity and target
 checks. The separate registry records 504 accepted and zero flagged; no human
 approval is claimed. Immutable source rows retain their pending
-human-review flags. [Per-row evidence](reports/pilot-v2-independent-review.json)
-and four portable human-review pages are linked from the data-review guide.
+human-review flags. Pilot-v3 received fresh hash-bound decisions for all 504 rows.
+[Per-row evidence](reports/pilot-v3-independent-review.json) and the
+[data-review guide](docs/DATA_REVIEW.md) expose the review provenance.
 
 [Training results](docs/PILOT_TRAINING_RESULTS.md),
 [validation and failure analysis](docs/PILOT_VALIDATION_RESULTS.md) and
 [exploratory short QA](docs/SHORT_QA.md) disclose denominators, limitations and
-all five comparisons. [Pilot-v3](docs/SCOPE_DATA_REVISION.md) repairs the observed
-scope question-form imbalance without adding rows or changing facts. It is the
-first bounded development revision; no v3 trained-model result exists yet.
-Its fresh machine review and four-step resource profile are complete;
-[scope revision training](docs/SCOPE_REVISION_TRAINING.md) gives the verified
-360-step command, measured planning budgets and exact-state recovery instructions.
-An [isolated learned-workflow check](docs/LEARNED_WORKFLOW.md) also exposes a
-same-product/different-property false application: a device correction was used
-for Nimbus's price. Workflow consistency checks do not imply answer correctness.
+all five archived initial comparisons. [Pilot-v3 results](docs/PILOT_V3_RESULTS.md)
+record completed scope training, the shared-input comparison, the correction to
+calibration selection, all five end-to-end configurations and remaining failures.
+The scope revision preserves facts, splits and all 504 rows. Its
+[completed training guide](docs/SCOPE_REVISION_TRAINING.md) remains a historical
+run record. One bounded answer-polarity
+experiment is being prepared using the [documented objective](docs/ANSWER_OBJECTIVE.md).
+Neither a low loss nor passing workflow tests establishes reliable new-entity
+routing: a subsequent isolated Nimbus workflow returned stale `5` after an
+approved device-limit correction to `3`; a device paraphrase returned its price
+and both capacity comparisons clarified. The 31/31 governance/integration checks
+passed, but those handpicked cases are not a representative accuracy estimate.
+[The complete recorded workflow](reports/pilot-v3-learned-workflow.json) preserves
+the actual model outputs and separate oracle probes.
 
-![Measured pilot-v2 training loss and resource use](reports/pilot-v2-figures/training-resources.png)
+This finding motivates the **second and final scope revision**, not a larger
+dataset or another backbone. Its `entity_neutral_v1` preprocessing replaces
+correction-referenced product/alias, plan and version selectors with consistent
+phrases while retaining relation, values and units. Original metadata continues
+to govern approval, compatibility, dates and provenance. It keeps the same
+pilot-v3 rows and reviews, 360-step cap, backbone, seed and learning rate. The
+separate answer revision keeps the same v2 inputs and 240-step cap. **Both are
+prepared, not trained, and have no measured improvement.** Their
+[released run guide](docs/ANSWER_REVISION_TRAINING.md) provides the concrete
+questions, hash-bound inputs, measured resource estimates, expected artifacts,
+finite caps and exact-state recovery. The user executes these substantial runs.
+An archived [initial learned-workflow check](docs/LEARNED_WORKFLOW.md) also exposed a
+same-product/different-property false application: a device correction was used
+for Nimbus's price. That record uses the initial scope artifact and is not a new
+v3 regression result. Workflow consistency checks do not imply answer correctness.
+
+![Scope models evaluated on the same balanced pilot-v3 pairs](reports/pilot-v3-figures/scope-diagnosis.png)
 
 ## Run locally
 
@@ -105,11 +134,11 @@ revision-consistent snapshots keep responses and exports coherent with history.
 Server binds to localhost; public deployment requires proper authentication.
 
 With the isolated [ML environment](docs/ML_SETUP.md), cached pinned backbones and
-verified local pilot-v2 exports present, start the optional learned application:
+verified local scope-v3 and answer-v2 exports present, start the optional learned application:
 
 ```powershell
-$env:EDITGUARD_INFERENCE_CONFIG = 'configs/inference-pilot-v2.json'
-$env:EDITGUARD_EVALUATION_REPORT = 'reports/pilot-v2-evaluation.json'
+$env:EDITGUARD_INFERENCE_CONFIG = 'configs/inference-pilot-v3-current.json'
+$env:EDITGUARD_EVALUATION_REPORT = 'reports/pilot-v3-evaluation-current.json'
 .\.venv-ml\Scripts\python.exe -m editguard
 ```
 
@@ -196,9 +225,22 @@ questions, reviewed inputs, measurements, conditional runtime/memory estimates,
 artifacts and exact-resume rules. Those initial user-executed runs completed at
 360 scope updates and 240 answer updates; selected checkpoints are steps 120 and
 240 respectively. [Actual training measurements](docs/PILOT_TRAINING_RESULTS.md)
-replace the planning estimates for these runs. Four-step profiles remain
-ineligible as trained deployment artifacts. The v3 revision requires its own
-reviewed inputs, bounded run card and profile-based estimates before execution.
+replace the planning estimates for these runs. The user also completed all 360
+scope-v3 updates, selecting step 360; its validation loss was independently
+reproduced from the exported model. Four-step profiles remain ineligible as
+trained deployment artifacts. Exact original trainer sources are preserved from
+Git commit `350db38` in [the source archive](reports/training-source-v1/manifest.json).
+
+Two finite runs remain: the last scope revision tests whether explicitly
+normalized input transfers correction applicability to unfamiliar product names;
+the first answer revision tests whether equal emphasis on the first `Yes`/`No`
+token improves comparison polarity while preserving factual answers. It keeps
+the same facts and partitions and stops at 240 updates, or five passes through
+the 96-row training partition. It is prepared as one bounded experiment; no
+accuracy gain is promised. See [its objective](docs/ANSWER_OBJECTIVE.md).
+The [answer run guide](docs/ANSWER_REVISION_TRAINING.md) is in preparation.
+Both commands require their own final measured profile and recovery evidence;
+earlier timings are not estimates for these changed training inputs/objectives.
 
 [Measured embedding-baseline curves](docs/SIMILARITY_RESULTS.md) show raw and
 compatibility-gated behavior on 120 development validation pairs, with explicit
@@ -240,10 +282,17 @@ distinguish this structured image from optional local neural inference.
 - [Failure analysis](docs/FAILURE_ANALYSIS.md) and [interim report](docs/REPORT.md)
 - [Measured profiling](docs/PROFILING.md) and [structured HTTP samples](reports/structured-http.json)
 
-Stages A/B and the baseline harness are implemented; D/E completed their initial
-real training and validation runs, and learned inference is integrated. Scientific
-graphs and an honest development report are available. Final independently
-reviewed challenges, frozen-test evaluation, broader uncertainty evidence and
-the polished final report remain pending. Resume claims can describe the models
-trained and five configurations evaluated; no superiority or final numerical
-improvement claim follows from this pilot.
+Stages A/B and the baseline harness are implemented. D has a trained first scope
+revision and a final bounded input-normalization revision in preparation after
+the Nimbus workflow exposed failed transfer. E has a trained initial answer
+model and one bounded polarity revision in preparation. F integrates learned
+inference, recorded validation and distinct answer kinds. After the user runs
+the two verified experiments, evaluate both on development data and the same
+isolated workflow, retain or reject them from the recorded evidence, then finish
+G's fixed protocol,
+human-reviewed test/challenge freeze and single final five-way evaluation. H
+finishes the report, graphs, demonstration and clean-checkout deployment/CI
+verification. Scope revision 2 is the final scope experiment; no open-ended
+search, added catalogue scale or extra backbone is planned.
+Resume claims can describe the models trained and five configurations evaluated;
+final-test or superiority claims require their corresponding frozen evidence.

@@ -1,0 +1,776 @@
+{
+  "artifact_type": "editguard_answer_polarity_diagnosis",
+  "context_inputs_changed": 34,
+  "context_inputs_identical": 14,
+  "created_at": "2026-10-13T12:40:50.516324+00:00",
+  "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+  "device": "cuda",
+  "finite_cap": 192,
+  "generation_calls": 0,
+  "human_reviewed_data": false,
+  "limitations": [
+    "Post-hoc development diagnosis, not a pre-registered final test or independently human-reviewed evaluation.",
+    "Teacher forcing provides preceding gold target tokens; it does not measure free-running full-answer accuracy.",
+    "First-token decisions have only decoder start context and are directly comparable to greedy first choices, subject to numerical differences.",
+    "The copied fact continuation follows gold prefixes in this analysis; its low loss cannot excuse a wrong Yes/No decision.",
+    "Recorded generated token IDs are re-encoded visible answer strings; original generation token arrays were not retained.",
+    "Context changes are observational paired forwards, not proof of a single causal mechanism or unseen arithmetic reliability.",
+    "No generation, updates, new data, timing comparison or final-test access."
+  ],
+  "model_state_sha256_after": "ec06257db751aa90739592ceb4486550e0f2dbb8122ca334a446cb19255520b3",
+  "model_state_sha256_before": "ec06257db751aa90739592ceb4486550e0f2dbb8122ca334a446cb19255520b3",
+  "optimizer_updates": 0,
+  "outputs_sha256": {
+    "context_comparison.jsonl": "751fd58cba211628f2ed42218934b61873c49858231da8121ac86b62c4813314",
+    "teacher_forced_records.jsonl": "20ff4df3bbaf5302228864db0f1ec2cf8eaee46bede9a73b7189cc16f6b18ef1"
+  },
+  "partitions": {
+    "oracle_context": {
+      "all": {
+        "first_token_fraction_of_tokens": 0.0594059405940594,
+        "first_token_fraction_of_total_nll": 0.4880895223765349,
+        "first_token_top1_correct": {
+          "denominator": 48,
+          "numerator": 36,
+          "value": 0.75
+        },
+        "first_top1_visible_counts": {
+          "A": 24,
+          "Yes": 24
+        },
+        "mean_first_token_nll": 0.37792245589662343,
+        "mean_probability_no_at_first_token": 0.17562517148170778,
+        "mean_probability_yes_at_first_token": 0.32204281363742854,
+        "other_token_mean_nll": 0.025033690406545954,
+        "recorded_generated_first_token_correct": {
+          "denominator": 48,
+          "numerator": 36,
+          "value": 0.75
+        },
+        "rows": 48,
+        "target_tokens": 808,
+        "token_weighted_mean_nll": 0.045997379445560455
+      },
+      "relations": {
+        "device_limit": {
+          "first_token_fraction_of_tokens": 0.06666666666666667,
+          "first_token_fraction_of_total_nll": 0.4192856244870679,
+          "first_token_top1_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 8,
+            "Yes": 8
+          },
+          "mean_first_token_nll": 0.35732956137508154,
+          "mean_probability_no_at_first_token": 0.16731568183331547,
+          "mean_probability_yes_at_first_token": 0.3318319070999678,
+          "other_token_mean_nll": 0.03535033348006981,
+          "recorded_generated_first_token_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "rows": 16,
+          "target_tokens": 240,
+          "token_weighted_mean_nll": 0.05681561533973725
+        },
+        "price_monthly": {
+          "first_token_fraction_of_tokens": 0.058823529411764705,
+          "first_token_fraction_of_total_nll": 0.5709262148477966,
+          "first_token_top1_correct": {
+            "denominator": 8,
+            "numerator": 6,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 4,
+            "Yes": 4
+          },
+          "mean_first_token_nll": 0.3667612192220986,
+          "mean_probability_no_at_first_token": 0.18095450706687188,
+          "mean_probability_yes_at_first_token": 0.31532865973758817,
+          "other_token_mean_nll": 0.017227228808872397,
+          "recorded_generated_first_token_correct": {
+            "denominator": 8,
+            "numerator": 6,
+            "value": 0.75
+          },
+          "rows": 8,
+          "target_tokens": 136,
+          "token_weighted_mean_nll": 0.03778805177435629
+        },
+        "storage_gb": {
+          "first_token_fraction_of_tokens": 0.05555555555555555,
+          "first_token_fraction_of_total_nll": 0.48374259273227155,
+          "first_token_top1_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 8,
+            "Yes": 8
+          },
+          "mean_first_token_nll": 0.3514136668527499,
+          "mean_probability_no_at_first_token": 0.20711115957976745,
+          "mean_probability_yes_at_first_token": 0.2918081092748537,
+          "other_token_mean_nll": 0.022060822192421083,
+          "recorded_generated_first_token_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "rows": 16,
+          "target_tokens": 288,
+          "token_weighted_mean_nll": 0.040358202451328234
+        },
+        "support_hours": {
+          "first_token_fraction_of_tokens": 0.05555555555555555,
+          "first_token_fraction_of_total_nll": 0.5712783873220112,
+          "first_token_top1_correct": {
+            "denominator": 8,
+            "numerator": 6,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 4,
+            "Yes": 4
+          },
+          "mean_first_token_nll": 0.48328705970197916,
+          "mean_probability_no_at_first_token": 0.12394283899720904,
+          "mean_probability_yes_at_first_token": 0.3696481893373402,
+          "other_token_mean_nll": 0.021334566805625642,
+          "recorded_generated_first_token_correct": {
+            "denominator": 8,
+            "numerator": 6,
+            "value": 0.75
+          },
+          "rows": 8,
+          "target_tokens": 144,
+          "token_weighted_mean_nll": 0.04699859418875639
+        }
+      },
+      "subsets": {
+        "comparison_no": {
+          "first_token_fraction_of_tokens": 0.056074766355140186,
+          "first_token_fraction_of_total_nll": 0.7155383804028306,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 0,
+            "value": 0.0
+          },
+          "first_top1_visible_counts": {
+            "Yes": 12
+          },
+          "mean_first_token_nll": 1.0167646606763203,
+          "mean_probability_no_at_first_token": 0.3702582096060117,
+          "mean_probability_yes_at_first_token": 0.6248316367467245,
+          "other_token_mean_nll": 0.02401270384082339,
+          "recorded_generated_first_token_correct": {
+            "denominator": 12,
+            "numerator": 0,
+            "value": 0.0
+          },
+          "rows": 12,
+          "target_tokens": 214,
+          "token_weighted_mean_nll": 0.0796810378689821
+        },
+        "comparison_yes": {
+          "first_token_fraction_of_tokens": 0.056074766355140186,
+          "first_token_fraction_of_total_nll": 0.651504710825041,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "Yes": 12
+          },
+          "mean_first_token_nll": 0.41362099597851437,
+          "mean_probability_no_at_first_token": 0.33184967562556267,
+          "mean_probability_yes_at_first_token": 0.6632310797770818,
+          "other_token_mean_nll": 0.013143523445718178,
+          "recorded_generated_first_token_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "rows": 12,
+          "target_tokens": 214,
+          "token_weighted_mean_nll": 0.03560020414849179
+        },
+        "direct": {
+          "first_token_fraction_of_tokens": 0.06315789473684211,
+          "first_token_fraction_of_total_nll": 0.23528559624871678,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "A": 12
+          },
+          "mean_first_token_nll": 0.0393442672987779,
+          "mean_probability_no_at_first_token": 0.00013866355402569752,
+          "mean_probability_yes_at_first_token": 2.532281200728903e-05,
+          "other_token_mean_nll": 0.008620781441915538,
+          "recorded_generated_first_token_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "rows": 12,
+          "target_tokens": 190,
+          "token_weighted_mean_nll": 0.010561212127612109
+        },
+        "paraphrase": {
+          "first_token_fraction_of_tokens": 0.06315789473684211,
+          "first_token_fraction_of_total_nll": 0.04800415707015367,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "A": 12
+          },
+          "mean_first_token_nll": 0.04195989963288108,
+          "mean_probability_no_at_first_token": 0.0002541371412310885,
+          "mean_probability_yes_at_first_token": 8.32152139006818e-05,
+          "other_token_mean_nll": 0.05609858258669979,
+          "recorded_generated_first_token_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "rows": 12,
+          "target_tokens": 190,
+          "token_weighted_mean_nll": 0.055205613136984924
+        }
+      }
+    },
+    "train": {
+      "all": {
+        "first_token_fraction_of_tokens": 0.05853658536585366,
+        "first_token_fraction_of_total_nll": 0.5259813882254881,
+        "first_token_top1_correct": {
+          "denominator": 96,
+          "numerator": 74,
+          "value": 0.7708333333333334
+        },
+        "first_top1_visible_counts": {
+          "A": 48,
+          "No": 2,
+          "Yes": 46
+        },
+        "mean_first_token_nll": 0.3845169465057552,
+        "mean_probability_no_at_first_token": 0.1802824403954446,
+        "mean_probability_yes_at_first_token": 0.31722234731879934,
+        "other_token_mean_nll": 0.02154589003561791,
+        "recorded_generated_first_token_correct": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "rows": 96,
+        "target_tokens": 1640,
+        "token_weighted_mean_nll": 0.04279297626801619
+      },
+      "relations": {
+        "device_limit": {
+          "first_token_fraction_of_tokens": 0.06557377049180328,
+          "first_token_fraction_of_total_nll": 0.4404164014633672,
+          "first_token_top1_correct": {
+            "denominator": 32,
+            "numerator": 24,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 16,
+            "Yes": 16
+          },
+          "mean_first_token_nll": 0.3624372300109826,
+          "mean_probability_no_at_first_token": 0.17188456658004725,
+          "mean_probability_yes_at_first_token": 0.32741731277332065,
+          "other_token_mean_nll": 0.03231613628093412,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 32,
+          "target_tokens": 488,
+          "token_weighted_mean_nll": 0.05396342111569139
+        },
+        "price_monthly": {
+          "first_token_fraction_of_tokens": 0.057971014492753624,
+          "first_token_fraction_of_total_nll": 0.7017214050604844,
+          "first_token_top1_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 8,
+            "Yes": 8
+          },
+          "mean_first_token_nll": 0.3915268393466249,
+          "mean_probability_no_at_first_token": 0.1816189671792472,
+          "mean_probability_yes_at_first_token": 0.31394279346142184,
+          "other_token_mean_nll": 0.010241546414221585,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 16,
+          "target_tokens": 276,
+          "token_weighted_mean_nll": 0.03234504165667975
+        },
+        "storage_gb": {
+          "first_token_fraction_of_tokens": 0.0547945205479452,
+          "first_token_fraction_of_total_nll": 0.5488541261911063,
+          "first_token_top1_correct": {
+            "denominator": 32,
+            "numerator": 26,
+            "value": 0.8125
+          },
+          "first_top1_visible_counts": {
+            "A": 16,
+            "No": 2,
+            "Yes": 14
+          },
+          "mean_first_token_nll": 0.38197348022367805,
+          "mean_probability_no_at_first_token": 0.20890957690994583,
+          "mean_probability_yes_at_first_token": 0.2899752545540366,
+          "other_token_mean_nll": 0.018201373780683063,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 32,
+          "target_tokens": 584,
+          "token_weighted_mean_nll": 0.03813409194194306
+        },
+        "support_hours": {
+          "first_token_fraction_of_tokens": 0.0547945205479452,
+          "first_token_fraction_of_total_nll": 0.5398187890178799,
+          "first_token_top1_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 8,
+            "Yes": 8
+          },
+          "mean_first_token_nll": 0.4267534192185849,
+          "mean_probability_no_at_first_token": 0.13848738821343431,
+          "mean_probability_yes_at_first_token": 0.35460615579665955,
+          "other_token_mean_nll": 0.021089622015410994,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 16,
+          "target_tokens": 292,
+          "token_weighted_mean_nll": 0.04331777528681778
+        }
+      },
+      "subsets": {
+        "comparison_no": {
+          "first_token_fraction_of_tokens": 0.055299539170506916,
+          "first_token_fraction_of_total_nll": 0.7306730200244291,
+          "first_token_top1_correct": {
+            "denominator": 24,
+            "numerator": 2,
+            "value": 0.08333333333333333
+          },
+          "first_top1_visible_counts": {
+            "No": 2,
+            "Yes": 22
+          },
+          "mean_first_token_nll": 0.9740274821718534,
+          "mean_probability_no_at_first_token": 0.3839487675577402,
+          "mean_probability_yes_at_first_token": 0.610627663632234,
+          "other_token_mean_nll": 0.021016257721151017,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 24,
+          "target_tokens": 434,
+          "token_weighted_mean_nll": 0.07371733925759538
+        },
+        "comparison_yes": {
+          "first_token_fraction_of_tokens": 0.055299539170506916,
+          "first_token_fraction_of_total_nll": 0.7181419621234194,
+          "first_token_top1_correct": {
+            "denominator": 24,
+            "numerator": 24,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "Yes": 24
+          },
+          "mean_first_token_nll": 0.42203302308917046,
+          "mean_probability_no_at_first_token": 0.33660657703876495,
+          "mean_probability_yes_at_first_token": 0.658065897723039,
+          "other_token_mean_nll": 0.009696029767950478,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 24,
+          "target_tokens": 434,
+          "token_weighted_mean_nll": 0.03249807548156633
+        },
+        "direct": {
+          "first_token_fraction_of_tokens": 0.06217616580310881,
+          "first_token_fraction_of_total_nll": 0.43400219033857895,
+          "first_token_top1_correct": {
+            "denominator": 24,
+            "numerator": 24,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "A": 24
+          },
+          "mean_first_token_nll": 0.06950147612951696,
+          "mean_probability_no_at_first_token": 0.00018039584271415757,
+          "mean_probability_yes_at_first_token": 3.892434222052543e-05,
+          "other_token_mean_nll": 0.006009239716878979,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 24,
+          "target_tokens": 386,
+          "token_weighted_mean_nll": 0.009956943535281341
+        },
+        "paraphrase": {
+          "first_token_fraction_of_tokens": 0.06217616580310881,
+          "first_token_fraction_of_total_nll": 0.0859769153496761,
+          "first_token_top1_correct": {
+            "denominator": 24,
+            "numerator": 24,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "A": 24
+          },
+          "mean_first_token_nll": 0.07250580463247995,
+          "mean_probability_no_at_first_token": 0.0003940211425591163,
+          "mean_probability_yes_at_first_token": 0.00015690357770381524,
+          "other_token_mean_nll": 0.0511035126158902,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 24,
+          "target_tokens": 386,
+          "token_weighted_mean_nll": 0.05243422507288024
+        }
+      }
+    },
+    "validation": {
+      "all": {
+        "first_token_fraction_of_tokens": 0.0594059405940594,
+        "first_token_fraction_of_total_nll": 0.5180754692711939,
+        "first_token_top1_correct": {
+          "denominator": 48,
+          "numerator": 36,
+          "value": 0.75
+        },
+        "first_top1_visible_counts": {
+          "A": 24,
+          "Yes": 24
+        },
+        "mean_first_token_nll": 0.3873143564366425,
+        "mean_probability_no_at_first_token": 0.16853016699872114,
+        "mean_probability_yes_at_first_token": 0.3289687194575113,
+        "other_token_mean_nll": 0.022755021192020757,
+        "recorded_generated_first_token_correct": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "rows": 48,
+        "target_tokens": 808,
+        "token_weighted_mean_nll": 0.04441201140457254
+      },
+      "relations": {
+        "device_limit": {
+          "first_token_fraction_of_tokens": 0.06666666666666667,
+          "first_token_fraction_of_total_nll": 0.4414759381960156,
+          "first_token_top1_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 8,
+            "Yes": 8
+          },
+          "mean_first_token_nll": 0.3672352151479572,
+          "mean_probability_no_at_first_token": 0.15560354143963195,
+          "mean_probability_yes_at_first_token": 0.34369235361987194,
+          "other_token_mean_nll": 0.03318571155397316,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 16,
+          "target_tokens": 240,
+          "token_weighted_mean_nll": 0.055455678460238765
+        },
+        "price_monthly": {
+          "first_token_fraction_of_tokens": 0.058823529411764705,
+          "first_token_fraction_of_total_nll": 0.684271521420722,
+          "first_token_top1_correct": {
+            "denominator": 8,
+            "numerator": 6,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 4,
+            "Yes": 4
+          },
+          "mean_first_token_nll": 0.3997467518784106,
+          "mean_probability_no_at_first_token": 0.16679711473580028,
+          "mean_probability_yes_at_first_token": 0.32892696614999295,
+          "other_token_mean_nll": 0.011527901373632687,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 8,
+          "target_tokens": 136,
+          "token_weighted_mean_nll": 0.034364304344501974
+        },
+        "storage_gb": {
+          "first_token_fraction_of_tokens": 0.05555555555555555,
+          "first_token_fraction_of_total_nll": 0.4895122583020399,
+          "first_token_top1_correct": {
+            "denominator": 16,
+            "numerator": 12,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 8,
+            "Yes": 8
+          },
+          "mean_first_token_nll": 0.35271982953418046,
+          "mean_probability_no_at_first_token": 0.2071152692448095,
+          "mean_probability_yes_at_first_token": 0.29180852639822774,
+          "other_token_mean_nll": 0.021637281765702662,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 16,
+          "target_tokens": 288,
+          "token_weighted_mean_nll": 0.040030756641729205
+        },
+        "support_hours": {
+          "first_token_fraction_of_tokens": 0.05555555555555555,
+          "first_token_fraction_of_total_nll": 0.607837727989944,
+          "first_token_top1_correct": {
+            "denominator": 8,
+            "numerator": 6,
+            "value": 0.75
+          },
+          "first_top1_visible_counts": {
+            "A": 4,
+            "Yes": 4
+          },
+          "mean_first_token_nll": 0.48422929737716913,
+          "mean_probability_no_at_first_token": 0.11894626588764368,
+          "mean_probability_yes_at_first_token": 0.37388359055887577,
+          "other_token_mean_nll": 0.01837724045404176,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 8,
+          "target_tokens": 144,
+          "token_weighted_mean_nll": 0.04425791028310439
+        }
+      },
+      "subsets": {
+        "comparison_no": {
+          "first_token_fraction_of_tokens": 0.056074766355140186,
+          "first_token_fraction_of_total_nll": 0.7459274295958115,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 0,
+            "value": 0.0
+          },
+          "first_top1_visible_counts": {
+            "Yes": 12
+          },
+          "mean_first_token_nll": 1.0645591517289479,
+          "mean_probability_no_at_first_token": 0.35384564101696014,
+          "mean_probability_yes_at_first_token": 0.64094311495622,
+          "other_token_mean_nll": 0.02154075286674551,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 12,
+          "target_tokens": 214,
+          "token_weighted_mean_nll": 0.08002776588705593
+        },
+        "comparison_yes": {
+          "first_token_fraction_of_tokens": 0.056074766355140186,
+          "first_token_fraction_of_total_nll": 0.6731644115272343,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "Yes": 12
+          },
+          "mean_first_token_nll": 0.3968517507116,
+          "mean_probability_no_at_first_token": 0.3198274647196134,
+          "mean_probability_yes_at_first_token": 0.6747803390026093,
+          "other_token_mean_nll": 0.011446332809596962,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 12,
+          "target_tokens": 214,
+          "token_weighted_mean_nll": 0.033057851570456945
+        },
+        "direct": {
+          "first_token_fraction_of_tokens": 0.06315789473684211,
+          "first_token_fraction_of_total_nll": 0.3223629483760954,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "A": 12
+          },
+          "mean_first_token_nll": 0.043560389118889965,
+          "mean_probability_no_at_first_token": 0.00013584206317318603,
+          "mean_probability_yes_at_first_token": 3.0724024403146664e-05,
+          "other_token_mean_nll": 0.00617312426330178,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 12,
+          "target_tokens": 190,
+          "token_weighted_mean_nll": 0.008534425201549454
+        },
+        "paraphrase": {
+          "first_token_fraction_of_tokens": 0.06315789473684211,
+          "first_token_fraction_of_total_nll": 0.05281043196421031,
+          "first_token_top1_correct": {
+            "denominator": 12,
+            "numerator": 12,
+            "value": 1.0
+          },
+          "first_top1_visible_counts": {
+            "A": 12
+          },
+          "mean_first_token_nll": 0.04428613418713212,
+          "mean_probability_no_at_first_token": 0.00031172019513784716,
+          "mean_probability_yes_at_first_token": 0.00012069984681299199,
+          "other_token_mean_nll": 0.053548363373297075,
+          "recorded_generated_first_token_correct": {
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "rows": 12,
+          "target_tokens": 190,
+          "token_weighted_mean_nll": 0.052963380477328764
+        }
+      }
+    }
+  },
+  "purpose": "validation_development_diagnostic",
+  "recorded_selected_validation_loss": 0.04441240420080906,
+  "reproduced_validation_loss_difference": -3.9279623651605755e-07,
+  "review_policy": "automated_development",
+  "schema_version": 1,
+  "source_files_unchanged": true,
+  "source_sha256": {
+    "artifacts/answer/pilot-v2-initial/manifest.json": "bb34bd5c0e514d98bdb801cef8d6f08d953e70783eb698171d53b77c4e69a863",
+    "artifacts/answer/pilot-v2-initial/model/config.json": "446075e2cea597f828604c07287be89fa8ea2bc0d6993f8522935cf9ed197ceb",
+    "artifacts/answer/pilot-v2-initial/model/generation_config.json": "8ca2843db044c98e0f2e08a5fc4c42cd34173c66dae250c99b45b30909dabe4e",
+    "artifacts/answer/pilot-v2-initial/model/model.safetensors": "ddcbe06010ea5a627551cdc5852baf828e3681ca57e280cedff44ec6e3396d0f",
+    "artifacts/answer/pilot-v2-initial/run_card.json": "8c0c6fae4c91b5ea59c8380c82b0b1ff58e26fca381c6091ea56f478c20f09a2",
+    "artifacts/answer/pilot-v2-initial/tokenizer/tokenizer.json": "210dcd509b1267b71026da5195530ac3a9b9a28d8a5c12fe277960e97f83de7e",
+    "artifacts/answer/pilot-v2-initial/tokenizer/tokenizer_config.json": "7d016030202fb3ebbd5554fb910b5281ef4f55a92e08a8cdd001af0598d487be",
+    "artifacts/answer/pilot-v2-initial/training_log.jsonl": "02af4a21a4787e7c5afab85299f5f5326633e5b86b9679d3b59efcc51769e0c1",
+    "data/generated/pilot-v2/answer_train.jsonl": "ac6b58deb30ae1d5f5355b6c4f1517124cc5b11ae38a7f69af038880f9457f24",
+    "data/generated/pilot-v2/answer_validation.jsonl": "0fbcf392a61579ccafb46fd6c6fa7b165a873a4bba4c71559a6ac997b858e5c7",
+    "data/generated/pilot-v2/manifest.json": "8ab5b924549b2ff4039384c476e09075a74f58d471195cb7f9e6ed0c62eb7559",
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/neural.py": "e5f780dd0d258ccc442187477992d1c4b3119a8d101473adb87f737e8ebb3c51",
+    "editguard/training.py": "52952f6ec9e4c383c71b39e77e097f2e7c8bd98d2a6bfb60d742026f0e658218",
+    "reports/pilot-v2-reviews.automated.json": "a43554b6b39268472bb7c467e6bc502f0a0301efd6cdd880deb1958a7c824688",
+    "reports/pilot-v2-validation-initial/manifest.json": "1a935428262ccf62e88dab438d0e8eaf00845d7e3bdda98c55b8d6a919c25f3f",
+    "reports/pilot-v2-validation-initial/oracle_predictions.jsonl": "a542a4cdfefe2cf43606b319498ecf72804f28e6e83281c9ea8b2a1a423f5afc",
+    "scripts/diagnose_answer_polarity.py": "7dfb32eb509784c834367c61c36badace24221a9e90d2c9bef0aaed76ef9cbdc",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2"
+  },
+  "status": "completed",
+  "teacher_forced_examples": 192,
+  "test_or_challenge_rows_read": false,
+  "token_audits": {
+    "oracle_context": {
+      "input_cap": 192,
+      "input_truncated_rows": 0,
+      "max_input_tokens": 130,
+      "max_target_tokens": 19,
+      "rows": 48,
+      "target_cap": 48,
+      "target_truncated_rows": 0
+    },
+    "train": {
+      "input_cap": 192,
+      "input_truncated_rows": 0,
+      "max_input_tokens": 132,
+      "max_target_tokens": 20,
+      "rows": 96,
+      "target_cap": 48,
+      "target_truncated_rows": 0
+    },
+    "validation": {
+      "input_cap": 192,
+      "input_truncated_rows": 0,
+      "max_input_tokens": 127,
+      "max_target_tokens": 19,
+      "rows": 48,
+      "target_cap": 48,
+      "target_truncated_rows": 0
+    }
+  },
+  "yes_no_token_ids": {
+    "No": 465,
+    "Yes": 2163
+  }
+}

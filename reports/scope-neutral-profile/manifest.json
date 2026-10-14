@@ -1,0 +1,214 @@
+{
+  "artifact_type": "editguard_auxiliary",
+  "completed_steps": 4,
+  "configuration_hash": "1734e9301d517405f28d9bce25e567ae09c021d7a7a86afe192d0422cd787ffe",
+  "data_hashes": {
+    "train_rows": "1bcda390c64c8d14a2194e08c37b87ef6a0ad10dab42b9500f455e323934fa40",
+    "validation_rows": "e7f654266f61b215b4fdb444e67a1e457202cc8ffabb5a7575decbc64a68f15e"
+  },
+  "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+  "disclaimer": "Four-step development pilot profile; no accuracy claim and runtime must reject this artifact.",
+  "environment": {
+    "attention_implementation": "eager",
+    "cpu_threads": 2,
+    "cublas_workspace_config": ":4096:8",
+    "cuda_devices": [
+      "NVIDIA GeForce RTX 4050 Laptop GPU"
+    ],
+    "cuda_visible_devices": null,
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "machine": "AMD64",
+    "nvidia_driver_uuid_identity": [
+      "GPU-eef70fb6-f020-1e2a-ee9b-c58eb9cced88, NVIDIA GeForce RTX 4050 Laptop GPU, 581.86"
+    ],
+    "packages": {
+      "numpy": "2.4.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.3",
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "precision": "float32",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "tf32": false,
+    "torch_cuda": "13.0"
+  },
+  "environment_hash": "57abe36515dd32e0fd37b77b5dc26b268df7f8629de71051de2fbe178524c9a0",
+  "files_sha256": {
+    "model/config.json": "430f9d988107cb393a7d80ca9a2b9e08725120e4eee38d933f8cb8d19281e4f9",
+    "model/model.safetensors": "538cc6a6efabbdf9f02c6e0cc687a1ca675449d35623b90b3f3f8f91afdad27b",
+    "tokenizer/tokenizer.json": "f83a7f24eee69f73e1a5cad5a09dac6e3c6731c461540cb3498b22285d3ca6ed",
+    "tokenizer/tokenizer_config.json": "b568faa40e8980cc2daf9019ca9e631972ad6cb9835068fb1106a3b8b4c83c1b"
+  },
+  "human_reviewed_data": false,
+  "input_format": "question_then_correction_pair",
+  "input_format_version": "editguard-input-v2",
+  "input_length": 192,
+  "loss_objective": {
+    "comparison_first_token_weight": 1,
+    "normalization": "original_model_loss",
+    "policy": "uniform",
+    "rule": "Use model.loss unchanged; scope validation weights rows, answer validation weights valid target tokens.",
+    "schema_version": 1
+  },
+  "manifest_sha256": "5e4790e2edf9c15e98f37ce455ab275a387fa1ae866c35cde40a0322de62dc2e",
+  "max_steps": 4,
+  "model_id": "distilbert/distilbert-base-uncased",
+  "model_path": "model",
+  "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "num_labels": 2,
+  "positive_class_index": 1,
+  "pretrained_state_sha256": "4e4b2cb54a2b11d3203c215c5e8b497c5d169fca4cfb3b042129e47f2473dee9",
+  "purpose": "smoke_test",
+  "review_policy": "automated_development",
+  "reviewed_inputs": false,
+  "reviews_sha256": "3bcff20d4e82cfae18d04445fa51123ee43aa2592a8dacf93aeaf536d6f84546",
+  "run_card_sha256": "3df73b9e47d9e052f33e73dae963d5edc17d83f2e684b499f21ee2efc2a4e112",
+  "schema_version": 1,
+  "scope_input_overlap": {
+    "cross_split": {
+      "contradictory_label_pairs": 0,
+      "identical_input_pairs": 8,
+      "same_label_pairs": 8,
+      "train_rows_with_shared_pair": 8,
+      "validation_rows_with_shared_pair": 8
+    },
+    "disclaimer": "Raw reviewed entity and lineage splits remain unchanged. Identical abstracted inputs may occur across those splits; same-label overlap is disclosed and is not evidence of unseen logical forms.",
+    "scope_input_policy": "entity_neutral_v1",
+    "train": {
+      "contradictory_label_pairs": 0,
+      "rows": 240,
+      "same_label_duplicate_groups": 0,
+      "same_label_duplicate_rows": 0,
+      "unique_pairs": 240
+    },
+    "validation": {
+      "contradictory_label_pairs": 0,
+      "rows": 120,
+      "same_label_duplicate_groups": 0,
+      "same_label_duplicate_rows": 0,
+      "unique_pairs": 120
+    }
+  },
+  "scope_input_policy": "entity_neutral_v1",
+  "scope_input_policy_version": "editguard-scope-input-v1",
+  "scope_input_source_sha256": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+  "selected_model_state_sha256": "cc492c9d6ceb26d0d62f6c07de4b34b9a0d66fe1fb7b7b3e3a189204a6bf521c",
+  "selection": {
+    "checkpoint": "step-00000004",
+    "global_step": 4,
+    "metric": "validation_loss",
+    "value": 0.6816860496997833
+  },
+  "status": "completed",
+  "target_length": null,
+  "task": "scope",
+  "tokenization": {
+    "train": {
+      "input_truncated_rows": 0,
+      "max_input_tokens": 45,
+      "max_target_tokens": null,
+      "rows": 240,
+      "scope_contradictory_label_pairs": 0,
+      "scope_cross_split_overlap": {
+        "contradictory_label_pairs": 0,
+        "identical_input_pairs": 8,
+        "same_label_pairs": 8,
+        "train_rows_with_shared_pair": 8,
+        "validation_rows_with_shared_pair": 8
+      },
+      "scope_input_policy": "entity_neutral_v1",
+      "scope_input_policy_version": "editguard-scope-input-v1",
+      "scope_input_source_sha256": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+      "scope_pair_text_sha256": "42ae3425664eee4a56da307dcf39881293f3043928847018e3f9977ff11ec283",
+      "scope_same_label_duplicate_groups": 0,
+      "scope_same_label_duplicate_rows": 0,
+      "target_truncated_rows": 0,
+      "unique_scope_pairs": 240
+    },
+    "validation": {
+      "input_truncated_rows": 0,
+      "max_input_tokens": 44,
+      "max_target_tokens": null,
+      "rows": 120,
+      "scope_contradictory_label_pairs": 0,
+      "scope_cross_split_overlap": {
+        "contradictory_label_pairs": 0,
+        "identical_input_pairs": 8,
+        "same_label_pairs": 8,
+        "train_rows_with_shared_pair": 8,
+        "validation_rows_with_shared_pair": 8
+      },
+      "scope_input_policy": "entity_neutral_v1",
+      "scope_input_policy_version": "editguard-scope-input-v1",
+      "scope_input_source_sha256": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+      "scope_pair_text_sha256": "ba9cd1ad230fa6b3d519822f289be8c1b49023c19e7f33c9a13d3e3916a834e1",
+      "scope_same_label_duplicate_groups": 0,
+      "scope_same_label_duplicate_rows": 0,
+      "target_truncated_rows": 0,
+      "unique_scope_pairs": 120
+    }
+  },
+  "tokenizer_hash": "1d45349456e84298623ed80806eff7e5f13a4ab8a26aacc805719a61a0f0d040",
+  "tokenizer_path": "tokenizer",
+  "trainer_source_hashes": {
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+    "editguard/training.py": "298a215340312d0b3b416eef01f8032c9c3bdd5be372950dd153c13af751891d",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a"
+  },
+  "training": {
+    "best_validation": {
+      "checkpoint": "step-00000004",
+      "global_step": 4,
+      "metric": "validation_loss",
+      "value": 0.6816860496997833
+    },
+    "checkpoint_measurements_this_process": [
+      {
+        "global_step": 2,
+        "seconds": 41.144911300001695
+      },
+      {
+        "global_step": 4,
+        "seconds": 49.22186289999809
+      }
+    ],
+    "elapsed_training_seconds": 94.45786610000141,
+    "final_state_sha256": "cc492c9d6ceb26d0d62f6c07de4b34b9a0d66fe1fb7b7b3e3a189204a6bf521c",
+    "global_step": 4,
+    "last_checkpoint": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\profiles\\pilot-v3-scope-neutral-final\\checkpoints\\step-00000004",
+    "loss_objective": {
+      "comparison_first_token_weight": 1,
+      "normalization": "original_model_loss",
+      "policy": "uniform",
+      "rule": "Use model.loss unchanged; scope validation weights rows, answer validation weights valid target tokens.",
+      "schema_version": 1
+    },
+    "resources": {
+      "peak_allocated_gpu_bytes": 1415690240,
+      "peak_reserved_gpu_bytes": 1514143744,
+      "process_rss_bytes": 1793048576
+    },
+    "status": "completed",
+    "validation_measurements_this_process": [
+      {
+        "global_step": 2,
+        "loss_weight_sum": 120,
+        "rows": 120,
+        "seconds": 1.2033529999971506
+      },
+      {
+        "global_step": 4,
+        "loss_weight_sum": 120,
+        "rows": 120,
+        "seconds": 1.5360491999999795
+      }
+    ]
+  },
+  "updated_at": "2026-10-13T13:38:01.503767+00:00"
+}

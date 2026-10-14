@@ -7,6 +7,7 @@ does not make Torch or Transformers dependencies of the structured application.
 from __future__ import annotations
 
 from contextlib import contextmanager
+from collections import Counter
 from datetime import datetime, timezone
 import hashlib
 import importlib.metadata
@@ -23,6 +24,7 @@ from time import perf_counter
 from uuid import uuid4
 
 from .formatting import INPUT_FORMAT_VERSION
+from .scope_inputs import scope_pair, scope_policy_identity, validate_scope_policy
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,6 +32,149 @@ CHECKPOINT_FIELDS = {
     "model", "optimizer", "scheduler", "rng", "global_step", "sampler",
     "identity", "best_validation",
 }
+
+LOSS_POLICIES = ("uniform", "comparison_first_token_8x")
+SCOPE_IDENTITY_FIELDS = ("scope_input_policy", "scope_input_policy_version", "scope_input_source_sha256")
+TRAINER_SOURCE_FILES = ("editguard/training.py", "scripts/train_auxiliary.py", "scripts/preflight_training.py",
+                        "scripts/prepare_data.py", "editguard/formatting.py", "editguard/scope_inputs.py")
+
+
+def scope_training_identity(task, card):
+    """Bind opt-in scope preprocessing without permitting answer-input changes."""
+    if task not in ("scope", "answer"):
+        raise ValueError("Scope input identity requires task=scope or answer")
+    policy = validate_scope_policy({**card, "task": task})
+    if task == "answer":
+        return {}
+    return scope_policy_identity(policy)
+
+
+def scope_training_pairs(rows, policy="raw_v1"):
+    """Transform strings only and reject contradictory labels for an identical pair."""
+    scope_policy_identity(policy)
+    pairs, labels = [], {}
+    for row in rows:
+        if type(row.get("label")) is not int or row["label"] not in (0, 1):
+            raise ValueError("Scope training labels must be explicit integer zero or one")
+        pair = scope_pair(row["question"], row["correction_text"], policy)
+        if pair in labels and labels[pair] != row["label"]:
+            raise ValueError("Scope preprocessing creates an identical input pair with contradictory labels")
+        labels[pair] = row["label"]
+        pairs.append(pair)
+    return pairs
+
+
+def scope_input_overlap(train_rows, validation_rows, policy="raw_v1"):
+    """Disclose same-label abstraction overlap; refuse any contradictory pair."""
+    scope_training_pairs([*train_rows, *validation_rows], policy)
+    partitions = {"train": scope_training_pairs(train_rows, policy),
+                  "validation": scope_training_pairs(validation_rows, policy)}
+    counts = {split: Counter(pairs) for split, pairs in partitions.items()}
+    overlap = set(counts["train"]) & set(counts["validation"])
+    return {"scope_input_policy": policy,
+        **{split: {"rows": len(pairs), "unique_pairs": len(counts[split]),
+                   "same_label_duplicate_rows": len(pairs) - len(counts[split]),
+                   "same_label_duplicate_groups": sum(count > 1 for count in counts[split].values()),
+                   "contradictory_label_pairs": 0} for split, pairs in partitions.items()},
+        "cross_split": {"identical_input_pairs": len(overlap), "same_label_pairs": len(overlap),
+                        "contradictory_label_pairs": 0,
+                        "train_rows_with_shared_pair": sum(counts["train"][pair] for pair in overlap),
+                        "validation_rows_with_shared_pair": sum(counts["validation"][pair] for pair in overlap)},
+        "disclaimer": "Raw reviewed entity and lineage splits remain unchanged. Identical abstracted inputs may occur across those splits; same-label overlap is disclosed and is not evidence of unseen logical forms."}
+
+
+def loss_objective(task, policy="uniform"):
+    """Resolve a finite, explicit objective before loading models or optimizers."""
+    if task not in ("scope", "answer"):
+        raise ValueError("Loss objective requires task=scope or answer")
+    if policy not in LOSS_POLICIES:
+        raise ValueError("Unknown loss_policy; use uniform or comparison_first_token_8x")
+    if policy != "uniform" and task != "answer":
+        raise ValueError("comparison_first_token_8x is supported only for the answer task")
+    return {"schema_version": 1, "policy": policy,
+            "comparison_first_token_weight": 8 if policy != "uniform" else 1,
+            "normalization": "sum_weighted_token_nll_over_sum_weights" if policy != "uniform" else "original_model_loss",
+            "rule": "first target token of reviewed comparison yes/no rows has weight 8; other valid tokens 1; padding 0"
+                    if policy != "uniform" else "Use model.loss unchanged; scope validation weights rows, answer validation weights valid target tokens."}
+
+
+def comparison_loss_weights(rows, labels, tokenizer):
+    """Bind weights to reviewed row semantics and independently tokenized polarity."""
+    import torch
+    if tokenizer.padding_side != "right":
+        raise ValueError("The comparison objective requires right-padded targets")
+    if (labels.ndim != 2 or labels.shape[0] != len(rows) or not len(rows)
+            or labels.shape[1] < 1 or labels.dtype != torch.long):
+        raise ValueError("Answer target labels must have shape (rows, target_tokens) and integer dtype")
+    token_ids = {word.lower(): tokenizer(word, add_special_tokens=False)["input_ids"] for word in ("Yes", "No")}
+    if any(len(ids) != 1 for ids in token_ids.values()) or token_ids["yes"] == token_ids["no"]:
+        raise ValueError("Yes and No must each be a distinct single-token target")
+    weights = (labels != -100).to(dtype=torch.float32)
+    for index, row in enumerate(rows):
+        if row.get("reviewed") is not True or row.get("review_status") != "accepted":
+            raise ValueError("The comparison objective requires explicitly accepted reviewed rows")
+        kind, polarity = row.get("question_type"), row.get("expected_polarity")
+        if kind not in ("direct", "paraphrase", "comparison"):
+            raise ValueError("Answer question_type must be direct, paraphrase or comparison")
+        valid = labels[index] != -100
+        count = int(valid.sum().item())
+        if count < 1 or not bool(valid[:count].all()) or bool(valid[count:].any()):
+            raise ValueError("Answer target must start at position zero and have only right padding")
+        first_id = int(labels[index, 0].item())
+        if kind == "comparison":
+            if polarity not in ("yes", "no") or first_id != token_ids[polarity][0]:
+                raise ValueError("Comparison metadata and independently tokenized first target polarity disagree")
+            weights[index, 0] = 8.0
+        elif polarity is not None or first_id in (token_ids["yes"][0], token_ids["no"][0]):
+            raise ValueError("Non-comparison rows must not carry a comparison polarity target")
+    validate_loss_weights(labels, weights)
+    return weights
+
+
+def validate_loss_weights(labels, weights):
+    """Refuse malformed weights before an optimizer is constructed or updated."""
+    import torch
+    if (labels.ndim != 2 or weights.shape != labels.shape or labels.dtype != torch.long
+            or labels.shape[0] < 1 or labels.shape[1] < 1):
+        raise ValueError("Weighted answer labels and loss_weights must have matching two-dimensional shape")
+    if not weights.is_floating_point() or not bool(torch.isfinite(weights).all()):
+        raise ValueError("loss_weights must be finite floating-point values")
+    valid = labels != -100
+    if bool((labels[valid] < 0).any()):
+        raise ValueError("Valid answer targets must be nonnegative token IDs")
+    if not bool(valid[:, 0].all()) or bool(((~valid[:, :-1]) & valid[:, 1:]).any()):
+        raise ValueError("Weighted target tokens must start at position zero and use right padding")
+    if not bool((weights[~valid] == 0).all()) or not bool(((weights[valid] == 1) | (weights[valid] == 8)).all()):
+        raise ValueError("Padding weight must be zero; valid token weights must be one or eight")
+    if weights.shape[1] > 1 and not bool((weights[:, 1:][valid[:, 1:]] == 1).all()):
+        raise ValueError("Only the first answer token may have weight eight")
+    if float(weights.sum().item()) <= 0:
+        raise ValueError("Weighted answer batch has no positive denominator")
+
+
+def objective_batch_loss(model, batch, *, task, policy="uniform"):
+    """Return loss and its validation aggregation denominator without altering labels."""
+    loss_objective(task, policy)
+    if policy == "uniform":
+        if "loss_weights" in batch:
+            raise ValueError("Uniform objective must not silently consume weighted inputs")
+        # Preserve the original loss computation exactly for all existing runs.
+        loss = model(**batch).loss
+        denominator = int((batch["labels"] != -100).sum().item()) if task == "answer" else len(batch["labels"])
+        return loss, denominator
+    import torch
+    if "loss_weights" not in batch:
+        raise ValueError("Comparison objective requires tokenization-bound loss_weights")
+    weights, labels = batch["loss_weights"], batch["labels"]
+    validate_loss_weights(labels, weights)
+    prediction = model(**{key: value for key, value in batch.items() if key != "loss_weights"})
+    if prediction.logits.ndim != 3 or prediction.logits.shape[:2] != labels.shape:
+        raise ValueError("Answer logits must align with the teacher-forced target shape")
+    per_token = torch.nn.functional.cross_entropy(prediction.logits.transpose(1, 2), labels,
+                                                  reduction="none", ignore_index=-100)
+    denominator = weights.sum()
+    loss = (per_token * weights).sum() / denominator
+    return loss, float(denominator.detach().item())
 
 
 def canonical_hash(value):
@@ -257,7 +402,7 @@ def _batch(encoded, indices, device):
     return {key: value[indices].to(device) for key, value in encoded.items()}
 
 
-def validation_loss(model, encoded, batch_size, device, task):
+def validation_loss(model, encoded, batch_size, device, task, *, loss_policy="uniform", return_denominator=False):
     import torch
     model.eval()
     total, denominator = 0.0, 0
@@ -266,8 +411,7 @@ def validation_loss(model, encoded, batch_size, device, task):
         for start in range(0, size, batch_size):
             indices = list(range(start, min(start + batch_size, size)))
             batch = _batch(encoded, indices, device)
-            loss = model(**batch).loss
-            weight = int((batch["labels"] != -100).sum().item()) if task == "answer" else len(indices)
+            loss, weight = objective_batch_loss(model, batch, task=task, policy=loss_policy)
             total += float(loss.item()) * weight
             denominator += weight
     model.train()
@@ -276,7 +420,7 @@ def validation_loss(model, encoded, batch_size, device, task):
     value = total / denominator
     if not math.isfinite(value):
         raise ValueError("Validation loss is not finite")
-    return value
+    return (value, denominator) if return_denominator else value
 
 
 def _resources(device):
@@ -322,6 +466,22 @@ def _prune_checkpoints(root, keep_last, best):
 def train_loop(model, encoded_train, encoded_validation, *, config, identity, output_dir,
                resume_checkpoint=None, stop_after_steps=None):
     """Shared real optimizer loop; also exercised by a tiny CPU regression model."""
+    objective = loss_objective(config["task"], config.get("loss_policy", "uniform"))
+    scope_identity = scope_training_identity(config["task"], config)
+    validate_scope_policy({**identity, "task": config["task"]})
+    if (scope_identity and (scope_identity["scope_input_policy"] != "raw_v1"
+            or any(key in identity for key in SCOPE_IDENTITY_FIELDS))
+            and any(identity.get(key) != value for key, value in scope_identity.items())):
+        raise ValueError("Training identity differs from the declared scope input preprocessing")
+    if identity.get("loss_objective", objective if objective["policy"] == "uniform" else None) != objective:
+        raise ValueError("Training identity differs from the declared loss objective")
+    if objective["policy"] != "uniform":
+        for encoded in (encoded_train, encoded_validation):
+            if "loss_weights" not in encoded:
+                raise ValueError("Comparison objective needs reviewed tokenization-bound loss_weights before optimization")
+            validate_loss_weights(encoded["labels"], encoded["loss_weights"])
+    elif "loss_weights" in encoded_train or "loss_weights" in encoded_validation:
+        raise ValueError("Uniform objective must not silently consume weighted inputs")
     import torch
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -361,7 +521,7 @@ def train_loop(model, encoded_train, encoded_validation, *, config, identity, ou
             torch.cuda.synchronize()
         step_started = perf_counter()
         optimizer.zero_grad(set_to_none=True)
-        loss = model(**batch).loss
+        loss, loss_denominator = objective_batch_loss(model, batch, task=config["task"], policy=objective["policy"])
         if not math.isfinite(float(loss.detach().item())):
             raise ValueError("Training loss is not finite; retain the previous checkpoint for diagnosis")
         loss.backward()
@@ -378,19 +538,26 @@ def train_loop(model, encoded_train, encoded_validation, *, config, identity, ou
         should_validate = step % config["validation_every_steps"] == 0 or step == max_steps
         if should_validate:
             validation_started = perf_counter()
-            val = validation_loss(model, encoded_validation, config["batch_size"], device, config["task"])
+            val, validation_denominator = validation_loss(model, encoded_validation, config["batch_size"], device,
+                config["task"], loss_policy=objective["policy"], return_denominator=True)
             if device == "cuda":
                 torch.cuda.synchronize()
             validation_measurements.append({"global_step": step, "rows": len(encoded_validation["labels"]),
-                                            "seconds": perf_counter() - validation_started})
+                                            "seconds": perf_counter() - validation_started,
+                                            "loss_weight_sum": validation_denominator})
             if best is None or val < best["value"]:
-                best = {"metric": "validation_loss", "value": val, "global_step": step,
+                best = {"metric": "validation_loss" if objective["policy"] == "uniform" else "validation_weighted_token_loss",
+                        "value": val, "global_step": step,
                         "checkpoint": f"step-{step:08d}"}
         record = {"global_step": step, "loss": float(loss.detach().item()), "validation_loss": val,
                   "learning_rate_after_step": scheduler.get_last_lr()[0], "gradient_norm": float(gradient_norm.item()),
                   "optimizer_seconds": duration, "elapsed_training_seconds": perf_counter() - started,
                   "batch_indices": indices, "sampler_epoch": sampler.epoch, "sampler_cursor": sampler.cursor,
+                  "loss_policy": objective["policy"], "comparison_first_token_weight": objective["comparison_first_token_weight"],
+                  "loss_weight_sum": loss_denominator,
                   **_resources(device)}
+        if scope_identity:
+            record["scope_input_policy"] = scope_identity["scope_input_policy"]
         with log_path.open("a", encoding="utf-8") as log:
             log.write(json.dumps(record, sort_keys=True, allow_nan=False) + "\n")
             log.flush()
@@ -410,13 +577,18 @@ def train_loop(model, encoded_train, encoded_validation, *, config, identity, ou
             "elapsed_training_seconds": perf_counter() - started, "final_state_sha256": state_digest(model.state_dict()),
             "validation_measurements_this_process": validation_measurements,
             "checkpoint_measurements_this_process": checkpoint_measurements,
+            "loss_objective": objective,
             "resources": _resources(device)}
 
 
-def tokenize_rows(rows, *, task, tokenizer, input_length, target_length=None):
+def tokenize_rows(rows, *, task, tokenizer, input_length, target_length=None, loss_policy="uniform",
+                  scope_input_policy=None):
+    objective = loss_objective(task, loss_policy)
+    scope_identity = scope_training_identity(task, {} if scope_input_policy is None else scope_policy_identity(scope_input_policy))
     import torch
     if task == "scope":
-        first, second = [row["question"] for row in rows], [row["correction_text"] for row in rows]
+        pairs = scope_training_pairs(rows, scope_identity["scope_input_policy"])
+        first, second = [pair[0] for pair in pairs], [pair[1] for pair in pairs]
         lengths = [len(tokenizer(question, correction, truncation=False)["input_ids"])
                    for question, correction in zip(first, second)]
         encoded = tokenizer(first, second, padding="max_length", truncation=True,
@@ -432,12 +604,26 @@ def tokenize_rows(rows, *, task, tokenizer, input_length, target_length=None):
         labels = tokenizer(targets, padding="max_length", truncation=True, max_length=target_length, return_tensors="pt")["input_ids"]
         labels[labels == tokenizer.pad_token_id] = -100
         encoded["labels"] = labels
+        if objective["policy"] != "uniform":
+            encoded["loss_weights"] = comparison_loss_weights(rows, labels, tokenizer)
     statistics = {"rows": len(rows), "max_input_tokens": max(lengths),
                   "input_truncated_rows": sum(length > input_length for length in lengths),
                   "max_target_tokens": max(target_lengths) if target_lengths else None,
                   "target_truncated_rows": sum(length > target_length for length in target_lengths)}
     if statistics["input_truncated_rows"] or statistics["target_truncated_rows"]:
         raise ValueError("Training inputs/targets would be truncated; revise and reprofile the run lengths: " + json.dumps(statistics))
+    if objective["policy"] != "uniform":
+        statistics["loss_weight_sum"] = float(encoded["loss_weights"].sum().item())
+        statistics["weighted_polarity_rows"] = {polarity: sum(row.get("question_type") == "comparison"
+            and row.get("expected_polarity") == polarity for row in rows) for polarity in ("yes", "no")}
+    if scope_identity:
+        statistics.update(scope_identity)
+        statistics["scope_pair_text_sha256"] = canonical_hash(pairs)
+        statistics["unique_scope_pairs"] = len(set(pairs))
+        pair_counts = Counter(pairs)
+        statistics["scope_same_label_duplicate_rows"] = len(pairs) - len(pair_counts)
+        statistics["scope_same_label_duplicate_groups"] = sum(count > 1 for count in pair_counts.values())
+        statistics["scope_contradictory_label_pairs"] = 0
     return dict(encoded), statistics
 
 
@@ -470,6 +656,13 @@ def synthetic_rows(task):
 def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
                  resume_checkpoint=None, stop_after_steps=None, run_card_source=None):
     """Load pinned cached pretrained weights, optimize, and publish the best model."""
+    objective = loss_objective(card["task"], card.get("loss_policy", "uniform"))
+    scope_identity = scope_training_identity(card["task"], card)
+    scope_overlap = None
+    if scope_identity:
+        # Check both partitions together before constructing an optimizer. Each
+        # partition retains its original entity split and reviewed row identities.
+        scope_overlap = scope_input_overlap(train_rows, validation_rows, scope_identity["scope_input_policy"])
     if type(card.get("max_steps")) is not int or not 1 <= card["max_steps"] <= 100_000:
         raise ValueError("max_steps must be an integer between 1 and 100000")
     if purpose == "smoke_test" and card["max_steps"] > 4:
@@ -479,6 +672,27 @@ def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
     if purpose == "trained" and (not card.get("manifest_sha256") or not card.get("reviews_sha256")
             or any(not row.get("reviewed") or row.get("review_status") != "accepted" for row in [*train_rows, *validation_rows])):
         raise ValueError("Production training requires preflight-approved exact reviewed rows and hashes")
+    # A refused resume must not reach GPU setup or the mutable failure handler.
+    # In particular, a completed run's final checkpoint is not a training resume:
+    # catching that refusal later would overwrite its completed export manifest.
+    if resume_checkpoint:
+        resume_output = Path(card["output_dir"]).resolve()
+        output_manifest = resume_output / "manifest.json"
+        if output_manifest.is_file():
+            existing_manifest = json.loads(output_manifest.read_text(encoding="utf-8"))
+            if not isinstance(existing_manifest, dict):
+                raise ValueError("Existing training manifest must be a JSON object before resume.")
+            if existing_manifest.get("status") == "completed":
+                raise ValueError("Completed training artifacts cannot be resumed; preserve their existing exports.")
+        resume_checkpoint = Path(resume_checkpoint).resolve()
+        if resume_output not in resume_checkpoint.parents or not resume_checkpoint.is_dir():
+            raise ValueError("Resume checkpoint must be an existing directory inside output_dir")
+        metadata = json.loads((resume_checkpoint / "metadata.json").read_text(encoding="utf-8"))
+        if not isinstance(metadata, dict):
+            raise ValueError("Resume checkpoint metadata must be a JSON object.")
+        resume_step = metadata.get("global_step")
+        if type(resume_step) is not int or not 0 <= resume_step < card["max_steps"]:
+            raise ValueError("Resume global_step must be a nonnegative integer below the unchanged stopping cap.")
     configure_determinism(card["seed"], card.get("cpu_threads", 2))
     import torch
     from transformers import AutoModelForSequenceClassification, AutoModelForSeq2SeqLM, AutoTokenizer
@@ -505,16 +719,21 @@ def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
         raise ValueError("Loaded pretrained checkpoint revision differs from the run card")
     pretrained_hash = state_digest(model.state_dict())
     train, train_statistics = tokenize_rows(train_rows, task=task, tokenizer=tokenizer,
-                                           input_length=card["input_length"], target_length=card.get("target_length"))
+                                           input_length=card["input_length"], target_length=card.get("target_length"),
+                                           loss_policy=objective["policy"],
+                                           scope_input_policy=scope_identity.get("scope_input_policy"))
     validation, validation_statistics = tokenize_rows(validation_rows, task=task, tokenizer=tokenizer,
-                                           input_length=card["input_length"], target_length=card.get("target_length"))
+                                           input_length=card["input_length"], target_length=card.get("target_length"),
+                                           loss_policy=objective["policy"],
+                                           scope_input_policy=scope_identity.get("scope_input_policy"))
+    if scope_overlap:
+        train_statistics["scope_cross_split_overlap"] = scope_overlap["cross_split"]
+        validation_statistics["scope_cross_split_overlap"] = scope_overlap["cross_split"]
     environment = environment_record(device)
     if purpose == "trained" and card.get("profile_environment_sha256") is not None:
         if card["profile_environment_sha256"] != canonical_hash(environment):
             raise ValueError("Training environment differs from the measured pilot profile; reprofile before training.")
-        source_names = ("editguard/training.py", "scripts/train_auxiliary.py", "scripts/preflight_training.py",
-                        "scripts/prepare_data.py", "editguard/formatting.py")
-        sources = {name: file_hash(ROOT / name) for name in source_names}
+        sources = {name: file_hash(ROOT / name) for name in TRAINER_SOURCE_FILES}
         if card.get("profile_source_sha256") != sources:
             raise ValueError("Training sources differ from the measured pilot profile; reprofile before training.")
     config = {**card, "validation_every_steps": card.get("validation_every_steps", card["checkpoint_every_steps"])}
@@ -533,10 +752,11 @@ def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
                 "configuration_hash": canonical_hash(config_identity), "environment_hash": canonical_hash(environment),
                 "data_hashes": {"train_rows": canonical_hash(train_rows), "validation_rows": canonical_hash(validation_rows)},
                 "pretrained_state_sha256": pretrained_hash,
+                "loss_objective": objective,
+                **scope_identity,
                 "tokenizer_hash": canonical_hash({"vocabulary": tokenizer.get_vocab(), "special_tokens": tokenizer.special_tokens_map,
                     "padding_side": tokenizer.padding_side, "truncation_side": tokenizer.truncation_side}),
-                "trainer_source_hashes": {str(path.relative_to(ROOT)).replace("\\", "/"): file_hash(path)
-                    for path in (Path(__file__), ROOT / "scripts/train_auxiliary.py", ROOT / "scripts/preflight_training.py", ROOT / "scripts/prepare_data.py")}}
+                "trainer_source_hashes": {name: file_hash(ROOT / name) for name in TRAINER_SOURCE_FILES}}
     output = Path(card["output_dir"])
     if resume_checkpoint:
         resume_checkpoint = Path(resume_checkpoint).resolve()
@@ -554,6 +774,7 @@ def run_training(card, *, train_rows, validation_rows, purpose, run_card_sha256,
                      "tokenization": {"train": train_statistics, "validation": validation_statistics},
                      "input_length": card["input_length"], "target_length": card.get("target_length"),
                      "max_steps": card["max_steps"], "reviewed_inputs": purpose == "trained",
+                     "scope_input_overlap": scope_overlap,
                      "review_policy": card.get("review_policy", "human") if purpose == "trained" or card.get("purpose") == "pilot_profile" else None,
                      "human_reviewed_data": card.get("review_policy", "human") == "human" if purpose == "trained" or card.get("purpose") == "pilot_profile" else False,
                      "disclaimer": ("Four-step development pilot profile; no accuracy claim and runtime must reject this artifact."

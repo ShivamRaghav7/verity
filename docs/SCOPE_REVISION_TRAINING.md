@@ -1,4 +1,31 @@
-# Scope revision 1: prepared finite run
+# Scope revision 1: completed run archive
+
+**Completed by the user:** all 360 optimizer steps finished, selecting step 360
+with validation NLL `0.4856789919237296`. The exported model independently
+reproduces that loss. [Pilot-v3 results](PILOT_V3_RESULTS.md) separate raw scope
+quality, deterministic guards, calibrated routing and factual answer quality.
+The commands and estimates
+below preserve this completed run's historical preparation and recovery record;
+they are not a new recommended training run.
+
+The subsequent [Nimbus workflow](../reports/pilot-v3-learned-workflow.json)
+passed 31/31 governance/integration checks but returned stale `5` after approval
+of `3` on a direct question, returned a price for a device paraphrase, and
+clarified the capacity questions. Those handpicked cases do not establish a
+general accuracy estimate. They motivate **scope revision 2, the final scope
+experiment**, using `entity_neutral_v1` preprocessing with the same pilot-v3
+rows, reviews, backbone, seed, learning rate and 360-step cap. Its future run guide
+will provide final profiling and recovery evidence; this archived revision-1
+command is not the new command. Scope revision 2 has not trained.
+
+The separate first answer revision addresses the unchanged model's `No` → `Yes`
+failure with the same v2 inputs and 240-step cap. See
+[the answer-objective specification](ANSWER_OBJECTIVE.md). The
+[answer training guide](ANSWER_REVISION_TRAINING.md) is in preparation. Both new
+runs have no measured improvement, and their commands/estimates remain pending
+their own final profiles and recovery checks.
+The exact original trainer sources used for the completed scope run remain
+[archived from Git `350db38`](../reports/training-source-v1/manifest.json).
 
 This run asks whether balancing the existing negative question forms improves
 direct-edit detection on held-out pilot entities without increasing false
@@ -8,10 +35,10 @@ Nimbus workflow also falsely applied a device correction to a price question.
 Those are observed failures; the wording imbalance is a hypothesis about a
 contributing cause, rather than an established explanation of every error.
 
-This is the first of at most two targeted scope revisions. It does not expand
+This was the first of at most two permitted targeted scope revisions. It does not expand
 the catalogue or row count. The answer checkpoint stays fixed at its completed
 initial pilot export; its comparison-polarity failure remains documented.
-No substantial revised training run has been executed by Codex.
+The substantial revision run was executed by the user; Codex prepared and audited it.
 
 ## Exact inputs and outputs
 

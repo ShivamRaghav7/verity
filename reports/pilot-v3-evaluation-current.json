@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "artifact_type": "editguard_development_evaluation",
+  "purpose": "validation_development",
+  "status": "completed",
+  "review_policy": "automated_development",
+  "human_reviewed_data": false,
+  "test_rows_read": false,
+  "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+  "questions": 120,
+  "oracle_questions": 48,
+  "model_artifacts": {
+    "scope": {
+      "manifest_sha256": "2374ff41593ff6fd7a9890ddfc05cef0845a667c5651bc38664ca968c1e6cd55",
+      "completed_steps": 360,
+      "selected_step": 360
+    },
+    "answer": {
+      "manifest_sha256": "bb34bd5c0e514d98bdb801cef8d6f08d953e70783eb698171d53b77c4e69a863",
+      "completed_steps": 240,
+      "selected_step": 240
+    }
+  },
+  "scope": {
+    "precision": {
+      "numerator": 48,
+      "denominator": 74,
+      "value": 0.6486486486486487
+    },
+    "recall": {
+      "numerator": 48,
+      "denominator": 48,
+      "value": 1.0
+    },
+    "false_positive_rate": {
+      "numerator": 26,
+      "denominator": 72,
+      "value": 0.3611111111111111
+    },
+    "brier": {
+      "numerator": 17.627175557413832,
+      "denominator": 120,
+      "value": 0.14689312964511528
+    },
+    "ece": {
+      "numerator": 12.402629910100355,
+      "denominator": 120,
+      "value": 0.10335524925083629
+    }
+  },
+  "configurations": [
+    {
+      "configuration": "unchanged_base",
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 120,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "p50_ms": 158.238,
+      "p95_ms": 329.44814999999994,
+      "pending_review": 120,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "updated_rag",
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 120,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "p50_ms": 139.745,
+      "p95_ms": 283.99334999999996,
+      "pending_review": 120,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "prompt_only",
+      "accuracy": {
+        "numerator": 0,
+        "denominator": 120,
+        "value": 0.0
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": null,
+        "reason": "This configuration has no explicit editor routing decision; correction influence in generated prose is not measured by selected_edit_id."
+      },
+      "p50_ms": 145.224,
+      "p95_ms": 296.21389999999997,
+      "pending_review": 120,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "similarity_editor",
+      "accuracy": {
+        "numerator": 31,
+        "denominator": 120,
+        "value": 0.25833333333333336
+      },
+      "coverage": {
+        "numerator": 120,
+        "denominator": 120,
+        "value": 1.0
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "p50_ms": 201.85500000000002,
+      "p95_ms": 894.4941499999999,
+      "pending_review": 77,
+      "errors": 0,
+      "unavailable": 0
+    },
+    {
+      "configuration": "trained_scope_editor",
+      "accuracy": {
+        "numerator": 30,
+        "denominator": 120,
+        "value": 0.25
+      },
+      "coverage": {
+        "numerator": 115,
+        "denominator": 120,
+        "value": 0.9583333333333334
+      },
+      "out_of_scope_accuracy": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "baseline_correct_retention": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      },
+      "p50_ms": 193.925,
+      "p95_ms": 945.83655,
+      "pending_review": 78,
+      "errors": 0,
+      "unavailable": 0
+    }
+  ],
+  "oracle": {
+    "accuracy": {
+      "numerator": 31,
+      "denominator": 48,
+      "value": 0.6458333333333334
+    },
+    "coverage": {
+      "numerator": 48,
+      "denominator": 48,
+      "value": 1.0
+    },
+    "direct_accuracy": {
+      "numerator": 12,
+      "denominator": 12,
+      "value": 1.0
+    },
+    "paraphrase_accuracy": {
+      "numerator": 7,
+      "denominator": 12,
+      "value": 0.5833333333333334
+    },
+    "comparison_accuracy": {
+      "numerator": 12,
+      "denominator": 24,
+      "value": 0.5
+    }
+  },
+  "provenance": {
+    "config_sha256": "410a7c658fc0ecb96d729f0bbddb05eeb3cd0fcf06034294f056c46eaa7b2a33",
+    "scorer_version": "editguard-short-facts-v2",
+    "raw_manifest_path": "reports/pilot-v3-validation-current/manifest.json",
+    "raw_manifest_sha256": "c2e56a194443f4fa9ff1081d2c165cb66ee8b2bf97153ee52ac5f536b85eca04",
+    "predictions_sha256": "076c6e8246a7832e91d326e519f205184d6cd81cb3bdb6725efcc0c450d51bbb",
+    "metrics_sha256": "ebc735ebdfe6631d83d8ddd111b568a20ce619becede71f8073dd8f00bc1c24b",
+    "base_weights_unchanged": true
+  },
+  "limitations": [
+    "Development validation on two entity families and shared question forms; no final-test claim.",
+    "Labels have automated development review, not independent human approval.",
+    "Strict scores require complete scoped fact endorsements. Pending fragments remain uncredited; zero credited is not zero factual correctness.",
+    "Short-answer QA is a separate post-hoc diagnostic and cannot replace these primary scores.",
+    "Scope temperature/threshold were selected on the same validation population; estimates are optimistic for generalization. Raw threshold cards omit the uncertainty band and deterministic guards; the separate policy panel includes them.",
+    "CLI latency excludes model loading, scoring, extra scope diagnostics and HTTP. Fixed order/shared caches prevent a controlled independent latency comparison.",
+    "Baseline-correct retention is undefined when no baseline complete assertions are automatically credited.",
+    "Oracle diagnostic: 31/48 credited complete assertions; 5 outputs pending review and 0 abstentions remain in the denominator."
+  ],
+  "scope_policy": {
+    "temperature": 0.5,
+    "threshold": 0.47,
+    "ambiguity_margin": 0.025,
+    "routing_policy": "approved_compatible_then_scope_uncertainty_v1",
+    "population": "single_focal_question_correction_pairs",
+    "raw_pair_metrics": {
+      "threshold": 0.47,
+      "ambiguity_margin": 0.025,
+      "counts": {
+        "total": 120,
+        "positive": 48,
+        "negative": 72,
+        "true_application": 46,
+        "false_application": 21,
+        "true_rejection": 45,
+        "missed_positive": 0,
+        "clarification_positive": 2,
+        "clarification_negative": 6
+      },
+      "total_cost": 86.0,
+      "mean_cost": {
+        "numerator": 86.0,
+        "denominator": 120,
+        "value": 0.7166666666666667
+      },
+      "coverage": {
+        "numerator": 112,
+        "denominator": 120,
+        "value": 0.9333333333333333
+      },
+      "clarification_rate": {
+        "numerator": 8,
+        "denominator": 120,
+        "value": 0.06666666666666667
+      },
+      "accuracy_including_clarification_as_unsuccessful": {
+        "numerator": 91,
+        "denominator": 120,
+        "value": 0.7583333333333333
+      },
+      "selective_accuracy": {
+        "numerator": 91,
+        "denominator": 112,
+        "value": 0.8125
+      },
+      "precision": {
+        "numerator": 46,
+        "denominator": 67,
+        "value": 0.6865671641791045
+      },
+      "recall_including_clarification_as_missed": {
+        "numerator": 46,
+        "denominator": 48,
+        "value": 0.9583333333333334
+      },
+      "false_application_rate": {
+        "numerator": 21,
+        "denominator": 72,
+        "value": 0.2916666666666667
+      }
+    },
+    "compatibility_gated_metrics": {
+      "threshold": 0.47,
+      "ambiguity_margin": 0.025,
+      "counts": {
+        "total": 120,
+        "positive": 48,
+        "negative": 72,
+        "true_application": 46,
+        "false_application": 0,
+        "true_rejection": 69,
+        "missed_positive": 0,
+        "clarification_positive": 2,
+        "clarification_negative": 3
+      },
+      "eligible_pairs": 60,
+      "ineligible_pairs": 60,
+      "total_cost": 1.25,
+      "mean_cost": {
+        "numerator": 1.25,
+        "denominator": 120,
+        "value": 0.010416666666666666
+      },
+      "coverage": {
+        "numerator": 115,
+        "denominator": 120,
+        "value": 0.9583333333333334
+      },
+      "clarification_rate": {
+        "numerator": 5,
+        "denominator": 120,
+        "value": 0.041666666666666664
+      },
+      "accuracy_including_clarification_as_unsuccessful": {
+        "numerator": 115,
+        "denominator": 120,
+        "value": 0.9583333333333334
+      },
+      "selective_accuracy": {
+        "numerator": 115,
+        "denominator": 115,
+        "value": 1.0
+      },
+      "precision": {
+        "numerator": 46,
+        "denominator": 46,
+        "value": 1.0
+      },
+      "recall_including_clarification_as_missed": {
+        "numerator": 46,
+        "denominator": 48,
+        "value": 0.9583333333333334
+      },
+      "false_application_rate": {
+        "numerator": 0,
+        "denominator": 72,
+        "value": 0.0
+      }
+    },
+    "scope_manifest_sha256": "2374ff41593ff6fd7a9890ddfc05cef0845a667c5651bc38664ca968c1e6cd55",
+    "calibration_path": "reports/scope-pilot-v3-runtime-current/calibration.json",
+    "calibration_sha256": "40067a22a653590aca2b4b93cfe1c2fa0d80b515e11c610e9d81c1fd0810ab54"
+  }
+}

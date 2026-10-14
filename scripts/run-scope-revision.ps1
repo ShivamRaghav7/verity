@@ -21,6 +21,11 @@ if ($ResumeCheckpoint) {
         throw 'Resume requires the latest completed checkpoint from this revision output; no training started.'
     }
     $taskLatest = Get-Content -LiteralPath $taskLatestPointer -Raw | ConvertFrom-Json
+    $taskManifest = Join-Path $taskPlan.output_dir 'manifest.json'
+    if ((Test-Path -LiteralPath $taskManifest) -and (Get-Content -LiteralPath $taskManifest -Raw | ConvertFrom-Json).status -eq 'completed') {
+        throw 'This scope run is already completed. Preserve its export; no resume or training started.'
+    }
+    if ($taskLatest.global_step -ge $taskPlan.max_steps) { throw 'The latest checkpoint reached the fixed cap; no resume or training started.' }
     $taskRequested = (Resolve-Path -LiteralPath $ResumeCheckpoint).Path
     $taskLatestPath = (Resolve-Path -LiteralPath $taskLatest.path).Path
     if ($taskRequested -ne $taskLatestPath) {

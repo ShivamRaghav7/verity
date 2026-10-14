@@ -19,14 +19,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from editguard.formatting import INPUT_FORMAT_VERSION, conditional_input, correction_text
-from editguard.training import canonical_hash, file_hash, json_file_bytes, run_training
+from editguard.scope_inputs import SCOPE_INPUT_POLICIES, scope_policy_identity
+from editguard.training import LOSS_POLICIES, canonical_hash, file_hash, json_file_bytes, loss_objective, run_training
 from scripts.prepare_data import load_reviewed_rows
 from scripts.profile_models import hardware
 from scripts.review_dataset import checked_rows, read_json
 
 PROFILE_SOURCE_FILES = ("editguard/training.py", "scripts/train_auxiliary.py",
                         "scripts/preflight_training.py", "scripts/prepare_data.py",
-                        "editguard/formatting.py")
+                        "editguard/formatting.py", "editguard/scope_inputs.py")
 
 
 def current_source_hashes():
@@ -98,11 +99,17 @@ def main():
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cuda")
+    parser.add_argument("--loss-policy", choices=LOSS_POLICIES, default="uniform")
+    parser.add_argument("--scope-input-policy", choices=SCOPE_INPUT_POLICIES, default="raw_v1")
     args = parser.parse_args()
     try:
         output = args.output_dir.resolve()
         validate_output_paths(args.dataset, args.reviews, output, args.report)
         manifest, rows = reviewed_inputs(args.task, args.dataset, args.reviews, args.review_policy)
+        objective = loss_objective(args.task, args.loss_policy)
+        scope_identity = scope_policy_identity(args.scope_input_policy)
+        if args.task != "scope" and args.scope_input_policy != "raw_v1":
+            raise ValueError("A scope input adaptation cannot change answer inputs.")
         models = read_json(ROOT / "configs/models.json")
         revision = models["model_revisions"][args.task]
         if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
@@ -116,6 +123,10 @@ def main():
                 "target_length": 48 if args.task == "answer" else None, "precision": "float32", "scheduler": "linear",
                 "max_steps": 4, "checkpoint_every_steps": 2, "validation_every_steps": 2, "keep_last_checkpoints": 2,
                 "learning_rate": 2e-5, "weight_decay": .01, "max_grad_norm": 1.0, "cpu_threads": 2}
+        if args.loss_policy != "uniform":
+            card["loss_policy"] = args.loss_policy
+        if args.scope_input_policy != "raw_v1":
+            card.update(scope_identity)
         inputs = {"manifest": card["manifest_sha256"], "reviews": card["reviews_sha256"],
                   "train": file_hash(args.dataset / f"{args.task}_train.jsonl"),
                   "validation": file_hash(args.dataset / f"{args.task}_validation.jsonl")}
@@ -151,6 +162,12 @@ def main():
                    "peak_allocated_gpu_gib": max(row["peak_allocated_gpu_bytes"] or 0 for row in log) / 2**30 if args.device == "cuda" else None,
                    "peak_reserved_gpu_gib": max(row["peak_reserved_gpu_bytes"] or 0 for row in log) / 2**30 if args.device == "cuda" else None,
                    "limitations": "Four updates; three steady samples and two full validations/checkpoint writes. Extrapolation is uncertain; no generated-answer accuracy, final test or full-run measurement."}
+        if args.loss_policy != "uniform":
+            profile.update(loss_policy=args.loss_policy, loss_objective=objective,
+                tokenization=trained["tokenization"])
+        if args.scope_input_policy != "raw_v1":
+            profile.update(scope_identity)
+            profile["tokenization"] = trained["tokenization"]
         result = {"schema_version": 1, "purpose": "actual_trainer_development_profile", "status": "profile_complete",
                   "hardware": measurement, "profile": profile, "dataset_id": manifest["dataset_id"],
                   "manifest_sha256": inputs["manifest"], "reviews_sha256": inputs["reviews"],

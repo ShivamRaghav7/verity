@@ -1,0 +1,15 @@
+{
+  "artifact_type": "editguard_scope_diagnostic_figures",
+  "human_reviewed_data": false,
+  "inputs_sha256": {
+    "reports\\pilot-v3-scope-diagnosis\\probabilities.jsonl": "d9d4afddf12a9f5ee71f37872f0d92f55873479aefff16af57e3ab4b11ce3ceb",
+    "reports\\pilot-v3-scope-diagnosis\\summary.json": "5ed5c4fecd9070b0bbee114752f7d28cfa90a07fac67f564974118debeabfa58"
+  },
+  "outputs_sha256": {
+    "scope-diagnosis.png": "9dabae366e8090c6d1cbfe793c4f7820eef857f15236e9e3e7630c1f4a399db1",
+    "scope-diagnosis.svg": "f85baf9b7f017e05419d6d8a22c408fa6387d396abe2791b02c20165f5e6c46c"
+  },
+  "purpose": "validation_development_diagnostic",
+  "script_sha256": "32f862398c228e811af18440b70cf3af4f81b40e626f932fc92a77616d5dda5a",
+  "test_rows_read": false
+}

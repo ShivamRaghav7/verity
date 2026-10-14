@@ -5,5 +5,7 @@
 *.ps1 text eol=crlf
 # Evidence contains byte hashes; preserve the exact recorded files across hosts.
 reports/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+# Generated vector figures are byte-bound evidence, not hand-edited source diffs.
+reports/**/*.svg binary
 # The frozen pilot-v2 evaluation recorded this inference configuration byte hash.
 configs/inference-pilot-v2.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
