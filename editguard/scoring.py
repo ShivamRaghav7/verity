@@ -11,7 +11,7 @@ import unicodedata
 from decimal import Decimal, InvalidOperation
 from typing import Iterable
 
-SCORER_VERSION = "editguard-short-facts-v2"
+SCORER_VERSION = "editguard-short-facts-v3"
 
 _ONES = ("zero", "one", "two", "three", "four", "five", "six", "seven",
          "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
@@ -36,6 +36,9 @@ _GRAMMARS = (
     ("price_monthly", rf"{_SUBJECT}\s+(?:costs|is priced at|has a monthly price of)\s+{_NUMBER}\s+(?P<unit>(?:usd|eur|gbp|us dollars|dollars)\s*(?:/\s*month|per month|monthly))"),
     ("price_monthly", rf"{_SUBJECT}(?:'s)?\s+monthly price\s+(?:is|=)\s+{_NUMBER}\s+(?P<unit>(?:usd|eur|gbp|us dollars|dollars)\s*(?:/\s*month|per month|monthly))"),
     ("storage_gb", rf"{_SUBJECT}\s+(?:includes|provides|offers|has)\s+{_NUMBER}\s+(?P<unit>gb|gigabytes?|mb|megabytes?|tb|terabytes?)\s+(?:of\s+)?storage"),
+    # Controlled plan storage capacity: require the entire 'of storage' phrase.
+    # This does not match device limits, RAM, bare GB mentions or hedged capacity.
+    ("storage_gb", rf"{_SUBJECT}\s+supports\s+{_NUMBER}\s+(?P<unit>gb|gigabytes?|mb|megabytes?|tb|terabytes?)\s+of\s+storage"),
     ("storage_gb", rf"{_SUBJECT}(?:'s)?\s+(?:storage allowance|storage quota)\s+(?:is|=)\s+{_NUMBER}\s+(?P<unit>gb|gigabytes?|mb|megabytes?|tb|terabytes?)"),
     ("support_hours", rf"{_SUBJECT}\s+(?:includes|provides|offers|has)\s+{_NUMBER}\s+(?P<unit>support hours?\s+(?:per|each)\s+(?:day|week)|hours?\s*/\s*(?:day|week)\s+(?:of\s+)?support|hours?\s+of\s+support\s+(?:per|each)\s+(?:day|week))"),
 )

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "purpose": "exploratory_validation_short_qa",
+  "generated_at": "2026-10-14T10:42:52.435816+00:00",
+  "diagnostic_version": "editguard-request-bound-short-qa-v1",
+  "diagnostic_source_sha256": "1dc85463c29cff1c44169f22cd93ffca97787e67441fb01f71a9777de6edfd8f",
+  "analysis_source_sha256": "e1796c53e4c6bc320cc299c6d30e132c92642016bc9828667797dc66c7e976b5",
+  "primary_scorer_version": "editguard-short-facts-v3",
+  "primary_scorer_sha256": "7b4de8fa2fd7065eeaabe488e96253da24fc63272c86ad409f83bdde41e6218a",
+  "input_directory": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\scope2-original-answer-v3-scored",
+  "source_sha256": {
+    "manifest.json": "64fc81cfaeb558c292edfc485c4449136cba4f6a41e88a9c68c80d94908e73d9",
+    "metrics.json": "21c035727e9df51f5c5452b2a97c796899c5e3f72c01d168d6d2488173f18ad1",
+    "predictions.jsonl": "d8d4fd02cece222c2a104397a3de5a7626aa262bf1608d27d4dd9d6bad8abf6c",
+    "oracle_predictions.jsonl": "c4f08b649373c8f79450efe08806acfb3a591837d97bef803922b67772c3093f"
+  },
+  "output_sha256": {
+    "predictions.jsonl": "f6ee555186ce92eb94b590937bc04bfd3403fbd4d89003cb7d2d539ea8636342",
+    "oracle_predictions.jsonl": "d1fac1171da4bd398c4dad9d9626426e14a8fb58fa26a63e59e80be895ee4f3a",
+    "summary.json": "3608a7ddac2b07d7fbc5f7e9df421369b80bfc619810ad56db2f76383f0c4f08",
+    "summary.csv": "88872d6b39e4cd058b79fd68388a843bf74feec1832063063eac2ab1455e3356"
+  },
+  "source_files_unchanged": true,
+  "training_or_inference_executed": false,
+  "human_semantic_review": false,
+  "test_rows_read": false,
+  "post_hoc_policy": true,
+  "prediction_records": 600,
+  "oracle_records": 48
+}

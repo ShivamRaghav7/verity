@@ -1,0 +1,12 @@
+{
+  "artifact_type": "editguard_scorer_source_archive",
+  "created_at": "2026-10-14T10:39:58.040974+00:00",
+  "files_sha256": {
+    "scoring.py": "b2c595a7d5ae9efc463a86c4ad6498553a7efa536a48152cef2afd2ac31b0ab1"
+  },
+  "historical_reports_unchanged": true,
+  "purpose": "Preserve exact pre-storage-alias scorer bytes for historical evaluation reproduction; source frozen before v3 scoring change",
+  "schema_version": 1,
+  "scorer_version": "editguard-short-facts-v2",
+  "source_path": "editguard/scoring.py"
+}

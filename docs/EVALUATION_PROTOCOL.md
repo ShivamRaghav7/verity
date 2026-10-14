@@ -1,8 +1,18 @@
 # Evaluation protocol
 
-**Status:** Development specification. Final configuration, trained checkpoint
-identities, scorer version and test lock are unset. The first structured workflow
-is a regression demonstration; it is not an ML benchmark result.
+**Status (14 October 2026):** Development selection is complete. The selected
+configuration is `configs/inference-final.json`: scope `pilot-v3-neutral2`, answer
+`pilot-v2-polarity1`, fixed existing calibrated routing and 48 output tokens.
+Primary scoring is `editguard-short-facts-v3`; secondary request-bound scoring is
+`editguard-request-bound-short-qa-v1`. Stage G binds exact hashes before reading
+the held-out question files and freezes the audited packet before inference.
+No final result exists yet. The structured workflow is an engineering regression
+demonstration, separate from measured model generation.
+
+The user explicitly authorized an automated final audit. All final labels and
+challenge questions therefore disclose `human_reviewed_data=false`. Independent
+machine checks can detect inconsistencies; they do not establish human review,
+natural language diversity or external validity.
 
 ## Truth and matched comparison
 
@@ -94,12 +104,23 @@ unit and expected yes/no polarity. Retrieve-and-template answers are classified
 `deterministic_structured`; their correctness never counts as trained answer-model
 generation accuracy, even when displayed beside a learned route.
 
-Start with exact normalized short-answer forms and reviewed aliases. Apply numeric
+Start with exact normalized short-answer forms and audited aliases. Apply numeric
 normalization only with correct units; subject aliases are tied to canonical entity
-IDs. Contradictory, ambiguous or unmatched prose goes to blinded human semantic
-review with two reviewers and recorded adjudication. Report the automatic/manual
-counts and disagreement. An LLM judge can propose review candidates but is not the
-sole truth source. Lock accepted forms and adjudication rules before test evaluation.
+IDs. For this release, unmatched prose remains pending and uncredited in the fixed
+denominator; no human adjudication is claimed. The primary whole-assertion grammar
+checks entity, plan, version, relation, unit, value and comparison polarity.
+The narrow storage wording addition was resolved on development outputs and applied
+equally to all configurations; historical v2 scores remain archived.
+See [the alias rationale](SCORER_STORAGE_ALIAS.md).
+
+The separately reported secondary request-bound score accepts whole quantities or
+whole Yes/No outputs only for the existing twelve explicit controlled question
+forms, after checking the question's subject, plan, version, relation and predicate
+against structured truth. It never overrides a primary incorrect verdict and
+does not prove a complete scoped fact from a fragment. Unsupported challenge
+wording remains pending and uncredited. This rule is frozen before final inference,
+even though it originated as a post-hoc development diagnostic. No LLM judge is
+used as the sole truth source, and no automated prose review inflates accuracy.
 
 For oracle-answer evaluation, score the original generated text without rewriting
 it from the database. Structured fallback or verifier rejection is a separately
@@ -122,13 +143,28 @@ must be named; one seed is disclosed as one seed rather than represented as robu
 
 ## Final freeze and reporting
 
-Before final evaluation, finalize review decisions, model checkpoint/config hashes,
-memory snapshot, tokenizer versions, threshold/calibration artifacts, accepted answer
-forms, scorer code hash, generation budgets and question set hashes. Set the final
-evaluation configuration `status=frozen` and create `test_lock.json` through the
-data preparation tool. The evaluation harness must verify these hashes at startup.
+Before reading held-out questions, create an immutable final protocol binding the
+original source-file hashes, deterministic packet transformation, selected model
+checkpoint/config hashes, tokenizer versions, threshold/calibration artifacts,
+scorer/source hashes, generation budgets and the final runner. Then derive and
+audit a separate packet without modifying the original draft data, and freeze its
+hashes and machine review registry before inference. The dedicated final harness
+verifies protocol, packet, review, source and artifact hashes at startup.
 
-Run the final test once after freezing. Preserve per-question outputs before
+The five matched configurations use all 720 scope test questions plus 96 challenge
+questions, with separate cohort reports and a disclosed combined denominator of
+816. Oracle generation uses the separate 288 answer examples plus 96 challenges,
+reported by cohort and combined as 384; these partly overlapping answer examples
+are not added to the matched headline population. All twelve test families remain
+disjoint from training and development families. Challenge wording was agent
+authored and has an independent automated audit, with no manual-authorship or
+human-review claim. Mutually exclusive correction scenarios run separately using
+one focal edit and at most eight foreign-product distractors, as in development;
+this is not a dense same-product edit-memory stress test.
+
+Run the final test once after freezing. Exact-bound recovery can continue an
+interrupted run from its durable observation log without redoing completed tasks;
+it cannot change the locked configuration or scoring rules. Preserve per-question outputs before
 aggregating and export JSON/CSV, plots and the complete configuration. A reporting
 bug may be corrected transparently from existing outputs with a new scorer version
 and explanation; it cannot quietly tune model behavior using test observations.

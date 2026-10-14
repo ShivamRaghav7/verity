@@ -1,0 +1,51 @@
+{
+  "answer_polarity_class_rows": {
+    "no": 12,
+    "yes": 12
+  },
+  "answer_teacher_forced_validation_targets": 48,
+  "human_reviewed_data": false,
+  "limitations": [
+    "Development selection evidence; frozen final evaluation pending.",
+    "Raw scope diagnostics include no metadata gates or calibrated uncertainty policy.",
+    "Entity-neutral normalization is a deterministic architectural adaptation, not learned identity verification.",
+    "Teacher-forced decisions and loss do not measure free-running complete-answer accuracy.",
+    "Training timing covers the loop only; startup/export and full command wall time are unavailable."
+  ],
+  "matplotlib_version": "3.10.7",
+  "outputs_sha256": {
+    "answer-polarity-diagnosis.png": "6e58aa6bfe695253f60aaab0c52d2304f6b04eb9d1bf8d011177f6e25d046282",
+    "answer-polarity-diagnosis.svg": "1ad49e8af93a1b113c2eb367248a8629dfe36200fc53c3fe5975c5d43be1b4ff",
+    "scope-neutral-diagnosis.png": "43cd8e9aa32fd1aa08c7c2c21d6f471704fb7319a1355bf2f51de0bd9c872cb3",
+    "scope-neutral-diagnosis.svg": "ccc2fbbe6ac0e1b183ffa93f2d8d3e6daeff1fbd4f5516bb1a224c14f738789e",
+    "targeted-training-resources.png": "c4a6cfc4643eec65472682c8f75e82858626e655c7f96481c3323c86e6a56bc4",
+    "targeted-training-resources.svg": "4f3615bd48a1ae815e9754e65d3b167d17a1fd98a7d900600600c6a1ba403b10"
+  },
+  "purpose": "validation_development_figures",
+  "review_policy": "automated_development",
+  "schema_version": 1,
+  "scope_neutral_shared_inputs": 8,
+  "scope_neutral_unshared_inputs": 112,
+  "scope_validation_pairs": 120,
+  "script_sha256": "9b98046bafe7ce28f4aae15a77b7cd460e7c448b0d49a48ceb749e3581ee53bc",
+  "source_files_sha256": {
+    "answer_metrics_source": "dbcb10aa3d4311491acf4462bdb620854a47d56db7244eb5e36a1769d175724e",
+    "answer_records": "0ba7126f1ed699fca5d0a9d0f8b377d05df4775672d4ee6fdfc6ac5c3fcbf103",
+    "answer_summary": "12c1d99ae19e6e6661aa227562f73aa31342ad0bb7126f4c4a5fc548c6049113",
+    "reports/targeted-training/answer/latest_checkpoint.json": "3fcd16e025675ce15c097a66cf1aa3ad64923830327d6153fdace0542af34a3e",
+    "reports/targeted-training/answer/manifest.json": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+    "reports/targeted-training/answer/run_card.json": "facb95bbdb26e660f1955af2231d2853fd1967a4e3d266262c6408396092731f",
+    "reports/targeted-training/answer/training_log.jsonl": "e2105d2820cff70716c16dca1772c2127fe1e172c78227005e7b8d4f7e436338",
+    "reports/targeted-training/scope/latest_checkpoint.json": "0f78fba43faa1b3808f66f7ebeaf221dba27c13461e827e82388493a923d61d9",
+    "reports/targeted-training/scope/manifest.json": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459",
+    "reports/targeted-training/scope/run_card.json": "3c4787060ea4ff3d9eb226759eed277e8bbda76878e3ee3adb96ce4884298c61",
+    "reports/targeted-training/scope/training_log.jsonl": "0147719b285d99d026045bc59ef5aa484ba03a709eb3ff85db121a60f4a70089",
+    "scope_metrics_source": "bf6c96f23656ab906aac6b1e375faa356d04c829dc276882a2b542dd5aa6f0e8",
+    "scope_predictions": "ddeb0d8cba36cd2cc80381af7ac0ce477456d9c57ff79e285d1491f8703f7966",
+    "scope_summary": "8307505619ea332282520eba4c4acb93ec1711855b5755bf6c6c7628bd276fe4",
+    "scope_summary_source": "0ff308098176d7eccb5dba3f9e5aa6c531b786273cc0cebc9ba7f9c31134e95a",
+    "training_audit": "9c286b67e1415ac2fc02f9564e5454bc3ff5174b998c864e320b788f39303e20"
+  },
+  "source_unchanged": true,
+  "test_or_challenge_rows_read": false
+}

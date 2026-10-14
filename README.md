@@ -16,10 +16,10 @@ resolution, history, conflict resolution, rollback and JSON export. The applicat
 uses a curated fictional Nimbus handbook. The dataset and products are controlled
 demonstrations, not claims about real companies.
 
-**Both auxiliary models are trained and integrated; the user also completed the
-bounded pilot-v3 scope revision.** The current learned configuration uses that
-revised classifier with the original correction-conditioned answer model.
-Both have validation-selected local exports and recorded artifact identities.
+**Both selected auxiliary revisions are trained, audited and evaluated.** The
+learned configuration uses the final entity-neutral scope classifier and the
+first answer-polarity revision. Both have validation-selected local exports and
+recorded artifact identities; the independent artifact audit passes 986 checks.
 Structured answers remain the default. Optional neural modes implement the
 unchanged base, properly updated RAG, prompt-only correction, similarity editor
 and trained scope editor. Missing or invalid required artifacts return HTTP 503.
@@ -27,22 +27,25 @@ Model binaries are local ignored artifacts; Git contains their configuration,
 recorded identities and reproduction tooling. A clean checkout needs verified
 exports or reproduced training to enable learned inference.
 
-The latest validation uses two held-out entity families and shared question
-forms. On the exact same balanced pilot-v3 pairs, raw scope accuracy at 0.5
-improves from 56/120 for the original model to 98/120 for the revision. Its
-validation loss of 0.486 is negative log-likelihood, not a 48.6% error rate.
-Raw entity/version matching remains weak. Deterministic compatibility guards and
-the validation-selected policy route 46/48 applicable corrections, falsely apply
-0/72 negatives and clarify 5/120 questions; answer coverage is 115/120. These are
-routing results selected on validation data, not generated-answer accuracy.
+On the same 120 pilot-v3 validation pairs, raw scope accuracy at 0.5 improves
+from 98/120 for revision 1 to 119/120 for the selected revision, with reproduced
+classification NLL 0.04326. Deterministic compatibility guards and the selected
+policy apply 48/48 appropriate corrections, falsely apply 0/72 negatives and
+clarify one question. These are selection-data routing metrics, separate from
+generated-answer accuracy. Validation contains only two held-out entity families
+with shared wording templates; abstraction produces eight identical same-label
+inputs across training and validation. No unseen-wording guarantee follows.
 
-The unchanged answer model receives strict oracle credit on 31/48 answers and
-still produces `Yes` for all 12 comparisons requiring `No`. End-to-end strict
-credit is 30/120 for the learned editor; short baseline fragments remain pending,
-so zero credited baseline assertions does not mean zero factual correctness.
-The separate exploratory short-QA analysis credits updated RAG on 91/120
-questions and the trained editor on 80/120. No superiority is claimed. All results
-use automated development review, not final-test or arbitrary-question guarantees.
+With the selected scope held fixed, the answer revision improves full-fact
+oracle credit from 31/48 to 34/48, but still fails seven of twelve negative
+comparisons. Its comparable token losses became worse. End-to-end full-fact
+credit is 34/120; short baseline fragments remain pending, so zero baseline
+primary credit does not mean zero factual correctness. The separate exploratory
+short-QA diagnostic credits updated RAG on 91/120 and the trained editor on
+86/120. RAG remains strongest on that diagnostic; no superiority is claimed.
+All these results use automated development review and the same versioned
+scorer. [Selected revision evidence and limitations](docs/TARGETED_REVISION_RESULTS.md)
+disclose matched controls, scoring changes, denominators and residual failures.
 
 The editor wraps a frozen retrieval-based assistant with approved memory,
 a trained pair scope classifier and a trained edit-conditioned seq2seq generator.
@@ -70,8 +73,8 @@ record completed scope training, the shared-input comparison, the correction to
 calibration selection, all five end-to-end configurations and remaining failures.
 The scope revision preserves facts, splits and all 504 rows. Its
 [completed training guide](docs/SCOPE_REVISION_TRAINING.md) remains a historical
-run record. One bounded answer-polarity
-experiment is being prepared using the [documented objective](docs/ANSWER_OBJECTIVE.md).
+run record. The completed answer-polarity experiment uses the
+[documented objective](docs/ANSWER_OBJECTIVE.md).
 Neither a low loss nor passing workflow tests establishes reliable new-entity
 routing: a subsequent isolated Nimbus workflow returned stale `5` after an
 approved device-limit correction to `3`; a device paraphrase returned its price
@@ -80,23 +83,23 @@ passed, but those handpicked cases are not a representative accuracy estimate.
 [The complete recorded workflow](reports/pilot-v3-learned-workflow.json) preserves
 the actual model outputs and separate oracle probes.
 
-This finding motivates the **second and final scope revision**, not a larger
-dataset or another backbone. Its `entity_neutral_v1` preprocessing replaces
+This finding motivated the **completed second and final scope revision**.
+Its `entity_neutral_v1` preprocessing replaces
 correction-referenced product/alias, plan and version selectors with consistent
 phrases while retaining relation, values and units. Original metadata continues
 to govern approval, compatibility, dates and provenance. It keeps the same
 pilot-v3 rows and reviews, 360-step cap, backbone, seed and learning rate. The
-separate answer revision keeps the same v2 inputs and 240-step cap. **Both are
-prepared, not trained, and have no measured improvement.** Their
+separate answer revision keeps the same v2 inputs and 240-step cap. **Both user
+runs completed and their selected exports passed independent integrity checks.** Their
 [released run guide](docs/ANSWER_REVISION_TRAINING.md) provides the concrete
 questions, hash-bound inputs, measured resource estimates, expected artifacts,
-finite caps and exact-state recovery. The user executes these substantial runs.
+finite caps and exact-state recovery. No further training is planned for this release.
 An archived [initial learned-workflow check](docs/LEARNED_WORKFLOW.md) also exposed a
 same-product/different-property false application: a device correction was used
 for Nimbus's price. That record uses the initial scope artifact and is not a new
 v3 regression result. Workflow consistency checks do not imply answer correctness.
 
-![Scope models evaluated on the same balanced pilot-v3 pairs](reports/pilot-v3-figures/scope-diagnosis.png)
+![Scope models evaluated on the same balanced pilot-v3 pairs](reports/targeted-figures/scope-neutral-diagnosis.png)
 
 ## Run locally
 
@@ -134,11 +137,11 @@ revision-consistent snapshots keep responses and exports coherent with history.
 Server binds to localhost; public deployment requires proper authentication.
 
 With the isolated [ML environment](docs/ML_SETUP.md), cached pinned backbones and
-verified local scope-v3 and answer-v2 exports present, start the optional learned application:
+verified selected local scope and answer exports present, start the optional learned application:
 
 ```powershell
-$env:EDITGUARD_INFERENCE_CONFIG = 'configs/inference-pilot-v3-current.json'
-$env:EDITGUARD_EVALUATION_REPORT = 'reports/pilot-v3-evaluation-current.json'
+$env:EDITGUARD_INFERENCE_CONFIG = 'configs/inference-final.json'
+$env:EDITGUARD_EVALUATION_REPORT = 'reports/targeted-selected-development-evaluation.json'
 .\.venv-ml\Scripts\python.exe -m editguard
 ```
 
@@ -196,8 +199,10 @@ pairs and 1,920 short answer examples. It splits
 families before augmentation, keeps all variants together, and generates a human
 review queue. Training rejects unresolved or stale review records and defaults to
 human review. The explicitly selected `automated_development` policy preserves
-machine-review provenance in development runs; final-test locking still requires
-human review. Generated labels are not automatically accepted as truth.
+machine-review provenance in development runs. The user has now authorized a
+separate independent automated final audit, which will be disclosed as machine
+review, followed by a hash freeze before final inference. No human approval is
+claimed. Generated labels are not automatically accepted as truth.
 [Dataset card](docs/DATASET_CARD.md) describes counts, provenance and limitations.
 
 ## Training and evaluation stages
@@ -231,16 +236,15 @@ reproduced from the exported model. Four-step profiles remain ineligible as
 trained deployment artifacts. Exact original trainer sources are preserved from
 Git commit `350db38` in [the source archive](reports/training-source-v1/manifest.json).
 
-Two finite runs remain: the last scope revision tests whether explicitly
-normalized input transfers correction applicability to unfamiliar product names;
-the first answer revision tests whether equal emphasis on the first `Yes`/`No`
-token improves comparison polarity while preserving factual answers. It keeps
-the same facts and partitions and stops at 240 updates, or five passes through
-the 96-row training partition. It is prepared as one bounded experiment; no
-accuracy gain is promised. See [its objective](docs/ANSWER_OBJECTIVE.md).
-The [answer run guide](docs/ANSWER_REVISION_TRAINING.md) is in preparation.
-Both commands require their own final measured profile and recovery evidence;
-earlier timings are not estimates for these changed training inputs/objectives.
+The released final scope revision completed 360 updates; the answer revision
+completed 240 updates. Their selected checkpoints are at those final steps.
+Actual training-loop times were 112.55 and 264.54 seconds respectively; full
+command startup/export time was not measured. The
+[completed run guide](docs/ANSWER_REVISION_TRAINING.md) retains their original
+questions, source-bound profiles, finite stopping conditions and recovery rules.
+[Selected results](docs/TARGETED_REVISION_RESULTS.md) disclose answer loss
+regressions as well as routing and generated-answer improvements. No further
+training or model search is planned for this release.
 
 [Measured embedding-baseline curves](docs/SIMILARITY_RESULTS.md) show raw and
 compatibility-gated behavior on 120 development validation pairs, with explicit
@@ -282,17 +286,15 @@ distinguish this structured image from optional local neural inference.
 - [Failure analysis](docs/FAILURE_ANALYSIS.md) and [interim report](docs/REPORT.md)
 - [Measured profiling](docs/PROFILING.md) and [structured HTTP samples](reports/structured-http.json)
 
-Stages A/B and the baseline harness are implemented. D has a trained first scope
-revision and a final bounded input-normalization revision in preparation after
-the Nimbus workflow exposed failed transfer. E has a trained initial answer
-model and one bounded polarity revision in preparation. F integrates learned
-inference, recorded validation and distinct answer kinds. After the user runs
-the two verified experiments, evaluate both on development data and the same
-isolated workflow, retain or reject them from the recorded evidence, then finish
-G's fixed protocol,
-human-reviewed test/challenge freeze and single final five-way evaluation. H
+Stages A/B and the baseline harness are implemented. D/E have completed their
+selected scope and answer revisions and matched development controls. F
+integrates learned inference, recorded validation and distinct answer kinds.
+Stage G now fixes the selected configuration/scorer, completes the separately
+disclosed independent automated test/challenge audit and hash freeze, then runs
+one final five-way evaluation. H
 finishes the report, graphs, demonstration and clean-checkout deployment/CI
-verification. Scope revision 2 is the final scope experiment; no open-ended
-search, added catalogue scale or extra backbone is planned.
+verification. Scope revision 2 is the final scope experiment; the selected first
+answer revision closes training for this release. No open-ended search, added
+catalogue scale or extra backbone is planned.
 Resume claims can describe the models trained and five configurations evaluated;
 final-test or superiority claims require their corresponding frozen evidence.
