@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "frozen_final_io_recovery_declaration",
+  "reason": "Repeated Windows access-denied collisions on atomic progress replacement at committed prefixes 288 and 583. Lock owner not established.",
+  "protocol_path": "reports/final/protocol-v2.json",
+  "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+  "packet_path": "data/final/final-v2",
+  "wrapper_path": "scripts/resume_final_io.py",
+  "wrapper_sha256": "2754c2830ce5528d4f937c54a1b6267009e6c8618f1962b2fa4188f4f178a302",
+  "frozen_evaluator_sha256": "fa1b9560dd1341947c8a596c5bcf5ece5d6c56fce146fb3832493b5d9fe64c4e",
+  "mutable_write_targets": [
+    "reports/final/evaluation/progress.json",
+    "runtime/final-evaluation-ledger.json"
+  ],
+  "max_write_attempts": 8,
+  "retry_delays_seconds": [
+    0.05,
+    0.1,
+    0.2,
+    0.4,
+    0.4,
+    0.4,
+    0.4
+  ],
+  "maximum_retry_delay_seconds": 1.95,
+  "fresh_run_allowed": false,
+  "inference_scoring_or_data_changes": false,
+  "observations_rewritten": false,
+  "performance_scope": "IO retries occur outside model-route latency; interrupted sessions and total elapsed command time are disclosed separately."
+}
