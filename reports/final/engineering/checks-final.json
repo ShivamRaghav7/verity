@@ -1,0 +1,253 @@
+{
+  "completed_at": "2026-10-15T05:01:06.673514+00:00",
+  "interpreter": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv\\Scripts\\python.exe",
+  "limitations": [
+    "Standard-library application and synthetic regression suite. Optional numeric ML and plotting checks may be skipped when dependencies/opt-in are unavailable.",
+    "This engineering report is not a final ML accuracy measurement or a successful CUDA inference claim."
+  ],
+  "ml_optional_tests_enabled": false,
+  "node_syntax": {
+    "command": [
+      "C:\\Users\\shiva\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "--check",
+      "editguard/static/app.js"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "prior_failed_run": {
+    "path": "reports/final/engineering/checks.json",
+    "resolution": "Synthetic model-status apps now explicitly isolate pending final report fixtures; stale pre-final UI assertion updated. The original failed run remains intact.",
+    "sha256": "938fb546a44d867266db0afc50164331d25a4ebe493b0cba29b335f413a20c9b"
+  },
+  "purpose": "final_engineering_regression_checks",
+  "python_version": "3.14.3",
+  "schema_version": 1,
+  "source_files_sha256": {
+    "editguard/__init__.py": "4f3c0ed5a4d96704e09d49570a16cbc1438e9b5990e53e91a23b93fba98035c5",
+    "editguard/__main__.py": "26d76d79cd48aff9b14a7a55b7f9ef4e267c037153d66f070804a61753efec1e",
+    "editguard/api.py": "c04ff31fe5b8c98c8f57cf0e4953ffbfa81fcd16bd47b1b9d816d1437386150f",
+    "editguard/comparison.py": "23000aaf5d590f8cc246bf0b609f3f709700f14e1566b45869ce80035b6c5f99",
+    "editguard/evaluation.py": "1fc904aaca3686df0823dd8b7620be2711647b177ce8221f7b4a82fdada630f5",
+    "editguard/formatting.py": "d5fc6f268509d44fab951d8c5c9c3e71a4202421438e8a8346a9e896550f7d6b",
+    "editguard/metrics.py": "7f7eb8fba72f920845cdcc2d326c83dd4312eec005ce16597d910e5dff1e334c",
+    "editguard/models.py": "ad9354fb85cc9d1fd767ff37e91fc6ae270d4bbcacf5c0afb1eae3a41bc14bd1",
+    "editguard/neural.py": "4d4ea6af3bdc33b31b72c86643ce472758bbc093751137662efffa5ddd326fa7",
+    "editguard/scope_inputs.py": "9bec51d41496172b62480b99c90f51670354e45247e4b524a540b8e3a3036eb3",
+    "editguard/scoring.py": "7b4de8fa2fd7065eeaabe488e96253da24fc63272c86ad409f83bdde41e6218a",
+    "editguard/service.py": "0ee3c607fae2d68c82e98ba412234d444463c87c5e6f3149c16bd410c3c8ab08",
+    "editguard/short_qa.py": "1dc85463c29cff1c44169f22cd93ffca97787e67441fb01f71a9777de6edfd8f",
+    "editguard/static/app.js": "30eb1f6775d7d70400bf617050b897697cc4a05ec98985a6b07a7c3c69151343",
+    "editguard/static/index.html": "8f890d4b9cf0021e6827284740dc6b0c4ad8cea268e8fa2ed2fdc14121f4c954",
+    "editguard/static/style.css": "eb90a17c41b586a69e6a15b792dd76e15d9f2bb08accfac73530c847f6396b4c",
+    "editguard/store.py": "3d9e1358798628abf22eb2c423f6d82824bac97125c8666791be56b2bbdd3899",
+    "editguard/training.py": "d899f4e348dffed7b6811bf6eeaaca33f24ec6a4d77e312f6c45e618026c414b",
+    "scripts/aggregate_evaluation.py": "5c7928845705ad7e4a141b57547bae25ec7e56e71a3f295e64863a9b7fdb400e",
+    "scripts/analyze_short_qa.py": "e1796c53e4c6bc320cc299c6d30e132c92642016bc9828667797dc66c7e976b5",
+    "scripts/audit_pilot_v3.py": "9bafc7c3e621d59684aea64c7af1fa24b45231d3a7d5b69ef17df9975cf2e725",
+    "scripts/audit_scope_revision.py": "1b8f42e75b86b4d323a73dc026d7091b847385fd38c17be6dbb76568308ed2c1",
+    "scripts/audit_targeted_runs.py": "dde6cc66f44bf5bcf5e8015cf51b1015e7e65af818b0e0db25974f990d21b366",
+    "scripts/audit_tokenization.py": "f60d71846b9389f60b8560f9ae3b6595b6b3edee62b4fa2b64e6c268b91027a0",
+    "scripts/balance_scope_questions.py": "ed45475bed4083cd6e5ee47258ae90091c4c22d4a61ad10b985ebd8950b1b276",
+    "scripts/benchmark_http.py": "196016d096a7378e12e545e3bec57d412d9263a1be339bfe503592ffbdb27e39",
+    "scripts/benchmark_neural_http.py": "1b4fda9518125fee6b220cde8dbc4a2a79ed9a1804c5aa5d432aef6292ca2504",
+    "scripts/build_final_summary.py": "e36f96cb85cbf23f047f1d5de6307ee65b95fead5773810f64f6dd1fe5d17247",
+    "scripts/build_pilot_summary.py": "72f6c82c95cc9f556cb2103a68ecc065af67bd65760873acfe2817746af9e7c7",
+    "scripts/build_project_report.py": "ff71bbc3f44a44b648e10e498bd062be5b8359b150773bba0ae84d7ca1180890",
+    "scripts/cache_models.py": "497287ec2167b348b081ec8120fac855c772d9222ff9aa2702fb7d19d603ec6c",
+    "scripts/calibrate_scope.py": "58e098c1e56ef1cd37f7ecb1e87d141ceace3e464cafcff3b163884552b207c3",
+    "scripts/calibrate_scope_runtime.py": "85b8bc96fe4f179f35b6a9bfb579a77247b045b54c7f031c50135ef97dde87ad",
+    "scripts/calibrate_similarity.py": "e34c36eaa8c267c17a2701a5631bf40e9a2e025a851fdc953a4accc02fd87910",
+    "scripts/diagnose_answer_polarity.py": "7dfb32eb509784c834367c61c36badace24221a9e90d2c9bef0aaed76ef9cbdc",
+    "scripts/diagnose_answer_revision.py": "dbcb10aa3d4311491acf4462bdb620854a47d56db7244eb5e36a1769d175724e",
+    "scripts/diagnose_scope_neutral.py": "0ff308098176d7eccb5dba3f9e5aa6c531b786273cc0cebc9ba7f9c31134e95a",
+    "scripts/diagnose_scope_revision.py": "bf6c96f23656ab906aac6b1e375faa356d04c829dc276882a2b542dd5aa6f0e8",
+    "scripts/final_data_bundle.py": "415574193f3601b6bec1f8dde5fc870e6a527defee64512afc1de9ce8ecc85b4",
+    "scripts/final_label_audit.py": "ebf633664eb84d44c87fbd07e0970e8c7c4ab5fb155469c2a51d39adcc27bff0",
+    "scripts/final_protocol.py": "f85a74de59c137c7e3c96f6d3ca80ae7bbe6d9bb0965aa4050991b64ec47bde3",
+    "scripts/paired_final_short_qa.py": "65f5b40ad2c1c02d48d65ad94bc3278c5702d8cc60c81f081426f35b955a5b82",
+    "scripts/pilot_bundle.py": "11f0fe0effe87cb921b1b18db73fd0a34530a889bfd8764af3b7819d2e198047",
+    "scripts/plot_final_results.py": "3ef920e96437f283940fde1eb4ceca8fbce7760f8a16eb8b24b867df05a4f9b1",
+    "scripts/plot_measurements.py": "9cafe5c0bab736a0d025524ee19c5f760443c09d60ab283c1683e41a2828cf79",
+    "scripts/plot_pilot_evaluation.py": "eb1d53050976da6bc2aa80a62f09081b82d8c84f1872382fd7b095aa95f472d6",
+    "scripts/plot_scope_diagnosis.py": "32f862398c228e811af18440b70cf3af4f81b40e626f932fc92a77616d5dda5a",
+    "scripts/plot_similarity.py": "a4a475d67b3337bf412a8e87b466b5cd8b8872d6647b747cffd48cd5879f64bb",
+    "scripts/plot_targeted_results.py": "9b98046bafe7ce28f4aae15a77b7cd460e7c448b0d49a48ceb749e3581ee53bc",
+    "scripts/plot_trainer_smoke.py": "1d0982e8e67ac5c6a909b1023e6ee36b986d69b443e33f2b18abfcbf6279f3c9",
+    "scripts/preflight_training.py": "7d2e7f31b9da090153dbd6b50929d4e530dcfc0d80d43b7a07a05d64da2c67d6",
+    "scripts/prepare_answer_revision.py": "69e54dae543667bf7e37e596614139598e9fef2144f0013dd09ffa453cef8470",
+    "scripts/prepare_data.py": "ff3cbd9c5f95b988b53e80912e5573f3ed17a1f0824361484435aa455fbf42d2",
+    "scripts/prepare_final_packet.py": "67372b9bddcce1a2b04fa34e50d52bb750fb72a20f62660d560f268d2e831477",
+    "scripts/prepare_pilot_runs.py": "6b118f7400766cb6f5654eb8bbc9f37146f013179bea2b2fa2ce5481941a3ea0",
+    "scripts/prepare_scope_neutral_revision.py": "4c2e2fc2adc54c983251ebd9aaa97af4887151f0788296f14e8ce7a2ec0ea30e",
+    "scripts/prepare_scope_revision.py": "f0a962d73199e77471b37eb05a2b3a51a5c4d63af63695eece6a9a7e309f451a",
+    "scripts/profile_models.py": "4edd5349a72a198a5af904a1171a0e880ed5cd007b45c42ec68686629b3e6d33",
+    "scripts/profile_pilot_training.py": "88566e8459a37a43b870d38610983fe7d578cedc89709c427d1a027ceaa45f40",
+    "scripts/recover_oracle_runtime.py": "010a8bc464947e528cfdcd2773990190aa0957d2988fb2dc73e8c3234208ab3a",
+    "scripts/register_automated_review.py": "1d32639dccd2f5a230baf64e8200eb4b43d6874eb5196a5ce8b327a150f3e9dd",
+    "scripts/repair_pilot.py": "82b6fd7ab2685c63b7ddc31a37d7202c4094eefc56fbfc6f8ae9e794238bc923",
+    "scripts/rescore_validation.py": "749e6280177d1bb44eec2ec36c40a287544bd89e73997af67ef9c4671efaea73",
+    "scripts/resume_final_io.py": "2754c2830ce5528d4f937c54a1b6267009e6c8618f1962b2fa4188f4f178a302",
+    "scripts/review_dataset.py": "0e40fb72e35d41042c11ed0e2789ae42efadbcabe662e37ecdc2fc41c3651313",
+    "scripts/run_comparison.py": "d7495b8d8529dc11da5b69b7ea7277fa15800cbd1160b32602dcbf1af59d33de",
+    "scripts/run_final_evaluation.py": "fa1b9560dd1341947c8a596c5bcf5ece5d6c56fce146fb3832493b5d9fe64c4e",
+    "scripts/train_auxiliary.py": "ad0ba28952140d4e4635a8792756ebc6a5c7ebd13011be4bfa22c981481cc73a",
+    "scripts/verify_deployment.py": "6e1bd60e473be3007129c4af117dcef88d7ce229ed7ab5470b8173ebd74fd699",
+    "scripts/verify_learned_workflow.py": "76bb4903d41538933f2cea5a97dcf55466a7ef8734ae48c42ebb11eaee72dc42",
+    "scripts/verify_persistence.py": "aadd0f36f070bc74f8ef8c4f2bb2a812e676de23af5204ac25da8df8d30dfe15",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_answer_objective.py": "30d3f2e70efbc9b4cd15652fba5c44dda9ef395200cc6c7ad2d3e88fd0541cc5",
+    "tests/test_answer_revision_diagnosis.py": "3ace4e073a4c99a7cbfc2c7e86b08f58ff78c2ca9fb71ee7f56e42e3a16db4b6",
+    "tests/test_answer_revision_planning.py": "0d2fe78095ccc99ab9a02ef841e7455fe0f0b52aedae510fa9d3301ca0ded0fc",
+    "tests/test_api.py": "6986e2ac380acc66c1f924d70ca0cd1bcc6d39fd4fd5c8a572233622e30f146e",
+    "tests/test_automated_registration.py": "a25ea62427a74257c7bfc8f0a04f784fe8c7df0a94cd8c59d1a296aae4e3f299",
+    "tests/test_benchmark.py": "dc30049300a0d77379c4e25e810084b34ac3f7bcab04fca7ba9842d286658c7d",
+    "tests/test_calibration.py": "ea640717041cc9d345607ad077692615b6dc9a0de69134a9a477425af6e8e4e8",
+    "tests/test_comparison.py": "963038633fde7a9162b0cb34bca79c4e933c5452c28090db8cd159176235f55d",
+    "tests/test_context_resolution.py": "e35e667da41d13e242cd25262a7d6397169ca16e52ae88aa79c7f288fdfc9347",
+    "tests/test_data.py": "a17a135f98603a99d4b0501d79986b27a7570e3bda1aedf296c81c9ea8286a1d",
+    "tests/test_final_dashboard.py": "25575f86ccc48f2b21cb609e997ae768d3e09e2a1e8febcd428fb16e09995ab5",
+    "tests/test_final_data_bundle.py": "133ea967c09054c17587def6227f8ed9fc3c3d84555afd03e818c118052b1ef8",
+    "tests/test_final_evaluation.py": "ef17c7898c99e7ee55b61da30aee295228151b6c1192699eb072a661ff78e083",
+    "tests/test_final_figures.py": "a7fa94c121b788efe5105b4b58a65bdc45b2fb26fb216439064a7faa9453e36b",
+    "tests/test_final_io_recovery.py": "43ec0109699b27083ed459b482c6062c1cee450d3dbaefea05f7454c207697bb",
+    "tests/test_final_protocol_packet.py": "1514cfe3fd6078a74f7f60f40bf608665a81b89b416d8cbd018b304d883cb57f",
+    "tests/test_final_summary.py": "2139a35d2b6c305970dfd25305b497c228522fcace17a80f0d9f3cae383ea7d2",
+    "tests/test_inference_eligibility.py": "7070277bc7a1dcc54c8a34278e573d509fff8f7d0277170e67969a3f3c4c5e0a",
+    "tests/test_learned_workflow.py": "2cdc60234fd50d9a75a51ddbd131e0738b3c1d053e9bdcba4db415ca7f9af0ff",
+    "tests/test_metrics.py": "0b45448cfb2b1c68a1cc7100a6450682179ff304e52db7b22f388cbe30918bfd",
+    "tests/test_model_status.py": "3e94de522328801986e2d67f12d9a9c970c95bc5e60c9a2047603f2371d21493",
+    "tests/test_neural_http_benchmark.py": "f307d4a957f5730cba5f2efbc9489ff4d55d546617f35aba90c6f0a527ac6c3f",
+    "tests/test_oracle_runtime_recovery.py": "0a036f65808c6e6d305dd77f3ef23c1b4b52952aa72301bfed0746c10d484a5e",
+    "tests/test_paired_final_short_qa.py": "427c6fe71e47fa60e394ed8015cd19f0b468d66acede6d9bf0f399c9fa084049",
+    "tests/test_pilot_bundle.py": "0ad4967bd2f9c6d313ac29f79777d1702324f929ec4de3c246f3ac724b0e16fa",
+    "tests/test_pilot_planning.py": "03aafa82ce156fe9f0f2849f5814fb8ad104f8e2a20bd4142ed64197003f25e9",
+    "tests/test_pilot_repair.py": "325b08c337fb82de4d66982c872b9f7b7af7315bcd0d6f12bb0d3326e802b68c",
+    "tests/test_pilot_v3_review.py": "b9052189fe2abadf55d4f77f51e65649d75ec96bc5edac200c67d40b79f2c53c",
+    "tests/test_project_report.py": "2fe32881115b92a4b5661da8fceb4b44e9dde3a5513e2b48f0c2bca7d99ee92e",
+    "tests/test_review_page.py": "93299ffcca754378595d2c4253966784affa5451575cf4a5997d15d6ffa8dd57",
+    "tests/test_review_policy.py": "39ac3d9dc983eaae6c620288a7c56068038f57ee8ed2690238e05abe49cfeb83",
+    "tests/test_review_tooling.py": "398c31c4973d091579f277527094166a0d31372d513b89d7441793a5c3ff1fac",
+    "tests/test_scope_balancing.py": "1dcadb94590af939c55a85af999f4e5c91d244967e4286e34522ecbd9fc57e91",
+    "tests/test_scope_diagnosis.py": "b7ae4292cd2491fb8344b8773a8d1179c8b2e00f9fe64c977870ae863f14a731",
+    "tests/test_scope_inputs.py": "7a71e76f0763715c0d002cd015426e609a5f4abde96c1e7dfe16a73d8f227141",
+    "tests/test_scope_neutral_diagnosis.py": "16caaeca04923f1c140782d274a6100bf158a50c422dea1898bb2d7c6beaeb2c",
+    "tests/test_scope_neutral_revision_planning.py": "c1bfe64fe851b1b7948453c978dbf86ae745fe4061d4a6284c846b7f7a776a7f",
+    "tests/test_scope_revision.py": "cf9b79525e812a3fe2d8491060f51d29fb7b3756a58546c5eab618bda6a0dc72",
+    "tests/test_scope_runtime_calibration.py": "4d10c1f4c6eea688d3b2760212c6665869fd60ce74d5e1b4fe1cc4ada768a014",
+    "tests/test_scope_training_inputs.py": "30ff038022062c373c32a3f1c0b4e9ff8492d2557a8ef1df2e1eadb4b2340173",
+    "tests/test_scoring.py": "8430f13bbc5a3b7840208ea1bb9991936656af3977f8cbf5afc9c75d11cfe5b6",
+    "tests/test_short_qa.py": "5e47efc08486e2740f5d045502cfe80c4d77da34c29062c706fd8a6ab6a3c675",
+    "tests/test_similarity_calibration.py": "37ce7e38e93d4c1031bcc91923f159a781ad14e0b665cea157fb515bf4669ee8",
+    "tests/test_storage_endorsement_alias.py": "c2c03941bbbbf5d8d3a3ce4e263f7577bac1500e1bc52e843421511555af193e",
+    "tests/test_store.py": "87926b64b08685a4e9a6e118929bb17301c4530ce22f41f34fb5e214c2ceab57",
+    "tests/test_targeted_training_audit.py": "0f1f4863a3fdd34a084a9bcd3c762297b61079872e371b29ec8821931770de82",
+    "tests/test_trainer.py": "29454a86fa46b769f5d3786c6ad6c68b32d24b7c8eae448260c6d8f207902991",
+    "tests/test_training_contract.py": "316a275e79e84b9f6238578cffbc0f1cbef4ebbe340e4f421e43766e15d19244",
+    "tests/test_training_resume_guard.py": "acedbccedbd16001eab70d10088e504a82e241b5fc7f863114d224df05b627cb",
+    "tests/test_validation_rescore.py": "37cf8b59dcf901ca09127e9aa79a4f715be625c04672787ded98de5eefabd468"
+  },
+  "source_snapshot_unchanged": true,
+  "started_at": "2026-10-15T04:58:26.382038+00:00",
+  "status": "passed",
+  "training_or_neural_inference_executed": false,
+  "unittest": {
+    "command": [
+      "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\.venv\\Scripts\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-t",
+      ".",
+      "-v"
+    ],
+    "elapsed_seconds": 155.75592849999998,
+    "errors": [],
+    "execution_method": "unittest.defaultTestLoader.discover(start_dir=ROOT/tests, top_level_dir=ROOT), TextTestRunner(verbosity=2); the listed command is the equivalent CLI invocation.",
+    "expected_failures": 0,
+    "failures": [],
+    "log_path": "reports/final/engineering/stdlib-tests-final.log",
+    "log_sha256": "6324f873b0c63e69d8566299a30d5b29d4847a5ba41792e2b3aafc43c461cffe",
+    "passed": 511,
+    "skipped": [
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_equal_yes_no_weighting_and_padding_denominator (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_equal_yes_no_weighting_and_padding_denominator)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_invalid_objective_identity_and_shape_fail_before_optimizer (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_invalid_objective_identity_and_shape_fail_before_optimizer)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_invalid_shape_weights_and_interior_padding_rejected (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_invalid_shape_weights_and_interior_padding_rejected)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_multitoken_polarity_and_missing_position_zero_rejected (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_multitoken_polarity_and_missing_position_zero_rejected)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_noncomparison_polarity_and_left_padding_rejected (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_noncomparison_polarity_and_left_padding_rejected)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_uniform_optimizer_matches_original_direct_model_loss (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_uniform_optimizer_matches_original_direct_model_loss)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_uniform_returns_original_model_loss_object_exactly (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_uniform_returns_original_model_loss_object_exactly)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_validation_aggregates_weight_denominators_across_different_length_batches (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_validation_aggregates_weight_denominators_across_different_length_batches)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_weighted_exact_resume_matches_uninterrupted_and_rejects_policy_change (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_weighted_exact_resume_matches_uninterrupted_and_rejects_policy_change)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_weighted_numerical_loss_and_gradient_match_independent_formula (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_weighted_numerical_loss_and_gradient_match_independent_formula)"
+      },
+      {
+        "reason": "Optional CPU objective checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_wrong_polarity_malformed_metadata_and_unreviewed_rows_rejected (tests.test_answer_objective.AnswerObjectiveNumericalTests.test_wrong_polarity_malformed_metadata_and_unreviewed_rows_rejected)"
+      },
+      {
+        "reason": "Optional plotting dependency",
+        "test": "test_standalone_figures_are_reproducible_and_preserve_inputs (tests.test_final_figures.FinalFigureTests.test_standalone_figures_are_reproducible_and_preserve_inputs)"
+      },
+      {
+        "reason": "Optional CPU tokenization/recovery checks; set EDITGUARD_RUN_ML_TESTS=1",
+        "test": "test_both_length_and_batch_tokenization_use_transformed_pairs (tests.test_scope_training_inputs.ScopeTrainingTokenizationTests.test_both_length_and_batch_tokenization_use_transformed_pairs)"
+      },
+      {
+        "reason": "Optional CPU tokenization/recovery checks; set EDITGUARD_RUN_ML_TESTS=1",
+        "test": "test_explicit_answer_policy_rejected_before_tokenizer_is_called (tests.test_scope_training_inputs.ScopeTrainingTokenizationTests.test_explicit_answer_policy_rejected_before_tokenizer_is_called)"
+      },
+      {
+        "reason": "Optional CPU tokenization/recovery checks; set EDITGUARD_RUN_ML_TESTS=1",
+        "test": "test_neutral_scope_checkpoint_recovery_is_exact_and_policy_change_rejected (tests.test_scope_training_inputs.ScopeTrainingTokenizationTests.test_neutral_scope_checkpoint_recovery_is_exact_and_policy_change_rejected)"
+      },
+      {
+        "reason": "Optional CPU tokenization/recovery checks; set EDITGUARD_RUN_ML_TESTS=1",
+        "test": "test_raw_tokenization_retains_original_batch_strings (tests.test_scope_training_inputs.ScopeTrainingTokenizationTests.test_raw_tokenization_retains_original_batch_strings)"
+      },
+      {
+        "reason": "Optional real CPU optimizer checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_corrupt_checkpoint_is_refused_before_restore (tests.test_trainer.ExactOptimizerResumeTests.test_corrupt_checkpoint_is_refused_before_restore)"
+      },
+      {
+        "reason": "Optional real CPU optimizer checks; set EDITGUARD_RUN_ML_TESTS=1 in the ML environment",
+        "test": "test_resumed_parameters_losses_rng_and_selection_match_uninterrupted (tests.test_trainer.ExactOptimizerResumeTests.test_resumed_parameters_losses_rng_and_selection_match_uninterrupted)"
+      }
+    ],
+    "successful": true,
+    "tests_run": 529,
+    "unexpected_successes": 0
+  }
+}

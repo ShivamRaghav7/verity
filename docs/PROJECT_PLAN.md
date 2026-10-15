@@ -1,152 +1,141 @@
 # Project scope and finite execution plan
 
-Build a local, container-deployable support editing application backed by a frozen
-assistant, approved correction memory, a trained applicability classifier and a
-trained correction-conditioned generator. Finish with reproducible comparisons,
-scientific figures, failure analysis, a report and a panel demonstration. The first
-domain covers numeric plan/product facts with four relations. Neither guaranteed
-accuracy nor winning every comparison is a completion criterion.
+Build a locally deployable support editing application with a frozen assistant,
+approved correction memory, a trained applicability classifier and a trained
+edit-conditioned generator. Deliver reproducible comparisons, scientific figures,
+failure analysis, a report and a panel demonstration. The bounded domain has four
+numeric product/plan relations. Guaranteed accuracy and winning every baseline
+are not completion criteria.
 
-The software slice first demonstrates original answer → administrator correction
-→ direct/paraphrased answer → untouched neighboring facts → explicit conflict →
-withdrawal and restoration. It runs in structured mode while models are absent.
-This makes the governance workflow reviewable without fabricating ML evidence.
+Both auxiliary models are trained and selected. Model search is closed. The
+matched frozen final comparison is sealed; original oracle generation remains
+incomplete due to disclosed runtime errors. Stage H documentation/report/interface
+verification continues. GPU availability separately blocks the declared oracle
+recovery and a fresh learned-HTTP measurement; it does not prevent the structured
+app, recorded dashboard, figures, report or CPU regression/CI work.
 
 ## Five-person work breakdown
 
-| Person | Primary responsibility | Concrete outputs and review handoff |
+| Person | Primary responsibility | Concrete output and handoff |
 |---|---|---|
-| 1: Data and scientific protocol | Independent handbook, entity families, split assignments, label review, truth schema | Dataset card, reviewed pilot data, locked test manifest, scoring specification; person 5 independently reviews challenge wording. |
-| 2: Backend and governance | Fact store, correction validation, transactional approval, conflicts, rollback, API | Tested state machine, provenance exports and API documentation; person 1 checks scope semantics. |
-| 3: Retrieval and scope ML | Embedding baseline, profiling, pair classifier, calibration, threshold selection | Saved scope weights, retrieval/precision/recall/calibration artifacts, reproducible training config; person 4 checks leakage. |
-| 4: Answer ML and base assistant | Frozen handbook assistant, conditional seq2seq training, oracle evaluation, prompt/RAG comparisons | Saved answer weights, generator/oracle metrics, baseline configuration records; person 3 checks conditioning and matched settings. |
-| 5: Integration, interface and evidence | Customer/admin UI, comparison/history/conflicts, end-to-end harness, CI/container, report/demo | Working app, exports, scientific plots, latency/resource measurements, failure analysis and report; persons 1–4 review their evidence. |
+| 1: Data and scientific protocol | Fictional handbook, family-first splits, truth schema, label audit and fixed evaluation protocol | Dataset card, versioned pilot/final packets, review provenance and test lock; person 5 checks challenge authorship and semantic-review limits. |
+| 2: Backend and governance | Fact store, correction validation, transactional approval, conflicts, rollback and API | Tested state machine, history/provenance exports and API documentation; person 1 checks scope semantics. |
+| 3: Retrieval and scope ML | Embedding baseline, profiling, pair classifier, calibration and threshold selection | Saved scope export, retrieval/precision/recall/calibration/coverage evidence; person 4 checks leakage and deterministic adaptations. |
+| 4: Answer ML and frozen assistant | Initial-handbook base, conditional training, oracle diagnostics and prompt/RAG comparisons | Saved answer export, generator failures and matched baseline records; person 3 checks conditioning and shared budgets. |
+| 5: Integration, interface and evidence | Customer/admin UI, history/conflicts, harness, CI/container, report and demo | Runnable app, exports, plots, latency/resources, failure analysis and report; persons 1–4 review the interpretation of their evidence. |
 
-Every person owns tests and documentation for their work. Share one versioned
-schema and avoid separate incompatible notebooks as the primary pipeline.
+These are team responsibilities, not claims that five named people independently
+reviewed every row. Actual pilot and final review are typed automated decisions,
+explicitly authorized by the user. There is no independent human-review or
+human-authored-challenge claim. Every contributor owns meaningful tests and
+documentation; shared schemas and runnable scripts are the primary pipeline.
 
-## A–H milestones and gates
+## A–H milestone status
 
-| Stage | Finite work | Acceptance evidence | What is not a release claim yet |
-|---|---|---|---|
-| A: Contract and data | Finalize schemas/interfaces, initial 80-family split, review protocol and fixed scoring rules | Explicit truth fields, zero cross-split families/lineages, generated manifests and regression tests | Generated labels are not human-reviewed. |
-| B: First workflow | One catalogue, administrator correction, historical scope, conflict resolution and withdrawal | Repeatable six-part panel sequence; integration tests and local runnable UI | Structured answers are not learned-model accuracy. |
-| C: Base and harness | Load a frozen generator with initial handbook retrieval; implement all five configurations and component logs | Validation pilot runs under matched question/answer budgets; no unsupported fictional prior-knowledge assumption | No final test result or superiority claim. |
-| D: Scope model | Profile real checkpoint, train one compact cross-encoder, calibrate on validation, compare embedding routing | Saved checkpoint/config/reviewed dataset hash, finite training log, precision/recall/FAR and coverage curves | New-edit reliability is conditional on domain and measured generalization. |
-| E: Answer model | Profile seq2seq checkpoint, train on correction-conditioned answers, evaluate with oracle routing | Saved checkpoint, unseen-edit/entity validation, subject/relation/polarity scoring and failure examples | Correct structured fallback is not counted as generation evidence. |
-| F: Integration | Enable learned mode only with checkpoint/calibration registry, connect memory routing, run regression suite | Direct/paraphrase/unaffected/conflict/rollback cases with distinct answer kinds; repeatable version transitions | Arbitrary natural-language scope is not guaranteed. |
-| G: Freeze and final evaluation | Lock model/config/scorer/test hashes and thresholds; run once across five configurations | Raw per-question outputs, denominators, paired uncertainty, resource/latency records and disclosed exclusions | Test failures cannot trigger test-guided tuning of this release. |
-| H: Presentation | Polish UI, render scientific graphs from results, complete cards/report/demo/container/docs | Clean checkout reproduction, locally deployable app, real saved weights, report and tested demonstration | Resume numbers exist only when backed by recorded results. |
+| Stage | Finite scope | Current evidence and status |
+|---|---|---|
+| A: Contract and data | Explicit schemas, family splits, review and acceptance rules | Implemented. Facts/edits encode identity, relation, values, plan/version/dates, provenance, approval and lineage. Raw families/entities/lineages are disjoint; transformed-input overlap is separately disclosed. |
+| B: First workflow | One correction, appropriate questions, neighboring facts, conflict and rollback | Implemented and tested. Structured workflow and historical state are distinct from generated-answer quality. Local container evidence records 23/23 lifecycle and 3/3 restart checks. |
+| C: Base and harness | Frozen initial-handbook generator, all five fair configurations and component logs | Implemented. Updated RAG materializes approved changes; updated methods receive the same corrections/context and compatible generation budgets. |
+| D: Scope ML | Profile, train compact cross-encoder, embedding baseline and validation calibration | Complete for the selected release. Final scope export `pilot-v3-neutral2`, 360 updates, selected step 360; preprocessing/guards are declared adaptations. |
+| E: Answer ML | Profile, train correction-conditioned seq2seq, free-generation validation and failure diagnosis | Training/development complete. Selected `pilot-v2-polarity1`, 240 updates, selected step 240. Original final oracle runtime errors remain disclosed; separate recovery is incomplete. |
+| F: Integration | Artifact/calibration gates, learned routing, memory transitions, provenance and answer-kind separation | Implemented. Actual selected-model isolated workflow passes 31/31 state/routing checks; its factual diagnostics are not 31 correct neural answers. |
+| G: Frozen evaluation | Lock models/config/scorers/questions, audit final labels, one matched evaluation | Matched comparison sealed: 4,080 records, 4,009 answers, 71 clarifications, zero runtime errors. Original oracle 384 includes 319 CUDA errors and is incomplete. Separate fixed-configuration recovery stopped before generation because CUDA is unavailable. |
+| H: Release presentation | Final report/PDF, scientific figures, browser/demo verification, clean-checkout/CI evidence | Report and six landscape scientific figures rendered and reviewed; dashboard/downloads verified; 511 regression tests pass with 18 optional skips and 34 separate CPU numeric checks pass. Release CI checks follow each push. GPU-dependent follow-up remains incomplete; full completion is not claimed. |
 
-Current delivery implements A/B's contracts, complete structured workflow and
-governance tests. C's five-configuration harness records 600 predictions for
-each 120-question development run, plus 48 oracle-routed answers. D/E completed
-the initial pilot runs, two finite scope revisions and one finite answer
-revision. F integrates eligible trained exports, calibrated routing, provenance
-and distinct answer kinds with the customer/admin application. All pilot
-reviews are independently recorded automated development decisions; source
-human-review flags remain pending and no human approval is claimed.
+## Recorded scientific outcome
 
-The selected scope model is `pilot-v3-neutral2`, selected at update 360; the
-selected answer model is `pilot-v2-polarity1`, selected at update 240. Their
-independent artifact audit passes 986 checks. On the same 120 pilot-v3 validation
-pairs, raw scope accuracy improves from revision 1's 98/120 to 119/120. The
-calibrated application policy with compatibility guards applies 48/48 applicable
-corrections, falsely applies 0/72 negatives and clarifies one question. These are
-validation-selection routing measurements, not guaranteed new-question accuracy.
-Entity-neutral preprocessing produces eight identical same-label pairs across
-raw disjoint training/validation families; shared templates and two validation
-families limit generalization claims.
+The selected models train on four entity families and validate on two others:
+scope 240/120 rows, answer 96/48 rows. The original 80-family draft was not all
+used for training. All 504 pilot labels have exact-row-hash-bound automated
+development review. The selected export audit passes 986 checks. Actual training
+loops took 112.55 seconds for scope and 264.54 seconds for answers on the inspected
+RTX 4050 laptop; full-command startup/export time is not recorded.
 
-Holding the selected scope fixed, complete oracle answer credit improves from
-31/48 to 34/48, and complete end-to-end fact credit from 31/120 to 34/120.
-The existing separate short-QA diagnostic improves from 83/120 to 86/120; the
-updated RAG baseline remains stronger at 91/120. The answer model still fails
-seven of twelve negative comparisons, and its comparable unweighted and weighted
-token losses became worse. All controls were rescored under the same versioned
-scorer, preserving original outputs and historical scores. No superiority or
-arbitrary natural-language reliability is claimed. The
-[selected revision record](TARGETED_REVISION_RESULTS.md) contains exact hashes,
-counts, measured resources, controls and limitations. Earlier
-[pilot-v3 failures](PILOT_V3_RESULTS.md) and the isolated Nimbus workflow that
-motivated revision 2 remain archived; passing governance checks never establish
-generated-answer correctness.
+The final 12-family packet contains 720 standard questions, 288 oracle answers
+and 96 agent-authored challenges, with 1,104 automated-final audit decisions.
+It is frozen and training-ineligible. Nine scope inputs overlap training after
+literal abstraction; 711 do not, and none overlaps validation. Shared templates
+still limit novel-language claims.
 
-Training and development model selection are closed for this release. No third
-scope run, second answer experiment, larger training catalogue or new backbone
-is planned. The final configuration selects these two trained artifacts and the
-existing calibrated policies. Stage G now locks model/configuration/scorer hashes,
-completes a separately recorded independent **automated** final-label audit
-authorized by the user, freezes the evaluation packet before inference and runs
-one matched final evaluation. This is an explicit change from the earlier human
-review gate; it must be disclosed as machine review in every final artifact.
-Human semantic review is absent. H's final report, figures, release reproduction
-and panel demonstration remain incomplete until that evidence exists.
+On the frozen standard request-bound metric, the five configurations obtain
+500/720 base, 649/720 updated RAG, 533/720 prompt-only, 632/720 similarity and
+613/720 trained editor. Updated RAG leads. The paired trained-minus-RAG difference
+is -5.00 percentage points, 95% family-bootstrap interval [-6.67, -3.06]. All
+23 learned standard clarifications and 33 additional pending outputs remain in
+the denominator. The editor's raw scope classification is 701/720, while runtime
+observes zero false edit applications out of 432 out-of-scope cases after guards.
+Its out-of-scope correctness is 405/432 and baseline-correct retention 405/428;
+these are different measures.
 
-## Remaining finite milestones
+The editor answers only 48/96 challenge questions. Their wording is unsupported
+by the frozen request-bound parser, so secondary zero credit does not mean all
+generated text is wrong. Raw challenge scope recall is 72/96 and calibration
+degrades. Primary complete-assertion baseline zeros also reflect pending short
+fragments, not zero factual accuracy. Both metrics and raw outputs remain visible.
 
-1. Fix the selected model/configuration, baselines, thresholds, answer budgets and
-   scorer. Independently audit final held-out labels and authored unfamiliar-wording
-   challenges under the explicit user-authorized automated final policy, then
-   freeze their hashes before final inference. Record machine review separately
-   from development review, with no human-reviewed evidence claim.
-2. Run one matched final evaluation and report component errors, coverage,
-   abstentions, out-of-scope preservation and factual correctness, paired
-   uncertainty, latency and resources. Test findings become failure analysis;
-   they do not authorize test-guided retraining for this release.
-3. Finish the scientific graphs, model/dataset cards, final report and six-part
-   demonstration. Verify the locally deployable app, container, regression/CI
-   and clean-checkout reproduction, then push the completed release evidence.
+The original oracle run has 65/384 answered, 319 runtime errors and 45/384 primary
+credits. Those errors are not generated wrong answers or a license to remove
+cases. A declared 319-case operational supplement stopped during preload with
+`No CUDA GPUs are available`, making zero new generations/reservations; all
+selected cases remain not attempted. Its interrupted evidence preserves the
+original files. A fresh closure cannot reconstruct the unavailable final weight
+fingerprint of the original failed GPU instance.
 
-## Bound the experiments
+See [FINAL_EVALUATION.md](FINAL_EVALUATION.md), [MODEL_CARD.md](MODEL_CARD.md),
+[DATASET_CARD.md](DATASET_CARD.md) and [FAILURE_ANALYSIS.md](FAILURE_ANALYSIS.md)
+for exact identities, denominators, uncertainty, incidents and limitations.
 
-Start with a small **reviewed** pilot drawn only from training/validation families.
-Pending generated examples may test tensor shapes in a clearly labeled smoke
-profile, but they cannot support trained-model or evaluation claims. After a real
-checkpoint profile, propose one finite scope run and one finite answer run.
+## Remaining finite work
 
-Each substantial run has a written run card containing the question resolved,
-input manifest and review hashes, model revision, expected artifacts, measured
-steps/second and peak memory, extrapolated runtime with assumptions, checkpoint
-interval and resume behavior, maximum steps/epochs, early-stopping rule and disk
-budget. The user executes long GPU commands after preparation and verification.
+1. The [13-page report](../output/pdf/EditGuard-Report.pdf), scientific figures,
+   cards, API/deployment documentation and six-part [panel demonstration](DEMO.md)
+   are prepared. Every rendered PDF page, current dashboard and JSON/CSV download
+   was checked. Governance demonstration instructions distinguish structured
+   answers from the separately measured trained generation.
+2. Local application/JS and CPU optimizer checks pass with explicit skip counts.
+   Verify current clean-checkout/container behavior and the three release-head CI jobs.
+   Push tested substantial improvements; record actual outcomes rather than
+   treating a configured workflow as a passing run.
+3. After GPU availability is restored, resume only the already declared oracle
+   supplement on its 319 runtime-error IDs and run the finite isolated learned
+   HTTP workload. Preserve original oracle errors and label supplemental timing
+   separately. If hardware remains unavailable, mark these items incomplete
+   explicitly; do not silently change device/configuration or fabricate numbers.
 
-Limit development to an initial run plus at most two targeted validation-driven
-revisions per auxiliary model. Predeclare their questions and bounds. If results
-remain disappointing, document errors and ship the measured bounded system; do
-not keep adding backbones, datasets or infrastructure. A new dataset scale is
-justified only by a diagnosed issue after the first reproducible pipeline works.
+The device interruption does not authorize retraining, new backbones, a larger
+dataset, test-guided scoring changes or another model search. Remaining work is
+verification/reporting and exact operational recovery of a fixed configuration.
 
-Checkpoint model, optimizer, scheduler, scaler (if used), RNG state, global step,
-configuration and data hashes. Resuming against changed data/config must fail.
-No training-time or memory promise is made before profiling.
+## Experiment and recovery bounds
 
-## Completion checklist and deliverable boundaries
+Development used an initial run plus two scope revisions and one answer revision.
+Each substantial command had a run question, exact input/review/configuration
+hashes, real-profile runtime/memory estimates, expected artifacts, checkpoints,
+resume rules and finite step cap. The user executed the substantial GPU runs.
+No further training is planned for this release.
 
-- Tested edit, overlap/conflict, historical scope, revision and rollback behavior.
-- Actual trained scope and answer checkpoint artifacts with model/data versions.
-- Independent reviewed data with family-first splits and locked final test set.
-- Five fair configurations, component diagnostics, abstention-aware denominators,
-  paired uncertainty, latency/resource logs and failure analysis.
-- Runnable application, isolated environment, CI, container, API docs and exports.
-- Scientific plots generated from recorded results, complete report, architecture,
-  dataset/model cards, README and six-part panel demonstration instructions.
-- Substantial tested improvements committed and pushed to the configured remote.
-  If no remote or credentials exist, record the exact missing condition and keep
-  the local change reviewable; do not pretend a push succeeded.
+Full-state checkpoints preserve model, optimizer, scheduler, RNG, sampler,
+global step and validation selection. Changed inputs/source/configuration/reviews
+refuse exact-state resume. Completed/capped runs refuse further training before
+ML initialization. Final evaluation is separately single-use; interruption
+recovery preserves committed observations. Its operational supplements are
+separately declared and cannot replace the original run or tune against it.
 
-Truthful current resume wording: "Built a SERAC-inspired support knowledge editor
+## Completion boundaries
+
+Completion requires tested edits/conflicts/rollback; both trained auxiliaries;
+versioned, leakage-audited evaluation and fair baselines; a locally deployable
+application; saved models/configuration; reproducible scripts; regression/CI;
+container/API documentation; scientific figures; honest failure analysis; a
+polished report and a tested demo. The lightweight structured image and optional
+local neural environment are separate deployment paths. Local ignored model
+binaries must be retained or reproduced; metadata in Git does not ship weights.
+
+Current truthful resume wording: “Built a SERAC-inspired support knowledge editor
 with transactional correction memory and rollback; trained compact applicability
-and correction-conditioned answer models and evaluated five configurations on a
-controlled held-out development population." Describe the deployable structured
-container and optional local neural application separately. Numerical improvement
-and final-test claims require their corresponding reviewed, frozen evidence.
-
-## Report structure
-
-The final report contains problem and bounded requirements; related primary work;
-architectural adaptations; data provenance/review/splits; training and profiling;
-fair comparison protocol; measured results with denominators and uncertainty;
-component error attribution; limitations and failed cases; engineering tests;
-deployment and reproduction; and panel demonstration. Blank result fields remain
-explicitly "not measured" until artifacts exist.
+and edit-conditioned answer models, evaluated five matched configurations on a
+controlled held-out dataset, and containerized the structured application.” Any
+number must name its population/metric and link to evidence. Do not claim complete
+oracle recovery, human review, production readiness, universal accuracy or learned
+superiority over updated RAG.

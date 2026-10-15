@@ -1,0 +1,1 @@
+Historical first chart export. Use ../figures-v2/ for the release report. Version 2 clarifies that raw classifier false positives differ from actual correction applications, and corrects a positional caption. Numeric values, model/scoring rules and evaluation source bytes are unchanged. The exact original plotting source is archived here and matches manifest.json.

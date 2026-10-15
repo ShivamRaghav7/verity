@@ -82,7 +82,8 @@ class ModelStatusTests(unittest.TestCase):
         self.config_path.write_text(json.dumps(self.config), encoding="utf-8")
 
     def client(self):
-        client = TestClient(create_app(self.root / "status.sqlite3", "test-token", inference_config=self.config_path))
+        client = TestClient(create_app(self.root / "status.sqlite3", "test-token", inference_config=self.config_path,
+                                     final_evaluation_report=self.root / "not-yet-exported-final.json"))
         client.__enter__()
         self.addCleanup(client.__exit__, None, None, None)
         return client
@@ -186,7 +187,8 @@ class ModelStatusTests(unittest.TestCase):
         from editguard.comparison import ComparisonRunner
         runner = ComparisonRunner(FakeGenerator(), FakeRetriever(), scope=FakeScope(.95), answer_model=FakeGenerator(),
                                   calibration={"threshold": .8, "ambiguity_margin": .03, "temperature": 1})
-        app = create_app(self.root / "injected.sqlite3", "test-token", runner)
+        app = create_app(self.root / "injected.sqlite3", "test-token", runner,
+                         final_evaluation_report=self.root / "not-yet-exported-final.json")
         with TestClient(app) as injected:
             self.assertEqual(injected.get("/api/health").json()["models"]["scope"], "loaded_unvalidated")
 
@@ -362,7 +364,8 @@ class DevelopmentReportTests(unittest.TestCase):
 
     def client(self):
         client = TestClient(create_app(self.root / "report.sqlite3", "test-token", inference_config=self.config_path,
-                                     evaluation_report=self.report_path))
+                                     evaluation_report=self.report_path,
+                                     final_evaluation_report=self.root / "not-yet-exported-final.json"))
         client.__enter__()
         self.addCleanup(client.__exit__, None, None, None)
         return client
@@ -529,7 +532,7 @@ class DevelopmentReportTests(unittest.TestCase):
         self.assertIn("Incomplete generated fragments await review", page)
         self.assertIn('id="download-ml-report"', page)
         self.assertIn("Baseline-correct retention", script)
-        self.assertIn("Frozen test data has not been evaluated", script)
+        self.assertIn("final held-out evidence appears separately", script)
         self.assertIn("configuration_matches === false", script)
         self.assertIn('id="scope-policy-panel"', page)
         self.assertIn("does not measure learned boundary accuracy", page)

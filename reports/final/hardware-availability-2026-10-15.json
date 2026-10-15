@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "purpose": "operational_hardware_availability_snapshot",
+  "observed_at_utc": "2026-10-15 04:56:17 UTC",
+  "torch_version": "2.9.0+cu130",
+  "cuda_available": false,
+  "cuda_device_count": 0,
+  "CUDA_VISIBLE_DEVICES": null,
+  "nvidia_smi_exit_code": 1,
+  "nvidia_smi_message": "NVIDIA-SMI has failed because you do not have sufficient permissions. Please try running as an administrator.",
+  "windows_display_devices": [
+    {
+      "name": "Intel(R) UHD Graphics",
+      "status": "OK"
+    },
+    {
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "status": "Unknown"
+    }
+  ],
+  "oracle_recovery_reservations": 0,
+  "new_oracle_generations": 0,
+  "original_final_results_modified": false,
+  "limitation": "Availability snapshot only. The driver, device mode and underlying cause were not established; no system or permission change was attempted."
+}

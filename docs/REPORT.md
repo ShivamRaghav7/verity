@@ -1,283 +1,144 @@
-# EditGuard: interim project report
+# EditGuard: final measured project report
 
-**Status: both auxiliary models are trained and integrated; the completed scope
-revision and guard-aware calibration are evaluated on the controlled pilot.
-One bounded answer-polarity experiment and the second, final scope experiment
-are prepared with profiled, preflight-valid commands, not trained.
-Final independently reviewed evaluation remains pending.**
+Controlled demonstration dataset. Automated final audit; no human-review claim.
 
-## Problem and registered topic
+## Problem and contribution
 
-Knowledge Editing is the registered topic. Product support systems become stale
-when limits or policies change. EditGuard aims to publish corrections without
-per-correction retraining while maintaining precise scope, provenance and rollback.
-The initial task is short factual English questions over a controlled fictional
-product catalogue; unrestricted dialogue and dependency reasoning are deferred.
+Product limits and policies change while deployed customer-support models remain static. EditGuard addresses short factual questions about a fictional product catalogue. An administrator publishes an approved correction; subsequent questions can use it without retraining for that individual edit. The registered topic is Knowledge Editing.
 
-## Technical approach
+The delivered platform combines two actually trained auxiliary models, approved versioned memory, a frozen handbook assistant, transactional conflict and rollback controls, five matched comparisons, a leakage-controlled benchmark and a locally deployable application. Generated answers remain fallible. No arbitrary-language accuracy guarantee or production-company claim is made.
 
-The architecture is SERAC-inspired: a frozen base assistant is wrapped by approved
-external memory, a learned applicability classifier and a correction-conditioned
-generator. Our governance and temporal compatibility rules are adaptations. See
-[architecture](ARCHITECTURE.md) for the primary-paper reading and full diagram.
-The prototype exercises those governance rules with separately labeled structured
-answers and real trained neural editing. Updated RAG applies approved facts before
-retrieval; prompt-only correction receives the same approved descriptors.
-[Comparison contracts](COMPARISONS.md) disclose routing and benchmark boundaries.
+The frozen evaluation contains 816 matched questions and 384 separate oracle-generation records. On the 720 controlled scope questions, request-bound QA credits the learned editor on 613/720 and updated RAG on 649/720. These are supported short-question forms; unfamiliar challenge wording has a separate result.
 
-## Data and protocol
+The learned editor receives complete-assertion credit on 207/816 (25.4%). The original oracle diagnostic was interrupted by a CUDA runtime fault: its 45/384 (11.7%) includes 319 execution errors and cannot be read as a complete generator-quality measurement. A separately named operational supplement, when available, preserves the original record. Complete-assertion and request-bound results are separate evidence.
 
-The independent fictional training catalogue is separate from the ten-fact Nimbus
-UI fixture. Entity families are partitioned before questions and counterfactual
-values are augmented. Typed, hash-bound review controls eligibility; human review
-is the default. The user authorized an independent automated development review
-of the corrected 504-row pilot: 504 accepted, zero flagged, with an additional
-144-target assertion check. The immutable source flags remain pending human
-review; the separate registry explicitly discloses machine review. Pilot-v3
-balances the existing negative question forms, retains all 504 rows, facts and
-partitions, and has fresh automated decisions bound to its new row identities.
-All development records disclose `human_reviewed_data=false`. The test partition
-is not frozen. See [dataset card](DATASET_CARD.md),
-[current per-row review](PILOT_V3_REVIEW.md) and [evaluation protocol](EVALUATION_PROTOCOL.md).
+## Related work and architectural adaptations
 
-## Engineering evidence
+SERAC wraps a fixed base model with edit memory, a scope classifier and a counterfactual generator. Its auxiliary components are trained separately; deployment stores new descriptors and routes relevant requests to conditional generation. Mitchell et al. compare embedding and cross-attention scope architectures and evaluate edit success and preservation. We use these ideas, rather than claim a faithful reproduction of their experiments or algorithm.
 
-Regression covers approval, conflicts, half-open dates, explicit supersession,
-rollback, neighboring scope retention, persistence, authority checks and coherent
-concurrent reads. The live dashboard exposes validated trained-artifact metadata,
-automated-review provenance and read-only recorded validation results. It retains
-separate isolated workflow checks, denominators and fixture service latency.
-Engineering checks demonstrate database/API behavior; they are not learned-model
-accuracy. Changing loaded model or calibration dependencies requires restart
-rather than silently associating stale inference with new artifact metadata.
+Our adaptations are structured product/plan/version/date descriptors, mandatory administrator approval, SQLite transactions, explicit overlapping-conflict resolution, retrieval before pair scoring, calibrated abstention and deterministic compatibility gates. The frozen base retrieves the initial fictional handbook; it does not rely on pretrained knowledge of imaginary products.
 
-The new trainer implements both pretrained auxiliary tasks, fixed stopping caps,
-validation-loss selection and atomic full-state resume with data, configuration,
-environment, source-code and pretrained-state identities. The scorer rejects
-wrong subjects/relations/polarity, contradictory assertions and unendorsed target
-mentions. Unsupported fragments enter a blinded hash-bound review queue and remain
-uncredited until adjudicated. [Scorer rules](SCORER.md) retain abstentions and
-missing predictions in denominators and separate structured from generated evidence.
+The selected DistilBERT classifier uses the versioned entity_neutral_v1 input transform. Only selectors literally referenced by a correction are canonicalized; incompatible selectors and properties remain. Approval, dates, original names and provenance remain in authoritative metadata. This engineered normalization is disclosed separately from learned entity reasoning.
 
-The UI provides customer questions, scoped before/after comparisons, an approval
-workflow, history, conflict resolution and exports. Minimal infrastructure consists
-of FastAPI, Pydantic, SQLite and build-free static assets. The core regression and
-CPU optimizer/resume CI jobs passed for commit `c89e528`; the source record is
-`reports/ci-c89e528.json`. Deployment CI execution is recorded separately.
-All three jobs also passed for `6f32ee4`, including container lifecycle and restart
-verification; [that CI run](https://github.com/ShivamRaghav7/verity/actions/runs/38149158719)
-is distinct from the current local changes.
+The selected FLAN-T5-small answer model conditions on the question, applicable correction, date and necessary unchanged support context. It produces the original short answer text. A deterministic structured response is a distinct mode and never earns evidence of trained generation. Unknown scope, uncertainty and unresolved conflicts request clarification.
 
-The complete workflow was exercised in a separate browser fixture, including
-conflict rejection and restoration. Mobile layout had no horizontal overflow and
-the browser reported no console errors. Docker Desktop's Linux engine later started
-successfully. The structured image passed 23 isolated HTTP workflow checks and
-three checks after restart, preserving revision 7 and both withdrawn corrections.
-It ran as UID 1000 on Python 3.12.15 with a dedicated volume. See
-[deployment records](DEPLOYMENT.md); these checks make no neural-deployment claim.
+Primary reference: [Mitchell et al., ICML 2022](https://proceedings.mlr.press/v162/mitchell22a/mitchell22a.pdf).
 
-## Initial profiling observations
+## Dataset, review and split controls
 
-Real DistilBERT and FLAN-T5-small checkpoints completed one warmup and three
-measured float32 optimizer steps at batch 2/input length 192 (answer length 48).
-Peak allocated GPU memory was 1.274 and 1.462 GiB respectively. Synthetic shapes
-and short runs establish feasibility only; no checkpoint or accuracy result was
-produced. [Raw profiling and limitations](PROFILING.md) include resolved revisions.
+The controlled handbook has 80 fictional entity families, 1,280 initial facts and 480 edit scenarios. Families were assigned before paraphrases and counterfactual values. The modest training pilot uses four training and two validation families: 240/120 scope pairs and 96/48 answer examples. Training did not use the entire generated catalogue.
 
-A separate 30-request engineering benchmark of the structured app observed
-HTTP p50 15.592 ms and p95 19.616 ms, with zero errors/abstentions in the selected
-supported forms. This result includes HTTP/JSON overhead and excludes ML inference.
+Scope data contains applicable pairs, ordinary negatives, different properties on the same product, the same property on another product, similar names, wrong tiers and incompatible versions. Pilot-v3 balances existing negative question forms without changing facts, labels or family assignments. Targets and example labels received a separately typed automated audit; human review is not claimed.
 
-Both actual auxiliary trainers subsequently completed four real CUDA steps through
-an interrupted two-step segment and resumed two-step segment. The separate CPU
-regression matched uninterrupted/resumed parameters, losses, selection and RNG.
-These synthetic checkpoints are explicitly rejected by the runtime. Actual
-timings, memory and checkpoint I/O are in [TRAINER_SMOKE.md](TRAINER_SMOKE.md).
-They do not establish a full-training runtime estimate.
+The final packet preserves all 720 scope, 288 answer and 96 challenge rows. Its 1,104 labels passed independent deterministic consistency checks against structured truth. Every source question, fact, label, split and lineage remains unchanged; current input formatting and explicit oracle metadata are derived separately. Original draft flags are retained and the separate machine registry authorizes only final evaluation.
 
-The frozen neural smoke completed six questions across the three available
-baselines, preserving explicit unavailability of the two editors. Base parameter
-fingerprints remained identical. [NEURAL_SMOKE.md](NEURAL_SMOKE.md) records wrong
-answers and uncredited fragments, with all raw inputs and outputs retained.
-No result in that engineering fixture is a final accuracy claim.
+The twelve final families are disjoint from selected training and development entities and edit lineages. Entity normalization creates nine identical same-label scope pairs shared with training, zero shared with validation and no contradictory pairs. The other 711 scope rows are reported separately. Shared controlled templates still limit linguistic generalization.
 
-Actual four-step pilot profiles now include the full reviewed validation partitions
-and checkpoint writes. Peak allocations were 1.318 GiB (scope) and 1.508 GiB
-(answer); checkpoint operations took 8.22–9.62 and 10.27–17.07 seconds.
-[Finite run cards](PILOT_TRAINING.md) stop at 360/240 updates, with conditional
-planning estimates of 441/432 seconds. These are estimates, not measured full
-training times. Profile artifacts remain ineligible for deployment.
+The 96 unfamiliar-wording/unseen-value challenges were agent-authored drafts, independently machine-audited. They are not manually authored or human-reviewed questions. The user explicitly authorized this automated final audit. Machine consistency checks do not establish external validity or broad natural-language truth.
 
-The frozen MiniLM baseline selected cosine threshold 0.46 using all 120 reviewed
-validation pairs: 48 positive and 72 negative. Without compatibility gates it
-applied 47 correct and 48 incorrect corrections; with gates it applied 47 correct
-and zero incorrect corrections, missing one positive. Sixty incompatible pairs
-were rejected by metadata. This is validation selection on single focal pairs,
-not test performance, full-memory retrieval or generated-answer accuracy. Raw
-score/grid artifacts are in `reports/similarity-pilot-v2`; no trained-auxiliary
-superiority claim follows from this result.
+## Training and finite model selection
 
-![Structured application HTTP latency](../reports/structured-http-latency.png)
+Training used one fixed seed and compact backbones after measured four-update CUDA profiles. The selected scope run stopped at 360 updates; the selected answer run stopped at 240. Both were executed by the user. Data, reviews, pretrained revisions, configurations, selected tensors, optimizer/scheduler/sampler/RNG state and exact training source are recorded. The completed exports passed 986 artifact/checkpoint audit checks.
 
-![Measured four-step synthetic trainer resources](../reports/trainer-smoke-resources.png)
+On the common 120-pair development population, raw scope accuracy rose from 98/120 to 119/120. Validation selected temperature 1.0, threshold 0.97 and uncertainty margin 0.025: 48 correct edit applications, zero of 72 false applications and one clarification. This selection-data result is not an independent final-test estimate.
 
-![Similarity routing on 120 development validation pairs, with explicit denominators and scope gates](../reports/similarity-pilot-v2/operating-points.png)
+The answer revision gives equal 8x weight to the opening token of both Yes and No comparison targets. Remaining valid tokens have weight one and padding zero. Its weighted selection loss of 0.16824 cannot be compared with the earlier uniform loss. On a common unweighted objective, validation token NLL worsened from 0.04441 to 0.06173.
 
-[The baseline result record](SIMILARITY_RESULTS.md) documents the missed
-paraphrase, raw/gated behavior and selection limitations. It makes no generated
-answer or final-test claim.
+Generated development negative comparisons improved from 0/12 to 5/12 correct; seven still failed. Oracle complete-answer credit improved from 31/48 to 34/48 with identical revised scope routing. A reviewed complete storage wording alias increased scoring coverage equally for every configuration; original scores are preserved. No threshold, model or scorer was tuned against final outputs.
 
-## Experiments and results
+Recorded training-loop times were 112.55 seconds for scope and 264.54 for answer; complete command startup/export wall times are unavailable. CUDA reserved peaks were 1.410 and 1.656 GiB. Measurements are from an RTX 4050 laptop with 6 GiB VRAM and 23.71 GiB host RAM. Short profiling estimates and actual loop measurements are distinguished.
 
-| Required result | Current evidence |
-|---|---|
-| Trained auxiliary weights | Initial scope/answer runs completed at 360/240 updates; current scope-v3 revision also completed 360, selecting step 360; original answer selected step 240 |
-| Training time and memory | Scope-v3 loop 43.402 s, allocated/reserved CUDA peaks 1.318464/1.410156 GiB; initial answer loop 245.856 s, allocated peak 1.508413 GiB; complete command wall time unavailable |
-| Applicable-edit retrieval recall | Raw unfiltered retrieval 47/48 at rank 1 and 48/48 at rank 3; eligible routing is a separate measure |
-| Raw scope model on common v3 pairs | At 0.5, original accuracy 56/120 and NLL 1.477; revised accuracy 98/120 and NLL 0.486, AUROC 0.864; recall 46/48, precision 46/66, false positives 20/72 |
-| Validation-selected scope with guards | Temperature 0.5, threshold 0.47, margin 0.025; 46/48 positive corrections, 0/72 false applications, five clarifications, 115/120 coverage; selected on the reported validation pairs |
-| Oracle generation | Strict and exploratory QA credit 31/48; 12 incorrect comparison endorsements and five pending answers |
-| Five matched configurations | 120 questions each, 600 predictions including five clarifications; strict learned-editor credit 30/120; separate exploratory QA learned 80/120, updated RAG 91/120 |
-| Out-of-scope retention/correctness | Primary strict baseline-correct retention undefined at 0/0; exploratory QA credit 50/72 learned and 53/72 base/RAG/similarity; learned retains 50/53 baseline-QA-correct answers, with three clarifications |
-| Latency and uncertainty | Serial CLI p50/p95 recorded; two-family cluster bootstrap is insufficient for precise population claims |
-| Conflict/rollback consistency | Separate deterministic/deployment checks and isolated learned-workflow evidence |
-| Final frozen-test results | Not available; final review and configuration/scorer/test freeze remain pending |
+## Frozen fair comparison and scoring
 
-These measurements establish real training and a reproducible development
-comparison. They do not establish superiority or final-project completion.
-[Training results](PILOT_TRAINING_RESULTS.md) disclose run identities, resources,
-selection and the 87-check artifact audit.
-[Archived initial validation](PILOT_VALIDATION_RESULTS.md) retains the first
-measurements. [Current pilot-v3 results](PILOT_V3_RESULTS.md) disclose completed
-scope training, identical-input model comparison, calibration selection,
-all raw records, denominators and failure attribution. The historical trainer
-sources from Git `350db38` are preserved in
-[`reports/training-source-v1`](../reports/training-source-v1/manifest.json).
+All five configurations answer the same 816 questions: 720 scope questions and 96 challenges. Unchanged base is a diagnostic reference; updated RAG materializes approved corrections, prompt-only receives eligible descriptors, similarity editing uses validation-selected embedding routing, and learned editing uses the trained scope classifier. Both editors use the same trained answer model.
 
-The primary scorer requires a complete factual assertion. On pilot-v3 it credits
-30/120 learned-editor and 31/120 similarity-editor outputs; incomplete baseline
-fragments remain pending and uncredited. Zero baseline credit is not evidence
-of zero baseline factual correctness. An explicitly
-[post-hoc short-QA diagnostic](SHORT_QA.md) binds supported fragments to the
-requested subject/relation and credits properly updated RAG on 91/120 questions
-and the trained scope editor on 80/120. Updated RAG leads that exploratory
-comparison; learned superiority is not claimed. Structured/database answers
-are never credited as learned generation.
+Every updated baseline has the same approved memory and supporting facts. Questions are evaluated in separate mutually exclusive correction scenarios, each with one focal edit and at most eight foreign-product distractors. This is not a dense same-product multi-edit stress test. Deterministic generation uses the same 48-token answer budget and compatible context settings.
 
-The answer model makes 12 `No` → `Yes` mistakes even with oracle-correct routing,
-despite including the correct limit. Routing cannot explain these polarity
-failures. The initial scope model missed all 12 direct positives. The original
-pilot gave negative labels only to direct questions, creating a wording shortcut. The first
-[bounded revision](SCOPE_DATA_REVISION.md) rotates those existing negatives
-across direct, paraphrase and yes/no comparison forms without adding rows or
-changing facts, splits or lineages. The user completed its 360-step run. When both
-exports are evaluated on the same v3 questions, NLL decreases from 1.477 to 0.486,
-raw accuracy increases from 56/120 to 98/120 and all 12 direct positives are
-detected at 0.5. Wrong-entity and wrong-version pairs account for all 20 raw false
-positives; metadata guards reject those pairs. The original v2 selected loss of
-0.391 used different negatives, so comparing it directly with 0.486 would be
-misleading. These measured development changes do not rewrite the archived v2
-results or access the test/challenge corpus.
+Oracle generation uses 288 answer examples plus 96 challenges, separately from the matched end-to-end population. It supplies the applicable correction but not the target answer. Retrieval, raw classifier pairs, actual guarded routes and oracle generation remain separate measurements so failures can be attributed.
 
-The original calibration selector minimized operating cost across raw pairs,
-although runtime rejects incompatible edits first. Including the existing
-compatibility gate in a separate selector corrects that mismatch without fitting
-new weights or expanding the finite search grid. Its selected policy routes
-46/48 applicable edits, falsely applies 0/72 negatives and clarifies 5/120 pairs.
-All five clarifications remain uncredited in answer accuracy. Scope selection
-and its reported validation results share data, so these are optimistic
-development measures, not independent final-test estimates.
+Primary scoring checks complete endorsed subject, relation, product/plan/version, value, unit and requested polarity. A target mention, example, rejected possibility or correct database response is insufficient. Unsupported prose stays pending and uncredited; all abstentions/errors remain in fixed-denominator accuracy. Zero complete-assertion credit for a short baseline fragment does not prove that fragment factually wrong.
 
-The answer diagnostic reproduces mean validation token NLL near 0.044412 while
-finding first-token `No` correctness of only 2/24 on training and 0/12 on
-validation. For validation questions requiring `No`, first-token NLL is 1.0646
-versus 0.02154 for remaining tokens. A low teacher-forced mean can obscure the
-incorrect initial decision because the following fact tokens are easy to copy.
-This supports one bounded objective experiment without proving the sole cause
-of the error. [The objective specification](ANSWER_OBJECTIVE.md) gives equal
-8x emphasis to the first token of reviewed `Yes` and `No` comparison targets,
-leaving all other valid tokens at weight one and padding at zero.
+The frozen secondary rule accepts whole quantities or Yes/No for twelve explicit controlled question forms, after independently checking the requested scope and predicate against truth. It never overrides a primary incorrect verdict. Bare responses do not prove a complete scoped assertion. Unsupported challenge wording remains pending. No LLM judge substitutes for ground truth.
 
-That answer revision is prepared and **has not trained**. Its finite cap is
-240 updates, five passes through the same 96 training rows. The
-[released run guide](ANSWER_REVISION_TRAINING.md) provides the measured guarded
-profile, exact inputs and artifacts, and checkpoint/resume behavior. Its question
-is whether equal extra emphasis on the opening Yes/No token improves generated
-comparison polarity while preserving factual answers. The conditional planning
-budget is 532 seconds, 2.25 GiB GPU and 6 GiB checkpoint/export storage. This is
-an estimate from four updates, not a full-run measurement or guarantee.
-Weighted selection loss is not comparable to the initial
-uniform loss and is not accuracy. Unweighted loss, first-token polarity, oracle
-generation and the full matched comparison must determine whether the result
-is retained; no improvement is promised.
+The full-assertion metric favors outputs that restate a scoped fact, a format the trained generator saw in its targets. Baseline fragments can correctly answer a question while receiving no complete-assertion credit. Therefore primary credit differences do not establish superiority in factual QA; use the separately locked request-bound comparison on its supported cohort and disclose unsupported challenge cases.
 
-An archived [initial learned-workflow check](LEARNED_WORKFLOW.md) exposed another locality
-failure: Nimbus's price question selected a device correction and generated
-`Nimbus Basic version v2 costs 3 devices.` A four-device comparison also produced
-yes when no was expected. These actual generated failures remain separate from
-passing governance/integration checks. The pilot's 0/72 out-of-scope edit selections
-cannot be generalized to unseen products, properties or questions. This fixture
-used the initial scope artifact and is not a new v3 workflow measurement.
+Paired uncertainty uses 2,000 entity-family bootstrap resamples, seed 42 and 95% intervals. Twelve clusters and one training seed limit precision; these intervals describe family sampling in this controlled benchmark, not uncertainty over retraining or deployed customers.
 
-A subsequent [scope-v3 Nimbus workflow](../reports/pilot-v3-learned-workflow.json)
-uses the actual completed revision and passes **31/31 governance/integration
-checks**. It nevertheless misses the approved device correction on the direct
-question, returning stale `5` instead of `3`; a device paraphrase returns
-`9 USD per month`, and capacity questions clarify. With oracle routing the answer
-model produces the correct direct `3`, but its negative comparison still says
-`Yes`. These are handpicked and partly repeated engineering cases, not a general
-accuracy estimate. Passing transactional approval and rollback checks does not
-make those generated answers correct.
+## Measured results and their limits
 
-This evidence motivates **scope revision 2, the final scope experiment**. Its
-single adaptation is the versioned `entity_neutral_v1` classifier input policy:
-correction-referenced product/alias, plan and version selectors become consistent
-phrases, and the descriptor is normalized while relation, values and units remain
-visible. Original metadata still governs compatibility, approval, dates and
-provenance. It keeps the same pilot-v3 rows and reviews, backbone, seed, learning
-rate and 360-step cap. Facts, labels and partitions are not changed. The model
-has not trained. Its source-bound guarded profile and released card passed
-preflight; the conditional planning budget is 1,331 seconds, 2.0 GiB GPU and
-5 GiB checkpoint/export storage. The [released guide](ANSWER_REVISION_TRAINING.md)
-states the question, artifacts and recovery contract: use the unchanged card
-and latest completed checkpoint; completed exports or checkpoints at the cap
-are refused before ML initialization. It is separate from the first weighted
-answer revision, which keeps the v2 inputs and 240-step cap. Neither has measured
-improvement. Final evaluation and the polished release report remain pending.
+On the fair controlled request-bound metric, the learned editor credits 613/720 (85.14%), updated RAG 649/720 (90.14%), similarity editing 632/720, prompt correction 533/720 and the frozen base 500/720. Updated RAG is the strongest of these configurations. The learned editor does not beat it overall.
 
-![Scope models compared on the same pilot-v3 pairs before deterministic guards](../reports/pilot-v3-figures/scope-diagnosis.png)
+The learned editor credits 72/72 direct corrections, 39/72 held-out paraphrases and 97/144 comparisons on the request-bound metric. Thirty-three paraphrases remain pending; 47 comparison answers are wrong. Out-of-scope factual credit is 405/432, with 23 clarifications and four wrong base answers. Retention on the distinct baseline-correct subset is 405/428. Preserving an incorrect initial answer is not factual correctness.
 
-The following plots remain archived initial pilot-v2 evidence; they are not the
-current scope-v3 metrics.
+The 96 challenge questions remain a separate population. The learned editor has zero complete-assertion credits, 48 clarifications and 48 pending outputs. The secondary grammar cannot score these unfamiliar forms, so no secondary semantic correctness claim follows. Similarity editing has 40/96 complete-assertion credits. This challenge exposes limited linguistic generalization.
 
-![Archived pilot-v2 strict outcomes, with pending semantic review disclosed](../reports/pilot-v2-figures/validation-outcomes.png)
+Actual false correction application is 0/432 (0.0%). Classifier precision/recall and calibration below are raw-pair diagnostics; metadata-gated routing is not evidence that every boundary was learned. The oracle diagnostic removes retrieval and routing errors but retains generation failures and incomplete answers.
 
-![Validation-selected scope calibration and operating points](../reports/pilot-v2-figures/scope-calibration.png)
+Outcome tables distinguish credited answers, observed incorrect assertions, pending uncredited prose, clarification, errors and unavailability. Cohort figures distinguish direct questions, held-out paraphrases, comparisons, out-of-scope questions and unfamiliar wording. Updated RAG is assessed honestly; the project does not require beating every baseline.
 
-![Actual pilot-v2 training loss and resource use](../reports/pilot-v2-figures/training-resources.png)
+Serial CLI latency includes retrieval, routing and generation, retaining first-use requests. It excludes model construction, scoring, journal writes, HTTP transport and the application's extra before-answer generation. Fixed ordering and shared caches can bias comparisons. Separate HTTP engineering measurements must not be relabeled as model-route timings.
 
-The figure manifest binds all plotted inputs and output hashes. The dashboard
-renders a hash-bound summary against the configured model identities and permits
-JSON export; refresh loads recorded evidence rather than rerunning inference.
-The final report still requires independent final review, fixed configuration
-and scoring rules, manually authored unfamiliar-wording challenges and a single
-matched held-out test evaluation with honest uncertainty and failure disclosure.
+The existing secondary verdicts were aggregated with the same frozen 2,000-resample paired family bootstrap: learned minus updated RAG is -5.00 percentage points, 95% interval [-6.67, -3.06]. Every one of the 720 standard questions remains included. This is a descriptive aggregation of locked verdicts, with no rescoring, inference or test-guided selection.
 
-## Limitations and next acceptance gates
+A separately declared, status-only recovery of the 319 oracle runtime errors was attempted. It stopped during model loading because CUDA was unavailable, before any of its 319 permitted generations: 0 durable attempts, 319 not attempted. No recovered answer accuracy or full neural HTTP latency is claimed. The original sealed observations remain unchanged; restoring GPU access is an operational prerequisite for these remaining measurements.
 
-Current language coverage is deliberately narrow. A correct source does not
-guarantee a generated answer endorses it. Scope ambiguity, unfamiliar wording,
-token shortcuts and temporal errors need component diagnostics. See
-[failure analysis](FAILURE_ANALYSIS.md) for concrete findings.
+Available resource snapshots record 933.1 MiB CUDA peak allocated and 1,002 MiB reserved immediately after model construction. The original inference sessions did not retain a successful end-of-run memory snapshot, so these loading measurements are not presented as the full final-inference peak. A fresh closure-only session is likewise not an inference-memory benchmark.
 
-The finite [A–H plan](PROJECT_PLAN.md) lists ownership, run-card requirements,
-maximum development revisions and full completion criteria. Complete the second,
-final scope experiment and the first prepared answer experiment, evaluate
-component quality and repeat the isolated workflow, then select or reject each
-from development evidence. Fix the model/baseline/scorer protocol, independently
-review and freeze
-the final held-out questions/challenges, then run the five-way final test once.
-Retain failures rather than tune against that test. Finish the report, graphs,
-demo, locally deployable application and CI reproduction. No third scope run or
-open-ended model search is planned. This interim artifact
-does not mark the ML-focused project complete.
+| Configuration | Primary credit | Request QA | Pending | Coverage |
+|---|---|---|---|---|
+| Frozen base | 0/816 (0.0%) | 500/816 | 816 | 816/816 (100.0%) |
+| Updated RAG | 0/816 (0.0%) | 649/816 | 816 | 816/816 (100.0%) |
+| Prompt correction | 0/816 (0.0%) | 533/816 | 815 | 816/816 (100.0%) |
+| Similarity editor | 246/816 (30.1%) | 632/816 | 522 | 816/816 (100.0%) |
+| Learned editor | 207/816 (25.4%) | 613/816 | 491 | 745/816 (91.3%) |
+
+![final answer quality. Measured frozen-test data; see raw JSON/CSV for denominators and policy details.](../reports/final/figures-v2/final-answer-quality.png)
+
+![final calibration coverage. Measured frozen-test data; see raw JSON/CSV for denominators and policy details.](../reports/final/figures-v2/final-calibration-coverage.png)
+
+![final cohort accuracy. Measured frozen-test data; see raw JSON/CSV for denominators and policy details.](../reports/final/figures-v2/final-cohort-accuracy.png)
+
+![final latency. Measured frozen-test data; see raw JSON/CSV for denominators and policy details.](../reports/final/figures-v2/final-latency.png)
+
+![final retrieval and routing. Measured frozen-test data; see raw JSON/CSV for denominators and policy details.](../reports/final/figures-v2/final-retrieval-and-routing.png)
+
+![final uncertainty failures. Measured frozen-test data; see raw JSON/CSV for denominators and policy details.](../reports/final/figures-v2/final-uncertainty-failures.png)
+
+## Reliability, engineering and deployment
+
+The authoritative key is entity, relation, plan, version and a half-open effective interval. Corrections require a source, matching original value and administrator approval. Same-scope contradictory intervals do not use latest-write-wins. Explicit supersession links an approved predecessor; withdrawal restores applicable ancestors, and descendants must be withdrawn first. Mutations and revision increments are transactional; revision keys invalidate caches.
+
+The isolated actual learned workflow passed 31 governance/integration assertions across 33 API requests. These checks validate authority, conflict blocking, historical boundaries and rollback, not representative model accuracy. Development demonstrations still include wrong negative polarity, unsupported paraphrase prose and an unaffected price question that clarifies.
+
+Regression/CI covers the app, scoring, data review, checkpoint recovery, source/model bindings and container persistence. The structured Docker deployment and optional locally configured neural application are documented separately. The minimal stack is Python, FastAPI/Pydantic, SQLite and build-free HTML/CSS/JavaScript, with PyTorch/Transformers and Matplotlib for ML experiments.
+
+The final runner uses an OS-released exclusive session lock, atomic per-observation journal and exact-bound recovery. Completed configurations cannot be silently rerun. A dependency-inventory startup rejection occurred before loading models or predictions; its source and log are archived. The amended protocol preserves byte-identical question/truth files and fixes only the guard mismatch.
+
+Windows access-denied collisions interrupted two mutable progress writes; the lock owner and underlying cause are unknown. A declared finite retry wrapper changes only those writes. A later CUDA unknown error occurred after all 4,080 matched predictions had completed: 319 of the separate 384 oracle attempts were execution errors. All original errors remain uncredited in the original denominator.
+
+The failed GPU instance's final parameter fingerprint was unavailable. Fresh-process closure confirmed unchanged serialized sources and model files and the expected loaded base fingerprint, with zero new predictions. It cannot reconstruct the lost GPU memory state. This distinction limits the original run's end-state integrity measurement and is disclosed rather than inferred away.
+
+## Panel demonstration and reproducibility
+
+Demonstrate the initial handbook answer, a sourced administrator correction, direct and paraphrased questions, neighboring property/tier/version questions, explicit ambiguity or conflict, then withdrawal and restored history. Show the answer-kind badge and supporting fact alongside generated text. Include a documented model failure rather than implying every generated response is verified.
+
+The repository supplies immutable data bundles, review registries, pinned run cards, training/evaluation scripts, recorded model metadata, local saved model exports, scientific figure sources, regression tests, CI, API documentation and deployment instructions. Large checkpoint binaries remain local artifacts rather than Git source. Offline result reaggregation and fresh training reproduction are distinct from rerunning the locked final test.
+
+A defensible resume claim describes the SERAC-inspired editor, two trained auxiliary models, transactional correction memory and rollback, and evaluation across five matched configurations on a controlled held-out benchmark. Numerical claims must identify the metric, denominator and dataset. This release does not establish unrestricted dialogue, multi-hop reasoning, large edit memories or guaranteed arbitrary-language accuracy.
+
+Answer: google/flan-t5-small | revision 0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab | selected artifact artifacts/answer/pilot-v2-polarity1
+
+Scope: distilbert/distilbert-base-uncased | revision 12040accade4e8a0f71eabdb258fecc2e7e948be | selected artifact artifacts/scope/pilot-v3-neutral2
+
+## Evidence and version record
+
+- `reports/final/evaluation/manifest.json`: `22fb7652e9cd878e79434cd572480b2e69f2fcad9e2a3deaba12b1fa071c3f23`
+- `reports/final/evaluation/metrics.json`: `8f5ce9c0ce61927450cd82b0c6662a763286da061e61fdd4027e71bc033fec3e`
+- `reports/final/evaluation/short_qa_metrics.json`: `5b0db725fecf1cd698c45c976e926b8b7617d26a1bbe3d5a07844bfbe1b105e1`
+- `reports/final/protocol-v2.json`: `8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab`
+- `reports/final/test_lock-v2.json`: `9900b81a2b9aa41b0dd40e19d3cfb04e9ab000ae90507ff3a406453f1af85e99`
+- `reports/final/figures-v2/manifest.json`: `f37e22c35cf10dff0a64057927980aa100fd954d3a926461301f8e4e2d77ebb0`
+- `reports/targeted-training-audit.json`: `9c286b67e1415ac2fc02f9564e5454bc3ff5174b998c864e320b788f39303e20`
+- `reports/final/runtime-failure-disclosure.json`: `5c67d8483d8d634fef745d1ec2396773a2f361eeac83e98462cce493f5b7e67a`
+- `reports/final/secondary-paired-uncertainty.json`: `46cdf88058c10a71c652bf1cac1732f4cb2e92961f190d7c85f6bb4a8c729caa`
+- `reports/final/oracle-runtime-recovery/interrupted_manifest.json`: `2eeba76f8ffa18a3d3348af753a5f6781abe5764435da1adf6bff55764cdbbba`

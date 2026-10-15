@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "artifact_type": "measured_project_report",
+  "source_sha256": {
+    "reports/final/evaluation/manifest.json": "22fb7652e9cd878e79434cd572480b2e69f2fcad9e2a3deaba12b1fa071c3f23",
+    "reports/final/evaluation/metrics.json": "8f5ce9c0ce61927450cd82b0c6662a763286da061e61fdd4027e71bc033fec3e",
+    "reports/final/evaluation/short_qa_metrics.json": "5b0db725fecf1cd698c45c976e926b8b7617d26a1bbe3d5a07844bfbe1b105e1",
+    "reports/final/protocol-v2.json": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "reports/final/test_lock-v2.json": "9900b81a2b9aa41b0dd40e19d3cfb04e9ab000ae90507ff3a406453f1af85e99",
+    "reports/final/figures-v2/manifest.json": "f37e22c35cf10dff0a64057927980aa100fd954d3a926461301f8e4e2d77ebb0",
+    "reports/targeted-training-audit.json": "9c286b67e1415ac2fc02f9564e5454bc3ff5174b998c864e320b788f39303e20",
+    "reports/final/runtime-failure-disclosure.json": "5c67d8483d8d634fef745d1ec2396773a2f361eeac83e98462cce493f5b7e67a",
+    "reports/final/secondary-paired-uncertainty.json": "46cdf88058c10a71c652bf1cac1732f4cb2e92961f190d7c85f6bb4a8c729caa",
+    "reports/final/oracle-runtime-recovery/interrupted_manifest.json": "2eeba76f8ffa18a3d3348af753a5f6781abe5764435da1adf6bff55764cdbbba"
+  },
+  "pdf_sha256": "f4f34e85bd0665f6892bf1442ff72e8f4073eb59a1817fbf53eb2a1495399185",
+  "markdown_sha256": "c0c7292083d579767629a9fcea693f3ea58c1fd16fbb3134a7e3643986aab71f",
+  "report_script_sha256": "ff71bbc3f44a44b648e10e498bd062be5b8359b150773bba0ae84d7ca1180890",
+  "human_reviewed_data": false,
+  "training_or_inference_executed": false
+}

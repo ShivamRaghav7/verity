@@ -398,7 +398,555 @@ class DevelopmentReportCache:
             return report, descriptor
 
 
-def create_app(db_path=None, admin_token=None, comparison_runner=None, inference_config=None, evaluation_report=None):
+class FinalReportCache(DevelopmentReportCache):
+    """Read only completed, sealed final evidence; never run models or evaluation."""
+
+    COUNTS = {"scope": 720, "answer": 288, "challenge": 96}
+
+    def __init__(self, path, *, root=None):
+        super().__init__(path)
+        self.root = Path(root or Path(__file__).resolve().parents[1]).resolve()
+
+    @staticmethod
+    def _json(path):
+        def pairs(items):
+            result = {}
+            for key, value in items:
+                if key in result:
+                    raise ValueError("Duplicate final evidence JSON key.")
+                result[key] = value
+            return result
+        return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs,
+                          parse_constant=lambda value: (_ for _ in ()).throw(ValueError("Nonfinite final evidence.")))
+
+    def _path(self, value):
+        path = Path(value)
+        path = (path if path.is_absolute() else self.root / path).resolve()
+        if self.root not in path.parents:
+            raise ValueError("Final evidence path escapes the workspace.")
+        return path
+
+    @staticmethod
+    def _require(condition, message):
+        if not condition:
+            raise ValueError(message)
+
+    def _population(self, population, count, *, oracle=False):
+        from .comparison import CONFIGURATIONS
+        self._require(population.get("questions") == count, "Final population count differs from its frozen denominator.")
+        applicable = population.get("applicable_questions")
+        self._require(type(applicable) is int and 0 <= applicable <= count, "Final applicability count is invalid.")
+        rows = [population] if oracle else population["configurations"]
+        expected = {"oracle_answer"} if oracle else set(CONFIGURATIONS)
+        self._require(len(rows) == len(expected) and {row.get("configuration") for row in rows} == expected,
+                      "Final comparisons require every configuration exactly once.")
+        for row in rows:
+            self._require(row.get("questions") == count and row.get("applicable_questions") == applicable,
+                          "Final configuration omitted part of its cohort.")
+            for key in ("accuracy", "coverage", "model_generated_answer_accuracy", "model_generated_answer_coverage"):
+                self.rate(row[key])
+                self._require(row[key]["denominator"] == count, "Final accuracy and coverage must retain all questions.")
+            for key in ("pending_review", "abstentions", "errors", "unavailable"):
+                self._require(type(row.get(key)) is int and 0 <= row[key] <= count,
+                              "Final pending and nonanswer counts must remain explicit.")
+            for key in ("out_of_scope_accuracy", "false_application_rate", "output_preservation"):
+                self.rate(row[key])
+                self._require(row[key]["denominator"] == count - applicable,
+                              "Final out-of-scope denominator differs from its cohort.")
+            self.rate(row["baseline_correct_retention"])
+            self._require(row["baseline_correct_retention"]["denominator"] <= count - applicable,
+                          "Final retention must use only baseline-correct out-of-scope questions.")
+            latency = row["latency"]
+            self._require(latency.get("total_count") == count and
+                          type(latency.get("sample_count")) is int and type(latency.get("missing_count")) is int and
+                          latency["sample_count"] >= 0 and latency["missing_count"] >= 0 and
+                          latency["sample_count"] + latency["missing_count"] == count,
+                          "Final latency population differs from its full cohort.")
+            for key in ("p50_ms", "p95_ms"):
+                value = row[key]
+                self._require(value == latency[key] and (value is None or type(value) in (int, float)
+                              and math.isfinite(value) and value >= 0), "Final latency quantiles are invalid.")
+            if latency.get("complete") is True:
+                self._require(latency["sample_count"] == count and row["p50_ms"] is not None and
+                              row["p95_ms"] is not None and row["p50_ms"] <= row["p95_ms"],
+                              "Complete latency requires the full measured population.")
+            else:
+                self._require(row["p50_ms"] is None and row["p95_ms"] is None,
+                              "Incomplete latency cannot claim complete quantiles.")
+
+    def _secondary(self, rows, count, *, oracle=False):
+        from .comparison import CONFIGURATIONS
+        expected = {"oracle_answer"} if oracle else set(CONFIGURATIONS)
+        self._require(set(rows) == expected, "Secondary scoring configurations differ from the primary comparison.")
+        for row in rows.values():
+            item = row["all_requested_qa"]
+            self._require(item.get("denominator") == count and all(type(item.get(key)) is int and item[key] >= 0
+                          for key in ("correct", "incorrect", "pending_uncredited")) and
+                          sum(item[key] for key in ("correct", "incorrect", "pending_uncredited")) == count,
+                          "Secondary scoring must retain all outcomes in its separate denominator.")
+            self.rate({"numerator": item["correct"], "denominator": count,
+                       "value": item["accuracy_including_all_nonanswers_and_pending"]})
+
+    def _compare_population(self, population, raw_metrics, *, oracle=False):
+        rows = [population] if oracle else population["configurations"]
+        for row in rows:
+            recorded = raw_metrics["configurations"][row["configuration"]]
+            for key in ("accuracy", "coverage", "model_generated_answer_accuracy", "model_generated_answer_coverage",
+                        "baseline_correct_retention", "output_preservation", "retrieval_recall", "pending_review",
+                        "abstentions", "errors", "unavailable", "status_counts", "latency"):
+                self._require(row[key] == recorded[key], "Final summary metrics differ from the hashed raw metrics: " + key)
+            self._require(row["out_of_scope_accuracy"] == recorded["subsets"]["out_of_scope"]["accuracy"]
+                          and row["false_application_rate"] == recorded["false_correction_application_rate"],
+                          "Final out-of-scope metrics differ from the hashed observations.")
+
+    def _execution_recovery(self, report, bound, protocol):
+        """Optional disclosures retain original observations and error counts."""
+        recovery = report.get("execution_recovery", {})
+        self._require(isinstance(recovery, dict) and set(recovery) <= {"io", "cuda_runtime_failure"},
+                      "Unknown final execution-recovery disclosure.")
+        if recovery.get("io") is not None:
+            item = recovery["io"]
+            declaration = self._json(bound(item["declaration_path"], item["declaration_sha256"]))
+            bound(item["wrapper_path"], item["wrapper_sha256"])
+            event_path = bound(item["events_path"], item["events_sha256"])
+            self._require(declaration.get("purpose") == "frozen_final_io_recovery_declaration"
+                          and declaration.get("protocol_sha256") == item["protocol_sha256"] == report["provenance"]["protocol_sha256"]
+                          and declaration.get("wrapper_sha256") == item["wrapper_sha256"]
+                          and declaration.get("frozen_evaluator_sha256") == item["frozen_evaluator_sha256"]
+                          and item["frozen_evaluator_sha256"] == protocol["source_sha256"]["scripts/run_final_evaluation.py"]
+                          and all(declaration.get(key) is False and item.get(key) is False for key in
+                                  ("fresh_run_allowed", "inference_scoring_or_data_changes", "observations_rewritten"))
+                          and item.get("events_frozen_at_summary_export") is True
+                          and item.get("cause_status") == "not_established",
+                          "IO recovery must be bound write-only evidence with its cause unresolved.")
+            for key in ("max_write_attempts", "retry_delays_seconds", "mutable_write_targets"):
+                self._require(item.get(key) == declaration.get(key), "IO retry bounds differ from their declaration.")
+            self._require(item.get("max_write_attempts") == 8 and item.get("retry_delays_seconds") == [.05, .1, .2, .4, .4, .4, .4],
+                          "IO retries must retain the finite declared schedule.")
+            entries = [json.loads(line) for line in event_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+            counts = {Path(name).name: 0 for name in item["mutable_write_targets"]}
+            delays = []
+            for entry in entries:
+                self._require(entry.get("declaration_sha256") == item["declaration_sha256"]
+                              and entry.get("frozen_evaluator_sha256") == item["frozen_evaluator_sha256"]
+                              and entry.get("inference_scoring_or_data_changes") is False,
+                              "IO event differs from its recorded wrapper.")
+                for retry in entry["write_retries"]:
+                    target, attempt = retry.get("target"), retry.get("failed_attempt")
+                    self._require(target in counts and type(attempt) is int and 1 <= attempt < 8
+                                  and retry.get("delay_seconds") == item["retry_delays_seconds"][attempt - 1]
+                                  and retry.get("error_type") == "PermissionError", "IO event contains an undeclared retry.")
+                    counts[target] += 1
+                    delays.append(retry["delay_seconds"])
+            self._require(len(entries) == item["event_records"] and len(entries) > 0
+                          and counts == item["retry_counts_by_target"] and sum(counts.values()) == item["recorded_write_retries"]
+                          and math.isclose(math.fsum(delays), item["recorded_retry_delay_seconds"], abs_tol=1e-12),
+                          "IO retry disclosure differs from the hashed event log.")
+        if recovery.get("cuda_runtime_failure") is not None:
+            item = recovery["cuda_runtime_failure"]
+            disclosure = self._json(bound(item["disclosure_path"], item["disclosure_sha256"]))
+            self._require({key: value for key, value in item.items()
+                           if key not in ("disclosure_path", "disclosure_sha256", "original_results_replaced", "limitation")} == disclosure
+                          and disclosure.get("purpose") == "final_runtime_failure_disclosure"
+                          and disclosure.get("protocol_sha256") == report["provenance"]["protocol_sha256"]
+                          and disclosure.get("observations_committed") == 4464
+                          and disclosure.get("persistent_model_or_data_changes") is False
+                          and item.get("original_results_replaced") is False
+                          and isinstance(item.get("limitation"), str) and bool(item["limitation"].strip()),
+                          "Runtime failure disclosure differs from its bound sidecar.")
+            matched_status = {}
+            for row in report["configurations"]:
+                for status, count in row["status_counts"].items():
+                    matched_status[status] = matched_status.get(status, 0) + count
+            self._require(disclosure.get("status_by_kind") == {"matched": matched_status, "oracle": report["oracle"]["status_counts"]},
+                          "Runtime failure disclosure must preserve original matched and oracle outcomes.")
+            self._require(disclosure.get("original_gpu_instance_post_inference_fingerprint") == "unavailable_cuda_unknown_error"
+                          and isinstance(disclosure.get("closure_recovery_policy"), str)
+                          and isinstance(disclosure.get("oracle_measurement_policy"), str),
+                          "Runtime failure must disclose the unavailable original GPU fingerprint and retained oracle errors.")
+
+    def _validate(self, report):
+        require = self._require
+        expected = {"schema_version": 1, "artifact_type": "editguard_final_evaluation", "purpose": "frozen_final_evaluation",
+                    "status": "completed", "review_policy": "automated_final", "human_reviewed_data": False,
+                    "test_rows_read": True, "challenge_rows_read": True, "test_frozen": True,
+                    "final_test_tuning_performed": False, "questions": 816, "oracle_questions": 384,
+                    "population_counts": self.COUNTS}
+        require(all(report.get(key) == value for key, value in expected.items()),
+                "Only the complete frozen, automatically audited final population is accepted.")
+        require(isinstance(report.get("dataset_id"), str) and bool(report["dataset_id"]), "Final dataset identity is required.")
+        provenance = report["provenance"]
+        evidence = provenance["evidence_files_sha256"]
+        require(isinstance(evidence, dict) and bool(evidence), "Final evidence requires a concrete hashed file inventory.")
+        inventory = {}
+        for name, digest in evidence.items():
+            path = self._path(name)
+            require(path not in inventory and re.fullmatch(r"[0-9a-f]{64}", str(digest)) is not None,
+                    "Final evidence inventory contains duplicate paths or invalid hashes.")
+            inventory[path] = digest
+        self.watched.extend(inventory)
+        def bound(value, digest):
+            path = self._path(value)
+            require(inventory.get(path) == digest, "Final provenance is absent from its evidence inventory.")
+            return path
+        protocol_path = bound(provenance["protocol_path"], provenance["protocol_sha256"])
+        lock_path = bound(provenance["test_lock_path"], provenance["test_lock_sha256"])
+        packet_path = bound(provenance["packet_manifest_path"], provenance["packet_manifest_sha256"])
+        raw_path = bound(provenance["raw_manifest_path"], provenance["raw_manifest_sha256"])
+        ledger_path = bound(provenance["ledger_path"], provenance["ledger_sha256"])
+        bound(provenance["config_path"], provenance["config_sha256"])
+        for filename in ("predictions.jsonl", "oracle_predictions.jsonl", "metrics.json", "short_qa_metrics.json"):
+            bound(raw_path.parent / filename, provenance[filename.removesuffix(".jsonl").removesuffix(".json") + "_sha256"])
+        for path, digest in inventory.items():
+            actual = hashlib.sha256()
+            with path.open("rb") as stream:
+                for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                    actual.update(chunk)
+            require(actual.hexdigest() == digest, "Final evidence integrity failed: " + path.name)
+        protocol, lock, packet, raw, ledger = (self._json(path) for path in (protocol_path, lock_path, packet_path, raw_path, ledger_path))
+        require(protocol.get("purpose") == "frozen_final_evaluation_protocol" and protocol.get("status") == "frozen"
+                and protocol.get("protocol_id") == provenance["protocol_id"]
+                and protocol.get("configuration", {}).get("sha256") == provenance["config_sha256"]
+                and protocol.get("review_policy") == "automated_final" and protocol.get("human_reviewed_data") is False,
+                "Final protocol differs from the summary.")
+        from .comparison import CONFIGURATIONS
+        evaluation = protocol["evaluation"]
+        require(evaluation.get("question_counts") == self.COUNTS and evaluation.get("configurations") == list(CONFIGURATIONS)
+                and evaluation.get("max_final_runs") == 1 and evaluation.get("matched_populations") == ["scope", "challenge"]
+                and evaluation.get("oracle_populations") == ["answer", "challenge"],
+                "Final protocol population or comparison rules differ.")
+        require(lock.get("purpose") == "final_packet_lock_before_inference" and lock.get("status") == "frozen"
+                and lock.get("protocol_sha256") == provenance["protocol_sha256"] and lock.get("counts") == self.COUNTS
+                and lock.get("packet_manifest_sha256") == provenance["packet_manifest_sha256"]
+                and lock.get("inference_started") is False and lock.get("review_counts") == {"accepted": 1104, "flagged": 0}
+                and lock.get("review_policy") == "automated_final" and lock.get("human_reviewed_data") is False,
+                "Final packet lacks its pre-inference automated audit lock.")
+        require(packet.get("purpose") == "frozen_final_evaluation_packet" and packet.get("protocol_sha256") == provenance["protocol_sha256"]
+                and packet.get("counts") == self.COUNTS and packet.get("files") == provenance["packet_files_sha256"]
+                and packet.get("test_frozen") is True and packet.get("eligible_for_final_evaluation") is True,
+                "Final packet differs from its frozen provenance.")
+        for name, digest in packet["files"].items():
+            require(Path(name).name == name, "Final packet contains an escaping filename.")
+            bound(packet_path.parent / name, digest)
+        require(raw.get("purpose") == "frozen_final_evaluation" and raw.get("status") == "completed"
+                and raw.get("review_policy") == "automated_final" and raw.get("human_reviewed_data") is False
+                and raw.get("protocol_sha256") == provenance["protocol_sha256"] and raw.get("protocol_id") == provenance["protocol_id"]
+                and raw.get("configuration_sha256") == provenance["config_sha256"] and raw.get("population_counts") == self.COUNTS
+                and raw.get("questions") == 816 and raw.get("matched_prediction_records") == 4080 and raw.get("oracle_records") == 384
+                and raw.get("packet_manifest_sha256") == provenance["packet_manifest_sha256"]
+                and raw.get("final_test_tuning_performed") is False and raw.get("fresh_final_runs") == 1
+                and raw.get("base_weights_unchanged") is True
+                and raw.get("base_parameter_sha256_before") == raw.get("base_parameter_sha256_after") == provenance["base_parameter_sha256"],
+                "Final raw run is incomplete or differs from the declared comparison.")
+        require(provenance.get("base_weights_unchanged") is True and ledger.get("status") == "completed"
+                and ledger.get("fresh_final_runs") == 1 and ledger.get("result_manifest_sha256") == provenance["raw_manifest_sha256"],
+                "Final run is not sealed by its single-run ledger.")
+        for task in ("scope", "answer"):
+            artifact = report["model_artifacts"][task]
+            model_path = bound(Path(artifact["artifact_path"]) / "manifest.json", artifact["manifest_sha256"])
+            model = self._json(model_path)
+            require(model.get("purpose") == "trained" and model.get("status") == "completed" and model.get("task") == task
+                    and model.get("completed_steps") == artifact["completed_steps"]
+                    and model.get("selection", {}).get("global_step") == artifact["selected_step"]
+                    and model.get("selected_model_state_sha256") == artifact["selected_model_state_sha256"]
+                    and model.get("model_id") == artifact["model_id"] and model.get("model_revision") == artifact["model_revision"]
+                    and protocol["models"][task]["manifest_sha256"] == artifact["manifest_sha256"]
+                    and type(artifact["completed_steps"]) is int and 1 <= artifact["selected_step"] <= artifact["completed_steps"],
+                    "Final trained artifact identity differs from its export.")
+            for name, digest in model["files_sha256"].items():
+                bound(model_path.parent / name, digest)
+        self._population({"questions": report["questions"], "applicable_questions": report["matched_applicable_questions"],
+                          "configurations": report["configurations"]}, 816)
+        require(set(report["by_population"]) == {"scope", "challenge"}, "Final matched cohorts must remain separate.")
+        for name in ("scope", "challenge"):
+            self._population(report["by_population"][name], self.COUNTS[name])
+        require(sum(item["applicable_questions"] for item in report["by_population"].values()) == report["matched_applicable_questions"],
+                "Final cohort applicability counts differ from the combined population.")
+        self._population(report["oracle"], 384, oracle=True)
+        require(set(report["oracle"]["by_population"]) == {"answer", "challenge"}, "Final oracle cohorts must remain separate.")
+        for name in ("answer", "challenge"):
+            self._population(report["oracle"]["by_population"][name], self.COUNTS[name], oracle=True)
+        for key in ("precision", "recall", "false_positive_rate", "brier", "ece"):
+            self.rate(report["scope"][key])
+        raw_metrics = self._json(raw_path.parent / "metrics.json")
+        self._compare_population(report, raw_metrics)
+        for name in ("scope", "challenge"):
+            self._compare_population(report["by_population"][name], raw_metrics["by_population"][name])
+        self._compare_population(report["oracle"], raw_metrics["oracle_answer_diagnostic"], oracle=True)
+        for name in ("answer", "challenge"):
+            self._compare_population(report["oracle"]["by_population"][name], raw_metrics["oracle_answer_by_population"][name], oracle=True)
+        require(report["scope_full_metrics"] == raw_metrics["configurations"]["trained_scope_editor"]["scope"]
+                and all(report["scope"][key] == report["scope_full_metrics"][key]
+                        for key in ("precision", "recall", "false_positive_rate", "brier", "ece")),
+                "Final scope diagnostics differ from the raw metrics.")
+        secondary = report["secondary_short_qa"]
+        require(secondary == self._json(raw_path.parent / "short_qa_metrics.json"),
+                "Final secondary scores differ from their hashed separate artifact.")
+        require(secondary.get("purpose") == "locked_final_secondary_short_qa" and secondary.get("primary_results_replaced") is False
+                and secondary.get("post_hoc_policy") is False and secondary.get("protocol_sha256") == provenance["protocol_sha256"],
+                "Final secondary scoring must retain its locked, separate definition.")
+        self._secondary(secondary["configurations"], 816)
+        for name in ("scope", "challenge"):
+            self._secondary(secondary["by_population"][name], self.COUNTS[name])
+        self._secondary(secondary["oracle"], 384, oracle=True)
+        for name in ("answer", "challenge"):
+            self._secondary(secondary["oracle_by_population"][name], self.COUNTS[name], oracle=True)
+        require(isinstance(report.get("limitations"), list) and bool(report["limitations"])
+                and all(isinstance(text, str) and bool(text.strip()) for text in report["limitations"]),
+                "Final limitations must remain explicit.")
+        self._execution_recovery(report, bound, protocol)
+        if report.get("csv_export"):
+            record = report["csv_export"]
+            path = self._path(record["path"])
+            self.watched.append(path)
+            require(re.fullmatch(r"[0-9a-f]{64}", str(record["sha256"])) is not None
+                    and hashlib.sha256(path.read_bytes()).hexdigest() == record["sha256"], "Final CSV export integrity failed.")
+
+    def snapshot(self, model_status):
+        with self.lock:
+            if self.cached is None or self._signature() != self.signature:
+                self.watched = [self.path] if self.path else []
+                report, descriptor = None, {"status": "not_measured", "error": None}
+                if self.path and self.path.is_file():
+                    try:
+                        self._require(self.path.stat().st_size <= 2_000_000, "Final summary exceeds the bounded 2 MB size.")
+                        report = self._json(self.path)
+                        self._validate(report)
+                        descriptor = {"status": "available", "error": None,
+                                      "report_sha256": hashlib.sha256(self.path.read_bytes()).hexdigest()}
+                    except Exception as exc:
+                        report, descriptor = None, {"status": "invalid", "error": str(exc)}
+                self.cached, self.signature = (report, descriptor), self._signature()
+            report, descriptor = copy.deepcopy(self.cached)
+            if report:
+                if model_status.get("restart_required") or model_status.get("configuration_sha256") != report["provenance"]["config_sha256"]:
+                    return None, {**descriptor, "status": "incompatible", "error": "Final evidence differs from the configured inference snapshot."}
+                for task in ("scope", "answer"):
+                    model = model_status.get("model_details", {}).get(task, {})
+                    measured = report["model_artifacts"][task]
+                    if model.get("status") != "trained" or model.get("artifact_manifest_sha256") != measured["manifest_sha256"]:
+                        return None, {**descriptor, "status": "incompatible", "error": "Final model artifacts differ from the configured trained checkpoints."}
+                descriptor["configuration_matches"] = True
+            return report, descriptor
+
+
+class OracleRecoveryReportCache(FinalReportCache):
+    """Separate fixed-configuration operational supplement; originals stay visible."""
+
+    def _interrupted(self, path, original):
+        """Describe a bound attempted process without publishing recovery scores."""
+        require = self._require
+        require(path.stat().st_size <= 2_000_000, "Interrupted recovery metadata exceeds its bounded size.")
+        manifest = self._json(path)
+        provenance = original["provenance"]
+        expected_originals = {"manifest.json": provenance["raw_manifest_sha256"],
+            "oracle_predictions.jsonl": provenance["oracle_predictions_sha256"], "metrics.json": provenance["metrics_sha256"],
+            "short_qa_metrics.json": provenance["short_qa_metrics_sha256"]}
+        require(manifest.get("purpose") == "supplemental_oracle_runtime_recovery" and manifest.get("status") == "interrupted"
+                and manifest.get("primary_results_replaced") is False and manifest.get("original_records_unchanged") is True
+                and manifest.get("selection_used_correctness") is False and manifest.get("human_reviewed_data") is False
+                and manifest.get("protocol_sha256") == provenance["protocol_sha256"]
+                and manifest.get("configuration_sha256") == provenance["config_sha256"]
+                and manifest.get("original_files_sha256") == expected_originals
+                and manifest.get("oracle_questions") == 384 and manifest.get("selected_runtime_errors") == 319,
+                "Interrupted recovery differs from the preserved original final evidence.")
+        def bound(file, digest):
+            file = self._path(file)
+            self.watched.append(file)
+            require(re.fullmatch(r"[0-9a-f]{64}", str(digest)) is not None
+                    and hashlib.sha256(file.read_bytes()).hexdigest() == digest,
+                    "Interrupted recovery integrity failed: " + file.name)
+            return file
+        for name, digest in expected_originals.items():
+            bound(path.parent / "source" / name, digest)
+        declaration_path = bound(path.parent / "source/declaration.json", manifest["declaration_sha256"])
+        declaration = self._json(declaration_path)
+        require(declaration.get("purpose") == "frozen_oracle_runtime_recovery_declaration" and declaration.get("status") == "frozen"
+                and declaration.get("protocol_sha256") == provenance["protocol_sha256"]
+                and declaration.get("configuration_sha256") == provenance["config_sha256"]
+                and declaration.get("original_files_sha256") == expected_originals
+                and declaration.get("maximum_new_generation_calls") == 319 and declaration.get("passes") == 1
+                and declaration.get("primary_results_replaced") is False
+                and declaration.get("training_or_parameter_selection") is False
+                and declaration.get("supplement_source_sha256") == manifest["supplement_source_sha256"],
+                "Interrupted recovery lacks its fixed-configuration declaration.")
+        bound(declaration["supplement_source_path"], manifest["supplement_source_sha256"])
+        require(set(manifest["outputs_sha256"]) == {"recovery_predictions.jsonl", "combined_oracle_predictions.jsonl", "metrics.json", "short_qa_metrics.json"},
+                "Interrupted recovery output inventory is incomplete.")
+        for name, digest in manifest["outputs_sha256"].items():
+            bound(path.parent / name, digest)
+        ledger_path = self._path(declaration["ledger_path"])
+        self.watched.append(ledger_path)
+        ledger = self._json(ledger_path)
+        require(ledger.get("status") == "interrupted" and ledger.get("binding") == {
+            "declaration_sha256": manifest["declaration_sha256"], "protocol_sha256": provenance["protocol_sha256"],
+            "original_oracle_sha256": provenance["oracle_predictions_sha256"]},
+            "Interrupted recovery ledger differs from its declared original evidence.")
+        attempts = manifest.get("durable_attempt_reservations")
+        require(type(attempts) is int and 0 <= attempts <= 319, "Interrupted recovery attempt count is invalid.")
+        metrics = self._json(path.parent / "metrics.json")
+        require(metrics.get("original_denominator") == 384 and metrics.get("supplemental_records") == attempts
+                and metrics.get("not_attempted_selected_count") == manifest.get("not_attempted_selected_count") == 319 - attempts,
+                "Interrupted recovery must account for attempted and unattempted generations separately.")
+        failure = ledger.get("failure", {})
+        return {"status": "interrupted", "error": f"A supplemental process was attempted and interrupted after {attempts} of 319 durable generation reservations. No completed recovery measurement is available; all original oracle errors remain unchanged.",
+                "durable_attempt_reservations": attempts, "maximum_new_generation_calls": 319,
+                "failure_type": failure.get("type"), "failure_reason": failure.get("reason"),
+                "interrupted_manifest_sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+
+    def _validate_recovery(self, manifest, original):
+        require = self._require
+        require(manifest.get("schema_version") == 1 and manifest.get("purpose") == "supplemental_oracle_runtime_recovery"
+                and manifest.get("status") == "completed" and manifest.get("primary_results_replaced") is False
+                and manifest.get("review_policy") == "automated_final" and manifest.get("human_reviewed_data") is False
+                and manifest.get("original_records_unchanged") is True and manifest.get("selection_used_correctness") is False,
+                "Only completed, separately named runtime-recovery evidence is accepted.")
+        provenance = original["provenance"]
+        require(manifest.get("protocol_sha256") == provenance["protocol_sha256"]
+                and manifest.get("configuration_sha256") == provenance["config_sha256"]
+                and manifest.get("oracle_questions") == 384 and manifest.get("selected_runtime_errors") == 319
+                and manifest.get("maximum_new_generation_calls") == 319,
+                "Oracle recovery differs from the original frozen model configuration or cohort.")
+        def bound(value, digest):
+            path = self._path(value)
+            self.watched.append(path)
+            require(re.fullmatch(r"[0-9a-f]{64}", str(digest)) is not None,
+                    "Supplement evidence requires concrete SHA-256 identities.")
+            observed = hashlib.sha256()
+            with path.open("rb") as stream:
+                for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                    observed.update(chunk)
+            require(observed.hexdigest() == digest, "Oracle recovery integrity failed: " + path.name)
+            return path
+        raw = self._path(provenance["raw_manifest_path"])
+        expected_originals = {"manifest.json": provenance["raw_manifest_sha256"],
+            "oracle_predictions.jsonl": provenance["oracle_predictions_sha256"],
+            "metrics.json": provenance["metrics_sha256"], "short_qa_metrics.json": provenance["short_qa_metrics_sha256"]}
+        require(manifest.get("original_files_sha256") == expected_originals,
+                "Oracle recovery must preserve the exact original final evidence.")
+        for name, digest in expected_originals.items():
+            bound(raw.parent / name, digest)
+            bound(self.path.parent / "source" / name, digest)
+        declaration_path = bound(self.path.parent / "source/declaration.json", manifest["declaration_sha256"])
+        declaration = self._json(declaration_path)
+        require(declaration.get("purpose") == "frozen_oracle_runtime_recovery_declaration" and declaration.get("status") == "frozen"
+                and declaration.get("protocol_sha256") == provenance["protocol_sha256"]
+                and declaration.get("configuration_sha256") == provenance["config_sha256"]
+                and declaration.get("original_files_sha256") == expected_originals
+                and declaration.get("oracle_questions") == 384 and declaration.get("selected_questions") == 319
+                and declaration.get("maximum_new_generation_calls") == 319 and declaration.get("passes") == 1
+                and declaration.get("primary_results_replaced") is False and declaration.get("training_or_parameter_selection") is False
+                and declaration.get("successful_original_records_reexecuted") is False
+                and self._path(declaration["output_directory"]) == self.path.parent.resolve(),
+                "Oracle recovery declaration must retain the original cohort and finite status-only selection.")
+        selected = declaration["selected"]
+        require(isinstance(selected, list) and len(selected) == 319 and len({row["id"] for row in selected}) == 319
+                and all(row.get("population") in ("answer", "challenge") for row in selected),
+                "Oracle recovery selection contains duplicate or incompatible question identities.")
+        bound(declaration["supplement_source_path"], manifest["supplement_source_sha256"])
+        require(declaration.get("supplement_source_sha256") == manifest["supplement_source_sha256"],
+                "Oracle recovery source differs from its declaration.")
+        ledger_path = self._path(declaration["ledger_path"])
+        self.watched.append(ledger_path)
+        ledger = self._json(ledger_path)
+        require(ledger.get("status") == "completed" and ledger.get("result_manifest_sha256") == hashlib.sha256(self.path.read_bytes()).hexdigest()
+                and ledger.get("binding") == {"declaration_sha256": manifest["declaration_sha256"],
+                    "protocol_sha256": provenance["protocol_sha256"], "original_oracle_sha256": provenance["oracle_predictions_sha256"]},
+                "Oracle recovery is not sealed by its separate execution ledger.")
+        outputs = manifest["outputs_sha256"]
+        require(set(outputs) == {"recovery_predictions.jsonl", "combined_oracle_predictions.jsonl", "metrics.json", "short_qa_metrics.json"},
+                "Oracle recovery output inventory is incomplete.")
+        for name, digest in outputs.items():
+            bound(self.path.parent / name, digest)
+        metrics = self._json(self.path.parent / "metrics.json")
+        secondary = self._json(self.path.parent / "short_qa_metrics.json")
+        require(metrics.get("purpose") == "supplemental_oracle_runtime_recovery" and metrics.get("primary_results_replaced") is False
+                and metrics.get("original_denominator") == 384 and metrics.get("selected_runtime_error_count") == 319
+                and metrics.get("original_successful_or_other_unselected_records_preserved") == 65
+                and set(metrics["configurations"]) == {"oracle_answer"}
+                and secondary.get("purpose") == "supplemental_oracle_runtime_recovery_secondary"
+                and secondary.get("primary_results_replaced") is False,
+                "Recovery metrics must keep all original successes and a separate full-cohort denominator.")
+        for key in ("durable_attempt_reservations", "interrupted_reservation_count", "new_runtime_error_count", "not_attempted_selected_count"):
+            require(type(manifest.get(key)) is int and 0 <= manifest[key] <= 319,
+                    "Recovery attempt and failure counts must remain explicit and finite.")
+        require(manifest["durable_attempt_reservations"] == 319 and manifest["not_attempted_selected_count"] == 0
+                and metrics.get("supplemental_records") == 319
+                and all(metrics.get(key) == manifest[key] for key in ("interrupted_reservation_count", "new_runtime_error_count", "not_attempted_selected_count")),
+                "Completed recovery must account for every selected attempt, including interrupted reservations.")
+        expected_base = provenance["base_parameter_sha256"]
+        require(declaration.get("expected_base_parameter_fingerprint_sha256") == expected_base
+                and isinstance(manifest.get("sessions"), list) and bool(manifest["sessions"]),
+                "Recovery requires fixed base parameters and explicit process sessions.")
+        for session in manifest["sessions"]:
+            require(session.get("base_parameter_sha256_before") in (None, expected_base)
+                    and session.get("base_parameter_sha256_after") in (None, expected_base),
+                    "Recovery session parameters differ from the frozen base.")
+        require(manifest["sessions"][-1].get("base_parameter_sha256_before") == expected_base
+                and manifest["sessions"][-1].get("base_parameter_sha256_after") == expected_base,
+                "Completed recovery requires its own before/after base checks; these do not establish the lost original GPU state.")
+        def oracle_population(group, count):
+            require(group.get("question_count") == count and group.get("record_count") == count
+                    and set(group["configurations"]) == {"oracle_answer"}, "Recovery metrics lost oracle cohort observations.")
+            current = group["configurations"]["oracle_answer"]
+            require(current.get("count") == count and current.get("counts", {}).get("total") == count
+                    and current["counts"].get("missing_records") == 0, "Recovery metrics omitted nonanswers.")
+            result = {"configuration": "oracle_answer", "questions": count, "applicable_questions": count,
+                **{key: current[key] for key in ("accuracy", "coverage", "model_generated_answer_accuracy", "model_generated_answer_coverage",
+                    "baseline_correct_retention", "output_preservation", "retrieval_recall", "pending_review", "abstentions", "errors", "unavailable", "status_counts", "latency")},
+                "out_of_scope_accuracy": current["subsets"]["out_of_scope"]["accuracy"],
+                "false_application_rate": current["false_correction_application_rate"],
+                "p50_ms": current["latency"]["p50_ms"], "p95_ms": current["latency"]["p95_ms"]}
+            for style in ("direct", "paraphrase", "comparison", "challenge"):
+                result[style + "_accuracy"] = current["subsets"].get(style, {"accuracy": {"numerator": 0, "denominator": 0, "value": None}})["accuracy"]
+                self.rate(result[style + "_accuracy"])
+            require(sum(result[style + "_accuracy"]["denominator"] for style in ("direct", "paraphrase", "comparison", "challenge")) == count,
+                    "Recovery question-type populations must retain every oracle question.")
+            self._population(result, count, oracle=True)
+            return result
+        oracle = oracle_population(metrics, 384)
+        require(set(metrics["by_population"]) == {"answer", "challenge"}
+                and set(secondary["by_population"]) == {"answer", "challenge"}, "Recovery cohorts must remain separate.")
+        oracle["by_population"] = {name: oracle_population(metrics["by_population"][name], self.COUNTS[name]) for name in ("answer", "challenge")}
+        self._secondary(secondary["configurations"], 384, oracle=True)
+        for name in ("answer", "challenge"):
+            self._secondary(secondary["by_population"][name], self.COUNTS[name], oracle=True)
+        require(isinstance(manifest.get("limitations"), list) and bool(manifest["limitations"])
+                and all(isinstance(value, str) and bool(value.strip()) for value in manifest["limitations"]),
+                "Recovery limitations must remain explicit.")
+        return {**manifest, "oracle": oracle, "secondary_short_qa": secondary,
+                "provenance": {"manifest_sha256": hashlib.sha256(self.path.read_bytes()).hexdigest(),
+                    "manifest_path": str(self.path), "declaration_sha256": manifest["declaration_sha256"],
+                    "original_raw_manifest_sha256": provenance["raw_manifest_sha256"],
+                    "protocol_sha256": provenance["protocol_sha256"], "configuration_sha256": provenance["config_sha256"]}}
+
+    def snapshot(self, original):
+        with self.lock:
+            if original is None:
+                return None, {"status": "original_unavailable", "error": "Compatible original final evidence is required before a recovery supplement can be displayed."}
+            binding = (original["provenance"]["protocol_sha256"], original["provenance"]["config_sha256"], original["provenance"]["raw_manifest_sha256"])
+            if self.cached is None or self._signature() != self.signature or getattr(self, "original_binding", None) != binding:
+                interrupted_path = self.path.with_name("interrupted_manifest.json") if self.path else None
+                self.watched = [self.path, interrupted_path] if self.path else []
+                report, descriptor = None, {"status": "not_measured", "error": None}
+                if self.path and self.path.is_file():
+                    try:
+                        self._require(self.path.stat().st_size <= 2_000_000, "Oracle recovery manifest exceeds its bounded size.")
+                        report = self._validate_recovery(self._json(self.path), original)
+                        descriptor = {"status": "available", "error": None, "manifest_sha256": report["provenance"]["manifest_sha256"]}
+                    except Exception as exc:
+                        report, descriptor = None, {"status": "invalid", "error": str(exc)}
+                elif interrupted_path and interrupted_path.is_file():
+                    try:
+                        descriptor = self._interrupted(interrupted_path, original)
+                    except Exception as exc:
+                        descriptor = {"status": "invalid", "error": str(exc)}
+                self.cached, self.signature, self.original_binding = (report, descriptor), self._signature(), binding
+            return copy.deepcopy(self.cached)
+
+
+def create_app(db_path=None, admin_token=None, comparison_runner=None, inference_config=None, evaluation_report=None,
+               final_evaluation_report=None, oracle_recovery_report=None):
     token = admin_token or os.environ.get("EDITGUARD_ADMIN_TOKEN", "local-demo-only")
     path = Path(db_path or os.environ.get("EDITGUARD_DB", "runtime/editguard.sqlite3"))
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -410,6 +958,10 @@ def create_app(db_path=None, admin_token=None, comparison_runner=None, inference
     config_path = inference_config or os.environ.get("EDITGUARD_INFERENCE_CONFIG")
     artifact_status = ArtifactStatusCache(config_path)
     report_status = DevelopmentReportCache(evaluation_report or os.environ.get("EDITGUARD_EVALUATION_REPORT"))
+    final_report_status = FinalReportCache(final_evaluation_report or os.environ.get("EDITGUARD_FINAL_EVALUATION_REPORT")
+                                         or Path(__file__).resolve().parents[1] / "reports/final/summary.json")
+    oracle_recovery_status = OracleRecoveryReportCache(oracle_recovery_report or os.environ.get("EDITGUARD_ORACLE_RECOVERY_REPORT")
+        or Path(__file__).resolve().parents[1] / "reports/final/oracle-runtime-recovery/manifest.json")
     runner_validated = False
     load_error = None
     loaded_config_sha256 = None
@@ -514,8 +1066,11 @@ def create_app(db_path=None, admin_token=None, comparison_runner=None, inference
     @app.get("/api/health")
     def health():
         metadata = readiness()
+        _, final_descriptor = final_report_status.snapshot(metadata)
         return {"status": "ok", "revision": store.revision(), **metadata,
-                "answer_mode": "deterministic_structured", "final_evaluation": "pending"}
+                "answer_mode": "deterministic_structured",
+                "final_evaluation": "pending" if final_descriptor["status"] == "not_measured" else final_descriptor["status"],
+                "final_report": final_descriptor}
 
     @app.get("/api/facts")
     def facts():
@@ -579,7 +1134,36 @@ def create_app(db_path=None, admin_token=None, comparison_runner=None, inference
         model_status = health()
         report, descriptor = report_status.snapshot(model_status)
         return {**run_slice_regression(), "revision": store.revision(), "model_readiness": model_status,
-                "ml_results": report, "ml_report": descriptor, "final_evaluation": "pending"}
+                "ml_results": report, "ml_report": descriptor, "final_evaluation": model_status["final_evaluation"]}
+
+    @app.get("/api/evaluation/final")
+    def final_evaluation():
+        metadata = readiness()
+        report, descriptor = final_report_status.snapshot(metadata)
+        return {"status": descriptor["status"], "report": report, "descriptor": descriptor,
+                "disclaimer": "Recorded frozen test evidence only. This read does not execute inference or training. Labels and challenge wording received automated review; no independent human review is claimed."}
+
+    @app.get("/api/evaluation/final/export/{kind}")
+    def final_export(kind: str):
+        if kind not in ("summary", "csv"):
+            raise HTTPException(404, "Unknown final export.")
+        report, descriptor = final_report_status.snapshot(readiness())
+        if report is None:
+            raise HTTPException(409, descriptor.get("error") or "Completed compatible final evidence is not available.")
+        if kind == "summary":
+            return FileResponse(final_report_status.path, media_type="application/json", filename="editguard-final-summary.json")
+        if not report.get("csv_export"):
+            raise HTTPException(404, "No final CSV export is recorded.")
+        return FileResponse(final_report_status._path(report["csv_export"]["path"]), media_type="text/csv",
+                            filename="editguard-final-metrics.csv")
+
+    @app.get("/api/evaluation/final/oracle-recovery")
+    def oracle_recovery():
+        original, original_descriptor = final_report_status.snapshot(readiness())
+        report, descriptor = oracle_recovery_status.snapshot(original)
+        return {"status": descriptor["status"], "report": report, "descriptor": descriptor,
+                "original_final_report": original_descriptor,
+                "disclaimer": "Separately named fixed-configuration operational supplement. Original final scores and oracle runtime errors remain unchanged. Reading this endpoint does not execute inference or training."}
 
     @app.get("/api/export")
     def export():

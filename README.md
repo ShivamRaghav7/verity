@@ -1,113 +1,110 @@
 # EditGuard
 
 **A SERAC-inspired knowledge editing and verification platform for bounded AI
-customer support.** Registered research topic: Knowledge Editing.
+customer support.** Registered topic: Knowledge Editing.
 
-EditGuard targets support answers that become outdated when product limits or
-policies change. An administrator publishes a precise correction; the system
-must apply it within the right product, property, plan, version and date scope,
-preserve unrelated facts, expose provenance, resolve conflicts and support rollback.
+When a product limit changes, an administrator approves a precise correction.
+EditGuard stores its scope, source and history, routes relevant questions to a
+trained answer model, preserves neighboring facts, exposes conflicts and supports
+rollback. New approved corrections update memory without per-edit retraining.
+The base assistant's saved weights remain frozen.
 
-## Current implementation
+The application uses a controlled fictional support catalogue. It is a learned
+editing project with real trained models and measured limitations, not evidence
+of production or unrestricted-language reliability.
 
-The first complete **engineering vertical slice** is runnable: customer questions,
-before/after comparison, authenticated draft creation and approval, scoped fact
-resolution, history, conflict resolution, rollback and JSON export. The application
-uses a curated fictional Nimbus handbook. The dataset and products are controlled
-demonstrations, not claims about real companies.
+## Measured project status
 
-**Both selected auxiliary revisions are trained, audited and evaluated.** The
-learned configuration uses the final entity-neutral scope classifier and the
-first answer-polarity revision. Both have validation-selected local exports and
-recorded artifact identities; the independent artifact audit passes 986 checks.
-Structured answers remain the default. Optional neural modes implement the
-unchanged base, properly updated RAG, prompt-only correction, similarity editor
-and trained scope editor. Missing or invalid required artifacts return HTTP 503.
-Model binaries are local ignored artifacts; Git contains their configuration,
-recorded identities and reproduction tooling. A clean checkout needs verified
-exports or reproduced training to enable learned inference.
+Both auxiliary models are trained, independently artifact-audited and integrated:
+DistilBERT scope classifier `pilot-v3-neutral2` and FLAN-T5-small answer model
+`pilot-v2-polarity1`. The audit passes 986 integrity/state checks. Source, run
+cards, reviews, checkpoint identities and saved local exports are recorded.
+Structured database answers remain separately labeled from model generation.
 
-On the same 120 pilot-v3 validation pairs, raw scope accuracy at 0.5 improves
-from 98/120 for revision 1 to 119/120 for the selected revision, with reproduced
-classification NLL 0.04326. Deterministic compatibility guards and the selected
-policy apply 48/48 appropriate corrections, falsely apply 0/72 negatives and
-clarify one question. These are selection-data routing metrics, separate from
-generated-answer accuracy. Validation contains only two held-out entity families
-with shared wording templates; abstraction produces eight identical same-label
-inputs across training and validation. No unseen-wording guarantee follows.
+The frozen matched final comparison contains 4,080 observations over 720 standard
+held-out questions and 96 agent-authored challenges. It completed with 4,009
+answers, 71 clarifications and zero runtime errors. Updated baselines receive the
+same approved corrections and supporting information.
 
-With the selected scope held fixed, the answer revision improves full-fact
-oracle credit from 31/48 to 34/48, but still fails seven of twelve negative
-comparisons. Its comparable token losses became worse. End-to-end full-fact
-credit is 34/120; short baseline fragments remain pending, so zero baseline
-primary credit does not mean zero factual correctness. The separate exploratory
-short-QA diagnostic credits updated RAG on 91/120 and the trained editor on
-86/120. RAG remains strongest on that diagnostic; no superiority is claimed.
-All these results use automated development review and the same versioned
-scorer. [Selected revision evidence and limitations](docs/TARGETED_REVISION_RESULTS.md)
-disclose matched controls, scoring changes, denominators and residual failures.
+| Configuration | Frozen standard request-bound QA | Correct / all 720 |
+|---|---:|---:|
+| Unchanged base | 69.44% | 500/720 |
+| Properly updated RAG | 90.14% | 649/720 |
+| Prompt-only correction | 74.03% | 533/720 |
+| Similarity editor | 87.78% | 632/720 |
+| Trained scope editor | 85.14% | 613/720 |
 
-The editor wraps a frozen retrieval-based assistant with approved memory,
-a trained pair scope classifier and a trained edit-conditioned seq2seq generator.
-Adding an approved correction will update memory without per-edit retraining.
-[Architecture and adaptations](docs/ARCHITECTURE.md) explain why this is
-SERAC-inspired rather than a faithful reproduction.
+These are controlled short-answer results using frozen request-bound rules;
+pending cases and clarifications remain uncredited in the denominator. The
+trained editor has 23 standard clarifications and 33 additional pending responses.
+Updated RAG leads overall: editor minus RAG is -5.00 percentage points, paired
+95% family-cluster interval [-6.67, -3.06]. The editor answers all 72 direct
+applicable questions correctly, but gets 39/72 template paraphrases and 97/144
+comparisons correct. Neither direct success nor low training loss implies
+general reasoning reliability.
 
-[ML setup](docs/ML_SETUP.md), [matched comparisons](docs/COMPARISONS.md),
-[trainer and resume](docs/TRAINER.md), [scoring rules](docs/SCORER.md) and
-[data review](docs/DATA_REVIEW.md) document the reproducible pipeline.
-The finite pilot contains 360 scope and 144 answer examples across disjoint
-training/validation families and no test partition. All 504 labels received an
-independent **automated development review**, followed by integrity and target
-checks. The separate registry records 504 accepted and zero flagged; no human
-approval is claimed. Immutable source rows retain their pending
-human-review flags. Pilot-v3 received fresh hash-bound decisions for all 504 rows.
-[Per-row evidence](reports/pilot-v3-independent-review.json) and the
-[data-review guide](docs/DATA_REVIEW.md) expose the review provenance.
+Raw final scope accuracy is 701/720, precision 288/307 and recall 288/288. Runtime
+observes zero false edit applications in 432 out-of-scope cases, with deterministic
+eligibility guards and a coverage cost. Scope preprocessing creates nine same-label
+test inputs also present in training; the other 711 obtain 692/711 raw accuracy.
+Raw entities and lineages remain disjoint, but templates are shared. Labels have
+explicit automated review, with no human-review or human-authored-challenge claim.
 
-[Training results](docs/PILOT_TRAINING_RESULTS.md),
-[validation and failure analysis](docs/PILOT_VALIDATION_RESULTS.md) and
-[exploratory short QA](docs/SHORT_QA.md) disclose denominators, limitations and
-all five archived initial comparisons. [Pilot-v3 results](docs/PILOT_V3_RESULTS.md)
-record completed scope training, the shared-input comparison, the correction to
-calibration selection, all five end-to-end configurations and remaining failures.
-The scope revision preserves facts, splits and all 504 rows. Its
-[completed training guide](docs/SCOPE_REVISION_TRAINING.md) remains a historical
-run record. The completed answer-polarity experiment uses the
-[documented objective](docs/ANSWER_OBJECTIVE.md).
-Neither a low loss nor passing workflow tests establishes reliable new-entity
-routing: a subsequent isolated Nimbus workflow returned stale `5` after an
-approved device-limit correction to `3`; a device paraphrase returned its price
-and both capacity comparisons clarified. The 31/31 governance/integration checks
-passed, but those handpicked cases are not a representative accuracy estimate.
-[The complete recorded workflow](reports/pilot-v3-learned-workflow.json) preserves
-the actual model outputs and separate oracle probes.
+The 96 challenges expose a limitation: learned runtime answers 48 and clarifies
+48; its raw scope recall falls to 72/96. Their wording is unsupported by the frozen
+request-bound scorer. Zero secondary credit there does not mean every generated
+answer is wrong. The primary complete-assertion scorer also leaves many fragments
+pending; its zero credit for RAG/base responses must not be called zero factual
+accuracy or evidence of learned superiority.
 
-This finding motivated the **completed second and final scope revision**.
-Its `entity_neutral_v1` preprocessing replaces
-correction-referenced product/alias, plan and version selectors with consistent
-phrases while retaining relation, values and units. Original metadata continues
-to govern approval, compatibility, dates and provenance. It keeps the same
-pilot-v3 rows and reviews, 360-step cap, backbone, seed and learning rate. The
-separate answer revision keeps the same v2 inputs and 240-step cap. **Both user
-runs completed and their selected exports passed independent integrity checks.** Their
-[released run guide](docs/ANSWER_REVISION_TRAINING.md) provides the concrete
-questions, hash-bound inputs, measured resource estimates, expected artifacts,
-finite caps and exact-state recovery. No further training is planned for this release.
-An archived [initial learned-workflow check](docs/LEARNED_WORKFLOW.md) also exposed a
-same-product/different-property false application: a device correction was used
-for Nimbus's price. That record uses the initial scope artifact and is not a new
-v3 regression result. Workflow consistency checks do not imply answer correctness.
+The **original oracle measurement is incomplete**: 65/384 answers and 319 CUDA
+runtime errors; primary credit is 45/384 with all errors retained. A separately
+declared recovery attempt stopped before any new generation because CUDA is
+unavailable. All 319 selected cases remain not attempted. No recovered accuracy
+is claimed. The failed original GPU instance's final fingerprint is unavailable;
+fresh-process file/weight checks do not reconstruct that state.
 
-![Scope models evaluated on the same balanced pilot-v3 pairs](reports/targeted-figures/scope-neutral-diagnosis.png)
+See [final results, denominators and execution disclosures](docs/FINAL_EVALUATION.md),
+[machine-readable summary](reports/final/summary.json),
+[results CSV](reports/final/results.csv),
+[paired uncertainty](reports/final/secondary-paired-uncertainty.json) and
+[scientific figures](reports/final/figures-v2/manifest.json).
+The [13-page report PDF](output/pdf/EditGuard-Report.pdf) is rendered and visually
+checked; the dashboard and byte-identical JSON/CSV downloads are verified.
+Release regressions pass 511 tests with 18 explicit optional skips; a separate
+34-test synthetic CPU numeric/checkpoint suite passes. Release CI checks regression,
+CPU optimizer recovery and container restart. The hardware-dependent measurement
+follow-up remains stage H work. GPU availability blocks oracle recovery and fresh learned-HTTP
+measurement. Other release work continues; no further model search is planned.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Admin[Administrator approval] --> Memory[(Versioned correction memory)]
+    Q[Question and selected scope] --> Guard[Identity, plan, version, date and conflict guards]
+    Memory --> Guard
+    Guard --> Retrieve[Embedding candidate retrieval]
+    Retrieve --> Scope[Trained DistilBERT applicability classifier]
+    Scope -->|applicable| Answer[Trained edit-conditioned FLAN-T5-small]
+    Scope -->|not applicable| Base[Frozen initial-handbook assistant]
+    Scope -->|uncertain| Clarify[Clarification]
+    Answer --> Result[Answer kind, source, history and routing evidence]
+    Base --> Result
+```
+
+FastAPI/Pydantic, SQLite and same-origin HTML/CSS/JavaScript provide the app.
+PyTorch/Transformers run the two auxiliaries, a frozen FLAN-T5-small base and
+frozen MiniLM embeddings. Matplotlib generates the figures. There is no separate
+vector database, queue or experiment server. This is **SERAC-inspired**; the
+[architecture](docs/ARCHITECTURE.md) documents adaptations to the
+[original paper](https://proceedings.mlr.press/v162/mitchell22a/mitchell22a.pdf).
 
 ## Run locally
 
-Python 3.12+; the application was tested here with Python 3.14.3 on Windows.
-No Node installation, GPU, model download, API key or frontend build is needed
-for the first workflow. Production ML dependencies are kept separate.
-
-Windows PowerShell:
+Python 3.12+; tested locally with Python 3.14.3 on Windows. The structured
+workflow requires no GPU, model download, API key, Node installation or frontend
+build. From the repository root in PowerShell:
 
 ```powershell
 python -m venv .venv
@@ -126,137 +123,83 @@ export EDITGUARD_ADMIN_TOKEN='replace-with-your-local-admin-token'
 ```
 
 Open [the application](http://127.0.0.1:8000) or
-[interactive API documentation](http://127.0.0.1:8000/docs).
-Enter the administrator token in the Correction editor to enable mutation requests.
-If no token is configured, the **localhost-only demo default** is `local-demo-only`.
-The shared token is a demonstration boundary, not production identity management.
+[interactive API documentation](http://127.0.0.1:8000/docs). Enter the administrator
+token in Corrections to authorize mutations. The localhost demonstration default
+is `local-demo-only` when no token is configured. The shared token is a demo
+boundary; public deployment needs proper identity management.
 
-SQLite data persists at `runtime/editguard.sqlite3`. Restarting is idempotent;
-seeding never reactivates withdrawn corrections. No answer cache is used, and
-revision-consistent snapshots keep responses and exports coherent with history.
-Server binds to localhost; public deployment requires proper authentication.
+SQLite persists at `runtime/editguard.sqlite3`. Seeding never reactivates withdrawn
+edits. Transactional snapshots and revision changes keep facts and history
+consistent. Customer messages cannot become approved corrections. Do not delete
+the database to repeat a panel workflow; use the isolated setup in
+[DEMO.md](docs/DEMO.md).
 
-With the isolated [ML environment](docs/ML_SETUP.md), cached pinned backbones and
-verified selected local scope and answer exports present, start the optional learned application:
+## Optional learned application
+
+Use the separate [ML environment](docs/ML_SETUP.md), cached pinned backbones and
+the two verified saved local exports. Model binaries are ignored by Git; a clean
+checkout needs those verified exports or reproduced training. Missing/invalid
+artifacts return HTTP 503, rather than silently substituting structured answers.
 
 ```powershell
+$env:HF_HOME = (Resolve-Path runtime/hf-cache).Path
+$env:HF_HUB_OFFLINE = '1'
 $env:EDITGUARD_INFERENCE_CONFIG = 'configs/inference-final.json'
 $env:EDITGUARD_EVALUATION_REPORT = 'reports/targeted-selected-development-evaluation.json'
+$env:EDITGUARD_FINAL_EVALUATION_REPORT = 'reports/final/summary.json'
 .\.venv-ml\Scripts\python.exe -m editguard
 ```
 
-The Evaluation lab loads recorded validation diagnostics alongside a separate
-deterministic regression. It performs no training or model evaluation on refresh.
-It shows checkpoint selection, automated-review provenance, full denominators,
-pending fragments, calibration, oracle answers, matched configurations and
-exportable evidence. Retrieved sources do not verify generated prose.
+The selected configuration uses CUDA. The current host reports no available CUDA
+GPU after the evaluation incident, so fresh learned requests and measurements
+require restored GPU availability. The structured app and recorded-results
+dashboard remain usable. Changing the frozen configuration to CPU would define a
+separate measurement and is not silently done to fill missing GPU results.
+
+The Evaluation lab displays recorded development/final artifacts, review policy,
+coverage, pending cases, raw scope/calibration, oracle errors, latency and exports.
+Refreshing it does not train or reevaluate models. Retrieved sources are supporting
+facts, not verification of arbitrary generated prose.
 
 ## Panel demonstration
 
-1. Select Nimbus / Basic / v2 and date 2026-10-11. Ask “How many devices does Basic
-   support?” The original value is five.
-2. In Corrections select the device fact, original value `5`, corrected value `3`,
-   effective date `2026-10-01`, and source “Fictional release notice EG-001”. Save
-   a draft, inspect it, then explicitly approve it from History.
-3. Ask the direct question and “What is Basic's device limit?”. Ask “Can I connect
-   four devices on Basic?”. Structured answers show three and “No”, with provenance.
-4. Ask Basic's monthly price, switch to Pro's devices, then Basic v1. They retain
-   nine USD/month, twelve devices and five devices respectively. Set date before
-   the correction to observe the initial value in v2.
-5. Save an overlapping competing draft using original `3`, corrected `4`, same
-   scope/date, without supersession. Approval is rejected; the affected question
-   exposes the conflict. Withdraw the competing draft in Conflicts.
-6. Withdraw the approved edit in History. Basic v2 returns to five devices; audit
-   events remain. A withdrawn edit is immutable; a new reviewed draft can restore it.
+Follow [the six-part demonstration](docs/DEMO.md): original value → approved
+correction → direct/paraphrase/comparison → unaffected neighboring facts → explicit
+conflict → rollback. Present the deterministic structured workflow first and name
+it clearly. Then show the trained configuration, recorded measured results and
+actual failures. A correct database answer is never counted as neural generation.
 
-Supported structured grammar intentionally covers short factual questions and
-“Can I connect four devices on Basic?”. Unsupported wording, unknown tiers,
-comparative capacity phrases and ambiguous scopes clarify. General natural-language
-capability is limited by the measured pilot results; it is not inferred from this
-structured demonstration. Switch answer modes to inspect real generated outputs
-and their routing, including documented scope and comparison-polarity failures.
-
-## Tests and reproducibility
+## Reproducibility and tests
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 node --check editguard/static/app.js
-.\.venv\Scripts\python.exe scripts/prepare_data.py --output data/generated/controlled-v2
 ```
 
-GitHub Actions defines the Python regression suite, JS syntax check, a separate
-CPU optimizer/resume regression job and a Docker workflow/restart verification job.
-The optimizer job uses tiny synthetic models without pretrained downloads.
-GPU backbone smoke remains a separate local check. Tests cover
-authority, exact scope, historical dates, half-open intervals, conflicting drafts,
-supersession, rollback, persistence, concurrent revisions, API token checks,
-leakage constraints and hash-bound review/freeze gates. The dashboard runs an
-isolated engineering fixture and never mutates live memory. Its optional ML
-summary is read-only recorded validation evidence, separate from those checks.
+GitHub Actions defines three jobs: Python/JS regression, CPU optimizer/resume
+regression with tiny synthetic models, and Docker workflow/restart verification.
+The latest release-head outcome must be checked before claiming release CI passes.
+Tests cover approval authority, exact scope, conflict/supersession, historical
+dates, rollback/persistence, concurrent revisions, API boundaries, dataset splits,
+hash-bound training/final gates, resume and fixed-denominator scoring. Local
+structured deployment previously passed 23/23 HTTP lifecycle and 3/3 restart
+checks; that evidence does not establish neural GPU deployment.
 
-The independent data pipeline starts with 80 fictional entity families, 4,800 scope
-pairs and 1,920 short answer examples. It splits
-families before augmentation, keeps all variants together, and generates a human
-review queue. Training rejects unresolved or stale review records and defaults to
-human review. The explicitly selected `automated_development` policy preserves
-machine-review provenance in development runs. The user has now authorized a
-separate independent automated final audit, which will be disclosed as machine
-review, followed by a hash freeze before final inference. No human approval is
-claimed. Generated labels are not automatically accepted as truth.
-[Dataset card](docs/DATASET_CARD.md) describes counts, provenance and limitations.
+The models actually train on four families (240 scope / 96 answer examples) and
+validate on two others (120 / 48). The full original 80-family catalogue is not
+all used for training. Family assignment precedes augmentation; variants remain
+together. The final 12-family packet is training-ineligible and locked to selected
+models, calibrations, source and scoring hashes. No final result was used to tune
+them. [Dataset card](docs/DATASET_CARD.md), [model card](docs/MODEL_CARD.md) and
+[final methods](docs/FINAL_EVALUATION.md) describe exact reconstruction and limits.
 
-## Training and evaluation stages
-
-The observed host has an RTX 4050 Laptop GPU with 6 GB VRAM, 23.71 GiB RAM and
-12 logical CPU threads. [Hardware inventory](reports/hardware.json) records the
-actual inspected environment. The initial DistilBERT and FLAN-T5-small profiles
-passed at batch size 2, with peak GPU allocation of 1.27 and 1.46 GiB respectively.
-Profiling does not create a trained checkpoint. See the exact shapes, revisions and
-limitations in [profiling evidence](docs/PROFILING.md).
-
-`scripts/profile_models.py` profiles at most ten optimizer steps with bounded
-batch/length settings; defaults require cached weights. It writes timing, peak
-CUDA memory, package versions and model revision. It never reads the test set.
-The first measured profile uses the existing host ML installation, separately
-from the isolated application environment; full training must use its own pinned
-environment and data/config hashes.
-
-[Training preflight](docs/TRAINING_PREFLIGHT.md) validates reviewed inputs and
-finite run cards. The separate [trainer](docs/TRAINER.md) implements training and
-checkpoint restoration; preflight alone does not verify a completed training run.
-
-[Initial pilot training instructions](docs/PILOT_TRAINING.md) provide the concrete
-questions, reviewed inputs, measurements, conditional runtime/memory estimates,
-artifacts and exact-resume rules. Those initial user-executed runs completed at
-360 scope updates and 240 answer updates; selected checkpoints are steps 120 and
-240 respectively. [Actual training measurements](docs/PILOT_TRAINING_RESULTS.md)
-replace the planning estimates for these runs. The user also completed all 360
-scope-v3 updates, selecting step 360; its validation loss was independently
-reproduced from the exported model. Four-step profiles remain ineligible as
-trained deployment artifacts. Exact original trainer sources are preserved from
-Git commit `350db38` in [the source archive](reports/training-source-v1/manifest.json).
-
-The released final scope revision completed 360 updates; the answer revision
-completed 240 updates. Their selected checkpoints are at those final steps.
-Actual training-loop times were 112.55 and 264.54 seconds respectively; full
-command startup/export time was not measured. The
-[completed run guide](docs/ANSWER_REVISION_TRAINING.md) retains their original
-questions, source-bound profiles, finite stopping conditions and recovery rules.
-[Selected results](docs/TARGETED_REVISION_RESULTS.md) disclose answer loss
-regressions as well as routing and generated-answer improvements. No further
-training or model search is planned for this release.
-
-[Measured embedding-baseline curves](docs/SIMILARITY_RESULTS.md) show raw and
-compatibility-gated behavior on 120 development validation pairs, with explicit
-denominators and the missed question. They are threshold-selection evidence,
-not final-test or generated-answer performance.
-
-The five comparison configurations are unchanged base, properly updated RAG,
-prompt-only corrections, embedding retrieval corrections and trained scope-aware
-editing. All updated baselines receive the same approved memory and context.
-[Evaluation protocol](docs/EVALUATION_PROTOCOL.md) separates retrieval, raw scope,
-oracle-routed generation and end-to-end quality, keeps abstentions in denominators,
-and scores subject, relation, endorsed value and polarity. No LLM-only judge is used.
+Both selected user-executed training runs used finite caps: 360 scope and 240
+answer updates. Recorded loops took 112.55 s and 264.54 s on the inspected RTX
+4050 laptop; peak allocated GPU memory was 1.318 and 1.504 GiB. Full-command
+startup/export times were not measured. The [completed run guide](docs/ANSWER_REVISION_TRAINING.md)
+preserves profiled estimates, expected artifacts and exact-state recovery. These
+measurements are not promises for another machine. Historical
+[development evidence](docs/TARGETED_REVISION_RESULTS.md) remains archived.
 
 ## Container
 
@@ -265,36 +208,22 @@ $env:EDITGUARD_ADMIN_TOKEN = 'replace-with-your-admin-token'
 docker compose up --build
 ```
 
-The container runs the same structured application as a nonroot user, with a
-persistent SQLite volume and localhost port mapping. Container definitions are
-provided; a Docker build is not claimed unless recorded in verification evidence.
-GPU training stays outside this lightweight application image.
-
-The structured image was built and verified locally with Docker 29.2.1,
-Python 3.12.15 and UID 1000. All 23 isolated HTTP lifecycle checks passed, as did
-three restart/persistence checks. The verification container is stopped; its
-dedicated volume and image remain available. [Deployment evidence and reproduction](docs/DEPLOYMENT.md)
-distinguish this structured image from optional local neural inference.
+The lightweight nonroot image runs the structured app with a persistent SQLite
+volume and loopback port mapping. It does not contain auxiliary weights or a
+neural GPU environment. [Deployment evidence](docs/DEPLOYMENT.md) records the
+actual local image, isolated lifecycle checks and restart verification. Optional
+local learned inference is a separate deployment path.
 
 ## Project records
 
-- [Five-person roles and finite A–H milestones](docs/PROJECT_PLAN.md)
-- [Architecture](docs/ARCHITECTURE.md) and [interface contract](docs/IMPLEMENTATION_CONTRACT.md)
-- [API behavior](docs/API.md)
-- [Dataset card](docs/DATASET_CARD.md) and [model card](docs/MODEL_CARD.md)
-- [Evaluation protocol](docs/EVALUATION_PROTOCOL.md)
-- [Failure analysis](docs/FAILURE_ANALYSIS.md) and [interim report](docs/REPORT.md)
-- [Measured profiling](docs/PROFILING.md) and [structured HTTP samples](reports/structured-http.json)
+- [Five-person responsibilities and finite A–H status](docs/PROJECT_PLAN.md)
+- [Architecture](docs/ARCHITECTURE.md), [API](docs/API.md) and [interface contract](docs/IMPLEMENTATION_CONTRACT.md)
+- [Dataset card](docs/DATASET_CARD.md), [model card](docs/MODEL_CARD.md) and [failure analysis](docs/FAILURE_ANALYSIS.md)
+- [Final evaluation](docs/FINAL_EVALUATION.md), [report source](docs/REPORT.md) and [panel demo](docs/DEMO.md)
+- [Training/resume implementation](docs/TRAINER.md), [scoring rules](docs/SCORER.md) and [archived initial training](docs/PILOT_TRAINING_RESULTS.md)
 
-Stages A/B and the baseline harness are implemented. D/E have completed their
-selected scope and answer revisions and matched development controls. F
-integrates learned inference, recorded validation and distinct answer kinds.
-Stage G now fixes the selected configuration/scorer, completes the separately
-disclosed independent automated test/challenge audit and hash freeze, then runs
-one final five-way evaluation. H
-finishes the report, graphs, demonstration and clean-checkout deployment/CI
-verification. Scope revision 2 is the final scope experiment; the selected first
-answer revision closes training for this release. No open-ended search, added
-catalogue scale or extra backbone is planned.
-Resume claims can describe the models trained and five configurations evaluated;
-final-test or superiority claims require their corresponding frozen evidence.
+Resume claims can describe a transactional support knowledge editor, two trained
+auxiliaries, five fair held-out comparisons and a containerized structured app.
+Any numerical claim must name its measured population and metric. Do not claim
+100% natural-language accuracy, learned superiority over updated RAG, complete
+oracle recovery, independent human review or completed GPU deployment.

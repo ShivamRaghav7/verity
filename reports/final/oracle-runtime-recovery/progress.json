@@ -1,0 +1,31 @@
+{
+  "binding": {
+    "declaration_sha256": "fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355",
+    "original_oracle_sha256": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "committed_observation_count": 0,
+  "failure": {
+    "at": "2026-10-15T04:47:14.111896+00:00",
+    "reason": "No CUDA GPUs are available",
+    "type": "RuntimeError"
+  },
+  "last_observation_sha256": null,
+  "next_index": 0,
+  "sessions": [
+    {
+      "base_parameter_sha256_after": null,
+      "base_parameter_sha256_before": null,
+      "failure": {
+        "at": "2026-10-15T04:47:14.111896+00:00",
+        "reason": "No CUDA GPUs are available",
+        "type": "RuntimeError"
+      },
+      "fingerprint_after_status": "unavailable_for_this_interrupted_session",
+      "resume": false,
+      "started_at": "2026-10-15T04:46:48.218372+00:00",
+      "starting_index": 0
+    }
+  ],
+  "status": "interrupted"
+}

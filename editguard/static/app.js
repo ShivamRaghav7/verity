@@ -2,7 +2,7 @@
 
 (() => {
   const byId = id => document.getElementById(id);
-  const state = { facts: [], edits: [], events: [], conflicts: [], revision: null, health: null, mlReport: null, initialized: false, busy: false, lastAnswerRevision: null };
+  const state = { facts: [], edits: [], events: [], conflicts: [], revision: null, health: null, mlReport: null, finalReport: null, initialized: false, busy: false, lastAnswerRevision: null };
   const viewNames = { assistant: "SUPPORT ASSISTANT", corrections: "CORRECTION EDITOR", history: "VERSION HISTORY", conflicts: "RESOLVE CONFLICTS", evaluation: "EVALUATION LAB" };
   const relationNames = { device_limit: "Device limit", price_monthly: "Monthly price", storage_gb: "Storage allowance", support_hours: "Support hours" };
   const modeNames = { structured: "Structured facts", unchanged_base: "Frozen initial handbook", updated_rag: "Updated RAG", prompt_only: "Correction prompt", similarity_editor: "Similarity editor", learned: "Learned scope editor", trained_scope_editor: "Learned scope editor" };
@@ -162,11 +162,14 @@
       byId(`${task}-model-description`).textContent = trainingSummary(models[task]);
     }
     const trained = [models.scope, models.answer].every(model => model?.status === "trained");
-    byId("model-stage-title").textContent = trained ? "Trained pilot models · final test pending" : "Structured workflow · optional local models";
+    const finalAvailable = health?.final_evaluation === "available";
+    byId("final-stage-state").textContent = finalAvailable ? "Completed & bound" : health?.final_evaluation === "invalid" || health?.final_evaluation === "incompatible" ? "Evidence unavailable" : "Pending";
+    byId("final-stage-description").textContent = finalAvailable ? "Recorded final evidence matches this configuration. Load results to inspect held-out cohorts, scoring rules and limitations." : "Validation diagnostics remain separate from matched baselines on frozen test data and paired uncertainty.";
+    byId("model-stage-title").textContent = trained ? finalAvailable ? "Trained auxiliary models · frozen test evaluated" : "Trained pilot models · final test pending" : "Structured workflow · optional local models";
     byId("model-stage-description").textContent = trained ?
-      `Scope and answer artifacts are validated. ${[models.scope, models.answer].some(model => model.review_policy === "automated_development") ? "Training used automated development review; no human-reviewed training claim. " : ""}Neural inference: ${readable(health.neural_inference)}. Generated answers may be incorrect; final frozen-test evaluation remains pending.` :
+      `Scope and answer artifacts are validated. ${[models.scope, models.answer].some(model => model.review_policy === "automated_development") ? "Training used automated development review; no human-reviewed training claim. " : ""}Neural inference: ${readable(health.neural_inference)}. ${finalAvailable ? "Recorded final results are available in the evaluation lab; generated answers may still be incorrect." : "Generated answers may be incorrect; final frozen-test evaluation remains pending."}` :
       `Neural inference: ${readable(health?.neural_inference || "status unavailable")}. Structured mode uses approved facts directly. Missing or invalid model dependencies remain explicit; final ML evaluation is pending.`;
-    byId("model-stage-status").textContent = trained ? "Pilot trained" : "Development";
+    byId("model-stage-status").textContent = finalAvailable ? "Final evidence" : trained ? "Pilot trained" : "Development";
     updateModeHint();
   }
   async function loadData(reportErrors = true) {
@@ -446,7 +449,7 @@
       description.textContent = descriptor.error || "No recorded ML validation report is configured. Trained checkpoint metadata does not establish answer accuracy; final evaluation remains pending.";
       return;
     }
-    description.textContent = `Automated development review; no human-reviewed training claim. ${report.questions} validation questions and ${report.oracle_questions} oracle-routed applicable questions. Frozen test data has not been evaluated.${descriptor.configuration_matches === false ? " The current inference settings differ from the recorded run; results describe that recorded configuration." : ""}`;
+    description.textContent = `Automated development review; no human-reviewed training claim. ${report.questions} validation questions and ${report.oracle_questions} oracle-routed applicable questions. These are model-selection diagnostics; final held-out evidence appears separately.${descriptor.configuration_matches === false ? " The current inference settings differ from the recorded run; results describe that recorded configuration." : ""}`;
     const population = byId("ml-population");
     population.replaceChildren(node("h3", "Recorded population & model identities"),
       node("p", `Dataset: ${report.dataset_id}`));
@@ -523,6 +526,131 @@
       model_artifacts: report.model_artifacts, scope_policy: report.scope_policy || null, review_policy: report.review_policy,
       human_reviewed_data: report.human_reviewed_data, test_rows_read: report.test_rows_read }, null, 2);
   }
+  function finalComparisonTable(primary, secondary) {
+    const wrapper = node("div", undefined, "evaluation-table-wrapper");
+    const table = node("table", undefined, "evaluation-table ml-comparison-table final-comparison-table");
+    const headings = node("tr");
+    ["Configuration", "Primary complete-fact accuracy", "Locked requested-QA accuracy", "Coverage", "Out-of-scope primary accuracy", "Baseline-correct primary retention", "Pending primary / QA", "Abstentions", "Errors / unavailable", "Route latency p50 / p95"].forEach(label => {
+      const cell = node("th", label); cell.scope = "col"; headings.append(cell);
+    });
+    const head = node("thead"); head.append(headings);
+    const body = node("tbody");
+    primary.configurations.forEach(item => {
+      const row = node("tr");
+      const name = node("th", modeNames[item.configuration] || readable(item.configuration)); name.scope = "row"; row.append(name);
+      const qa = secondary[item.configuration].all_requested_qa;
+      const qaRate = { numerator: qa.correct, denominator: qa.denominator, value: qa.accuracy_including_all_nonanswers_and_pending };
+      for (const rate of [item.accuracy, qaRate, item.coverage, item.out_of_scope_accuracy, item.baseline_correct_retention]) {
+        const cell = node("td");
+        cell.append(node("strong", rateLabel(rate)), node("small", ratePopulation(rate)));
+        if (rate.reason) cell.append(node("small", rate.reason));
+        row.append(cell);
+      }
+      row.append(node("td", `${item.pending_review} / ${qa.pending_uncredited} (each of ${item.questions})`),
+        node("td", `${item.abstentions} / ${item.questions}`), node("td", `${item.errors} / ${item.unavailable} (each of ${item.questions})`),
+        node("td", item.p50_ms === null || item.p95_ms === null ? "Unavailable" : `${item.p50_ms.toFixed(1)} / ${item.p95_ms.toFixed(1)} ms`));
+      body.append(row);
+    });
+    table.append(head, body); wrapper.append(table); return wrapper;
+  }
+  function renderFinalReport(result) {
+    const descriptor = result.descriptor || { status: "not_measured" };
+    const report = result.report;
+    state.finalReport = report || null;
+    byId("final-results").hidden = !report;
+    const status = byId("final-report-status");
+    status.textContent = report ? "Frozen test · completed" : readable(descriptor.status);
+    status.className = `pill ${report ? "pill-teal" : ["invalid", "incompatible"].includes(descriptor.status) ? "pill-failed" : "pill-subtle"}`;
+    if (!report) {
+      byId("final-report-description").textContent = descriptor.error || "Final evidence is not measured yet. A completed, sealed report matching the configured models is required; model training and validation scores do not establish final test performance.";
+      return;
+    }
+    byId("final-report-description").textContent = `${report.questions} matched questions (720 scope + 96 unfamiliar-wording challenges), all five configurations. ${report.oracle_questions} oracle-routed questions are reported separately. Configuration, trained exports, frozen protocol and raw results passed file-integrity checks; no tuning against these test results is claimed.`;
+    const population = byId("final-population");
+    population.replaceChildren(node("h3", "Frozen population & model identities"), node("p", `Dataset: ${report.dataset_id}`),
+      node("p", `Protocol: ${report.provenance.protocol_id} · ${report.provenance.protocol_sha256.slice(0, 16)}…`),
+      node("p", "Review: automated final audit · no independent human review · controlled demonstration dataset"));
+    for (const task of ["scope", "answer"]) {
+      const model = report.model_artifacts[task];
+      population.append(node("p", `${task === "scope" ? "Scope classifier" : "Answer model"}: ${model.model_id} · ${model.completed_steps} optimizer steps · selected ${model.selected_step} · manifest ${model.manifest_sha256.slice(0, 12)}…`));
+    }
+    const comparisons = byId("final-comparisons");
+    const scopeQa = report.secondary_short_qa.by_population.scope;
+    const learnedQa = scopeQa.trained_scope_editor.all_requested_qa;
+    const ragQa = scopeQa.updated_rag.all_requested_qa;
+    const qaRate = item => ({ numerator: item.correct, denominator: item.denominator, value: item.accuracy_including_all_nonanswers_and_pending });
+    const strongest = Math.max(...Object.values(scopeQa).map(item => item.all_requested_qa.accuracy_including_all_nonanswers_and_pending));
+    const leaders = Object.entries(scopeQa).filter(([, item]) => item.all_requested_qa.accuracy_including_all_nonanswers_and_pending === strongest).map(([name]) => modeNames[name] || readable(name));
+    const scopeRows = report.by_population.scope.configurations;
+    const scopedLearned = scopeRows.find(item => item.configuration === "trained_scope_editor");
+    const scopedRag = scopeRows.find(item => item.configuration === "updated_rag");
+    const keyFindings = node("div", undefined, "model-provenance");
+    keyFindings.append(node("h3", "Scope cohort · requested-QA results"),
+      node("p", `Learned editor: ${rateLabel(qaRate(learnedQa))} (${ratePopulation(qaRate(learnedQa))}). Updated RAG: ${rateLabel(qaRate(ragQa))} (${ratePopulation(qaRate(ragQa))}). ${leaders.join(" and ")} ${leaders.length === 1 ? "has" : "have"} the highest requested-QA score among these five configurations on this cohort.`),
+      node("p", `Learned editor false correction applications: ${ratePopulation(scopedLearned.false_application_rate)}. This routing result combines approval and compatibility rules with the classifier; it does not establish that the classifier learned every boundary.`),
+      node("p", `Separate complete-assertion metric for updated RAG: ${ratePopulation(scopedRag.accuracy)}, with ${scopedRag.pending_review} pending and uncredited outputs. A zero credited complete-assertion score does not establish zero factual correctness: short fragments outside that scorer's supported forms remain uncredited. The requested-QA score above retains its separate, locked definition.`));
+    comparisons.replaceChildren(keyFindings, node("h3", "All matched questions · 816 per configuration"),
+      finalComparisonTable(report, report.secondary_short_qa.configurations));
+    for (const name of ["scope", "challenge"]) {
+      const details = node("details", undefined, "report-details");
+      details.append(node("summary", `${name === "scope" ? "Scope cohort" : "Unfamiliar-wording challenge cohort"} · ${report.by_population[name].questions} per configuration`),
+        finalComparisonTable(report.by_population[name], report.secondary_short_qa.by_population[name]));
+      comparisons.append(details);
+    }
+    byId("final-scope-description").textContent = report.scope_metric_role + " Threshold and temperature were selected on validation before the final test. Deterministic normalization can make some scope inputs coincide with development pairs; the export reports that overlap and the unshared subset separately.";
+    const scope = byId("final-scope-metrics"); scope.replaceChildren();
+    [["Raw precision", "precision", true], ["Raw recall", "recall", true], ["Raw false positive rate", "false_positive_rate", true],
+      ["Brier score", "brier", false], ["Calibration error", "ece", false]].forEach(([label, key, percentage]) =>
+      appendRateCard(scope, label, report.scope[key], "Final labeled pair population; missing probabilities are explicit.", percentage));
+    const trained = report.configurations.find(item => item.configuration === "trained_scope_editor");
+    const routing = byId("final-routing-metrics"); routing.replaceChildren();
+    appendRateCard(routing, "False correction application", trained.false_application_rate, "Selected correction on out-of-scope questions; all such questions remain in the denominator.");
+    appendRateCard(routing, "Answer coverage", trained.coverage, "Includes all matched questions; coverage does not imply correctness.");
+    for (const [k, rate] of Object.entries(trained.retrieval_recall)) appendRateCard(routing, `Applicable-edit retrieval recall @${k}`, rate, "Applicable questions only; retrieval does not establish classifier or generated-answer correctness.");
+    const oracle = byId("final-oracle-metrics"); oracle.replaceChildren();
+    for (const [label, key] of [["Primary complete-fact accuracy", "accuracy"], ["Direct questions", "direct_accuracy"], ["Paraphrases", "paraphrase_accuracy"],
+      ["Comparison questions", "comparison_accuracy"], ["Challenges", "challenge_accuracy"], ["Answer coverage", "coverage"]]) {
+      appendRateCard(oracle, label, report.oracle[key]);
+    }
+    const oracleQa = report.secondary_short_qa.oracle.oracle_answer.all_requested_qa;
+    appendRateCard(oracle, "Locked requested-QA accuracy", { numerator: oracleQa.correct, denominator: oracleQa.denominator,
+      value: oracleQa.accuracy_including_all_nonanswers_and_pending }, "Separate secondary metric; incomplete assertions may be credited only for their requested answer.");
+    appendRateCard(oracle, "Original oracle execution errors", { numerator: report.oracle.errors, denominator: report.oracle_questions,
+      value: report.oracle.errors / report.oracle_questions }, "Errors receive no accuracy credit and remain in the original denominator; they are execution failures, not generated factual mistakes.");
+    const failure = byId("final-oracle-failure");
+    failure.hidden = report.oracle.errors === 0;
+    failure.textContent = `${report.oracle.errors} of ${report.oracle_questions} original oracle observations are execution errors. These remain uncredited in every original oracle score. Their absence of generated text is not evidence that the answer model generated an incorrect fact. Any recovery measurement is reported separately.`;
+    const recovery = report.execution_recovery || {};
+    byId("final-execution-disclosure").hidden = !recovery.io && !recovery.cuda_runtime_failure;
+    const runtimeBox = byId("final-runtime-disclosure");
+    runtimeBox.hidden = !recovery.cuda_runtime_failure;
+    runtimeBox.replaceChildren();
+    if (recovery.cuda_runtime_failure) {
+      const runtime = recovery.cuda_runtime_failure;
+      runtimeBox.append(node("h3", "Original GPU process · measurement unavailable"),
+        node("p", runtime.limitation),
+        node("p", runtime.closure_recovery_policy), node("p", runtime.oracle_measurement_policy),
+        node("p", `Disclosure SHA-256: ${runtime.disclosure_sha256}`));
+    }
+    const ioBox = byId("final-io-disclosure");
+    ioBox.hidden = !recovery.io;
+    ioBox.replaceChildren();
+    if (recovery.io) {
+      const io = recovery.io;
+      ioBox.append(node("h3", "Atomic-write recovery · recorded retries"),
+        node("p", `${io.recorded_write_retries} recorded write retries across ${io.event_records} event records. Event records can describe successful or failed invocations; they do not count successful writes or all process sessions.`),
+        node("p", `${io.recorded_retry_delay_seconds} seconds of configured retry delays were recorded. These are scheduled delays, not measured elapsed time, and occur outside reported model-route request latency.`),
+        node("p", io.cause_disclosure), node("p", "The wrapper changes only the declared progress and ledger writes. Original observations, scorers, model inputs and frozen configurations remain preserved."),
+        node("p", `Declaration SHA-256: ${io.declaration_sha256} · frozen events SHA-256: ${io.events_sha256}`));
+    }
+    byId("final-paired").textContent = JSON.stringify(report.paired_comparisons, null, 2);
+    byId("final-limitations").replaceChildren(...report.limitations.map(text => node("li", text)));
+    byId("final-provenance").textContent = JSON.stringify({ ...report.provenance, report_sha256: descriptor.report_sha256,
+      configuration_matches: descriptor.configuration_matches, model_artifacts: report.model_artifacts,
+      primary_scoring: report.primary_scoring, scope_policy: report.scope_policy, scope_normalized_overlap: report.scope_normalized_overlap,
+      review_policy: report.review_policy, human_reviewed_data: report.human_reviewed_data }, null, 2);
+    byId("download-final-csv").hidden = !report.csv_export;
+  }
   function downloadJson(payload, filename) {
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }));
     const anchor = node("a");
@@ -530,15 +658,53 @@
     document.body.append(anchor); anchor.click(); anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
+  function renderOracleRecovery(result) {
+    const descriptor = result.descriptor || { status: "not_measured" };
+    const report = result.report;
+    const status = byId("oracle-recovery-status");
+    status.textContent = report ? "Supplement · completed" : readable(descriptor.status);
+    status.className = `pill ${report ? "pill-teal" : descriptor.status === "invalid" ? "pill-failed" : descriptor.status === "interrupted" ? "pill-draft" : "pill-subtle"}`;
+    byId("oracle-recovery-results").hidden = !report;
+    if (!report) {
+      byId("oracle-recovery-description").textContent = (descriptor.error || "No completed compatible runtime-recovery supplement is recorded. The original oracle scores and runtime errors above remain unchanged.") + (descriptor.failure_reason ? ` Process failure: ${descriptor.failure_reason}` : "");
+      return;
+    }
+    byId("oracle-recovery-description").textContent = `${report.oracle_questions} combined oracle questions: 65 unchanged original successes plus ${report.selected_runtime_errors} original runtime-error cases selected for at most one supplemental generation each. ${report.durable_attempt_reservations} durable reservations, ${report.interrupted_reservation_count} interrupted reservations, ${report.new_runtime_error_count} newly recorded runtime errors and ${report.not_attempted_selected_count} selected cases not attempted. Frozen model/configuration identities match the original evidence.`;
+    const metrics = byId("oracle-recovery-metrics"); metrics.replaceChildren();
+    appendRateCard(metrics, "Supplement complete-fact accuracy", report.oracle.accuracy, "All 384 combined oracle outcomes, including any remaining failures.");
+    const qa = report.secondary_short_qa.configurations.oracle_answer.all_requested_qa;
+    appendRateCard(metrics, "Supplement locked requested-QA", { numerator: qa.correct, denominator: qa.denominator,
+      value: qa.accuracy_including_all_nonanswers_and_pending }, "Separate secondary definition; original final metrics remain unchanged.");
+    appendRateCard(metrics, "Supplement answer coverage", report.oracle.coverage);
+    appendRateCard(metrics, "Combined execution errors", { numerator: report.oracle.errors, denominator: report.oracle_questions,
+      value: report.oracle.errors / report.oracle_questions }, "Errors remain in the supplement denominator and are not generated factual mistakes.");
+    const cohorts = byId("oracle-recovery-cohorts"); cohorts.replaceChildren();
+    for (const name of ["answer", "challenge"]) {
+      const current = report.oracle.by_population[name];
+      const diagnostic = report.secondary_short_qa.by_population[name].oracle_answer.all_requested_qa;
+      const section = node("div", undefined, "model-provenance");
+      section.append(node("h3", `${name === "answer" ? "Answer" : "Challenge"} cohort · ${current.questions} questions`),
+        node("p", `Complete-fact: ${rateLabel(current.accuracy)} (${ratePopulation(current.accuracy)}). Requested-QA: ${diagnostic.correct} / ${diagnostic.denominator}. Pending complete-fact / requested-QA: ${current.pending_review} / ${diagnostic.pending_uncredited}. Abstentions: ${current.abstentions}. Execution errors: ${current.errors}.`));
+      cohorts.append(section);
+    }
+    byId("oracle-recovery-limitations").replaceChildren(...report.limitations.map(text => node("li", text)),
+      node("li", "Mixed retained-original and supplemental timings do not constitute a new uninterrupted latency benchmark. New-process parameter checks do not reconstruct the lost original GPU memory state."));
+    byId("oracle-recovery-provenance").textContent = JSON.stringify({ ...report.provenance,
+      primary_results_replaced: report.primary_results_replaced, original_records_unchanged: report.original_records_unchanged,
+      original_files_sha256: report.original_files_sha256, outputs_sha256: report.outputs_sha256, sessions: report.sessions,
+      selection_used_correctness: report.selection_used_correctness }, null, 2);
+  }
   async function runEvaluation() {
     const button = byId("run-evaluation");
     button.disabled = true;
     button.textContent = "Loading evidence…";
     clearNotice();
     try {
-      const evaluation = await api("/api/evaluation");
+      const [evaluation, finalResult, recoveryResult] = await Promise.all([api("/api/evaluation"), api("/api/evaluation/final"), api("/api/evaluation/final/oracle-recovery")]);
       if (evaluation.model_readiness) { state.health = evaluation.model_readiness; setHealth(); }
       renderDevelopmentReport(evaluation);
+      renderFinalReport(finalResult);
+      renderOracleRecovery(recoveryResult);
       const status = byId("evaluation-status");
       status.textContent = readable(evaluation.status || "Complete");
       status.className = `pill ${evaluation.status === "failed" ? "pill-failed" : "pill-teal"}`;

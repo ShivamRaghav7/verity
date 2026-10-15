@@ -1,0 +1,3324 @@
+{
+  "by_population": {
+    "challenge": {
+      "prompt_only": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 96
+          },
+          "correct": 0,
+          "denominator": 96,
+          "evidence_counts": {
+            "none": 96
+          },
+          "incorrect": 1,
+          "pending_uncredited": 95,
+          "primary_counts_unchanged": {
+            "incorrect": 1,
+            "pending_uncredited": 95
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 96
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      },
+      "similarity_editor": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 96
+          },
+          "correct": 0,
+          "denominator": 96,
+          "evidence_counts": {
+            "none": 96
+          },
+          "incorrect": 0,
+          "pending_uncredited": 96,
+          "primary_counts_unchanged": {
+            "correct": 40,
+            "pending_uncredited": 56
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 96
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      },
+      "trained_scope_editor": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "deterministic_clarification": 48,
+            "model_generated": 48
+          },
+          "correct": 0,
+          "denominator": 96,
+          "evidence_counts": {
+            "none": 96
+          },
+          "incorrect": 48,
+          "pending_uncredited": 48,
+          "primary_counts_unchanged": {
+            "incorrect": 48,
+            "pending_uncredited": 48
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 48,
+            "clarification": 48
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      },
+      "unchanged_base": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 96
+          },
+          "correct": 0,
+          "denominator": 96,
+          "evidence_counts": {
+            "none": 96
+          },
+          "incorrect": 0,
+          "pending_uncredited": 96,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 96
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 96
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      },
+      "updated_rag": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 96
+          },
+          "correct": 0,
+          "denominator": 96,
+          "evidence_counts": {
+            "none": 96
+          },
+          "incorrect": 0,
+          "pending_uncredited": 96,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 96
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 96
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      }
+    },
+    "scope": {
+      "prompt_only": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.7402777777777778,
+          "answer_kind_counts": {
+            "model_generated": 720
+          },
+          "correct": 533,
+          "denominator": 720,
+          "evidence_counts": {
+            "none": 14,
+            "whole_polarity": 144,
+            "whole_quantity": 562
+          },
+          "incorrect": 173,
+          "pending_uncredited": 14,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 720
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 720
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": 0.7222222222222222,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 104,
+          "denominator": 144,
+          "evidence_counts": {
+            "whole_polarity": 144
+          },
+          "incorrect": 40,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 144
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 0,
+          "denominator": 72,
+          "evidence_counts": {
+            "whole_quantity": 72
+          },
+          "incorrect": 72,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 72
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": 0.013888888888888888,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 1,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 14,
+            "whole_quantity": 58
+          },
+          "incorrect": 57,
+          "pending_uncredited": 14,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 72
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": 0.7222222222222222,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 104,
+          "denominator": 144,
+          "evidence_counts": {
+            "whole_polarity": 144
+          },
+          "incorrect": 40,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 144
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9907407407407407,
+          "answer_kind_counts": {
+            "model_generated": 432
+          },
+          "correct": 428,
+          "denominator": 432,
+          "evidence_counts": {
+            "whole_quantity": 432
+          },
+          "incorrect": 4,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 432
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 432
+          }
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": 0.7447916666666666,
+          "answer_kind_counts": {
+            "model_generated": 576
+          },
+          "correct": 429,
+          "denominator": 576,
+          "evidence_counts": {
+            "none": 14,
+            "whole_quantity": 562
+          },
+          "incorrect": 133,
+          "pending_uncredited": 14,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 576
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 576
+          }
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 428,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 428
+        }
+      },
+      "similarity_editor": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.8777777777777778,
+          "answer_kind_counts": {
+            "model_generated": 720
+          },
+          "correct": 632,
+          "denominator": 720,
+          "evidence_counts": {
+            "none": 82,
+            "primary_complete_assertion": 206,
+            "whole_quantity": 432
+          },
+          "incorrect": 54,
+          "pending_uncredited": 34,
+          "primary_counts_unchanged": {
+            "correct": 206,
+            "incorrect": 48,
+            "pending_uncredited": 466
+          },
+          "proves_exact_scoped_fact": 206,
+          "status_counts": {
+            "answered": 720
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 97,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 47,
+            "primary_complete_assertion": 97
+          },
+          "incorrect": 47,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 97,
+            "incorrect": 47
+          },
+          "proves_exact_scoped_fact": 97,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": 1.0,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 72,
+          "denominator": 72,
+          "evidence_counts": {
+            "primary_complete_assertion": 71,
+            "whole_quantity": 1
+          },
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 71,
+            "pending_uncredited": 1
+          },
+          "proves_exact_scoped_fact": 71,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": 0.5138888888888888,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 37,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 33,
+            "primary_complete_assertion": 37,
+            "whole_quantity": 2
+          },
+          "incorrect": 2,
+          "pending_uncredited": 33,
+          "primary_counts_unchanged": {
+            "correct": 37,
+            "pending_uncredited": 35
+          },
+          "proves_exact_scoped_fact": 37,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 97,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 47,
+            "primary_complete_assertion": 97
+          },
+          "incorrect": 47,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 97,
+            "incorrect": 47
+          },
+          "proves_exact_scoped_fact": 97,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9861111111111112,
+          "answer_kind_counts": {
+            "model_generated": 432
+          },
+          "correct": 426,
+          "denominator": 432,
+          "evidence_counts": {
+            "none": 2,
+            "primary_complete_assertion": 1,
+            "whole_quantity": 429
+          },
+          "incorrect": 5,
+          "pending_uncredited": 1,
+          "primary_counts_unchanged": {
+            "correct": 1,
+            "incorrect": 1,
+            "pending_uncredited": 430
+          },
+          "proves_exact_scoped_fact": 1,
+          "status_counts": {
+            "answered": 432
+          }
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9288194444444444,
+          "answer_kind_counts": {
+            "model_generated": 576
+          },
+          "correct": 535,
+          "denominator": 576,
+          "evidence_counts": {
+            "none": 35,
+            "primary_complete_assertion": 109,
+            "whole_quantity": 432
+          },
+          "incorrect": 7,
+          "pending_uncredited": 34,
+          "primary_counts_unchanged": {
+            "correct": 109,
+            "incorrect": 1,
+            "pending_uncredited": 466
+          },
+          "proves_exact_scoped_fact": 109,
+          "status_counts": {
+            "answered": 576
+          }
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 426,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 428
+        }
+      },
+      "trained_scope_editor": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.8513888888888889,
+          "answer_kind_counts": {
+            "deterministic_clarification": 23,
+            "model_generated": 697
+          },
+          "correct": 613,
+          "denominator": 720,
+          "evidence_counts": {
+            "none": 103,
+            "primary_complete_assertion": 207,
+            "whole_quantity": 410
+          },
+          "incorrect": 74,
+          "pending_uncredited": 33,
+          "primary_counts_unchanged": {
+            "correct": 207,
+            "incorrect": 70,
+            "pending_uncredited": 443
+          },
+          "proves_exact_scoped_fact": 207,
+          "status_counts": {
+            "answered": 697,
+            "clarification": 23
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 97,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 47,
+            "primary_complete_assertion": 97
+          },
+          "incorrect": 47,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 97,
+            "incorrect": 47
+          },
+          "proves_exact_scoped_fact": 97,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": 1.0,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 72,
+          "denominator": 72,
+          "evidence_counts": {
+            "primary_complete_assertion": 71,
+            "whole_quantity": 1
+          },
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 71,
+            "pending_uncredited": 1
+          },
+          "proves_exact_scoped_fact": 71,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": 0.5416666666666666,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 39,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 33,
+            "primary_complete_assertion": 39
+          },
+          "incorrect": 0,
+          "pending_uncredited": 33,
+          "primary_counts_unchanged": {
+            "correct": 39,
+            "pending_uncredited": 33
+          },
+          "proves_exact_scoped_fact": 39,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 97,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 47,
+            "primary_complete_assertion": 97
+          },
+          "incorrect": 47,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 97,
+            "incorrect": 47
+          },
+          "proves_exact_scoped_fact": 97,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9375,
+          "answer_kind_counts": {
+            "deterministic_clarification": 23,
+            "model_generated": 409
+          },
+          "correct": 405,
+          "denominator": 432,
+          "evidence_counts": {
+            "none": 23,
+            "whole_quantity": 409
+          },
+          "incorrect": 27,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "incorrect": 23,
+            "pending_uncredited": 409
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 409,
+            "clarification": 23
+          }
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": 0.8958333333333334,
+          "answer_kind_counts": {
+            "deterministic_clarification": 23,
+            "model_generated": 553
+          },
+          "correct": 516,
+          "denominator": 576,
+          "evidence_counts": {
+            "none": 56,
+            "primary_complete_assertion": 110,
+            "whole_quantity": 410
+          },
+          "incorrect": 27,
+          "pending_uncredited": 33,
+          "primary_counts_unchanged": {
+            "correct": 110,
+            "incorrect": 23,
+            "pending_uncredited": 443
+          },
+          "proves_exact_scoped_fact": 110,
+          "status_counts": {
+            "answered": 553,
+            "clarification": 23
+          }
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 405,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 428
+        }
+      },
+      "unchanged_base": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.6944444444444444,
+          "answer_kind_counts": {
+            "model_generated": 720
+          },
+          "correct": 500,
+          "denominator": 720,
+          "evidence_counts": {
+            "none": 22,
+            "whole_polarity": 144,
+            "whole_quantity": 554
+          },
+          "incorrect": 198,
+          "pending_uncredited": 22,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 720
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 720
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": 0.5,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 72,
+          "denominator": 144,
+          "evidence_counts": {
+            "whole_polarity": 144
+          },
+          "incorrect": 72,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 144
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 0,
+          "denominator": 72,
+          "evidence_counts": {
+            "whole_quantity": 72
+          },
+          "incorrect": 72,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 72
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 0,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 22,
+            "whole_quantity": 50
+          },
+          "incorrect": 50,
+          "pending_uncredited": 22,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 72
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": 0.5,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 72,
+          "denominator": 144,
+          "evidence_counts": {
+            "whole_polarity": 144
+          },
+          "incorrect": 72,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 144
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9907407407407407,
+          "answer_kind_counts": {
+            "model_generated": 432
+          },
+          "correct": 428,
+          "denominator": 432,
+          "evidence_counts": {
+            "whole_quantity": 432
+          },
+          "incorrect": 4,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 432
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 432
+          }
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": 0.7430555555555556,
+          "answer_kind_counts": {
+            "model_generated": 576
+          },
+          "correct": 428,
+          "denominator": 576,
+          "evidence_counts": {
+            "none": 22,
+            "whole_quantity": 554
+          },
+          "incorrect": 126,
+          "pending_uncredited": 22,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 576
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 576
+          }
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 428,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 428
+        }
+      },
+      "updated_rag": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9013888888888889,
+          "answer_kind_counts": {
+            "model_generated": 720
+          },
+          "correct": 649,
+          "denominator": 720,
+          "evidence_counts": {
+            "none": 22,
+            "whole_polarity": 144,
+            "whole_quantity": 554
+          },
+          "incorrect": 49,
+          "pending_uncredited": 22,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 720
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 720
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": 0.8541666666666666,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 123,
+          "denominator": 144,
+          "evidence_counts": {
+            "whole_polarity": 144
+          },
+          "incorrect": 21,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 144
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": 1.0,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 72,
+          "denominator": 72,
+          "evidence_counts": {
+            "whole_quantity": 72
+          },
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 72
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": 0.3611111111111111,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 26,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 22,
+            "whole_quantity": 50
+          },
+          "incorrect": 24,
+          "pending_uncredited": 22,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 72
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 72
+          }
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": 0.8541666666666666,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 123,
+          "denominator": 144,
+          "evidence_counts": {
+            "whole_polarity": 144
+          },
+          "incorrect": 21,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 144
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 144
+          }
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9907407407407407,
+          "answer_kind_counts": {
+            "model_generated": 432
+          },
+          "correct": 428,
+          "denominator": 432,
+          "evidence_counts": {
+            "whole_quantity": 432
+          },
+          "incorrect": 4,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 432
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 432
+          }
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": 0.9131944444444444,
+          "answer_kind_counts": {
+            "model_generated": 576
+          },
+          "correct": 526,
+          "denominator": 576,
+          "evidence_counts": {
+            "none": 22,
+            "whole_quantity": 554
+          },
+          "incorrect": 28,
+          "pending_uncredited": 22,
+          "primary_counts_unchanged": {
+            "pending_uncredited": 576
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "answered": 576
+          }
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 428,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 428
+        }
+      }
+    }
+  },
+  "configurations": {
+    "prompt_only": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6531862745098039,
+        "answer_kind_counts": {
+          "model_generated": 816
+        },
+        "correct": 533,
+        "denominator": 816,
+        "evidence_counts": {
+          "none": 110,
+          "whole_polarity": 144,
+          "whole_quantity": 562
+        },
+        "incorrect": 174,
+        "pending_uncredited": 109,
+        "primary_counts_unchanged": {
+          "incorrect": 1,
+          "pending_uncredited": 815
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 816
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7222222222222222,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 104,
+        "denominator": 144,
+        "evidence_counts": {
+          "whole_polarity": 144
+        },
+        "incorrect": 40,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 144
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 0.0,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 0,
+        "denominator": 72,
+        "evidence_counts": {
+          "whole_quantity": 72
+        },
+        "incorrect": 72,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 72
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.013888888888888888,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 1,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 14,
+          "whole_quantity": 58
+        },
+        "incorrect": 57,
+        "pending_uncredited": 14,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 72
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7222222222222222,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 104,
+        "denominator": 144,
+        "evidence_counts": {
+          "whole_polarity": 144
+        },
+        "incorrect": 40,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 144
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9907407407407407,
+        "answer_kind_counts": {
+          "model_generated": 432
+        },
+        "correct": 428,
+        "denominator": 432,
+        "evidence_counts": {
+          "whole_quantity": 432
+        },
+        "incorrect": 4,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 432
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 432
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7447916666666666,
+        "answer_kind_counts": {
+          "model_generated": 576
+        },
+        "correct": 429,
+        "denominator": 576,
+        "evidence_counts": {
+          "none": 14,
+          "whole_quantity": 562
+        },
+        "incorrect": 133,
+        "pending_uncredited": 14,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 576
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 576
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 428,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 428
+      }
+    },
+    "similarity_editor": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7745098039215687,
+        "answer_kind_counts": {
+          "model_generated": 816
+        },
+        "correct": 632,
+        "denominator": 816,
+        "evidence_counts": {
+          "none": 178,
+          "primary_complete_assertion": 206,
+          "whole_quantity": 432
+        },
+        "incorrect": 54,
+        "pending_uncredited": 130,
+        "primary_counts_unchanged": {
+          "correct": 246,
+          "incorrect": 48,
+          "pending_uncredited": 522
+        },
+        "proves_exact_scoped_fact": 206,
+        "status_counts": {
+          "answered": 816
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 97,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 97
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 97,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 97,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 1.0,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 72,
+        "denominator": 72,
+        "evidence_counts": {
+          "primary_complete_assertion": 71,
+          "whole_quantity": 1
+        },
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 71,
+          "pending_uncredited": 1
+        },
+        "proves_exact_scoped_fact": 71,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5138888888888888,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 37,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 33,
+          "primary_complete_assertion": 37,
+          "whole_quantity": 2
+        },
+        "incorrect": 2,
+        "pending_uncredited": 33,
+        "primary_counts_unchanged": {
+          "correct": 37,
+          "pending_uncredited": 35
+        },
+        "proves_exact_scoped_fact": 37,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 97,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 97
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 97,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 97,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9861111111111112,
+        "answer_kind_counts": {
+          "model_generated": 432
+        },
+        "correct": 426,
+        "denominator": 432,
+        "evidence_counts": {
+          "none": 2,
+          "primary_complete_assertion": 1,
+          "whole_quantity": 429
+        },
+        "incorrect": 5,
+        "pending_uncredited": 1,
+        "primary_counts_unchanged": {
+          "correct": 1,
+          "incorrect": 1,
+          "pending_uncredited": 430
+        },
+        "proves_exact_scoped_fact": 1,
+        "status_counts": {
+          "answered": 432
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9288194444444444,
+        "answer_kind_counts": {
+          "model_generated": 576
+        },
+        "correct": 535,
+        "denominator": 576,
+        "evidence_counts": {
+          "none": 35,
+          "primary_complete_assertion": 109,
+          "whole_quantity": 432
+        },
+        "incorrect": 7,
+        "pending_uncredited": 34,
+        "primary_counts_unchanged": {
+          "correct": 109,
+          "incorrect": 1,
+          "pending_uncredited": 466
+        },
+        "proves_exact_scoped_fact": 109,
+        "status_counts": {
+          "answered": 576
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 426,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 428
+      }
+    },
+    "trained_scope_editor": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7512254901960784,
+        "answer_kind_counts": {
+          "deterministic_clarification": 71,
+          "model_generated": 745
+        },
+        "correct": 613,
+        "denominator": 816,
+        "evidence_counts": {
+          "none": 199,
+          "primary_complete_assertion": 207,
+          "whole_quantity": 410
+        },
+        "incorrect": 122,
+        "pending_uncredited": 81,
+        "primary_counts_unchanged": {
+          "correct": 207,
+          "incorrect": 118,
+          "pending_uncredited": 491
+        },
+        "proves_exact_scoped_fact": 207,
+        "status_counts": {
+          "answered": 745,
+          "clarification": 71
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 97,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 97
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 97,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 97,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 1.0,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 72,
+        "denominator": 72,
+        "evidence_counts": {
+          "primary_complete_assertion": 71,
+          "whole_quantity": 1
+        },
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 71,
+          "pending_uncredited": 1
+        },
+        "proves_exact_scoped_fact": 71,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5416666666666666,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 39,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 33,
+          "primary_complete_assertion": 39
+        },
+        "incorrect": 0,
+        "pending_uncredited": 33,
+        "primary_counts_unchanged": {
+          "correct": 39,
+          "pending_uncredited": 33
+        },
+        "proves_exact_scoped_fact": 39,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6736111111111112,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 97,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 97
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 97,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 97,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9375,
+        "answer_kind_counts": {
+          "deterministic_clarification": 23,
+          "model_generated": 409
+        },
+        "correct": 405,
+        "denominator": 432,
+        "evidence_counts": {
+          "none": 23,
+          "whole_quantity": 409
+        },
+        "incorrect": 27,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "incorrect": 23,
+          "pending_uncredited": 409
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 409,
+          "clarification": 23
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.8958333333333334,
+        "answer_kind_counts": {
+          "deterministic_clarification": 23,
+          "model_generated": 553
+        },
+        "correct": 516,
+        "denominator": 576,
+        "evidence_counts": {
+          "none": 56,
+          "primary_complete_assertion": 110,
+          "whole_quantity": 410
+        },
+        "incorrect": 27,
+        "pending_uncredited": 33,
+        "primary_counts_unchanged": {
+          "correct": 110,
+          "incorrect": 23,
+          "pending_uncredited": 443
+        },
+        "proves_exact_scoped_fact": 110,
+        "status_counts": {
+          "answered": 553,
+          "clarification": 23
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 405,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 428
+      }
+    },
+    "unchanged_base": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6127450980392157,
+        "answer_kind_counts": {
+          "model_generated": 816
+        },
+        "correct": 500,
+        "denominator": 816,
+        "evidence_counts": {
+          "none": 118,
+          "whole_polarity": 144,
+          "whole_quantity": 554
+        },
+        "incorrect": 198,
+        "pending_uncredited": 118,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 816
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 816
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 72,
+        "denominator": 144,
+        "evidence_counts": {
+          "whole_polarity": 144
+        },
+        "incorrect": 72,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 144
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 0.0,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 0,
+        "denominator": 72,
+        "evidence_counts": {
+          "whole_quantity": 72
+        },
+        "incorrect": 72,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 72
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.0,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 0,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 22,
+          "whole_quantity": 50
+        },
+        "incorrect": 50,
+        "pending_uncredited": 22,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 72
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 72,
+        "denominator": 144,
+        "evidence_counts": {
+          "whole_polarity": 144
+        },
+        "incorrect": 72,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 144
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9907407407407407,
+        "answer_kind_counts": {
+          "model_generated": 432
+        },
+        "correct": 428,
+        "denominator": 432,
+        "evidence_counts": {
+          "whole_quantity": 432
+        },
+        "incorrect": 4,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 432
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 432
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7430555555555556,
+        "answer_kind_counts": {
+          "model_generated": 576
+        },
+        "correct": 428,
+        "denominator": 576,
+        "evidence_counts": {
+          "none": 22,
+          "whole_quantity": 554
+        },
+        "incorrect": 126,
+        "pending_uncredited": 22,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 576
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 576
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 428,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 428
+      }
+    },
+    "updated_rag": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7953431372549019,
+        "answer_kind_counts": {
+          "model_generated": 816
+        },
+        "correct": 649,
+        "denominator": 816,
+        "evidence_counts": {
+          "none": 118,
+          "whole_polarity": 144,
+          "whole_quantity": 554
+        },
+        "incorrect": 49,
+        "pending_uncredited": 118,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 816
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 816
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.8541666666666666,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 123,
+        "denominator": 144,
+        "evidence_counts": {
+          "whole_polarity": 144
+        },
+        "incorrect": 21,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 144
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 1.0,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 72,
+        "denominator": 72,
+        "evidence_counts": {
+          "whole_quantity": 72
+        },
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 72
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.3611111111111111,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 26,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 22,
+          "whole_quantity": 50
+        },
+        "incorrect": 24,
+        "pending_uncredited": 22,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 72
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 72
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.8541666666666666,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 123,
+        "denominator": 144,
+        "evidence_counts": {
+          "whole_polarity": 144
+        },
+        "incorrect": 21,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 144
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 144
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9907407407407407,
+        "answer_kind_counts": {
+          "model_generated": 432
+        },
+        "correct": 428,
+        "denominator": 432,
+        "evidence_counts": {
+          "whole_quantity": 432
+        },
+        "incorrect": 4,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 432
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 432
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9131944444444444,
+        "answer_kind_counts": {
+          "model_generated": 576
+        },
+        "correct": 526,
+        "denominator": 576,
+        "evidence_counts": {
+          "none": 22,
+          "whole_quantity": 554
+        },
+        "incorrect": 28,
+        "pending_uncredited": 22,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 576
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 576
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 428,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 428
+      }
+    }
+  },
+  "diagnostic_version": "editguard-request-bound-short-qa-v1",
+  "disclaimer": "Locked secondary request-bound diagnostic only; unsupported challenge wording remains pending/uncredited. Bare values/polarities do not prove a complete scoped fact endorsement.",
+  "human_reviewed_data": false,
+  "oracle": {
+    "oracle_answer": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.1171875,
+        "answer_kind_counts": {
+          "model_generated": 384
+        },
+        "correct": 45,
+        "denominator": 384,
+        "evidence_counts": {
+          "none": 339,
+          "primary_complete_assertion": 45
+        },
+        "incorrect": 331,
+        "pending_uncredited": 8,
+        "primary_counts_unchanged": {
+          "correct": 45,
+          "incorrect": 331,
+          "pending_uncredited": 8
+        },
+        "proves_exact_scoped_fact": 45,
+        "status_counts": {
+          "answered": 65,
+          "error": 319
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.1388888888888889,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 20,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 124,
+          "primary_complete_assertion": 20
+        },
+        "incorrect": 124,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 20,
+          "incorrect": 124
+        },
+        "proves_exact_scoped_fact": 20,
+        "status_counts": {
+          "answered": 32,
+          "error": 112
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 0.2361111111111111,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 17,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 55,
+          "primary_complete_assertion": 17
+        },
+        "incorrect": 55,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 17,
+          "incorrect": 55
+        },
+        "proves_exact_scoped_fact": 17,
+        "status_counts": {
+          "answered": 17,
+          "error": 55
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.1111111111111111,
+        "answer_kind_counts": {
+          "model_generated": 72
+        },
+        "correct": 8,
+        "denominator": 72,
+        "evidence_counts": {
+          "none": 64,
+          "primary_complete_assertion": 8
+        },
+        "incorrect": 56,
+        "pending_uncredited": 8,
+        "primary_counts_unchanged": {
+          "correct": 8,
+          "incorrect": 56,
+          "pending_uncredited": 8
+        },
+        "proves_exact_scoped_fact": 8,
+        "status_counts": {
+          "answered": 16,
+          "error": 56
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.1388888888888889,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 20,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 124,
+          "primary_complete_assertion": 20
+        },
+        "incorrect": 124,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 20,
+          "incorrect": 124
+        },
+        "proves_exact_scoped_fact": 20,
+        "status_counts": {
+          "answered": 32,
+          "error": 112
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": null,
+        "answer_kind_counts": {},
+        "correct": 0,
+        "denominator": 0,
+        "evidence_counts": {},
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {},
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {}
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.1736111111111111,
+        "answer_kind_counts": {
+          "model_generated": 144
+        },
+        "correct": 25,
+        "denominator": 144,
+        "evidence_counts": {
+          "none": 119,
+          "primary_complete_assertion": 25
+        },
+        "incorrect": 111,
+        "pending_uncredited": 8,
+        "primary_counts_unchanged": {
+          "correct": 25,
+          "incorrect": 111,
+          "pending_uncredited": 8
+        },
+        "proves_exact_scoped_fact": 25,
+        "status_counts": {
+          "answered": 33,
+          "error": 111
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 0,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 0
+      }
+    }
+  },
+  "oracle_by_population": {
+    "answer": {
+      "oracle_answer": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.15625,
+          "answer_kind_counts": {
+            "model_generated": 288
+          },
+          "correct": 45,
+          "denominator": 288,
+          "evidence_counts": {
+            "none": 243,
+            "primary_complete_assertion": 45
+          },
+          "incorrect": 235,
+          "pending_uncredited": 8,
+          "primary_counts_unchanged": {
+            "correct": 45,
+            "incorrect": 235,
+            "pending_uncredited": 8
+          },
+          "proves_exact_scoped_fact": 45,
+          "status_counts": {
+            "answered": 65,
+            "error": 223
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": 0.1388888888888889,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 20,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 124,
+            "primary_complete_assertion": 20
+          },
+          "incorrect": 124,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 20,
+            "incorrect": 124
+          },
+          "proves_exact_scoped_fact": 20,
+          "status_counts": {
+            "answered": 32,
+            "error": 112
+          }
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": 0.2361111111111111,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 17,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 55,
+            "primary_complete_assertion": 17
+          },
+          "incorrect": 55,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 17,
+            "incorrect": 55
+          },
+          "proves_exact_scoped_fact": 17,
+          "status_counts": {
+            "answered": 17,
+            "error": 55
+          }
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": 0.1111111111111111,
+          "answer_kind_counts": {
+            "model_generated": 72
+          },
+          "correct": 8,
+          "denominator": 72,
+          "evidence_counts": {
+            "none": 64,
+            "primary_complete_assertion": 8
+          },
+          "incorrect": 56,
+          "pending_uncredited": 8,
+          "primary_counts_unchanged": {
+            "correct": 8,
+            "incorrect": 56,
+            "pending_uncredited": 8
+          },
+          "proves_exact_scoped_fact": 8,
+          "status_counts": {
+            "answered": 16,
+            "error": 56
+          }
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": 0.1388888888888889,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 20,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 124,
+            "primary_complete_assertion": 20
+          },
+          "incorrect": 124,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "correct": 20,
+            "incorrect": 124
+          },
+          "proves_exact_scoped_fact": 20,
+          "status_counts": {
+            "answered": 32,
+            "error": 112
+          }
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": 0.1736111111111111,
+          "answer_kind_counts": {
+            "model_generated": 144
+          },
+          "correct": 25,
+          "denominator": 144,
+          "evidence_counts": {
+            "none": 119,
+            "primary_complete_assertion": 25
+          },
+          "incorrect": 111,
+          "pending_uncredited": 8,
+          "primary_counts_unchanged": {
+            "correct": 25,
+            "incorrect": 111,
+            "pending_uncredited": 8
+          },
+          "proves_exact_scoped_fact": 25,
+          "status_counts": {
+            "answered": 33,
+            "error": 111
+          }
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      }
+    },
+    "challenge": {
+      "oracle_answer": {
+        "all_requested_qa": {
+          "accuracy_including_all_nonanswers_and_pending": 0.0,
+          "answer_kind_counts": {
+            "model_generated": 96
+          },
+          "correct": 0,
+          "denominator": 96,
+          "evidence_counts": {
+            "none": 96
+          },
+          "incorrect": 96,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {
+            "incorrect": 96
+          },
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {
+            "error": 96
+          }
+        },
+        "applicable_comparison": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_direct": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "applicable_paraphrase": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "comparison_predicate": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "out_of_scope": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "requested_value": {
+          "accuracy_including_all_nonanswers_and_pending": null,
+          "answer_kind_counts": {},
+          "correct": 0,
+          "denominator": 0,
+          "evidence_counts": {},
+          "incorrect": 0,
+          "pending_uncredited": 0,
+          "primary_counts_unchanged": {},
+          "proves_exact_scoped_fact": 0,
+          "status_counts": {}
+        },
+        "retention_of_baseline_qa_correct_out_of_scope": {
+          "correct": 0,
+          "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+          "denominator": 0
+        }
+      }
+    }
+  },
+  "post_hoc_policy": false,
+  "primary_results_replaced": false,
+  "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+  "purpose": "locked_final_secondary_short_qa",
+  "review_policy": "automated_final",
+  "scope_unshared_with_development_inputs": {
+    "prompt_only": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7426160337552743,
+        "answer_kind_counts": {
+          "model_generated": 711
+        },
+        "correct": 528,
+        "denominator": 711,
+        "evidence_counts": {
+          "none": 13,
+          "whole_polarity": 140,
+          "whole_quantity": 558
+        },
+        "incorrect": 170,
+        "pending_uncredited": 13,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 711
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 711
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7142857142857143,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 100,
+        "denominator": 140,
+        "evidence_counts": {
+          "whole_polarity": 140
+        },
+        "incorrect": 40,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 140
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 0.0,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 0,
+        "denominator": 70,
+        "evidence_counts": {
+          "whole_quantity": 70
+        },
+        "incorrect": 70,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 70
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.014285714285714285,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 1,
+        "denominator": 70,
+        "evidence_counts": {
+          "none": 13,
+          "whole_quantity": 57
+        },
+        "incorrect": 56,
+        "pending_uncredited": 13,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 70
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7142857142857143,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 100,
+        "denominator": 140,
+        "evidence_counts": {
+          "whole_polarity": 140
+        },
+        "incorrect": 40,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 140
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9907192575406032,
+        "answer_kind_counts": {
+          "model_generated": 431
+        },
+        "correct": 427,
+        "denominator": 431,
+        "evidence_counts": {
+          "whole_quantity": 431
+        },
+        "incorrect": 4,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 431
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 431
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7495621716287215,
+        "answer_kind_counts": {
+          "model_generated": 571
+        },
+        "correct": 428,
+        "denominator": 571,
+        "evidence_counts": {
+          "none": 13,
+          "whole_quantity": 558
+        },
+        "incorrect": 130,
+        "pending_uncredited": 13,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 571
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 571
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 427,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 427
+      }
+    },
+    "similarity_editor": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.8776371308016878,
+        "answer_kind_counts": {
+          "model_generated": 711
+        },
+        "correct": 624,
+        "denominator": 711,
+        "evidence_counts": {
+          "none": 81,
+          "primary_complete_assertion": 199,
+          "whole_quantity": 431
+        },
+        "incorrect": 54,
+        "pending_uncredited": 33,
+        "primary_counts_unchanged": {
+          "correct": 199,
+          "incorrect": 48,
+          "pending_uncredited": 464
+        },
+        "proves_exact_scoped_fact": 199,
+        "status_counts": {
+          "answered": 711
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6642857142857143,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 93,
+        "denominator": 140,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 93
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 93,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 93,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 1.0,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 70,
+        "denominator": 70,
+        "evidence_counts": {
+          "primary_complete_assertion": 69,
+          "whole_quantity": 1
+        },
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 69,
+          "pending_uncredited": 1
+        },
+        "proves_exact_scoped_fact": 69,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5142857142857142,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 36,
+        "denominator": 70,
+        "evidence_counts": {
+          "none": 32,
+          "primary_complete_assertion": 36,
+          "whole_quantity": 2
+        },
+        "incorrect": 2,
+        "pending_uncredited": 32,
+        "primary_counts_unchanged": {
+          "correct": 36,
+          "pending_uncredited": 34
+        },
+        "proves_exact_scoped_fact": 36,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6642857142857143,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 93,
+        "denominator": 140,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 93
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 93,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 93,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9860788863109049,
+        "answer_kind_counts": {
+          "model_generated": 431
+        },
+        "correct": 425,
+        "denominator": 431,
+        "evidence_counts": {
+          "none": 2,
+          "primary_complete_assertion": 1,
+          "whole_quantity": 428
+        },
+        "incorrect": 5,
+        "pending_uncredited": 1,
+        "primary_counts_unchanged": {
+          "correct": 1,
+          "incorrect": 1,
+          "pending_uncredited": 429
+        },
+        "proves_exact_scoped_fact": 1,
+        "status_counts": {
+          "answered": 431
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9299474605954466,
+        "answer_kind_counts": {
+          "model_generated": 571
+        },
+        "correct": 531,
+        "denominator": 571,
+        "evidence_counts": {
+          "none": 34,
+          "primary_complete_assertion": 106,
+          "whole_quantity": 431
+        },
+        "incorrect": 7,
+        "pending_uncredited": 33,
+        "primary_counts_unchanged": {
+          "correct": 106,
+          "incorrect": 1,
+          "pending_uncredited": 464
+        },
+        "proves_exact_scoped_fact": 106,
+        "status_counts": {
+          "answered": 571
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 425,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 427
+      }
+    },
+    "trained_scope_editor": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.8509142053445851,
+        "answer_kind_counts": {
+          "deterministic_clarification": 23,
+          "model_generated": 688
+        },
+        "correct": 605,
+        "denominator": 711,
+        "evidence_counts": {
+          "none": 102,
+          "primary_complete_assertion": 200,
+          "whole_quantity": 409
+        },
+        "incorrect": 74,
+        "pending_uncredited": 32,
+        "primary_counts_unchanged": {
+          "correct": 200,
+          "incorrect": 70,
+          "pending_uncredited": 441
+        },
+        "proves_exact_scoped_fact": 200,
+        "status_counts": {
+          "answered": 688,
+          "clarification": 23
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6642857142857143,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 93,
+        "denominator": 140,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 93
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 93,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 93,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 1.0,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 70,
+        "denominator": 70,
+        "evidence_counts": {
+          "primary_complete_assertion": 69,
+          "whole_quantity": 1
+        },
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 69,
+          "pending_uncredited": 1
+        },
+        "proves_exact_scoped_fact": 69,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5428571428571428,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 38,
+        "denominator": 70,
+        "evidence_counts": {
+          "none": 32,
+          "primary_complete_assertion": 38
+        },
+        "incorrect": 0,
+        "pending_uncredited": 32,
+        "primary_counts_unchanged": {
+          "correct": 38,
+          "pending_uncredited": 32
+        },
+        "proves_exact_scoped_fact": 38,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.6642857142857143,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 93,
+        "denominator": 140,
+        "evidence_counts": {
+          "none": 47,
+          "primary_complete_assertion": 93
+        },
+        "incorrect": 47,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "correct": 93,
+          "incorrect": 47
+        },
+        "proves_exact_scoped_fact": 93,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9373549883990719,
+        "answer_kind_counts": {
+          "deterministic_clarification": 23,
+          "model_generated": 408
+        },
+        "correct": 404,
+        "denominator": 431,
+        "evidence_counts": {
+          "none": 23,
+          "whole_quantity": 408
+        },
+        "incorrect": 27,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "incorrect": 23,
+          "pending_uncredited": 408
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 408,
+          "clarification": 23
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.8966725043782837,
+        "answer_kind_counts": {
+          "deterministic_clarification": 23,
+          "model_generated": 548
+        },
+        "correct": 512,
+        "denominator": 571,
+        "evidence_counts": {
+          "none": 55,
+          "primary_complete_assertion": 107,
+          "whole_quantity": 409
+        },
+        "incorrect": 27,
+        "pending_uncredited": 32,
+        "primary_counts_unchanged": {
+          "correct": 107,
+          "incorrect": 23,
+          "pending_uncredited": 441
+        },
+        "proves_exact_scoped_fact": 107,
+        "status_counts": {
+          "answered": 548,
+          "clarification": 23
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 404,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 427
+      }
+    },
+    "unchanged_base": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.69901547116737,
+        "answer_kind_counts": {
+          "model_generated": 711
+        },
+        "correct": 497,
+        "denominator": 711,
+        "evidence_counts": {
+          "none": 21,
+          "whole_polarity": 140,
+          "whole_quantity": 550
+        },
+        "incorrect": 193,
+        "pending_uncredited": 21,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 711
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 711
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 70,
+        "denominator": 140,
+        "evidence_counts": {
+          "whole_polarity": 140
+        },
+        "incorrect": 70,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 140
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 0.0,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 0,
+        "denominator": 70,
+        "evidence_counts": {
+          "whole_quantity": 70
+        },
+        "incorrect": 70,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 70
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.0,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 0,
+        "denominator": 70,
+        "evidence_counts": {
+          "none": 21,
+          "whole_quantity": 49
+        },
+        "incorrect": 49,
+        "pending_uncredited": 21,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 70
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.5,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 70,
+        "denominator": 140,
+        "evidence_counts": {
+          "whole_polarity": 140
+        },
+        "incorrect": 70,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 140
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9907192575406032,
+        "answer_kind_counts": {
+          "model_generated": 431
+        },
+        "correct": 427,
+        "denominator": 431,
+        "evidence_counts": {
+          "whole_quantity": 431
+        },
+        "incorrect": 4,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 431
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 431
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.7478108581436077,
+        "answer_kind_counts": {
+          "model_generated": 571
+        },
+        "correct": 427,
+        "denominator": 571,
+        "evidence_counts": {
+          "none": 21,
+          "whole_quantity": 550
+        },
+        "incorrect": 123,
+        "pending_uncredited": 21,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 571
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 571
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 427,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 427
+      }
+    },
+    "updated_rag": {
+      "all_requested_qa": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9029535864978903,
+        "answer_kind_counts": {
+          "model_generated": 711
+        },
+        "correct": 642,
+        "denominator": 711,
+        "evidence_counts": {
+          "none": 21,
+          "whole_polarity": 140,
+          "whole_quantity": 550
+        },
+        "incorrect": 48,
+        "pending_uncredited": 21,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 711
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 711
+        }
+      },
+      "applicable_comparison": {
+        "accuracy_including_all_nonanswers_and_pending": 0.85,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 119,
+        "denominator": 140,
+        "evidence_counts": {
+          "whole_polarity": 140
+        },
+        "incorrect": 21,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 140
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "applicable_direct": {
+        "accuracy_including_all_nonanswers_and_pending": 1.0,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 70,
+        "denominator": 70,
+        "evidence_counts": {
+          "whole_quantity": 70
+        },
+        "incorrect": 0,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 70
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "applicable_paraphrase": {
+        "accuracy_including_all_nonanswers_and_pending": 0.37142857142857144,
+        "answer_kind_counts": {
+          "model_generated": 70
+        },
+        "correct": 26,
+        "denominator": 70,
+        "evidence_counts": {
+          "none": 21,
+          "whole_quantity": 49
+        },
+        "incorrect": 23,
+        "pending_uncredited": 21,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 70
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 70
+        }
+      },
+      "comparison_predicate": {
+        "accuracy_including_all_nonanswers_and_pending": 0.85,
+        "answer_kind_counts": {
+          "model_generated": 140
+        },
+        "correct": 119,
+        "denominator": 140,
+        "evidence_counts": {
+          "whole_polarity": 140
+        },
+        "incorrect": 21,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 140
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 140
+        }
+      },
+      "out_of_scope": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9907192575406032,
+        "answer_kind_counts": {
+          "model_generated": 431
+        },
+        "correct": 427,
+        "denominator": 431,
+        "evidence_counts": {
+          "whole_quantity": 431
+        },
+        "incorrect": 4,
+        "pending_uncredited": 0,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 431
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 431
+        }
+      },
+      "requested_value": {
+        "accuracy_including_all_nonanswers_and_pending": 0.9159369527145359,
+        "answer_kind_counts": {
+          "model_generated": 571
+        },
+        "correct": 523,
+        "denominator": 571,
+        "evidence_counts": {
+          "none": 21,
+          "whole_quantity": 550
+        },
+        "incorrect": 27,
+        "pending_uncredited": 21,
+        "primary_counts_unchanged": {
+          "pending_uncredited": 571
+        },
+        "proves_exact_scoped_fact": 0,
+        "status_counts": {
+          "answered": 571
+        }
+      },
+      "retention_of_baseline_qa_correct_out_of_scope": {
+        "correct": 427,
+        "definition": "QA correctness on the subset the unchanged base already answered correctly; all selected outcomes remain in the denominator.",
+        "denominator": 427
+      }
+    }
+  }
+}

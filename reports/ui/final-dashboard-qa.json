@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "purpose": "final_dashboard_visual_and_export_qa",
+  "url": "http://127.0.0.1:8000/#evaluation",
+  "natural_viewport_width": 607,
+  "observed_body_width": 592,
+  "page_horizontal_overflow": false,
+  "console_errors_or_warnings": [],
+  "final_report_status": "available",
+  "live_revision_after_readonly_checks": 1,
+  "live_correction_count": 0,
+  "screenshot_path": "reports/ui/frozen-final-results.png",
+  "screenshot_sha256": "fed03d052259036c57e4c79da0862945292163d7be4d116620a68cb91d6ee6b8",
+  "verified": [
+    "Bound final results loaded",
+    "720-question fair short-QA readout visible",
+    "Primary baseline-format caveat visible",
+    "Original319oracleexecutionerrorsretained",
+    "Separate recovery interrupted beforegenerationnotice",
+    "JSONandCSVdownloadbytesmatchlocalexports"
+  ],
+  "inference_or_training_performed": false,
+  "live_data_mutated": false,
+  "source_sha256": {
+    "editguard/api.py": "c04ff31fe5b8c98c8f57cf0e4953ffbfa81fcd16bd47b1b9d816d1437386150f",
+    "editguard/static/app.js": "30eb1f6775d7d70400bf617050b897697cc4a05ec98985a6b07a7c3c69151343",
+    "reports/final/summary.json": "c86b5e01c151f5d4b2fdedb97015d027dbebd205cbd6171efd14b70f371d9810"
+  }
+}

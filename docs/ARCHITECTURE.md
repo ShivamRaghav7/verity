@@ -7,13 +7,17 @@ after training changes memory, without a separate fit for that correction. The b
 assistant remains frozen. This is a behavioral knowledge editing system with
 external memory, not a claim to change knowledge inside base-model parameters.
 
-## Current implementation and planned learned path
+## Implemented paths
 
-The first vertical slice uses deterministic structured facts and answers. Its
-results validate edit governance and software behavior. Scope and answer
-checkpoints are absent; learned inference must remain unavailable until actual
-checkpoints and calibration artifacts are registered. Structured answers are
-identified separately in the API, interface and evaluation.
+Both auxiliary models have completed user-executed training, exported checkpoints,
+and independent artifact audits. The selected learned configuration is
+[`configs/inference-final.json`](../configs/inference-final.json): a trained
+DistilBERT scope cross-encoder and a separately fine-tuned FLAN-T5-small answer
+model. The frozen base uses its original FLAN-T5-small weights and initial
+handbook. New administrator-approved edits change external memory without a
+per-edit training run. The application also offers a separately labeled
+deterministic structured path; its correct answers provide no evidence of
+learned generation accuracy.
 
 ```mermaid
 flowchart TD
@@ -57,6 +61,8 @@ their reported performance are not results for our dataset.
 | Candidate retrieval before compact cross-encoder scoring | Bounds inference work; retrieval can lose relevant edits, so candidate recall is measured independently. |
 | Validation-selected calibration, threshold and ambiguity margin | Enables explicit abstention; reduces coverage and must be scored in fixed-denominator results. |
 | Deterministic compatibility gates before model routing | Enforces selected product/version/tier/date boundaries; raw classifier tests and gate ablations distinguish learned scope behavior. |
+| Entity-neutral literal preprocessing for the scope model | Replaces matching product/plan/version literals with neutral tokens, while preserving mismatches, properties and quantities. This is a deterministic adaptation; scope accuracy does not prove learned identity resolution. |
+| Weighted first-token loss for answer comparisons | Gives both Yes and No first tokens weight 8, with remaining valid tokens weight 1. This addresses a measured polarity error but does not guarantee numerical reasoning. |
 | A frozen assistant that retrieves an initial fictional handbook | Gives the base access to controlled facts, without assuming pretrained factual knowledge of imaginary products. |
 | Separate structured mode and learned mode | A deterministic answer can be reliable in supported cases; it provides no evidence of trained generator accuracy. |
 | Independent entity-family dataset and truth-aware scoring | Tests unseen corrections and products within the controlled domain; template sharing remains an acknowledged limitation. |
@@ -66,12 +72,13 @@ reproduction", in documentation and resume claims.
 
 ## Minimal stack and interfaces
 
-Use Python, FastAPI/Pydantic, SQLite, and a same-origin HTML/CSS/JavaScript frontend.
+The implementation uses Python, FastAPI/Pydantic, SQLite, and a same-origin HTML/CSS/JavaScript frontend.
 SQLite provides transactions, a small deployment footprint and exportable state.
-Use an isolated virtual environment. Add PyTorch/Transformers for the ML stage,
-tokenizer dependencies as needed, and Matplotlib for scientific plots. A GPU is a
-training option; the first application workflow requires no GPU. Avoid a separate
-vector database, task queue, auth service or experiment server initially.
+It uses isolated application and ML environments, PyTorch/Transformers for
+training and learned inference, and Matplotlib for scientific plots. The structured
+container requires no model weights or GPU. Local learned deployment additionally
+requires the saved auxiliary exports and pinned pretrained models. There is no
+separate vector database, task queue or experiment server.
 
 Keep interfaces narrow:
 
@@ -111,36 +118,74 @@ transaction. Future retrieval and response caches key on revision, model IDs and
 request scope; changing revision invalidates stale entries. Tests cover failed
 approvals, predecessor restoration, historical queries and unrelated fact scopes.
 
-## Backbone decisions remain provisional
+## Selected backbones and measured resources
 
 The inspected machine has an RTX 4050 laptop GPU with approximately 6 GB VRAM,
 12 logical CPU threads and 23.71 GiB RAM; free RAM was about 11 GiB at inspection.
 CUDA is available to PyTorch 2.9.0+cu130; Transformers 5.16.1 was detected.
-These observations do not establish training throughput or peak memory.
+The selected runs were profiled before release and then executed by the user.
+Their recorded training loops took 112.546 seconds for scope and 264.537 seconds
+for answers. Peak allocated GPU memory was 1.318 and 1.504 GiB respectively;
+peak reserved memory was 1.410 and 1.656 GiB. These are measurements on this
+machine, exclude full startup/final export wall time, and do not predict another
+machine's requirements. Exact evidence is in the
+[986-check training artifact audit](../reports/targeted-training-audit.json).
 
-The embedding candidate is
+The frozen embedding model is
 [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2),
 whose official card describes 384-dimensional sentence embeddings. A compact
 [DistilBERT](https://huggingface.co/distilbert/distilbert-base-uncased) encoder plus
-a binary head is a scope candidate. The answer candidate is
-[FLAN-T5-small](https://huggingface.co/google/flan-t5-small), with
-[T5-small](https://huggingface.co/docs/transformers/model_doc/t5) as an alternative;
-T5 provides an encoder-decoder text-to-text interface. Their suitability is an
-engineering hypothesis until a bounded real-checkpoint profile and validation
-experiment establish it. Record exact checkpoint revisions before training.
+a binary head is the trained scope backbone. The trained answer backbone is
+[FLAN-T5-small](https://huggingface.co/google/flan-t5-small), an encoder-decoder
+text-to-text model. Exact pretrained revisions, export hashes and selected states
+are recorded in the [model card](MODEL_CARD.md) and frozen final protocol.
+
+The scope representation is `entity_neutral_v1`. Calibration selected temperature
+1.0, threshold 0.97 and ambiguity margin 0.025 using development validation data.
+Runtime applies approval, identity, plan, version, date and conflict rules before
+eligible candidate routing. Low-confidence or near-tied decisions clarify.
+Model scores do not validate dates or approval status. The answer model receives
+the full applicable correction and supporting context; it generates text without
+a hidden deterministic answer replacement.
 
 ## Genuine implementation risks
 
 | Risk | Control and finite decision |
 |---|---|
-| Template shortcuts and correlated examples | Family split before augmentation, counterfactual values, independent human challenge questions, grouped uncertainty. Limit generalization claims. |
+| Template shortcuts and correlated examples | Family split before augmentation, counterfactual values, a separately reported agent-authored challenge set, transformed-input overlap audit and grouped uncertainty. There is no independent human challenge-review claim. |
 | Six GB VRAM and package/runtime compatibility | Bounded forward/backward profile with actual token lengths, CUDA synchronization, peak allocation and wall time before selecting batch sizes or estimates. |
 | Similar names, implied tiers and historical wording | Hard negatives plus explicit selectors; unresolved context requests clarification. |
 | A generator copies a value but changes subject or polarity | Score subject, relation, unit and endorsed value; oracle routing isolates generation failure. |
 | Candidate retrieval misses the edit | Report recall before filtering and after filtering; do not attribute all misses to the classifier. |
 | Conflicting or stale administrator changes | Transactions, original-value preconditions, explicit lineage and revision-aware cache keys. |
 | Small frozen generator performs poorly on fictional facts | Measure its initial-handbook performance; retain diagnostic errors and fairly update RAG. |
-| Human review is a bottleneck | Start with a reviewed pilot subset across families; keep pending rows ineligible and expand only after a working pipeline. |
+| Machine audit can miss semantic ambiguity | Record automated development/final review explicitly; preserve flagged rows and raw outputs. Automated consistency checks do not replace independent human semantic validation. |
+
+## Evaluation boundaries
+
+The selected models trained on four entity families and used two different
+families for development validation. The original 80-family draft was not all
+used for training. The frozen final packet contains 12 further families: 720 scope
+pairs, 288 oracle answer examples and 96 challenges. Raw entities and lineages
+are disjoint. Literal abstraction creates nine same-label test inputs also
+present in scope training; report these separately from the other 711 inputs.
+Shared templates remain a broader limitation.
+
+The frozen protocol compares the unchanged base, properly updated RAG,
+prompt-only correction, similarity editor and trained scope editor under matched
+corrections, generation settings and answer budgets. Component diagnostics
+separate retrieval, pair classification, oracle answer generation and end-to-end
+behavior. The matched comparison is sealed with zero runtime errors. Updated
+RAG leads the standard request-bound metric at 649/720, compared with the trained
+editor's 613/720. The editor's raw scope accuracy is 701/720, while challenge
+coverage falls to 48/96; good standard routing does not establish unrestricted
+language understanding. Original oracle inference has 319/384 CUDA runtime
+errors and remains an incomplete generation measurement. Separate recovery
+stopped before generation because CUDA is currently unavailable; its 319 cases
+remain not attempted. A fresh closure verifies unchanged files/fresh weights but cannot
+reconstruct the failed GPU instance's final memory state. See
+[FINAL_EVALUATION.md](FINAL_EVALUATION.md) for results and execution disclosures.
+No final measurement was used to revise models, thresholds or scoring rules.
 
 ## Evidence boundaries
 

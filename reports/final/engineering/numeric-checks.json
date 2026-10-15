@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "purpose": "optional_numeric_regression_checks",
+  "status": "passed",
+  "command": ".venv-ml/Scripts/python.exe -m unittest tests.test_trainer tests.test_answer_objective tests.test_scope_training_inputs -v",
+  "environment": {
+    "EDITGUARD_RUN_ML_TESTS": "1",
+    "HF_HUB_OFFLINE": "1"
+  },
+  "tests_run": 34,
+  "test_runner_seconds": 7.96,
+  "failures": 0,
+  "errors": 0,
+  "log_path": "reports/final/engineering/numeric-tests.log",
+  "log_sha256": "9fc24bf571b5759998d858a90c9e10722e27e0fd85a45b8665f332761f65b699",
+  "project_model_training_or_inference_performed": false,
+  "limitation": "Tiny synthetic CPU optimizer, checkpoint, objective and input-format regressions; no pretrained models, held-out questions or measured project-model fitting."
+}
