@@ -1,0 +1,13 @@
+test_changed_sample_identity_failure_or_invented_percentile_is_refused (tests.test_project_report.HttpReportEvidenceTests.test_changed_sample_identity_failure_or_invented_percentile_is_refused) ... ok
+test_complete_stable_latency_only_evidence_is_accepted (tests.test_project_report.HttpReportEvidenceTests.test_complete_stable_latency_only_evidence_is_accepted) ... ok
+test_partial_denominator_accuracy_claim_or_wrong_models_is_refused (tests.test_project_report.HttpReportEvidenceTests.test_partial_denominator_accuracy_claim_or_wrong_models_is_refused) ... ok
+test_complete_bound_evidence_loads_without_pdf_or_ml_import (tests.test_project_report.ProjectReportEvidenceTests.test_complete_bound_evidence_loads_without_pdf_or_ml_import) ... ok
+test_different_figure_source_or_protocol_is_refused (tests.test_project_report.ProjectReportEvidenceTests.test_different_figure_source_or_protocol_is_refused) ... ok
+test_dropped_denominator_or_changed_scoring_is_refused (tests.test_project_report.ProjectReportEvidenceTests.test_dropped_denominator_or_changed_scoring_is_refused) ... ok
+test_partial_or_false_human_claim_is_not_a_final_report (tests.test_project_report.ProjectReportEvidenceTests.test_partial_or_false_human_claim_is_not_a_final_report) ... ok
+test_prediction_or_figure_byte_tampering_is_refused (tests.test_project_report.ProjectReportEvidenceTests.test_prediction_or_figure_byte_tampering_is_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.286s
+
+OK

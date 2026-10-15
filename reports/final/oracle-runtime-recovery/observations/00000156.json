@@ -1,0 +1,167 @@
+{
+  "binding": {
+    "declaration_sha256": "fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355",
+    "original_oracle_sha256": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "index": 156,
+  "previous_sha256": "88a365f84b5f3f57c3ab529c424914eb2ceb14525c7db3506b90cffcf6d4c2ef",
+  "record": {
+    "answer": "Aster 054 Basic version v2 includes 2 devices.",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "oracle_answer",
+    "error": null,
+    "evaluation_kind": "oracle",
+    "expected_fact": {
+      "aliases": [
+        "A054"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-054-core",
+      "entity_name": "Aster 054",
+      "fact_id": "aster-054-core:Basic:v2:device_limit",
+      "plan": "Basic",
+      "relation": "device_limit",
+      "unit": "devices",
+      "value": "2",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-054",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "artifact_purpose": "trained",
+      "consumed_input_tokens": 125,
+      "human_reviewed_training_data": false,
+      "input_tokens": 125,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1\\model",
+      "output_tokens": 16,
+      "revision": null,
+      "training_review_policy": "automated_development"
+    },
+    "human_reviewed_data": false,
+    "id": "answer:edit:aster-054-core:Basic:v2:device_limit:variant-1:p1",
+    "input_text": "answer correction: Correction for Aster 054 (aliases: A054), Basic, version v2: device_limit changed from 1 to 2 devices, effective from 2026-09-01. Source: controlled://corrections/family-054/device_limit/1. Question: What is the device allowance on A054 Basic version v2? As of: 2026-10-11. Unchanged context: Aster 054 Basic version v2 includes 200 GB of storage. Aster 054 Basic version v2 costs 9 USD per month.",
+    "latency_ms": 206.663,
+    "normalized_scope_input_seen_in_train": null,
+    "normalized_scope_input_seen_in_validation": null,
+    "population": "answer",
+    "question": "What is the device allowance on A054 Basic version v2?",
+    "question_type": "paraphrase",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-054-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [],
+    "retrieval_candidates_raw": [],
+    "retrieval_hits": {
+      "1": false,
+      "3": false
+    },
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "route": "oracle_correct_routing",
+    "row_sha256": "3d4d3534ecb0a8b80290b44bc4337b63fb9403cd923d8167dc390ae95c314246",
+    "runtime_recovery": {
+      "declaration_sha256": "fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355",
+      "generation_result_durably_recorded": true,
+      "input_utf8_exactly_reconstructed": true,
+      "original_error": "CUDA error: unknown error\nSearch for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+      "original_record_sha256": "31c2fe0ebd37590855d7feb231cbe027780abda66706ce2004e6533f6b272e47",
+      "original_score": {
+        "answer_kind": "model_generated",
+        "correct": false,
+        "endorsed_fact": null,
+        "needs_review": false,
+        "reason": "No answer was generated.",
+        "scorer_version": "editguard-short-facts-v3",
+        "verdict": "incorrect"
+      },
+      "original_status": "error",
+      "selection_used_correctness": false
+    },
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+    "short_qa": {
+      "correct": null,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": null,
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "a054",
+        "plan": "basic",
+        "predicate": null,
+        "quantity": null,
+        "relation": "device_limit",
+        "task": "requested_value",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "Additional prose or an unsupported output form remains pending and uncredited.",
+      "task": "requested_value",
+      "verdict": "pending_uncredited"
+    },
+    "status": "answered",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A054"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-054-core",
+        "entity_name": "Aster 054",
+        "fact_id": "aster-054-core:Basic:v2:storage_gb",
+        "family_id": "family-054",
+        "lineage_id": "aster-054-core:Basic:storage_gb",
+        "plan": "Basic",
+        "relation": "storage_gb",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-054/core/v2",
+        "split": "test",
+        "unit": "GB",
+        "value": "200",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A054"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-054-core",
+        "entity_name": "Aster 054",
+        "fact_id": "aster-054-core:Basic:v2:price_monthly",
+        "family_id": "family-054",
+        "lineage_id": "aster-054-core:Basic:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-054/core/v2",
+        "split": "test",
+        "unit": "USD/month",
+        "value": "9",
+        "version": "v2"
+      }
+    ]
+  }
+}

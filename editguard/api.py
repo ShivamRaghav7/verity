@@ -733,6 +733,31 @@ class FinalReportCache(DevelopmentReportCache):
 class OracleRecoveryReportCache(FinalReportCache):
     """Separate fixed-configuration operational supplement; originals stay visible."""
 
+    @classmethod
+    def _sessions(cls, sessions, expected_base, reservations):
+        """Preload failures have no generated work; preserve their unavailable state."""
+        require = cls._require
+        require(isinstance(sessions, list) and bool(sessions), "Recovery process sessions must remain explicit.")
+        starts = [session.get("starting_index") for session in sessions]
+        require(all(type(start) is int and 0 <= start <= reservations for start in starts)
+                and starts[0] == 0 and starts == sorted(starts), "Recovery session reservation intervals are invalid.")
+        for index, session in enumerate(sessions):
+            before, after = session.get("base_parameter_sha256_before"), session.get("base_parameter_sha256_after")
+            require(before in (None, expected_base) and after in (None, expected_base),
+                    "Recovery session parameters differ from the frozen base.")
+            end = starts[index + 1] if index + 1 < len(starts) else reservations
+            if end > starts[index]:
+                require(before == expected_base, "Every session reserving generation requires its frozen base fingerprint before inference.")
+            if index + 1 < len(sessions):
+                failure = session.get("failure")
+                require(isinstance(failure, dict) and isinstance(failure.get("reason"), str) and bool(failure["reason"])
+                        and after is None and session.get("fingerprint_after_status") == "unavailable_for_this_interrupted_session",
+                        "Historical interrupted sessions must preserve their failure and unavailable post-run fingerprint.")
+            else:
+                require(before == after == expected_base and not session.get("failure")
+                        and isinstance(session.get("completed_at"), str) and bool(session["completed_at"]),
+                        "Completed recovery requires its own before/after checks; these do not establish a lost earlier GPU state.")
+
     def _interrupted(self, path, original):
         """Describe a bound attempted process without publishing recovery scores."""
         require = self._require
@@ -878,13 +903,7 @@ class OracleRecoveryReportCache(FinalReportCache):
         require(declaration.get("expected_base_parameter_fingerprint_sha256") == expected_base
                 and isinstance(manifest.get("sessions"), list) and bool(manifest["sessions"]),
                 "Recovery requires fixed base parameters and explicit process sessions.")
-        for session in manifest["sessions"]:
-            require(session.get("base_parameter_sha256_before") in (None, expected_base)
-                    and session.get("base_parameter_sha256_after") in (None, expected_base),
-                    "Recovery session parameters differ from the frozen base.")
-        require(manifest["sessions"][-1].get("base_parameter_sha256_before") == expected_base
-                and manifest["sessions"][-1].get("base_parameter_sha256_after") == expected_base,
-                "Completed recovery requires its own before/after base checks; these do not establish the lost original GPU state.")
+        self._sessions(manifest["sessions"], expected_base, manifest["durable_attempt_reservations"])
         def oracle_population(group, count):
             require(group.get("question_count") == count and group.get("record_count") == count
                     and set(group["configurations"]) == {"oracle_answer"}, "Recovery metrics lost oracle cohort observations.")

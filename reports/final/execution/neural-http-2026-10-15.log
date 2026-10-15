@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "counts": {
+    "attempted": 30,
+    "valid_responses": 30,
+    "errors": 0,
+    "answered": 30,
+    "abstentions": 0
+  },
+  "latency": {
+    "denominator": 30,
+    "p50_ms": 230.42390000000523,
+    "p95_ms": 372.0355500000152,
+    "includes_errors": true,
+    "valid_denominator": 30,
+    "valid_response_p50_ms": 230.42390000000523,
+    "valid_response_p95_ms": 372.0355500000152
+  }
+}

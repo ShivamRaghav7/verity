@@ -1,0 +1,64 @@
+{
+  "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+  "declaration_sha256": "fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355",
+  "durable_attempt_reservations": 319,
+  "finite_stopping_condition": "One reservation per selected runtime-error ID; no generation after a new CUDA error.",
+  "human_reviewed_data": false,
+  "interrupted_reservation_count": 0,
+  "limitations": [
+    "Separate operational supplement; original final scores and all original records remain unchanged.",
+    "A resumed process cannot rerun a durably reserved generation; interrupted reservations remain explicitly uncredited.",
+    "On a new CUDA error, stop immediately; later selected rows retain original uncredited errors and explicit not-attempted counts.",
+    "Serialized model/source/configuration hashes remain fixed; a later healthy instance cannot establish an unavailable fingerprint of an earlier failed GPU instance.",
+    "Combined latency includes retained original timings and new supplemental timings; it is not a fresh uninterrupted benchmark."
+  ],
+  "maximum_new_generation_calls": 319,
+  "new_runtime_error_count": 0,
+  "not_attempted_selected_count": 0,
+  "oracle_questions": 384,
+  "original_files_sha256": {
+    "manifest.json": "22fb7652e9cd878e79434cd572480b2e69f2fcad9e2a3deaba12b1fa071c3f23",
+    "metrics.json": "8f5ce9c0ce61927450cd82b0c6662a763286da061e61fdd4027e71bc033fec3e",
+    "oracle_predictions.jsonl": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
+    "short_qa_metrics.json": "5b0db725fecf1cd698c45c976e926b8b7617d26a1bbe3d5a07844bfbe1b105e1"
+  },
+  "original_records_unchanged": true,
+  "outputs_sha256": {
+    "combined_oracle_predictions.jsonl": "0d9550dd68a3e03745d7c2842c3ec74226b344710c004ed724a03c8ff5573eb9",
+    "metrics.json": "0835ee2cbb46562e9d5fa1268323ab71c868f1197bc3b7fa6af654a653f0edd7",
+    "recovery_predictions.jsonl": "cf1facb73adb662b696411a23054157c78cd4031c1c6975dfee2ba1fb98274a0",
+    "short_qa_metrics.json": "f4c8d12849df66cedad55b38347a19cd08fde4ccb6e9fc31491158201d953bbc"
+  },
+  "primary_results_replaced": false,
+  "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+  "purpose": "supplemental_oracle_runtime_recovery",
+  "review_policy": "automated_final",
+  "schema_version": 1,
+  "selected_runtime_errors": 319,
+  "selection_used_correctness": false,
+  "sessions": [
+    {
+      "base_parameter_sha256_after": null,
+      "base_parameter_sha256_before": null,
+      "failure": {
+        "at": "2026-10-15T04:47:14.111896+00:00",
+        "reason": "No CUDA GPUs are available",
+        "type": "RuntimeError"
+      },
+      "fingerprint_after_status": "unavailable_for_this_interrupted_session",
+      "resume": false,
+      "started_at": "2026-10-15T04:46:48.218372+00:00",
+      "starting_index": 0
+    },
+    {
+      "base_parameter_sha256_after": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+      "base_parameter_sha256_before": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+      "completed_at": "2026-10-15T05:41:01.098940+00:00",
+      "resume": true,
+      "started_at": "2026-10-15T05:39:01.867816+00:00",
+      "starting_index": 0
+    }
+  ],
+  "status": "completed",
+  "supplement_source_sha256": "010a8bc464947e528cfdcd2773990190aa0957d2988fb2dc73e8c3234208ab3a"
+}

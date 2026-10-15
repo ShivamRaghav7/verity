@@ -9,10 +9,13 @@ are not completion criteria.
 
 Both auxiliary models are trained and selected. Model search is closed. The
 matched frozen final comparison is sealed; original oracle generation remains
-incomplete due to disclosed runtime errors. Stage H documentation/report/interface
-verification continues. GPU availability separately blocks the declared oracle
-recovery and a fresh learned-HTTP measurement; it does not prevent the structured
-app, recorded dashboard, figures, report or CPU regression/CI work.
+incomplete due to disclosed runtime errors. Its separately declared recovery is
+complete after GPU availability was restored, preserving the original record.
+The finite A–H implementation, model training, evaluation and presentation work
+are complete, including the fresh learned-HTTP measurement. Final release-head CI
+verification remains before the release is signed off. The structured app,
+recorded dashboard, figures, report and CPU regression/CI evidence remain separate
+from the operational supplement.
 
 ## Five-person work breakdown
 
@@ -38,10 +41,10 @@ documentation; shared schemas and runnable scripts are the primary pipeline.
 | B: First workflow | One correction, appropriate questions, neighboring facts, conflict and rollback | Implemented and tested. Structured workflow and historical state are distinct from generated-answer quality. Local container evidence records 23/23 lifecycle and 3/3 restart checks. |
 | C: Base and harness | Frozen initial-handbook generator, all five fair configurations and component logs | Implemented. Updated RAG materializes approved changes; updated methods receive the same corrections/context and compatible generation budgets. |
 | D: Scope ML | Profile, train compact cross-encoder, embedding baseline and validation calibration | Complete for the selected release. Final scope export `pilot-v3-neutral2`, 360 updates, selected step 360; preprocessing/guards are declared adaptations. |
-| E: Answer ML | Profile, train correction-conditioned seq2seq, free-generation validation and failure diagnosis | Training/development complete. Selected `pilot-v2-polarity1`, 240 updates, selected step 240. Original final oracle runtime errors remain disclosed; separate recovery is incomplete. |
+| E: Answer ML | Profile, train correction-conditioned seq2seq, free-generation validation and failure diagnosis | Training/development complete. Selected `pilot-v2-polarity1`, 240 updates, selected step 240. Original final oracle runtime errors remain disclosed; separately named fixed-configuration recovery is complete. |
 | F: Integration | Artifact/calibration gates, learned routing, memory transitions, provenance and answer-kind separation | Implemented. Actual selected-model isolated workflow passes 31/31 state/routing checks; its factual diagnostics are not 31 correct neural answers. |
-| G: Frozen evaluation | Lock models/config/scorers/questions, audit final labels, one matched evaluation | Matched comparison sealed: 4,080 records, 4,009 answers, 71 clarifications, zero runtime errors. Original oracle 384 includes 319 CUDA errors and is incomplete. Separate fixed-configuration recovery stopped before generation because CUDA is unavailable. |
-| H: Release presentation | Final report/PDF, scientific figures, browser/demo verification, clean-checkout/CI evidence | Report and six landscape scientific figures rendered and reviewed; dashboard/downloads verified; 511 regression tests pass with 18 optional skips and 34 separate CPU numeric checks pass. Release CI checks follow each push. GPU-dependent follow-up remains incomplete; full completion is not claimed. |
+| G: Frozen evaluation | Lock models/config/scorers/questions, audit final labels, one matched evaluation | Matched comparison sealed: 4,080 records, 4,009 answers, 71 clarifications, zero runtime errors. Original oracle includes 319 CUDA errors. Its separate recovery completes all 319 after GPU restoration; the combined 384-case view retains 65 original answers. Original scores remain unchanged. |
+| H: Release presentation | Final report/PDF, scientific figures, browser/demo verification, clean-checkout/CI evidence | The 13-page report and six landscape scientific figures are rendered and reviewed; dashboard/downloads verified. Local release checks pass 516 tests with 18 optional skips and 34 separate CPU numeric checks. Oracle recovery and learned-HTTP evidence are incorporated. Final release-head CI verification remains. |
 
 ## Recorded scientific outcome
 
@@ -77,35 +80,48 @@ fragments, not zero factual accuracy. Both metrics and raw outputs remain visibl
 The original oracle run has 65/384 answered, 319 runtime errors and 45/384 primary
 credits. Those errors are not generated wrong answers or a license to remove
 cases. A declared 319-case operational supplement stopped during preload with
-`No CUDA GPUs are available`, making zero new generations/reservations; all
-selected cases remain not attempted. Its interrupted evidence preserves the
-original files. A fresh closure cannot reconstruct the unavailable final weight
-fingerprint of the original failed GPU instance.
+`No CUDA GPUs are available`, making zero new generations/reservations in that
+session. After GPU availability was restored, the same declared supplement
+answered all 319 selected cases with zero new runtime errors. Its combined view
+retains the 65 original answers: primary 247/384 (90 pending, 47 incorrect),
+standard request-bound 208/288. The original files and interrupted-session
+history remain preserved. The healthy session has matching base fingerprints;
+it cannot reconstruct the unavailable final weight fingerprint of the original
+failed GPU instance. No model or scoring setting changed.
 
 See [FINAL_EVALUATION.md](FINAL_EVALUATION.md), [MODEL_CARD.md](MODEL_CARD.md),
 [DATASET_CARD.md](DATASET_CARD.md) and [FAILURE_ANALYSIS.md](FAILURE_ANALYSIS.md)
 for exact identities, denominators, uncertainty, incidents and limitations.
 
-## Remaining finite work
+## Release checklist
 
-1. The [13-page report](../output/pdf/EditGuard-Report.pdf), scientific figures,
-   cards, API/deployment documentation and six-part [panel demonstration](DEMO.md)
-   are prepared. Every rendered PDF page, current dashboard and JSON/CSV download
-   was checked. Governance demonstration instructions distinguish structured
-   answers from the separately measured trained generation.
-2. Local application/JS and CPU optimizer checks pass with explicit skip counts.
-   Verify current clean-checkout/container behavior and the three release-head CI jobs.
-   Push tested substantial improvements; record actual outcomes rather than
-   treating a configured workflow as a passing run.
-3. After GPU availability is restored, resume only the already declared oracle
-   supplement on its 319 runtime-error IDs and run the finite isolated learned
-   HTTP workload. Preserve original oracle errors and label supplemental timing
-   separately. If hardware remains unavailable, mark these items incomplete
-   explicitly; do not silently change device/configuration or fabricate numbers.
+- Complete: the [13-page report PDF](../output/pdf/EditGuard-Report.pdf), six
+  scientific figures, cards, API/deployment documentation and six-part
+  [panel demonstration](DEMO.md). Every rendered PDF page, current dashboard and
+  JSON/CSV download was checked. Governance instructions distinguish structured
+  answers from separately measured trained generation.
+- Complete: local application/JS regressions (516 passed, 18 explicit optional
+  skips), a separate 34-test CPU numeric/checkpoint group, recorded structured
+  container lifecycle/restart checks and clean-source figure reproduction.
+- Complete: the declared 319-case oracle recovery and finite isolated learned
+  HTTP workload, reported separately in the final report and dashboard while
+  retaining the original errors and timing boundaries.
+- Release sign-off: push the tested improvements and verify the three CI jobs
+  on that exact release commit. Prior passing runs remain historical evidence;
+  configured workflows alone are not a passing outcome.
+
+The learned HTTP workload has 30/30 measured HTTP 200 answers, zero errors or
+clarifications, warm p50/p95 230.42/372.04 ms and cold lazy loading 68,781.35 ms.
+Three warmups are separate. It repeats three development questions, includes API
+before-answer generation and reports `ml_accuracy=null`. A repeated comparison
+answer remains wrong; these are availability/timing measurements, not 30 correct
+answers. The isolated fixture state and model/configuration identities are stable;
+the live database is unchanged. See [HTTP evidence](../reports/final/neural-http.json).
 
 The device interruption does not authorize retraining, new backbones, a larger
-dataset, test-guided scoring changes or another model search. Remaining work is
-verification/reporting and exact operational recovery of a fixed configuration.
+dataset, test-guided scoring changes or another model search. Fixed-configuration
+operational recovery and reporting are complete; the remaining release gate is
+the pushed commit's CI outcome.
 
 ## Experiment and recovery bounds
 
@@ -136,6 +152,7 @@ Current truthful resume wording: “Built a SERAC-inspired support knowledge edi
 with transactional correction memory and rollback; trained compact applicability
 and edit-conditioned answer models, evaluated five matched configurations on a
 controlled held-out dataset, and containerized the structured application.” Any
-number must name its population/metric and link to evidence. Do not claim complete
-oracle recovery, human review, production readiness, universal accuracy or learned
-superiority over updated RAG.
+number must name its population/metric and link to evidence. Keep the original
+oracle incident distinct from its completed operational recovery. Do not claim
+human review, production readiness, universal accuracy or learned superiority
+over updated RAG.

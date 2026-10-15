@@ -1,0 +1,159 @@
+{
+  "binding": {
+    "declaration_sha256": "fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355",
+    "original_oracle_sha256": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "index": 306,
+  "previous_sha256": "fbaab61a8675890fa35e52a09069ec576c38d11f52e0e3bbf62cb077b338f94a",
+  "record": {
+    "answer": "Aster 035 Basic version v2 supports 5 hours per day.",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "oracle_answer",
+    "error": null,
+    "evaluation_kind": "oracle",
+    "expected_fact": {
+      "aliases": [
+        "A035"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-035-core",
+      "entity_name": "Aster 035",
+      "fact_id": "aster-035-core:Basic:v2:support_hours",
+      "plan": "Basic",
+      "relation": "support_hours",
+      "unit": "hours/day",
+      "value": "5",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-035",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-035-core:Basic:v2:support_hours:variant-0",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "artifact_purpose": "trained",
+      "consumed_input_tokens": 132,
+      "human_reviewed_training_data": false,
+      "input_tokens": 132,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1\\model",
+      "output_tokens": 17,
+      "revision": null,
+      "training_review_policy": "automated_development"
+    },
+    "human_reviewed_data": false,
+    "id": "challenge:aster-035-core:Basic:v2:support_hours",
+    "input_text": "answer correction: Correction for Aster 035 (aliases: A035), Basic, version v2: support_hours changed from 10 to 5 hours/day, effective from 2026-09-01. Source: controlled://corrections/family-035/support_hours/0. Question: For Aster 035 Basic version v2, For how long in a day can I reach the support team? As of: 2026-10-11. Unchanged context: Aster 035 Basic version v2 costs 14 USD per month. Aster 035 Basic version v2 supports 3 devices.",
+    "latency_ms": 167.748,
+    "normalized_scope_input_seen_in_train": null,
+    "normalized_scope_input_seen_in_validation": null,
+    "population": "challenge",
+    "question": "For Aster 035 Basic version v2, For how long in a day can I reach the support team?",
+    "question_type": "challenge",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-035-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [],
+    "retrieval_candidates_raw": [],
+    "retrieval_hits": {
+      "1": false,
+      "3": false
+    },
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "route": "oracle_correct_routing",
+    "row_sha256": "84b94a1a86a0276fd9af5d5b3d186c441abe4e6c210f11ede3c38f30ad679d17",
+    "runtime_recovery": {
+      "declaration_sha256": "fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355",
+      "generation_result_durably_recorded": true,
+      "input_utf8_exactly_reconstructed": true,
+      "original_error": "CUDA error: unknown error\nSearch for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+      "original_record_sha256": "7b483d98016f8f9c7ca454c4358346348ae96c66dda4bc4e4f32bcef369c210d",
+      "original_score": {
+        "answer_kind": "model_generated",
+        "correct": false,
+        "endorsed_fact": null,
+        "needs_review": false,
+        "reason": "No answer was generated.",
+        "scorer_version": "editguard-short-facts-v3",
+        "verdict": "incorrect"
+      },
+      "original_status": "error",
+      "selection_used_correctness": false
+    },
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": "edit:aster-035-core:Basic:v2:support_hours:variant-0",
+    "short_qa": {
+      "correct": null,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": null,
+      "human_semantic_review": false,
+      "parsed_request": null,
+      "proves_exact_scoped_fact": false,
+      "reason": "Question wording or scope is outside the twelve locked controlled question forms.",
+      "task": null,
+      "verdict": "pending_uncredited"
+    },
+    "status": "answered",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A035"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-035-core",
+        "entity_name": "Aster 035",
+        "fact_id": "aster-035-core:Basic:v2:price_monthly",
+        "family_id": "family-035",
+        "lineage_id": "aster-035-core:Basic:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-035/core/v2",
+        "split": "test",
+        "unit": "USD/month",
+        "value": "14",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A035"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-035-core",
+        "entity_name": "Aster 035",
+        "fact_id": "aster-035-core:Basic:v2:device_limit",
+        "family_id": "family-035",
+        "lineage_id": "aster-035-core:Basic:device_limit",
+        "plan": "Basic",
+        "relation": "device_limit",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-035/core/v2",
+        "split": "test",
+        "unit": "devices",
+        "value": "3",
+        "version": "v2"
+      }
+    ]
+  }
+}

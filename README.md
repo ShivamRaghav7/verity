@@ -59,23 +59,37 @@ accuracy or evidence of learned superiority.
 
 The **original oracle measurement is incomplete**: 65/384 answers and 319 CUDA
 runtime errors; primary credit is 45/384 with all errors retained. A separately
-declared recovery attempt stopped before any new generation because CUDA is
-unavailable. All 319 selected cases remain not attempted. No recovered accuracy
-is claimed. The failed original GPU instance's final fingerprint is unavailable;
+declared recovery first stopped before generation because CUDA was unavailable.
+After GPU availability was restored, it answered all 319 selected errors without
+new runtime errors. Its separate combined oracle view retains 65 original answers:
+247/384 primary credits, 90 pending and 47 incorrect generated answers; standard
+request-bound credit is 208/288. This is operational recovery with unchanged
+models/settings, not an ML improvement or a replacement original result. The
+failed original GPU instance's final fingerprint is unavailable;
 fresh-process file/weight checks do not reconstruct that state.
+
+A separate isolated learned HTTP workload completes 30/30 measured requests
+without runtime errors or clarifications: warm client p50 230.42 ms, p95 372.04 ms.
+Cold lazy loading takes 68,781.35 ms; three warmups are separate. This repeats
+three development questions, includes the API's before-answer generation, and
+records `ml_accuracy=null`. Its four-device comparison still wrongly answers Yes;
+30 answered requests are not 30 correct answers. See [HTTP evidence](reports/final/neural-http.json).
 
 See [final results, denominators and execution disclosures](docs/FINAL_EVALUATION.md),
 [machine-readable summary](reports/final/summary.json),
 [results CSV](reports/final/results.csv),
 [paired uncertainty](reports/final/secondary-paired-uncertainty.json) and
 [scientific figures](reports/final/figures-v2/manifest.json).
-The [13-page report PDF](output/pdf/EditGuard-Report.pdf) is rendered and visually
+The [report PDF](output/pdf/EditGuard-Report.pdf) is rendered and visually
 checked; the dashboard and byte-identical JSON/CSV downloads are verified.
-Release regressions pass 511 tests with 18 explicit optional skips; a separate
+Release regressions pass 516 tests with 18 explicit optional skips; a separate
 34-test synthetic CPU numeric/checkpoint suite passes. Release CI checks regression,
 CPU optimizer recovery and container restart. The hardware-dependent measurement
-follow-up remains stage H work. GPU availability blocks oracle recovery and fresh learned-HTTP
-measurement. Other release work continues; no further model search is planned.
+follow-up is complete: GPU availability is restored, all 319 declared oracle cases
+are recovered separately, and finite learned-HTTP evidence is recorded. The final
+13-page report, browser dashboard and local regressions are checked. The three
+CI jobs must pass on the pushed release commit before release verification closes;
+no further model search or accuracy target is required.
 
 ## Architecture
 
@@ -150,11 +164,12 @@ $env:EDITGUARD_FINAL_EVALUATION_REPORT = 'reports/final/summary.json'
 .\.venv-ml\Scripts\python.exe -m editguard
 ```
 
-The selected configuration uses CUDA. The current host reports no available CUDA
-GPU after the evaluation incident, so fresh learned requests and measurements
-require restored GPU availability. The structured app and recorded-results
-dashboard remain usable. Changing the frozen configuration to CPU would define a
-separate measurement and is not silently done to fill missing GPU results.
+The selected configuration uses CUDA. After the evaluation interruption, GPU
+availability was restored and a fresh RTX 4050 probe passed. The declared oracle
+recovery then completed with the same configuration. The structured app and
+recorded-results dashboard also remain available without model inference. A CPU
+configuration would define a separate measurement; the frozen CUDA settings were
+not changed to fill missing results.
 
 The Evaluation lab displays recorded development/final artifacts, review policy,
 coverage, pending cases, raw scope/calibration, oracle errors, latency and exports.
@@ -225,5 +240,6 @@ local learned inference is a separate deployment path.
 Resume claims can describe a transactional support knowledge editor, two trained
 auxiliaries, five fair held-out comparisons and a containerized structured app.
 Any numerical claim must name its measured population and metric. Do not claim
-100% natural-language accuracy, learned superiority over updated RAG, complete
-oracle recovery, independent human review or completed GPU deployment.
+100% natural-language accuracy, learned superiority over updated RAG, independent
+human review or production GPU deployment. Distinguish the original oracle's
+runtime errors from its separate completed operational recovery.

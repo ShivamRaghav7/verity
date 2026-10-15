@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "purpose": "independent_completed_oracle_recovery_audit",
+  "status": "passed",
+  "original_results_preserved": true,
+  "original_files_sha256": {
+    "metrics.json": "8f5ce9c0ce61927450cd82b0c6662a763286da061e61fdd4027e71bc033fec3e",
+    "oracle_predictions.jsonl": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
+    "predictions.jsonl": "42e5f48d2362531e476d4bf0c12ef0a213754ed800379cee6c2df61cd10a2dc0",
+    "short_qa_metrics.json": "5b0db725fecf1cd698c45c976e926b8b7617d26a1bbe3d5a07844bfbe1b105e1"
+  },
+  "supplement_files_sha256": {
+    "combined_oracle_predictions.jsonl": "0d9550dd68a3e03745d7c2842c3ec74226b344710c004ed724a03c8ff5573eb9",
+    "metrics.json": "0835ee2cbb46562e9d5fa1268323ab71c868f1197bc3b7fa6af654a653f0edd7",
+    "recovery_predictions.jsonl": "cf1facb73adb662b696411a23054157c78cd4031c1c6975dfee2ba1fb98274a0",
+    "short_qa_metrics.json": "f4c8d12849df66cedad55b38347a19cd08fde4ccb6e9fc31491158201d953bbc"
+  },
+  "supplement_manifest_sha256": "0e9dfec877c2af7e4f708d24de459d2cf07bfc64feca5600c2614e8021a2d5a5",
+  "original_successes_preserved_exactly": 65,
+  "selected_original_cuda_errors": 319,
+  "new_answered_records": 319,
+  "combined_denominator": 384,
+  "original_question_truth_scope_and_utf8_generator_inputs_preserved": true,
+  "primary_and_secondary_scores_recomputed_without_model_inference": true,
+  "model_or_threshold_or_scoring_changes": false,
+  "human_reviewed_data": false,
+  "limitations": [
+    "Recomputes the already frozen deterministic scorers; this is not independent human semantic adjudication.",
+    "The healthy recovery fingerprint does not reconstruct the lost original GPU instance state."
+  ]
+}

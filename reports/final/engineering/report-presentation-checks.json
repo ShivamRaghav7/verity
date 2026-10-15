@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "report_presentation_followup_checks",
+  "checked_at": "2026-10-15T09:51:22.518572+00:00",
+  "full_suite_reference": {
+    "path": "reports/final/engineering/checks-recovered.json",
+    "sha256": "f26c6d83f65e85203ce1d48dac901ea29ad8978a5d619b83957534f6e44380e7",
+    "tests_run": 534,
+    "passed": 516,
+    "skipped": 18
+  },
+  "changes_after_full_suite": {
+    "scripts/build_project_report.py": {
+      "tested_sha256": "0f25721565ea8f41c85b74919f0e59399e7156711638146fa4a439ad80514fad",
+      "current_sha256": "f9fc66275fd238621d2668b9564e2419988f60d9995409544698f5c0b1ff1bd4"
+    }
+  },
+  "change_scope": "PDF layout and wording only: keep results table together, compact evidence references, remove repeated prose. Frozen models, data, scoring, inference and API remain unchanged.",
+  "targeted_tests": {
+    "tests_run": 8,
+    "passed": 8,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "successful": true,
+    "log_path": "reports/final/engineering/report-tests-recovered.log",
+    "log_sha256": "924b5125971a14b9beab2ee51221801a0be5f50110ad3288fecc00d047f7194c"
+  },
+  "limitation": "The original full-suite inventory describes the bytes it tested; current report generator is additionally covered by this focused follow-up. Exact release source is also checked by CI after push."
+}

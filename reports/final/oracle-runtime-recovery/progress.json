@@ -4,14 +4,14 @@
     "original_oracle_sha256": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
     "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
   },
-  "committed_observation_count": 0,
+  "committed_observation_count": 319,
   "failure": {
     "at": "2026-10-15T04:47:14.111896+00:00",
     "reason": "No CUDA GPUs are available",
     "type": "RuntimeError"
   },
-  "last_observation_sha256": null,
-  "next_index": 0,
+  "last_observation_sha256": "235daeab181264ce45ae79a3911f703254cd0fe0b55ed94dac9b4f4e335aecd4",
+  "next_index": 319,
   "sessions": [
     {
       "base_parameter_sha256_after": null,
@@ -25,7 +25,15 @@
       "resume": false,
       "started_at": "2026-10-15T04:46:48.218372+00:00",
       "starting_index": 0
+    },
+    {
+      "base_parameter_sha256_after": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+      "base_parameter_sha256_before": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+      "completed_at": "2026-10-15T05:41:01.098940+00:00",
+      "resume": true,
+      "started_at": "2026-10-15T05:39:01.867816+00:00",
+      "starting_index": 0
     }
   ],
-  "status": "interrupted"
+  "status": "completed"
 }

@@ -6,11 +6,11 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 288,
-            "numerator": 45,
-            "value": 0.15625
+            "numerator": 207,
+            "value": 0.71875
           },
           "answerable_count": 288,
-          "automatic_correct": 45,
+          "automatic_correct": 207,
           "baseline_available": false,
           "baseline_correct_retention": {
             "denominator": 0,
@@ -22,35 +22,35 @@
               "abstentions": 0,
               "accuracy": {
                 "denominator": 288,
-                "numerator": 45,
-                "value": 0.15625
+                "numerator": 207,
+                "value": 0.71875
               },
               "answerable_count": 288,
-              "automatic_correct": 45,
+              "automatic_correct": 207,
               "count": 288,
               "coverage": {
                 "denominator": 288,
-                "numerator": 65,
-                "value": 0.22569444444444445
+                "numerator": 288,
+                "value": 1.0
               },
-              "errors": 223,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 288,
-                "numerator": 45,
-                "value": 0.15625
+                "numerator": 207,
+                "value": 0.71875
               },
               "model_generated_answer_coverage": {
                 "denominator": 288,
-                "numerator": 65,
-                "value": 0.22569444444444445
+                "numerator": 288,
+                "value": 1.0
               },
-              "pending_review": 8,
+              "pending_review": 34,
               "selective_accuracy": {
-                "denominator": 65,
-                "numerator": 45,
-                "value": 0.6923076923076923
+                "denominator": 288,
+                "numerator": 207,
+                "value": 0.71875
               },
               "unavailable": 0
             }
@@ -59,22 +59,22 @@
           "counts": {
             "abstentions": 0,
             "answerable": 288,
-            "answered": 65,
-            "correct": 45,
-            "errors": 223,
+            "answered": 288,
+            "correct": 207,
+            "errors": 0,
             "input_records": 288,
             "missing_records": 0,
             "missing_score": 0,
-            "pending_review": 8,
+            "pending_review": 34,
             "total": 288,
             "unavailable": 0
           },
           "coverage": {
             "denominator": 288,
-            "numerator": 65,
-            "value": 0.22569444444444445
+            "numerator": 288,
+            "value": 1.0
           },
-          "errors": 223,
+          "errors": 0,
           "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
           "false_correction_application_rate": {
             "denominator": 0,
@@ -92,9 +92,9 @@
           "latency": {
             "complete": true,
             "missing_count": 0,
-            "observed_only_p50_ms": 2.9444999999999997,
+            "observed_only_p50_ms": 214.039,
             "observed_only_p95_ms": 831.7685499999997,
-            "p50_ms": 2.9444999999999997,
+            "p50_ms": 214.039,
             "p95_ms": 831.7685499999997,
             "sample_count": 288,
             "total_count": 288,
@@ -102,68 +102,78 @@
           },
           "model_generated_answer_accuracy": {
             "denominator": 288,
-            "numerator": 45,
-            "value": 0.15625
+            "numerator": 207,
+            "value": 0.71875
           },
           "model_generated_answer_coverage": {
             "denominator": 288,
-            "numerator": 65,
-            "value": 0.22569444444444445
+            "numerator": 288,
+            "value": 1.0
           },
           "output_preservation": {
             "denominator": 0,
             "numerator": 0,
             "value": null
           },
-          "pending_review": 8,
+          "pending_review": 34,
           "preservation_parsed_pair_count": 0,
-          "retrieval_recall": {},
+          "retrieval_recall": {
+            "1": {
+              "denominator": 288,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "3": {
+              "denominator": 288,
+              "numerator": 0,
+              "value": 0.0
+            }
+          },
           "scope": null,
           "scope_label_coverage": null,
           "scope_labeled_records": 0,
           "selective_accuracy": {
-            "denominator": 65,
-            "numerator": 45,
-            "value": 0.6923076923076923
+            "denominator": 288,
+            "numerator": 207,
+            "value": 0.71875
           },
           "status_counts": {
-            "answered": 65,
-            "error": 223
+            "answered": 288
           },
           "subsets": {
             "comparison": {
               "abstentions": 0,
               "accuracy": {
                 "denominator": 144,
-                "numerator": 20,
-                "value": 0.1388888888888889
+                "numerator": 97,
+                "value": 0.6736111111111112
               },
               "answerable_count": 144,
-              "automatic_correct": 20,
+              "automatic_correct": 97,
               "count": 144,
               "coverage": {
                 "denominator": 144,
-                "numerator": 32,
-                "value": 0.2222222222222222
+                "numerator": 144,
+                "value": 1.0
               },
-              "errors": 112,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 144,
-                "numerator": 20,
-                "value": 0.1388888888888889
+                "numerator": 97,
+                "value": 0.6736111111111112
               },
               "model_generated_answer_coverage": {
                 "denominator": 144,
-                "numerator": 32,
-                "value": 0.2222222222222222
+                "numerator": 144,
+                "value": 1.0
               },
               "pending_review": 0,
               "selective_accuracy": {
-                "denominator": 32,
-                "numerator": 20,
-                "value": 0.625
+                "denominator": 144,
+                "numerator": 97,
+                "value": 0.6736111111111112
               },
               "unavailable": 0
             },
@@ -171,35 +181,35 @@
               "abstentions": 0,
               "accuracy": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
+                "numerator": 71,
+                "value": 0.9861111111111112
               },
               "answerable_count": 72,
-              "automatic_correct": 17,
+              "automatic_correct": 71,
               "count": 72,
               "coverage": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
+                "numerator": 72,
+                "value": 1.0
               },
-              "errors": 55,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
+                "numerator": 71,
+                "value": 0.9861111111111112
               },
               "model_generated_answer_coverage": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
-              },
-              "pending_review": 0,
-              "selective_accuracy": {
-                "denominator": 17,
-                "numerator": 17,
+                "numerator": 72,
                 "value": 1.0
+              },
+              "pending_review": 1,
+              "selective_accuracy": {
+                "denominator": 72,
+                "numerator": 71,
+                "value": 0.9861111111111112
               },
               "unavailable": 0
             },
@@ -207,35 +217,35 @@
               "abstentions": 0,
               "accuracy": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
+                "numerator": 71,
+                "value": 0.9861111111111112
               },
               "answerable_count": 72,
-              "automatic_correct": 17,
+              "automatic_correct": 71,
               "count": 72,
               "coverage": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
+                "numerator": 72,
+                "value": 1.0
               },
-              "errors": 55,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
+                "numerator": 71,
+                "value": 0.9861111111111112
               },
               "model_generated_answer_coverage": {
                 "denominator": 72,
-                "numerator": 17,
-                "value": 0.2361111111111111
-              },
-              "pending_review": 0,
-              "selective_accuracy": {
-                "denominator": 17,
-                "numerator": 17,
+                "numerator": 72,
                 "value": 1.0
+              },
+              "pending_review": 1,
+              "selective_accuracy": {
+                "denominator": 72,
+                "numerator": 71,
+                "value": 0.9861111111111112
               },
               "unavailable": 0
             },
@@ -279,35 +289,35 @@
               "abstentions": 0,
               "accuracy": {
                 "denominator": 72,
-                "numerator": 8,
-                "value": 0.1111111111111111
+                "numerator": 39,
+                "value": 0.5416666666666666
               },
               "answerable_count": 72,
-              "automatic_correct": 8,
+              "automatic_correct": 39,
               "count": 72,
               "coverage": {
                 "denominator": 72,
-                "numerator": 16,
-                "value": 0.2222222222222222
+                "numerator": 72,
+                "value": 1.0
               },
-              "errors": 56,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 72,
-                "numerator": 8,
-                "value": 0.1111111111111111
+                "numerator": 39,
+                "value": 0.5416666666666666
               },
               "model_generated_answer_coverage": {
                 "denominator": 72,
-                "numerator": 16,
-                "value": 0.2222222222222222
+                "numerator": 72,
+                "value": 1.0
               },
-              "pending_review": 8,
+              "pending_review": 33,
               "selective_accuracy": {
-                "denominator": 16,
-                "numerator": 8,
-                "value": 0.5
+                "denominator": 72,
+                "numerator": 39,
+                "value": 0.5416666666666666
               },
               "unavailable": 0
             }
@@ -328,11 +338,11 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 40,
+            "value": 0.4166666666666667
           },
           "answerable_count": 96,
-          "automatic_correct": 0,
+          "automatic_correct": 40,
           "baseline_available": false,
           "baseline_correct_retention": {
             "denominator": 0,
@@ -344,35 +354,35 @@
               "abstentions": 0,
               "accuracy": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 40,
+                "value": 0.4166666666666667
               },
               "answerable_count": 96,
-              "automatic_correct": 0,
+              "automatic_correct": 40,
               "count": 96,
               "coverage": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 96,
+                "value": 1.0
               },
-              "errors": 96,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 40,
+                "value": 0.4166666666666667
               },
               "model_generated_answer_coverage": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 96,
+                "value": 1.0
               },
-              "pending_review": 0,
+              "pending_review": 56,
               "selective_accuracy": {
-                "denominator": 0,
-                "numerator": 0,
-                "value": null
+                "denominator": 96,
+                "numerator": 40,
+                "value": 0.4166666666666667
               },
               "unavailable": 0
             }
@@ -381,22 +391,22 @@
           "counts": {
             "abstentions": 0,
             "answerable": 96,
-            "answered": 0,
-            "correct": 0,
-            "errors": 96,
+            "answered": 96,
+            "correct": 40,
+            "errors": 0,
             "input_records": 96,
             "missing_records": 0,
             "missing_score": 0,
-            "pending_review": 0,
+            "pending_review": 56,
             "total": 96,
             "unavailable": 0
           },
           "coverage": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 96,
+            "value": 1.0
           },
-          "errors": 96,
+          "errors": 0,
           "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
           "false_correction_application_rate": {
             "denominator": 0,
@@ -414,77 +424,88 @@
           "latency": {
             "complete": true,
             "missing_count": 0,
-            "observed_only_p50_ms": 2.6260000000000003,
-            "observed_only_p95_ms": 5.420999999999999,
-            "p50_ms": 2.6260000000000003,
-            "p95_ms": 5.420999999999999,
+            "observed_only_p50_ms": 197.5585,
+            "observed_only_p95_ms": 250.7015,
+            "p50_ms": 197.5585,
+            "p95_ms": 250.7015,
             "sample_count": 96,
             "total_count": 96,
             "unit": "ms"
           },
           "model_generated_answer_accuracy": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 40,
+            "value": 0.4166666666666667
           },
           "model_generated_answer_coverage": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 96,
+            "value": 1.0
           },
           "output_preservation": {
             "denominator": 0,
             "numerator": 0,
             "value": null
           },
-          "pending_review": 0,
+          "pending_review": 56,
           "preservation_parsed_pair_count": 0,
-          "retrieval_recall": {},
+          "retrieval_recall": {
+            "1": {
+              "denominator": 96,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "3": {
+              "denominator": 96,
+              "numerator": 0,
+              "value": 0.0
+            }
+          },
           "scope": null,
           "scope_label_coverage": null,
           "scope_labeled_records": 0,
           "selective_accuracy": {
-            "denominator": 0,
-            "numerator": 0,
-            "value": null
+            "denominator": 96,
+            "numerator": 40,
+            "value": 0.4166666666666667
           },
           "status_counts": {
-            "error": 96
+            "answered": 96
           },
           "subsets": {
             "challenge": {
               "abstentions": 0,
               "accuracy": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 40,
+                "value": 0.4166666666666667
               },
               "answerable_count": 96,
-              "automatic_correct": 0,
+              "automatic_correct": 40,
               "count": 96,
               "coverage": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 96,
+                "value": 1.0
               },
-              "errors": 96,
+              "errors": 0,
               "human_adjudicated_correct": 0,
               "human_adjudicated_count": 0,
               "model_generated_answer_accuracy": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 40,
+                "value": 0.4166666666666667
               },
               "model_generated_answer_coverage": {
                 "denominator": 96,
-                "numerator": 0,
-                "value": 0.0
+                "numerator": 96,
+                "value": 1.0
               },
-              "pending_review": 0,
+              "pending_review": 56,
               "selective_accuracy": {
-                "denominator": 0,
-                "numerator": 0,
-                "value": null
+                "denominator": 96,
+                "numerator": 40,
+                "value": 0.4166666666666667
               },
               "unavailable": 0
             },
@@ -685,11 +706,11 @@
       "abstentions": 0,
       "accuracy": {
         "denominator": 384,
-        "numerator": 45,
-        "value": 0.1171875
+        "numerator": 247,
+        "value": 0.6432291666666666
       },
       "answerable_count": 384,
-      "automatic_correct": 45,
+      "automatic_correct": 247,
       "baseline_available": false,
       "baseline_correct_retention": {
         "denominator": 0,
@@ -701,35 +722,35 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 384,
-            "numerator": 45,
-            "value": 0.1171875
+            "numerator": 247,
+            "value": 0.6432291666666666
           },
           "answerable_count": 384,
-          "automatic_correct": 45,
+          "automatic_correct": 247,
           "count": 384,
           "coverage": {
             "denominator": 384,
-            "numerator": 65,
-            "value": 0.16927083333333334
+            "numerator": 384,
+            "value": 1.0
           },
-          "errors": 319,
+          "errors": 0,
           "human_adjudicated_correct": 0,
           "human_adjudicated_count": 0,
           "model_generated_answer_accuracy": {
             "denominator": 384,
-            "numerator": 45,
-            "value": 0.1171875
+            "numerator": 247,
+            "value": 0.6432291666666666
           },
           "model_generated_answer_coverage": {
             "denominator": 384,
-            "numerator": 65,
-            "value": 0.16927083333333334
+            "numerator": 384,
+            "value": 1.0
           },
-          "pending_review": 8,
+          "pending_review": 90,
           "selective_accuracy": {
-            "denominator": 65,
-            "numerator": 45,
-            "value": 0.6923076923076923
+            "denominator": 384,
+            "numerator": 247,
+            "value": 0.6432291666666666
           },
           "unavailable": 0
         }
@@ -738,22 +759,22 @@
       "counts": {
         "abstentions": 0,
         "answerable": 384,
-        "answered": 65,
-        "correct": 45,
-        "errors": 319,
+        "answered": 384,
+        "correct": 247,
+        "errors": 0,
         "input_records": 384,
         "missing_records": 0,
         "missing_score": 0,
-        "pending_review": 8,
+        "pending_review": 90,
         "total": 384,
         "unavailable": 0
       },
       "coverage": {
         "denominator": 384,
-        "numerator": 65,
-        "value": 0.16927083333333334
+        "numerator": 384,
+        "value": 1.0
       },
-      "errors": 319,
+      "errors": 0,
       "false_correction_application_definition": "Out-of-scope questions with a selected_edit_id / all answerable out-of-scope questions. This is an audited editor routing event; it does not infer correction influence in generated RAG or prompt-only prose.",
       "false_correction_application_rate": {
         "denominator": 0,
@@ -771,9 +792,9 @@
       "latency": {
         "complete": true,
         "missing_count": 0,
-        "observed_only_p50_ms": 2.8200000000000003,
+        "observed_only_p50_ms": 209.2495,
         "observed_only_p95_ms": 814.3050499999999,
-        "p50_ms": 2.8200000000000003,
+        "p50_ms": 209.2495,
         "p95_ms": 814.3050499999999,
         "sample_count": 384,
         "total_count": 384,
@@ -781,68 +802,78 @@
       },
       "model_generated_answer_accuracy": {
         "denominator": 384,
-        "numerator": 45,
-        "value": 0.1171875
+        "numerator": 247,
+        "value": 0.6432291666666666
       },
       "model_generated_answer_coverage": {
         "denominator": 384,
-        "numerator": 65,
-        "value": 0.16927083333333334
+        "numerator": 384,
+        "value": 1.0
       },
       "output_preservation": {
         "denominator": 0,
         "numerator": 0,
         "value": null
       },
-      "pending_review": 8,
+      "pending_review": 90,
       "preservation_parsed_pair_count": 0,
-      "retrieval_recall": {},
+      "retrieval_recall": {
+        "1": {
+          "denominator": 384,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "3": {
+          "denominator": 384,
+          "numerator": 0,
+          "value": 0.0
+        }
+      },
       "scope": null,
       "scope_label_coverage": null,
       "scope_labeled_records": 0,
       "selective_accuracy": {
-        "denominator": 65,
-        "numerator": 45,
-        "value": 0.6923076923076923
+        "denominator": 384,
+        "numerator": 247,
+        "value": 0.6432291666666666
       },
       "status_counts": {
-        "answered": 65,
-        "error": 319
+        "answered": 384
       },
       "subsets": {
         "challenge": {
           "abstentions": 0,
           "accuracy": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 40,
+            "value": 0.4166666666666667
           },
           "answerable_count": 96,
-          "automatic_correct": 0,
+          "automatic_correct": 40,
           "count": 96,
           "coverage": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 96,
+            "value": 1.0
           },
-          "errors": 96,
+          "errors": 0,
           "human_adjudicated_correct": 0,
           "human_adjudicated_count": 0,
           "model_generated_answer_accuracy": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 40,
+            "value": 0.4166666666666667
           },
           "model_generated_answer_coverage": {
             "denominator": 96,
-            "numerator": 0,
-            "value": 0.0
+            "numerator": 96,
+            "value": 1.0
           },
-          "pending_review": 0,
+          "pending_review": 56,
           "selective_accuracy": {
-            "denominator": 0,
-            "numerator": 0,
-            "value": null
+            "denominator": 96,
+            "numerator": 40,
+            "value": 0.4166666666666667
           },
           "unavailable": 0
         },
@@ -850,35 +881,35 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 144,
-            "numerator": 20,
-            "value": 0.1388888888888889
+            "numerator": 97,
+            "value": 0.6736111111111112
           },
           "answerable_count": 144,
-          "automatic_correct": 20,
+          "automatic_correct": 97,
           "count": 144,
           "coverage": {
             "denominator": 144,
-            "numerator": 32,
-            "value": 0.2222222222222222
+            "numerator": 144,
+            "value": 1.0
           },
-          "errors": 112,
+          "errors": 0,
           "human_adjudicated_correct": 0,
           "human_adjudicated_count": 0,
           "model_generated_answer_accuracy": {
             "denominator": 144,
-            "numerator": 20,
-            "value": 0.1388888888888889
+            "numerator": 97,
+            "value": 0.6736111111111112
           },
           "model_generated_answer_coverage": {
             "denominator": 144,
-            "numerator": 32,
-            "value": 0.2222222222222222
+            "numerator": 144,
+            "value": 1.0
           },
           "pending_review": 0,
           "selective_accuracy": {
-            "denominator": 32,
-            "numerator": 20,
-            "value": 0.625
+            "denominator": 144,
+            "numerator": 97,
+            "value": 0.6736111111111112
           },
           "unavailable": 0
         },
@@ -886,35 +917,35 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
+            "numerator": 71,
+            "value": 0.9861111111111112
           },
           "answerable_count": 72,
-          "automatic_correct": 17,
+          "automatic_correct": 71,
           "count": 72,
           "coverage": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
+            "numerator": 72,
+            "value": 1.0
           },
-          "errors": 55,
+          "errors": 0,
           "human_adjudicated_correct": 0,
           "human_adjudicated_count": 0,
           "model_generated_answer_accuracy": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
+            "numerator": 71,
+            "value": 0.9861111111111112
           },
           "model_generated_answer_coverage": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
-          },
-          "pending_review": 0,
-          "selective_accuracy": {
-            "denominator": 17,
-            "numerator": 17,
+            "numerator": 72,
             "value": 1.0
+          },
+          "pending_review": 1,
+          "selective_accuracy": {
+            "denominator": 72,
+            "numerator": 71,
+            "value": 0.9861111111111112
           },
           "unavailable": 0
         },
@@ -922,35 +953,35 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
+            "numerator": 71,
+            "value": 0.9861111111111112
           },
           "answerable_count": 72,
-          "automatic_correct": 17,
+          "automatic_correct": 71,
           "count": 72,
           "coverage": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
+            "numerator": 72,
+            "value": 1.0
           },
-          "errors": 55,
+          "errors": 0,
           "human_adjudicated_correct": 0,
           "human_adjudicated_count": 0,
           "model_generated_answer_accuracy": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
+            "numerator": 71,
+            "value": 0.9861111111111112
           },
           "model_generated_answer_coverage": {
             "denominator": 72,
-            "numerator": 17,
-            "value": 0.2361111111111111
-          },
-          "pending_review": 0,
-          "selective_accuracy": {
-            "denominator": 17,
-            "numerator": 17,
+            "numerator": 72,
             "value": 1.0
+          },
+          "pending_review": 1,
+          "selective_accuracy": {
+            "denominator": 72,
+            "numerator": 71,
+            "value": 0.9861111111111112
           },
           "unavailable": 0
         },
@@ -994,35 +1025,35 @@
           "abstentions": 0,
           "accuracy": {
             "denominator": 72,
-            "numerator": 8,
-            "value": 0.1111111111111111
+            "numerator": 39,
+            "value": 0.5416666666666666
           },
           "answerable_count": 72,
-          "automatic_correct": 8,
+          "automatic_correct": 39,
           "count": 72,
           "coverage": {
             "denominator": 72,
-            "numerator": 16,
-            "value": 0.2222222222222222
+            "numerator": 72,
+            "value": 1.0
           },
-          "errors": 56,
+          "errors": 0,
           "human_adjudicated_correct": 0,
           "human_adjudicated_count": 0,
           "model_generated_answer_accuracy": {
             "denominator": 72,
-            "numerator": 8,
-            "value": 0.1111111111111111
+            "numerator": 39,
+            "value": 0.5416666666666666
           },
           "model_generated_answer_coverage": {
             "denominator": 72,
-            "numerator": 16,
-            "value": 0.2222222222222222
+            "numerator": 72,
+            "value": 1.0
           },
-          "pending_review": 8,
+          "pending_review": 33,
           "selective_accuracy": {
-            "denominator": 16,
-            "numerator": 8,
-            "value": 0.5
+            "denominator": 72,
+            "numerator": 39,
+            "value": 0.5416666666666666
           },
           "unavailable": 0
         }
@@ -1034,7 +1065,7 @@
   "interrupted_reservation_count": 0,
   "metrics_version": "editguard-fixed-denominators-v2",
   "new_runtime_error_count": 0,
-  "not_attempted_selected_count": 319,
+  "not_attempted_selected_count": 0,
   "original_denominator": 384,
   "original_successful_or_other_unselected_records_preserved": 65,
   "paired_comparisons": [],
@@ -1044,5 +1075,5 @@
   "record_count": 384,
   "schema_version": 1,
   "selected_runtime_error_count": 319,
-  "supplemental_records": 0
+  "supplemental_records": 319
 }

@@ -6,11 +6,13 @@ sequence uses **deterministic structured answers** and tests governance; it is
 not evidence that the answer model generated correct text.
 
 The standard frozen short-QA comparison is complete: updated RAG 649/720, trained
-editor 613/720. The original oracle run has 319 CUDA errors. Its declared recovery
-stopped before new generation because no CUDA GPU is available. The structured
-demo and recorded dashboard can run now; live learned inference requires restored
-GPU availability. Present this limitation directly, without substituting template
-answers into the learned mode or inventing recovered results.
+editor 613/720. The original oracle run has 319 CUDA errors. After a zero-generation
+preload interruption and GPU restoration, its separately declared recovery
+answered all 319 selected cases without new runtime errors. Its combined view
+retains 65 original answers and has 247/384 primary credits (90 pending, 47 wrong);
+standard request-bound credit is 208/288. Present original and recovered evidence
+separately, without substituting template answers into learned mode or claiming
+that operational recovery improved model weights.
 
 ## Prepare a separate demonstration database
 
@@ -82,9 +84,16 @@ Show the component distinction:
   97/144 comparisons; overall updated RAG is stronger at 649/720 versus 613/720.
 - The editor answers only 48/96 challenge questions. Their unsupported scoring
   forms and pending outputs do not establish general-language accuracy.
-- Original oracle runtime errors remain in the 384-case denominator; there are
-  zero newly recovered generations so far. Do not present the errors as wrong
-  model answers or drop them to create a success rate.
+- Original oracle runtime errors remain in the original 384-case denominator.
+  Show the completed 319-case operational supplement separately: its combined
+  view retains 65 original answers and credits 247/384 complete assertions, with
+  90 pending and 47 incorrect generated responses. Do not label original runtime
+  errors as model wrongness or hide them to create a success rate.
+- The separate learned HTTP fixture answers 30/30 measured requests with no
+  runtime errors, warm p50/p95 230.42/372.04 ms and separate cold loading
+  68,781.35 ms. Three warmups are excluded. Its four-device question still gets
+  an incorrect Yes, so this is latency/availability evidence, not 30 correct
+  answers or additional held-out accuracy.
 
 Explain that the scope model and edit-conditioned answer model were trained
 across corrections, while the base stays fixed. An approved new edit changes
@@ -93,8 +102,8 @@ memory without another fit. Show [the architecture diagram](ARCHITECTURE.md),
 [final results](FINAL_EVALUATION.md) and a representative
 [failure analysis](FAILURE_ANALYSIS.md).
 
-After GPU availability is restored, live learned mode may be added to this
-sequence using `configs/inference-final.json` and the saved local exports.
+With GPU availability restored, live learned mode may be added to this sequence
+using `configs/inference-final.json` and the saved local exports.
 Display its actual generated answers and routing, including any failure or
 clarification. Provenance is supporting evidence; it does not verify arbitrary
 prose. The seven remaining failed development No comparisons and weaker final
@@ -106,8 +115,12 @@ Use the recorded [summary](../reports/final/summary.json),
 [CSV](../reports/final/results.csv),
 [paired intervals](../reports/final/secondary-paired-uncertainty.json),
 [scientific figures](../reports/final/figures-v2/manifest.json) and
-[report source](REPORT.md). Report/PDF rendering, current browser verification
-and the final release CI must be completed before describing stage H as finished.
+[report source](REPORT.md) and [HTTP evidence](../reports/final/neural-http.json).
+The 13-page report and current browser evidence include the completed supplements
+and have been visually checked. Local release regressions pass 516 tests with
+18 explicit optional skips; the separate 34-test CPU numeric/checkpoint group
+also passes. Verify the three CI jobs on the pushed release commit for final
+release sign-off.
 Describe the lightweight structured container and optional local neural app as
 separate deployment paths. No production, human-review or universal-accuracy claim
 is part of this demonstration.

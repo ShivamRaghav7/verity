@@ -4,10 +4,7 @@
     "original_oracle_sha256": "7bf2ad60c5eb6b28b56a4d97ca0258b23ef9368fece0e71ce45a9ccc0bf3f9c4",
     "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
   },
-  "failure": {
-    "at": "2026-10-15T04:47:14.111896+00:00",
-    "reason": "No CUDA GPUs are available",
-    "type": "RuntimeError"
-  },
-  "status": "interrupted"
+  "completed_at": "2026-10-15T05:41:08.464175+00:00",
+  "result_manifest_sha256": "0e9dfec877c2af7e4f708d24de459d2cf07bfc64feca5600c2614e8021a2d5a5",
+  "status": "completed"
 }

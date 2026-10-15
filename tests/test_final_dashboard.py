@@ -351,7 +351,8 @@ class FinalDashboardTests(unittest.TestCase):
             "original_files_sha256": originals, "declaration_sha256": declaration_sha, "supplement_source_sha256": source_sha,
             "outputs_sha256": outputs, "durable_attempt_reservations": 319, "interrupted_reservation_count": 0,
             "new_runtime_error_count": 0, "not_attempted_selected_count": 0,
-            "sessions": [{"base_parameter_sha256_before": "b" * 64, "base_parameter_sha256_after": "b" * 64}],
+            "sessions": [{"starting_index": 0, "completed_at": "2026-10-15T00:00:00+00:00",
+                          "base_parameter_sha256_before": "b" * 64, "base_parameter_sha256_after": "b" * 64}],
             "limitations": ["Separate synthetic supplement, mixed timing, original state remains unavailable."]}
         path = directory / "manifest.json"
         manifest_sha = write(path, manifest)
@@ -406,6 +407,44 @@ class FinalDashboardTests(unittest.TestCase):
         self.assertEqual(descriptor["status"], "interrupted", descriptor)
         self.assertEqual(descriptor["durable_attempt_reservations"], 0)
         self.assertIn("CUDA unavailable", descriptor["failure_reason"])
+
+    def test_completed_recovery_retains_failed_preload_then_healthy_resume_sessions(self):
+        self.fixture = SealedFixture(self.root, oracle_errors=319)
+        path, manifest = self.recovery_fixture()
+        preload = {"starting_index": 0, "base_parameter_sha256_before": None, "base_parameter_sha256_after": None,
+                   "fingerprint_after_status": "unavailable_for_this_interrupted_session",
+                   "failure": {"type": "RuntimeError", "reason": "CUDA unavailable before generation"}}
+        manifest["sessions"].insert(0, preload)
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        ledger_path = self.root / "recovery-ledger.json"
+        ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+        ledger["result_manifest_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+        ledger_path.write_text(json.dumps(ledger), encoding="utf-8")
+        report, descriptor = OracleRecoveryReportCache(path, root=self.root).snapshot(self.fixture.summary)
+        self.assertEqual(descriptor["status"], "available", descriptor)
+        self.assertEqual(report["sessions"][0], preload)
+        self.assertIsNone(report["sessions"][0]["base_parameter_sha256_after"])
+        self.assertEqual(report["sessions"][1]["base_parameter_sha256_after"], "b" * 64)
+        self.assertEqual(self.fixture.summary["oracle"]["errors"], 319)
+
+    def test_sessions_with_reserved_work_need_before_check_and_explicit_interruption(self):
+        failed = {"starting_index": 0, "base_parameter_sha256_before": None, "base_parameter_sha256_after": None,
+                  "fingerprint_after_status": "unavailable_for_this_interrupted_session",
+                  "failure": {"reason": "Interrupted"}}
+        completed = {"starting_index": 0, "base_parameter_sha256_before": "b" * 64, "base_parameter_sha256_after": "b" * 64,
+                     "completed_at": "2026-10-15T00:00:00+00:00"}
+        OracleRecoveryReportCache._sessions([failed, completed], "b" * 64, 319)
+        reserved_then_resumed = copy.deepcopy(completed)
+        reserved_then_resumed["starting_index"] = 1
+        with self.assertRaisesRegex(ValueError, "before inference"):
+            OracleRecoveryReportCache._sessions([failed, reserved_then_resumed], "b" * 64, 319)
+        interrupted = {**failed, "base_parameter_sha256_before": "b" * 64}
+        OracleRecoveryReportCache._sessions([interrupted, reserved_then_resumed], "b" * 64, 319)
+        for key in ("failure", "fingerprint_after_status"):
+            malformed = copy.deepcopy(interrupted)
+            malformed.pop(key)
+            with self.assertRaisesRegex(ValueError, "unavailable post-run fingerprint"):
+                OracleRecoveryReportCache._sessions([malformed, reserved_then_resumed], "b" * 64, 319)
 
 
 if __name__ == "__main__":

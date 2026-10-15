@@ -72,17 +72,19 @@ The learned editor credits 72/72 direct corrections, 39/72 held-out paraphrases 
 
 The 96 challenge questions remain a separate population. The learned editor has zero complete-assertion credits, 48 clarifications and 48 pending outputs. The secondary grammar cannot score these unfamiliar forms, so no secondary semantic correctness claim follows. Similarity editing has 40/96 complete-assertion credits. This challenge exposes limited linguistic generalization.
 
-Actual false correction application is 0/432 (0.0%). Classifier precision/recall and calibration below are raw-pair diagnostics; metadata-gated routing is not evidence that every boundary was learned. The oracle diagnostic removes retrieval and routing errors but retains generation failures and incomplete answers.
+Actual false correction application is 0/432 (0.0%), including metadata eligibility guards. Raw classifier statistics do not measure guarded routing or answer generation.
 
-Outcome tables distinguish credited answers, observed incorrect assertions, pending uncredited prose, clarification, errors and unavailability. Cohort figures distinguish direct questions, held-out paraphrases, comparisons, out-of-scope questions and unfamiliar wording. Updated RAG is assessed honestly; the project does not require beating every baseline.
-
-Serial CLI latency includes retrieval, routing and generation, retaining first-use requests. It excludes model construction, scoring, journal writes, HTTP transport and the application's extra before-answer generation. Fixed ordering and shared caches can bias comparisons. Separate HTTP engineering measurements must not be relabeled as model-route timings.
+Serial CLI latency covers retrieval, routing and generation. It excludes loading, scoring, journal writes, HTTP and the API's extra before-answer generation; fixed ordering and shared caches can bias comparisons.
 
 The existing secondary verdicts were aggregated with the same frozen 2,000-resample paired family bootstrap: learned minus updated RAG is -5.00 percentage points, 95% interval [-6.67, -3.06]. Every one of the 720 standard questions remains included. This is a descriptive aggregation of locked verdicts, with no rescoring, inference or test-guided selection.
 
-A separately declared, status-only recovery of the 319 oracle runtime errors was attempted. It stopped during model loading because CUDA was unavailable, before any of its 319 permitted generations: 0 durable attempts, 319 not attempted. No recovered answer accuracy or full neural HTTP latency is claimed. The original sealed observations remain unchanged; restoring GPU access is an operational prerequisite for these remaining measurements.
+The separately declared runtime recovery selected only the 319 original CUDA error statuses, permitted at most one new generation per selected ID and checked reconstructed input bytes. The 65 original successful outputs were preserved. Combined oracle complete-assertion credit is 247/384 (64.3%), with 0 execution errors and 90 pending outputs. This supplement replaces no original results, changes no model/configuration/scorer and has mixed-session timings; it measures operational recovery, not a model improvement.
 
-Available resource snapshots record 933.1 MiB CUDA peak allocated and 1,002 MiB reserved immediately after model construction. The original inference sessions did not retain a successful end-of-run memory snapshot, so these loading measurements are not presented as the full final-inference peak. A fresh closure-only session is likewise not an inference-memory benchmark.
+On the separate 288 standard oracle questions, request-bound QA credits 208/288, with 47 incorrect and 33 pending. The original failed-preload session remains visible with unavailable fingerprints; the healthy resumed generation session has the expected base fingerprint before and after inference. That proves the healthy session's measured state, not the lost earlier GPU state.
+
+Post-load CUDA snapshots report 933.1 MiB allocated and 1,002 MiB reserved. A full original-inference peak is unavailable; the fresh closure session loaded models without generating answers.
+
+A separate isolated local HTTP workload measured 30 warm learned-mode requests: p50 230.4 ms and p95 372.0 ms, 0 execution errors. Three warmups are excluded, and the first request with lazy checkpoint loading took 68.78 seconds. Client timing includes transport, decoding and the API's before-answer generation. These repeated demonstration questions measure latency and availability, not held-out accuracy or concurrent load capacity. The workload includes a known wrong Yes comparison, so 30 answered requests do not mean 30 correct answers.
 
 | Configuration | Primary credit | Request QA | Pending | Coverage |
 |---|---|---|---|---|
@@ -141,4 +143,14 @@ Scope: distilbert/distilbert-base-uncased | revision 12040accade4e8a0f71eabdb258
 - `reports/targeted-training-audit.json`: `9c286b67e1415ac2fc02f9564e5454bc3ff5174b998c864e320b788f39303e20`
 - `reports/final/runtime-failure-disclosure.json`: `5c67d8483d8d634fef745d1ec2396773a2f361eeac83e98462cce493f5b7e67a`
 - `reports/final/secondary-paired-uncertainty.json`: `46cdf88058c10a71c652bf1cac1732f4cb2e92961f190d7c85f6bb4a8c729caa`
-- `reports/final/oracle-runtime-recovery/interrupted_manifest.json`: `2eeba76f8ffa18a3d3348af753a5f6781abe5764435da1adf6bff55764cdbbba`
+- `reports/final/neural-http.json`: `dade7dcdccef18425b100ca741cbb2590c510b1c96591b254c4286245232d8b9`
+- `artifacts/answer/pilot-v2-polarity1/manifest.json`: `8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72`
+- `artifacts/scope/pilot-v3-neutral2/manifest.json`: `c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459`
+- `configs/inference-final.json`: `c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134`
+- `editguard/api.py`: `b2609d51741d5424a59e94cfb176b99a074620f4ea67b940106c31c024f53962`
+- `scripts/benchmark_neural_http.py`: `1b4fda9518125fee6b220cde8dbc4a2a79ed9a1804c5aa5d432aef6292ca2504`
+- `reports/final/oracle-runtime-recovery/combined_oracle_predictions.jsonl`: `0d9550dd68a3e03745d7c2842c3ec74226b344710c004ed724a03c8ff5573eb9`
+- `reports/final/oracle-runtime-recovery/metrics.json`: `0835ee2cbb46562e9d5fa1268323ab71c868f1197bc3b7fa6af654a653f0edd7`
+- `reports/final/oracle-runtime-recovery/recovery_predictions.jsonl`: `cf1facb73adb662b696411a23054157c78cd4031c1c6975dfee2ba1fb98274a0`
+- `reports/final/oracle-runtime-recovery/short_qa_metrics.json`: `f4c8d12849df66cedad55b38347a19cd08fde4ccb6e9fc31491158201d953bbc`
+- `reports/final/oracle-runtime-recovery/manifest.json`: `0e9dfec877c2af7e4f708d24de459d2cf07bfc64feca5600c2614e8021a2d5a5`

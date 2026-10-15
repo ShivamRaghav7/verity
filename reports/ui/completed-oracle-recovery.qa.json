@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "purpose": "completed_recovery_browser_visual_qa",
+  "checked_at": "2026-10-15T09:50:40.074Z",
+  "combined_errors_zero": true,
+  "combined_primary": true,
+  "completed_supplement": true,
+  "document_width": 1265,
+  "no_page_horizontal_overflow": true,
+  "original_error_disclosure": true,
+  "regression_passed": true,
+  "url": "http://127.0.0.1:8000/#evaluation",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "console_warnings_or_errors": [],
+  "screenshot": "reports/ui/completed-oracle-recovery.png",
+  "visually_reviewed": true,
+  "no_live_memory_mutation": true,
+  "limitation": "Recorded metrics and isolated workflow checks; viewing results does not execute final model evaluation."
+}

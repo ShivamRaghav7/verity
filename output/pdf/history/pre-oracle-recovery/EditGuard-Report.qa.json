@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "purpose": "project_report_visual_qa",
+  "pdf_sha256": "f4f34e85bd0665f6892bf1442ff72e8f4073eb59a1817fbf53eb2a1495399185",
+  "pages": 13,
+  "portrait_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    12,
+    13
+  ],
+  "landscape_scientific_figure_pages": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "render_engine": "Poppler pdftoppm",
+  "review_dpi": 95,
+  "all_pages_visually_reviewed": true,
+  "checks": {
+    "no_visible_clipping": true,
+    "scientific_figures_have_individual_landscape_pages": true,
+    "sources_and_denominators_visible": true,
+    "original_oracle_cuda_errors_disclosed": true,
+    "no_human_review_claim": true,
+    "requested_qa_and_complete_assertion_scores_separate": true
+  },
+  "limitation": "Visual inspection and PDF text checks; no claim that the original incomplete oracle run is a complete generation-quality measurement."
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "purpose": "project_report_visual_qa",
-  "pdf_sha256": "f4f34e85bd0665f6892bf1442ff72e8f4073eb59a1817fbf53eb2a1495399185",
+  "pdf_sha256": "a95b5f542c32da477f65259135b3899611db30736167b20908d81f6261cb4689",
   "pages": 13,
   "portrait_pages": [
     1,
@@ -29,7 +29,12 @@
     "sources_and_denominators_visible": true,
     "original_oracle_cuda_errors_disclosed": true,
     "no_human_review_claim": true,
-    "requested_qa_and_complete_assertion_scores_separate": true
+    "requested_qa_and_complete_assertion_scores_separate": true,
+    "completed_recovery_separate_from_original_errors": true,
+    "measured_http_and_cold_load_disclosed": true,
+    "results_table_not_split_across_pages": true
   },
-  "limitation": "Visual inspection and PDF text checks; no claim that the original incomplete oracle run is a complete generation-quality measurement."
+  "limitation": "All 13 current PDF pages visually inspected; original oracle runtime errors and separately completed recovery are disclosed. This is presentation QA, not independent semantic review.",
+  "reviewed_at": "2026-10-15T09:51:22.557994+00:00",
+  "render_path": "tmp/pdfs/recovered/final-01.png through final-13.png"
 }

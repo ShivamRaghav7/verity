@@ -9,8 +9,9 @@ not establish general language reliability or superiority to updated RAG.
 
 The original oracle measurement is incomplete: 65 answers and 319 CUDA runtime
 errors. Those errors remain in its denominator and are not model-generated
-wrong answers. A separately named fixed-configuration recovery supplement stopped
-before any new generation because CUDA is unavailable. The original GPU
+wrong answers. A separately named fixed-configuration recovery supplement has
+completed all 319 selected cases after GPU availability was restored. It preserves
+the original run and retains its 65 successful outputs. The original GPU
 instance's final fingerprint is unavailable; a fresh
 closure verified file hashes and freshly loaded weights, not that lost in-memory
 state. Read the [runtime disclosure](../reports/final/runtime-failure-disclosure.json)
@@ -127,7 +128,8 @@ performance.
 Per-request p50/p95 include retrieval, scope and generation. First-use requests
 remain in the sample and are labeled; model loading is recorded separately.
 These serial CLI measurements do not include HTTP/browser rendering or represent
-randomized-order load tests. HTTP latency needs a separately labeled benchmark.
+randomized-order load tests. The separate HTTP engineering benchmark below
+measures a different repeated demonstration workload.
 Resources measured in resumed sessions do not establish one uninterrupted
 command's wall time or lifetime peak.
 
@@ -302,23 +304,56 @@ manifest's equal before/after fingerprints describe that available closure
 evidence; they do not reconstruct the failed original instance's memory state.
 No persistent model/data changes were made.
 
-A separately named recovery measurement for the failed oracle cases is incomplete.
-It must use the same locked configuration, preserve all original errors and
-identify any retried observations and runtime sessions. It cannot overwrite this
-primary export or be described as the uninterrupted original oracle run.
+A separately named recovery measurement for the failed oracle cases is complete.
+It uses the same locked configuration and preserves all original errors, while
+identifying the new observations and runtime sessions. It does not overwrite the
+primary export or represent the uninterrupted original oracle run.
 The [recovery declaration](../reports/final/oracle-runtime-recovery-declaration.json),
 SHA-256 `fba83b9215eb91f6e239b36d033c9045a22329e19624e139dc639e4885f6d355`,
 selects exactly the 319 CUDA-error IDs and leaves the 65 original answers
 untouched. Its finite cap is 319 generation calls. New CUDA failure stops that
 supplement; reserved interrupted IDs cannot be silently retried or omitted.
-The attempted supplement stopped during model loading with `No CUDA GPUs are
+The first supplement session stopped during model loading with `No CUDA GPUs are
 available`, before making any generation call or reserving a selected ID. Its
 [interrupted manifest](../reports/final/oracle-runtime-recovery/interrupted_manifest.json)
 records zero committed observations, zero reservations and all 319 selected cases
-not attempted. `progress.json` remains at index 0. The exported combined oracle
-file is byte-identical to the original 384 records; an empty recovery file is not
-evidence of recovered performance. Hardware availability must be restored before
-the same declared supplement can resume. No recovered capability number is claimed.
+not attempted at that interruption. After the user restored GPU availability and
+a fresh RTX 4050 matrix-multiply probe passed, the same declared supplement
+resumed from index 0. All 319 selected cases generated answers with zero new
+runtime errors, interrupted reservations or not-attempted cases. Selection used
+execution status only, not correctness. No model, scoring, input or setting changed.
+
+The [completed recovery manifest](../reports/final/oracle-runtime-recovery/manifest.json)
+binds new predictions and the combined 384-case view. That view retains the 65
+original successful outputs and adds the 319 operationally recovered outputs.
+It has 247/384 primary complete-assertion credits, 90 pending and 47 incorrect
+generated answers, with 384/384 answered and zero runtime errors. It is a mixed
+original/recovery measurement, not a new uninterrupted evaluation or an ML
+improvement over the original 45/384 runtime-affected result.
+
+| Combined oracle cohort | Primary correct | Primary pending | Incorrect generated | Request-bound correct | Request-bound pending |
+|---|---:|---:|---:|---:|---:|
+| Standard answer, 288 | 207/288 | 34 | 47 | 208/288 | 33 |
+| Challenge, 96 | 40/96 | 56 | 0 | 0/96 | 96 |
+| All 384 | 247/384 | 90 | 47 | 208/384 | 129 |
+
+There are no abstentions or runtime errors in the combined oracle view. Its 47
+wrong answers are standard comparisons; oracle routing does not solve answer
+polarity. Standard primary strata are 71/72 direct, 39/72 paraphrase and 97/144
+comparison. The secondary grammar credits one additional complete short direct
+answer, making standard request-bound credit 208/288 (72.22%). Every challenge
+question remains unsupported by that secondary parser, so its zero challenge
+credit is not zero factual accuracy. Primary challenge credits show 40 complete
+assertions with oracle routing, while 56 remain pending; this does not change the
+matched editor's earlier 48/96 challenge coverage failure.
+
+The healthy recovery session records matching before/after base fingerprint
+`d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee`.
+That verifies the available healthy instance, not the unavailable memory state of
+the original failed GPU instance. Combined latency mixes original and recovery
+sessions and must not be presented as one uninterrupted timing benchmark.
+Sources: [recovery primary metrics](../reports/final/oracle-runtime-recovery/metrics.json)
+and [recovery request-bound metrics](../reports/final/oracle-runtime-recovery/short_qa_metrics.json).
 See [runtime-failure-disclosure.json](../reports/final/runtime-failure-disclosure.json).
 
 ## Measured serial latency and resources
@@ -341,22 +376,46 @@ session snapshots report about 933.07 MiB allocated and 1,002 MiB reserved at
 measurement points, not a complete inference lifetime peak. The failed instance's
 end resources are unavailable. Training resources remain in [MODEL_CARD.md](MODEL_CARD.md).
 
+## Separate learned HTTP engineering measurement
+
+After GPU restoration, the finite isolated HTTP benchmark completed 30 measured
+requests, all HTTP 200 and `model_generated`, with zero errors or clarifications.
+Warm client round-trip p50 is **230.42 ms** and p95 **372.04 ms**. One cold request
+with lazy model loading took **68,781.35 ms**; it is reported separately. Three
+warmup requests are excluded from the warm percentile population. The workload
+uses concurrency 1, a new HTTP connection per request, and three repeated
+development demonstration questions; it is neither the held-out test population
+nor a load test.
+
+Client timings include transport, JSON decoding, retrieval, learned routing and
+generation, plus the API's separate before-answer generation. Shared model and
+retrieval caches affect warm timings. The selected model/configuration bindings
+remain fixed, all responses observe fixture revision 3, and the isolated fixture's
+domain state is unchanged. The user's live application/database is not mutated.
+
+Availability is not correctness: the four-device question still elicits
+“Yes. Nimbus Basic version v2 supports 3 devices.” The response contradicts the
+requested comparison even while copying the corrected limit. Thirty answered
+requests are not 30 correct answers. The artifact explicitly records
+`ml_accuracy=null`; no accuracy estimate is derived from its repetitions. See the
+[completed HTTP evidence](../reports/final/neural-http.json).
+
 ## Release interpretation
 
 Both trained models, an approved-edit workflow, honest baselines and reproducible
 frozen artifacts now exist. The trained editor improves stale-base direct
 answers, but updated RAG is stronger on overall standard short QA; unfamiliar
-wording and original oracle runtime reliability remain limitations. Stage H
-report, figures, structured demo and CPU regression/CI work can continue while
-CUDA availability blocks the separate oracle supplement and fresh learned-HTTP
-measurement. Those pending measurements are not invented or silently run with a
-changed device configuration. Completion status remains explicit until report
-final CI and the declared measurement follow-up
-are resolved. No locked ML claim changes and no accuracy number is promised.
+wording and original oracle runtime reliability remain limitations. GPU
+availability is restored; the separately named oracle recovery and finite learned
+HTTP measurement are complete. Reporting preserves the original runtime errors
+and identifies the operational supplement. The finite implementation, training,
+evaluation and presentation stages are complete; release-head CI remains the
+final sign-off gate. No locked ML claim changes and no accuracy number is promised.
 
-The [13-page report](../output/pdf/EditGuard-Report.pdf) and its six individual
+The [report PDF](../output/pdf/EditGuard-Report.pdf) and its six individual
 landscape scientific figure pages have now been rendered and visually checked.
 The current dashboard and its exact JSON/CSV exports are verified. Local release
-checks pass 511 tests with 18 explicit optional skips; a separate 34-test synthetic
+checks pass 516 tests with 18 explicit optional skips; a separate 34-test synthetic
 CPU numeric/checkpoint group also passes. These are engineering results, distinct
-from the ML scores and the still-incomplete oracle recovery.
+from the ML scores and from both the original oracle incident and its separate
+completed operational recovery.

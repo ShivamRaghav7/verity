@@ -119,12 +119,30 @@ changes were made.
 A separate fixed-configuration supplement for exactly the 319 failed oracle cases
 was attempted, but model loading stopped with `No CUDA GPUs are available` before
 any generation. Its interrupted manifest records zero committed/reserved IDs and
-319 not-attempted cases. No recovered answer or improvement exists. Resuming this
-same declared supplement and measuring fresh learned HTTP latency require restored
-GPU availability; CPU documentation, figures, the structured workflow and CI can
-continue. Original errors, prompts, configuration, scorers and successful
-observations remain unchanged. It is recovery evidence, not a new tuned model or
-replacement original run.
+319 not-attempted cases; that interrupted session produced no new answer. The
+same declared supplement retained those original errors, prompts, configuration,
+scorers and successful observations. GPU availability was subsequently restored
+and the same supplement resumed, answering all 319 selected cases with zero new
+runtime errors or interrupted reservations. Its combined view retains the 65
+original answers: 247/384 primary credits, 90 pending and 47 incorrect generated
+answers; standard request-bound credit is 208/288. Oracle routing still leaves
+47 wrong comparison endorsements. Challenge primary credit is 40/96 with 56
+pending; secondary wording is unsupported, so zero secondary credit is not zero
+factual accuracy. Healthy recovery before/after fingerprints match, without
+retroactively proving the original failed instance's memory state. This is
+operational recovery evidence, not a tuned model, ML improvement or replacement
+original run.
+
+The separate learned HTTP benchmark subsequently completes all 30 measured
+requests with HTTP 200 and no errors/clarifications. Warm client p50/p95 are
+230.42/372.04 ms; the 68,781.35 ms lazy-loading request and three warmups are
+separate. It repeats three development questions, not held-out accuracy cases.
+The four-device question still returns “Yes. Nimbus Basic version v2 supports
+3 devices.” This is a comparison-polarity failure despite successful routing,
+copied fact and HTTP 200. The benchmark's `ml_accuracy` is null; 30 answers cannot
+be presented as 30 correct answers. All model/configuration bindings and the
+isolated fixture state remain unchanged, and the live database is not mutated.
+See [the completed engineering artifact](../reports/final/neural-http.json).
 The complete incident trail and reporting status are in
 [FINAL_EVALUATION.md](FINAL_EVALUATION.md).
 

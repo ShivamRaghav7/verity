@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "purpose": "completed_local_neural_app_readiness",
+  "url": "http://127.0.0.1:8000",
+  "request": {
+    "question": "How many devices does Nimbus Basic version v2 support?",
+    "entity_id": "nimbus",
+    "plan": "Basic",
+    "version": "v2",
+    "as_of": "2026-10-15",
+    "mode": "learned"
+  },
+  "status": "passed",
+  "answer": {
+    "configuration": "trained_scope_editor",
+    "question": "How many devices does Nimbus Basic version v2 support?",
+    "status": "answered",
+    "answer": "5",
+    "answer_kind": "model_generated",
+    "route": "frozen_base",
+    "revision": 1,
+    "selected_edit_id": null,
+    "retrieval_candidates_raw": [],
+    "retrieval_candidates_eligible": [],
+    "retrieved_facts": [
+      {
+        "fact_id": "nimbus-basic-v2-devices",
+        "value": "5",
+        "source": "Fictional Nimbus support handbook v2, section 1.1",
+        "score": 0.92075514793396,
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "Nimbus Cloud",
+            "Nimbus platform"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "nimbus",
+          "entity_name": "Nimbus",
+          "fact_id": "nimbus-basic-v2-devices",
+          "lineage_id": "nimbus-basic-v2-devices",
+          "plan": "Basic",
+          "relation": "device_limit",
+          "source": "Fictional Nimbus support handbook v2, section 1.1",
+          "unit": "devices",
+          "value": "5",
+          "version": "v2"
+        }
+      },
+      {
+        "fact_id": "nimbus-basic-v2-storage",
+        "value": "50",
+        "source": "Fictional Nimbus support handbook v2, section 1.3",
+        "score": 0.6970847845077515,
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "Nimbus Cloud",
+            "Nimbus platform"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "nimbus",
+          "entity_name": "Nimbus",
+          "fact_id": "nimbus-basic-v2-storage",
+          "lineage_id": "nimbus-basic-v2-storage",
+          "plan": "Basic",
+          "relation": "storage_gb",
+          "source": "Fictional Nimbus support handbook v2, section 1.3",
+          "unit": "GB",
+          "value": "50",
+          "version": "v2"
+        }
+      },
+      {
+        "fact_id": "nimbus-basic-v2-support",
+        "value": "8",
+        "source": "Fictional Nimbus support handbook v2, section 1.4",
+        "score": 0.6659032106399536,
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "Nimbus Cloud",
+            "Nimbus platform"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "nimbus",
+          "entity_name": "Nimbus",
+          "fact_id": "nimbus-basic-v2-support",
+          "lineage_id": "nimbus-basic-v2-support",
+          "plan": "Basic",
+          "relation": "support_hours",
+          "source": "Fictional Nimbus support handbook v2, section 1.4",
+          "unit": "hours/day",
+          "value": "8",
+          "version": "v2"
+        }
+      }
+    ],
+    "scope_scores": [],
+    "generation_trace": {
+      "model_id": "google/flan-t5-small",
+      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+      "input_tokens": 122,
+      "consumed_input_tokens": 122,
+      "input_truncated": false,
+      "output_tokens": 3,
+      "max_new_tokens": 48,
+      "all_parameters_frozen": true
+    },
+    "input_text": "Answer the support question using the supplied facts. State the product, plan, version, property and answer. For a yes/no question start Yes or No. Do not guess.\nRequest scope: nimbus, Basic, v2, as of 2026-10-15.\nSupport facts:\nNimbus Basic version v2 supports 5 devices.\nNimbus Basic version v2 includes 50 GB of storage.\nNimbus Basic version v2 includes 8 support hours per day.\nQuestion: How many devices does Nimbus Basic version v2 support?\nAnswer:",
+    "error": null,
+    "request_context": {
+      "entity_id": "nimbus",
+      "plan": "Basic",
+      "version": "v2",
+      "as_of": "2026-10-15"
+    },
+    "latency_ms": 1169.059,
+    "before_answer": "5",
+    "before_answer_kind": "model_generated",
+    "before_trace": {
+      "configuration": "unchanged_base",
+      "question": "How many devices does Nimbus Basic version v2 support?",
+      "status": "answered",
+      "answer": "5",
+      "answer_kind": "model_generated",
+      "route": "frozen_base",
+      "revision": 1,
+      "selected_edit_id": null,
+      "retrieval_candidates_raw": [],
+      "retrieval_candidates_eligible": [],
+      "retrieved_facts": [
+        {
+          "fact_id": "nimbus-basic-v2-devices",
+          "value": "5",
+          "source": "Fictional Nimbus support handbook v2, section 1.1",
+          "score": 0.92075514793396,
+          "applied_edit_id": null,
+          "fact": {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-devices",
+            "lineage_id": "nimbus-basic-v2-devices",
+            "plan": "Basic",
+            "relation": "device_limit",
+            "source": "Fictional Nimbus support handbook v2, section 1.1",
+            "unit": "devices",
+            "value": "5",
+            "version": "v2"
+          }
+        },
+        {
+          "fact_id": "nimbus-basic-v2-storage",
+          "value": "50",
+          "source": "Fictional Nimbus support handbook v2, section 1.3",
+          "score": 0.6970847845077515,
+          "applied_edit_id": null,
+          "fact": {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-storage",
+            "lineage_id": "nimbus-basic-v2-storage",
+            "plan": "Basic",
+            "relation": "storage_gb",
+            "source": "Fictional Nimbus support handbook v2, section 1.3",
+            "unit": "GB",
+            "value": "50",
+            "version": "v2"
+          }
+        },
+        {
+          "fact_id": "nimbus-basic-v2-support",
+          "value": "8",
+          "source": "Fictional Nimbus support handbook v2, section 1.4",
+          "score": 0.6659032106399536,
+          "applied_edit_id": null,
+          "fact": {
+            "aliases": [
+              "Nimbus Cloud",
+              "Nimbus platform"
+            ],
+            "effective_from": "2025-01-01",
+            "effective_to": null,
+            "entity_id": "nimbus",
+            "entity_name": "Nimbus",
+            "fact_id": "nimbus-basic-v2-support",
+            "lineage_id": "nimbus-basic-v2-support",
+            "plan": "Basic",
+            "relation": "support_hours",
+            "source": "Fictional Nimbus support handbook v2, section 1.4",
+            "unit": "hours/day",
+            "value": "8",
+            "version": "v2"
+          }
+        }
+      ],
+      "scope_scores": [],
+      "generation_trace": {
+        "model_id": "google/flan-t5-small",
+        "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+        "input_tokens": 122,
+        "consumed_input_tokens": 122,
+        "input_truncated": false,
+        "output_tokens": 3,
+        "max_new_tokens": 48,
+        "all_parameters_frozen": true
+      },
+      "input_text": "Answer the support question using the supplied facts. State the product, plan, version, property and answer. For a yes/no question start Yes or No. Do not guess.\nRequest scope: nimbus, Basic, v2, as of 2026-10-15.\nSupport facts:\nNimbus Basic version v2 supports 5 devices.\nNimbus Basic version v2 includes 50 GB of storage.\nNimbus Basic version v2 includes 8 support hours per day.\nQuestion: How many devices does Nimbus Basic version v2 support?\nAnswer:",
+      "error": null,
+      "request_context": {
+        "entity_id": "nimbus",
+        "plan": "Basic",
+        "version": "v2",
+        "as_of": "2026-10-15"
+      },
+      "latency_ms": 89.206
+    },
+    "fact": null,
+    "applicable_corrections": [],
+    "explanation": "Model-generated answer. Supplied sources and corrections do not verify generated prose.",
+    "model_training": {
+      "scope": {
+        "status": "trained",
+        "loaded": true,
+        "error": null,
+        "validation_basis": "loaded_checkpoint",
+        "artifact_purpose": "trained",
+        "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+        "model_id": "distilbert/distilbert-base-uncased",
+        "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+        "review_policy": "automated_development",
+        "human_reviewed_data": false,
+        "completed_steps": 360,
+        "selected_step": 360,
+        "input_format_version": "editguard-input-v2",
+        "artifact_manifest_sha256": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "answer": {
+        "status": "trained",
+        "loaded": true,
+        "error": null,
+        "validation_basis": "loaded_checkpoint",
+        "artifact_purpose": "trained",
+        "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+        "model_id": "google/flan-t5-small",
+        "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+        "review_policy": "automated_development",
+        "human_reviewed_data": false,
+        "completed_steps": 240,
+        "selected_step": 240,
+        "input_format_version": "editguard-input-v2",
+        "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72"
+      }
+    },
+    "api_latency_ms": 78942.235
+  },
+  "model_readiness": {
+    "status": "ok",
+    "revision": 1,
+    "configuration": "valid",
+    "configuration_error": null,
+    "model_details": {
+      "scope": {
+        "status": "trained",
+        "loaded": true,
+        "error": null,
+        "validation_basis": "loaded_checkpoint",
+        "artifact_purpose": "trained",
+        "dataset_id": "editguard-controlled-v1-pilot-v3-42-7b7a9b1b-grammar-80ce36e5-scope-balanced-8ab5b924",
+        "model_id": "distilbert/distilbert-base-uncased",
+        "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+        "review_policy": "automated_development",
+        "human_reviewed_data": false,
+        "completed_steps": 360,
+        "selected_step": 360,
+        "input_format_version": "editguard-input-v2",
+        "artifact_manifest_sha256": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "answer": {
+        "status": "trained",
+        "loaded": true,
+        "error": null,
+        "validation_basis": "loaded_checkpoint",
+        "artifact_purpose": "trained",
+        "dataset_id": "editguard-controlled-v1-pilot-v2-42-7b7a9b1b-grammar-80ce36e5",
+        "model_id": "google/flan-t5-small",
+        "model_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+        "review_policy": "automated_development",
+        "human_reviewed_data": false,
+        "completed_steps": 240,
+        "selected_step": 240,
+        "input_format_version": "editguard-input-v2",
+        "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72"
+      }
+    },
+    "calibrations": {
+      "scope": "validated",
+      "similarity": "validated"
+    },
+    "calibration_sha256": {
+      "scope": "ab1a639dc427c630448dbe30e06d57fe245f5c6afb2db3419c16d25f513df299",
+      "similarity": "91e60f09a64184d72e041c7329771ec42cd0be2a0935890d40fd02fc551b1791"
+    },
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "models": {
+      "scope": "trained",
+      "answer": "trained"
+    },
+    "neural_inference": "loaded",
+    "restart_required": false,
+    "load_error": null,
+    "modes": {
+      "structured": {
+        "status": "available",
+        "available": true
+      },
+      "unchanged_base": {
+        "status": "available",
+        "available": true
+      },
+      "updated_rag": {
+        "status": "available",
+        "available": true
+      },
+      "prompt_only": {
+        "status": "available",
+        "available": true
+      },
+      "similarity_editor": {
+        "status": "available",
+        "available": true
+      },
+      "learned": {
+        "status": "available",
+        "available": true
+      }
+    },
+    "answer_mode": "deterministic_structured",
+    "final_evaluation": "available",
+    "final_report": {
+      "status": "available",
+      "error": null,
+      "report_sha256": "c86b5e01c151f5d4b2fdedb97015d027dbebd205cbd6171efd14b70f371d9810",
+      "configuration_matches": true
+    }
+  },
+  "original_live_revision": 1,
+  "after_readonly_request_revision": 1,
+  "recovery_endpoint_status": "available",
+  "live_data_mutated": false,
+  "limitation": "One initial-handbook customer question verifies actual model loading and local availability; it is not representative accuracy or a new benchmark."
+}

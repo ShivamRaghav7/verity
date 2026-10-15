@@ -180,12 +180,18 @@ RAG leads the standard request-bound metric at 649/720, compared with the traine
 editor's 613/720. The editor's raw scope accuracy is 701/720, while challenge
 coverage falls to 48/96; good standard routing does not establish unrestricted
 language understanding. Original oracle inference has 319/384 CUDA runtime
-errors and remains an incomplete generation measurement. Separate recovery
-stopped before generation because CUDA is currently unavailable; its 319 cases
-remain not attempted. A fresh closure verifies unchanged files/fresh weights but cannot
+errors and remains an incomplete generation measurement. After a zero-generation
+preload interruption, separate fixed-configuration recovery completed all 319
+selected errors on a restored GPU. The combined oracle view has 247/384 primary
+credits, 90 pending and 47 incorrect answers; the original record is preserved.
+Healthy recovery fingerprints and fresh closure verify their available instances but cannot
 reconstruct the failed GPU instance's final memory state. See
 [FINAL_EVALUATION.md](FINAL_EVALUATION.md) for results and execution disclosures.
 No final measurement was used to revise models, thresholds or scoring rules.
+Post-restoration isolated learned HTTP measurement completes 30/30 requests with
+zero errors, warm p50/p95 230.42/372.04 ms and separate cold loading 68,781.35 ms.
+This is availability/timing on repeated development questions; a comparison
+answer remains wrong, so it is not 30 correct answers or an accuracy benchmark.
 
 ## Evidence boundaries
 

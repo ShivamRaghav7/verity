@@ -7,9 +7,9 @@ Model binaries, tokenizers and full-state recovery checkpoints remain local,
 ignored artifacts; publishing their metadata does not distribute deployable
 weights. The frozen five-configuration evaluation is complete and sealed. The
 original oracle export contains 319 CUDA runtime errors and is an incomplete
-generation measurement; a separately named fixed-configuration recovery
-supplement stopped before generation because CUDA is unavailable. The development
-and final results below remain distinct.
+generation measurement. A separately named fixed-configuration supplement now
+recovers all 319 selected errors after GPU availability was restored, preserving
+the original results. The development and final results below remain distinct.
 
 Training uses user-authorized `automated_development` review. The user also
 authorized `automated_final` label audit for the final packet. All records declare
@@ -167,9 +167,18 @@ The original oracle measurement is 45/384 primary credits, with 65 answered,
 319 CUDA runtime errors, eight pending and 12 incorrect generated responses.
 Errors remain uncredited in the full denominator, not relabeled as model
 wrongness or excluded to report 45/65 capability. A separate fixed-configuration
-recovery stopped during model loading with no CUDA GPU available: zero new
-generations, zero reservations, all 319 selected errors not attempted. The
-original GPU instance's final fingerprint is unavailable;
+recovery first stopped during model loading with no CUDA GPU available and zero
+new generations. After GPU availability was restored, its healthy resumed
+session answered all 319 selected cases with no new runtime errors. The combined
+384-case oracle view retains 65 original answers: 247 primary credits, 90 pending
+and 47 incorrect generated answers. Standard primary credit is 207/288 and
+request-bound credit is 208/288; challenge primary credit is 40/96 with 56 pending.
+All 96 challenge forms remain unsupported by the secondary parser, so secondary
+zero credit does not establish zero factual accuracy. The same frozen weights,
+inputs and settings are used; this is operational recovery, not an ML improvement.
+See the [separate completed manifest](../reports/final/oracle-runtime-recovery/manifest.json).
+The healthy recovery's before/after base fingerprints match. The
+original failed GPU instance's final fingerprint is unavailable;
 fresh closure verifies unchanged files and fresh-process weights only. It does
 not prove that lost original in-memory state. Read the
 [runtime failure disclosure](../reports/final/runtime-failure-disclosure.json).
@@ -180,6 +189,16 @@ scoring, IO and HTTP/browser overhead. Fixed configuration order, shared caches
 and resumed sessions limit timing comparisons. Complete tables, primary and
 secondary denominators, paired uncertainty, challenge failures and execution
 incidents are in [FINAL_EVALUATION.md](FINAL_EVALUATION.md).
+
+The separate post-restoration HTTP engineering workload answers 30/30 measured
+requests with HTTP 200 and zero errors/clarifications, at warm client p50
+230.42 ms and p95 372.04 ms. The cold lazy-loading request is 68,781.35 ms, separate
+from three excluded warmups and the 30 warm samples. It repeats three development
+questions and includes API before-answer generation, transport and JSON decoding.
+The four-device comparison still produces an incorrect Yes; `ml_accuracy=null`.
+This proves finite workload availability/timing, not 30 correct answers or a
+held-out accuracy result. Fixture state and model/configuration bindings remain
+unchanged; the live database is untouched. See [HTTP evidence](../reports/final/neural-http.json).
 
 ## Intended use and limitations
 

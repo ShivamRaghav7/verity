@@ -6,6 +6,7 @@ import argparse
 from datetime import date
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 from xml.sax.saxutils import escape
@@ -27,6 +28,43 @@ def read(path):
 def ratio(value):
     n, d = value["numerator"], value["denominator"]
     return f"{n}/{d} ({100 * value['value']:.1f}%)" if value.get("value") is not None else f"not defined ({n}/{d})"
+
+
+def validate_http(value, *, config_sha, model_manifests):
+    """Availability/latency evidence must not turn into an accuracy claim."""
+    rows = value.get("samples", [])
+    cold = value.get("cold_sample")
+    warm = value.get("warmup_samples", [])
+    configuration = value.get("configuration", {})
+    if (value.get("purpose") != "isolated_neural_http_latency_v1" or value.get("status") != "completed"
+            or value.get("ml_accuracy") is not None or value.get("live_application_mutated") is not False
+            or value.get("source_snapshot_unchanged") is not True
+            or value.get("isolated_fixture_domain_state_unchanged") is not True
+            or configuration.get("samples") != 30 or configuration.get("warmups") != 3
+            or configuration.get("concurrency") != 1 or configuration.get("mode") != "learned"
+            or configuration.get("maximum_question_requests") != 34
+            or len(rows) != 30 or len(warm) != 3 or not isinstance(cold, dict)
+            or value.get("expected_model_manifests") != model_manifests
+            or value.get("source_sha256", {}).get("configs/inference-final.json") != config_sha
+            or value.get("counts", {}).get("attempted") != 30
+            or value["counts"].get("valid_responses") != 30 or value["counts"].get("errors") != 0
+            or value.get("latency", {}).get("denominator") != 30):
+        raise ValueError("HTTP report requires the completed finite workload, frozen models and separate latency-only evidence.")
+    for row in [cold, *warm, *rows]:
+        latency = row.get("http_roundtrip_ms")
+        if (row.get("http_status") != 200 or row.get("error") is not None
+                or row.get("model_manifests") != model_manifests
+                or row.get("revision") != value.get("fixture_expected_revision")
+                or type(latency) not in (int, float) or not math.isfinite(latency) or latency < 0):
+            raise ValueError("HTTP sample differs from a valid stable measured response.")
+    ordered = sorted(row["http_roundtrip_ms"] for row in rows)
+    for field, quantile in (("p50_ms", .5), ("p95_ms", .95)):
+        position = (len(ordered) - 1) * quantile
+        lo, hi = math.floor(position), math.ceil(position)
+        expected = ordered[lo] + (ordered[hi] - ordered[lo]) * (position - lo)
+        actual = value["latency"].get(field)
+        if type(actual) not in (int, float) or not math.isclose(actual, expected, rel_tol=1e-12, abs_tol=1e-9):
+            raise ValueError("HTTP percentile differs from its complete measured samples.")
 
 
 def load_evidence(evaluation, protocol_path, lock_path, figures):
@@ -76,6 +114,15 @@ def load_evidence(evaluation, protocol_path, lock_path, figures):
         if path.exists():
             extras[label] = read(path)
             sources[str(path.relative_to(ROOT)).replace("\\", "/")] = sha(path)
+    if "neural_http" in extras:
+        http = extras["neural_http"]
+        validate_http(http, config_sha=protocol["configuration"]["sha256"],
+                      model_manifests={task: model["manifest_sha256"] for task, model in protocol["models"].items()})
+        for name, checksum in http["source_sha256"].items():
+            path = (ROOT / name).resolve()
+            if ROOT not in path.parents or sha(path) != checksum:
+                raise ValueError("Measured HTTP source or model identity changed: " + name)
+            sources[name] = checksum
     recovery_dir = ROOT / "reports/final/oracle-runtime-recovery"
     if (recovery_dir / "interrupted_manifest.json").exists() and not (recovery_dir / "manifest.json").exists():
         path = recovery_dir / "interrupted_manifest.json"
@@ -85,7 +132,14 @@ def load_evidence(evaluation, protocol_path, lock_path, figures):
         recovery = read(recovery_dir / "manifest.json")
         if (recovery.get("status") != "completed" or recovery.get("primary_results_replaced") is not False
                 or recovery.get("protocol_sha256") != sha(protocol_path)
-                or recovery.get("oracle_questions") != 384 or recovery.get("selected_runtime_errors") != 319):
+                or recovery.get("configuration_sha256") != protocol["configuration"]["sha256"]
+                or recovery.get("oracle_questions") != 384 or recovery.get("selected_runtime_errors") != 319
+                or recovery.get("durable_attempt_reservations") != 319
+                or recovery.get("not_attempted_selected_count") != 0
+                or recovery.get("original_records_unchanged") is not True
+                or recovery.get("selection_used_correctness") is not False
+                or recovery.get("original_files_sha256") != {name: sha(evaluation / name)
+                    for name in ("manifest.json", "oracle_predictions.jsonl", "metrics.json", "short_qa_metrics.json")}):
             raise ValueError("Oracle recovery must be a separate completed supplement of the original execution errors.")
         for filename, checksum in recovery["outputs_sha256"].items():
             if Path(filename).name != filename or sha(recovery_dir / filename) != checksum:
@@ -145,9 +199,8 @@ def build_sections(manifest, protocol, lock, metrics, secondary, extras=None):
             f"On the fair controlled request-bound metric, the learned editor credits {learned_qa['correct']}/{learned_qa['denominator']} (85.14%), updated RAG {rag_qa['correct']}/{rag_qa['denominator']} (90.14%), similarity editing 632/720, prompt correction 533/720 and the frozen base 500/720. Updated RAG is the strongest of these configurations. The learned editor does not beat it overall.",
             "The learned editor credits 72/72 direct corrections, 39/72 held-out paraphrases and 97/144 comparisons on the request-bound metric. Thirty-three paraphrases remain pending; 47 comparison answers are wrong. Out-of-scope factual credit is 405/432, with 23 clarifications and four wrong base answers. Retention on the distinct baseline-correct subset is 405/428. Preserving an incorrect initial answer is not factual correctness.",
             "The 96 challenge questions remain a separate population. The learned editor has zero complete-assertion credits, 48 clarifications and 48 pending outputs. The secondary grammar cannot score these unfamiliar forms, so no secondary semantic correctness claim follows. Similarity editing has 40/96 complete-assertion credits. This challenge exposes limited linguistic generalization.",
-            f"Actual false correction application is {ratio(learned['false_correction_application_rate'])}. Classifier precision/recall and calibration below are raw-pair diagnostics; metadata-gated routing is not evidence that every boundary was learned. The oracle diagnostic removes retrieval and routing errors but retains generation failures and incomplete answers.",
-            "Outcome tables distinguish credited answers, observed incorrect assertions, pending uncredited prose, clarification, errors and unavailability. Cohort figures distinguish direct questions, held-out paraphrases, comparisons, out-of-scope questions and unfamiliar wording. Updated RAG is assessed honestly; the project does not require beating every baseline.",
-            "Serial CLI latency includes retrieval, routing and generation, retaining first-use requests. It excludes model construction, scoring, journal writes, HTTP transport and the application's extra before-answer generation. Fixed ordering and shared caches can bias comparisons. Separate HTTP engineering measurements must not be relabeled as model-route timings."]),
+            f"Actual false correction application is {ratio(learned['false_correction_application_rate'])}, including metadata eligibility guards. Raw classifier statistics do not measure guarded routing or answer generation.",
+            "Serial CLI latency covers retrieval, routing and generation. It excludes loading, scoring, journal writes, HTTP and the API's extra before-answer generation; fixed ordering and shared caches can bias comparisons."]),
         ("Reliability, engineering and deployment", [
             "The authoritative key is entity, relation, plan, version and a half-open effective interval. Corrections require a source, matching original value and administrator approval. Same-scope contradictory intervals do not use latest-write-wins. Explicit supersession links an approved predecessor; withdrawal restores applicable ancestors, and descendants must be withdrawn first. Mutations and revision increments are transactional; revision keys invalidate caches.",
             "The isolated actual learned workflow passed 31 governance/integration assertions across 33 API requests. These checks validate authority, conflict blocking, historical boundaries and rollback, not representative model accuracy. Development demonstrations still include wrong negative polarity, unsupported paraphrase prose and an unaffected price question that clarifies.",
@@ -170,13 +223,15 @@ def build_sections(manifest, protocol, lock, metrics, secondary, extras=None):
         recovered = extras["oracle_recovery"]
         r = recovered["metrics"]["configurations"]["oracle_answer"]
         measured.append(f"The separately declared runtime recovery selected only the 319 original CUDA error statuses, permitted at most one new generation per selected ID and checked reconstructed input bytes. The 65 original successful outputs were preserved. Combined oracle complete-assertion credit is {ratio(r['accuracy'])}, with {r['errors']} execution errors and {r['pending_review']} pending outputs. This supplement replaces no original results, changes no model/configuration/scorer and has mixed-session timings; it measures operational recovery, not a model improvement.")
+        answer = recovered["secondary"]["by_population"]["answer"]["oracle_answer"]["all_requested_qa"]
+        measured.append(f"On the separate 288 standard oracle questions, request-bound QA credits {answer['correct']}/{answer['denominator']}, with {answer['incorrect']} incorrect and {answer['pending_uncredited']} pending. The original failed-preload session remains visible with unavailable fingerprints; the healthy resumed generation session has the expected base fingerprint before and after inference. That proves the healthy session's measured state, not the lost earlier GPU state.")
     elif extras.get("oracle_recovery_interrupted"):
         pending = extras["oracle_recovery_interrupted"]
         measured.append(f"A separately declared, status-only recovery of the 319 oracle runtime errors was attempted. It stopped during model loading because CUDA was unavailable, before any of its {pending['maximum_new_generation_calls']} permitted generations: {pending['durable_attempt_reservations']} durable attempts, {pending['not_attempted_selected_count']} not attempted. No recovered answer accuracy or full neural HTTP latency is claimed. The original sealed observations remain unchanged; restoring GPU access is an operational prerequisite for these remaining measurements.")
-    measured.append("Available resource snapshots record 933.1 MiB CUDA peak allocated and 1,002 MiB reserved immediately after model construction. The original inference sessions did not retain a successful end-of-run memory snapshot, so these loading measurements are not presented as the full final-inference peak. A fresh closure-only session is likewise not an inference-memory benchmark.")
+    measured.append("Post-load CUDA snapshots report 933.1 MiB allocated and 1,002 MiB reserved. A full original-inference peak is unavailable; the fresh closure session loaded models without generating answers.")
     if extras.get("neural_http"):
         http = extras["neural_http"]
-        measured.append(f"A separate isolated local HTTP workload measured {http['counts']['attempted']} warm learned-mode requests: p50 {http['latency']['p50_ms']:.1f} ms and p95 {http['latency']['p95_ms']:.1f} ms, {http['counts']['errors']} errors. Client timing includes transport, decoding and the API's before-answer generation; cold loading is separate. These repeated demonstration questions measure engineering latency, not held-out accuracy or concurrent load capacity.")
+        measured.append(f"A separate isolated local HTTP workload measured {http['counts']['attempted']} warm learned-mode requests: p50 {http['latency']['p50_ms']:.1f} ms and p95 {http['latency']['p95_ms']:.1f} ms, {http['counts']['errors']} execution errors. Three warmups are excluded, and the first request with lazy checkpoint loading took {http['cold_sample']['http_roundtrip_ms']/1000:.2f} seconds. Client timing includes transport, decoding and the API's before-answer generation. These repeated demonstration questions measure latency and availability, not held-out accuracy or concurrent load capacity. The workload includes a known wrong Yes comparison, so 30 answered requests do not mean 30 correct answers.")
     return sections, rows
 
 
@@ -190,11 +245,12 @@ def build_report(evaluation, protocol_path, lock_path, figures, pdf_path, markdo
     from reportlab.lib.pagesizes import A4, landscape
     from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
     from reportlab.lib.units import inch
-    from reportlab.platypus import BaseDocTemplate, PageTemplate, Frame, NextPageTemplate, Paragraph, Spacer, Table, TableStyle, Image, PageBreak
+    from reportlab.platypus import BaseDocTemplate, PageTemplate, Frame, NextPageTemplate, Paragraph, Spacer, Table, TableStyle, Image, PageBreak, KeepTogether
     pdf_path.parent.mkdir(parents=True, exist_ok=True)
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name="BodyEG", fontName="Helvetica", fontSize=10, leading=14.5, spaceAfter=9))
     styles.add(ParagraphStyle(name="CaptionEG", fontName="Helvetica", fontSize=8, leading=11, textColor=colors.HexColor("#526779"), spaceAfter=12))
+    styles.add(ParagraphStyle(name="EvidenceEG", parent=styles["CaptionEG"], leading=10, spaceAfter=6))
     styles.add(ParagraphStyle(name="TableEG", fontName="Helvetica", fontSize=8, leading=10.5))
     styles["Heading1"].textColor = colors.HexColor("#11485b")
     styles["Heading1"].spaceBefore = 16
@@ -228,7 +284,7 @@ def build_report(evaluation, protocol_path, lock_path, figures, pdf_path, markdo
                                        ("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 8),
                                        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
                                        ("LINEBELOW", (0, 0), (-1, 0), .5, colors.HexColor("#9db2bb"))]))
-            story += [table, Spacer(1, 12), Paragraph("Primary requires a complete scoped assertion. Request QA is a separate frozen controlled-form metric. Pending counts refer to primary scoring; zero primary credit does not mean zero factual correctness.", styles["CaptionEG"])]
+            story += [KeepTogether([table, Spacer(1, 12), Paragraph("Primary requires a complete scoped assertion. Request QA is a separate frozen controlled-form metric. Pending counts refer to primary scoring; zero primary credit does not mean zero factual correctness.", styles["CaptionEG"])])]
             markdown += ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
             markdown += ["| " + " | ".join(row) + " |" for row in results] + [""]
             # Scientific figures use one landscape sheet each. Scaling a wide
@@ -247,11 +303,11 @@ def build_report(evaluation, protocol_path, lock_path, figures, pdf_path, markdo
     story.append(Paragraph("Evidence and version record", styles["Heading1"]))
     for task, model in protocol["models"].items():
         text = f"{task.capitalize()}: {model['model_id']} | revision {model['model_revision']} | selected artifact {model['artifact']}"
-        story.append(Paragraph(escape(text), styles["CaptionEG"]))
+        story.append(Paragraph(escape(text), styles["EvidenceEG"]))
         markdown += [text, ""]
     for name, value in sources.items():
         chunks = " ".join(value[offset:offset + 16] for offset in range(0, len(value), 16))
-        story.append(Paragraph(escape(name) + "<br/>SHA-256: " + chunks, styles["CaptionEG"]))
+        story.append(Paragraph(escape(name) + "<br/>SHA-256: " + chunks, styles["EvidenceEG"]))
     markdown += ["## Evidence and version record", ""] + [f"- `{name}`: `{value}`" for name, value in sources.items()]
     document = BaseDocTemplate(str(pdf_path), pagesize=A4, rightMargin=64, leftMargin=64, topMargin=48, bottomMargin=48,
                                title="EditGuard - Final Measured Project Report", author="EditGuard project team")

@@ -164,7 +164,7 @@ conflict handling and rollback are engineering tests, not temporal learning
 results.
 
 The challenge population contains 48 agent-authored unfamiliar-wording drafts
-and 48 separate correction scenarios with unseen standard-pool values: 17
+and 48 separate correction scenarios with values outside the standard pools: 17
 devices, 53 USD/month, 512 GB or 24 support hours/day. The latter carry their own
 corrections and must not be merged with standard scenarios. The questions are
 explicitly not claimed to be human-authored. The user's automated-final-audit
@@ -193,9 +193,16 @@ The original 384-case oracle export has 65 answers and 319 CUDA runtime errors;
 all 384 remain in its fixed denominator. This is a runtime measurement failure,
 not a reason to change labels, remove rows or claim model wrongness. Any fixed
 configuration recovery is separately named and preserves the original export.
-Its first session stopped before any generation because CUDA was unavailable;
-zero new answers exist and all 319 selected cases remain not attempted. This
-does not change the packet, labels, frozen scores or original denominator.
+Its first session stopped before any generation because CUDA was unavailable.
+After GPU availability was restored, the same declared supplement answered all
+319 selected cases with zero new runtime errors and retained the 65 original
+answers in a separate combined view. It does not change the packet, labels,
+original frozen scores, denominator, models or scoring rules. The combined view
+has 247/384 primary credits with 90 pending; standard request-bound credit is
+208/288. Challenge request-bound scoring still cannot measure unsupported wording.
+The separate 30-request learned HTTP workload repeats three development
+demonstration questions, reads no held-out questions and reports `ml_accuracy=null`.
+Its availability/timing counts are not additional dataset accuracy evidence.
 See [FINAL_EVALUATION.md](FINAL_EVALUATION.md) and the
 [runtime disclosure](../reports/final/runtime-failure-disclosure.json).
 

@@ -11,11 +11,21 @@
     "reports/targeted-training-audit.json": "9c286b67e1415ac2fc02f9564e5454bc3ff5174b998c864e320b788f39303e20",
     "reports/final/runtime-failure-disclosure.json": "5c67d8483d8d634fef745d1ec2396773a2f361eeac83e98462cce493f5b7e67a",
     "reports/final/secondary-paired-uncertainty.json": "46cdf88058c10a71c652bf1cac1732f4cb2e92961f190d7c85f6bb4a8c729caa",
-    "reports/final/oracle-runtime-recovery/interrupted_manifest.json": "2eeba76f8ffa18a3d3348af753a5f6781abe5764435da1adf6bff55764cdbbba"
+    "reports/final/neural-http.json": "dade7dcdccef18425b100ca741cbb2590c510b1c96591b254c4286245232d8b9",
+    "artifacts/answer/pilot-v2-polarity1/manifest.json": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+    "artifacts/scope/pilot-v3-neutral2/manifest.json": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459",
+    "configs/inference-final.json": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "editguard/api.py": "b2609d51741d5424a59e94cfb176b99a074620f4ea67b940106c31c024f53962",
+    "scripts/benchmark_neural_http.py": "1b4fda9518125fee6b220cde8dbc4a2a79ed9a1804c5aa5d432aef6292ca2504",
+    "reports/final/oracle-runtime-recovery/combined_oracle_predictions.jsonl": "0d9550dd68a3e03745d7c2842c3ec74226b344710c004ed724a03c8ff5573eb9",
+    "reports/final/oracle-runtime-recovery/metrics.json": "0835ee2cbb46562e9d5fa1268323ab71c868f1197bc3b7fa6af654a653f0edd7",
+    "reports/final/oracle-runtime-recovery/recovery_predictions.jsonl": "cf1facb73adb662b696411a23054157c78cd4031c1c6975dfee2ba1fb98274a0",
+    "reports/final/oracle-runtime-recovery/short_qa_metrics.json": "f4c8d12849df66cedad55b38347a19cd08fde4ccb6e9fc31491158201d953bbc",
+    "reports/final/oracle-runtime-recovery/manifest.json": "0e9dfec877c2af7e4f708d24de459d2cf07bfc64feca5600c2614e8021a2d5a5"
   },
-  "pdf_sha256": "f4f34e85bd0665f6892bf1442ff72e8f4073eb59a1817fbf53eb2a1495399185",
-  "markdown_sha256": "c0c7292083d579767629a9fcea693f3ea58c1fd16fbb3134a7e3643986aab71f",
-  "report_script_sha256": "ff71bbc3f44a44b648e10e498bd062be5b8359b150773bba0ae84d7ca1180890",
+  "pdf_sha256": "a95b5f542c32da477f65259135b3899611db30736167b20908d81f6261cb4689",
+  "markdown_sha256": "2dfcc782fdc232d70ad090150806bb0739682fd40a39e85fd7131c44f59369bd",
+  "report_script_sha256": "f9fc66275fd238621d2668b9564e2419988f60d9995409544698f5c0b1ff1bd4",
   "human_reviewed_data": false,
   "training_or_inference_executed": false
 }

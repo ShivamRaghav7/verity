@@ -1,0 +1,971 @@
+{
+  "answer_kind_counts": {
+    "model_generated": 30
+  },
+  "cold_sample": {
+    "answer": "3 devices.",
+    "answer_kind": "model_generated",
+    "api_latency_ms": 68755.837,
+    "error": null,
+    "http_roundtrip_ms": 68781.34540000008,
+    "http_status": 200,
+    "index": 0,
+    "latency_ms": 611.28,
+    "model_manifests": {
+      "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+    },
+    "payload": {
+      "as_of": "2026-10-13",
+      "entity_id": "nimbus",
+      "mode": "learned",
+      "plan": "Basic",
+      "question": "How many devices does Nimbus Basic version v2 support?",
+      "version": "v2"
+    },
+    "phase": "cold_lazy_model_loading",
+    "revision": 3,
+    "route": "approved_correction",
+    "status": "answered"
+  },
+  "completed_at": "2026-10-15T05:43:01.625101+00:00",
+  "configuration": {
+    "concurrency": 1,
+    "maximum_question_requests": 34,
+    "mode": "learned",
+    "new_http_connection_per_request": true,
+    "samples": 30,
+    "warmups": 3
+  },
+  "counts": {
+    "abstentions": 0,
+    "answered": 30,
+    "attempted": 30,
+    "errors": 0,
+    "valid_responses": 30
+  },
+  "execution_failure": null,
+  "expected_model_manifests": {
+    "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+    "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+  },
+  "fixture_database": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\http-neural-8371b9ce361d.sqlite3",
+  "fixture_expected_revision": 3,
+  "isolated_fixture_domain_state_unchanged": true,
+  "latency": {
+    "denominator": 30,
+    "includes_errors": true,
+    "p50_ms": 230.42390000000523,
+    "p95_ms": 372.0355500000152,
+    "valid_denominator": 30,
+    "valid_response_p50_ms": 230.42390000000523,
+    "valid_response_p95_ms": 372.0355500000152
+  },
+  "limitations": [
+    "Small repeated demonstration-question engineering workload, not the held-out accuracy population or a load test.",
+    "HTTP client timings include transport, JSON decoding, retrieval, learned routing/generation, and API before-answer generation.",
+    "Cold checkpoint loading is separate; warmups are excluded from measured percentiles. Reused model/retrieval caches affect warm timings.",
+    "All attempted measured requests, including failures and clarifications, remain in latency and availability denominators; requests not attempted have no invented latency and are counted separately.",
+    "Startup and cold inference failures stop later requests and retain a diagnostic report. A new CUDA failure stops the finite workload to avoid an execution-error cascade."
+  ],
+  "live_application_mutated": false,
+  "ml_accuracy": null,
+  "observed_revisions": [
+    3
+  ],
+  "phase_counts": {
+    "cold_attempted": 1,
+    "cold_errors": 0,
+    "measured_not_attempted": 0,
+    "warmup_attempted": 3,
+    "warmup_errors": 0,
+    "warmup_not_attempted": 0
+  },
+  "purpose": "isolated_neural_http_latency_v1",
+  "samples": [
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 97.039,
+      "error": null,
+      "http_roundtrip_ms": 99.88469999996141,
+      "http_status": 200,
+      "index": 0,
+      "latency_ms": 58.932,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 272.47,
+      "error": null,
+      "http_roundtrip_ms": 292.0530000000099,
+      "http_status": 200,
+      "index": 1,
+      "latency_ms": 196.053,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 202.242,
+      "error": null,
+      "http_roundtrip_ms": 204.38639999997577,
+      "http_status": 200,
+      "index": 2,
+      "latency_ms": 173.745,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 118.53,
+      "error": null,
+      "http_roundtrip_ms": 139.25799999992705,
+      "http_status": 200,
+      "index": 3,
+      "latency_ms": 53.082,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 346.182,
+      "error": null,
+      "http_roundtrip_ms": 349.8045999999704,
+      "http_status": 200,
+      "index": 4,
+      "latency_ms": 238.267,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 223.406,
+      "error": null,
+      "http_roundtrip_ms": 238.8747999999623,
+      "http_status": 200,
+      "index": 5,
+      "latency_ms": 176.553,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 202.185,
+      "error": null,
+      "http_roundtrip_ms": 216.0769000000755,
+      "http_status": 200,
+      "index": 6,
+      "latency_ms": 131.674,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 252.408,
+      "error": null,
+      "http_roundtrip_ms": 254.77470000009816,
+      "http_status": 200,
+      "index": 7,
+      "latency_ms": 172.293,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 217.635,
+      "error": null,
+      "http_roundtrip_ms": 233.31519999999273,
+      "http_status": 200,
+      "index": 8,
+      "latency_ms": 170.772,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 173.99,
+      "error": null,
+      "http_roundtrip_ms": 192.31300000001283,
+      "http_status": 200,
+      "index": 9,
+      "latency_ms": 119.435,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 215.032,
+      "error": null,
+      "http_roundtrip_ms": 227.53260000001774,
+      "http_status": 200,
+      "index": 10,
+      "latency_ms": 145.259,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 229.132,
+      "error": null,
+      "http_roundtrip_ms": 251.97029999992537,
+      "http_status": 200,
+      "index": 11,
+      "latency_ms": 192.315,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 90.315,
+      "error": null,
+      "http_roundtrip_ms": 92.58169999998245,
+      "http_status": 200,
+      "index": 12,
+      "latency_ms": 53.462,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 210.788,
+      "error": null,
+      "http_roundtrip_ms": 213.11100000002625,
+      "http_status": 200,
+      "index": 13,
+      "latency_ms": 147.821,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 216.61,
+      "error": null,
+      "http_roundtrip_ms": 219.2962000000307,
+      "http_status": 200,
+      "index": 14,
+      "latency_ms": 164.676,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 112.429,
+      "error": null,
+      "http_roundtrip_ms": 131.3531000000694,
+      "http_status": 200,
+      "index": 15,
+      "latency_ms": 78.619,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 324.241,
+      "error": null,
+      "http_roundtrip_ms": 352.7773000000707,
+      "http_status": 200,
+      "index": 16,
+      "latency_ms": 224.921,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 289.115,
+      "error": null,
+      "http_roundtrip_ms": 292.6518000000442,
+      "http_status": 200,
+      "index": 17,
+      "latency_ms": 249.969,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 155.504,
+      "error": null,
+      "http_roundtrip_ms": 181.89369999993232,
+      "http_status": 200,
+      "index": 18,
+      "latency_ms": 100.082,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 336.825,
+      "error": null,
+      "http_roundtrip_ms": 354.39210000004095,
+      "http_status": 200,
+      "index": 19,
+      "latency_ms": 245.445,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 290.452,
+      "error": null,
+      "http_roundtrip_ms": 316.73909999994976,
+      "http_status": 200,
+      "index": 20,
+      "latency_ms": 249.011,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 89.514,
+      "error": null,
+      "http_roundtrip_ms": 91.92890000008447,
+      "http_status": 200,
+      "index": 21,
+      "latency_ms": 54.608,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 422.168,
+      "error": null,
+      "http_roundtrip_ms": 449.3999000000031,
+      "http_status": 200,
+      "index": 22,
+      "latency_ms": 304.336,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 278.806,
+      "error": null,
+      "http_roundtrip_ms": 300.9884000000511,
+      "http_status": 200,
+      "index": 23,
+      "latency_ms": 237.309,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 96.626,
+      "error": null,
+      "http_roundtrip_ms": 98.86419999997997,
+      "http_status": 200,
+      "index": 24,
+      "latency_ms": 56.287,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 248.015,
+      "error": null,
+      "http_roundtrip_ms": 277.33630000000176,
+      "http_status": 200,
+      "index": 25,
+      "latency_ms": 174.845,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 260.663,
+      "error": null,
+      "http_roundtrip_ms": 279.771700000083,
+      "http_status": 200,
+      "index": 26,
+      "latency_ms": 220.773,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 115.149,
+      "error": null,
+      "http_roundtrip_ms": 138.89270000004217,
+      "http_status": 200,
+      "index": 27,
+      "latency_ms": 66.734,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 357.75,
+      "error": null,
+      "http_roundtrip_ms": 386.4710999999943,
+      "http_status": 200,
+      "index": 28,
+      "latency_ms": 259.164,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 214.326,
+      "error": null,
+      "http_roundtrip_ms": 216.8179999999893,
+      "http_status": 200,
+      "index": 29,
+      "latency_ms": 176.105,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "measured",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    }
+  ],
+  "schema_version": 1,
+  "server_log": {
+    "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\http-neural-8371b9ce361d.log",
+    "sha256": "d80e3203cd26873497ef580e50696f143d48b6d9ad3a81115e50ba1e7bb38023"
+  },
+  "source_sha256": {
+    "artifacts/answer/pilot-v2-polarity1/manifest.json": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+    "artifacts/scope/pilot-v3-neutral2/manifest.json": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459",
+    "configs/inference-final.json": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "editguard/api.py": "b2609d51741d5424a59e94cfb176b99a074620f4ea67b940106c31c024f53962",
+    "scripts/benchmark_neural_http.py": "1b4fda9518125fee6b220cde8dbc4a2a79ed9a1804c5aa5d432aef6292ca2504"
+  },
+  "source_snapshot_unchanged": true,
+  "stable_observed_model_and_revision": true,
+  "started_at": "2026-10-15T05:41:39.057543+00:00",
+  "startup": {
+    "elapsed_ms": 5965.66590000009,
+    "maximum_readiness_attempts": 160,
+    "readiness_attempts": 8
+  },
+  "status": "completed",
+  "status_counts": {
+    "answered": 30
+  },
+  "warmup_samples": [
+    {
+      "answer": "3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 165.116,
+      "error": null,
+      "http_roundtrip_ms": 168.8239000000067,
+      "http_status": 200,
+      "index": 0,
+      "latency_ms": 87.767,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "How many devices does Nimbus Basic version v2 support?",
+        "version": "v2"
+      },
+      "phase": "warmup",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Nimbus Basic version v2 includes 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 240.771,
+      "error": null,
+      "http_roundtrip_ms": 244.78740000006383,
+      "http_status": 200,
+      "index": 1,
+      "latency_ms": 157.869,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "What is the device allowance on Nimbus Cloud Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "warmup",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    },
+    {
+      "answer": "Yes. Nimbus Basic version v2 supports 3 devices.",
+      "answer_kind": "model_generated",
+      "api_latency_ms": 274.52,
+      "error": null,
+      "http_roundtrip_ms": 298.79669999991165,
+      "http_status": 200,
+      "index": 2,
+      "latency_ms": 239.186,
+      "model_manifests": {
+        "answer": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+        "scope": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459"
+      },
+      "payload": {
+        "as_of": "2026-10-13",
+        "entity_id": "nimbus",
+        "mode": "learned",
+        "plan": "Basic",
+        "question": "Can I connect four devices on Nimbus Basic version v2?",
+        "version": "v2"
+      },
+      "phase": "warmup",
+      "revision": 3,
+      "route": "approved_correction",
+      "status": "answered"
+    }
+  ]
+}
