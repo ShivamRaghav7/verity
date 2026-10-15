@@ -121,8 +121,8 @@ the live database is unchanged. See [HTTP evidence](../reports/final/neural-http
 
 The device interruption does not authorize retraining, new backbones, a larger
 dataset, test-guided scoring changes or another model search. Fixed-configuration
-operational recovery and reporting are complete; the remaining release gate is
-the pushed commit's CI outcome.
+operational recovery and reporting are complete. The pushed release source passed
+all three CI jobs, as recorded in the release checklist above.
 
 ## Experiment and recovery bounds
 
