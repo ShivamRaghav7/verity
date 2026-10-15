@@ -1,0 +1,15 @@
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 103/103 [00:00<00:00, 6171.97it/s]
+
+Loading weights:   0%|          | 0/190 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 190/190 [00:00<00:00, 2882.19it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+
+Loading weights:   0%|          | 0/104 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 104/104 [00:00<00:00, 2652.78it/s]
+
+Loading weights:   0%|          | 0/190 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 190/190 [00:00<00:00, 3825.38it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+{"status": "completed", "questions": 816, "oracle_records": 384, "io_recovery_declared": true}

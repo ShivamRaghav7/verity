@@ -1,0 +1,214 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "bac2e58740bf45f995bca3bcc8c3bee992350e5713ea7b2080f44df43018b4a2",
+  "record": {
+    "answer": "Yes",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "prompt_only",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A069"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-069-core",
+      "entity_name": "Aster 069",
+      "fact_id": "aster-069-core:Basic:v2:storage_gb",
+      "plan": "Basic",
+      "relation": "storage_gb",
+      "unit": "GB",
+      "value": "50",
+      "version": "v2"
+    },
+    "expected_polarity": "yes",
+    "family_id": "family-069",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-069-core:Basic:v2:storage_gb:variant-0",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "consumed_input_tokens": 209,
+      "input_tokens": 209,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "google/flan-t5-small",
+      "output_tokens": 3,
+      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-069-core:Basic:v2:storage_gb:variant-0:p2",
+    "input_text": "Answer the support question using the supplied facts. State the product, plan, version, property and answer. For a yes/no question start Yes or No. Do not guess.\nRequest scope: aster-069-core, Basic, v2, as of 2026-10-11.\nSupport facts:\nAster 069 Basic version v2 includes 240 GB of storage.\nAster 069 Basic version v2 supports 8 devices.\nAster 069 Basic version v2 costs 44 USD per month.\nApproved corrections override initial facts only within their scope:\nCorrection for Aster 069 (aliases: A069), Basic, version v2: storage_gb changed from 240 to 50 GB, effective from 2026-09-01. Source: controlled://corrections/family-069/storage_gb/0.\nQuestion: Can I store 50 GB on Aster 069 Basic version v2?\nAnswer:",
+    "latency_ms": 110.705,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "Can I store 50 GB on Aster 069 Basic version v2?",
+    "question_type": "comparison",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-069-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [
+      {
+        "edit_id": "edit:aster-069-core:Basic:v2:storage_gb:variant-0",
+        "score": 0.6437772512435913
+      }
+    ],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-069-core:Basic:v2:storage_gb:variant-0",
+        "score": 0.6437772512435913
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:storage_gb:unseen-value",
+        "score": 0.5614503622055054
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:storage_gb:unseen-value",
+        "score": 0.5549635887145996
+      }
+    ],
+    "retrieval_hits": {
+      "1": true,
+      "3": true
+    },
+    "retrieved_facts": [
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A069"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-069-core",
+          "entity_name": "Aster 069",
+          "fact_id": "aster-069-core:Basic:v2:storage_gb",
+          "family_id": "family-069",
+          "lineage_id": "aster-069-core:Basic:storage_gb",
+          "plan": "Basic",
+          "relation": "storage_gb",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-069/core/v2",
+          "split": "test",
+          "unit": "GB",
+          "value": "240",
+          "version": "v2"
+        },
+        "fact_id": "aster-069-core:Basic:v2:storage_gb",
+        "score": 0.765247106552124,
+        "source": "controlled://handbook/family-069/core/v2",
+        "value": "240"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A069"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-069-core",
+          "entity_name": "Aster 069",
+          "fact_id": "aster-069-core:Basic:v2:device_limit",
+          "family_id": "family-069",
+          "lineage_id": "aster-069-core:Basic:device_limit",
+          "plan": "Basic",
+          "relation": "device_limit",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-069/core/v2",
+          "split": "test",
+          "unit": "devices",
+          "value": "8",
+          "version": "v2"
+        },
+        "fact_id": "aster-069-core:Basic:v2:device_limit",
+        "score": 0.5579454898834229,
+        "source": "controlled://handbook/family-069/core/v2",
+        "value": "8"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A069"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-069-core",
+          "entity_name": "Aster 069",
+          "fact_id": "aster-069-core:Basic:v2:price_monthly",
+          "family_id": "family-069",
+          "lineage_id": "aster-069-core:Basic:price_monthly",
+          "plan": "Basic",
+          "relation": "price_monthly",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-069/core/v2",
+          "split": "test",
+          "unit": "USD/month",
+          "value": "44",
+          "version": "v2"
+        },
+        "fact_id": "aster-069-core:Basic:v2:price_monthly",
+        "score": 0.5284874439239502,
+        "source": "controlled://handbook/family-069/core/v2",
+        "value": "44"
+      }
+    ],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "prompt_only",
+    "row_sha256": "d020e5c5db1b10226869bc0b49ea2b1870af754d5058a728fba75e1fa6821485",
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": null,
+    "short_qa": {
+      "correct": true,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": "whole_polarity",
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 069",
+        "plan": "basic",
+        "predicate": "requested_le_limit",
+        "quantity": "50",
+        "relation": "storage_gb",
+        "task": "comparison_predicate",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "Whole Yes/No output checked against the bound comparison predicate; it does not establish the exact limit.",
+      "task": "comparison_predicate",
+      "verdict": "correct"
+    },
+    "status": "answered"
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "prompt_only",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-069-core:Basic:v2:storage_gb:variant-0:p2"
+  },
+  "task_index": 3192
+}

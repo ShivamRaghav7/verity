@@ -1,0 +1,185 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "9c1353ad6c300b57f32aa40282bcfedb7c9f76652b101ef5ea8758afb1a9858a",
+  "record": {
+    "answer": "Aster 054 Basic version v2 supports 2 devices.",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "similarity_editor",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A054"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-054-core",
+      "entity_name": "Aster 054",
+      "fact_id": "aster-054-core:Basic:v2:device_limit",
+      "plan": "Basic",
+      "relation": "device_limit",
+      "unit": "devices",
+      "value": "2",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-054",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "artifact_purpose": "trained",
+      "consumed_input_tokens": 127,
+      "human_reviewed_training_data": false,
+      "input_tokens": 127,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1\\model",
+      "output_tokens": 16,
+      "revision": null,
+      "training_review_policy": "automated_development"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-054-core:Basic:v2:device_limit:variant-1:p0",
+    "input_text": "answer correction: Correction for Aster 054 (aliases: A054), Basic, version v2: device_limit changed from 1 to 2 devices, effective from 2026-09-01. Source: controlled://corrections/family-054/device_limit/1. Question: How many devices does Aster 054 Basic version v2 support? As of: 2026-10-11. Unchanged context: Aster 054 Basic version v2 includes 200 GB of storage. Aster 054 Basic version v2 includes 5 support hours per day.",
+    "latency_ms": 693.844,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "How many devices does Aster 054 Basic version v2 support?",
+    "question_type": "direct",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-054-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [
+      {
+        "edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+        "score": 0.6804723143577576
+      }
+    ],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+        "score": 0.6804723143577576
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.6352202892303467
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.6239132881164551
+      }
+    ],
+    "retrieval_hits": {
+      "1": true,
+      "3": true
+    },
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "approved_correction",
+    "row_sha256": "f9ad768e5f59d0e2aad86d614ee7a7840594c76e84775238d0bed41a3b9d4c6d",
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": true,
+      "endorsed_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-054-core",
+        "plan": "Basic",
+        "relation": "device_limit",
+        "unit": "devices",
+        "value": "2",
+        "version": "v2"
+      },
+      "needs_review": false,
+      "reason": "One complete short assertion endorses the correct subject, scope, relation, value, unit and required polarity.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "correct"
+    },
+    "selected_edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+    "short_qa": {
+      "correct": true,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": "primary_complete_assertion",
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 054",
+        "plan": "basic",
+        "predicate": null,
+        "quantity": null,
+        "relation": "device_limit",
+        "task": "requested_value",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": true,
+      "reason": "The primary full-fact scorer credited a complete assertion and the request is independently bound.",
+      "task": "requested_value",
+      "verdict": "correct"
+    },
+    "status": "answered",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A054"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-054-core",
+        "entity_name": "Aster 054",
+        "fact_id": "aster-054-core:Basic:v2:storage_gb",
+        "family_id": "family-054",
+        "lineage_id": "aster-054-core:Basic:storage_gb",
+        "plan": "Basic",
+        "relation": "storage_gb",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-054/core/v2",
+        "split": "test",
+        "unit": "GB",
+        "value": "200",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A054"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-054-core",
+        "entity_name": "Aster 054",
+        "fact_id": "aster-054-core:Basic:v2:support_hours",
+        "family_id": "family-054",
+        "lineage_id": "aster-054-core:Basic:support_hours",
+        "plan": "Basic",
+        "relation": "support_hours",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-054/core/v2",
+        "split": "test",
+        "unit": "hours/day",
+        "value": "5",
+        "version": "v2"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "similarity_editor",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-054-core:Basic:v2:device_limit:variant-1:p0"
+  },
+  "task_index": 2783
+}

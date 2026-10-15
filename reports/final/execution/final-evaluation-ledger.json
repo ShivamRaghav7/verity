@@ -1,0 +1,22 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "completed_at": "2026-10-14T15:39:11.669179+00:00",
+  "failure": {
+    "at": "2026-10-14T15:25:34.935950+00:00",
+    "reason": "CUDA error: unknown error\nSearch for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+    "type": "AcceleratorError"
+  },
+  "fresh_final_runs": 1,
+  "last_session_started_at": "2026-10-14T15:38:54.177842+00:00",
+  "output_directory": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\final\\evaluation",
+  "result_manifest_sha256": "22fb7652e9cd878e79434cd572480b2e69f2fcad9e2a3deaba12b1fa071c3f23",
+  "schema_version": 1,
+  "started_at": "2026-10-14T14:35:29.843229+00:00",
+  "status": "completed"
+}

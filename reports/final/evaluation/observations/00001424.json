@@ -1,0 +1,209 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "8e3b08e3e82eb7ae6b6a282c320ba8703321a3873f4c5c364037d5dd5f2f0fa5",
+  "record": {
+    "answer": "50 GB",
+    "answer_kind": "model_generated",
+    "applicable": false,
+    "configuration": "trained_scope_editor",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A014"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-014-core",
+      "entity_name": "Aster 014",
+      "fact_id": "aster-014-core:Pro:v2:storage_gb",
+      "plan": "Pro",
+      "relation": "storage_gb",
+      "unit": "GB",
+      "value": "50",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-014",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-014-core:Basic:v2:storage_gb:variant-1",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "consumed_input_tokens": 131,
+      "input_tokens": 131,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "google/flan-t5-small",
+      "output_tokens": 5,
+      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-014-core:Basic:v2:storage_gb:variant-1:n:wrong_tier",
+    "input_text": "Answer the support question using the supplied facts. State the product, plan, version, property and answer. For a yes/no question start Yes or No. Do not guess.\nRequest scope: aster-014-core, Pro, v2, as of 2026-10-11.\nSupport facts:\nAster 014 Pro version v2 includes 50 GB of storage.\nAster 014 Pro version v2 costs 7 USD per month.\nAster 014 Pro version v2 includes 5 support hours per day.\nQuestion: How much storage is included with Aster 014 Pro version v2?\nAnswer:",
+    "latency_ms": 232.156,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "How much storage is included with Aster 014 Pro version v2?",
+    "question_type": "out_of_scope",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-014-core",
+      "plan": "Pro",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:storage_gb:unseen-value",
+        "score": 0.6370752453804016
+      },
+      {
+        "edit_id": "edit:aster-014-core:Basic:v2:storage_gb:variant-1",
+        "score": 0.6362195014953613
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:storage_gb:unseen-value",
+        "score": 0.6323407888412476
+      }
+    ],
+    "retrieval_hits": {},
+    "retrieved_facts": [
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A014"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-014-core",
+          "entity_name": "Aster 014",
+          "fact_id": "aster-014-core:Pro:v2:storage_gb",
+          "family_id": "family-014",
+          "lineage_id": "aster-014-core:Pro:storage_gb",
+          "plan": "Pro",
+          "relation": "storage_gb",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-014/core/v2",
+          "split": "test",
+          "unit": "GB",
+          "value": "50",
+          "version": "v2"
+        },
+        "fact_id": "aster-014-core:Pro:v2:storage_gb",
+        "score": 0.8897436261177063,
+        "source": "controlled://handbook/family-014/core/v2",
+        "value": "50"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A014"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-014-core",
+          "entity_name": "Aster 014",
+          "fact_id": "aster-014-core:Pro:v2:price_monthly",
+          "family_id": "family-014",
+          "lineage_id": "aster-014-core:Pro:price_monthly",
+          "plan": "Pro",
+          "relation": "price_monthly",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-014/core/v2",
+          "split": "test",
+          "unit": "USD/month",
+          "value": "7",
+          "version": "v2"
+        },
+        "fact_id": "aster-014-core:Pro:v2:price_monthly",
+        "score": 0.6270388960838318,
+        "source": "controlled://handbook/family-014/core/v2",
+        "value": "7"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A014"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-014-core",
+          "entity_name": "Aster 014",
+          "fact_id": "aster-014-core:Pro:v2:support_hours",
+          "family_id": "family-014",
+          "lineage_id": "aster-014-core:Pro:support_hours",
+          "plan": "Pro",
+          "relation": "support_hours",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-014/core/v2",
+          "split": "test",
+          "unit": "hours/day",
+          "value": "5",
+          "version": "v2"
+        },
+        "fact_id": "aster-014-core:Pro:v2:support_hours",
+        "score": 0.5491219758987427,
+        "source": "controlled://handbook/family-014/core/v2",
+        "value": "5"
+      }
+    ],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "frozen_base",
+    "row_sha256": "6e1db0f98bad6ef0596ef3729744d24e389a15af777b3217470753b19347f553",
+    "scope_label": 0,
+    "scope_probability": 0.0017544223228469484,
+    "scope_scores": [],
+    "scope_threshold": 0.97,
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": null,
+    "short_qa": {
+      "correct": true,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": "whole_quantity",
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 014",
+        "plan": "pro",
+        "predicate": null,
+        "quantity": null,
+        "relation": "storage_gb",
+        "task": "requested_value",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "Whole quantity checked against the requested value and bound scope; omitted units use the explicit question's unit.",
+      "task": "requested_value",
+      "verdict": "correct"
+    },
+    "status": "answered"
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "trained_scope_editor",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-014-core:Basic:v2:storage_gb:variant-1:n:wrong_tier"
+  },
+  "task_index": 1424
+}

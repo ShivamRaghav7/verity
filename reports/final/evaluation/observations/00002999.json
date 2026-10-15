@@ -1,0 +1,194 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "5d2a93aa6173ebecf2b2fcd72082fa03bccbd8c1e3ebedb5bad1ce72819ae364",
+  "record": {
+    "answer": "Yes. Aster 054 Basic version v2 includes 21 support hours per day.",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "trained_scope_editor",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A054"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-054-core",
+      "entity_name": "Aster 054",
+      "fact_id": "aster-054-core:Basic:v2:support_hours",
+      "plan": "Basic",
+      "relation": "support_hours",
+      "unit": "hours/day",
+      "value": "20",
+      "version": "v2"
+    },
+    "expected_polarity": "no",
+    "family_id": "family-054",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-054-core:Basic:v2:support_hours:variant-0",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "artifact_purpose": "trained",
+      "consumed_input_tokens": 131,
+      "human_reviewed_training_data": false,
+      "input_tokens": 131,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1\\model",
+      "output_tokens": 21,
+      "revision": null,
+      "training_review_policy": "automated_development"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-054-core:Basic:v2:support_hours:variant-0:p3",
+    "input_text": "answer correction: Correction for Aster 054 (aliases: A054), Basic, version v2: support_hours changed from 5 to 20 hours/day, effective from 2026-09-01. Source: controlled://corrections/family-054/support_hours/0. Question: Does Aster 054 Basic version v2 include at least 21 support hours per day? As of: 2026-10-11. Unchanged context: Aster 054 Basic version v2 costs 9 USD per month. Aster 054 Basic version v2 supports 1 device.",
+    "latency_ms": 948.409,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "Does Aster 054 Basic version v2 include at least 21 support hours per day?",
+    "question_type": "comparison",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-054-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [
+      {
+        "edit_id": "edit:aster-054-core:Basic:v2:support_hours:variant-0",
+        "score": 0.6328479051589966
+      }
+    ],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-054-core:Basic:v2:support_hours:variant-0",
+        "score": 0.6328479051589966
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:support_hours:unseen-value",
+        "score": 0.5826269388198853
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:support_hours:unseen-value",
+        "score": 0.5720875263214111
+      }
+    ],
+    "retrieval_hits": {
+      "1": true,
+      "3": true
+    },
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "approved_correction",
+    "row_sha256": "0807692929ab1be9e662cc3226dad33eed3c0132401ef93f134062b61edc0459",
+    "scope_label": 1,
+    "scope_probability": 0.9958133101463317,
+    "scope_scores": [
+      {
+        "edit_id": "edit:aster-054-core:Basic:v2:support_hours:variant-0",
+        "probability": 0.9958133101463317
+      }
+    ],
+    "scope_threshold": 0.97,
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": false,
+      "endorsed_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-054-core",
+        "plan": "Basic",
+        "polarity": "yes",
+        "relation": "support_hours",
+        "unit": "hours/day",
+        "value": "21",
+        "version": "v2"
+      },
+      "needs_review": false,
+      "reason": "The endorsed value differs from ground truth.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "incorrect"
+    },
+    "selected_edit_id": "edit:aster-054-core:Basic:v2:support_hours:variant-0",
+    "short_qa": {
+      "correct": false,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": null,
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 054",
+        "plan": "basic",
+        "predicate": "requested_le_limit",
+        "quantity": "21",
+        "relation": "support_hours",
+        "task": "comparison_predicate",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "The primary scorer found an incorrect endorsement; short-answer fallback is forbidden.",
+      "task": "comparison_predicate",
+      "verdict": "incorrect"
+    },
+    "status": "answered",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A054"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-054-core",
+        "entity_name": "Aster 054",
+        "fact_id": "aster-054-core:Basic:v2:price_monthly",
+        "family_id": "family-054",
+        "lineage_id": "aster-054-core:Basic:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-054/core/v2",
+        "split": "test",
+        "unit": "USD/month",
+        "value": "9",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A054"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-054-core",
+        "entity_name": "Aster 054",
+        "fact_id": "aster-054-core:Basic:v2:device_limit",
+        "family_id": "family-054",
+        "lineage_id": "aster-054-core:Basic:device_limit",
+        "plan": "Basic",
+        "relation": "device_limit",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-054/core/v2",
+        "split": "test",
+        "unit": "devices",
+        "value": "1",
+        "version": "v2"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "trained_scope_editor",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-054-core:Basic:v2:support_hours:variant-0:p3"
+  },
+  "task_index": 2999
+}

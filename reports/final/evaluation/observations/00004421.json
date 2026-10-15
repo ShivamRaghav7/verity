@@ -1,0 +1,134 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "cf18e45ed0da66ea8af1a75d46406eb01f0a2b8e3fdc0819d827487ef3ad0aa8",
+  "record": {
+    "answer": null,
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "oracle_answer",
+    "error": "CUDA error: unknown error\nSearch for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+    "evaluation_kind": "oracle",
+    "expected_fact": {
+      "aliases": [
+        "A004"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-004-core",
+      "entity_name": "Aster 004",
+      "fact_id": "aster-004-core:Basic:v2:price_monthly",
+      "plan": "Basic",
+      "relation": "price_monthly",
+      "unit": "USD/month",
+      "value": "19",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-004",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-004-core:Basic:v2:price_monthly:variant-0",
+    "generation_trace": null,
+    "human_reviewed_data": false,
+    "id": "challenge:aster-004-core:Basic:v2:price_monthly",
+    "input_text": "answer correction: Correction for Aster 004 (aliases: A004), Basic, version v2: price_monthly changed from 14 to 19 USD/month, effective from 2026-09-01. Source: controlled://corrections/family-004/price_monthly/0. Question: For Aster 004 Basic version v2, What's the recurring bill, excluding any annual discounts? As of: 2026-10-11. Unchanged context: Aster 004 Basic version v2 includes 9 support hours per day. Aster 004 Basic version v2 includes 50 GB of storage.",
+    "latency_ms": 2.845,
+    "normalized_scope_input_seen_in_train": null,
+    "normalized_scope_input_seen_in_validation": null,
+    "population": "challenge",
+    "question": "For Aster 004 Basic version v2, What's the recurring bill, excluding any annual discounts?",
+    "question_type": "challenge",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-004-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [],
+    "retrieval_candidates_raw": [],
+    "retrieval_hits": {},
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "route": "oracle_correct_routing",
+    "row_sha256": "cc77e79a0c9de73b76e1301566fddebfb24077686974168c5f98462909adbc2d",
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": false,
+      "endorsed_fact": null,
+      "needs_review": false,
+      "reason": "No answer was generated.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "incorrect"
+    },
+    "selected_edit_id": "edit:aster-004-core:Basic:v2:price_monthly:variant-0",
+    "short_qa": {
+      "correct": false,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": null,
+      "human_semantic_review": false,
+      "parsed_request": null,
+      "proves_exact_scoped_fact": false,
+      "reason": "A failed, unavailable or abstained result receives no QA credit.",
+      "task": null,
+      "verdict": "incorrect"
+    },
+    "status": "error",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A004"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-004-core",
+        "entity_name": "Aster 004",
+        "fact_id": "aster-004-core:Basic:v2:support_hours",
+        "family_id": "family-004",
+        "lineage_id": "aster-004-core:Basic:support_hours",
+        "plan": "Basic",
+        "relation": "support_hours",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-004/core/v2",
+        "split": "test",
+        "unit": "hours/day",
+        "value": "9",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A004"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-004-core",
+        "entity_name": "Aster 004",
+        "fact_id": "aster-004-core:Basic:v2:storage_gb",
+        "family_id": "family-004",
+        "lineage_id": "aster-004-core:Basic:storage_gb",
+        "plan": "Basic",
+        "relation": "storage_gb",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-004/core/v2",
+        "split": "test",
+        "unit": "GB",
+        "value": "50",
+        "version": "v2"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "oracle_answer",
+    "kind": "oracle",
+    "population": "challenge",
+    "row_id": "challenge:aster-004-core:Basic:v2:price_monthly"
+  },
+  "task_index": 4421
+}

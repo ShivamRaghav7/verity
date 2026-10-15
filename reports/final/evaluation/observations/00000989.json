@@ -1,0 +1,185 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "e944e3d5197edffe15e230e6c74e47392dc59c08b71c886bbd543adc03e1762a",
+  "record": {
+    "answer": "Aster 013 Basic version v2 includes 4 devices.",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "trained_scope_editor",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A013"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-013-core",
+      "entity_name": "Aster 013",
+      "fact_id": "aster-013-core:Basic:v2:device_limit",
+      "plan": "Basic",
+      "relation": "device_limit",
+      "unit": "devices",
+      "value": "4",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-013",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-013-core:Basic:v2:device_limit:variant-1",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "artifact_purpose": "trained",
+      "consumed_input_tokens": 120,
+      "human_reviewed_training_data": false,
+      "input_tokens": 120,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1\\model",
+      "output_tokens": 15,
+      "revision": null,
+      "training_review_policy": "automated_development"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-013-core:Basic:v2:device_limit:variant-1:p1",
+    "input_text": "answer correction: Correction for Aster 013 (aliases: A013), Basic, version v2: device_limit changed from 12 to 4 devices, effective from 2026-09-01. Source: controlled://corrections/family-013/device_limit/1. Question: What is the device allowance on A013 Basic version v2? As of: 2026-10-11. Unchanged context: Aster 013 Basic version v2 costs 9 USD per month. Aster 013 Basic version v2 includes 20 GB of storage.",
+    "latency_ms": 604.793,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "What is the device allowance on A013 Basic version v2?",
+    "question_type": "paraphrase",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-013-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [
+      {
+        "edit_id": "edit:aster-013-core:Basic:v2:device_limit:variant-1",
+        "score": 0.5751944184303284
+      }
+    ],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-013-core:Basic:v2:device_limit:variant-1",
+        "score": 0.5751944184303284
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.5590735077857971
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.5326230525970459
+      }
+    ],
+    "retrieval_hits": {
+      "1": true,
+      "3": true
+    },
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "approved_correction",
+    "row_sha256": "5e025d09e10098d5f18ab30134de98be7d73c74e2e963b956331e7f9bf9c1da0",
+    "scope_label": 1,
+    "scope_probability": 0.9956860542297363,
+    "scope_scores": [
+      {
+        "edit_id": "edit:aster-013-core:Basic:v2:device_limit:variant-1",
+        "probability": 0.9956860542297363
+      }
+    ],
+    "scope_threshold": 0.97,
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": "edit:aster-013-core:Basic:v2:device_limit:variant-1",
+    "short_qa": {
+      "correct": null,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": null,
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "a013",
+        "plan": "basic",
+        "predicate": null,
+        "quantity": null,
+        "relation": "device_limit",
+        "task": "requested_value",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "Additional prose or an unsupported output form remains pending and uncredited.",
+      "task": "requested_value",
+      "verdict": "pending_uncredited"
+    },
+    "status": "answered",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A013"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-013-core",
+        "entity_name": "Aster 013",
+        "fact_id": "aster-013-core:Basic:v2:price_monthly",
+        "family_id": "family-013",
+        "lineage_id": "aster-013-core:Basic:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-013/core/v2",
+        "split": "test",
+        "unit": "USD/month",
+        "value": "9",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A013"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-013-core",
+        "entity_name": "Aster 013",
+        "fact_id": "aster-013-core:Basic:v2:storage_gb",
+        "family_id": "family-013",
+        "lineage_id": "aster-013-core:Basic:storage_gb",
+        "plan": "Basic",
+        "relation": "storage_gb",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-013/core/v2",
+        "split": "test",
+        "unit": "GB",
+        "value": "20",
+        "version": "v2"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "trained_scope_editor",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-013-core:Basic:v2:device_limit:variant-1:p1"
+  },
+  "task_index": 989
+}

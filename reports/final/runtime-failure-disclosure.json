@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "purpose": "final_runtime_failure_disclosure",
+  "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+  "observations_committed": 4464,
+  "status_by_kind": {
+    "matched": {
+      "answered": 4009,
+      "clarification": 71
+    },
+    "oracle": {
+      "answered": 65,
+      "error": 319
+    }
+  },
+  "first_error_task_index": 4145,
+  "last_error_task_index": 4463,
+  "original_gpu_instance_post_inference_fingerprint": "unavailable_cuda_unknown_error",
+  "persistent_model_or_data_changes": false,
+  "fresh_cuda_probe": {
+    "cuda_available": true,
+    "sum_1_2_3": 6.0
+  },
+  "closure_recovery_policy": "Resume the same full journal with zero new predictions; fresh model fingerprint and unchanged source/file hashes do not reconstruct the lost original GPU memory state.",
+  "oracle_measurement_policy": "319 committed runtime errors remain uncredited in the original 384-case oracle denominator. Any fixed-configuration recovery measurement must be separately named and preserve original errors."
+}

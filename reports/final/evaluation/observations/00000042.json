@@ -1,0 +1,214 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "bc04c3188c15fcd9447126398bb9277ea7f5eb6618bb441c0e32ed4e17dc6e48",
+  "record": {
+    "answer": "No",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "prompt_only",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A003"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-003-core",
+      "entity_name": "Aster 003",
+      "fact_id": "aster-003-core:Basic:v2:device_limit",
+      "plan": "Basic",
+      "relation": "device_limit",
+      "unit": "devices",
+      "value": "4",
+      "version": "v2"
+    },
+    "expected_polarity": "yes",
+    "family_id": "family-003",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-003-core:Basic:v2:device_limit:variant-0",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "consumed_input_tokens": 207,
+      "input_tokens": 207,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "google/flan-t5-small",
+      "output_tokens": 3,
+      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-003-core:Basic:v2:device_limit:variant-0:p2",
+    "input_text": "Answer the support question using the supplied facts. State the product, plan, version, property and answer. For a yes/no question start Yes or No. Do not guess.\nRequest scope: aster-003-core, Basic, v2, as of 2026-10-11.\nSupport facts:\nAster 003 Basic version v2 supports 10 devices.\nAster 003 Basic version v2 includes 16 support hours per day.\nAster 003 Basic version v2 costs 24 USD per month.\nApproved corrections override initial facts only within their scope:\nCorrection for Aster 003 (aliases: A003), Basic, version v2: device_limit changed from 10 to 4 devices, effective from 2026-09-01. Source: controlled://corrections/family-003/device_limit/0.\nQuestion: Can I connect 4 devices on Aster 003 Basic version v2?\nAnswer:",
+    "latency_ms": 131.564,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "Can I connect 4 devices on Aster 003 Basic version v2?",
+    "question_type": "comparison",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-003-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [
+      {
+        "edit_id": "edit:aster-003-core:Basic:v2:device_limit:variant-0",
+        "score": 0.5557205080986023
+      }
+    ],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-003-core:Basic:v2:device_limit:variant-0",
+        "score": 0.5557205080986023
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.5076887607574463
+      },
+      {
+        "edit_id": "challenge-edit:aster-011-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.5001709461212158
+      }
+    ],
+    "retrieval_hits": {
+      "1": true,
+      "3": true
+    },
+    "retrieved_facts": [
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A003"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-003-core",
+          "entity_name": "Aster 003",
+          "fact_id": "aster-003-core:Basic:v2:device_limit",
+          "family_id": "family-003",
+          "lineage_id": "aster-003-core:Basic:device_limit",
+          "plan": "Basic",
+          "relation": "device_limit",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-003/core/v2",
+          "split": "test",
+          "unit": "devices",
+          "value": "10",
+          "version": "v2"
+        },
+        "fact_id": "aster-003-core:Basic:v2:device_limit",
+        "score": 0.7679787278175354,
+        "source": "controlled://handbook/family-003/core/v2",
+        "value": "10"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A003"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-003-core",
+          "entity_name": "Aster 003",
+          "fact_id": "aster-003-core:Basic:v2:support_hours",
+          "family_id": "family-003",
+          "lineage_id": "aster-003-core:Basic:support_hours",
+          "plan": "Basic",
+          "relation": "support_hours",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-003/core/v2",
+          "split": "test",
+          "unit": "hours/day",
+          "value": "16",
+          "version": "v2"
+        },
+        "fact_id": "aster-003-core:Basic:v2:support_hours",
+        "score": 0.4475070536136627,
+        "source": "controlled://handbook/family-003/core/v2",
+        "value": "16"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A003"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-003-core",
+          "entity_name": "Aster 003",
+          "fact_id": "aster-003-core:Basic:v2:price_monthly",
+          "family_id": "family-003",
+          "lineage_id": "aster-003-core:Basic:price_monthly",
+          "plan": "Basic",
+          "relation": "price_monthly",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-003/core/v2",
+          "split": "test",
+          "unit": "USD/month",
+          "value": "24",
+          "version": "v2"
+        },
+        "fact_id": "aster-003-core:Basic:v2:price_monthly",
+        "score": 0.40590333938598633,
+        "source": "controlled://handbook/family-003/core/v2",
+        "value": "24"
+      }
+    ],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "prompt_only",
+    "row_sha256": "8a6c46a07d3403962d72b6180cc474d1a6984547cf4a1c31e5fa464f6d4e248b",
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": null,
+    "short_qa": {
+      "correct": false,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": "whole_polarity",
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 003",
+        "plan": "basic",
+        "predicate": "requested_le_limit",
+        "quantity": "4",
+        "relation": "device_limit",
+        "task": "comparison_predicate",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "Whole Yes/No output checked against the bound comparison predicate; it does not establish the exact limit.",
+      "task": "comparison_predicate",
+      "verdict": "incorrect"
+    },
+    "status": "answered"
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "prompt_only",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-003-core:Basic:v2:device_limit:variant-0:p2"
+  },
+  "task_index": 42
+}

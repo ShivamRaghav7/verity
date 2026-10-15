@@ -1,0 +1,86 @@
+{
+  "base_parameter_sha256_after": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+  "base_parameter_sha256_before": "d52e6f6b8cf6ecdda796d5d6884879308bd64a5e5944b8168c88989a3deef2ee",
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "completed_at": "2026-10-14T15:39:11.640869+00:00",
+  "failure": {
+    "at": "2026-10-14T15:25:34.935950+00:00",
+    "reason": "CUDA error: unknown error\nSearch for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+    "type": "AcceleratorError"
+  },
+  "inference_completed": true,
+  "last_observation_sha256": "0c6cfbc0df9bed856ba2ec0fedf4e5cf2bf183226d11c64b180dc49594925eb7",
+  "next_task_index": 4464,
+  "purpose": "locked_final_evaluation_progress",
+  "recovered_atomic_orphans": 0,
+  "schema_version": 1,
+  "sessions": [
+    {
+      "model_construction_seconds": 101.9735824999998,
+      "resources_before": {
+        "cuda_peak_allocated_mib": 933.0673828125,
+        "cuda_peak_reserved_mib": 1002.0,
+        "device": "cuda",
+        "process_rss_mib": 874.08984375,
+        "torch_version": "2.9.0+cu130"
+      },
+      "resume": false,
+      "started_at": "2026-10-14T14:37:16.363654+00:00",
+      "starting_task_index": 0
+    },
+    {
+      "model_construction_seconds": 37.119947299999694,
+      "resources_before": {
+        "cuda_peak_allocated_mib": 933.0673828125,
+        "cuda_peak_reserved_mib": 1002.0,
+        "device": "cuda",
+        "process_rss_mib": 882.75390625,
+        "torch_version": "2.9.0+cu130"
+      },
+      "resume": true,
+      "started_at": "2026-10-14T14:52:34.592347+00:00",
+      "starting_task_index": 288
+    },
+    {
+      "model_construction_seconds": 33.837094499999694,
+      "resources_before": {
+        "cuda_peak_allocated_mib": 933.0673828125,
+        "cuda_peak_reserved_mib": 1002.0,
+        "device": "cuda",
+        "process_rss_mib": 879.5078125,
+        "torch_version": "2.9.0+cu130"
+      },
+      "resume": true,
+      "started_at": "2026-10-14T15:04:27.019671+00:00",
+      "starting_task_index": 583
+    },
+    {
+      "completed_at": "2026-10-14T15:39:07.525838+00:00",
+      "model_construction_seconds": 27.067991800000527,
+      "resources_after": {
+        "cuda_peak_allocated_mib": 933.0673828125,
+        "cuda_peak_reserved_mib": 1002.0,
+        "device": "cuda",
+        "process_rss_mib": 979.78515625,
+        "torch_version": "2.9.0+cu130"
+      },
+      "resources_before": {
+        "cuda_peak_allocated_mib": 933.0673828125,
+        "cuda_peak_reserved_mib": 1002.0,
+        "device": "cuda",
+        "process_rss_mib": 942.7578125,
+        "torch_version": "2.9.0+cu130"
+      },
+      "resume": true,
+      "started_at": "2026-10-14T15:38:54.163640+00:00",
+      "starting_task_index": 4464
+    }
+  ],
+  "status": "completed"
+}

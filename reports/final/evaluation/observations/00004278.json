@@ -1,0 +1,142 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "3c3f21d63829a810027aefcc3e193a9ea09eb17aa259249e10b89ac9e54805d3",
+  "record": {
+    "answer": null,
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "oracle_answer",
+    "error": "CUDA error: unknown error\nSearch for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n",
+    "evaluation_kind": "oracle",
+    "expected_fact": {
+      "aliases": [
+        "A035"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-035-core",
+      "entity_name": "Aster 035",
+      "fact_id": "aster-035-core:Basic:v2:device_limit",
+      "plan": "Basic",
+      "relation": "device_limit",
+      "unit": "devices",
+      "value": "5",
+      "version": "v2"
+    },
+    "expected_polarity": "yes",
+    "family_id": "family-035",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-035-core:Basic:v2:device_limit:variant-1",
+    "generation_trace": null,
+    "human_reviewed_data": false,
+    "id": "answer:edit:aster-035-core:Basic:v2:device_limit:variant-1:p2",
+    "input_text": "answer correction: Correction for Aster 035 (aliases: A035), Basic, version v2: device_limit changed from 3 to 5 devices, effective from 2026-09-01. Source: controlled://corrections/family-035/device_limit/1. Question: Can I connect 5 devices on Aster 035 Basic version v2? As of: 2026-10-11. Unchanged context: Aster 035 Basic version v2 includes 10 support hours per day. Aster 035 Basic version v2 costs 14 USD per month.",
+    "latency_ms": 3.748,
+    "normalized_scope_input_seen_in_train": null,
+    "normalized_scope_input_seen_in_validation": null,
+    "population": "answer",
+    "question": "Can I connect 5 devices on Aster 035 Basic version v2?",
+    "question_type": "comparison",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-035-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [],
+    "retrieval_candidates_raw": [],
+    "retrieval_hits": {},
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "route": "oracle_correct_routing",
+    "row_sha256": "395d1a4af4bcd2d20f62ce2f3d425e56353aea421a0f8e0c3673d265127ae2d8",
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": false,
+      "endorsed_fact": null,
+      "needs_review": false,
+      "reason": "No answer was generated.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "incorrect"
+    },
+    "selected_edit_id": "edit:aster-035-core:Basic:v2:device_limit:variant-1",
+    "short_qa": {
+      "correct": false,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": null,
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 035",
+        "plan": "basic",
+        "predicate": "requested_le_limit",
+        "quantity": "5",
+        "relation": "device_limit",
+        "task": "comparison_predicate",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "A failed, unavailable or abstained result receives no QA credit.",
+      "task": "comparison_predicate",
+      "verdict": "incorrect"
+    },
+    "status": "error",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A035"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-035-core",
+        "entity_name": "Aster 035",
+        "fact_id": "aster-035-core:Basic:v2:support_hours",
+        "family_id": "family-035",
+        "lineage_id": "aster-035-core:Basic:support_hours",
+        "plan": "Basic",
+        "relation": "support_hours",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-035/core/v2",
+        "split": "test",
+        "unit": "hours/day",
+        "value": "10",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A035"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-035-core",
+        "entity_name": "Aster 035",
+        "fact_id": "aster-035-core:Basic:v2:price_monthly",
+        "family_id": "family-035",
+        "lineage_id": "aster-035-core:Basic:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-035/core/v2",
+        "split": "test",
+        "unit": "USD/month",
+        "value": "14",
+        "version": "v2"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "oracle_answer",
+    "kind": "oracle",
+    "population": "answer",
+    "row_id": "answer:edit:aster-035-core:Basic:v2:device_limit:variant-1:p2"
+  },
+  "task_index": 4278
+}

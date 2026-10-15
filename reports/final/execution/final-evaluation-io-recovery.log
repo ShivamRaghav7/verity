@@ -1,0 +1,193 @@
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 103/103 [00:00<00:00, 3942.81it/s]
+
+Loading weights:   0%|          | 0/190 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 190/190 [00:00<00:00, 3293.42it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+
+Loading weights:   0%|          | 0/104 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 104/104 [00:00<00:00, 2289.40it/s]
+
+Loading weights:   0%|          | 0/190 [00:00<?, ?it/s]
+Loading weights: 100%|##########| 190/190 [00:00<00:00, 3384.89it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+{"completed_tasks": 600, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 625, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 650, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 675, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 700, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 725, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 750, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 775, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 800, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 825, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 850, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 875, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 900, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 925, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 950, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 975, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1000, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1025, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1050, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1075, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1100, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1125, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1150, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1175, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1200, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1225, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1250, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1275, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1300, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1325, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1350, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1375, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1400, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1425, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1450, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1475, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1500, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1525, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1550, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1575, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1600, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1625, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1650, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1675, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1700, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1725, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1750, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1775, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1800, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1825, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1850, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1875, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1900, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1925, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1950, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 1975, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2000, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2025, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2050, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2075, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2100, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2125, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2150, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2175, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2200, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2225, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2250, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2275, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2300, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2325, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2350, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2375, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2400, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2425, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2450, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2475, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2500, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2525, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2550, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2575, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2600, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2625, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2650, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2675, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2700, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2725, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2750, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2775, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2800, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2825, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2850, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2875, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2900, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2925, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2950, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 2975, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3000, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3025, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3050, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3075, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3100, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3125, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3150, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3175, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3200, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3225, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3250, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3275, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3300, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3325, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3350, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3375, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3400, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3425, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3450, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3475, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3500, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3525, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3550, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3575, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3600, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3625, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3650, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3675, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3700, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3725, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3750, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3775, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3800, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3825, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3850, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3875, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3900, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3925, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3950, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 3975, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4000, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4025, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4050, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4075, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4100, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4125, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4150, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4175, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4200, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4225, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4250, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4275, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4300, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4325, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4350, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4375, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4400, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4425, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4450, "finite_tasks": 4464, "test_tuning": false}
+{"completed_tasks": 4464, "finite_tasks": 4464, "test_tuning": false}
+Traceback (most recent call last):
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\resume_final_io.py", line 95, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\resume_final_io.py", line 89, in main
+    result = recover(args.declaration, args.declaration_sha256)
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\resume_final_io.py", line 72, in recover
+    return evaluator.run_final(protocol_path, spec["protocol_sha256"], ROOT / spec["packet_path"], resume=True)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 338, in run_final
+    return _run_final_locked(protocol_path, protocol_sha256, packet, resume=resume, export_only=export_only,
+                             root=root, runner_factory=runner_factory)
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\scripts\run_final_evaluation.py", line 473, in _run_final_locked
+    after = runner.base.parameter_fingerprint()
+  File "C:\Users\shiva\OneDrive\Desktop\projekt-KE\editguard\neural.py", line 111, in parameter_fingerprint
+    digest.update(tensor.detach().cpu().contiguous().view(self.torch.uint8).numpy().tobytes())
+                  ~~~~~~~~~~~~~~~~~~~^^
+torch.AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

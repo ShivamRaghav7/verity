@@ -1,0 +1,206 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "6940ec9160c58b9d60088ae75b7340cca3fcfefa496ad233d0fe669de24c15f9",
+  "record": {
+    "answer": "8",
+    "answer_kind": "model_generated",
+    "applicable": false,
+    "configuration": "similarity_editor",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A069"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-069-core",
+      "entity_name": "Aster 069",
+      "fact_id": "aster-069-core:Basic:v2:device_limit",
+      "plan": "Basic",
+      "relation": "device_limit",
+      "unit": "devices",
+      "value": "8",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-054",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "consumed_input_tokens": 130,
+      "input_tokens": 130,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "google/flan-t5-small",
+      "output_tokens": 3,
+      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-054-core:Basic:v2:device_limit:variant-1:n:different_entity_same_property",
+    "input_text": "Answer the support question using the supplied facts. State the product, plan, version, property and answer. For a yes/no question start Yes or No. Do not guess.\nRequest scope: aster-069-core, Basic, v2, as of 2026-10-11.\nSupport facts:\nAster 069 Basic version v2 supports 8 devices.\nAster 069 Basic version v2 includes 240 GB of storage.\nAster 069 Basic version v2 includes 7 support hours per day.\nQuestion: How many devices does Aster 069 Basic version v2 support?\nAnswer:",
+    "latency_ms": 138.818,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "How many devices does Aster 069 Basic version v2 support?",
+    "question_type": "out_of_scope",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-069-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-054-core:Basic:v2:device_limit:variant-1",
+        "score": 0.6537514925003052
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.6519339084625244
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:device_limit:unseen-value",
+        "score": 0.6468238830566406
+      }
+    ],
+    "retrieval_hits": {},
+    "retrieved_facts": [
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A069"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-069-core",
+          "entity_name": "Aster 069",
+          "fact_id": "aster-069-core:Basic:v2:device_limit",
+          "family_id": "family-069",
+          "lineage_id": "aster-069-core:Basic:device_limit",
+          "plan": "Basic",
+          "relation": "device_limit",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-069/core/v2",
+          "split": "test",
+          "unit": "devices",
+          "value": "8",
+          "version": "v2"
+        },
+        "fact_id": "aster-069-core:Basic:v2:device_limit",
+        "score": 0.9272769689559937,
+        "source": "controlled://handbook/family-069/core/v2",
+        "value": "8"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A069"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-069-core",
+          "entity_name": "Aster 069",
+          "fact_id": "aster-069-core:Basic:v2:storage_gb",
+          "family_id": "family-069",
+          "lineage_id": "aster-069-core:Basic:storage_gb",
+          "plan": "Basic",
+          "relation": "storage_gb",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-069/core/v2",
+          "split": "test",
+          "unit": "GB",
+          "value": "240",
+          "version": "v2"
+        },
+        "fact_id": "aster-069-core:Basic:v2:storage_gb",
+        "score": 0.6690284013748169,
+        "source": "controlled://handbook/family-069/core/v2",
+        "value": "240"
+      },
+      {
+        "applied_edit_id": null,
+        "fact": {
+          "aliases": [
+            "A069"
+          ],
+          "effective_from": "2025-01-01",
+          "effective_to": null,
+          "entity_id": "aster-069-core",
+          "entity_name": "Aster 069",
+          "fact_id": "aster-069-core:Basic:v2:support_hours",
+          "family_id": "family-069",
+          "lineage_id": "aster-069-core:Basic:support_hours",
+          "plan": "Basic",
+          "relation": "support_hours",
+          "review_status": "pending",
+          "reviewed": false,
+          "source": "controlled://handbook/family-069/core/v2",
+          "split": "test",
+          "unit": "hours/day",
+          "value": "7",
+          "version": "v2"
+        },
+        "fact_id": "aster-069-core:Basic:v2:support_hours",
+        "score": 0.6370746493339539,
+        "source": "controlled://handbook/family-069/core/v2",
+        "value": "7"
+      }
+    ],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "frozen_base",
+    "row_sha256": "108edff535b6eaa6a2dbdf6f266c0273daf26d6de506fdc53dac3ed5b9c4a6f6",
+    "scope_scores": [],
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": null,
+      "endorsed_fact": null,
+      "needs_review": true,
+      "reason": "Unrecognized or additional prose requires blinded human semantic review; no target mention receives automatic credit.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "review_required"
+    },
+    "selected_edit_id": null,
+    "short_qa": {
+      "correct": true,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": "whole_quantity",
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "aster 069",
+        "plan": "basic",
+        "predicate": null,
+        "quantity": null,
+        "relation": "device_limit",
+        "task": "requested_value",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": false,
+      "reason": "Whole quantity checked against the requested value and bound scope; omitted units use the explicit question's unit.",
+      "task": "requested_value",
+      "verdict": "correct"
+    },
+    "status": "answered"
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "similarity_editor",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-054-core:Basic:v2:device_limit:variant-1:n:different_entity_same_property"
+  },
+  "task_index": 2753
+}

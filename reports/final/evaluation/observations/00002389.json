@@ -1,0 +1,193 @@
+{
+  "binding": {
+    "configuration_sha256": "c86a11c2ef63f34b3b80976f0334b58e04b55b7088c0b013a3d0f5a3969e9134",
+    "execution_plan_sha256": "106cb445330aa201bf1999e5e8487a28e527910fd723c59a1b8b15990a1570ad",
+    "packet_manifest_sha256": "1013448a43bbbca322b73aedf269e91dc441031d6a7bf022ebbfa0de9f14b50c",
+    "protocol_id": "editguard-final-39d010f6d32b8b7b",
+    "protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab"
+  },
+  "previous_observation_sha256": "8a904fe5c81e6110ce46a186e48b939bdd9c8810007b085fab549d94c80d54a3",
+  "record": {
+    "answer": "Aster 031 Basic version v2 includes 16 support hours per day.",
+    "answer_kind": "model_generated",
+    "applicable": true,
+    "configuration": "trained_scope_editor",
+    "error": null,
+    "evaluation_kind": "matched",
+    "expected_fact": {
+      "aliases": [
+        "A031"
+      ],
+      "as_of": "2026-10-11",
+      "entity_id": "aster-031-core",
+      "entity_name": "Aster 031",
+      "fact_id": "aster-031-core:Basic:v2:support_hours",
+      "plan": "Basic",
+      "relation": "support_hours",
+      "unit": "hours/day",
+      "value": "16",
+      "version": "v2"
+    },
+    "expected_polarity": null,
+    "family_id": "family-031",
+    "final_protocol_sha256": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "focal_edit_id": "edit:aster-031-core:Basic:v2:support_hours:variant-0",
+    "generation_trace": {
+      "all_parameters_frozen": true,
+      "artifact_manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "artifact_purpose": "trained",
+      "consumed_input_tokens": 129,
+      "human_reviewed_training_data": false,
+      "input_tokens": 129,
+      "input_truncated": false,
+      "max_new_tokens": 48,
+      "model_id": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\answer\\pilot-v2-polarity1\\model",
+      "output_tokens": 18,
+      "revision": null,
+      "training_review_policy": "automated_development"
+    },
+    "human_reviewed_data": false,
+    "id": "scope:edit:aster-031-core:Basic:v2:support_hours:variant-0:p1",
+    "input_text": "answer correction: Correction for Aster 031 (aliases: A031), Basic, version v2: support_hours changed from 14 to 16 hours/day, effective from 2026-09-01. Source: controlled://corrections/family-031/support_hours/0. Question: For how many hours each day is support available on A031 Basic version v2? As of: 2026-10-11. Unchanged context: Aster 031 Basic version v2 costs 12 USD per month. Aster 031 Basic version v2 includes 75 GB of storage.",
+    "latency_ms": 780.738,
+    "normalized_scope_input_seen_in_train": false,
+    "normalized_scope_input_seen_in_validation": false,
+    "population": "scope",
+    "question": "For how many hours each day is support available on A031 Basic version v2?",
+    "question_type": "paraphrase",
+    "request_context": {
+      "as_of": "2026-10-11",
+      "entity_id": "aster-031-core",
+      "plan": "Basic",
+      "version": "v2"
+    },
+    "retrieval_candidates_eligible": [
+      {
+        "edit_id": "edit:aster-031-core:Basic:v2:support_hours:variant-0",
+        "score": 0.5178550481796265
+      }
+    ],
+    "retrieval_candidates_raw": [
+      {
+        "edit_id": "edit:aster-031-core:Basic:v2:support_hours:variant-0",
+        "score": 0.5178550481796265
+      },
+      {
+        "edit_id": "challenge-edit:aster-004-core:Basic:v2:support_hours:unseen-value",
+        "score": 0.46495532989501953
+      },
+      {
+        "edit_id": "challenge-edit:aster-003-core:Basic:v2:support_hours:unseen-value",
+        "score": 0.45728760957717896
+      }
+    ],
+    "retrieval_hits": {
+      "1": true,
+      "3": true
+    },
+    "retrieved_facts": [],
+    "review_policy": "automated_final",
+    "revision": 0,
+    "route": "approved_correction",
+    "row_sha256": "d68584276e00f5126bb4e96dc36463901788ab0ce791360602a74a46076340bd",
+    "scope_label": 1,
+    "scope_probability": 0.9957590699195862,
+    "scope_scores": [
+      {
+        "edit_id": "edit:aster-031-core:Basic:v2:support_hours:variant-0",
+        "probability": 0.9957590699195862
+      }
+    ],
+    "scope_threshold": 0.97,
+    "score": {
+      "answer_kind": "model_generated",
+      "correct": true,
+      "endorsed_fact": {
+        "as_of": "2026-10-11",
+        "entity_id": "aster-031-core",
+        "plan": "Basic",
+        "relation": "support_hours",
+        "unit": "hours/day",
+        "value": "16",
+        "version": "v2"
+      },
+      "needs_review": false,
+      "reason": "One complete short assertion endorses the correct subject, scope, relation, value, unit and required polarity.",
+      "scorer_version": "editguard-short-facts-v3",
+      "verdict": "correct"
+    },
+    "selected_edit_id": "edit:aster-031-core:Basic:v2:support_hours:variant-0",
+    "short_qa": {
+      "correct": true,
+      "diagnostic_version": "editguard-request-bound-short-qa-v1",
+      "evidence": "primary_complete_assertion",
+      "human_semantic_review": false,
+      "parsed_request": {
+        "entity_surface": "a031",
+        "plan": "basic",
+        "predicate": null,
+        "quantity": null,
+        "relation": "support_hours",
+        "task": "requested_value",
+        "version": "v2"
+      },
+      "proves_exact_scoped_fact": true,
+      "reason": "The primary full-fact scorer credited a complete assertion and the request is independently bound.",
+      "task": "requested_value",
+      "verdict": "correct"
+    },
+    "status": "answered",
+    "supporting_context": [
+      {
+        "aliases": [
+          "A031"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-031-core",
+        "entity_name": "Aster 031",
+        "fact_id": "aster-031-core:Basic:v2:price_monthly",
+        "family_id": "family-031",
+        "lineage_id": "aster-031-core:Basic:price_monthly",
+        "plan": "Basic",
+        "relation": "price_monthly",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-031/core/v2",
+        "split": "test",
+        "unit": "USD/month",
+        "value": "12",
+        "version": "v2"
+      },
+      {
+        "aliases": [
+          "A031"
+        ],
+        "effective_from": "2025-01-01",
+        "effective_to": null,
+        "entity_id": "aster-031-core",
+        "entity_name": "Aster 031",
+        "fact_id": "aster-031-core:Basic:v2:storage_gb",
+        "family_id": "family-031",
+        "lineage_id": "aster-031-core:Basic:storage_gb",
+        "plan": "Basic",
+        "relation": "storage_gb",
+        "review_status": "pending",
+        "reviewed": false,
+        "source": "controlled://handbook/family-031/core/v2",
+        "split": "test",
+        "unit": "GB",
+        "value": "75",
+        "version": "v2"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "task": {
+    "configuration": "trained_scope_editor",
+    "kind": "matched",
+    "population": "scope",
+    "row_id": "scope:edit:aster-031-core:Basic:v2:support_hours:variant-0:p1"
+  },
+  "task_index": 2389
+}
