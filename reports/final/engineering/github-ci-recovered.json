@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "completed_release_source_github_ci_snapshot",
+  "source_git_commit": "2c7938ca709ecc6c1342dd20b0ea398c06291fbe",
+  "workflow_run_id": 38716200467,
+  "workflow_url": "https://github.com/ShivamRaghav7/verity/actions/runs/38716200467",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "test",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ShivamRaghav7/verity/actions/runs/38716200467/job/116359366059"
+    },
+    {
+      "name": "optimizer-resume",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ShivamRaghav7/verity/actions/runs/38716200467/job/116359366481"
+    },
+    {
+      "name": "deployment-smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ShivamRaghav7/verity/actions/runs/38716200467/job/116359366581"
+    }
+  ],
+  "limitation": "Exact measured source revision tested by official GitHub Actions; subsequent sign-off changes only documentation and this receipt. CI is engineering evidence, not ML accuracy or GPU deployment."
+}

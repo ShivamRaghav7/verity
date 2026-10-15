@@ -119,8 +119,10 @@ Use the recorded [summary](../reports/final/summary.json),
 The 13-page report and current browser evidence include the completed supplements
 and have been visually checked. Local release regressions pass 516 tests with
 18 explicit optional skips; the separate 34-test CPU numeric/checkpoint group
-also passes. Verify the three CI jobs on the pushed release commit for final
-release sign-off.
+also passes. All three [release CI jobs](https://github.com/ShivamRaghav7/verity/actions/runs/38716200467)
+passed on exact source commit `2c7938c`; the
+[receipt](../reports/final/engineering/github-ci-recovered.json) completes release
+sign-off.
 Describe the lightweight structured container and optional local neural app as
 separate deployment paths. No production, human-review or universal-accuracy claim
 is part of this demonstration.

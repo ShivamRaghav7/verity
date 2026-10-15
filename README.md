@@ -87,9 +87,11 @@ Release regressions pass 516 tests with 18 explicit optional skips; a separate
 CPU optimizer recovery and container restart. The hardware-dependent measurement
 follow-up is complete: GPU availability is restored, all 319 declared oracle cases
 are recovered separately, and finite learned-HTTP evidence is recorded. The final
-13-page report, browser dashboard and local regressions are checked. The three
-CI jobs must pass on the pushed release commit before release verification closes;
-no further model search or accuracy target is required.
+13-page report, browser dashboard and local regressions are checked. All three
+[release CI jobs](https://github.com/ShivamRaghav7/verity/actions/runs/38716200467)
+passed on source commit `2c7938c`; the [recorded receipt](reports/final/engineering/github-ci-recovered.json)
+identifies that exact revision. The finite A–H release is complete; no further
+model search or accuracy target is required.
 
 ## Architecture
 

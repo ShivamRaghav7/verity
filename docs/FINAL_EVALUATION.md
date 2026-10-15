@@ -409,8 +409,11 @@ wording and original oracle runtime reliability remain limitations. GPU
 availability is restored; the separately named oracle recovery and finite learned
 HTTP measurement are complete. Reporting preserves the original runtime errors
 and identifies the operational supplement. The finite implementation, training,
-evaluation and presentation stages are complete; release-head CI remains the
-final sign-off gate. No locked ML claim changes and no accuracy number is promised.
+evaluation and presentation stages are complete. All three
+[release CI jobs](https://github.com/ShivamRaghav7/verity/actions/runs/38716200467)
+passed on source commit `2c7938c`; the
+[receipt](../reports/final/engineering/github-ci-recovered.json) records the exact
+revision. No locked ML claim changes and no accuracy number is promised.
 
 The [report PDF](../output/pdf/EditGuard-Report.pdf) and its six individual
 landscape scientific figure pages have now been rendered and visually checked.

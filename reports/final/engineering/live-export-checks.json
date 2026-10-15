@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-15T09:53:43.887871+00:00",
+  "exports": {
+    "summary": {
+      "path": "reports/final/summary.json",
+      "sha256": "c86b5e01c151f5d4b2fdedb97015d027dbebd205cbd6171efd14b70f371d9810",
+      "bytes": 415974,
+      "download_byte_exact": true
+    },
+    "csv": {
+      "path": "reports/final/results.csv",
+      "sha256": "9759899a6d31ce70c655590bc22a7b402401a3cae3749e977a1a0474b985be4c",
+      "bytes": 1829,
+      "download_byte_exact": true
+    }
+  },
+  "live_revision": 1,
+  "neural_inference": "loaded",
+  "read_only": true
+}

@@ -12,8 +12,8 @@ matched frozen final comparison is sealed; original oracle generation remains
 incomplete due to disclosed runtime errors. Its separately declared recovery is
 complete after GPU availability was restored, preserving the original record.
 The finite A–H implementation, model training, evaluation and presentation work
-are complete, including the fresh learned-HTTP measurement. Final release-head CI
-verification remains before the release is signed off. The structured app,
+are complete, including the fresh learned-HTTP measurement. All three release CI
+jobs passed on source commit `2c7938c`, and the release is signed off. The structured app,
 recorded dashboard, figures, report and CPU regression/CI evidence remain separate
 from the operational supplement.
 
@@ -44,7 +44,7 @@ documentation; shared schemas and runnable scripts are the primary pipeline.
 | E: Answer ML | Profile, train correction-conditioned seq2seq, free-generation validation and failure diagnosis | Training/development complete. Selected `pilot-v2-polarity1`, 240 updates, selected step 240. Original final oracle runtime errors remain disclosed; separately named fixed-configuration recovery is complete. |
 | F: Integration | Artifact/calibration gates, learned routing, memory transitions, provenance and answer-kind separation | Implemented. Actual selected-model isolated workflow passes 31/31 state/routing checks; its factual diagnostics are not 31 correct neural answers. |
 | G: Frozen evaluation | Lock models/config/scorers/questions, audit final labels, one matched evaluation | Matched comparison sealed: 4,080 records, 4,009 answers, 71 clarifications, zero runtime errors. Original oracle includes 319 CUDA errors. Its separate recovery completes all 319 after GPU restoration; the combined 384-case view retains 65 original answers. Original scores remain unchanged. |
-| H: Release presentation | Final report/PDF, scientific figures, browser/demo verification, clean-checkout/CI evidence | The 13-page report and six landscape scientific figures are rendered and reviewed; dashboard/downloads verified. Local release checks pass 516 tests with 18 optional skips and 34 separate CPU numeric checks. Oracle recovery and learned-HTTP evidence are incorporated. Final release-head CI verification remains. |
+| H: Release presentation | Final report/PDF, scientific figures, browser/demo verification, clean-checkout/CI evidence | Complete. The 13-page report and six landscape scientific figures are rendered and reviewed; dashboard/downloads verified. Local release checks pass 516 tests with 18 optional skips and 34 separate CPU numeric checks. Oracle recovery and learned-HTTP evidence are incorporated. All three release CI jobs passed on source commit `2c7938c`. |
 
 ## Recorded scientific outcome
 
@@ -106,9 +106,10 @@ for exact identities, denominators, uncertainty, incidents and limitations.
 - Complete: the declared 319-case oracle recovery and finite isolated learned
   HTTP workload, reported separately in the final report and dashboard while
   retaining the original errors and timing boundaries.
-- Release sign-off: push the tested improvements and verify the three CI jobs
-  on that exact release commit. Prior passing runs remain historical evidence;
-  configured workflows alone are not a passing outcome.
+- Complete: improvements pushed and all three CI jobs verified on exact source
+  commit `2c7938c`. The [CI receipt](../reports/final/engineering/github-ci-recovered.json)
+  records regression, CPU optimizer recovery and structured container/restart
+  success. This sign-off documentation does not change measured source or ML claims.
 
 The learned HTTP workload has 30/30 measured HTTP 200 answers, zero errors or
 clarifications, warm p50/p95 230.42/372.04 ms and cold lazy loading 68,781.35 ms.
