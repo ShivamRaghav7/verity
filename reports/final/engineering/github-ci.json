@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "release_github_ci_snapshot",
+  "source_git_commit": "fd1c7b0e49b541d14c7fbe756ee64e57a25d5909",
+  "workflow_run_id": 38684854477,
+  "workflow_url": "https://github.com/ShivamRaghav7/verity/actions/runs/38684854477",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "optimizer-resume",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ShivamRaghav7/verity/actions/runs/38684854477/job/116257267088"
+    },
+    {
+      "name": "deployment-smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ShivamRaghav7/verity/actions/runs/38684854477/job/116257267292"
+    },
+    {
+      "name": "test",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/ShivamRaghav7/verity/actions/runs/38684854477/job/116257267431"
+    }
+  ],
+  "limitation": "Observed official GitHub Actions state for this exact source revision. This is CI/deployment engineering evidence, not ML accuracy or CUDA availability."
+}

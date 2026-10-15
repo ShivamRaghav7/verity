@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "purpose": "clean_committed_source_data_and_figure_reproduction",
+  "status": "passed",
+  "source_git_commit": "fd1c7b0e49b541d14c7fbe756ee64e57a25d5909",
+  "source_archive_sha256": "663aae9ae57ebdc49a49f3db78b15099228d78fd1cd4cdf95bbb2d5505e3cd13",
+  "fixture": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\runtime\\clean-release-186b1cf501\\checkout",
+  "no_local_model_or_environment_copied": true,
+  "frozen_sources_verified": 21,
+  "original_manifest_sha256": "2c5882490ac5f29c45c2bf20f97128d46cc3e0974c84a4838d47bd3ac8aaa42d",
+  "dataset_files_restored": 11,
+  "scientific_figure_byte_matches": {
+    "final-answer-quality.png": true,
+    "final-answer-quality.svg": true,
+    "final-calibration-coverage.png": true,
+    "final-calibration-coverage.svg": true,
+    "final-cohort-accuracy.png": true,
+    "final-cohort-accuracy.svg": true,
+    "final-latency.png": true,
+    "final-latency.svg": true,
+    "final-retrieval-and-routing.png": true,
+    "final-retrieval-and-routing.svg": true,
+    "final-uncertainty-failures.png": true,
+    "final-uncertainty-failures.svg": true
+  },
+  "steps": [
+    {
+      "command": [
+        "scripts/final_data_bundle.py",
+        "restore",
+        "--archive",
+        "data/final/controlled-v1-source.zip",
+        "--output",
+        "data/generated/controlled-v1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"directory\": \"C:\\\\Users\\\\shiva\\\\OneDrive\\\\Desktop\\\\projekt-KE\\\\runtime\\\\clean-release-186b1cf501\\\\checkout\\\\data\\\\generated\\\\controlled-v1\",\n  \"files\": 11,\n  \"original_manifest_sha256\": \"2c5882490ac5f29c45c2bf20f97128d46cc3e0974c84a4838d47bd3ac8aaa42d\",\n  \"question_content_deserialized\": false\n}\n"
+    },
+    {
+      "command": [
+        "scripts/plot_final_results.py",
+        "--evaluation",
+        "reports/final/evaluation",
+        "--protocol",
+        "reports/final/protocol-v2.json",
+        "--output",
+        "reports/final/reproduced-figures"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"output\": \"C:\\\\Users\\\\shiva\\\\OneDrive\\\\Desktop\\\\projekt-KE\\\\runtime\\\\clean-release-186b1cf501\\\\checkout\\\\reports\\\\final\\\\reproduced-figures\",\n  \"plots\": [\n    \"final-answer-quality.png\",\n    \"final-answer-quality.svg\",\n    \"final-cohort-accuracy.png\",\n    \"final-cohort-accuracy.svg\",\n    \"final-retrieval-and-routing.png\",\n    \"final-retrieval-and-routing.svg\",\n    \"final-calibration-coverage.png\",\n    \"final-calibration-coverage.svg\",\n    \"final-latency.png\",\n    \"final-latency.svg\",\n    \"final-uncertainty-failures.png\",\n    \"final-uncertainty-failures.svg\"\n  ],\n  \"source_unchanged\": true\n}\n"
+    }
+  ],
+  "model_training_or_inference_performed": false,
+  "limitations": [
+    "Uses the existing installed Python runtimes; this does not prove dependency installation on a different host.",
+    "Reconstructs the original controlled data bytes and regenerates plots from sealed predictions. It does not rerun the locked final test or reconstruct unavailable GPU measurements."
+  ]
+}
