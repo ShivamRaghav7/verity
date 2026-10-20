@@ -1,5 +1,12 @@
 # Initial pilot-v2 training results
 
+**Historical development record.** This file preserves the initial pilot's
+measurements and its status at that time. The selected models, final evaluation
+and separate oracle runtime recovery were subsequently completed. For current
+status use [the project plan](PROJECT_PLAN.md) and
+[final evaluation](FINAL_EVALUATION.md). The [beginner guide](BEGINNER_GUIDE.md)
+explains historical pending language versus completed but unscored outputs.
+
 Both auxiliary models completed the user-executed, finite GPU runs. The scope
 classifier completed 360 optimizer steps; the edit-conditioned answer model
 completed 240. Their validation-selected models, tokenizers and exact-state

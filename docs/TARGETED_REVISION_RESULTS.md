@@ -1,5 +1,11 @@
 # Selected auxiliary revisions: development results
 
+**Historical development record.** Future-tense statements below describe the
+status when these revisions were selected. Stage G and the separately declared
+oracle runtime recovery have since completed. See [final evaluation](FINAL_EVALUATION.md)
+for their results and [the beginner guide](BEGINNER_GUIDE.md) for metric definitions.
+The original development measurements and limitations remain unchanged.
+
 The user completed both released runs on 2026-10-14. The selected scope model is
 `artifacts/scope/pilot-v3-neutral2`; the selected answer model is
 `artifacts/answer/pilot-v2-polarity1`. Both are completed local trained exports,

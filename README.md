@@ -15,6 +15,11 @@ of production or unrestricted-language reliability.
 
 ## Measured project status
 
+New to the project? Read the [beginner handbook](output/pdf/EditGuard-Beginner-Handbook.pdf)
+or its [editable text version](docs/BEGINNER_GUIDE.md). It explains the development
+timeline, models, every main metric, website navigation and the difference between
+completed evaluation, unscored outputs and actual incorrect model answers.
+
 Both auxiliary models are trained, independently artifact-audited and integrated:
 DistilBERT scope classifier `pilot-v3-neutral2` and FLAN-T5-small answer model
 `pilot-v2-polarity1`. The audit passes 986 integrity/state checks. Source, run

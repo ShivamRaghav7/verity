@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "purpose": "beginner_learning_handbook",
+  "prepared_date": "2026-10-20",
+  "source_markdown": "docs/BEGINNER_GUIDE.md",
+  "source_markdown_sha256": "d4181a27633f7af4e597c68087cb1e6de6b9abc23880f74b3b1cc81ec115abdc",
+  "builder_sha256": "35272e1df154329687b69c2a3063ba1b81a5ac74faab63cdf5d2ae92412954f6",
+  "pdf_sha256": "953b6ca06c1041c639e8aefd2d213e61a749e9f01817e8a3a32cb03b04afd57e",
+  "pages": 31,
+  "source_evidence_sha256": {
+    "README.md": "971b87359976749127b1e0055e97c7359069b1d4979fdacc7d6c8577e7643851",
+    "docs/PROJECT_PLAN.md": "3a6eb4b36b32d5576e1e625b8b9b464981065ed312b441eeaef919dcda26a48c",
+    "docs/ARCHITECTURE.md": "cc7f876ff433c093fe075afd3aa12c59b5466ab1d8e184b968a5ef547e8b90a3",
+    "docs/DATASET_CARD.md": "4f367de184921bb58b1480f78933dc15b33d8bb9bd96d2307197c798f821ee77",
+    "docs/MODEL_CARD.md": "edcffa15378e80a31440af20c265223d056e11446c5ad5f3ed028786f7f3bd5c",
+    "docs/FINAL_EVALUATION.md": "63202c77d3c002fdf9b6859f468382d4c8daab03f467931f33babb9680346236",
+    "docs/FAILURE_ANALYSIS.md": "0acb96f7feba5615b510108a66cde241ff112f2bedfd5afab583463db42520f5",
+    "docs/DEMO.md": "5e1e752a0b642df697738000ea089668b2e16fd4d1576b978b414779e72aab81",
+    "reports/final/summary.json": "c86b5e01c151f5d4b2fdedb97015d027dbebd205cbd6171efd14b70f371d9810",
+    "reports/final/evaluation/manifest.json": "22fb7652e9cd878e79434cd572480b2e69f2fcad9e2a3deaba12b1fa071c3f23",
+    "reports/final/evaluation/metrics.json": "8f5ce9c0ce61927450cd82b0c6662a763286da061e61fdd4027e71bc033fec3e",
+    "reports/final/evaluation/short_qa_metrics.json": "5b0db725fecf1cd698c45c976e926b8b7617d26a1bbe3d5a07844bfbe1b105e1",
+    "reports/final/oracle-runtime-recovery/manifest.json": "0e9dfec877c2af7e4f708d24de459d2cf07bfc64feca5600c2614e8021a2d5a5",
+    "reports/final/oracle-runtime-recovery/metrics.json": "0835ee2cbb46562e9d5fa1268323ab71c868f1197bc3b7fa6af654a653f0edd7",
+    "reports/final/neural-http.json": "dade7dcdccef18425b100ca741cbb2590c510b1c96591b254c4286245232d8b9",
+    "reports/final/engineering/github-ci-recovered.json": "e56ec58dcad91d53095fb3edb4d09df2e64e2cd9066bc83ffe5e902e5396eb38",
+    "reports/targeted-training-audit.json": "9c286b67e1415ac2fc02f9564e5454bc3ff5174b998c864e320b788f39303e20",
+    "reports/final/protocol-v2.json": "8a938b33055220fdb24fa86ed056405f186dc9b6c4b72fe136c76ff0dc3d86ab",
+    "editguard/static/app.js": "50333960844cfbe2d179c6dff624aa63e4d9c0dae0a912e16fa289fc41dfe165",
+    "editguard/static/index.html": "11976d6d421d8f7c0830b7843402c06c130972bbcf443a87c39ec1eec79345d0"
+  },
+  "asset_sha256": {
+    "docs/assets/beginner-architecture.svg": "a724bc0a891257fd52b7cea2ec961c1ee8953d0cdf72ca5f2d73dba727d45628",
+    "docs/assets/beginner-assistant.png": "1cabac4418a939cfb4827dc3f1e5ff7778b17fe8c4a8c861bb289359bbaf7d05",
+    "docs/assets/beginner-scoring.png": "c16e0b1b2271097c2c21564801c9a83aed85a19f91f67a403e4e51246e1e4dd8"
+  },
+  "training_or_inference_executed": false,
+  "frozen_results_modified": false,
+  "limitations": [
+    "Educational explanation; not a new experiment, new scorer or human semantic adjudication.",
+    "Historical frozen reports preserve their original pending and runtime-error records."
+  ]
+}

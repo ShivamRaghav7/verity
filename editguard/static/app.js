@@ -163,12 +163,12 @@
     }
     const trained = [models.scope, models.answer].every(model => model?.status === "trained");
     const finalAvailable = health?.final_evaluation === "available";
-    byId("final-stage-state").textContent = finalAvailable ? "Completed & bound" : health?.final_evaluation === "invalid" || health?.final_evaluation === "incompatible" ? "Evidence unavailable" : "Pending";
+    byId("final-stage-state").textContent = finalAvailable ? "Completed & bound" : health?.final_evaluation === "invalid" || health?.final_evaluation === "incompatible" ? "Evidence unavailable" : "Evidence not loaded";
     byId("final-stage-description").textContent = finalAvailable ? "Recorded final evidence matches this configuration. Load results to inspect held-out cohorts, scoring rules and limitations." : "Validation diagnostics remain separate from matched baselines on frozen test data and paired uncertainty.";
-    byId("model-stage-title").textContent = trained ? finalAvailable ? "Trained auxiliary models · frozen test evaluated" : "Trained pilot models · final test pending" : "Structured workflow · optional local models";
+    byId("model-stage-title").textContent = trained ? finalAvailable ? "Trained auxiliary models · frozen test evaluated" : "Trained auxiliary models · final evidence not loaded" : "Structured workflow · optional local models";
     byId("model-stage-description").textContent = trained ?
-      `Scope and answer artifacts are validated. ${[models.scope, models.answer].some(model => model.review_policy === "automated_development") ? "Training used automated development review; no human-reviewed training claim. " : ""}Neural inference: ${readable(health.neural_inference)}. ${finalAvailable ? "Recorded final results are available in the evaluation lab; generated answers may still be incorrect." : "Generated answers may be incorrect; final frozen-test evaluation remains pending."}` :
-      `Neural inference: ${readable(health?.neural_inference || "status unavailable")}. Structured mode uses approved facts directly. Missing or invalid model dependencies remain explicit; final ML evaluation is pending.`;
+      `Scope and answer artifacts are validated. ${[models.scope, models.answer].some(model => model.review_policy === "automated_development") ? "Training used automated development review; no human-reviewed training claim. " : ""}Neural inference: ${readable(health.neural_inference)}. ${finalAvailable ? "Recorded final results are available in the evaluation lab; generated answers may still be incorrect." : "Generated answers may be incorrect; no compatible final report is loaded in this instance."}` :
+      `Neural inference: ${readable(health?.neural_inference || "status unavailable")}. Structured mode uses approved facts directly. Missing or invalid model dependencies remain explicit; inspect the evaluation lab for recorded final evidence.`;
     byId("model-stage-status").textContent = finalAvailable ? "Final evidence" : trained ? "Pilot trained" : "Development";
     updateModeHint();
   }
@@ -347,7 +347,10 @@
     const apiLatency = result.api_latency_ms ?? result.latency_ms;
     byId("answer-latency").textContent = typeof apiLatency === "number" ? `${apiLatency.toFixed(1)} ms · API processing` : "";
     byId("answer-revision").textContent = `REVISION ${printable(result.revision)}`;
-    byId("answer-explanation").textContent = [result.explanation, result.route ? `Route: ${printable(result.route)}` : ""].filter(Boolean).join(" ");
+    const explanation = mode === "structured" && result.explanation === "Bounded structured parser; auxiliary models are not trained."
+      ? "Bounded structured parser; this mode uses deterministic facts and does not run the auxiliary models. Current training and availability are shown in the evaluation lab."
+      : result.explanation;
+    byId("answer-explanation").textContent = [explanation, result.route ? `Route: ${printable(result.route)}` : ""].filter(Boolean).join(" ");
     const fact = byId("answer-fact");
     fact.replaceChildren();
     if (result.fact) fact.append(factDetails(result.fact));
@@ -446,7 +449,7 @@
     status.className = `pill ${report ? "pill-draft" : ["invalid", "incompatible"].includes(descriptor.status) ? "pill-failed" : "pill-subtle"}`;
     const description = byId("ml-report-description");
     if (!report) {
-      description.textContent = descriptor.error || "No recorded ML validation report is configured. Trained checkpoint metadata does not establish answer accuracy; final evaluation remains pending.";
+      description.textContent = descriptor.error || "No recorded ML validation report is configured. This does not determine final-test availability; inspect the separate final evaluation panel.";
       return;
     }
     description.textContent = `Automated development review; no human-reviewed training claim. ${report.questions} validation questions and ${report.oracle_questions} oracle-routed applicable questions. These are model-selection diagnostics; final held-out evidence appears separately.${descriptor.configuration_matches === false ? " The current inference settings differ from the recorded run; results describe that recorded configuration." : ""}`;
@@ -499,7 +502,7 @@
     const table = node("table", undefined, "evaluation-table ml-comparison-table");
     const head = node("thead");
     const headings = node("tr");
-    ["Configuration", "Strict accuracy", "Coverage", "Out-of-scope accuracy", "Baseline-correct retention", "False edit application", "Route latency p50 / p95", "Review pending", "Errors", "Unavailable"].forEach(label => {
+    ["Configuration", "Strict accuracy", "Coverage", "Out-of-scope accuracy", "Baseline-correct retention", "False edit application", "Route latency p50 / p95", "Unscored by fixed rules", "Errors", "Unavailable"].forEach(label => {
       const cell = node("th", label); cell.scope = "col"; headings.append(cell);
     });
     head.append(headings);
@@ -530,7 +533,7 @@
     const wrapper = node("div", undefined, "evaluation-table-wrapper");
     const table = node("table", undefined, "evaluation-table ml-comparison-table final-comparison-table");
     const headings = node("tr");
-    ["Configuration", "Primary complete-fact accuracy", "Locked requested-QA accuracy", "Coverage", "Out-of-scope primary accuracy", "Baseline-correct primary retention", "Pending primary / QA", "Abstentions", "Errors / unavailable", "Route latency p50 / p95"].forEach(label => {
+    ["Configuration", "Primary complete-fact accuracy", "Locked requested-QA accuracy", "Coverage", "Out-of-scope primary accuracy", "Baseline-correct primary retention", "Unscored primary / QA", "Abstentions", "Errors / unavailable", "Route latency p50 / p95"].forEach(label => {
       const cell = node("th", label); cell.scope = "col"; headings.append(cell);
     });
     const head = node("thead"); head.append(headings);
@@ -554,7 +557,7 @@
     table.append(head, body); wrapper.append(table); return wrapper;
   }
   function renderFinalReport(result) {
-    const descriptor = result.descriptor || { status: "not_measured" };
+    const descriptor = result.descriptor || { status: "not_loaded" };
     const report = result.report;
     state.finalReport = report || null;
     byId("final-results").hidden = !report;
@@ -562,7 +565,7 @@
     status.textContent = report ? "Frozen test · completed" : readable(descriptor.status);
     status.className = `pill ${report ? "pill-teal" : ["invalid", "incompatible"].includes(descriptor.status) ? "pill-failed" : "pill-subtle"}`;
     if (!report) {
-      byId("final-report-description").textContent = descriptor.error || "Final evidence is not measured yet. A completed, sealed report matching the configured models is required; model training and validation scores do not establish final test performance.";
+      byId("final-report-description").textContent = descriptor.error || "No compatible final evidence is loaded in this instance. A completed, sealed report matching the configured models is required; model training and validation scores do not establish final test performance.";
       return;
     }
     byId("final-report-description").textContent = `${report.questions} matched questions (720 scope + 96 unfamiliar-wording challenges), all five configurations. ${report.oracle_questions} oracle-routed questions are reported separately. Configuration, trained exports, frozen protocol and raw results passed file-integrity checks; no tuning against these test results is claimed.`;
@@ -588,7 +591,7 @@
     keyFindings.append(node("h3", "Scope cohort · requested-QA results"),
       node("p", `Learned editor: ${rateLabel(qaRate(learnedQa))} (${ratePopulation(qaRate(learnedQa))}). Updated RAG: ${rateLabel(qaRate(ragQa))} (${ratePopulation(qaRate(ragQa))}). ${leaders.join(" and ")} ${leaders.length === 1 ? "has" : "have"} the highest requested-QA score among these five configurations on this cohort.`),
       node("p", `Learned editor false correction applications: ${ratePopulation(scopedLearned.false_application_rate)}. This routing result combines approval and compatibility rules with the classifier; it does not establish that the classifier learned every boundary.`),
-      node("p", `Separate complete-assertion metric for updated RAG: ${ratePopulation(scopedRag.accuracy)}, with ${scopedRag.pending_review} pending and uncredited outputs. A zero credited complete-assertion score does not establish zero factual correctness: short fragments outside that scorer's supported forms remain uncredited. The requested-QA score above retains its separate, locked definition.`));
+      node("p", `Separate complete-assertion metric for updated RAG: ${ratePopulation(scopedRag.accuracy)}, with ${scopedRag.pending_review} outputs unscored by the fixed complete-assertion rules and receiving no credit. A zero credited complete-assertion score does not establish zero factual correctness: short fragments outside that scorer's supported forms remain uncredited. The requested-QA score above retains its separate, locked definition.`));
     comparisons.replaceChildren(keyFindings, node("h3", "All matched questions · 816 per configuration"),
       finalComparisonTable(report, report.secondary_short_qa.configurations));
     for (const name of ["scope", "challenge"]) {
@@ -619,7 +622,7 @@
       value: report.oracle.errors / report.oracle_questions }, "Errors receive no accuracy credit and remain in the original denominator; they are execution failures, not generated factual mistakes.");
     const failure = byId("final-oracle-failure");
     failure.hidden = report.oracle.errors === 0;
-    failure.textContent = `${report.oracle.errors} of ${report.oracle_questions} original oracle observations are execution errors. These remain uncredited in every original oracle score. Their absence of generated text is not evidence that the answer model generated an incorrect fact. Any recovery measurement is reported separately.`;
+    failure.textContent = `${report.oracle.errors} of ${report.oracle_questions} original oracle observations are execution errors. These remain uncredited in every original oracle score. Their absence of generated text is not evidence that the answer model generated an incorrect fact. This is historical run evidence. Any recovery measurement is reported separately in the Oracle runtime recovery panel below.`;
     const recovery = report.execution_recovery || {};
     byId("final-execution-disclosure").hidden = !recovery.io && !recovery.cuda_runtime_failure;
     const runtimeBox = byId("final-runtime-disclosure");
@@ -659,7 +662,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   function renderOracleRecovery(result) {
-    const descriptor = result.descriptor || { status: "not_measured" };
+    const descriptor = result.descriptor || { status: "not_loaded" };
     const report = result.report;
     const status = byId("oracle-recovery-status");
     status.textContent = report ? "Supplement · completed" : readable(descriptor.status);
@@ -670,8 +673,11 @@
       return;
     }
     byId("oracle-recovery-description").textContent = `${report.oracle_questions} combined oracle questions: 65 unchanged original successes plus ${report.selected_runtime_errors} original runtime-error cases selected for at most one supplemental generation each. ${report.durable_attempt_reservations} durable reservations, ${report.interrupted_reservation_count} interrupted reservations, ${report.new_runtime_error_count} newly recorded runtime errors and ${report.not_attempted_selected_count} selected cases not attempted. Frozen model/configuration identities match the original evidence.`;
+    if (state.finalReport?.oracle.errors) {
+      byId("final-oracle-failure").append(document.createTextNode(` The separate runtime recovery is completed: ${report.oracle.errors} combined execution errors across ${report.oracle_questions} questions. The original counts above are preserved history.`));
+    }
     const metrics = byId("oracle-recovery-metrics"); metrics.replaceChildren();
-    appendRateCard(metrics, "Supplement complete-fact accuracy", report.oracle.accuracy, "All 384 combined oracle outcomes, including any remaining failures.");
+    appendRateCard(metrics, "Supplement complete-fact accuracy", report.oracle.accuracy, "All 384 combined outcomes; incorrect, unscored and nonanswer outcomes remain in the denominator.");
     const qa = report.secondary_short_qa.configurations.oracle_answer.all_requested_qa;
     appendRateCard(metrics, "Supplement locked requested-QA", { numerator: qa.correct, denominator: qa.denominator,
       value: qa.accuracy_including_all_nonanswers_and_pending }, "Separate secondary definition; original final metrics remain unchanged.");
@@ -684,7 +690,7 @@
       const diagnostic = report.secondary_short_qa.by_population[name].oracle_answer.all_requested_qa;
       const section = node("div", undefined, "model-provenance");
       section.append(node("h3", `${name === "answer" ? "Answer" : "Challenge"} cohort · ${current.questions} questions`),
-        node("p", `Complete-fact: ${rateLabel(current.accuracy)} (${ratePopulation(current.accuracy)}). Requested-QA: ${diagnostic.correct} / ${diagnostic.denominator}. Pending complete-fact / requested-QA: ${current.pending_review} / ${diagnostic.pending_uncredited}. Abstentions: ${current.abstentions}. Execution errors: ${current.errors}.`));
+        node("p", `Complete-fact: ${rateLabel(current.accuracy)} (${ratePopulation(current.accuracy)}). Requested-QA: ${diagnostic.correct} / ${diagnostic.denominator}. Unscored complete-fact / requested-QA: ${current.pending_review} / ${diagnostic.pending_uncredited}. Abstentions: ${current.abstentions}. Execution errors: ${current.errors}.`));
       cohorts.append(section);
     }
     byId("oracle-recovery-limitations").replaceChildren(...report.limitations.map(text => node("li", text)),

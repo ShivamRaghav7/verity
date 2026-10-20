@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "purpose": "handbook_and_result_terminology_integrity_audit",
+  "status": "passed",
+  "audit_date": "2026-10-20",
+  "frozen_protocol_sources_verified": 21,
+  "original_summary_bound_evidence_files_verified": 61,
+  "selected_models": {
+    "answer": {
+      "manifest_sha256": "8e435ac9bcd5486bb967c7ca09c38bf1786b810c97a7c95a365c6250ceeb0a72",
+      "serialized_files_verified": 5
+    },
+    "scope": {
+      "manifest_sha256": "c85e77193ff3cf5137baf0a569d142585cfac3a1734393fadf49ce95f9b88459",
+      "serialized_files_verified": 4
+    }
+  },
+  "original_scoring_configuration_and_result_files_unchanged": true,
+  "current_summary_and_csv_downloads_byte_exact": true,
+  "handbook_pages": 31,
+  "bookmarks": 19,
+  "handbook_pdf_sha256": "953b6ca06c1041c639e8aefd2d213e61a749e9f01817e8a3a32cb03b04afd57e",
+  "handbook_source_and_asset_hashes_match": true,
+  "focused_test_runs": [
+    {
+      "suite": "tests.test_model_status tests.test_final_dashboard tests.test_api",
+      "tests_passed": 46,
+      "failures": 0,
+      "purpose": "Result terminology and form limits"
+    },
+    {
+      "suite": "tests.test_model_status tests.test_final_dashboard",
+      "tests_passed": 39,
+      "failures": 0,
+      "purpose": "Final Not loaded status follow-up"
+    }
+  ],
+  "node_syntax_passed": true,
+  "powershell_command_blocks_parsed": 3,
+  "powershell_parse_errors": 0,
+  "browser_qa": "reports/ui/guide-outcome-legend.qa.json",
+  "isolated_workflow_checks": 14,
+  "unfinished_training_or_final_evaluation_or_declared_recovery_jobs_found": 0,
+  "training_or_model_inference_executed": false,
+  "live_knowledge_mutated": false,
+  "limitation": "The two focused test groups overlap; do not sum them as unique tests. Actual wrong generated answers and unscored frozen outcomes remain in the original records."
+}

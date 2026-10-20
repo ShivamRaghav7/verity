@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="480" height="302" preserveAspectRatio="xMinYMin meet" viewBox="0 0 480 302" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="480" height="302"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-302)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="116" y="249" width="248" height="49" rx="5" ry="5" style="stroke: rgb(85%,85%,85%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
+			<text x="166.925" y="280" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,560) scale(1,-1)">Question and requested scope</text>
+			<text x="174.632" y="265" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,530) scale(1,-1)">Product, plan, version and as-of date</text>
+			<path d="M 240,249 L 240,232 Z" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="240 232, 237 238, 243 238" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,41%,39%); fill-rule: evenodd;"/>
+			<rect x="75" y="179" width="330" height="53" rx="5" ry="5" style="stroke: rgb(85%,85%,85%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
+			<text x="133.85" y="214" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,428) scale(1,-1)">Candidate retrieval and deterministic checks</text>
+			<text x="140.624" y="199" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,398) scale(1,-1)">Approved memory, identity, dates and conflict resolution</text>
+			<path d="M 240,179 L 240,161 Z" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="240 161, 237 167, 243 167" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,41%,39%); fill-rule: evenodd;"/>
+			<rect x="116" y="110" width="248" height="51" rx="5" ry="5" style="stroke: rgb(85%,85%,85%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
+			<text x="183.03" y="143" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,286) scale(1,-1)">Trained scope classifier</text>
+			<text x="179.976" y="128" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,256) scale(1,-1)">Does an eligible correction apply?</text>
+			<path d="M 169,110 L 78,80 Z" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="78 80, 75 86, 81 86" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,41%,39%); fill-rule: evenodd;"/>
+			<path d="M 240,110 L 240,80 Z" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="240 80, 237 86, 243 86" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,41%,39%); fill-rule: evenodd;"/>
+			<path d="M 311,110 L 402,80 Z" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1.1;"/>
+			<polygon points="402 80, 399 86, 405 86" style="stroke: rgb(9%,41%,39%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,41%,39%); fill-rule: evenodd;"/>
+			<rect x="2" y="20" width="151" height="60" rx="5" ry="5" style="stroke: rgb(85%,85%,85%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
+			<text x="52.214999999999996" y="62" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,124) scale(1,-1)">Applicable</text>
+			<text x="32.152" y="47" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,94) scale(1,-1)">Trained corrected answer</text>
+			<rect x="164" y="20" width="151" height="60" rx="5" ry="5" style="stroke: rgb(85%,85%,85%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
+			<text x="205.325" y="62" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,124) scale(1,-1)">Not applicable</text>
+			<text x="203.264" y="47" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,94) scale(1,-1)">Frozen base answer</text>
+			<rect x="326" y="20" width="151" height="60" rx="5" ry="5" style="stroke: rgb(85%,85%,85%); stroke-linecap: butt; stroke-width: 1; fill: rgb(93%,96%,96%); fill-rule: evenodd;"/>
+			<text x="340.94" y="62" style="font-family: Helvetica-Bold; font-size: 10px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,124) scale(1,-1)">Ambiguous or conflicting</text>
+			<text x="357.488" y="47" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,94) scale(1,-1)">Clarification or resolution</text>
+			<text x="117.056" y="2" style="font-family: Helvetica; font-size: 8px;fill: rgb(9%,18%,21%); stroke:none;" transform="translate(0,4) scale(1,-1)">Sources support an answer; generated prose still requires evaluation.</text>
+		</g>
+	</g>
+</svg>

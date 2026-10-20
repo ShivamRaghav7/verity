@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "purpose": "beginner_guide_result_terminology_visual_qa",
+  "completed_outcome_legend": true,
+  "corrected_value_max_length": "40",
+  "final_complete": true,
+  "no_horizontal_page_overflow": true,
+  "original_fields_disclosed": true,
+  "question_max_length": "1000",
+  "recorded_learned_result_unchanged": true,
+  "recovery_complete": true,
+  "url": "http://127.0.0.1:8000/#evaluation",
+  "viewport": {
+    "height": 659,
+    "width": 607
+  },
+  "workflow_checks_passed": true,
+  "console_warnings_or_errors": [],
+  "visually_reviewed": true,
+  "live_knowledge_mutations": false,
+  "training_or_inference_executed": false,
+  "limitation": "Loaded existing benchmark results, exercised a read-only structured question and isolated deterministic workflow checks. Recorded model errors remain unchanged."
+}
