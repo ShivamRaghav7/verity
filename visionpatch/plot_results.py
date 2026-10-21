@@ -27,6 +27,9 @@ def main():
     def save(fig, name):
         fig.savefig(args.output / f"{name}.png", dpi=180, bbox_inches="tight")
         fig.savefig(args.output / f"{name}.svg", bbox_inches="tight", metadata={"Date": None})
+        vector = args.output / f"{name}.svg"
+        vector.write_text("\n".join(line.rstrip() for line in vector.read_text(encoding="utf-8").splitlines()) + "\n",
+                          encoding="utf-8", newline="\n")
         plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(8.4, 4.8), layout="constrained")
