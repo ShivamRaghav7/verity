@@ -1,0 +1,117 @@
+{
+  "format_version": 1,
+  "created_at": "2026-10-21T15:21:36.127567+00:00",
+  "status": "sealed_before_final_inference",
+  "model": {
+    "id": "openai/clip-vit-base-patch32",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
+  },
+  "classes": {
+    "airplanes": "airplane",
+    "camera": "camera",
+    "cup": "cup",
+    "elephant": "elephant",
+    "grand_piano": "grand piano",
+    "laptop": "laptop",
+    "watch": "watch",
+    "cellphone": "cell phone"
+  },
+  "final_per_class": 10,
+  "evaluation": {
+    "variants": [
+      "clean",
+      "blank",
+      "distractor"
+    ],
+    "position": "top",
+    "distractor": "camera",
+    "font": "Pillow ImageFont.load_default(size=34)",
+    "batch_size": 8,
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 42,
+    "methods": [
+      "base",
+      "projection_edit",
+      "projection_finetune",
+      "oracle_mask"
+    ],
+    "scoring": "fixed-candidate normalized CLIP similarity argmax; no abstentions"
+  },
+  "evaluation_device": "cpu",
+  "trained_config": {
+    "support_classes": [
+      "cup",
+      "laptop"
+    ],
+    "distractor": "camera",
+    "covariance_ridge": 0.001,
+    "fit_ridge": 1e-06,
+    "projection_finetune_steps": 25,
+    "projection_finetune_lr": 0.0001,
+    "projection_finetune_retention_weight": 1.0,
+    "batch_size": 8,
+    "seed": 42
+  },
+  "base_projection_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+  "edited_projection_sha256": "59f6688473ab71f2a91d6d058eaf859e2e2f0429277b590d2367116cc8527b61",
+  "runtime_versions": {
+    "torch": "2.9.0+cu130",
+    "transformers": "5.16.1",
+    "numpy": "2.4.2",
+    "Pillow": "12.3.0"
+  },
+  "bindings": {
+    "archive": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\caltech-101.zip",
+      "sha256": "331234750fc7f77520e50d9565e8b6907b03565e30320da1401130db08c61f91"
+    },
+    "development_manifest": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\data\\generated\\visionpatch\\development-v1\\manifest.json",
+      "sha256": "bacf168f42e4038a42adecaf52b286fb16f91a5ba8e8d6d4550e70b3232c6682"
+    },
+    "final_manifest": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\data\\generated\\visionpatch\\final-v1\\manifest.json",
+      "sha256": "44cf29a51634e5be33d4ece0730055a0c3b6b47a1eb64c997af9115182d40e40"
+    },
+    "development_features": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\development-v1\\features.pt",
+      "sha256": "b5ca9172bd596fa61a5879e02965e59eeb7f048e6d8bc9828d67b0551ae92504"
+    },
+    "projection_patch": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\development-v1\\projection-patch.pt",
+      "sha256": "08d9892a9176485c1455d83990c3b30ac31d605aaf293f8ed26e7828d0c0900b"
+    },
+    "projection_finetune": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\development-v1\\projection-finetune.pt",
+      "sha256": "662b19724ab36d0dc33da2c7149bd7acd186c333a9b439503439a615565f9a49"
+    },
+    "code_data": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\data.py",
+      "sha256": "325e0a9696339da838162aab120f4fa648f57682961f3d3b0c5a8570cf10d57e"
+    },
+    "code_model": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\model.py",
+      "sha256": "9e9c730bfbf54efba4c918f10934a5ec85dab94d0e31d397aeea935d03118555"
+    },
+    "code_editor": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\editor.py",
+      "sha256": "5c1febe41d53d654e6ffa910487c17fa98169e920fe01240446aa8bd2d410087"
+    },
+    "code_metrics": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\metrics.py",
+      "sha256": "bd76c6a9f7c89bfbba71f43733f77e6c7bb6081ae56564578d8eaea71163abb9"
+    },
+    "code_finalize": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\finalize.py",
+      "sha256": "0b5c55daca94ab682a1dd5794c4d5159060fec170651c596c3e9dfab8c1b9abe"
+    }
+  },
+  "final_originals": 80,
+  "finite_stop": "80 originals x 3 variants; no optimizer or parameter fitting",
+  "outputs": {
+    "report": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\visionpatch\\final-v1.json",
+    "features": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\final-v1\\features.pt"
+  },
+  "development_dataset_id": "visualpatch-caltech101-development-v1",
+  "review": "Automated source labels, checksums and exact-content split audit; not human reviewed"
+}

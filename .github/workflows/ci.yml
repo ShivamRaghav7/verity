@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: '22'
       - run: node --check editguard/static/app.js
+      - run: node --check visionpatch/static/app.js
   optimizer-resume:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -27,9 +28,10 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-      - run: pip install -r requirements-lock.txt numpy==2.4.2 psutil==7.2.2
+      - run: pip install -r requirements-lock.txt numpy==2.4.2 psutil==7.2.2 Pillow==12.3.0
       - run: pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cpu
       - run: python -m unittest tests.test_trainer tests.test_answer_objective tests.test_scope_training_inputs -v
+      - run: python -m unittest tests.test_visionpatch_editor tests.test_visionpatch_data tests.test_visionpatch_metrics tests.test_visionpatch_api tests.test_visionpatch_finalization -v
   deployment-smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 10

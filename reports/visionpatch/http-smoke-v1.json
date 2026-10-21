@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "image_id": "airplanes/image_0730.jpg",
+  "source_label": "airplane",
+  "original_prediction": "camera",
+  "patched_prediction": "airplane",
+  "rollback_prediction": "camera",
+  "exact_projection_hash_restored": true,
+  "cold_http_seconds_including_encoder_load": 20.949720500000012,
+  "warm_requests": 12,
+  "warm_http_seconds": [
+    0.029223500000171043,
+    0.027437200000122175,
+    0.04951449999998658,
+    0.037327700000105324,
+    0.0609122999999272,
+    0.03305719999980283,
+    0.05173009999998612,
+    0.029808900000034555,
+    0.03216040000006615,
+    0.03155570000012631,
+    0.047414199999820994,
+    0.030111499999975422
+  ],
+  "warm_http_p50_seconds": 0.03260879999993449,
+  "warm_http_p95_seconds": 0.0609122999999272,
+  "p95_method": "nearest rank ceil(.95*n)",
+  "device": "not_recorded",
+  "limitations": "One prepared development photograph repeated; latency and workflow evidence, not independent recognition accuracy or concurrency benchmark",
+  "measurement_note": "Timing observations retained; the original response did not expose encoder device, so no device claim can be made for this run."
+}

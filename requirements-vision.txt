@@ -1,0 +1,8 @@
+# Isolated visual experiment; does not change EditGuard V1 dependencies.
+# Install a platform-appropriate torch==2.9.0 wheel separately (CPU is sufficient).
+-r requirements.txt
+transformers==5.16.1
+huggingface-hub==1.33.0
+numpy==2.4.2
+Pillow==12.3.0
+httpx==0.28.1

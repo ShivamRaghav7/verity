@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-10-21T09:43:34.001692+00:00",
+  "question": "Does the frozen compact CLIP encoder fit this laptop for a bounded visual-editing pilot?",
+  "model_id": "openai/clip-vit-base-patch32",
+  "model_revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+  "purpose": "resource_profile_only",
+  "training_performed": false,
+  "device": "cuda",
+  "python": "3.14.3",
+  "packages": {
+    "torch": "2.9.0+cu130",
+    "transformers": "5.16.1",
+    "Pillow": "12.3.0",
+    "numpy": "2.4.2"
+  },
+  "batch_size": 8,
+  "image_size": [
+    224,
+    224
+  ],
+  "warmup_batches": 2,
+  "measured_batches": 8,
+  "model_load_seconds": 2.703524799999286,
+  "batch_seconds": [
+    0.02032809999946039,
+    0.022347699999954784,
+    0.024910500000260072,
+    0.020746000000144704,
+    0.0255064000011771,
+    0.03067670000018552,
+    0.021606800000881776,
+    0.019611699999586563
+  ],
+  "median_batch_seconds": 0.02197725000041828,
+  "peak_cuda_allocated_bytes": 642368512,
+  "peak_cuda_reserved_bytes": 681574400,
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "finite_stop": "2 warmup + 8 measured batches; no optimizer",
+  "limitations": "Random tensors measure forward resources only; no recognition accuracy, editing effectiveness, gradient-training memory, or final evaluation."
+}

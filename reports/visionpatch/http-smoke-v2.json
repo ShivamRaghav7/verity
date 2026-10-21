@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "image_id": "airplanes/image_0730.jpg",
+  "source_label": "airplane",
+  "original_prediction": "camera",
+  "patched_prediction": "airplane",
+  "rollback_prediction": "camera",
+  "exact_projection_hash_restored": true,
+  "device": "cpu",
+  "encoder_was_loaded_before_check": false,
+  "first_http_seconds": 11.73681590000001,
+  "warm_requests": 12,
+  "warm_http_seconds": [
+    0.3269338999998581,
+    0.24821419999989303,
+    0.20771789999980683,
+    0.23471029999996063,
+    0.2152169999999387,
+    0.25516300000003866,
+    0.23381330000006528,
+    0.2292750999999953,
+    0.2382846000000427,
+    0.31767489999992904,
+    0.25889379999989615,
+    0.24947739999993246
+  ],
+  "warm_http_p50_seconds": 0.24324939999996786,
+  "warm_http_p95_seconds": 0.3269338999998581,
+  "p95_method": "nearest rank ceil(.95*n)",
+  "limitations": "One development image repeated; workflow and serial latency evidence, not recognition accuracy or a concurrency benchmark"
+}
