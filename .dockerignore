@@ -1,6 +1,7 @@
 .git
 .venv
 .venv-ml
+.venv-vision
 runtime
 models
 artifacts

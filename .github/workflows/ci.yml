@@ -58,3 +58,15 @@ jobs:
         if: always()
       - run: docker stop editguard-ci || true
         if: always()
+  vision-container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --file Dockerfile.visionpatch --tag visionpatch:ci .
+      - run: docker run --detach --name visionpatch-ci --publish 127.0.0.1:8002:8002 visionpatch:ci
+      - run: python -c "import time,urllib.request; time.sleep(5); response=urllib.request.urlopen('http://127.0.0.1:8002/docs',timeout=30); assert response.status==200"
+      - run: docker logs visionpatch-ci || true
+        if: always()
+      - run: docker stop visionpatch-ci || true
+        if: always()

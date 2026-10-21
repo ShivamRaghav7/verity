@@ -1,0 +1,3438 @@
+{
+  "created_at": "2026-10-21T15:23:05.583672+00:00",
+  "status": "completed_frozen_final_evaluation",
+  "training_performed": false,
+  "selection_or_tuning_performed": false,
+  "question": "How do the already-frozen projection edit and matched pilot fine-tuning baseline generalize to new source photographs?",
+  "seal_sha256": "ba9381be6d544be5c6e9d93008976e515c3afffaf7363d964e5beea0c40a1379",
+  "model": {
+    "id": "openai/clip-vit-base-patch32",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
+  },
+  "config": {
+    "support_classes": [
+      "cup",
+      "laptop"
+    ],
+    "distractor": "camera",
+    "covariance_ridge": 0.001,
+    "fit_ridge": 1e-06,
+    "projection_finetune_steps": 25,
+    "projection_finetune_lr": 0.0001,
+    "projection_finetune_retention_weight": 1.0,
+    "batch_size": 8,
+    "seed": 42
+  },
+  "evaluation": {
+    "variants": [
+      "clean",
+      "blank",
+      "distractor"
+    ],
+    "position": "top",
+    "distractor": "camera",
+    "font": "Pillow ImageFont.load_default(size=34)",
+    "batch_size": 8,
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 42,
+    "methods": [
+      "base",
+      "projection_edit",
+      "projection_finetune",
+      "oracle_mask"
+    ],
+    "scoring": "fixed-candidate normalized CLIP similarity argmax; no abstentions"
+  },
+  "runtime_versions": {
+    "torch": "2.9.0+cu130",
+    "transformers": "5.16.1",
+    "numpy": "2.4.2",
+    "Pillow": "12.3.0"
+  },
+  "dataset": {
+    "id": "visionpatch-caltech101-final-v1",
+    "final_test": true,
+    "human_reviewed": false,
+    "original_images": 80,
+    "variants": 240,
+    "per_class": 10,
+    "development_overlap_hashes": 0,
+    "excluded_development_originals": 144,
+    "manifest_sha256": "44cf29a51634e5be33d4ece0730055a0c3b6b47a1eb64c997af9115182d40e40",
+    "source_record": "https://data.caltech.edu/records/mzrjq-6wc02"
+  },
+  "measurements": {
+    "device": "cpu",
+    "model_load_seconds": 1.2741029999999682,
+    "encoder_preparation_seconds": 31.74626749999993,
+    "encoder_batches": 30,
+    "encoder_batch_seconds": [
+      1.1374269000000368,
+      1.0397014000000127,
+      0.9882728999998562,
+      1.007203600000139,
+      1.0053451999999652,
+      1.1328218000001016,
+      1.0390422000000399,
+      1.0413134000000355,
+      1.124240200000031,
+      1.0914541999998164,
+      0.9547488999999132,
+      0.9362468000001627,
+      0.9186366999999791,
+      0.9173854000000574,
+      0.9314810999999281,
+      0.9300911000000269,
+      1.000420399999939,
+      0.9508381000000554,
+      0.989337199999909,
+      0.9658962999999403,
+      1.0102423999999246,
+      1.0020070000000487,
+      1.0791363000000729,
+      0.985008500000049,
+      0.9897538000000168,
+      0.9429309999998168,
+      1.1496084999998857,
+      1.1387262000000646,
+      1.0218262999999297,
+      0.910435199999938
+    ],
+    "encoder_batch_median_seconds": 1.0012136999999939,
+    "peak_cuda_allocated_bytes": null,
+    "peak_cuda_reserved_bytes": null,
+    "limitation": "Batch encoder timings are not end-to-end single-request latency; CPU peak RAM not instrumented"
+  },
+  "exact_projection_and_prediction_rollback": true,
+  "results": {
+    "base": {
+      "clean_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "clean_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "blank_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "blank_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "distractor_accuracy": {
+        "numerator": 49,
+        "denominator": 80,
+        "rate": 0.6125
+      },
+      "distractor_new_errors": {
+        "numerator": 0,
+        "denominator": 49,
+        "rate": 0.0
+      },
+      "baseline_attack_induced_errors": {
+        "numerator": 31,
+        "denominator": 70,
+        "rate": 0.44285714285714284
+      },
+      "repair_rate": {
+        "numerator": 0,
+        "denominator": 31,
+        "rate": 0.0
+      },
+      "repairs_per_all_sources": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "genuine_distractor_clean_accuracy": {
+        "numerator": 10,
+        "denominator": 10,
+        "rate": 1.0
+      },
+      "sources": 80
+    },
+    "projection_edit": {
+      "clean_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "clean_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "blank_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "blank_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "distractor_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "distractor_new_errors": {
+        "numerator": 0,
+        "denominator": 49,
+        "rate": 0.0
+      },
+      "baseline_attack_induced_errors": {
+        "numerator": 31,
+        "denominator": 70,
+        "rate": 0.44285714285714284
+      },
+      "repair_rate": {
+        "numerator": 31,
+        "denominator": 31,
+        "rate": 1.0
+      },
+      "repairs_per_all_sources": {
+        "numerator": 31,
+        "denominator": 80,
+        "rate": 0.3875
+      },
+      "genuine_distractor_clean_accuracy": {
+        "numerator": 10,
+        "denominator": 10,
+        "rate": 1.0
+      },
+      "sources": 80
+    },
+    "projection_finetune": {
+      "clean_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "clean_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "blank_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "blank_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "distractor_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "distractor_new_errors": {
+        "numerator": 0,
+        "denominator": 49,
+        "rate": 0.0
+      },
+      "baseline_attack_induced_errors": {
+        "numerator": 31,
+        "denominator": 70,
+        "rate": 0.44285714285714284
+      },
+      "repair_rate": {
+        "numerator": 31,
+        "denominator": 31,
+        "rate": 1.0
+      },
+      "repairs_per_all_sources": {
+        "numerator": 31,
+        "denominator": 80,
+        "rate": 0.3875
+      },
+      "genuine_distractor_clean_accuracy": {
+        "numerator": 10,
+        "denominator": 10,
+        "rate": 1.0
+      },
+      "sources": 80
+    },
+    "oracle_mask": {
+      "clean_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "clean_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "blank_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "blank_new_errors": {
+        "numerator": 0,
+        "denominator": 80,
+        "rate": 0.0
+      },
+      "distractor_accuracy": {
+        "numerator": 80,
+        "denominator": 80,
+        "rate": 1.0
+      },
+      "distractor_new_errors": {
+        "numerator": 0,
+        "denominator": 49,
+        "rate": 0.0
+      },
+      "baseline_attack_induced_errors": {
+        "numerator": 31,
+        "denominator": 70,
+        "rate": 0.44285714285714284
+      },
+      "repair_rate": {
+        "numerator": 31,
+        "denominator": 31,
+        "rate": 1.0
+      },
+      "repairs_per_all_sources": {
+        "numerator": 31,
+        "denominator": 80,
+        "rate": 0.3875
+      },
+      "genuine_distractor_clean_accuracy": {
+        "numerator": 10,
+        "denominator": 10,
+        "rate": 1.0
+      },
+      "sources": 80
+    }
+  },
+  "generalization": {
+    "support_classes": {
+      "base": {
+        "clean_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 7,
+          "denominator": 20,
+          "rate": 0.35
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 7,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "repair_rate": {
+          "numerator": 0,
+          "denominator": 13,
+          "rate": 0.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null
+        },
+        "sources": 20
+      },
+      "projection_edit": {
+        "clean_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 7,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "repair_rate": {
+          "numerator": 13,
+          "denominator": 13,
+          "rate": 1.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null
+        },
+        "sources": 20
+      },
+      "projection_finetune": {
+        "clean_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 7,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "repair_rate": {
+          "numerator": 13,
+          "denominator": 13,
+          "rate": 1.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null
+        },
+        "sources": 20
+      },
+      "oracle_mask": {
+        "clean_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 20,
+          "denominator": 20,
+          "rate": 1.0
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 7,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "repair_rate": {
+          "numerator": 13,
+          "denominator": 13,
+          "rate": 1.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null
+        },
+        "sources": 20
+      }
+    },
+    "other_classes": {
+      "base": {
+        "clean_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 42,
+          "denominator": 60,
+          "rate": 0.7
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 42,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 18,
+          "denominator": 50,
+          "rate": 0.36
+        },
+        "repair_rate": {
+          "numerator": 0,
+          "denominator": 18,
+          "rate": 0.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 10,
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "sources": 60
+      },
+      "projection_edit": {
+        "clean_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 42,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 18,
+          "denominator": 50,
+          "rate": 0.36
+        },
+        "repair_rate": {
+          "numerator": 18,
+          "denominator": 18,
+          "rate": 1.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 18,
+          "denominator": 60,
+          "rate": 0.3
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 10,
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "sources": 60
+      },
+      "projection_finetune": {
+        "clean_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 42,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 18,
+          "denominator": 50,
+          "rate": 0.36
+        },
+        "repair_rate": {
+          "numerator": 18,
+          "denominator": 18,
+          "rate": 1.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 18,
+          "denominator": 60,
+          "rate": 0.3
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 10,
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "sources": 60
+      },
+      "oracle_mask": {
+        "clean_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "clean_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "blank_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "blank_new_errors": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "distractor_accuracy": {
+          "numerator": 60,
+          "denominator": 60,
+          "rate": 1.0
+        },
+        "distractor_new_errors": {
+          "numerator": 0,
+          "denominator": 42,
+          "rate": 0.0
+        },
+        "baseline_attack_induced_errors": {
+          "numerator": 18,
+          "denominator": 50,
+          "rate": 0.36
+        },
+        "repair_rate": {
+          "numerator": 18,
+          "denominator": 18,
+          "rate": 1.0
+        },
+        "repairs_per_all_sources": {
+          "numerator": 18,
+          "denominator": 60,
+          "rate": 0.3
+        },
+        "genuine_distractor_clean_accuracy": {
+          "numerator": 10,
+          "denominator": 10,
+          "rate": 1.0
+        },
+        "sources": 60
+      }
+    }
+  },
+  "paired_attacked_accuracy_vs_base": {
+    "projection_edit": {
+      "sources": 80,
+      "difference": 0.3875,
+      "interval_95": [
+        0.2875,
+        0.5
+      ],
+      "bootstrap_samples": 2000,
+      "seed": 42,
+      "limitation": "Small development subset; source-grouped interval, not a deployment reliability guarantee"
+    },
+    "projection_finetune": {
+      "sources": 80,
+      "difference": 0.3875,
+      "interval_95": [
+        0.2875,
+        0.5
+      ],
+      "bootstrap_samples": 2000,
+      "seed": 42,
+      "limitation": "Small development subset; source-grouped interval, not a deployment reliability guarantee"
+    },
+    "oracle_mask": {
+      "sources": 80,
+      "difference": 0.3875,
+      "interval_95": [
+        0.2875,
+        0.5
+      ],
+      "bootstrap_samples": 2000,
+      "seed": 42,
+      "limitation": "Small development subset; source-grouped interval, not a deployment reliability guarantee"
+    }
+  },
+  "observations": [
+    {
+      "index": 0,
+      "image_id": "airplanes/image_0709.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 1,
+      "image_id": "airplanes/image_0709.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 2,
+      "image_id": "airplanes/image_0709.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 3,
+      "image_id": "airplanes/image_0397.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 4,
+      "image_id": "airplanes/image_0397.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 5,
+      "image_id": "airplanes/image_0397.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 6,
+      "image_id": "airplanes/image_0097.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 7,
+      "image_id": "airplanes/image_0097.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 8,
+      "image_id": "airplanes/image_0097.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 9,
+      "image_id": "airplanes/image_0435.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 10,
+      "image_id": "airplanes/image_0435.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 11,
+      "image_id": "airplanes/image_0435.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 12,
+      "image_id": "airplanes/image_0744.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 13,
+      "image_id": "airplanes/image_0744.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 14,
+      "image_id": "airplanes/image_0744.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 15,
+      "image_id": "airplanes/image_0544.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 16,
+      "image_id": "airplanes/image_0544.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 17,
+      "image_id": "airplanes/image_0544.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 18,
+      "image_id": "airplanes/image_0258.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 19,
+      "image_id": "airplanes/image_0258.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 20,
+      "image_id": "airplanes/image_0258.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 21,
+      "image_id": "airplanes/image_0354.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 22,
+      "image_id": "airplanes/image_0354.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 23,
+      "image_id": "airplanes/image_0354.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 24,
+      "image_id": "airplanes/image_0458.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 25,
+      "image_id": "airplanes/image_0458.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 26,
+      "image_id": "airplanes/image_0458.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 27,
+      "image_id": "airplanes/image_0135.jpg",
+      "class_id": "airplanes",
+      "variant": "clean",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 28,
+      "image_id": "airplanes/image_0135.jpg",
+      "class_id": "airplanes",
+      "variant": "blank",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 29,
+      "image_id": "airplanes/image_0135.jpg",
+      "class_id": "airplanes",
+      "variant": "distractor",
+      "position": "top",
+      "base": "airplanes",
+      "projection_edit": "airplanes",
+      "projection_finetune": "airplanes",
+      "oracle_mask": "airplanes"
+    },
+    {
+      "index": 30,
+      "image_id": "camera/image_0002.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 31,
+      "image_id": "camera/image_0002.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 32,
+      "image_id": "camera/image_0002.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 33,
+      "image_id": "camera/image_0044.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 34,
+      "image_id": "camera/image_0044.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 35,
+      "image_id": "camera/image_0044.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 36,
+      "image_id": "camera/image_0003.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 37,
+      "image_id": "camera/image_0003.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 38,
+      "image_id": "camera/image_0003.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 39,
+      "image_id": "camera/image_0004.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 40,
+      "image_id": "camera/image_0004.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 41,
+      "image_id": "camera/image_0004.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 42,
+      "image_id": "camera/image_0041.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 43,
+      "image_id": "camera/image_0041.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 44,
+      "image_id": "camera/image_0041.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 45,
+      "image_id": "camera/image_0011.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 46,
+      "image_id": "camera/image_0011.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 47,
+      "image_id": "camera/image_0011.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 48,
+      "image_id": "camera/image_0013.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 49,
+      "image_id": "camera/image_0013.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 50,
+      "image_id": "camera/image_0013.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 51,
+      "image_id": "camera/image_0021.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 52,
+      "image_id": "camera/image_0021.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 53,
+      "image_id": "camera/image_0021.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 54,
+      "image_id": "camera/image_0035.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 55,
+      "image_id": "camera/image_0035.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 56,
+      "image_id": "camera/image_0035.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 57,
+      "image_id": "camera/image_0027.jpg",
+      "class_id": "camera",
+      "variant": "clean",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 58,
+      "image_id": "camera/image_0027.jpg",
+      "class_id": "camera",
+      "variant": "blank",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 59,
+      "image_id": "camera/image_0027.jpg",
+      "class_id": "camera",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "camera",
+      "projection_finetune": "camera",
+      "oracle_mask": "camera"
+    },
+    {
+      "index": 60,
+      "image_id": "cup/image_0032.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 61,
+      "image_id": "cup/image_0032.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 62,
+      "image_id": "cup/image_0032.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 63,
+      "image_id": "cup/image_0049.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 64,
+      "image_id": "cup/image_0049.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 65,
+      "image_id": "cup/image_0049.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 66,
+      "image_id": "cup/image_0004.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 67,
+      "image_id": "cup/image_0004.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 68,
+      "image_id": "cup/image_0004.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 69,
+      "image_id": "cup/image_0016.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 70,
+      "image_id": "cup/image_0016.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 71,
+      "image_id": "cup/image_0016.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 72,
+      "image_id": "cup/image_0027.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 73,
+      "image_id": "cup/image_0027.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 74,
+      "image_id": "cup/image_0027.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 75,
+      "image_id": "cup/image_0018.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 76,
+      "image_id": "cup/image_0018.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 77,
+      "image_id": "cup/image_0018.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 78,
+      "image_id": "cup/image_0022.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 79,
+      "image_id": "cup/image_0022.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 80,
+      "image_id": "cup/image_0022.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 81,
+      "image_id": "cup/image_0034.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 82,
+      "image_id": "cup/image_0034.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 83,
+      "image_id": "cup/image_0034.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 84,
+      "image_id": "cup/image_0033.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 85,
+      "image_id": "cup/image_0033.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 86,
+      "image_id": "cup/image_0033.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 87,
+      "image_id": "cup/image_0055.jpg",
+      "class_id": "cup",
+      "variant": "clean",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 88,
+      "image_id": "cup/image_0055.jpg",
+      "class_id": "cup",
+      "variant": "blank",
+      "position": "top",
+      "base": "cup",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 89,
+      "image_id": "cup/image_0055.jpg",
+      "class_id": "cup",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cup",
+      "projection_finetune": "cup",
+      "oracle_mask": "cup"
+    },
+    {
+      "index": 90,
+      "image_id": "elephant/image_0032.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 91,
+      "image_id": "elephant/image_0032.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 92,
+      "image_id": "elephant/image_0032.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 93,
+      "image_id": "elephant/image_0001.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 94,
+      "image_id": "elephant/image_0001.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 95,
+      "image_id": "elephant/image_0001.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 96,
+      "image_id": "elephant/image_0064.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 97,
+      "image_id": "elephant/image_0064.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 98,
+      "image_id": "elephant/image_0064.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 99,
+      "image_id": "elephant/image_0026.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 100,
+      "image_id": "elephant/image_0026.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 101,
+      "image_id": "elephant/image_0026.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 102,
+      "image_id": "elephant/image_0045.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 103,
+      "image_id": "elephant/image_0045.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 104,
+      "image_id": "elephant/image_0045.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 105,
+      "image_id": "elephant/image_0012.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 106,
+      "image_id": "elephant/image_0012.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 107,
+      "image_id": "elephant/image_0012.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 108,
+      "image_id": "elephant/image_0028.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 109,
+      "image_id": "elephant/image_0028.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 110,
+      "image_id": "elephant/image_0028.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 111,
+      "image_id": "elephant/image_0035.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 112,
+      "image_id": "elephant/image_0035.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 113,
+      "image_id": "elephant/image_0035.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 114,
+      "image_id": "elephant/image_0043.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 115,
+      "image_id": "elephant/image_0043.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 116,
+      "image_id": "elephant/image_0043.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 117,
+      "image_id": "elephant/image_0063.jpg",
+      "class_id": "elephant",
+      "variant": "clean",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 118,
+      "image_id": "elephant/image_0063.jpg",
+      "class_id": "elephant",
+      "variant": "blank",
+      "position": "top",
+      "base": "elephant",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 119,
+      "image_id": "elephant/image_0063.jpg",
+      "class_id": "elephant",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "elephant",
+      "projection_finetune": "elephant",
+      "oracle_mask": "elephant"
+    },
+    {
+      "index": 120,
+      "image_id": "grand_piano/image_0009.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 121,
+      "image_id": "grand_piano/image_0009.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 122,
+      "image_id": "grand_piano/image_0009.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 123,
+      "image_id": "grand_piano/image_0013.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 124,
+      "image_id": "grand_piano/image_0013.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 125,
+      "image_id": "grand_piano/image_0013.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 126,
+      "image_id": "grand_piano/image_0050.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 127,
+      "image_id": "grand_piano/image_0050.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 128,
+      "image_id": "grand_piano/image_0050.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 129,
+      "image_id": "grand_piano/image_0062.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 130,
+      "image_id": "grand_piano/image_0062.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 131,
+      "image_id": "grand_piano/image_0062.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 132,
+      "image_id": "grand_piano/image_0072.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 133,
+      "image_id": "grand_piano/image_0072.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 134,
+      "image_id": "grand_piano/image_0072.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 135,
+      "image_id": "grand_piano/image_0097.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 136,
+      "image_id": "grand_piano/image_0097.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 137,
+      "image_id": "grand_piano/image_0097.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 138,
+      "image_id": "grand_piano/image_0030.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 139,
+      "image_id": "grand_piano/image_0030.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 140,
+      "image_id": "grand_piano/image_0030.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 141,
+      "image_id": "grand_piano/image_0076.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 142,
+      "image_id": "grand_piano/image_0076.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 143,
+      "image_id": "grand_piano/image_0076.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 144,
+      "image_id": "grand_piano/image_0039.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 145,
+      "image_id": "grand_piano/image_0039.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 146,
+      "image_id": "grand_piano/image_0039.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 147,
+      "image_id": "grand_piano/image_0036.jpg",
+      "class_id": "grand_piano",
+      "variant": "clean",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 148,
+      "image_id": "grand_piano/image_0036.jpg",
+      "class_id": "grand_piano",
+      "variant": "blank",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 149,
+      "image_id": "grand_piano/image_0036.jpg",
+      "class_id": "grand_piano",
+      "variant": "distractor",
+      "position": "top",
+      "base": "grand_piano",
+      "projection_edit": "grand_piano",
+      "projection_finetune": "grand_piano",
+      "oracle_mask": "grand_piano"
+    },
+    {
+      "index": 150,
+      "image_id": "laptop/image_0055.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 151,
+      "image_id": "laptop/image_0055.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 152,
+      "image_id": "laptop/image_0055.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 153,
+      "image_id": "laptop/image_0071.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 154,
+      "image_id": "laptop/image_0071.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 155,
+      "image_id": "laptop/image_0071.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 156,
+      "image_id": "laptop/image_0045.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 157,
+      "image_id": "laptop/image_0045.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 158,
+      "image_id": "laptop/image_0045.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 159,
+      "image_id": "laptop/image_0073.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 160,
+      "image_id": "laptop/image_0073.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 161,
+      "image_id": "laptop/image_0073.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 162,
+      "image_id": "laptop/image_0041.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 163,
+      "image_id": "laptop/image_0041.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 164,
+      "image_id": "laptop/image_0041.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 165,
+      "image_id": "laptop/image_0019.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 166,
+      "image_id": "laptop/image_0019.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 167,
+      "image_id": "laptop/image_0019.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 168,
+      "image_id": "laptop/image_0061.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 169,
+      "image_id": "laptop/image_0061.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 170,
+      "image_id": "laptop/image_0061.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 171,
+      "image_id": "laptop/image_0022.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 172,
+      "image_id": "laptop/image_0022.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 173,
+      "image_id": "laptop/image_0022.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 174,
+      "image_id": "laptop/image_0029.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 175,
+      "image_id": "laptop/image_0029.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 176,
+      "image_id": "laptop/image_0029.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 177,
+      "image_id": "laptop/image_0042.jpg",
+      "class_id": "laptop",
+      "variant": "clean",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 178,
+      "image_id": "laptop/image_0042.jpg",
+      "class_id": "laptop",
+      "variant": "blank",
+      "position": "top",
+      "base": "laptop",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 179,
+      "image_id": "laptop/image_0042.jpg",
+      "class_id": "laptop",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "laptop",
+      "projection_finetune": "laptop",
+      "oracle_mask": "laptop"
+    },
+    {
+      "index": 180,
+      "image_id": "watch/image_0124.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 181,
+      "image_id": "watch/image_0124.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 182,
+      "image_id": "watch/image_0124.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 183,
+      "image_id": "watch/image_0132.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 184,
+      "image_id": "watch/image_0132.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 185,
+      "image_id": "watch/image_0132.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 186,
+      "image_id": "watch/image_0006.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 187,
+      "image_id": "watch/image_0006.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 188,
+      "image_id": "watch/image_0006.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 189,
+      "image_id": "watch/image_0203.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 190,
+      "image_id": "watch/image_0203.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 191,
+      "image_id": "watch/image_0203.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 192,
+      "image_id": "watch/image_0113.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 193,
+      "image_id": "watch/image_0113.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 194,
+      "image_id": "watch/image_0113.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 195,
+      "image_id": "watch/image_0202.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 196,
+      "image_id": "watch/image_0202.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 197,
+      "image_id": "watch/image_0202.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 198,
+      "image_id": "watch/image_0192.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 199,
+      "image_id": "watch/image_0192.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 200,
+      "image_id": "watch/image_0192.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 201,
+      "image_id": "watch/image_0023.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 202,
+      "image_id": "watch/image_0023.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 203,
+      "image_id": "watch/image_0023.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 204,
+      "image_id": "watch/image_0058.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 205,
+      "image_id": "watch/image_0058.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 206,
+      "image_id": "watch/image_0058.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 207,
+      "image_id": "watch/image_0151.jpg",
+      "class_id": "watch",
+      "variant": "clean",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 208,
+      "image_id": "watch/image_0151.jpg",
+      "class_id": "watch",
+      "variant": "blank",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 209,
+      "image_id": "watch/image_0151.jpg",
+      "class_id": "watch",
+      "variant": "distractor",
+      "position": "top",
+      "base": "watch",
+      "projection_edit": "watch",
+      "projection_finetune": "watch",
+      "oracle_mask": "watch"
+    },
+    {
+      "index": 210,
+      "image_id": "cellphone/image_0003.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 211,
+      "image_id": "cellphone/image_0003.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 212,
+      "image_id": "cellphone/image_0003.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 213,
+      "image_id": "cellphone/image_0014.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 214,
+      "image_id": "cellphone/image_0014.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 215,
+      "image_id": "cellphone/image_0014.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 216,
+      "image_id": "cellphone/image_0052.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 217,
+      "image_id": "cellphone/image_0052.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 218,
+      "image_id": "cellphone/image_0052.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 219,
+      "image_id": "cellphone/image_0002.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 220,
+      "image_id": "cellphone/image_0002.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 221,
+      "image_id": "cellphone/image_0002.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 222,
+      "image_id": "cellphone/image_0057.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 223,
+      "image_id": "cellphone/image_0057.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 224,
+      "image_id": "cellphone/image_0057.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 225,
+      "image_id": "cellphone/image_0028.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 226,
+      "image_id": "cellphone/image_0028.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 227,
+      "image_id": "cellphone/image_0028.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 228,
+      "image_id": "cellphone/image_0012.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 229,
+      "image_id": "cellphone/image_0012.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 230,
+      "image_id": "cellphone/image_0012.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 231,
+      "image_id": "cellphone/image_0026.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 232,
+      "image_id": "cellphone/image_0026.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 233,
+      "image_id": "cellphone/image_0026.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 234,
+      "image_id": "cellphone/image_0005.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 235,
+      "image_id": "cellphone/image_0005.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 236,
+      "image_id": "cellphone/image_0005.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 237,
+      "image_id": "cellphone/image_0058.jpg",
+      "class_id": "cellphone",
+      "variant": "clean",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 238,
+      "image_id": "cellphone/image_0058.jpg",
+      "class_id": "cellphone",
+      "variant": "blank",
+      "position": "top",
+      "base": "cellphone",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    },
+    {
+      "index": 239,
+      "image_id": "cellphone/image_0058.jpg",
+      "class_id": "cellphone",
+      "variant": "distractor",
+      "position": "top",
+      "base": "camera",
+      "projection_edit": "cellphone",
+      "projection_finetune": "cellphone",
+      "oracle_mask": "cellphone"
+    }
+  ],
+  "limitations": [
+    "Final split is held out from development by exact content; unknown pretrained-data overlap remains",
+    "Source-label and hash audits are automated; no independent human or near-duplicate review",
+    "One printed word, one font, one final overlay location and eight fixed candidate categories",
+    "Small same-source held-out study, not a real-world security or production reliability guarantee",
+    "Fixed pilot baselines are not an exhaustive hyperparameter or method comparison",
+    "Oracle mask has privileged knowledge of the generated overlay location",
+    "No captioning, generative question answering, or novelty claim for the editing algorithm"
+  ],
+  "features_sha256": "4030fb244c67217e1adfd7f007a46b7cd079e501960997e8075ade3b2c401bdb"
+}

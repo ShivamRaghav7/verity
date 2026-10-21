@@ -93,6 +93,13 @@ class VisionPatchAPITests(unittest.TestCase):
         torch.save(payload, self.app.state.demo.feature_path)
         self.assertEqual(self.client.get("/api/status").status_code, 503)
 
+    def test_measured_report_cannot_describe_a_different_patch(self):
+        self.app.state.demo.report_path.write_text(
+            json.dumps({"patch_sha256": "0" * 64}), encoding="utf-8")
+        response = self.client.get("/api/status")
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("does not match", response.json()["detail"])
+
 
 if __name__ == "__main__":
     unittest.main()

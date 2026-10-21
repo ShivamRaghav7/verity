@@ -1,6 +1,6 @@
 # VisionPatch: Targeted Repair of Visual Misidentification
 
-Status: the first development pilot is complete; see [measured results](RESULTS.md) and the [beginner's guide](README.md). This proposal defines the bounded research direction, not a final validation claim. The preserved EditGuard V1 is a separate project version.
+Status: the bounded development and fixed-configuration held-out study is complete; see [measured results](RESULTS.md) and the [beginner's guide](README.md). This proposal defines the research scope; the results support a small controlled experiment rather than broad deployment reliability. The preserved EditGuard V1 is a separate project version.
 
 ## The problem and intended user
 
@@ -43,3 +43,5 @@ The first 24–48 hours resolve whether this model, dataset subset, and edit loc
 Proceed only if there are enough observable failures to evaluate repair and the implementation runs within measured hardware limits. A result where fine-tuning or masking works better remains a valid finding. If the gate fails, document the cause and reconsider the edit location once; do not grow the project indefinitely.
 
 Success means a reproducible, bounded repair experiment with clear tradeoffs, an inspectable application, and honest reporting. It does not require perfect accuracy or superiority over every baseline.
+
+The completed feasibility run used four edit pairs and 64 development probes. A subsequently sealed, exact-hash-disjoint final set used 80 originals with the same already fitted models and fixed settings. Editing tied matched fine-tuning; both repaired the measured defect. Their numerical results and all original development failures remain in the results record.

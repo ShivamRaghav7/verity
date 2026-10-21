@@ -105,6 +105,8 @@ def main():
     args = parser.parse_args()
     if args.report.exists():
         raise FileExistsError("Keep prior evidence; choose a new report path")
+    if any((args.artifacts / name).exists() for name in ["projection-patch.pt", "projection-finetune.pt", "run-report.json"]):
+        raise FileExistsError("Trained artifacts already exist; choose a fresh artifact directory")
     import torch
     from .editor import (apply_projection_patch_, fit_projection_patch,
                          rollback_projection_patch_, save_projection_patch)
@@ -197,6 +199,7 @@ def main():
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (args.artifacts / "run-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": report["status"], "results": report["results"],
                       "measurements": measurements, "exact_rollback": exact_rollback}, indent=2))
 

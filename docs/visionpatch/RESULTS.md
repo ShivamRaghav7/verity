@@ -1,8 +1,29 @@
-# VisionPatch measured development results
+# VisionPatch measured results
 
-Evidence: `reports/visionpatch/pilot-v1.json`, completed 21 October 2026, and the separate `reports/visionpatch/encoder-profile.json`. This page reports the first fixed development configuration. It contains no final-test result.
+Evidence: `reports/visionpatch/pilot-v1.json`, `reports/visionpatch/final-v1.json`, its preceding `final-seal-v1.json`, the separate `encoder-profile.json`, and `http-smoke-v2.json`, all under `reports/visionpatch/`. The development pilot, frozen final evaluation, and live HTTP workflow check were completed on 21 October 2026. These finish the bounded controlled study.
 
-## Experiment in plain language
+## Frozen held-out result
+
+Before final inference, a seal fixed the original model revision, fitted patch and fine-tuning weights, candidate vocabulary, transform, scoring rule, bootstrap settings, and runtime bindings. The final manifest contains 80 additional Caltech101 originals, ten per class. Exact hashes overlap with none of the 144 development originals. There was no new training or configuration selection during final evaluation. These are new source images from the same dataset, not a new external deployment domain.
+
+| Frozen configuration | Clean correct | Blank-label correct | Printed-label correct | Induced errors repaired | New errors on baseline-correct printed inputs |
+|---|---:|---:|---:|---:|---:|
+| Original CLIP | 80/80 | 80/80 | 49/80 | 0/31 | 0/49 |
+| Projection edit | 80/80 | 80/80 | 80/80 | 31/31 | 0/49 |
+| Projection fine-tuning | 80/80 | 80/80 | 80/80 | 31/31 | 0/49 |
+| Oracle blank-region masking | 80/80 | 80/80 | 80/80 | 31/31 | 0/49 |
+
+All three interventions tie on the final aggregate outcomes. Perfect counts on these 80 controlled examples do not imply perfect accuracy on arbitrary images, different text, or other candidates. They do not demonstrate superiority of editing over the simpler controls.
+
+The attack denominator is 70 baseline-clean-correct non-camera sources; 31 acquire errors when the camera word is added, or 44.29%. All 31 are repaired by each intervention. Against every final source, the repairs are 31/80, or 38.75%. All ten genuine cameras remain correctly recognized. There are no abstentions; every prediction is scored.
+
+Unseen images from the two support classes improve from 7/20 to 20/20 printed-label predictions, repairing 13/13 eligible errors. The other six classes improve from 42/60 to 60/60, repairing 18/18 eligible errors; that attack denominator excludes ten genuine cameras and is therefore 50, not 60. Exact rollback restores original weights and all final predictions.
+
+The paired source-bootstrap accuracy gain is **38.75 percentage points**, with a 95% interval of **28.75 to 50.00 points**, for each intervention versus original CLIP, using 2,000 resamples and seed 42. This summarizes uncertainty from resampling the small same-source final set, not a production guarantee. The shared bootstrap helper's output includes the inherited phrase “Small development subset”; here its 80-source inputs are the sealed final observations, as the final report status and manifest show.
+
+CPU final feature preparation took 31.746 s for 240 variants in 30 batches; model loading took 1.274 s. CPU peak RAM was not instrumented. These batch measurements are separate from single-request HTTP latency.
+
+## Development experiment in plain language
 
 We used 144 Caltech101 photographs from eight classes. Four paired cup/laptop support photographs fitted the edit; 64 different clean images supplied the retention reference. The 64 probe photographs, eight per class, were not used to fit either learned approach. Each probe has clean, blank-label, and printed-`camera` versions. These 192 rendered inputs come from **64 independent source photographs**, not 192 independent originals.
 
@@ -49,8 +70,14 @@ The GPU profile used an RTX 4050 Laptop GPU, two warmups and eight measured batc
 
 The pilot verified exact restoration of projection weights and all cached predictions after rollback. The API additionally tests explicit approval, artifact-parent mismatch rejection, image rendering, upload handling, and rollback using small synthetic fixtures. Those software tests are not recognition-accuracy evidence.
 
-## Limits and next evidence
+## Live HTTP workflow and latency
 
-This is a small controlled development experiment with one distractor, one font, a fixed eight-class vocabulary, and source dataset labels. Exact-byte deduplication was checked; independent human label review, near-duplicate/physical-object auditing, natural text-bearing challenge evaluation, and broad pretrained-data contamination auditing were not performed. Caltech101 may have appeared in CLIP's pretraining material.
+`http-smoke-v2.json` explicitly records CPU inference. It uploads one development airplane image with the printed camera label: original prediction camera, patched prediction airplane, then rollback prediction camera with the original projection hash restored.
 
-A separate fixed-configuration held-out evaluation is the next milestone. Development successes and failures remain part of the record. No final results, broad safety claims, or commercial performance claims are inferred from these measurements.
+The first HTTP inference took **11.737 s**, starting before the encoder was loaded. Twelve subsequent serial requests on the same image measured **p50 243.249 ms** and **p95 326.934 ms**; p95 uses nearest rank `ceil(0.95 × 12)`. This verifies the upload path and gives a small warm-latency sample. It is not a recognition benchmark, throughput measurement, or concurrency test. The earlier `http-smoke-v1.json` did not record its device, so its timings are not used as authoritative CPU measurements.
+
+## Scope and limitations
+
+This is a small controlled development and held-out study with one distractor, one font, a fixed eight-class vocabulary, and source dataset labels. Exact-byte deduplication was checked; independent human label review, near-duplicate/physical-object auditing, natural text-bearing challenge evaluation, and broad pretrained-data contamination auditing were not performed. Caltech101 may have appeared in CLIP's pretraining material.
+
+The small fixed-configuration held-out evaluation and workflow checks are complete. Development successes and failures remain part of the record, including the cell-phone failure above. New words, fonts, text-bearing tasks, external-domain images, and production hardening are optional extensions requiring their own data and evaluation; they are not established by the finished study. No broad safety or commercial reliability claim follows from these measurements.

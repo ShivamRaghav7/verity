@@ -27,7 +27,7 @@ from pydantic import BaseModel, Field
 import torch
 import torch.nn.functional as functional
 
-from .data import CLASSES, render_variant
+from .data import CLASSES, file_hash, render_variant
 from .editor import (
     apply_projection_patch_, load_projection_patch, projection_sha256,
     rollback_projection_patch_,
@@ -118,10 +118,15 @@ class DemoState:
 
     def status(self):
         self.ensure_loaded()
+        recorded = self.report()
+        if recorded and "patch_sha256" in recorded and file_hash(self.patch_path) != recorded["patch_sha256"]:
+            raise HTTPException(503, "The measured report does not match this patch artifact.")
         return {"ready": True, "active": self.active, "labels": self.labels,
                 "base_sha256": self.patch.before_sha256,
                 "projection_sha256": projection_sha256(self.weight),
-                "metadata": self.metadata, "report": self.report(),
+                "metadata": self.metadata, "report": recorded,
+                "final_report": json.loads((ROOT / "reports/visionpatch/final-v1.json").read_text(encoding="utf-8"))
+                if (ROOT / "reports/visionpatch/final-v1.json").exists() else None,
                 "encoder_device": str(self.model.device) if self.model is not None else None,
                 "history_persistence": "in_memory_only; resets when this demo process restarts",
                 "disclaimer": "Local development demonstration; fixed candidate labels; no final-test or deployment reliability claim.",
@@ -158,7 +163,10 @@ class DemoState:
 def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/features.pt",
                patch_path=ROOT / "artifacts/visionpatch/development-v1/projection-patch.pt",
                dataset_root=ROOT / "data/generated/visionpatch/development-v1",
-               report_path=ROOT / "reports/visionpatch/pilot-v1.json", encoder=None):
+               report_path=None, encoder=None):
+    if report_path is None:
+        adjacent = Path(patch_path).parent / "run-report.json"
+        report_path = adjacent if adjacent.exists() else ROOT / "reports/visionpatch/pilot-v1.json"
     app = FastAPI(title="VisionPatch local demonstration", version="0.1.0")
     state = DemoState(Path(feature_path), Path(patch_path), Path(dataset_root), Path(report_path), encoder)
     app.state.demo = state
@@ -229,6 +237,15 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
     def history():
         with state.lock:
             return {"events": list(state.events), "persistence": "in_memory_only"}
+
+    @app.get("/api/figures/{name}")
+    def figure(name: str):
+        if name not in {"accuracy.png", "paired-gains.png", "categories.png"}:
+            raise HTTPException(404, "Unknown scientific figure")
+        path = ROOT / "output/visionpatch/figures" / name
+        if not path.exists():
+            raise HTTPException(404, "Generate the measured result figures first")
+        return FileResponse(path)
 
     @app.post("/api/predict")
     def predict(body: PredictRequest):

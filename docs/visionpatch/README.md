@@ -1,6 +1,6 @@
 # VisionPatch: a beginner's guide
 
-VisionPatch repairs a specific mistake inside an image-recognition model: a printed word can outweigh the object shown in the photograph. Our first measured development experiment is complete. It is a research prototype with a working local demonstration, not a generally reliable image assistant.
+VisionPatch repairs a specific mistake inside an image-recognition model: a printed word can outweigh the object shown in the photograph. The bounded study is complete: it includes a development pilot, fixed-configuration held-out evaluation, rollback checks, and a working local demonstration. It is a research prototype, not a generally reliable image assistant.
 
 The original customer-support EditGuard version remains preserved separately. This visual project does not reuse its factual-answer scores or claim that its trained language models perform visual recognition.
 
@@ -22,8 +22,10 @@ Our controlled mistake uses the word **camera** printed on a white label. The ta
 6. **Profiled and ran the experiment.** An earlier GPU forward-pass profile measured whether the model fit. The actual pilot used CPU when CUDA was unavailable. Its closed-form edit solves a small numerical optimization problem; it does not require a long GPU training run.
 7. **Compared fair alternatives.** We ran unchanged CLIP, our projection edit, gradient fine-tuning of the same projection with the same examples, and a privileged masking control that knows where the synthetic label was placed.
 8. **Checked transfer and restoration.** Probe images were unseen during fitting; their labels appear at the top rather than the support images' bottom position. Both learned approaches reached 63/64 correct printed-label predictions, compared with 42/64 originally. Rollback restored original parameters and predictions exactly. These are development results, and fine-tuning tied the edit.
+9. **Froze and evaluated the final configuration.** We sealed the same learned weights, settings, scoring rules, and an 80-original final manifest before final inference. None of the 144 development image hashes appears in that manifest. Original CLIP recognized 49/80 printed-label images correctly; editing, fine-tuning, and privileged masking each recognized 80/80. All retained 80/80 clean predictions, including ten genuine cameras. This perfect count in a small controlled set is not a guarantee for new photographs. Final evaluation did not train or select another configuration.
+10. **Exercised the actual HTTP workflow.** A repeated CPU upload check demonstrated original camera prediction, patched airplane prediction, and exact rollback. Twelve warm requests measured p50 243.25 ms and p95 326.93 ms; the first request took 11.74 s with lazy encoder loading. This is one repeated development image, not a broad recognition or concurrency benchmark.
 
-[RESULTS.md](RESULTS.md) explains every reported denominator and the remaining error. [PROTOCOL.md](PROTOCOL.md) defines the evaluation rules. Source labels are inherited from Caltech101; automated checking is disclosed and is not independent human review.
+[RESULTS.md](RESULTS.md) explains every reported denominator and preserves the development error even though the different final images were all recognized correctly after repair. [PROTOCOL.md](PROTOCOL.md) defines the evaluation rules. Source labels are inherited from Caltech101; automated checking is disclosed and is not independent human review.
 
 ## Open and navigate the demonstration
 
@@ -35,7 +37,7 @@ From this repository in PowerShell, using the prepared isolated ML environment:
 
 Open [the local demonstration](http://127.0.0.1:8002). Keep the terminal running. Stop it with Ctrl+C. The launcher binds to the local machine; this service has no public-user authentication.
 
-- **Experiment:** inspect the saved pilot results and whether original or patched parameters are active. The metric cards summarize the saved comparison, so activating rollback changes live recognition rather than rewriting historical measurements.
+- **Experiment:** inspect the saved development comparison and whether original or patched parameters are active. The metric cards summarize the saved comparison, so activating rollback changes live recognition rather than rewriting historical measurements. Final held-out results are a separate report; the interactive gallery remains the development gallery.
 - **Administrator:** check “I approve activating this experimental patch,” then choose **Apply learned patch**. This activates an already fitted patch; it does not retrain the model. The projection digest identifies the current parameter state.
 - **Image gallery:** choose misleading printed label, blank label control, or original photograph. Filter by category and use **Show more photographs**. “Source” is the dataset label; “Original” and “Patched” are model predictions. Inspect genuine cameras as well as repaired cups and laptops.
 - **Rollback:** restore the saved original projection and refresh the gallery. Exact restoration means the original parameter bytes return; it does not mean every original prediction was correct.
@@ -62,4 +64,13 @@ The profile stops after two warmup and eight measured batches. The pilot extract
 
 Local photographs and model weights are ignored by Git; a repository clone alone does not include those artifacts. Relevant files are `data/generated/visionpatch/development-v1/manifest.json`, `artifacts/visionpatch/development-v1/`, and `reports/visionpatch/pilot-v1.json`.
 
-The next scientific milestone is an independently held-out evaluation under fixed settings. The development result does not establish robustness to new fonts, other distractor words, natural text-heavy photographs, arbitrary candidate vocabularies, or unseen deployment conditions.
+The completed final record is `reports/visionpatch/final-v1.json`, bound to `reports/visionpatch/final-seal-v1.json` and `data/generated/visionpatch/final-v1/manifest.json`. The implementation separates preparation/sealing from inference:
+
+```powershell
+.\.venv-ml\Scripts\python.exe -m visionpatch.finalize --device cpu --prepare-only
+.\.venv-ml\Scripts\python.exe -m visionpatch.finalize --device cpu
+```
+
+These describe the recorded final workflow; existing final evidence is protected rather than overwritten. A fresh-machine reproduction must first recreate the trained artifacts and their exact bound hashes. Use new `--dataset`, `--artifacts`, `--seal`, and `--report` paths for an explicitly labeled reproduction; the same final photographs are already observed and must not become a fresh tuning set.
+
+The small controlled study is finished. New fonts, other distractor words, natural text-heavy photographs, arbitrary candidate vocabularies, and deployment conditions would be optional future studies, not unfinished claims hidden inside these results. None is established by the present measurements.
