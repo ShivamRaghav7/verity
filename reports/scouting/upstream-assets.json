@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "inspected_on": "2026-10-22",
+  "purpose": "Partial source and asset inventory for a proposed upstream-based knowledge editor",
+  "status": "source_inspection_only",
+  "models_downloaded": false,
+  "reproduction_executed": false,
+  "complete_download_manifest": false,
+  "selected_visual_core": {
+    "repository": "https://github.com/VLKEB/VLKEB",
+    "commit": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+    "code_license": "MIT",
+    "method": "MEND",
+    "base_architecture": "BLIP-2 with OPT-2.7B",
+    "config_path": "hparams/MEND/blip2.yaml",
+    "editor_repository": "HymanH/VLKEB-models",
+    "editor_revision": "971f3e4419092fdd612d1ef6c0bb6b2b02899a45",
+    "editor_license_declared": "MIT",
+    "editor_path": "mend/mend_blip2.pt",
+    "editor_size_bytes": 2364013495,
+    "editor_lfs_sha256": "13c7f1f24af506fcf994cf584e404abf6c3ab445139da5edf8df180afaab1c98",
+    "language_model_repository": "facebook/opt-2.7b",
+    "language_model_revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+    "language_model_terms": "Separate OPT license; not covered by the editor MIT license",
+    "still_to_pin_before_execution": [
+      "EVA visual backbone checkpoint and its license",
+      "BLIP-2 Qformer checkpoint and its license",
+      "BERT/Qformer tokenizer and configuration",
+      "OPT tokenizer and configuration",
+      "A clean compatible dependency environment"
+    ]
+  },
+  "upstream_dataset_reference": {
+    "repository": "HymanH/VLKEB-data",
+    "revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+    "license_declared": "BSD-3-Clause",
+    "note": "Dataset-level declaration does not settle rights in each original image. No dataset files downloaded for this scout."
+  },
+  "language_fallback": {
+    "repository": "https://github.com/zjunlp/EasyEdit",
+    "commit": "4c109870955a4522ac3d7cf10ad00f34de8e4f0d",
+    "code_license": "MIT",
+    "first_method": "ROME",
+    "first_base_model": "GPT2-XL",
+    "upstream_default_gpu_memory_gb": 10,
+    "memory_evidence_type": "Author README measurement, not a local profile or fit guarantee"
+  },
+  "preserved_application": {
+    "tag": "visionpatch-preserved-2026-10-22",
+    "commit": "56111d082889803df5de2571d7c51fb8dbcb7af4"
+  },
+  "sources": [
+    "https://github.com/VLKEB/VLKEB/tree/10951b7b3788928f578b73f07eac9e1eaa0316f3",
+    "https://huggingface.co/HymanH/VLKEB-models/tree/971f3e4419092fdd612d1ef6c0bb6b2b02899a45",
+    "https://huggingface.co/datasets/HymanH/VLKEB-data/tree/cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+    "https://github.com/MMKE-Bench-ICLR/MMKE-Bench#-training",
+    "https://github.com/zjunlp/EasyEdit#editing-gpu-memory-usage",
+    "https://huggingface.co/facebook/opt-2.7b"
+  ]
+}

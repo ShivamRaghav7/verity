@@ -1,5 +1,9 @@
 # VisionPatch
 
+The next-project [upstream research decision](docs/UPSTREAM_PROJECT_SCOUT.md)
+recommends reproducing a published multimodal editor before replacing this app.
+The current studio and results are preserved at `visionpatch-preserved-2026-10-22`.
+
 **Targeted visual model editing with measured generalization and exact rollback.**
 
 **Current claim:** a controlled model-repair study and working editor. Practical
