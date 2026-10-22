@@ -6,6 +6,7 @@ let state = null;
 let candidate = null;
 let examples = [];
 let busy = false;
+let recognitionRevision = null;
 const images = {source: null, reference: null};
 
 function node(tag, text, className) {
@@ -82,6 +83,10 @@ function button(text, handler, className = "secondary compact", disabled = false
 
 function renderState() {
   const current = registry();
+  if (recognitionRevision !== null && recognitionRevision !== current.revision) {
+    $("recognition-result").replaceChildren(node("p", "The active model version changed. Compare the photograph again to see its current prediction.", "help"));
+    recognitionRevision = null;
+  }
   $("state-cards").replaceChildren();
   const cards = [
     ["Registry revision", readable(current.revision), "Every approved state change is recorded"],
@@ -462,6 +467,12 @@ async function recognize(useSource) {
     $("recognize").disabled = true; $("recognize-source").disabled = true;
     $("recognition-result").replaceChildren(node("p", "Running the frozen encoder with original and current projection parameters…", "help"));
     const result = await post("/predict", {image_base64: data});
+    recognitionRevision = result.registry && result.registry.revision;
+    if (state && recognitionRevision !== registry().revision) {
+      $("recognition-result").replaceChildren(node("p", "The model version changed while recognition was running. Compare the photograph again.", "help"));
+      recognitionRevision = null;
+      return;
+    }
     const box = node("div", undefined, "live-comparison");
     const image = node("img"); image.src = data; image.alt = "Photograph supplied for live recognition";
     const detail = node("div"), labels = node("div", undefined, "live-labels");
