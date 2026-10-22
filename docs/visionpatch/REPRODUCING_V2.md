@@ -93,12 +93,14 @@ creates its own run, paths, fingerprints and seal.
 ## Figures and application checks
 
 ```powershell
+.\.venv-ml\Scripts\python.exe -m pip install -r requirements-plots.txt
 .\.venv-ml\Scripts\python.exe -m visionpatch.plot_study --help
 .\.venv-ml\Scripts\python.exe -m visionpatch.plot_study
 .\scripts\run-visionpatch.ps1
 ```
 
-Default plotting reads the published report. Use the displayed CLI options to
+The optional plotting requirements install Matplotlib; the application itself
+does not require it. Default plotting reads the published report. Use CLI options to
 draw a reproduction into another directory. It never loads or trains a model.
 Open `/workbench` for interactive editing; those single-pair candidates are
 separate from the formal four-pair study.
