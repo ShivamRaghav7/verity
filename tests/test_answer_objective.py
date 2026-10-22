@@ -182,9 +182,8 @@ class AnswerObjectiveNumericalTests(unittest.TestCase):
             # Literal original uniform forward and validation denominator.
             return model(**batch).loss, len(batch["labels"])
 
-        temporary_root = Path(__file__).resolve().parents[1] / "runtime/test-answer-objective"
-        temporary_root.mkdir(parents=True, exist_ok=True)
-        with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+        # Cloud sync can lock checkpoint directories during their atomic rename.
+        with tempfile.TemporaryDirectory(prefix="editguard-answer-objective-") as temporary:
             root = Path(temporary)
             configure_determinism(42, 1)
             revised = TinyClassifier()
@@ -253,9 +252,7 @@ class AnswerObjectiveNumericalTests(unittest.TestCase):
             "validation_every_steps": 2, "keep_last_checkpoints": 2}
         identity = {"purpose": "smoke_test", "configuration_hash": canonical_hash(config),
             "loss_objective": loss_objective("answer", config["loss_policy"])}
-        temporary_root = Path(__file__).resolve().parents[1] / "runtime/test-answer-objective"
-        temporary_root.mkdir(parents=True, exist_ok=True)
-        with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+        with tempfile.TemporaryDirectory(prefix="editguard-answer-resume-") as temporary:
             root = Path(temporary)
             configure_determinism(42, 1)
             uninterrupted = TinyAnswer()

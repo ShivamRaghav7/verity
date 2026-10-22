@@ -162,9 +162,8 @@ class ScopeTrainingTokenizationTests(unittest.TestCase):
             "batch_size": 2, "max_steps": 4, "learning_rate": .01, "checkpoint_every_steps": 2,
             "validation_every_steps": 2, "keep_last_checkpoints": 2}
         identity = {"purpose": "smoke_test", "configuration_hash": canonical_hash(config), **scope_policy_identity("entity_neutral_v1")}
-        temporary_root = Path(__file__).resolve().parents[1] / "runtime/test-scope-inputs"
-        temporary_root.mkdir(parents=True, exist_ok=True)
-        with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+        # OS scratch avoids OneDrive competing with atomic checkpoint renames.
+        with tempfile.TemporaryDirectory(prefix="editguard-scope-inputs-") as temporary:
             root = Path(temporary)
             configure_determinism(42, 1)
             complete = train_loop(TinyScope(), encoded, encoded, config=config, identity=identity, output_dir=root / "complete")
