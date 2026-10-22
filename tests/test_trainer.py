@@ -48,9 +48,8 @@ class TrainerContractTests(unittest.TestCase):
         self.assertEqual(canonical_hash({"a": 1, "b": 2}), canonical_hash({"b": 2, "a": 1}))
 
     def test_failed_atomic_json_replacement_preserves_old_file(self):
-        temporary_root = ROOT / "runtime" / "test-trainer"
-        temporary_root.mkdir(parents=True, exist_ok=True)
-        with tempfile.TemporaryDirectory(dir=temporary_root) as temporary:
+        # Keep atomic replacement fixtures outside cloud-synchronized checkouts.
+        with tempfile.TemporaryDirectory(prefix="editguard-trainer-contract-") as temporary:
             path = Path(temporary) / "manifest.json"
             atomic_json(path, {"status": "original"})
             with patch("editguard.training.os.replace", side_effect=OSError("simulated replacement failure")), self.assertRaises(OSError):
@@ -69,9 +68,10 @@ class ExactOptimizerResumeTests(unittest.TestCase):
             self.skipTest(str(exc))
         self.torch = torch
         self.numpy = numpy
-        root = ROOT / "runtime" / "test-trainer-ml"
-        root.mkdir(parents=True, exist_ok=True)
-        self.temporary = tempfile.TemporaryDirectory(dir=root)
+        # OneDrive can briefly lock freshly written checkpoint directories and
+        # reject their atomic rename. OS scratch tests the trainer without that
+        # unrelated synchronization service competing for its files.
+        self.temporary = tempfile.TemporaryDirectory(prefix="editguard-trainer-ml-")
         self.addCleanup(self.temporary.cleanup)
         self.output = Path(self.temporary.name)
 

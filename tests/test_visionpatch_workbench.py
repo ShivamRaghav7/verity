@@ -254,7 +254,9 @@ class WorkbenchAPITests(unittest.TestCase):
         response = self.client.post(f"/api/workbench/patches/{patch_id}/withdraw", json=self.identity)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["status"], "withdrawn")
-        self.assertEqual(self.approve(patch_id).status_code, 409)
+        refused = self.client.post(f"/api/workbench/patches/{patch_id}/approve",
+                                   json={**self.identity, "approved": True})
+        self.assertEqual(refused.status_code, 409)
         self.assertEqual(self.activate(patch_id).status_code, 409)
         records = self.client.get("/api/workbench/patches").json()["patches"]
         self.assertEqual(len(records), 1)
