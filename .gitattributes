@@ -6,8 +6,10 @@
 *.ps1 text eol=crlf
 # Evidence contains byte hashes; preserve the exact recorded files across hosts.
 reports/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+data/manifests/visionpatch/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
 # Generated vector figures are byte-bound evidence, not hand-edited source diffs.
 reports/**/*.svg binary
+output/visionpatch/study-v2/*.svg binary
 # The frozen pilot-v2 evaluation recorded this inference configuration byte hash.
 configs/inference-pilot-v2.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
 # Preserve the exact HTML bytes covered by release engineering checks.

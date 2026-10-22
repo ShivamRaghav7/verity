@@ -1,0 +1,33 @@
+{
+  "input_report": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\visionpatch\\study-v2\\final.json",
+  "report_sha256": "225bbd94d0aa572fa6b37b78aef4930107095a3dc0878de38ad1d77278a34a93",
+  "plot_code_sha256": "d302f5acbba5568b8f784a13bbc13ede6b90e32aa8845b7c3dec1d3c2ad00fb4",
+  "matplotlib_version": "3.10.7",
+  "outputs": {
+    "selectivity.png": {
+      "sha256": "2443530485fcb8eaf0a124a9aedec84f1910e1cf4705f46b9bc96a2fbc7af6ba",
+      "bytes": 231715
+    },
+    "selectivity.svg": {
+      "sha256": "3d89cd559afd8658dc00e59d1309f06f92337df419404b403ed19aa435ed4321",
+      "bytes": 69110
+    },
+    "interference.png": {
+      "sha256": "92f4cd070f60d17bfb36cddb0765448a9d61b4726af37dfa07ef4b91cf6889af",
+      "bytes": 431002
+    },
+    "interference.svg": {
+      "sha256": "cef86d7542b822b3bc1ed4babe6bda9dba1a5caf92f4cbac3e95d11bcf2b8a5b",
+      "bytes": 82670
+    },
+    "paired_uncertainty.png": {
+      "sha256": "558f843e9509f8d906531ed0673f0ec71b1712eb9938d4cf6df588ec4d7fb57a",
+      "bytes": 162644
+    },
+    "paired_uncertainty.svg": {
+      "sha256": "e1731b7397bc158c2157d5e22a6f3a8f5fa171e0f8ef8a3a6721cc6b0cc01a6e",
+      "bytes": 49180
+    }
+  },
+  "no_model_execution": true
+}

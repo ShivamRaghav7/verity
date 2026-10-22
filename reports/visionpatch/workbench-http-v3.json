@@ -1,0 +1,196 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-22T06:03:04.747541+00:00",
+  "base_url": "http://127.0.0.1:8002",
+  "candidate_id": "b57bdf30-27c2-4787-b78e-6f556fe5104b",
+  "example": {
+    "id": "camera-cup",
+    "label": "cup",
+    "target_word": "camera",
+    "image_id": "cup/image_0011.jpg",
+    "source_url": "/api/workbench/examples/camera-cup/source",
+    "reference_url": "/api/workbench/examples/camera-cup/reference",
+    "source": "Caltech101 cup/image_0011.jpg; chosen training-support failure, controlled overlay; CC BY 4.0"
+  },
+  "initial": {
+    "base_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+    "current_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+    "revision": 2,
+    "active_patch_ids": []
+  },
+  "active": {
+    "base_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+    "current_sha256": "ed637968d905886d3dc1f0f8bf358c784ffd3502dee0219bd58504937169d3b6",
+    "revision": 3,
+    "active_patch_ids": [
+      "b57bdf30-27c2-4787-b78e-6f556fe5104b"
+    ]
+  },
+  "restored": {
+    "base_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+    "current_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+    "revision": 4,
+    "active_patch_ids": []
+  },
+  "preview": {
+    "support": {
+      "before_label": "camera",
+      "after_label": "cup",
+      "expected_label": "cup",
+      "reference_label": "cup"
+    },
+    "metrics": {
+      "clean_accuracy": {
+        "before": {
+          "correct": 61,
+          "total": 64
+        },
+        "after": {
+          "correct": 61,
+          "total": 64
+        }
+      },
+      "text_accuracy": {
+        "before": {
+          "correct": 32,
+          "total": 32
+        },
+        "after": {
+          "correct": 32,
+          "total": 32
+        }
+      }
+    },
+    "new_errors": {
+      "clean": 0,
+      "text": 0
+    },
+    "repairs": {
+      "clean": 0,
+      "text": 0
+    },
+    "seconds_including_reference_preparation": 9.681810399999904,
+    "support_pairs": 1,
+    "reference_objects": 64,
+    "reference_text_cards": 32,
+    "parent_revision": 2,
+    "warnings": [
+      "One supplied pair fits this candidate; unseen-image generalization is not established by its support prediction.",
+      "Reference-set metrics are development evidence; this candidate has no independently sealed final evaluation."
+    ]
+  },
+  "preview_seconds": 9.956565699999828,
+  "inference": {
+    "before": {
+      "label": "camera",
+      "scores": [
+        {
+          "label": "airplane",
+          "score": 0.201288104057312
+        },
+        {
+          "label": "camera",
+          "score": 0.31348589062690735
+        },
+        {
+          "label": "cup",
+          "score": 0.3055718243122101
+        },
+        {
+          "label": "elephant",
+          "score": 0.21386247873306274
+        },
+        {
+          "label": "grand piano",
+          "score": 0.2017849087715149
+        },
+        {
+          "label": "laptop",
+          "score": 0.22767886519432068
+        },
+        {
+          "label": "watch",
+          "score": 0.2409171611070633
+        },
+        {
+          "label": "cell phone",
+          "score": 0.24414795637130737
+        }
+      ]
+    },
+    "current": {
+      "label": "cup",
+      "scores": [
+        {
+          "label": "airplane",
+          "score": 0.1785096526145935
+        },
+        {
+          "label": "camera",
+          "score": 0.212736114859581
+        },
+        {
+          "label": "cup",
+          "score": 0.29387739300727844
+        },
+        {
+          "label": "elephant",
+          "score": 0.19235993921756744
+        },
+        {
+          "label": "grand piano",
+          "score": 0.20367945730686188
+        },
+        {
+          "label": "laptop",
+          "score": 0.20777274668216705
+        },
+        {
+          "label": "watch",
+          "score": 0.2147156298160553
+        },
+        {
+          "label": "cell phone",
+          "score": 0.2060912400484085
+        }
+      ]
+    },
+    "registry": {
+      "base_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+      "current_sha256": "ed637968d905886d3dc1f0f8bf358c784ffd3502dee0219bd58504937169d3b6",
+      "revision": 3,
+      "active_patch_ids": [
+        "b57bdf30-27c2-4787-b78e-6f556fe5104b"
+      ]
+    },
+    "device": "cpu",
+    "score_disclaimer": "Fixed-candidate similarity scores are uncalibrated; uploaded-image correctness is not established"
+  },
+  "latency_seconds": {
+    "samples": [
+      0.30689810000012585,
+      0.38478950000012446,
+      0.5032129000001078,
+      0.5130146999999852,
+      0.5615347999998903,
+      0.6216550999999981,
+      0.7698356999999305,
+      0.7145098000000871,
+      0.7589629999999943,
+      0.8714992000000166,
+      0.7055299999999534,
+      0.8961420999999063
+    ],
+    "p50": 0.6635925499999757,
+    "p95": 0.8961420999999063,
+    "count": 12
+  },
+  "stale_revision_rejected": true,
+  "exact_rollback": true,
+  "limitations": [
+    "Twelve serial requests for one support image, not a deployment latency benchmark",
+    "Support-image repair does not measure unseen-image accuracy",
+    "Actor identity is local user-supplied metadata, not authentication",
+    "Candidate and audit history intentionally persist after rollback"
+  ]
+}

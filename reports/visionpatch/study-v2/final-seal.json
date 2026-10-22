@@ -1,0 +1,586 @@
+{
+  "format_version": 2,
+  "created_at": "2026-10-21T16:03:08.086703+00:00",
+  "status": "sealed_before_final_inference",
+  "model": {
+    "id": "openai/clip-vit-base-patch32",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
+  },
+  "methods": [
+    "base",
+    "object_only",
+    "protected",
+    "finetune",
+    "oracle_mask"
+  ],
+  "edit_words": [
+    "camera",
+    "laptop",
+    "watch"
+  ],
+  "runtime_versions": {
+    "torch": "2.9.0+cu130",
+    "transformers": "5.16.1",
+    "numpy": "2.4.2",
+    "Pillow": "12.3.0"
+  },
+  "device": "cuda",
+  "fingerprint": {
+    "config_sha256": "1224e29384535ff29d1c802ea1bed97b755413d9603ee868b54cc70a6f9a0f8b",
+    "manifest_sha256": "b609b9e526305d13e105124142e7f608bdf1e8cfa1699821f906b7d00dc7e275",
+    "model_id": "openai/clip-vit-base-patch32",
+    "model_revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+    "code": {
+      "study": "4ab16d63026c3abe89c5a97ab9560984b46e4411938e81268896dea4f3a0df1f",
+      "study_metrics": "6a2ad53dc4fd33134596d41cd18e72eaf28959dda48607014f30be9a7645d879",
+      "study_protocol": "9dc05fd33ececb684747c0b256fe58a0a79071e99619985edba7d16b65bdef47",
+      "study_data": "9db273448ddcbde1004a2565a343ca05ca64aa506bf4b26746e4a318b162989a",
+      "data": "325e0a9696339da838162aab120f4fa648f57682961f3d3b0c5a8570cf10d57e",
+      "model": "9e9c730bfbf54efba4c918f10934a5ec85dab94d0e31d397aeea935d03118555",
+      "editor": "5c1febe41d53d654e6ffa910487c17fa98169e920fe01240446aa8bd2d410087",
+      "metrics": "bd76c6a9f7c89bfbba71f43733f77e6c7bb6081ae56564578d8eaea71163abb9"
+    },
+    "fonts": {
+      "train_sans": {
+        "filename": "DejaVuSans.ttf",
+        "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+      },
+      "validation_serif": {
+        "filename": "DejaVuSerif.ttf",
+        "sha256": "107244956e9962b9e96faccdc551825e0ae0898ae13737133e1b921a2fd35ffa"
+      },
+      "final_sans_bold": {
+        "filename": "DejaVuSans-Bold.ttf",
+        "sha256": "b184b89e3c1075f22f6b71575b6fc20d4972b3cfd3b23322ca6fd596dcaef167"
+      },
+      "license": {
+        "name": "DejaVu Fonts license (Bitstream Vera derivative)",
+        "url": "https://dejavu-fonts.github.io/License.html",
+        "source": "Repository-bundled DejaVu assets copied from Matplotlib fonts/ttf"
+      }
+    },
+    "runtime_versions": {
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1",
+      "numpy": "2.4.2",
+      "Pillow": "12.3.0"
+    },
+    "device": "cuda"
+  },
+  "bindings": {
+    "config": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\configs\\visionpatch-study-v2.json",
+      "sha256": "1224e29384535ff29d1c802ea1bed97b755413d9603ee868b54cc70a6f9a0f8b"
+    },
+    "manifest": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\data\\generated\\visionpatch\\study-v2\\manifest.json",
+      "sha256": "b609b9e526305d13e105124142e7f608bdf1e8cfa1699821f906b7d00dc7e275"
+    },
+    "profile": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\visionpatch\\study-v2\\profile.json",
+      "sha256": "5ac310df8feae9309bd350b659548b8286fd4f1a6324efe4cefe080469358003"
+    },
+    "development": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\visionpatch\\study-v2\\development.json",
+      "sha256": "e437c8afd3ca19aea38c84710c4f89e24eb3a1b3b90daa38e2c83d392fd3318b"
+    },
+    "train_features": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\train-features.pt",
+      "sha256": "247198f906df9db05772c71106977fc89c0ffa2dd3ed978cd1a27f47066d383d"
+    },
+    "validation_features": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\validation-features.pt",
+      "sha256": "0a7c780d2c518bf8f0c9ecd9d2f6c44231abfbe232e3c14e28b5b018a971a42c"
+    },
+    "code/study": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\study.py",
+      "sha256": "4ab16d63026c3abe89c5a97ab9560984b46e4411938e81268896dea4f3a0df1f"
+    },
+    "code/study_metrics": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\study_metrics.py",
+      "sha256": "6a2ad53dc4fd33134596d41cd18e72eaf28959dda48607014f30be9a7645d879"
+    },
+    "code/study_protocol": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\study_protocol.py",
+      "sha256": "9dc05fd33ececb684747c0b256fe58a0a79071e99619985edba7d16b65bdef47"
+    },
+    "code/study_data": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\study_data.py",
+      "sha256": "9db273448ddcbde1004a2565a343ca05ca64aa506bf4b26746e4a318b162989a"
+    },
+    "code/data": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\data.py",
+      "sha256": "325e0a9696339da838162aab120f4fa648f57682961f3d3b0c5a8570cf10d57e"
+    },
+    "code/model": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\model.py",
+      "sha256": "9e9c730bfbf54efba4c918f10934a5ec85dab94d0e31d397aeea935d03118555"
+    },
+    "code/editor": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\editor.py",
+      "sha256": "5c1febe41d53d654e6ffa910487c17fa98169e920fe01240446aa8bd2d410087"
+    },
+    "code/metrics": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\metrics.py",
+      "sha256": "bd76c6a9f7c89bfbba71f43733f77e6c7bb6081ae56564578d8eaea71163abb9"
+    },
+    "font/train_sans": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\assets\\fonts\\DejaVuSans.ttf",
+      "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+    },
+    "font/validation_serif": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\assets\\fonts\\DejaVuSerif.ttf",
+      "sha256": "107244956e9962b9e96faccdc551825e0ae0898ae13737133e1b921a2fd35ffa"
+    },
+    "font/final_sans_bold": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\visionpatch\\assets\\fonts\\DejaVuSans-Bold.ttf",
+      "sha256": "b184b89e3c1075f22f6b71575b6fc20d4972b3cfd3b23322ca6fd596dcaef167"
+    },
+    "candidate/camera/object-only": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\object-only.pt",
+      "sha256": "f6034138afd56f2a249e3bd75361c58c1d4580cf2e85671a9c04c8514d0b917b"
+    },
+    "candidate/camera/protected-text-1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\protected-text-1.pt",
+      "sha256": "45a5fbedfd05a22d3d3c9a3aa27d34d169c108cf56a0fbc7169fd81e3ce3e8e1"
+    },
+    "candidate/camera/protected-text-4": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\protected-text-4.pt",
+      "sha256": "7e917b98abe1991796475ed4c6fd3d7ec8dbb05ed4f324495ba05aa2512368de"
+    },
+    "candidate/camera/finetune-0": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\finetune-0.pt",
+      "sha256": "c8bb9eaadce9000779f9cbe0f6ea877f5b050aaee4e17cb2d25cc361d17c55cf"
+    },
+    "candidate/camera/finetune-1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\finetune-1.pt",
+      "sha256": "d6b79d918eea30a4323ac59307687c99b3c0fa0df38fb50420014bc0a94f069b"
+    },
+    "candidate/laptop/object-only": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\object-only.pt",
+      "sha256": "038cc3a185408b0dd51a06d62c3646bad80858a9728925a2c6a4eed6c304b1c3"
+    },
+    "candidate/laptop/protected-text-1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\protected-text-1.pt",
+      "sha256": "4589bfddfe294a6404b4c33d80d02470562e8efbe9e99bcca15aa7c3b154ce67"
+    },
+    "candidate/laptop/protected-text-4": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\protected-text-4.pt",
+      "sha256": "35b6ec127b96beb1304f4031e4e8725fa5a860e88e258d599d95c3ba99587cff"
+    },
+    "candidate/laptop/finetune-0": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\finetune-0.pt",
+      "sha256": "f557112d7df822ccf2a61692707c153db58aa954b76d0c7b2e5a0c78baf5c980"
+    },
+    "candidate/laptop/finetune-1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\finetune-1.pt",
+      "sha256": "ac11efb6163ce3edd68fc7d74f2331b2ab4ab834f4fe49559ac0aa29c334b446"
+    },
+    "candidate/watch/object-only": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\object-only.pt",
+      "sha256": "367281e25198bb1a0a84aff73f4ea20bf9895f63c041a9bb2cfc1c64b24e7725"
+    },
+    "candidate/watch/protected-text-1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\protected-text-1.pt",
+      "sha256": "691056f78a307cd2ad986492515380139406c261f9ab34ac203069d64c58bf0f"
+    },
+    "candidate/watch/protected-text-4": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\protected-text-4.pt",
+      "sha256": "6015e3fa7ffb3352c5e04318e0a98ed69a391c962ee64f6bd6b177a2c20f835d"
+    },
+    "candidate/watch/finetune-0": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\finetune-0.pt",
+      "sha256": "a2837ce30f123a9bd899ed52f01203415b2e45a8921e78f7dfbdd18243f7a176"
+    },
+    "candidate/watch/finetune-1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\finetune-1.pt",
+      "sha256": "8d4d45e74cb553329c4ac70b08e952ff2fa3a0363572d08559e1d5baf4a3dac8"
+    },
+    "sequential/camera-laptop-watch/1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-laptop-watch\\stage-1-camera.pt",
+      "sha256": "691467839d81f9c8212b91a940c4b1a56fc75533dced1730ba737d374d553fcf"
+    },
+    "sequential/camera-laptop-watch/2": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-laptop-watch\\stage-2-laptop.pt",
+      "sha256": "f5e5377075b6aa1720fb100ba1ed04ffc291caba9e4110856c7abc18d1b31e2f"
+    },
+    "sequential/camera-laptop-watch/3": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-laptop-watch\\stage-3-watch.pt",
+      "sha256": "a68d5a955325f42b106beb30a82de7518d8000a3a8d826ae64778f6d06d6f4d0"
+    },
+    "sequential/camera-watch-laptop/1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-watch-laptop\\stage-1-camera.pt",
+      "sha256": "e670d25b05f939e825b45553e952e1077ce4a8d73dff0602b3d427c829f198f7"
+    },
+    "sequential/camera-watch-laptop/2": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-watch-laptop\\stage-2-watch.pt",
+      "sha256": "d9569810fedfb7d02acc9f6a15316ff5f01dd00bdffe648739a90728e3ce2242"
+    },
+    "sequential/camera-watch-laptop/3": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-watch-laptop\\stage-3-laptop.pt",
+      "sha256": "67b0134280360d368477a269a32445a41aa009c49a0e9cad1b9055aecb3ad669"
+    },
+    "sequential/laptop-camera-watch/1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-camera-watch\\stage-1-laptop.pt",
+      "sha256": "9b306a2181e085634320010246a6d8c429b8c3d0f437ef32dace444a32f66c7a"
+    },
+    "sequential/laptop-camera-watch/2": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-camera-watch\\stage-2-camera.pt",
+      "sha256": "64ced6a95ca173eb35a8dc47bec55bf3795f44c05b713edd8e74df4a568da75d"
+    },
+    "sequential/laptop-camera-watch/3": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-camera-watch\\stage-3-watch.pt",
+      "sha256": "3a05063a9bbbed0e1b5f63c3dba84f7893deee445c8d10a049648d493259bed6"
+    },
+    "sequential/laptop-watch-camera/1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-watch-camera\\stage-1-laptop.pt",
+      "sha256": "a97ca780842ebc093e6e44843705f7c22c92bf8ff984afef145afacd64c2c6ae"
+    },
+    "sequential/laptop-watch-camera/2": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-watch-camera\\stage-2-watch.pt",
+      "sha256": "d33fd13149a5b681ac55100e8085c43d6d7b941cb57a4f5f62454b39559b2250"
+    },
+    "sequential/laptop-watch-camera/3": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-watch-camera\\stage-3-camera.pt",
+      "sha256": "866d8f2e7182d103362996a0dc477f4a8128ac021f526b3ef13cf17bb5f27e7b"
+    },
+    "sequential/watch-camera-laptop/1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-camera-laptop\\stage-1-watch.pt",
+      "sha256": "4f3983bd869c4e662834bab88f8bc2988667c0aff09ca74de58cc0adde523a4a"
+    },
+    "sequential/watch-camera-laptop/2": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-camera-laptop\\stage-2-camera.pt",
+      "sha256": "813c53fb78f504610470beba5c4bf471d211d24e15f209416d39db3fa98f520f"
+    },
+    "sequential/watch-camera-laptop/3": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-camera-laptop\\stage-3-laptop.pt",
+      "sha256": "26baf5e6583e772a332d16eb197935ab1c3bcb3349edf29455b72207e4d64a5d"
+    },
+    "sequential/watch-laptop-camera/1": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-laptop-camera\\stage-1-watch.pt",
+      "sha256": "b9a392a2bfc17401e7a4c5b1b8547cb7f9b3c339dcf881fd1a38a6f89bdf2985"
+    },
+    "sequential/watch-laptop-camera/2": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-laptop-camera\\stage-2-laptop.pt",
+      "sha256": "790c804469b1a8819c97a77428ade86c57b9def783cf7e4b4be7a5a837a61eb5"
+    },
+    "sequential/watch-laptop-camera/3": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-laptop-camera\\stage-3-camera.pt",
+      "sha256": "a98d05a0e432ce4fa7266f588d3e61f7b977012bee2bd177f3442c946adb0d75"
+    },
+    "model/config.json": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\config.json",
+      "sha256": "b575ef3c36f2a057fa19e221650105052d61cc9c1a972ec15019c6261ec98770"
+    },
+    "model/pytorch_model.bin": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\pytorch_model.bin",
+      "sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f"
+    },
+    "model/tokenizer_config.json": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\tokenizer_config.json",
+      "sha256": "34b7336e4bee12e0a9730eaf5189f582ef3c3eea5027f65730e5717256755aad"
+    },
+    "model/vocab.json": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\vocab.json",
+      "sha256": "5047b556ce86ccaf6aa22b3ffccfc52d391ea4accdab9c2f2407da5b742d4363"
+    },
+    "model/merges.txt": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\merges.txt",
+      "sha256": "f526393189112391ce6f9795d4695f704121ce452c3aad1f5335cc41337eba85"
+    },
+    "model/special_tokens_map.json": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\special_tokens_map.json",
+      "sha256": "f8c0d6c39aee3f8431078ef6646567b0aba7f2246e9c54b8b99d55c22b707cbf"
+    },
+    "model/tokenizer.json": {
+      "path": "C:\\Users\\shiva\\.cache\\huggingface\\hub\\models--openai--clip-vit-base-patch32\\snapshots\\3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268\\tokenizer.json",
+      "sha256": "b556ac8c99757ffb677208af34bc8c6721572114111a6e0aaf5fa69ff0b8d842"
+    }
+  },
+  "selected": {
+    "camera": {
+      "object_only": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\object-only.pt",
+        "kind": "projection_patch",
+        "sha256": "f6034138afd56f2a249e3bd75361c58c1d4580cf2e85671a9c04c8514d0b917b"
+      },
+      "protected": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\protected-text-1.pt",
+        "kind": "projection_patch",
+        "sha256": "45a5fbedfd05a22d3d3c9a3aa27d34d169c108cf56a0fbc7169fd81e3ce3e8e1"
+      },
+      "finetune": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\camera\\finetune-0.pt",
+        "kind": "full_weight",
+        "sha256": "c8bb9eaadce9000779f9cbe0f6ea877f5b050aaee4e17cb2d25cc361d17c55cf"
+      }
+    },
+    "laptop": {
+      "object_only": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\object-only.pt",
+        "kind": "projection_patch",
+        "sha256": "038cc3a185408b0dd51a06d62c3646bad80858a9728925a2c6a4eed6c304b1c3"
+      },
+      "protected": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\protected-text-1.pt",
+        "kind": "projection_patch",
+        "sha256": "4589bfddfe294a6404b4c33d80d02470562e8efbe9e99bcca15aa7c3b154ce67"
+      },
+      "finetune": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\laptop\\finetune-0.pt",
+        "kind": "full_weight",
+        "sha256": "f557112d7df822ccf2a61692707c153db58aa954b76d0c7b2e5a0c78baf5c980"
+      }
+    },
+    "watch": {
+      "object_only": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\object-only.pt",
+        "kind": "projection_patch",
+        "sha256": "367281e25198bb1a0a84aff73f4ea20bf9895f63c041a9bb2cfc1c64b24e7725"
+      },
+      "protected": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\protected-text-1.pt",
+        "kind": "projection_patch",
+        "sha256": "691056f78a307cd2ad986492515380139406c261f9ab34ac203069d64c58bf0f"
+      },
+      "finetune": {
+        "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\models\\watch\\finetune-0.pt",
+        "kind": "full_weight",
+        "sha256": "a2837ce30f123a9bd899ed52f01203415b2e45a8921e78f7dfbdd18243f7a176"
+      }
+    }
+  },
+  "sequential": [
+    {
+      "order": [
+        "camera",
+        "laptop",
+        "watch"
+      ],
+      "stages": [
+        {
+          "word": "camera",
+          "stage": 1,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-laptop-watch\\stage-1-camera.pt",
+          "sha256": "691467839d81f9c8212b91a940c4b1a56fc75533dced1730ba737d374d553fcf",
+          "before_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+          "after_sha256": "c6ea848d668ef4318e2ad4246d5afe335496f0a2334757559c9a260e01c480b8",
+          "fit_seconds": 0.06003969999983383
+        },
+        {
+          "word": "laptop",
+          "stage": 2,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-laptop-watch\\stage-2-laptop.pt",
+          "sha256": "f5e5377075b6aa1720fb100ba1ed04ffc291caba9e4110856c7abc18d1b31e2f",
+          "before_sha256": "c6ea848d668ef4318e2ad4246d5afe335496f0a2334757559c9a260e01c480b8",
+          "after_sha256": "d8810d1f6ebeb956eaa7975e5a4de022ba7311177eb2e2e569a10a36cf22c48e",
+          "fit_seconds": 0.05555720000029396
+        },
+        {
+          "word": "watch",
+          "stage": 3,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-laptop-watch\\stage-3-watch.pt",
+          "sha256": "a68d5a955325f42b106beb30a82de7518d8000a3a8d826ae64778f6d06d6f4d0",
+          "before_sha256": "d8810d1f6ebeb956eaa7975e5a4de022ba7311177eb2e2e569a10a36cf22c48e",
+          "after_sha256": "6623514a48966221492c28fd2e14f7205340d9e9f90467c8a64e8e9cc731becc",
+          "fit_seconds": 0.07070049999992989
+        }
+      ],
+      "exact_rollback": true
+    },
+    {
+      "order": [
+        "camera",
+        "watch",
+        "laptop"
+      ],
+      "stages": [
+        {
+          "word": "camera",
+          "stage": 1,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-watch-laptop\\stage-1-camera.pt",
+          "sha256": "e670d25b05f939e825b45553e952e1077ce4a8d73dff0602b3d427c829f198f7",
+          "before_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+          "after_sha256": "c6ea848d668ef4318e2ad4246d5afe335496f0a2334757559c9a260e01c480b8",
+          "fit_seconds": 0.06387320000021646
+        },
+        {
+          "word": "watch",
+          "stage": 2,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-watch-laptop\\stage-2-watch.pt",
+          "sha256": "d9569810fedfb7d02acc9f6a15316ff5f01dd00bdffe648739a90728e3ce2242",
+          "before_sha256": "c6ea848d668ef4318e2ad4246d5afe335496f0a2334757559c9a260e01c480b8",
+          "after_sha256": "080f1c0953f8636220b7077eab1d0e40f01375aad778400bc84b561a7dc301d3",
+          "fit_seconds": 0.05373909999980242
+        },
+        {
+          "word": "laptop",
+          "stage": 3,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\camera-watch-laptop\\stage-3-laptop.pt",
+          "sha256": "67b0134280360d368477a269a32445a41aa009c49a0e9cad1b9055aecb3ad669",
+          "before_sha256": "080f1c0953f8636220b7077eab1d0e40f01375aad778400bc84b561a7dc301d3",
+          "after_sha256": "7172a8b4c6ebe57be7b91d09dd4d4d59351410d5e49bb96aaab1a4e05f3c8929",
+          "fit_seconds": 0.055745699999988574
+        }
+      ],
+      "exact_rollback": true
+    },
+    {
+      "order": [
+        "laptop",
+        "camera",
+        "watch"
+      ],
+      "stages": [
+        {
+          "word": "laptop",
+          "stage": 1,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-camera-watch\\stage-1-laptop.pt",
+          "sha256": "9b306a2181e085634320010246a6d8c429b8c3d0f437ef32dace444a32f66c7a",
+          "before_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+          "after_sha256": "8ed3b7aa465423b26eccffc9df77ebc755a567308deca656e91df0b63deb6bef",
+          "fit_seconds": 0.04897630000004938
+        },
+        {
+          "word": "camera",
+          "stage": 2,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-camera-watch\\stage-2-camera.pt",
+          "sha256": "64ced6a95ca173eb35a8dc47bec55bf3795f44c05b713edd8e74df4a568da75d",
+          "before_sha256": "8ed3b7aa465423b26eccffc9df77ebc755a567308deca656e91df0b63deb6bef",
+          "after_sha256": "4159089055c864143d61d30dcf8640bc041d6c8931a3c8d00806e00cefe5c78e",
+          "fit_seconds": 0.05393920000005892
+        },
+        {
+          "word": "watch",
+          "stage": 3,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-camera-watch\\stage-3-watch.pt",
+          "sha256": "3a05063a9bbbed0e1b5f63c3dba84f7893deee445c8d10a049648d493259bed6",
+          "before_sha256": "4159089055c864143d61d30dcf8640bc041d6c8931a3c8d00806e00cefe5c78e",
+          "after_sha256": "aff1cd851fb2d645b17016e7d061e1e3c0add72dd9bd57b4f0bd8d75d4380596",
+          "fit_seconds": 0.04844219999995403
+        }
+      ],
+      "exact_rollback": true
+    },
+    {
+      "order": [
+        "laptop",
+        "watch",
+        "camera"
+      ],
+      "stages": [
+        {
+          "word": "laptop",
+          "stage": 1,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-watch-camera\\stage-1-laptop.pt",
+          "sha256": "a97ca780842ebc093e6e44843705f7c22c92bf8ff984afef145afacd64c2c6ae",
+          "before_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+          "after_sha256": "8ed3b7aa465423b26eccffc9df77ebc755a567308deca656e91df0b63deb6bef",
+          "fit_seconds": 0.04832989999977144
+        },
+        {
+          "word": "watch",
+          "stage": 2,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-watch-camera\\stage-2-watch.pt",
+          "sha256": "d33fd13149a5b681ac55100e8085c43d6d7b941cb57a4f5f62454b39559b2250",
+          "before_sha256": "8ed3b7aa465423b26eccffc9df77ebc755a567308deca656e91df0b63deb6bef",
+          "after_sha256": "02cc5365cb5a2f4450e4b4d18b70cd84f7616bc1833ff5c560f945bc4b38cf57",
+          "fit_seconds": 0.05009470000004512
+        },
+        {
+          "word": "camera",
+          "stage": 3,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\laptop-watch-camera\\stage-3-camera.pt",
+          "sha256": "866d8f2e7182d103362996a0dc477f4a8128ac021f526b3ef13cf17bb5f27e7b",
+          "before_sha256": "02cc5365cb5a2f4450e4b4d18b70cd84f7616bc1833ff5c560f945bc4b38cf57",
+          "after_sha256": "be14500e31a6e9bc086af51c2937b7f4b83ca69a36432e3c233b9cfa15682aaa",
+          "fit_seconds": 0.04563389999975698
+        }
+      ],
+      "exact_rollback": true
+    },
+    {
+      "order": [
+        "watch",
+        "camera",
+        "laptop"
+      ],
+      "stages": [
+        {
+          "word": "watch",
+          "stage": 1,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-camera-laptop\\stage-1-watch.pt",
+          "sha256": "4f3983bd869c4e662834bab88f8bc2988667c0aff09ca74de58cc0adde523a4a",
+          "before_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+          "after_sha256": "156f09896c6ed308c37e1de02047118add8d3e94eeda5cfc25cc7b797e78cfd0",
+          "fit_seconds": 0.04817620000039824
+        },
+        {
+          "word": "camera",
+          "stage": 2,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-camera-laptop\\stage-2-camera.pt",
+          "sha256": "813c53fb78f504610470beba5c4bf471d211d24e15f209416d39db3fa98f520f",
+          "before_sha256": "156f09896c6ed308c37e1de02047118add8d3e94eeda5cfc25cc7b797e78cfd0",
+          "after_sha256": "3e1ccbed04c6e0e91cdcd7a66ae805295b96fdfeb10a258e2bdf4ec7f6cd375b",
+          "fit_seconds": 0.048632699999870965
+        },
+        {
+          "word": "laptop",
+          "stage": 3,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-camera-laptop\\stage-3-laptop.pt",
+          "sha256": "26baf5e6583e772a332d16eb197935ab1c3bcb3349edf29455b72207e4d64a5d",
+          "before_sha256": "3e1ccbed04c6e0e91cdcd7a66ae805295b96fdfeb10a258e2bdf4ec7f6cd375b",
+          "after_sha256": "ef1b8c4865ce55506335d42bd325e4769a18045ac0bd99908cee0ed59c0e2ce3",
+          "fit_seconds": 0.0513492000000042
+        }
+      ],
+      "exact_rollback": true
+    },
+    {
+      "order": [
+        "watch",
+        "laptop",
+        "camera"
+      ],
+      "stages": [
+        {
+          "word": "watch",
+          "stage": 1,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-laptop-camera\\stage-1-watch.pt",
+          "sha256": "b9a392a2bfc17401e7a4c5b1b8547cb7f9b3c339dcf881fd1a38a6f89bdf2985",
+          "before_sha256": "a6a26286c86d06113e36cef99b622cdcf7b351271945a5d1713827381e490bd1",
+          "after_sha256": "156f09896c6ed308c37e1de02047118add8d3e94eeda5cfc25cc7b797e78cfd0",
+          "fit_seconds": 0.048945200000162004
+        },
+        {
+          "word": "laptop",
+          "stage": 2,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-laptop-camera\\stage-2-laptop.pt",
+          "sha256": "790c804469b1a8819c97a77428ade86c57b9def783cf7e4b4be7a5a837a61eb5",
+          "before_sha256": "156f09896c6ed308c37e1de02047118add8d3e94eeda5cfc25cc7b797e78cfd0",
+          "after_sha256": "5871c3526ed8f523496c5729fb8a8595866cf2f0fb98c0252abfae5b808f28e7",
+          "fit_seconds": 0.04899310000018886
+        },
+        {
+          "word": "camera",
+          "stage": 3,
+          "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\sequential\\watch-laptop-camera\\stage-3-camera.pt",
+          "sha256": "a98d05a0e432ce4fa7266f588d3e61f7b977012bee2bd177f3442c946adb0d75",
+          "before_sha256": "5871c3526ed8f523496c5729fb8a8595866cf2f0fb98c0252abfae5b808f28e7",
+          "after_sha256": "36d39d26008ceb2b65c606231fba6c37f36dc9f69aebdb4d2f351a64fe6c45ca",
+          "fit_seconds": 0.04893020000008619
+        }
+      ],
+      "exact_rollback": true
+    }
+  ],
+  "final_photos": 48,
+  "final_object_questions": 624,
+  "final_text_questions": 24,
+  "outputs": {
+    "report": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\visionpatch\\study-v2\\final.json",
+    "features": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\artifacts\\visionpatch\\study-v2\\final-features.pt"
+  },
+  "stopping_condition": "One sealed 648-question inference dataset; score independent and all 18 already-fitted sequential states; no optimization",
+  "review_policy": "Automated source-label, exact-content, rendering and schema audit; no independent human label review"
+}

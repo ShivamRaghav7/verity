@@ -7,7 +7,10 @@ RUN pip install --no-cache-dir torch==2.9.0 --index-url https://download.pytorch
 COPY visionpatch ./visionpatch
 COPY reports/visionpatch ./reports/visionpatch
 COPY output/visionpatch/figures ./output/visionpatch/figures
-RUN useradd --create-home --uid 10001 appuser
+COPY output/visionpatch/study-v2 ./output/visionpatch/study-v2
+RUN useradd --create-home --uid 10001 appuser \
+    && mkdir -p /app/runtime/visionpatch/workbench \
+    && chown -R appuser:appuser /app/runtime
 USER appuser
 EXPOSE 8002
 CMD ["python", "-m", "uvicorn", "visionpatch.app:app", "--host", "0.0.0.0", "--port", "8002", "--workers", "1"]

@@ -8,3 +8,4 @@ artifacts
 data/generated
 data/pilots
 __pycache__
+tmp

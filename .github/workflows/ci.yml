@@ -16,6 +16,7 @@ jobs:
           node-version: '22'
       - run: node --check editguard/static/app.js
       - run: node --check visionpatch/static/app.js
+      - run: node --check visionpatch/static/workbench.js
   optimizer-resume:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -32,6 +33,7 @@ jobs:
       - run: pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cpu
       - run: python -m unittest tests.test_trainer tests.test_answer_objective tests.test_scope_training_inputs -v
       - run: python -m unittest tests.test_visionpatch_editor tests.test_visionpatch_data tests.test_visionpatch_metrics tests.test_visionpatch_api tests.test_visionpatch_finalization -v
+      - run: python -m unittest tests.test_visionpatch_registry tests.test_visionpatch_study_data tests.test_visionpatch_study tests.test_visionpatch_workbench tests.test_visionpatch_restore -v
   deployment-smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -65,7 +67,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: docker build --file Dockerfile.visionpatch --tag visionpatch:ci .
       - run: docker run --detach --name visionpatch-ci --publish 127.0.0.1:8002:8002 visionpatch:ci
-      - run: python -c "import time,urllib.request; time.sleep(5); response=urllib.request.urlopen('http://127.0.0.1:8002/docs',timeout=30); assert response.status==200"
+      - run: python -c "import time,urllib.request; time.sleep(5); paths=['/docs','/workbench','/static/workbench.js','/api/workbench/figures/selectivity.png','/api/workbench/figures/interference.png','/api/workbench/figures/paired_uncertainty.png']; responses=[urllib.request.urlopen('http://127.0.0.1:8002'+path,timeout=30) for path in paths]; assert all(response.status==200 for response in responses)"
+      - run: docker exec visionpatch-ci python -c "from pathlib import Path; p=Path('/app/runtime/visionpatch/workbench/ci-write-check'); p.write_text('writable persistent mount target'); assert p.read_text()=='writable persistent mount target'"
       - run: docker logs visionpatch-ci || true
         if: always()
       - run: docker stop visionpatch-ci || true

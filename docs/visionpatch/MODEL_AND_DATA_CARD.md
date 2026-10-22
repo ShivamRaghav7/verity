@@ -1,5 +1,39 @@
 # Model and dataset record
 
+## V2 extension
+
+The backbone and eight object candidates below are unchanged. V2 adds three
+independent edit intents (`camera`, `laptop`, `watch`), each fitted from four
+training-support pairs. Text-protected editing uses second-moment retention from
+64 clean photos plus 32 controlled word cards. A fixed validation grid selects
+one protection weight and one fine-tuning rate globally. The object-only ablation
+and task-aware privileged masking control are also reported. All six sequential
+orders use parent-bound fits before final scoring.
+
+V2 has 80 training originals reused from V1 support/retention, 32 fresh validation
+and 48 fresh final originals. Validation/final exclude all 224 V1 originals by
+exact hash and identifier. Training/validation/final fonts and text-card template
+groups differ. Final photo overlays use two positions; 96 target questions share
+48 underlying photos. The 24 text cards cover eight words across three templates,
+not 24 independent semantic concepts. Labels have automated audits and no
+independent human review. Near-duplicate/physical-object overlap and pretraining
+contamination remain unknown.
+
+The frozen V2 study reports target repair, genuine-object accuracy, text
+preservation, other-word collateral errors, grouped uncertainty and sequential
+interference. Protection preserved the watch edit's text answers but reduced
+laptop repair relative to object-only editing. It does not establish general
+locality or superiority to fine-tuning. See [RESULTS_V2.md](RESULTS_V2.md),
+[STUDY_V2.md](STUDY_V2.md) and the exact committed manifests in
+`data/manifests/visionpatch`.
+
+The interactive studio fits **one** supplied pair and maintains its own persistent
+registry. Its previews evaluate development references and do not inherit the
+formal four-pair study's final accuracy. Approved patches alter actual projection
+parameters; user-supplied expected labels do not enter recognition requests.
+
+The remainder records the preserved V1 experiment.
+
 ## Model
 
 - Backbone: `openai/clip-vit-base-patch32`.

@@ -1,0 +1,1188 @@
+{
+  "dataset_id": "visualpatch-caltech101-development-v1",
+  "purpose": "development_feasibility_only",
+  "final_test": false,
+  "source": {
+    "record": "https://data.caltech.edu/records/mzrjq-6wc02",
+    "archive_md5": "3138e1922a9193bfa496528edbbc45d0",
+    "archive_sha256": "331234750fc7f77520e50d9565e8b6907b03565e30320da1401130db08c61f91",
+    "license": "CC-BY-4.0",
+    "authors": "Li, Andreeto, Ranzato, Perona",
+    "doi": "10.22002/D1.20086"
+  },
+  "sampling": "First distinct images sorted by SHA256 within fixed classes; no model-based filtering",
+  "classes": {
+    "airplanes": "airplane",
+    "camera": "camera",
+    "cup": "cup",
+    "elephant": "elephant",
+    "grand_piano": "grand piano",
+    "laptop": "laptop",
+    "watch": "watch",
+    "cellphone": "cell phone"
+  },
+  "per_class_counts": {
+    "support": 2,
+    "retention": 8,
+    "probe": 8
+  },
+  "label_review": "Original dataset labels; no independent human-review claim",
+  "limitations": [
+    "Exact-byte deduplication only; near-duplicate and physical-object grouping not yet audited",
+    "Public pretrained model may have seen source images; no pretraining-contamination claim"
+  ],
+  "images": [
+    {
+      "image_id": "airplanes/image_0476.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "support",
+      "sha256": "0095103e36453417e41e0fa013314d1e5fe73bac7dd9283fd6f301d264114072",
+      "path": "images/airplanes/image_0476.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0776.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "support",
+      "sha256": "01990ea20bc35f83d7b682eeeb69f2f72247c0c55b7c9b1539eab2b313760094",
+      "path": "images/airplanes/image_0776.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0406.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "0247b19829676180e3dd597ef93959da9fff2d3fdf4cdfee816ad135a2c47110",
+      "path": "images/airplanes/image_0406.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0467.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "02499ebdef4c149cbe27d0f326ec11125561b6b6654a5662dbb6388877e9edde",
+      "path": "images/airplanes/image_0467.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0028.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "0271f1207c5147d5819afb33771b7029df60455a3102fadb8c47803a61ff1ca1",
+      "path": "images/airplanes/image_0028.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0715.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "03a76aa0133d5ab7d4f6f4a1e65d1d5b9f5e92d6cdf50a9f8ddfd2b09e92a99a",
+      "path": "images/airplanes/image_0715.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0770.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "03f6394f4e2e8236a449d53c4b255ef20720bee818765f9ad574d681f309bc36",
+      "path": "images/airplanes/image_0770.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0348.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "03fe920e48b81553c3fbd6a1d3e89a1e8332697d96a48bc2e807f89169ebbfdb",
+      "path": "images/airplanes/image_0348.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0332.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "044810b48f7e96558dfd8f9aae237b055bc00e7e0b807c1f66248ea9f0b09514",
+      "path": "images/airplanes/image_0332.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0680.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "retention",
+      "sha256": "046c8b64d87ed9decdf0dea8b3237e79f3018be9675a64ad0ae4a36ba554ca18",
+      "path": "images/airplanes/image_0680.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0357.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "0474ec91e5328cd02c2eef66cedf360f48503b4ffb11fc9579953efc2c4bb963",
+      "path": "images/airplanes/image_0357.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0730.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "047b3e2867d984c46c71e18e8802309855456f219552d96adf2c5701008c80b7",
+      "path": "images/airplanes/image_0730.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0789.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "04c66faa8e028bf943db12609a309a11f2cfe01ab4c2bd4c158fb642edc3da57",
+      "path": "images/airplanes/image_0789.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0115.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "04f16cc0393fdee18fbd0074b22d8d48da6fbc890f7668f18d6a64e7499efb73",
+      "path": "images/airplanes/image_0115.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0754.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "0527fadf1eea6e55599524fc0410e6c97c6577fdd3e69a6d3851bf42a54940cd",
+      "path": "images/airplanes/image_0754.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0449.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "057641c210c1696edb3102c19f44748793e2cef5842b39b2f8630e2795e1a7fc",
+      "path": "images/airplanes/image_0449.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0249.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "05863f1c909985c07dcee9e275bcb21d707e800ddceb5346ea212f763bbff6d2",
+      "path": "images/airplanes/image_0249.jpg"
+    },
+    {
+      "image_id": "airplanes/image_0272.jpg",
+      "class_id": "airplanes",
+      "label": "airplane",
+      "split": "probe",
+      "sha256": "069ad31cf3bd0743468e0b34fb560fd50f86090e04945c8dee31c79396b2f8f7",
+      "path": "images/airplanes/image_0272.jpg"
+    },
+    {
+      "image_id": "camera/image_0007.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "support",
+      "sha256": "036460bed601d1f8999aefcc29d6c1b8ac65972583e7ff73756468535596d4d3",
+      "path": "images/camera/image_0007.jpg"
+    },
+    {
+      "image_id": "camera/image_0050.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "support",
+      "sha256": "0719fae44f7c4ab3d0cc1f70de5b0f5cda330744680be27866c8882771a2fdf6",
+      "path": "images/camera/image_0050.jpg"
+    },
+    {
+      "image_id": "camera/image_0029.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "072907738c66ab8591e7fc9fb8cd1c853ba316abcac7d9caf3f0d2e00a4eff99",
+      "path": "images/camera/image_0029.jpg"
+    },
+    {
+      "image_id": "camera/image_0016.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "1798ab6ba0f687d8a8c11ac2ac6b3f7ef7d969bc8d28efc2c437980225d58042",
+      "path": "images/camera/image_0016.jpg"
+    },
+    {
+      "image_id": "camera/image_0023.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "18dfcc72628a21d3f3e26b545ee8f570c22beea85651dbc97c7b6b8368f3e29d",
+      "path": "images/camera/image_0023.jpg"
+    },
+    {
+      "image_id": "camera/image_0028.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "1c31a1f9cb96245b18c410b73e2f8e3ed9b7f647262852de7f3d49a64fc928c9",
+      "path": "images/camera/image_0028.jpg"
+    },
+    {
+      "image_id": "camera/image_0031.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "201ab190ef133b5aa3e332491aa10832e9bda12175582bceb78631ef992e6543",
+      "path": "images/camera/image_0031.jpg"
+    },
+    {
+      "image_id": "camera/image_0012.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "226757b6bf0169a2bacdf515dc0eb0bb469c7fba6c5f3c0a24d6533cb4060cdb",
+      "path": "images/camera/image_0012.jpg"
+    },
+    {
+      "image_id": "camera/image_0037.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "29c837d846d99a64a59670067ab527c72e90cf2832bf372a8b956798c20379fb",
+      "path": "images/camera/image_0037.jpg"
+    },
+    {
+      "image_id": "camera/image_0009.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "retention",
+      "sha256": "2d401b7aaa4aaccc5e8a6037a020e1c3b8283680ff1167fdac3c87d36d5b6aa6",
+      "path": "images/camera/image_0009.jpg"
+    },
+    {
+      "image_id": "camera/image_0034.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "2e2afe2dc5a94df6be1aee278954c3ee2d84a81e6ba9b7c4dc99a831c02d8f62",
+      "path": "images/camera/image_0034.jpg"
+    },
+    {
+      "image_id": "camera/image_0032.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "38e346adf78fd34dcd848b66adc620a7a9071b2593d2c7906b70bdfc271c6518",
+      "path": "images/camera/image_0032.jpg"
+    },
+    {
+      "image_id": "camera/image_0030.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "431c1d253051b6a3870e5fc1cc42f08e4f941323336feb9ea6cf56ce3c1eb2b2",
+      "path": "images/camera/image_0030.jpg"
+    },
+    {
+      "image_id": "camera/image_0043.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "4655f7443c7546d709f939f3e310b6e43381e3ada891a9da8d9a04be97b15501",
+      "path": "images/camera/image_0043.jpg"
+    },
+    {
+      "image_id": "camera/image_0017.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "558ae85a7a103cbe3c516d0e3fe23442036798440880c945d41935a6a105e4a8",
+      "path": "images/camera/image_0017.jpg"
+    },
+    {
+      "image_id": "camera/image_0048.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "55d180de6379171c37df7037f9a4a2a1293c34347ad2f72bcf18215ded8d8bf2",
+      "path": "images/camera/image_0048.jpg"
+    },
+    {
+      "image_id": "camera/image_0038.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "591148352970e1d40346611d970d32effba31143df59b2c95ace25f3d861abcb",
+      "path": "images/camera/image_0038.jpg"
+    },
+    {
+      "image_id": "camera/image_0036.jpg",
+      "class_id": "camera",
+      "label": "camera",
+      "split": "probe",
+      "sha256": "5ea625f8456da6c54b16a015feae599106ae4582ae4c64064793ad8201ff933b",
+      "path": "images/camera/image_0036.jpg"
+    },
+    {
+      "image_id": "cup/image_0005.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "support",
+      "sha256": "001927a3e77912ca65626a9d1949f23287504135210024ba600a7b40a21732ca",
+      "path": "images/cup/image_0005.jpg"
+    },
+    {
+      "image_id": "cup/image_0011.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "support",
+      "sha256": "068bb1a24b198245bbfd97b4b5741330c39089268e84a3000a44b147205fcc2e",
+      "path": "images/cup/image_0011.jpg"
+    },
+    {
+      "image_id": "cup/image_0030.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "095eda35bf56b033a39718d36b427de55379b9df801207835f90bbedf08ba143",
+      "path": "images/cup/image_0030.jpg"
+    },
+    {
+      "image_id": "cup/image_0003.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "130a303afd130d574619ed787a254485210f761710a0c3531514c0d3b2c71c6b",
+      "path": "images/cup/image_0003.jpg"
+    },
+    {
+      "image_id": "cup/image_0017.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "1394a516e565f75c00cb413827257bf1b3c65a36b71196f7ca3e390b7dfc3bde",
+      "path": "images/cup/image_0017.jpg"
+    },
+    {
+      "image_id": "cup/image_0021.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "1421b62b1128623803ed69e88468bb0e63e9d2611e24c4e10364c2b77ccbb2ed",
+      "path": "images/cup/image_0021.jpg"
+    },
+    {
+      "image_id": "cup/image_0014.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "15028efe2f63c0be968494d4e78d2873c99a6742f7897148fc8900d2b90898b0",
+      "path": "images/cup/image_0014.jpg"
+    },
+    {
+      "image_id": "cup/image_0031.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "15c7bbf3900f31c3d005e9ead8523cb6011ce62236532172d01d82c23b0df462",
+      "path": "images/cup/image_0031.jpg"
+    },
+    {
+      "image_id": "cup/image_0048.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "190bcd3003ff42f9c3dd2c272c03be1dec80414b797bfa14d980f45a6b157439",
+      "path": "images/cup/image_0048.jpg"
+    },
+    {
+      "image_id": "cup/image_0053.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "retention",
+      "sha256": "1ab6dd1ef12e42e1bc4d18f76deebe5f4a791c550eeac1a788e8cf592c111cc4",
+      "path": "images/cup/image_0053.jpg"
+    },
+    {
+      "image_id": "cup/image_0010.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "23077bc563165c40a36dc665ec178f1afd15a5dc783501d0359bd0c5fbc80508",
+      "path": "images/cup/image_0010.jpg"
+    },
+    {
+      "image_id": "cup/image_0024.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "2c8d4e1a2dea28b6dd5ac0a2a37513d319097ed8fde310fec7f6b9304d0de44f",
+      "path": "images/cup/image_0024.jpg"
+    },
+    {
+      "image_id": "cup/image_0015.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "2fe053039038b0e271a440ef0adcc2aaa661e106e4a66a2db1d5f688c7f98f33",
+      "path": "images/cup/image_0015.jpg"
+    },
+    {
+      "image_id": "cup/image_0026.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "3843d6732edf762b58ed2894b0cb1990b3ecce305b6fc9ad7a1b73fe54cbd8a1",
+      "path": "images/cup/image_0026.jpg"
+    },
+    {
+      "image_id": "cup/image_0008.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "38b77ce7c8fb37610e1462492638b784e3fa3c3511b9a090659e81896a5d8d4c",
+      "path": "images/cup/image_0008.jpg"
+    },
+    {
+      "image_id": "cup/image_0035.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "3a39c2f2b21f54f5aa1e81f966bc02bfc23878ea15bcc4771c741dc0f12e038e",
+      "path": "images/cup/image_0035.jpg"
+    },
+    {
+      "image_id": "cup/image_0002.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "402aafb008497a2c8b4c6300d9212a53687d4850cf88304695cbb9c1a38095ed",
+      "path": "images/cup/image_0002.jpg"
+    },
+    {
+      "image_id": "cup/image_0007.jpg",
+      "class_id": "cup",
+      "label": "cup",
+      "split": "probe",
+      "sha256": "44d59e73151a402d5ca26e3c63e7b293b3d7dbd140283dca0890d6f249315934",
+      "path": "images/cup/image_0007.jpg"
+    },
+    {
+      "image_id": "elephant/image_0038.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "support",
+      "sha256": "008cba328b59d5b2f093aa9e97fbd8b458d0d07f90a01cdee15b40bc9c506aea",
+      "path": "images/elephant/image_0038.jpg"
+    },
+    {
+      "image_id": "elephant/image_0007.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "support",
+      "sha256": "03bcf3440a2330bb016d4e92b86953f40c1dfa219338fea392b9a48e865bc21b",
+      "path": "images/elephant/image_0007.jpg"
+    },
+    {
+      "image_id": "elephant/image_0042.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "06fd62bd6bee4fdd4a3d1b79f1ea28863917780e9686179bd270acd2b6355b8b",
+      "path": "images/elephant/image_0042.jpg"
+    },
+    {
+      "image_id": "elephant/image_0034.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "0a9e558b421624180776d1545ec9eb3f54b7ff6795a31636b59bf316d64f3e9e",
+      "path": "images/elephant/image_0034.jpg"
+    },
+    {
+      "image_id": "elephant/image_0055.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "0bbc5693de6414ac2dbb346249eb557fd420bf57f69823bc5a8dff527a15c6cf",
+      "path": "images/elephant/image_0055.jpg"
+    },
+    {
+      "image_id": "elephant/image_0004.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "0cabf708d84cbc0a18cc9d5f14b6aa341f6c26391273446231ac78b47d86794e",
+      "path": "images/elephant/image_0004.jpg"
+    },
+    {
+      "image_id": "elephant/image_0051.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "121337402159613a36da7a58ea48e8168737555f0fba49789edb0129583ad0ba",
+      "path": "images/elephant/image_0051.jpg"
+    },
+    {
+      "image_id": "elephant/image_0027.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "12e1b134212c9aa00ca7894a122da3cf354fba9955eb3a8322d7004bb66ab436",
+      "path": "images/elephant/image_0027.jpg"
+    },
+    {
+      "image_id": "elephant/image_0054.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "16a4387093307ef3db3437e64f8b06cd83b321e505ffc086a0380a51823535b3",
+      "path": "images/elephant/image_0054.jpg"
+    },
+    {
+      "image_id": "elephant/image_0049.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "retention",
+      "sha256": "1cd0c43e5f07c2bc7f41e368f6f11168141ce1b2c068e3e8a201f7402e25017a",
+      "path": "images/elephant/image_0049.jpg"
+    },
+    {
+      "image_id": "elephant/image_0015.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "218a096e4ddf84212a4ccf8b2a68faf9b17e59899c77b189383cb8e83742a317",
+      "path": "images/elephant/image_0015.jpg"
+    },
+    {
+      "image_id": "elephant/image_0059.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "2306aa269090d6d651f33279c041393f3ee6c8807787b15137341561585d1f69",
+      "path": "images/elephant/image_0059.jpg"
+    },
+    {
+      "image_id": "elephant/image_0005.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "2425158a146e1225457bd5829624472525055d29cf4cd0893390ca67d7168afa",
+      "path": "images/elephant/image_0005.jpg"
+    },
+    {
+      "image_id": "elephant/image_0021.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "2524ab00b4fd5e5bf58d7f2a71abef56ecd3748cbeec843456790f1df37bbda1",
+      "path": "images/elephant/image_0021.jpg"
+    },
+    {
+      "image_id": "elephant/image_0041.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "29661462d79e792cef04a6020c07a59be3abbdd2409edec7a350d40c19d8ad3a",
+      "path": "images/elephant/image_0041.jpg"
+    },
+    {
+      "image_id": "elephant/image_0040.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "2a035a4e479f971ada0e37f6d57d37e1d8038f0356d72a3d69420f3ff7cf9f20",
+      "path": "images/elephant/image_0040.jpg"
+    },
+    {
+      "image_id": "elephant/image_0019.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "3091f7efae4e17cce40bcbc59e7be8d4227668fe213c55d508a7b4849ab2ddbe",
+      "path": "images/elephant/image_0019.jpg"
+    },
+    {
+      "image_id": "elephant/image_0048.jpg",
+      "class_id": "elephant",
+      "label": "elephant",
+      "split": "probe",
+      "sha256": "317bb91284ef6dd368f4d07bcafeb2fe683d27c4f88fd705b48f7f9137d2da9e",
+      "path": "images/elephant/image_0048.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0069.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "support",
+      "sha256": "00ddb4a68d078b8e7a305cbb61ca69b89cf688649b1dfd97e13927fe45787151",
+      "path": "images/grand_piano/image_0069.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0067.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "support",
+      "sha256": "03b4b16f5b9df5225546118e02c2f0dd33b6843ce6b22b70bcb36e948a260ca9",
+      "path": "images/grand_piano/image_0067.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0045.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "0aeeca1cfab85e742f20b2cc9d8dd4deacee6aebbc6eb7da455162384366f0e6",
+      "path": "images/grand_piano/image_0045.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0010.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "0c2744b5c7e7cd181e3fe12a8cb761fad5ceea22d7a438294b4a3b0d196e8ab9",
+      "path": "images/grand_piano/image_0010.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0002.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "0cf7eaa08d7804539cbb109bb673ffc9c445de8cb0381a22c978648240372ae8",
+      "path": "images/grand_piano/image_0002.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0068.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "12eb4cf11c1e56e5aba28bd8acc3d9406ba343ca46f946568855641017dccf23",
+      "path": "images/grand_piano/image_0068.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0018.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "1479bde41f2118a5221273e9086c999d8558322834bf0669d9f297efc7579433",
+      "path": "images/grand_piano/image_0018.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0047.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "160af2ef76690274d316be8e0e99ceb665cfa2272d4144f61df426b2fe9795bb",
+      "path": "images/grand_piano/image_0047.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0044.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "1639dfedd799ab4aba39a9f96f1a2e2cfcb0be678c42f6b9d5a0d1868e61ceb3",
+      "path": "images/grand_piano/image_0044.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0064.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "retention",
+      "sha256": "171a366646ea4a4a9bcde508b4d6cb10d5431065825bcb38f404ffa7352a9b71",
+      "path": "images/grand_piano/image_0064.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0033.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "1a0f6e1329e5d882903e33bf5bf10d898413d374faaa96c9ad0c3b97665c8b1e",
+      "path": "images/grand_piano/image_0033.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0066.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "1ac2eb0308f825b4ed8c8dd23b213a806b738bd50d149e931837c06b7b7f4aec",
+      "path": "images/grand_piano/image_0066.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0093.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "1bc65e8d95979e284dcfd5e430a54c43bc3930559ff6eba1d72015a503164500",
+      "path": "images/grand_piano/image_0093.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0099.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "1bc859930661df565401e1d30cf97c8025204f94cad0b946954f3b1debc6226e",
+      "path": "images/grand_piano/image_0099.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0046.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "1e795e5a8e458be12a1c242f86afebd387cfa18410ee3f2734ef3787c3686d9a",
+      "path": "images/grand_piano/image_0046.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0056.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "1ff3849d5d2b4c1bfd04a4853b037ceebeaf12cdab476415f60bfa1ece1b6726",
+      "path": "images/grand_piano/image_0056.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0059.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "214f74ea8924e51990678fd3407b6a378299f876d454aebe3ea790428c671289",
+      "path": "images/grand_piano/image_0059.jpg"
+    },
+    {
+      "image_id": "grand_piano/image_0001.jpg",
+      "class_id": "grand_piano",
+      "label": "grand piano",
+      "split": "probe",
+      "sha256": "21dcea06bee85ba169634130dfe5b0efc8b44f05decea440ce159df274a0ee3a",
+      "path": "images/grand_piano/image_0001.jpg"
+    },
+    {
+      "image_id": "laptop/image_0036.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "support",
+      "sha256": "014fb3d5c4ea13dfb9576cc5e228ee33ff4a3738a0a33843c3b45b932337f4be",
+      "path": "images/laptop/image_0036.jpg"
+    },
+    {
+      "image_id": "laptop/image_0057.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "support",
+      "sha256": "020fa73014bfce77fc18d4c832e5355c2ee3a52d3d5771dba6ec1da4498a7c4a",
+      "path": "images/laptop/image_0057.jpg"
+    },
+    {
+      "image_id": "laptop/image_0068.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "05f066146d2f2ec7714939413e5f89798d37f226d06a6a968f1aff94c3377e10",
+      "path": "images/laptop/image_0068.jpg"
+    },
+    {
+      "image_id": "laptop/image_0049.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "07e0da9ad287479a1c7499bce8a7628fbc8435c84eae4e40284d5f5fcb4f8dd1",
+      "path": "images/laptop/image_0049.jpg"
+    },
+    {
+      "image_id": "laptop/image_0008.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "135716edbb11da52c4a7d1a25fb1b1462e7e242952eb385c608b67b34b4b7422",
+      "path": "images/laptop/image_0008.jpg"
+    },
+    {
+      "image_id": "laptop/image_0038.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "14a989a113382790c19c0d5a0e4f9acc8a18027c65cfac00622133177d58f06a",
+      "path": "images/laptop/image_0038.jpg"
+    },
+    {
+      "image_id": "laptop/image_0054.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "157ba4caa5438285f15a5e5ceeba9c8c62cecd1f20cc42df196e5b39196a23ba",
+      "path": "images/laptop/image_0054.jpg"
+    },
+    {
+      "image_id": "laptop/image_0001.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "17bac0bd8704e8b195d8a593fc7f6e5b97a9747b42d316748ceaf8a3a5b49d42",
+      "path": "images/laptop/image_0001.jpg"
+    },
+    {
+      "image_id": "laptop/image_0035.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "1a688f926b4f9981f3221d50bdefdbce4f79131d2f5a0e4d739e22ab604617d3",
+      "path": "images/laptop/image_0035.jpg"
+    },
+    {
+      "image_id": "laptop/image_0014.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "retention",
+      "sha256": "1a79b8fc5990989d0eccc6ad6ca049f47550aa856c06d28aec8f8170809239b5",
+      "path": "images/laptop/image_0014.jpg"
+    },
+    {
+      "image_id": "laptop/image_0015.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "1fd26ada5ac07710b7e3f4b5ed973772680ff4ce947fba318a9b55513deff1e2",
+      "path": "images/laptop/image_0015.jpg"
+    },
+    {
+      "image_id": "laptop/image_0080.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "2444e407e6aee01d7dc283618c3d49ec00407c1a4d56a794827c53ba703ab6f8",
+      "path": "images/laptop/image_0080.jpg"
+    },
+    {
+      "image_id": "laptop/image_0010.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "2446dc527af28231365e2686e40bb2fc7569b7b03842d2765d86cc50f46b777b",
+      "path": "images/laptop/image_0010.jpg"
+    },
+    {
+      "image_id": "laptop/image_0034.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "2a2a8088fdf4f5bdc2d3c7609e41b3de50376060ec160158c66409e53c33e318",
+      "path": "images/laptop/image_0034.jpg"
+    },
+    {
+      "image_id": "laptop/image_0023.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "2d12b146f9563cde986886fc70cd27c0b551b876a94bf03847c5b12ffc7509a7",
+      "path": "images/laptop/image_0023.jpg"
+    },
+    {
+      "image_id": "laptop/image_0017.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "2d3f8f3a759e250eca597724f282b373c75e0b520585932ad3d12e93481ef253",
+      "path": "images/laptop/image_0017.jpg"
+    },
+    {
+      "image_id": "laptop/image_0033.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "3460def8b3c2fa5acfe7458f87f5d0e23faea9e49c09d6d31c57bad14d263a46",
+      "path": "images/laptop/image_0033.jpg"
+    },
+    {
+      "image_id": "laptop/image_0007.jpg",
+      "class_id": "laptop",
+      "label": "laptop",
+      "split": "probe",
+      "sha256": "353875cc3d9dbcd7d9a0010b15bfe38577dde688816ec39da601d9f929cfb86e",
+      "path": "images/laptop/image_0007.jpg"
+    },
+    {
+      "image_id": "watch/image_0123.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "support",
+      "sha256": "020bebbf650c09605b1ad349372cb93fca6f71a207ae1a110a8f942b657a7ae0",
+      "path": "images/watch/image_0123.jpg"
+    },
+    {
+      "image_id": "watch/image_0136.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "support",
+      "sha256": "039a581009268b45e631e22372a269a5a40e9f1d0c3fd80d569cee0825deb4d0",
+      "path": "images/watch/image_0136.jpg"
+    },
+    {
+      "image_id": "watch/image_0156.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "045dde185a6368baba656d006df60a4096025dbcaaca1fa9d6750c995e6570fb",
+      "path": "images/watch/image_0156.jpg"
+    },
+    {
+      "image_id": "watch/image_0147.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "046a6f524c1a9d3e09a61b2df1469f08e053a35c9dae9c336833e13c0ad5944e",
+      "path": "images/watch/image_0147.jpg"
+    },
+    {
+      "image_id": "watch/image_0168.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "04a525cea38c51d6276b73ba400a6ec0c2642d6cb33ce06f8fa2445c094ece80",
+      "path": "images/watch/image_0168.jpg"
+    },
+    {
+      "image_id": "watch/image_0212.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "04e7a73c5e506cc0b169c6eb6927226bfa9f664e940bb42dc820af681fefbe82",
+      "path": "images/watch/image_0212.jpg"
+    },
+    {
+      "image_id": "watch/image_0015.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "061731d999099b29d0293f60ed8bf3fdb1ffd66db2745bb09e54fe95bbf34fb1",
+      "path": "images/watch/image_0015.jpg"
+    },
+    {
+      "image_id": "watch/image_0154.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "06459e79a47230791e71a5777efdf2f298c3b5a330b8794ca5e006bf438b8f61",
+      "path": "images/watch/image_0154.jpg"
+    },
+    {
+      "image_id": "watch/image_0115.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "071cd51d5a10713943884e6c1a7768d33695366dafa02d60ed9b4a937d17c5b3",
+      "path": "images/watch/image_0115.jpg"
+    },
+    {
+      "image_id": "watch/image_0191.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "retention",
+      "sha256": "0787fec2a3c312608bb3cbf772037e5797e6dc3f9e5ddf61212558fad7a8ab62",
+      "path": "images/watch/image_0191.jpg"
+    },
+    {
+      "image_id": "watch/image_0185.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0a001ac6c3931b810a69ed1bbb3b5bf060ddfc76e9dc6cd2339429be8d0f2007",
+      "path": "images/watch/image_0185.jpg"
+    },
+    {
+      "image_id": "watch/image_0122.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0a123f45195099563d2d6af70357168a476a4e11b0c5fc99441fffeb3bc54625",
+      "path": "images/watch/image_0122.jpg"
+    },
+    {
+      "image_id": "watch/image_0233.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0a2eedb86c835892264abe5582265d3b3b97debb47853f5be2a2261c59f1f84c",
+      "path": "images/watch/image_0233.jpg"
+    },
+    {
+      "image_id": "watch/image_0047.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0c3c8d82c72fc9207480eca6b1955c6b0cf1fe5d3d56db159f731da3694e0e49",
+      "path": "images/watch/image_0047.jpg"
+    },
+    {
+      "image_id": "watch/image_0108.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0cba87a39eb107a4d6fd56ef3c61bae3d16d45f2d172a65f776d1eecbb955d39",
+      "path": "images/watch/image_0108.jpg"
+    },
+    {
+      "image_id": "watch/image_0205.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0edb466d04a146bebce78d1c9b78bc82717d0cfc8e2f57ee8df035d95089f20b",
+      "path": "images/watch/image_0205.jpg"
+    },
+    {
+      "image_id": "watch/image_0149.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "0f49f8c2503297d29574cff787f3919e1493f18e11842818d3a3187ebc5b5f7d",
+      "path": "images/watch/image_0149.jpg"
+    },
+    {
+      "image_id": "watch/image_0172.jpg",
+      "class_id": "watch",
+      "label": "watch",
+      "split": "probe",
+      "sha256": "128bb27d8f787ad497f50c89e6c62b0d482aaa14b9970e185e712805d88857f9",
+      "path": "images/watch/image_0172.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0056.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "support",
+      "sha256": "06a35e789cb82adb82cbfc0278fb128f1a5f8e71a5966f930c2fdbeefd7cda0f",
+      "path": "images/cellphone/image_0056.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0032.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "support",
+      "sha256": "06d84a274ee80724c18a80df2b49a55803f0272bb0397b68a5b6e9d8cc32f590",
+      "path": "images/cellphone/image_0032.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0001.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "0808c5c8753bb345552f23d729fe9be6deca5ead11c14ab7a08699a6d31cb57d",
+      "path": "images/cellphone/image_0001.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0007.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "0ca38fbc7f8a823f972585c9627cb73a3b4a5626711708ec4dbf7e692b94b318",
+      "path": "images/cellphone/image_0007.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0059.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "150cc6d602667157be0b0db41e1066648fb2387f9217080c2b3f878ee141032d",
+      "path": "images/cellphone/image_0059.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0041.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "170ffb8cdd915c44823e3070c1900bd4035ad8223ac00c16ccb78f65a53e9601",
+      "path": "images/cellphone/image_0041.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0018.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "1be9735b5bef48a4b4d2ba01a5bc2b1ff45de59edff63e1b5b91548abad4afe8",
+      "path": "images/cellphone/image_0018.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0013.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "1cbda1d8924014c72f3bea8f6e173ca674a10833ce16276a00563be5e2118201",
+      "path": "images/cellphone/image_0013.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0015.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "1eb032090f01fb233fd5eb1bdd66045aea53d10fd9162eb9edfdd44707f719aa",
+      "path": "images/cellphone/image_0015.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0054.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "retention",
+      "sha256": "2150edc79af504738ddf1863750c9f5de65826c9eb1d44c325fb3ae44aff700e",
+      "path": "images/cellphone/image_0054.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0009.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "224e1acdfa72dba7ad0a1d415fae39a053879dfef535365e63ec2b48be585c96",
+      "path": "images/cellphone/image_0009.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0004.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "2a465dc4723ee29e186978eb4821b312d31949a0734222d662f8861151987cb2",
+      "path": "images/cellphone/image_0004.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0033.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "2aa59c9ece71b5cdd526b408140b82901d2a341ecde5564e08f23bc898104601",
+      "path": "images/cellphone/image_0033.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0049.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "2c62443b584264e832dc29de58637eed6c10a4236119c9950c98f8eb9e20df99",
+      "path": "images/cellphone/image_0049.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0036.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "307837e8bfbf07d3b466b2da7d7e3ee23153e85b949b1a4259a5421dc1ad8b98",
+      "path": "images/cellphone/image_0036.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0006.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "31176999b1914e47962b9d0994905b74adb12df9e0aafd4c2599d3452dffe07e",
+      "path": "images/cellphone/image_0006.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0037.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "368114b7bf663ba18515d681d049bf9bb3874b27c76fd547d69acb80369dbf47",
+      "path": "images/cellphone/image_0037.jpg"
+    },
+    {
+      "image_id": "cellphone/image_0047.jpg",
+      "class_id": "cellphone",
+      "label": "cell phone",
+      "split": "probe",
+      "sha256": "3826127b14a5a098f5b179cc4a1904a45d5915ff69f4b5cc9d1009c7f7353a87",
+      "path": "images/cellphone/image_0047.jpg"
+    }
+  ]
+}

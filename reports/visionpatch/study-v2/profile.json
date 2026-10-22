@@ -1,0 +1,129 @@
+{
+  "status": "measured_preflight_profile",
+  "created_at": "2026-10-21T16:00:59.581751+00:00",
+  "fingerprint": {
+    "config_sha256": "1224e29384535ff29d1c802ea1bed97b755413d9603ee868b54cc70a6f9a0f8b",
+    "manifest_sha256": "b609b9e526305d13e105124142e7f608bdf1e8cfa1699821f906b7d00dc7e275",
+    "model_id": "openai/clip-vit-base-patch32",
+    "model_revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+    "code": {
+      "study": "4ab16d63026c3abe89c5a97ab9560984b46e4411938e81268896dea4f3a0df1f",
+      "study_metrics": "6a2ad53dc4fd33134596d41cd18e72eaf28959dda48607014f30be9a7645d879",
+      "study_protocol": "9dc05fd33ececb684747c0b256fe58a0a79071e99619985edba7d16b65bdef47",
+      "study_data": "9db273448ddcbde1004a2565a343ca05ca64aa506bf4b26746e4a318b162989a",
+      "data": "325e0a9696339da838162aab120f4fa648f57682961f3d3b0c5a8570cf10d57e",
+      "model": "9e9c730bfbf54efba4c918f10934a5ec85dab94d0e31d397aeea935d03118555",
+      "editor": "5c1febe41d53d654e6ffa910487c17fa98169e920fe01240446aa8bd2d410087",
+      "metrics": "bd76c6a9f7c89bfbba71f43733f77e6c7bb6081ae56564578d8eaea71163abb9"
+    },
+    "fonts": {
+      "train_sans": {
+        "filename": "DejaVuSans.ttf",
+        "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+      },
+      "validation_serif": {
+        "filename": "DejaVuSerif.ttf",
+        "sha256": "107244956e9962b9e96faccdc551825e0ae0898ae13737133e1b921a2fd35ffa"
+      },
+      "final_sans_bold": {
+        "filename": "DejaVuSans-Bold.ttf",
+        "sha256": "b184b89e3c1075f22f6b71575b6fc20d4972b3cfd3b23322ca6fd596dcaef167"
+      },
+      "license": {
+        "name": "DejaVu Fonts license (Bitstream Vera derivative)",
+        "url": "https://dejavu-fonts.github.io/License.html",
+        "source": "Repository-bundled DejaVu assets copied from Matplotlib fonts/ttf"
+      }
+    },
+    "runtime_versions": {
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1",
+      "numpy": "2.4.2",
+      "Pillow": "12.3.0"
+    },
+    "device": "cuda"
+  },
+  "question": "Are this fixed encoder, three-edit grid and 25-step matched baselines practical on the measured device?",
+  "model": {
+    "id": "openai/clip-vit-base-patch32",
+    "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
+  },
+  "device": "cuda",
+  "model_load_seconds": 1.469294400000308,
+  "batch_size": 8,
+  "warmup_batches": 2,
+  "timed_encoder_batches": 3,
+  "encoder_batch_seconds": [
+    0.017465899999933754,
+    0.01703410000027361,
+    0.01705050000009578
+  ],
+  "editor_fit_seconds": 0.028925099999923987,
+  "projection_finetune_four_step_profile": {
+    "steps": 4,
+    "seconds": 0.016843700000208628,
+    "step_seconds": [
+      0.006574900000032358,
+      0.0036429000001589884,
+      0.003096599999935279,
+      0.0034153000001424516
+    ],
+    "training_log": [
+      {
+        "step": 1,
+        "support_mse": 0.057833656668663025,
+        "object_retention_mse": 0.0,
+        "text_retention_mse": 0.0,
+        "loss": 0.057833656668663025
+      },
+      {
+        "step": 2,
+        "support_mse": 0.049215469509363174,
+        "object_retention_mse": 0.000998021918348968,
+        "text_retention_mse": 0.0008624279871582985,
+        "loss": 0.05107592046260834
+      },
+      {
+        "step": 3,
+        "support_mse": 0.04411931335926056,
+        "object_retention_mse": 0.0017714869463816285,
+        "text_retention_mse": 0.0014884009724482894,
+        "loss": 0.047379203140735626
+      },
+      {
+        "step": 4,
+        "support_mse": 0.040816497057676315,
+        "object_retention_mse": 0.0020300878677517176,
+        "text_retention_mse": 0.0016614075284451246,
+        "loss": 0.04450799152255058
+      }
+    ]
+  },
+  "resources": {
+    "cpu_resident_bytes": 1024368640,
+    "process_peak_resident_bytes": 1373339648,
+    "peak_cuda_allocated_bytes": 645448704,
+    "peak_cuda_reserved_bytes": 710934528
+  },
+  "questions_by_split": {
+    "train": 592,
+    "validation": 240,
+    "final": 648
+  },
+  "planning_estimates_seconds": {
+    "development_encoder": 1.7732520000099612,
+    "final_encoder": 1.3810905000077582,
+    "nine_independent_plus_eighteen_sequential_editor_fits": 0.7809776999979476,
+    "six_finetunes_25_steps": 0.529365000022608,
+    "development_total_including_one_model_load": 4.552889100030825,
+    "final_total_including_one_model_load": 2.8503849000080663
+  },
+  "finite_stop": "Development: 9 independent edits, 6 x 25 FT updates, 18 sequential edits; final: 648 questions, no fitting",
+  "resume": "Complete feature caches reuse exact fingerprints/checksums. Interrupted fitting restarts in a new output directory; no exact optimizer-resume claim.",
+  "limitations": [
+    "Three steady encoder batches and one fit/four optimizer updates; estimates are uncertain",
+    "Fit/optimizer profile uses four keys, 64 repeated object features and 32 repeated proxy card features for matching tensor sizes; these are resource measurements, not semantic training examples",
+    "Encoder timing excludes rendering, disk writes and report generation",
+    "No validation/final accuracy was measured in this profile"
+  ]
+}

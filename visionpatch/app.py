@@ -163,13 +163,22 @@ class DemoState:
 def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/features.pt",
                patch_path=ROOT / "artifacts/visionpatch/development-v1/projection-patch.pt",
                dataset_root=ROOT / "data/generated/visionpatch/development-v1",
-               report_path=None, encoder=None):
+               report_path=None, encoder=None, workbench_directory=None,
+               workbench_text_reference=None):
     if report_path is None:
         adjacent = Path(patch_path).parent / "run-report.json"
         report_path = adjacent if adjacent.exists() else ROOT / "reports/visionpatch/pilot-v1.json"
-    app = FastAPI(title="VisionPatch local demonstration", version="0.1.0")
+    app = FastAPI(title="VisionPatch local demonstration", version="0.2.0")
     state = DemoState(Path(feature_path), Path(patch_path), Path(dataset_root), Path(report_path), encoder)
     app.state.demo = state
+    from .workbench import create_workbench_router
+    router, workbench = create_workbench_router(
+        state, Path(workbench_directory) if workbench_directory is not None
+        else ROOT / "runtime/visionpatch/workbench",
+        text_reference=workbench_text_reference,
+    )
+    app.include_router(router)
+    app.state.workbench = workbench
 
     @app.get("/api/status")
     def status():
@@ -296,6 +305,10 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
         if not path.exists():
             raise HTTPException(503, "Demo interface is not installed; API documentation is at /docs.")
         return FileResponse(path)
+
+    @app.get("/workbench", include_in_schema=False)
+    def correction_workbench():
+        return FileResponse(static / "workbench.html")
 
     return app
 

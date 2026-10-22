@@ -1,12 +1,17 @@
 """Launch the isolated local VisionPatch demo on loopback port 8002."""
 
 import argparse
+import os
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8002)
     args = parser.parse_args()
+    # The prepared demonstration must not wait for Hub metadata or telemetry.
+    # Explicit checkpoint downloads belong to the separate preparation commands.
+    os.environ.setdefault("HF_HUB_OFFLINE", "1")
+    os.environ.setdefault("HF_HUB_DISABLE_TELEMETRY", "1")
     import torch
     import uvicorn
 

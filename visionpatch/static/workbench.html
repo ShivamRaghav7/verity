@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VisionPatch · Correction studio</title>
+  <link rel="stylesheet" href="/static/workbench.css?v=0.2.0">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-mark">◈</span> VisionPatch</a>
+    <p class="sidebar-caption">VISUAL MODEL EDITING</p>
+    <nav aria-label="Main navigation">
+      <a href="/">↗ <span>Pilot experiment</span></a>
+      <a href="#create" class="selected">＋ <span>Correction studio</span></a>
+      <a href="#candidate">◉ <span>Candidate evaluation</span></a>
+      <a href="#recognition">▧ <span>Live recognition</span></a>
+      <a href="#versions">↶ <span>Version history</span></a>
+      <a href="#study">▦ <span>Selection study</span></a>
+    </nav>
+    <div class="sidebar-foot"><span class="live-dot"></span> Local research workbench<p>Learned parameter updates.<br>Explicit approval. Exact rollback.</p><p>Local administrator controls; this demo does not authenticate users.</p></div>
+  </aside>
+  <main>
+    <header><span>WORKSPACE / CORRECTION STUDIO</span><span id="connection" role="status">Connecting…</span></header>
+    <div class="hero"><div><p class="eyebrow">FROM A FAILURE TO A MEASURED REPAIR</p><h1>Teach a correction.<br>Check what else changes.</h1><p class="intro">Create a real projection update from a misleading-label image and its matched reference. Inspect the evidence before approving or activating it.</p></div><div class="hero-tag"><span class="live-dot"></span> RESEARCH PROTOTYPE</div></div>
+    <div id="notice" class="notice" role="status" aria-live="polite">Loading saved model state.</div>
+    <div id="state-cards" class="state-cards"></div>
+
+    <section id="create" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">01 / AUTHOR A CORRECTION</p><h2>Show the association to repair</h2></div><span class="pill">No activation during preview</span></div>
+      <ol class="steps"><li><b>Choose a failure</b><span>An object with a misleading printed word.</span></li><li><b>Supply a matched reference</b><span>The same object and view, with that word removed or blanked.</span></li><li><b>Inspect the candidate</b><span>Review repairs and collateral errors before approval.</span></li></ol>
+      <div id="example-section" class="example-section" hidden><label for="example">Start with a provided development pair</label><div class="inline"><select id="example"><option value="">Select an example…</option></select><button type="button" class="secondary" id="load-example">Load pair</button></div><p class="help">Examples are support images, not independent evidence of generalization.</p></div>
+      <form id="correction-form">
+        <div class="image-pair">
+          <label class="upload-card" for="source-file"><span class="image-kicker">A / MISLEADING IMAGE</span><div id="source-preview" class="image-preview"><span class="upload-symbol">↥</span><b>Choose the failing photograph</b><span>PNG, JPEG or WebP · up to 5 MB</span></div><input id="source-file" type="file" accept="image/png,image/jpeg,image/webp"><span id="source-name" class="file-name">No image selected</span></label>
+          <div class="pair-arrow" aria-hidden="true">→</div>
+          <label class="upload-card" for="reference-file"><span class="image-kicker">B / MATCHED REFERENCE</span><div id="reference-preview" class="image-preview"><span class="upload-symbol">↥</span><b>Choose the corrected reference</b><span>Same photograph, misleading text removed</span></div><input id="reference-file" type="file" accept="image/png,image/jpeg,image/webp"><span id="reference-name" class="file-name">No image selected</span></label>
+        </div>
+        <p class="help">A reference is a visual teaching signal. Its accuracy and matching content require your review; the model cannot certify them. The source and reference should depict the same underlying scene.</p>
+        <div class="fields two"><label>Correction title<input id="title" maxlength="160" required placeholder="e.g. Preserve the object when a label disagrees"></label><label>Misleading printed word<input id="target-word" maxlength="80" required placeholder="The word visible in image A"></label><label>Expected object category<select id="expected-label" required><option value="">Loading supported categories…</option></select><span class="help">Closed vocabulary: objects outside these categories are unsupported.</span></label><label>Evidence / source<input id="source" maxlength="1000" required placeholder="Dataset, photograph owner or review reference"></label></div>
+        <div class="fields two"><label>Your name / reviewer identifier<input id="actor" maxlength="80" required placeholder="Who is proposing this correction?" autocomplete="name"></label><label>Reason for the correction<input id="reason" maxlength="1000" required placeholder="Describe the observed error and intended behavior"></label></div>
+        <div class="form-footer"><div><strong>Preview fits a local model update.</strong><p class="help">It saves a candidate and evaluates available reference examples. Active parameters stay unchanged. The first run may also load the model.</p></div><button type="submit" id="fit"><span>Fit & preview candidate</span> ↗</button></div>
+      </form>
+    </section>
+
+    <section id="candidate" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">02 / INSPECT BEFORE APPROVAL</p><h2>Candidate evidence</h2></div><button id="export-candidate" class="secondary compact" disabled>Export candidate JSON ↓</button></div>
+      <div id="candidate-content" class="empty-state"><span>◉</span><h3>Your candidate will appear here</h3><p>Fit an update above to see its support result, reference-set measurements and any new errors. A repaired teaching image alone is not evidence of generalization.</p></div>
+    </section>
+
+    <section id="recognition" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">03 / TEST THE ACTIVE PARAMETERS</p><h2>Recognize with the current version</h2></div><span class="pill">Live model inference</span></div>
+      <p class="muted">Upload a photograph, or compare the source currently selected in the correction form. The original model and current active parameters receive the same image. No true-category label is supplied to recognition.</p>
+      <div class="live-inputs"><input id="recognition-file" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Photograph for live recognition"><div class="button-row"><button id="recognize">Compare uploaded photograph</button><button id="recognize-source" class="secondary">Compare correction source</button></div></div>
+      <div id="recognition-result" aria-live="polite"><p class="help">Choose one object from the eight supported categories. Scores compare that closed vocabulary; they are not calibrated probabilities of correctness.</p></div>
+      <div id="live-reference-metrics"></div>
+    </section>
+
+    <section id="versions" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">04 / APPROVAL, ACTIVATION & RESTORATION</p><h2>Version registry</h2></div><button id="refresh" class="secondary compact">Refresh registry ↻</button></div>
+      <p class="muted">Candidates, approvals and activation are separate events. A candidate based on another active version must be recreated from the current state before activation.</p>
+      <div class="action-context"><label>Administrator / reviewer<input id="action-actor" maxlength="80" placeholder="Required for approval or state changes"></label><label>Reason<input id="action-reason" maxlength="1000" placeholder="Explain the decision for the audit record"></label></div>
+      <div id="version-list" class="version-list"></div>
+      <div class="restore-bar"><div><strong>Restore an earlier parameter state</strong><p class="help">Rollback restores the parent of the latest active patch. Restore base removes every active patch. Each action checks the current registry revision.</p></div><div class="button-row"><button id="rollback-latest" class="secondary" disabled>Rollback latest</button><button id="restore-base" class="danger secondary" disabled>Restore base</button></div></div>
+      <details class="history"><summary>Audit trail <span id="event-count"></span></summary><div id="event-list"></div></details>
+    </section>
+
+    <section id="study" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">05 / INDEPENDENT CHECKS</p><h2>Selection study</h2></div><a class="text-link" href="/api/workbench/study" target="_blank" rel="noopener">Study JSON ↗</a></div>
+      <p class="muted">This study asks whether a repair preserves both real objects and legitimate use of printed words. It is separate from the images used to fit an individual candidate.</p>
+      <div id="study-content"><p class="help">Loading recorded study information.</p></div>
+    </section>
+    <footer>VisionPatch edits the image projection; the encoders remain frozen. Scores are relative to a closed set of labels. Support-set repairs, reference-set measurements and independent study results have different purposes and are labeled separately.</footer>
+  </main>
+  <script src="/static/workbench.js?v=0.2.0"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "protocol_id": "visionpatch-selectivity-v2",
+  "question": "Can three independently fitted projection edits repair misleading camera, laptop and watch labels while preserving object recognition, legitimate controlled text reading, unrelated edit words and sequential parameter states?",
+  "seed": 42,
+  "edit_words": ["camera", "laptop", "watch"],
+  "classes": {"airplanes": "airplane", "camera": "camera", "cup": "cup", "elephant": "elephant", "grand_piano": "grand piano", "laptop": "laptop", "watch": "watch", "cellphone": "cell phone"},
+  "new_per_class": {"validation": 4, "final": 6},
+  "support_classes": {"camera": ["cup", "laptop"], "laptop": ["camera", "cup"], "watch": ["cup", "laptop"]},
+  "render_conditions": {
+    "train": [{"font_id": "train_sans", "position": "bottom"}],
+    "validation": [{"font_id": "validation_serif", "position": "top"}],
+    "final": [{"font_id": "final_sans_bold", "position": "top"}, {"font_id": "final_sans_bold", "position": "center"}]
+  },
+  "text_render_conditions": {
+    "train": [{"font_id": "train_sans", "position": "bottom"}],
+    "validation": [{"font_id": "validation_serif", "position": "top"}],
+    "final": [{"font_id": "final_sans_bold", "position": "top"}]
+  },
+  "text_template_ids": {"train": [0, 1, 2, 3], "validation": [4, 5], "final": [6, 7, 8]},
+  "editing_candidates": [
+    {"candidate_id": "object-only", "covariance_ridge": 0.001, "fit_ridge": 0.000001, "text_retention_weight": 0},
+    {"candidate_id": "protected-text-1", "covariance_ridge": 0.001, "fit_ridge": 0.000001, "text_retention_weight": 1},
+    {"candidate_id": "protected-text-4", "covariance_ridge": 0.001, "fit_ridge": 0.000001, "text_retention_weight": 4}
+  ],
+  "projection_finetune_steps": 25,
+  "projection_finetune_learning_rates": [0.0001, 0.0005],
+  "projection_finetune_retention_weight": 1.0,
+  "batch_size": 8,
+  "selection": {"objective": "maximize equally weighted mean of target distractor object accuracy, legitimate text accuracy and clean object accuracy on validation", "tie_break": "fewest new clean object errors, then declared candidate index", "scope": "one protected-edit candidate and one fine-tuning learning rate selected globally across all three words; object-only ablation fixed", "test_policy": "Seal selected artifacts before final inference; no final-based refitting"},
+  "text_prompts": "a photo of the word \"{label}\".",
+  "object_prompts": "a photo of a {label}.",
+  "bootstrap_samples": 2000,
+  "bootstrap_seed": 42,
+  "limitations": ["Controlled typographic object-recognition benchmark, not arbitrary visual knowledge editing", "Source photographs held out by exact content and identifier; physical object and near-duplicate grouping not independently audited", "Controlled legitimate text cards are a task-preservation stress test, not natural-scene OCR", "Model pretraining contamination is unknown", "Prior v1 support and retention data reused only for fitting, never for v2 validation or final scoring"]
+}
