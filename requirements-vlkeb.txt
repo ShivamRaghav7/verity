@@ -10,6 +10,7 @@ huggingface-hub==0.20.2
 safetensors==0.4.2
 numpy==1.26.4
 Pillow==10.4.0
+opencv-python-headless==4.8.1.78
 higher==0.2.1
 timm==0.6.13
 omegaconf==2.3.0
