@@ -70,7 +70,7 @@ The order below is a development timeline, not a claim that every step required 
 
 **Why:** A stronger second study should not erase the earlier implementation or rewrite its measured results.
 
-**How:** Versioned code and saved evidence distinguish the original application, the first visual pilot, and the v2 workbench/study. The pilot website at `/` and the new correction studio at `/workbench` use separate active-patch workflows. Activating a workbench patch does not rewrite the pilot's historical report.
+**How:** Versioned code and saved evidence distinguish the original application, the first visual pilot, and the v2 workbench/study. The current website contains one correction studio at `/`; `/workbench` is an alias for the same studio. Earlier interfaces are archived rather than presented as another website workflow. Activating a candidate does not rewrite historical reports.
 
 ### Step 2 — Establish a controlled visual failure
 
@@ -228,7 +228,7 @@ cd "C:\Users\shiva\OneDrive\Desktop\projekt-KE"
 .\scripts\run-visionpatch.ps1
 ```
 
-Keep that terminal running. Open **http://127.0.0.1:8002/workbench**. Stop the server with Ctrl+C when finished. The script uses the prepared isolated Python environment. The first model-dependent request can take longer because the model is loaded lazily. This does not retrain CLIP.
+Keep that terminal running. Open **http://127.0.0.1:8002/**. The `/workbench` address opens the same studio. Stop the server with Ctrl+C when finished. The script uses the prepared isolated Python environment. The first model-dependent request can take longer because the model is loaded lazily. This does not retrain CLIP.
 
 The prepared local machine includes downloaded model and data artifacts. A Git clone alone does not include the ignored photographs and model weights; fresh setup is described in the project documentation. If a server is already running on port 8002, use that instance or stop the old terminal process before starting another.
 
@@ -282,7 +282,7 @@ A stale browser tab can also receive a state-conflict message when its expected 
 
 The workbench registry persists in `runtime/visionpatch/workbench/workbench.sqlite3`; numerical snapshots and patches live in the adjacent `patches` directory. The text reference cache lives in that workbench directory too. Restarting the server reconstructs the active lineage and checks artifact integrity. Back up the complete workbench directory together with the required model/data artifacts; copying only the database omits parameter files.
 
-Do not edit or remove the registry/artifact files to perform a normal rollback. Use the interface. Restore base retains the history. The preserved pilot page has its own earlier session-based activation/history behavior; that is separate from the persistent workbench.
+Do not edit or remove the registry/artifact files to perform a normal rollback. Use the interface. Restore base retains the history. The current website uses this single persistent registry. The earlier pilot interface is archived in Git; it is not another active model state exposed through the website.
 
 ## 9. Understand the charts and exported files
 

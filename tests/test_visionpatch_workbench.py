@@ -263,6 +263,22 @@ class WorkbenchAPITests(unittest.TestCase):
         self.assertIsNotNone(records[0]["preview"])
         self.assertEqual(self.state()["active_patch_ids"], [])
 
+    def test_current_site_has_one_studio_and_does_not_publish_archived_interface(self):
+        home = self.client.get("/")
+        alias = self.client.get("/workbench")
+        self.assertEqual(home.status_code, 200)
+        self.assertEqual(home.content, alias.content)
+        self.assertIn("Correction studio", home.text)
+        self.assertNotIn("Pilot experiment", home.text)
+        for path in ("/api/status", "/api/gallery", "/api/history", "/api/predict",
+                     "/api/patch/apply", "/api/figures/accuracy.png",
+                     "/static/index.html", "/static/app.js", "/static/style.css"):
+            response = self.client.post(path, json={}) if path in {"/api/predict", "/api/patch/apply"} else self.client.get(path)
+            self.assertEqual(response.status_code, 404, path)
+        public_paths = self.client.get("/openapi.json").json()["paths"]
+        self.assertIn("/api/workbench/predict", public_paths)
+        self.assertNotIn("/api/patch/apply", public_paths)
+
 
 if __name__ == "__main__":
     unittest.main()

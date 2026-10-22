@@ -40,7 +40,8 @@ class VisionPatchAPITests(unittest.TestCase):
         report = self.root / "report.json"
         report.write_text(json.dumps({"purpose": "synthetic_api_test"}), encoding="utf-8")
         self.app = create_app(feature_path=features, patch_path=patch_path, dataset_root=dataset,
-                              report_path=report, encoder=lambda image: torch.tensor([[0., 1.]]))
+                              report_path=report, encoder=lambda image: torch.tensor([[0., 1.]]),
+                              enable_legacy_api=True)
         self.client = TestClient(self.app)
 
     def tearDown(self):
@@ -81,7 +82,7 @@ class VisionPatchAPITests(unittest.TestCase):
         self.assertEqual(self.client.post("/api/predict", json={"image_base64": payload, "variant": "unknown"}).status_code, 422)
 
     def test_missing_artifacts_fail_clearly_without_model_download(self):
-        client = TestClient(create_app(feature_path=self.root / "absent.pt"))
+        client = TestClient(create_app(feature_path=self.root / "absent.pt", enable_legacy_api=True))
         response = client.get("/api/status")
         self.assertEqual(response.status_code, 503)
         self.assertIn("preparation", response.json()["detail"])

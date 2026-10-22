@@ -2,6 +2,10 @@
 
 **Targeted visual model editing with measured generalization and exact rollback.**
 
+**Current claim:** a controlled model-repair study and working editor. Practical
+advantage over stronger models and simpler alternatives remains unproven.
+[Usefulness assessment and the remaining evidence gate](docs/visionpatch/USEFULNESS.md).
+
 VisionPatch changes a learned visual association inside CLIP: a misleading printed
 word can make the model misidentify an object. A small learned projection patch
 repairs that behavior on new photographs without changing the frozen encoders.
@@ -14,7 +18,7 @@ its original instructions are saved in [the V1 README](docs/EDITGUARD_V1_README.
 
 ## V2: selective repair and interacting corrections
 
-Open **http://127.0.0.1:8002/workbench** after starting the server. Supply a failing
+Open **http://127.0.0.1:8002/** after starting the server. Supply a failing
 image and matched reference, fit a new parameter update, inspect collateral
 changes, approve it, activate it, compare actual inference and roll back. SQLite
 persists the version chain across restarts. Preview and approval do not activate
@@ -52,31 +56,10 @@ read [the V2 results and failure analysis](docs/visionpatch/RESULTS_V2.md),
 [predeclared study protocol](docs/visionpatch/STUDY_V2.md). Complete observations,
 validation selection, resources and the final seal are in `reports/visionpatch/study-v2`.
 
-## Preserved V1 results
-
-Fixed vocabulary: eight object categories. Printed distractor: `camera`.
-Four cup/laptop support pairs fit the patch; 64 separate clean reference images
-provide retention statistics. The final set contains 80 additional original
-photographs, excluded by content hash from all 144 development images.
-
-| Configuration | Final printed-label accuracy | Final clean accuracy |
-| --- | --- | --- |
-| Original CLIP | 49/80 | 80/80 |
-| Learned projection edit | 80/80 | 80/80 |
-| Projection fine-tuning | 80/80 | 80/80 |
-| Oracle label masking | 80/80 | 80/80 |
-
-The editor repaired 31/31 induced errors in this particular holdout and preserved
-10/10 genuine camera predictions. **Fine-tuning and privileged masking tied it.**
-These small, controlled results are not a guarantee for other words, fonts,
-objects, candidate lists or deployment conditions. A development failure remains
-in the report; test results were not used to modify the configuration.
-
-![Frozen holdout comparison](output/visionpatch/figures/accuracy.png)
-
-Read [the beginner guide and website instructions](docs/visionpatch/README.md),
-[measured results and limitations](docs/visionpatch/RESULTS.md), and
-[the evaluation protocol](docs/visionpatch/PROTOCOL.md).
+The first visual pilot is archived in Git and its
+[results](docs/visionpatch/RESULTS.md) and
+[protocol](docs/visionpatch/PROTOCOL.md). Its measured evidence and preparation
+artifacts are preserved, but its earlier interface is no longer part of the website.
 
 ## Run the prepared demonstration
 
@@ -84,17 +67,17 @@ Read [the beginner guide and website instructions](docs/visionpatch/README.md),
 .\scripts\run-visionpatch.ps1
 ```
 
-Open http://127.0.0.1:8002/workbench for the persistent V2 studio.
-The original gallery remains at http://127.0.0.1:8002. Approve **Apply learned patch**, inspect the gallery,
-compare all baselines in the frozen-holdout dashboard, try an uploaded photograph,
-and use **Rollback** to restore the original projection. API documentation:
+Open http://127.0.0.1:8002/ for the persistent correction studio;
+http://127.0.0.1:8002/workbench opens the same application. Create a candidate,
+inspect its evidence, approve it, activate it and compare live recognition.
+Use **Rollback** to restore a saved projection. The study section displays the
+separate completed experiment. API documentation:
 http://127.0.0.1:8002/docs. Stop the server with Ctrl+C.
 
-The gallery uses cached frozen-encoder features. Uploaded images run the actual
-pinned encoder. The eight candidate similarities are uncalibrated scores; an
-unknown object still receives one of those candidates. Activation history is
-session-local in the original gallery; the V2 studio uses a separate persistent
-registry. This loopback demo has no production authentication.
+Uploaded images run the actual pinned encoder. The eight candidate similarities
+are uncalibrated scores; an unknown object still receives one of those candidates.
+Candidates, approvals, activation history and rollback states persist in the
+studio's registry. This loopback demo has no production authentication.
 
 ## Prepare a fresh checkout
 
@@ -112,7 +95,9 @@ py -3.14 -m venv .venv-vision
 .\scripts\run-visionpatch.ps1
 ```
 
-Use unused report/artifact paths for repeat experiments. The pilot stops after
+The `pilot` command prepares the frozen-feature and projection artifacts consumed
+by the studio; it does not launch an older website. Use unused report/artifact
+paths for repeat experiments. This preparation stops after
 one closed-form solve and 25 small projection fine-tuning steps. Completed
 artifacts are never overwritten. The application reads the matching report saved
 beside its generated patch. Fresh-machine measurements may differ.
@@ -157,12 +142,16 @@ Run `python -m unittest discover -s tests -v` in the ML environment. The origina
 fitting, split separation, denominators, approval, API behavior, artifact
 integrity, sealing, conflicts, persistence and exact rollback. Optional checks
 and environment-specific skips are reported explicitly.
-`python -m visionpatch.verify_http` exercises real image inference and restoration;
-`python -m visionpatch.plot_results` regenerates scientific PNG/SVG figures.
+The workbench API regression tests exercise candidate creation, live inference,
+approval, activation and restoration. The archived `visionpatch.verify_http`
+module concerns the earlier pilot API, which is disabled in normal serving.
+`python -m visionpatch.plot_results` regenerates the archived pilot's scientific
+PNG/SVG figures; the V2 reproduction guide describes current study outputs.
 
-The measured CPU HTTP sample has p50 243 ms and p95 327 ms, from 12 serial requests
-for one development image. First model loading took 11.74 seconds in that check.
-This is a small latency sample, not a concurrency benchmark.
+The latest recorded studio CPU HTTP sample has p50 664 ms and p95 896 ms, from
+12 serial requests for one support image. Earlier samples were faster; their
+cause was not isolated. These are small local measurements, not a concurrency
+benchmark or a runtime promise. All samples remain in the results report.
 
 A CPU container recipe is provided in `Dockerfile.visionpatch`; see
 [container instructions](docs/visionpatch/DEPLOYMENT.md). GitHub Actions checks the

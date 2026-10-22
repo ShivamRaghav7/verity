@@ -1,8 +1,8 @@
-"""Loopback demonstration API for a measured visual projection patch.
+"""Persistent correction studio with an opt-in archived experiment API.
 
-Gallery inference uses cached frozen-encoder features. Uploads use the real,
-pinned CLIP encoder, loaded lazily from its local cache. This is not an
-authenticated production service; launch on 127.0.0.1 only.
+Uploads use the pinned frozen CLIP encoder. Normal serving exposes one current
+studio and its registry; archived V1 routes require explicit developer opt-in.
+This local administrator service should remain bound to loopback.
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ import threading
 import time
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, FastAPI, HTTPException
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageOps, UnidentifiedImageError
@@ -164,11 +164,11 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
                patch_path=ROOT / "artifacts/visionpatch/development-v1/projection-patch.pt",
                dataset_root=ROOT / "data/generated/visionpatch/development-v1",
                report_path=None, encoder=None, workbench_directory=None,
-               workbench_text_reference=None):
+               workbench_text_reference=None, enable_legacy_api=False):
     if report_path is None:
         adjacent = Path(patch_path).parent / "run-report.json"
         report_path = adjacent if adjacent.exists() else ROOT / "reports/visionpatch/pilot-v1.json"
-    app = FastAPI(title="VisionPatch local demonstration", version="0.2.0")
+    app = FastAPI(title="VisionPatch local demonstration", version="0.2.2")
     state = DemoState(Path(feature_path), Path(patch_path), Path(dataset_root), Path(report_path), encoder)
     app.state.demo = state
     from .workbench import create_workbench_router
@@ -179,13 +179,14 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
     )
     app.include_router(router)
     app.state.workbench = workbench
+    legacy = APIRouter(include_in_schema=False)
 
-    @app.get("/api/status")
+    @legacy.get("/api/status")
     def status():
         with state.lock:
             return state.status()
 
-    @app.get("/api/gallery")
+    @legacy.get("/api/gallery")
     def gallery():
         with state.lock:
             state.ensure_loaded()
@@ -197,7 +198,7 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
             return {"active": state.active, "projection_sha256": projection_sha256(state.weight),
                     "rows": rows, "score_disclaimer": SCORE_DISCLAIMER}
 
-    @app.get("/api/image/{rowindex}")
+    @legacy.get("/api/image/{rowindex}")
     def image(rowindex: int):
         with state.lock:
             state.ensure_loaded()
@@ -232,22 +233,22 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
                                      "projection_sha256": projection_sha256(state.weight)})
             return state.status()
 
-    @app.post("/api/patch/apply")
+    @legacy.post("/api/patch/apply")
     def apply(body: ApplyRequest):
         if not body.approved:
             raise HTTPException(400, "Set approved=true after explicitly approving the local patch.")
         return transition("apply", body.reason)
 
-    @app.post("/api/patch/rollback")
+    @legacy.post("/api/patch/rollback")
     def rollback():
         return transition("rollback", "User requested exact parent restoration")
 
-    @app.get("/api/history")
+    @legacy.get("/api/history")
     def history():
         with state.lock:
             return {"events": list(state.events), "persistence": "in_memory_only"}
 
-    @app.get("/api/figures/{name}")
+    @legacy.get("/api/figures/{name}")
     def figure(name: str):
         if name not in {"accuracy.png", "paired-gains.png", "categories.png"}:
             raise HTTPException(404, "Unknown scientific figure")
@@ -256,7 +257,7 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
             raise HTTPException(404, "Generate the measured result figures first")
         return FileResponse(path)
 
-    @app.post("/api/predict")
+    @legacy.post("/api/predict")
     def predict(body: PredictRequest):
         raw = body.image_base64
         if raw.startswith("data:"):
@@ -295,22 +296,25 @@ def create_app(*, feature_path=ROOT / "artifacts/visionpatch/development-v1/feat
                     "score_disclaimer": SCORE_DISCLAIMER,
                     "ground_truth": "No ground truth supplied; correctness is not established for this upload."}
 
+    if enable_legacy_api:
+        app.include_router(legacy)
+
     static = Path(__file__).resolve().parent / "static"
     if static.exists():
         app.mount("/static", StaticFiles(directory=static), name="static")
 
     @app.get("/", include_in_schema=False)
     def index():
-        path = static / "index.html"
+        path = static / "workbench.html"
         if not path.exists():
             raise HTTPException(503, "Demo interface is not installed; API documentation is at /docs.")
-        return FileResponse(path)
+        return FileResponse(path, headers={"Cache-Control": "no-store"})
 
     @app.get("/workbench", include_in_schema=False)
     def correction_workbench():
-        return FileResponse(static / "workbench.html")
+        return FileResponse(static / "workbench.html", headers={"Cache-Control": "no-store"})
 
     return app
 
 
-app = create_app()
+app = create_app(enable_legacy_api=os.environ.get("VISIONPATCH_ENABLE_LEGACY_API") == "1")

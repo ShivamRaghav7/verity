@@ -1,7 +1,8 @@
 # Local and container deployment
 
 The measured and browser-tested deployment is the local Python service on
-`127.0.0.1:8002/workbench`. Run `scripts/run-visionpatch.ps1` after preparing artifacts as
+`127.0.0.1:8002/`; `/workbench` is an alias for the same correction studio.
+Run `scripts/run-visionpatch.ps1` after preparing artifacts as
 described in the root README. The launcher prefers `.venv-vision`, then the
 existing isolated `.venv-ml`; neither requires changing global Python packages.
 The native launcher enables Hugging Face offline mode before loading the model;
@@ -43,7 +44,8 @@ entire volume, including SQLite and the `patches` directory; restoring the datab
 alone cannot restore its hash-bound tensors. The image creates this directory for
 its unprivileged user. Do not remove the volume if its history is needed.
 
-The original `/` pilot gallery has separate process-local controls. Its history
-resets on restart; it does not control the persistent studio projection. In the
-native deployment, studio files live at `runtime/visionpatch/workbench` in the
-project directory. Recognition always reads the registered active projection.
+The website serves only the current studio. The earlier pilot interface is
+archived in Git and its legacy API is disabled by default; it is not a second
+activation workflow in a normal deployment. In the native deployment, studio
+files live at `runtime/visionpatch/workbench` in the project directory.
+Recognition always reads the registered active projection.

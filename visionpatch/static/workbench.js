@@ -480,7 +480,11 @@ async function recognize(useSource) {
       if (labels.children.length) labels.append(node("span", "→", "live-arrow"));
       const label = node("div"); label.append(node("small", name), node("strong", prediction ? prediction.label : "Not returned")); labels.append(label);
     }
-    detail.append(labels, node("p", `Registry revision ${readable(result.registry && result.registry.revision)} · ${result.device || "device not recorded"}. The expected category was not provided to inference.`, "help"), node("p", "This photograph has no independently reviewed ground truth in this request. A changed prediction alone does not prove a successful correction.", "help"), jsonDetails("Relative label scores and parameter state", result));
+    detail.append(labels);
+    if (result.before && result.current && result.before.label === result.current.label) {
+      detail.append(node("p", `Both versions predict ${result.before.label}. If that is the correct category, this photograph needs no repair and demonstrates no editing benefit.`, "help"));
+    }
+    detail.append(node("p", `Registry revision ${readable(result.registry && result.registry.revision)} · ${result.device || "device not recorded"}. The expected category was not provided to inference.`, "help"), node("p", "This photograph has no independently reviewed ground truth in this request. A changed prediction alone does not prove a successful correction.", "help"), jsonDetails("Relative label scores and parameter state", result));
     box.append(image, detail); $("recognition-result").replaceChildren(box);
   } catch (error) {$("recognition-result").replaceChildren(node("p", error.message, "help bad"));}
   finally {$("recognize").disabled = false; $("recognize-source").disabled = false;}

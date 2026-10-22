@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>VisionPatch · Correction studio</title>
-  <link rel="stylesheet" href="/static/workbench.css?v=0.2.1">
+  <link rel="stylesheet" href="/static/workbench.css?v=0.2.2">
 </head>
 <body>
   <aside class="sidebar">
     <a class="brand" href="/"><span class="brand-mark">◈</span> VisionPatch</a>
     <p class="sidebar-caption">VISUAL MODEL EDITING</p>
     <nav aria-label="Main navigation">
-      <a href="/">↗ <span>Pilot experiment</span></a>
       <a href="#create" class="selected">＋ <span>Correction studio</span></a>
       <a href="#candidate">◉ <span>Candidate evaluation</span></a>
       <a href="#recognition">▧ <span>Live recognition</span></a>
@@ -35,7 +34,7 @@
           <div class="pair-arrow" aria-hidden="true">→</div>
           <label class="upload-card" for="reference-file"><span class="image-kicker">B / MATCHED REFERENCE</span><div id="reference-preview" class="image-preview"><span class="upload-symbol">↥</span><b>Choose the corrected reference</b><span>Same photograph, misleading text removed</span></div><input id="reference-file" type="file" accept="image/png,image/jpeg,image/webp"><span id="reference-name" class="file-name">No image selected</span></label>
         </div>
-        <p class="help">A reference is a visual teaching signal. Its accuracy and matching content require your review; the model cannot certify them. The source and reference should depict the same underlying scene.</p>
+        <p class="help">The reference should be the same photograph with the misleading text removed or blanked. If the original model already predicts the correct object, that photograph needs no repair; keep it as a preservation check. Matching content and accuracy require your review.</p>
         <div class="fields two"><label>Correction title<input id="title" maxlength="160" required placeholder="e.g. Preserve the object when a label disagrees"></label><label>Misleading printed word<input id="target-word" maxlength="80" required placeholder="The word visible in image A"></label><label>Expected object category<select id="expected-label" required><option value="">Loading supported categories…</option></select><span class="help">Closed vocabulary: objects outside these categories are unsupported.</span></label><label>Evidence / source<input id="source" maxlength="1000" required placeholder="Dataset, photograph owner or review reference"></label></div>
         <div class="fields two"><label>Your name / reviewer identifier<input id="actor" maxlength="80" required placeholder="Who is proposing this correction?" autocomplete="name"></label><label>Reason for the correction<input id="reason" maxlength="1000" required placeholder="Describe the observed error and intended behavior"></label></div>
         <div class="form-footer"><div><strong>Preview fits a local model update.</strong><p class="help">It saves a candidate and evaluates available reference examples. Active parameters stay unchanged. The first run may also load the model.</p></div><button type="submit" id="fit"><span>Fit & preview candidate</span> ↗</button></div>
@@ -71,6 +70,6 @@
     </section>
     <footer>VisionPatch edits the image projection; the encoders remain frozen. Scores are relative to a closed set of labels. Support-set repairs, reference-set measurements and independent study results have different purposes and are labeled separately.</footer>
   </main>
-  <script src="/static/workbench.js?v=0.2.1"></script>
+  <script src="/static/workbench.js?v=0.2.2"></script>
 </body>
 </html>

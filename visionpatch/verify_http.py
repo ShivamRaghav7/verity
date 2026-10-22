@@ -1,4 +1,7 @@
-"""Finite local upload/apply/rollback check and 12-request latency sample."""
+"""Archived V1 HTTP check; requires a service launched with --legacy-api.
+
+Use visionpatch.verify_workbench for the current website instead.
+"""
 
 import argparse
 import base64

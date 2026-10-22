@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: '22'
       - run: node --check editguard/static/app.js
-      - run: node --check visionpatch/static/app.js
+      - run: node --check visionpatch/archive/v1/static/app.js
       - run: node --check visionpatch/static/workbench.js
   optimizer-resume:
     runs-on: ubuntu-latest

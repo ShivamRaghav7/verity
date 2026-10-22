@@ -48,7 +48,7 @@ The administrator's expected label is used to assess the support result; the pai
 
 ## Interactive correction and persistent versions
 
-The correction studio is available at `/workbench`, with endpoints under `/api/workbench`. It is separate from the preserved v1 pilot gallery and its in-memory apply/rollback control. Creating a workbench patch does not rewrite the published pilot or final study results.
+The correction studio is available at `/`, with `/workbench` as an alias and endpoints under `/api/workbench`. This is the single current website and activation workflow. The earlier pilot interface is archived in Git; its legacy API is disabled by default and reserved for explicit historical verification. Creating a candidate does not rewrite the published pilot or final study results.
 
 ```mermaid
 flowchart LR

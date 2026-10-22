@@ -199,7 +199,7 @@ class Workbench:
         source, source_hash = decode_image(body.source_image_base64)
         reference, reference_hash = decode_image(body.reference_image_base64)
         if source_hash == reference_hash:
-            raise ValueError("Supply distinct source and matched reference images")
+            raise ValueError("The source and reference are the same file. Supply the misleading image and a matching version with that text removed or blanked.")
         current = self.registry.get_current_weight()
         parent_revision = self.registry.state()["revision"]
         started = time.perf_counter()
@@ -225,6 +225,8 @@ class Workbench:
         new_text = sum(b == t and a != t for b, a, t in zip(before_text, after_text, text[2]))
         warnings = ["One supplied pair fits this candidate; unseen-image generalization is not established by its support prediction.",
                     "Reference-set metrics are development evidence; this candidate has no independently sealed final evaluation."]
+        if before["label"] == label:
+            warnings.append("The active model already predicts the declared category. This image does not demonstrate a misclassification, and an edit may be unnecessary.")
         if reference_prediction["label"] != label:
             warnings.append("The active model's reference prediction disagrees with the declared label; the paired target may not teach the intended correction.")
         if after["label"] != label:
