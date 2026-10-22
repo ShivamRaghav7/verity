@@ -1,0 +1,42 @@
+{
+  "purpose": "hardware_inventory_only",
+  "captured_at_utc": "2026-10-22T11:39:12.356023+00:00",
+  "runtime_location": "Colab",
+  "runs_training": false,
+  "downloads_models": false,
+  "installs_packages": false,
+  "python_version": "3.13.15",
+  "operating_system": "Linux",
+  "gpus": [
+    {
+      "name": "Tesla T4",
+      "total_memory_mib": 15360,
+      "free_memory_mib": 14913,
+      "driver_version": "580.82.07"
+    }
+  ],
+  "gpu_inventory_error": null,
+  "host_memory_bytes": {
+    "MemTotal": 13605830656,
+    "MemAvailable": 12413218816
+  },
+  "disk_bytes": {
+    "total": 120942624768,
+    "free": 75456086016
+  },
+  "installed_versions": {
+    "torch": "2.11.0+cu130",
+    "transformers": "5.20.1",
+    "higher": null,
+    "hydra-core": null
+  },
+  "interpretation": "Inventory only: this does not demonstrate that any editor fits or runs. The next step is selecting a compatible isolated environment and profiling one real edit on this exact runtime.",
+  "evidence_capture": {
+    "method": "Transcribed verbatim inventory values from the executed notebook's visible output using browser automation",
+    "notebook_repository_commit": "0da0481517152e8e90b210f23e03b167b4cf73a1",
+    "cell_id": "runtime-inventory",
+    "execution_count": 1,
+    "source_file_in_runtime": "editguard-runtime-inventory-20261022T113912Z.json",
+    "note": "This local record preserves observed inventory values; it is not a downloaded notebook execution artifact."
+  }
+}

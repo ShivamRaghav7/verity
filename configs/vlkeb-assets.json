@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "inspected_on": "2026-10-22",
+  "purpose": "Complete selected-file inventory for one BLIP2-OPT2.7B MEND development smoke, not all VLKEB methods",
+  "upstream": {
+    "repository": "https://github.com/VLKEB/VLKEB",
+    "commit": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+    "config": "hparams/MEND/blip2.yaml"
+  },
+  "weights_downloaded_during_preparation": false,
+  "reproduction_executed": false,
+  "total_download_bytes": 13218483144,
+  "assets": [
+    {
+      "id": "opt-config.json",
+      "group": "core",
+      "path": "opt-2.7b/config.json",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/config.json",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 691,
+      "sha256": "78e28adcb451e26ca38b4a808a53318dc12c711a26d2f04158586672de0f1482",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-generation_config.json",
+      "group": "core",
+      "path": "opt-2.7b/generation_config.json",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/generation_config.json",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 137,
+      "sha256": "d37de99f9835d7a4d0916257f724504d12c4a668f36a50b2d42e09ba4ebd05d5",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-merges.txt",
+      "group": "core",
+      "path": "opt-2.7b/merges.txt",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/merges.txt",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 456318,
+      "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-special_tokens_map.json",
+      "group": "core",
+      "path": "opt-2.7b/special_tokens_map.json",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/special_tokens_map.json",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 441,
+      "sha256": "0f3cd5f307a2735cfee31ddf33be88655e8be165ee2cdc26ced966f04258adf0",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-tokenizer_config.json",
+      "group": "core",
+      "path": "opt-2.7b/tokenizer_config.json",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/tokenizer_config.json",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 685,
+      "sha256": "d1e4185b43a0a06421ab7218d5c1a775350bd13024507b34fbed25dcf6c14c6b",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-vocab.json",
+      "group": "core",
+      "path": "opt-2.7b/vocab.json",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/vocab.json",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 898822,
+      "sha256": "06b4d46c8e752d410213d9548eb27a54db70fda0319b6271fb8d59dead5e1cab",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-README.md",
+      "group": "core",
+      "path": "opt-2.7b/README.md",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/README.md",
+      "role": "base language model or tokenizer",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "size_bytes": 8789,
+      "sha256": "17a6b745ac4562ce5643f34965bbd5780e35d387d35993fb84cc1ea9f47ece20",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "bert-config.json",
+      "group": "core",
+      "path": "bert-base-uncased/config.json",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/config.json",
+      "role": "Qformer BERT initialization or tokenizer",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "size_bytes": 570,
+      "sha256": "7160e1553ad2ca51d8c1cb066be533db31826e12d173824c1bb0cb1a4f187d20",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "bert-tokenizer_config.json",
+      "group": "core",
+      "path": "bert-base-uncased/tokenizer_config.json",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/tokenizer_config.json",
+      "role": "Qformer BERT initialization or tokenizer",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "size_bytes": 48,
+      "sha256": "a025160ef0431f1a392f6f050c1310f4c5d9fb6f275932dbccba73c4d214bf10",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "bert-vocab.txt",
+      "group": "core",
+      "path": "bert-base-uncased/vocab.txt",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/vocab.txt",
+      "role": "Qformer BERT initialization or tokenizer",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "size_bytes": 231508,
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "bert-LICENSE",
+      "group": "core",
+      "path": "bert-base-uncased/LICENSE",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/LICENSE",
+      "role": "Qformer BERT initialization or tokenizer",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "size_bytes": 11356,
+      "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "bert-README.md",
+      "group": "core",
+      "path": "bert-base-uncased/README.md",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/README.md",
+      "role": "Qformer BERT initialization or tokenizer",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "size_bytes": 10517,
+      "sha256": "9187b6018ea0010d884e78e098e328faa1b88b301570d0cce606bb35e4067e17",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "data-train.json",
+      "group": "fixture",
+      "path": "upstream-train.json",
+      "url": "https://huggingface.co/datasets/HymanH/VLKEB-data/resolve/cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a/train.json",
+      "role": "training-seen smoke fixture source",
+      "revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+      "size_bytes": 2616367,
+      "sha256": "6e40e0e9a28dc3e7523f8d48f032755fe050c5b5728344633f13113dbd6fbc01",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "data-LICENSE.txt",
+      "group": "fixture",
+      "path": "notices/VLKEB-DATA-LICENSE.txt",
+      "url": "https://huggingface.co/datasets/HymanH/VLKEB-data/resolve/cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a/LICENSE.txt",
+      "role": "dataset notice",
+      "revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+      "size_bytes": 1519,
+      "sha256": "f293354dd13a835ad82e128b52ea3971b2f939bbd516b566609d4fde2a98d1c7",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "data-README.md",
+      "group": "fixture",
+      "path": "notices/VLKEB-DATA-README.md",
+      "url": "https://huggingface.co/datasets/HymanH/VLKEB-data/resolve/cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a/README.md",
+      "role": "dataset card",
+      "revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+      "size_bytes": 1664,
+      "sha256": "1b09ff0265e364cb09d029437e8c87e2aa4a99de86169c54364c914207c73988",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "editor-README.md",
+      "group": "core",
+      "path": "notices/VLKEB-MODELS-README.md",
+      "url": "https://huggingface.co/HymanH/VLKEB-models/resolve/971f3e4419092fdd612d1ef6c0bb6b2b02899a45/README.md",
+      "role": "editor card license declaration",
+      "revision": "971f3e4419092fdd612d1ef6c0bb6b2b02899a45",
+      "size_bytes": 1740,
+      "sha256": "740fe8269989b181747edc2c65789132d2038e0919031aa0fcdf8f7bd9d0a7c8",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "source-license",
+      "group": "core",
+      "path": "notices/VLKEB-CODE-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/VLKEB/VLKEB/10951b7b3788928f578b73f07eac9e1eaa0316f3/LICENSE",
+      "role": "code license",
+      "revision": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+      "size_bytes": 1063,
+      "sha256": "bbed0b88f423e4fcf02b695da33acaf19c87c6a7aca6dd8766d217caa32b8be1",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "lavis-license",
+      "group": "core",
+      "path": "notices/LAVIS-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/salesforce/LAVIS/05cb670f47296522e24e7727e366b4a997d28582/LICENSE.txt",
+      "role": "LAVIS source notice (not a separate blanket license for all upstream weights)",
+      "revision": "05cb670f47296522e24e7727e366b4a997d28582",
+      "size_bytes": 1502,
+      "sha256": "5aca00bff81e12a65992c7f2ecfece6ba7a923193c7a1d33a1b60f657e8cf11a",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-model-license",
+      "group": "core",
+      "path": "notices/OPT-MODEL-LICENSE.md",
+      "url": "https://raw.githubusercontent.com/facebookresearch/metaseq/f7ffa5fd61cf90f498a36d365c13dd7f1a912ff7/projects/OPT/MODEL_LICENSE.md",
+      "role": "OPT model noncommercial research terms",
+      "revision": "f7ffa5fd61cf90f498a36d365c13dd7f1a912ff7",
+      "size_bytes": 11117,
+      "sha256": "11203fa656a6dfd929ded198012b18d5d0f2b95e24d13298be37b70c327329a4",
+      "integrity_source": "SHA256 computed from exact revision, metadata-only inspection 2026-10-22"
+    },
+    {
+      "id": "opt-weights",
+      "group": "core",
+      "path": "opt-2.7b/pytorch_model.bin",
+      "url": "https://huggingface.co/facebook/opt-2.7b/resolve/905a4b602cda5c501f1b3a2650a4152680238254/pytorch_model.bin",
+      "size_bytes": 5303359381,
+      "sha256": "476391562b9b2635c672d15bd69cfa881c5c824ebe89b00fee6c58947541e6e4",
+      "revision": "905a4b602cda5c501f1b3a2650a4152680238254",
+      "role": "OPT-2.7B language weights, upstream PyTorch format",
+      "integrity_source": "HF published LFS SHA256"
+    },
+    {
+      "id": "bert-weights",
+      "group": "core",
+      "path": "bert-base-uncased/pytorch_model.bin",
+      "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/pytorch_model.bin",
+      "size_bytes": 440473133,
+      "sha256": "097417381d6c7230bd9e3557456d726de6e83245ec8b24f529f60198a67b203a",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "role": "BERT initialization; required before Qformer checkpoint is loaded",
+      "integrity_source": "HF published LFS SHA256"
+    },
+    {
+      "id": "mend-weights",
+      "group": "core",
+      "path": "mend.pt",
+      "url": "https://huggingface.co/HymanH/VLKEB-models/resolve/971f3e4419092fdd612d1ef6c0bb6b2b02899a45/mend/mend_blip2.pt",
+      "size_bytes": 2364013495,
+      "sha256": "13c7f1f24af506fcf994cf584e404abf6c3ab445139da5edf8df180afaab1c98",
+      "revision": "971f3e4419092fdd612d1ef6c0bb6b2b02899a45",
+      "role": "authors released MEND BLIP2 editor",
+      "integrity_source": "HF published LFS SHA256"
+    },
+    {
+      "id": "eva-weights",
+      "group": "core",
+      "path": "eva_vit_g.pth",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/sfr-vision-language-research/o/LAVIS%2Fmodels%2FBLIP2%2Feva_vit_g.pth?generation=1673857001813431&alt=media",
+      "size_bytes": 2025249237,
+      "md5": "c483374fc17b72dc61e016680345a0ff",
+      "revision": "gcs-generation:1673857001813431",
+      "role": "EVA visual backbone",
+      "integrity_source": "GCS JSON API md5Hash and generation, no upstream SHA256 published"
+    },
+    {
+      "id": "qformer-weights",
+      "group": "core",
+      "path": "blip2_pretrained_opt2.7b.pth",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/sfr-vision-language-research/o/LAVIS%2Fmodels%2FBLIP2%2Fblip2_pretrained_opt2.7b.pth?generation=1673954314095260&alt=media",
+      "size_bytes": 428705327,
+      "md5": "16face679691028f32e8229097802b57",
+      "revision": "gcs-generation:1673954314095260",
+      "role": "BLIP2 Qformer, learned queries, visual layer norm, OPT projection",
+      "integrity_source": "GCS JSON API md5Hash and generation, no upstream SHA256 published"
+    },
+    {
+      "id": "image-archive",
+      "group": "fixture",
+      "path": "upstream-images.tar.gz",
+      "url": "https://huggingface.co/datasets/HymanH/VLKEB-data/resolve/cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a/VLKEB_images.tar.gz",
+      "size_bytes": 2652427717,
+      "sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+      "role": "verified source archive; extract only 4 train-fixture images",
+      "integrity_source": "HF published LFS SHA256"
+    }
+  ],
+  "fixture": {
+    "source_path": "upstream-train.json",
+    "archive_path": "upstream-images.tar.gz",
+    "source_revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+    "source_indices": [
+      0,
+      1
+    ],
+    "primary_index": 0,
+    "additional_image_index": 1,
+    "output_path": "train-fixture.json",
+    "image_directory": "images",
+    "disclosure": "This is an upstream training-set fixture and may have been seen during MEND meta-training. It tests plumbing only; it is not evidence of held-out accuracy."
+  },
+  "licenses": [
+    {
+      "component": "VLKEB code",
+      "declaration": "MIT",
+      "notice_path": "notices/VLKEB-CODE-LICENSE.txt"
+    },
+    {
+      "component": "MEND editor weights",
+      "declaration": "MIT in model card; separate editor license file not published",
+      "notice_path": "notices/VLKEB-MODELS-README.md"
+    },
+    {
+      "component": "VLKEB annotations",
+      "declaration": "BSD-3-Clause; original image rights remain separate",
+      "notice_path": "notices/VLKEB-DATA-LICENSE.txt"
+    },
+    {
+      "component": "BERT base",
+      "declaration": "Apache-2.0",
+      "notice_path": "bert-base-uncased/LICENSE"
+    },
+    {
+      "component": "LAVIS BLIP2/Qformer and EVA source/checkpoint distribution",
+      "declaration": "LAVIS repository BSD-3-Clause notice; source notice does not establish unrestricted rights in every pretrained component or training image",
+      "notice_path": "notices/LAVIS-LICENSE.txt"
+    },
+    {
+      "component": "OPT language model",
+      "declaration": "OPT model license, noncommercial research; distinct from metaseq MIT code",
+      "notice_path": "notices/OPT-MODEL-LICENSE.md"
+    }
+  ]
+}
