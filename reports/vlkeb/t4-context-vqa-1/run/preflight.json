@@ -1,0 +1,14 @@
+{
+  "assets_verified": true,
+  "upstream_revision": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+  "asset_manifest_sha256": "1a0232f62565d4d488ec7433f0950551a20a6fdee5cd749c9a9cbac1ea3554b4",
+  "fixture_sha256": "06fbcef10288e81f73e64baa0b2deffcc2282ae86fdcc4e0c7c9ffb09ea2dd45",
+  "fixture_source_revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+  "case_count": 4,
+  "image_sha256": {
+    "direct": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+    "paraphrase": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+    "alternate_image": "74b2b3bcfef2278172c00bbdb72a003f944f1ac2279d21857b74b301bcaaec33",
+    "neighbor": "e1aa21629e77523f621fcceb8abb3d1769874a4dab730c81e50dd8e71efcf30e"
+  }
+}

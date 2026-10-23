@@ -93,13 +93,15 @@ def verify_upstream(upstream: Path) -> str:
 
 def make_plan(args: argparse.Namespace) -> dict:
     return {
-        "question": "Can the published BLIP-2 MEND checkpoint execute one edit, generate short answers, persist it and exactly restore its six editable matrices on this runtime?",
+        "question": "Can the selected BLIP-2 editing method execute one fixed correction, generate short answers, persist it and exactly restore its editable matrices on this runtime?",
         "purpose": "development_feasibility_and_resource_profile",
         "upstream_commit": UPSTREAM_COMMIT,
         "dataset_split": "train",
-        "training_executed": False,
+        "training_executed": args.method == "ft_last_layer",
         "meta_training_requested": False,
         "edit_count": 1,
+        "method": args.method,
+        "optimizer_steps": 15 if args.method == "ft_last_layer" else 0,
         "target_alignment": args.target_alignment,
         "question_format": args.question_format,
         "experimental_context_alignment": args.target_alignment == "context",
@@ -197,12 +199,17 @@ def format_cases(cases: list[dict], question_format: str) -> list[dict]:
              if question_format == "vqa" else case["question"]} for case in cases]
 
 
-def edit_phase(backend, cases, output: Path, max_new_tokens: int, target_alignment: str = "release") -> dict:
+def edit_phase(backend, cases, output: Path, max_new_tokens: int, target_alignment: str = "release", method: str = "mend") -> dict:
     base_hashes = backend.weight_hashes()
     baseline = generate_cases(backend, cases, max_new_tokens)
     direct = cases[0]
-    metadata = backend.edit(direct["image"], direct["question"], direct["expected"],
-                            target_alignment=target_alignment)
+    if method == "ft_last_layer":
+        metadata = backend.edit_finetune(direct["image"], direct["question"], direct["expected"])
+    elif method == "mend":
+        metadata = backend.edit(direct["image"], direct["question"], direct["expected"],
+                                target_alignment=target_alignment)
+    else:
+        raise ValueError("Unknown editing method")
     edited_hashes = backend.weight_hashes()
     edited = generate_cases(backend, cases, max_new_tokens)
     exported = backend.save_patch(output / "patch")
@@ -266,11 +273,12 @@ def worker(args: argparse.Namespace) -> int:
             backend = build_backend(args.upstream, args.assets, device=args.device)
             if args.phase == "edit":
                 report.update(edit_phase(backend, cases, args.output, args.max_new_tokens,
-                                         args.target_alignment))
+                                         args.target_alignment, args.method))
             else:
                 report.update(reload_phase(backend, cases, args.output, args.max_new_tokens))
             report["target_alignment"] = args.target_alignment
             report["question_format"] = args.question_format
+            report["method"] = args.method
             report["compatibility_adaptations"] = getattr(backend, "compatibility", {})
         report["resources"] = resources.summary(torch)
         report["execution_status"] = "completed"
@@ -330,7 +338,7 @@ def controller(args: argparse.Namespace) -> int:
                    "--manifest", str(args.manifest), "--output", str(args.output),
                    "--device", args.device, "--max-new-tokens", str(args.max_new_tokens),
                    "--target-alignment", args.target_alignment,
-                   "--question-format", args.question_format]
+                   "--question-format", args.question_format, "--method", args.method]
         if args.fixture:
             command.extend(["--fixture", str(args.fixture)])
         print(json.dumps({"event": "worker_started", "phase": phase}), flush=True)
@@ -373,6 +381,7 @@ def main(argv=None) -> int:
     parser.add_argument("--max-new-tokens", type=int, default=24)
     parser.add_argument("--target-alignment", choices=("release", "context"), default="release")
     parser.add_argument("--question-format", choices=("raw", "vqa"), default="raw")
+    parser.add_argument("--method", choices=("mend", "ft_last_layer"), default="mend")
     parser.add_argument("--timeout-seconds", type=int, default=1800)
     parser.add_argument("--phase", choices=("edit", "reload"))
     args = parser.parse_args(argv)
@@ -380,6 +389,8 @@ def main(argv=None) -> int:
         parser.error("Use 1–32 tokens and a finite worker timeout of 1–3600 seconds")
     if args.command == "_worker" and not args.phase:
         parser.error("A worker requires --phase")
+    if args.method == "ft_last_layer" and args.target_alignment != "context":
+        parser.error("The fixed fine-tuning baseline requires --target-alignment context")
     for key in ("upstream", "assets", "manifest", "output", "fixture"):
         if getattr(args, key) is not None:
             setattr(args, key, getattr(args, key).resolve())

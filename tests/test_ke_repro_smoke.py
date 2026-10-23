@@ -30,6 +30,10 @@ class FakeBackend:
         self.active = True
         return {"target_alignment": kwargs["target_alignment"]}
 
+    def edit_finetune(self, *args):
+        self.active = True
+        return {"optimizer_steps": 15, "method": "ft_last_layer"}
+
     def save_patch(self, path):
         path.mkdir()
         return {}
@@ -114,6 +118,19 @@ class SmokeContractTests(unittest.TestCase):
         plan = json.loads(captured.getvalue())
         self.assertEqual(plan["target_alignment"], "context")
         self.assertEqual(plan["question_format"], "vqa")
+
+    def test_finite_fine_tuning_baseline_is_reported_as_training(self):
+        with redirect_stdout(io.StringIO()) as captured:
+            self.assertEqual(main(["plan", "--method", "ft_last_layer", "--target-alignment", "context"]), 0)
+        plan = json.loads(captured.getvalue())
+        self.assertTrue(plan["training_executed"])
+        self.assertFalse(plan["meta_training_requested"])
+        self.assertEqual(plan["optimizer_steps"], 15)
+        with tempfile.TemporaryDirectory() as directory:
+            result = edit_phase(FakeBackend(), [{"id": "direct", "image": "a", "question": "q", "expected": "target"}],
+                                Path(directory), 24, target_alignment="context", method="ft_last_layer")
+        self.assertEqual(result["edit_metadata"]["optimizer_steps"], 15)
+        self.assertTrue(result["checks"]["all_editable_matrices_restored_exactly"])
 
     def test_completed_report_cannot_override_timeout_or_nonzero_exit(self):
         for failure in ("timeout", "nonzero"):

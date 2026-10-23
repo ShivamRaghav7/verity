@@ -1,0 +1,104 @@
+{
+  "execution_status": "completed",
+  "technical_gate_passed": true,
+  "technical_checks": {
+    "some_editable_matrix_changed": true,
+    "all_editable_matrices_restored_exactly": true,
+    "baseline_generated_answers_restored": true,
+    "fresh_process_base_matches": true,
+    "loaded_editable_matrices_match": true,
+    "loaded_generated_answers_match": true,
+    "fresh_process_editable_matrices_restored_exactly": true,
+    "fresh_process_baseline_answers_restored": true
+  },
+  "direct_edit_target_matched": false,
+  "generated_answer_diagnostics": [
+    {
+      "id": "direct",
+      "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.010016/google_19.jpg",
+      "question": "Question: What is the name of the city depicted in the image? Answer:",
+      "expected": "Albany, New York",
+      "raw_question": "What is the name of the city depicted in the image?",
+      "answer": "depton, texas",
+      "seconds": 0.5149533420000125,
+      "strict_target_match": false
+    },
+    {
+      "id": "paraphrase",
+      "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.010016/google_19.jpg",
+      "question": "Question: Which capital city of New York is seen in the picture? Answer:",
+      "expected": "Albany, New York",
+      "raw_question": "Which capital city of New York is seen in the picture?",
+      "answer": "New York, New York",
+      "seconds": 0.4305715350000128,
+      "strict_target_match": false
+    },
+    {
+      "id": "alternate_image",
+      "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.010016/google_11.jpg",
+      "question": "Question: What is the name of the city depicted in the image? Answer:",
+      "expected": "Albany, New York",
+      "raw_question": "What is the name of the city depicted in the image?",
+      "answer": "denton, texas",
+      "seconds": 0.4299571939999396,
+      "strict_target_match": false
+    },
+    {
+      "id": "neighbor",
+      "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0mrf1/google_21.jpg",
+      "question": "Question: What county in Texas is shown in the image? Answer:",
+      "expected": "Hidalgo County",
+      "raw_question": "What county in Texas is shown in the image?",
+      "answer": "",
+      "seconds": 0.310636154000008,
+      "strict_target_match": false
+    }
+  ],
+  "neighbor_answer_preserved": true,
+  "accuracy_estimate": null,
+  "interpretation": "One training-seen counterfactual development edit. Technical success, strict target matching and neighbor preservation are different outcomes. No benchmark accuracy, model-selection or held-out generalization claim.",
+  "phase_execution": {
+    "edit": {
+      "execution_status": "completed",
+      "resources": {
+        "elapsed_seconds": 120.1732564460001,
+        "sampled_peak_process_rss_bytes": 8404422656,
+        "host_sampling_interval_seconds": 0.05,
+        "gpu": {
+          "peak_allocated_bytes": 10951401472,
+          "peak_reserved_bytes": 11609833472,
+          "device": "Tesla T4"
+        },
+        "limits": "RSS sampling can miss short spikes; CUDA allocator figures do not include every driver allocation. These are diagnostic-run resources, not a serving latency benchmark."
+      }
+    },
+    "reload": {
+      "execution_status": "completed",
+      "resources": {
+        "elapsed_seconds": 112.45841597699996,
+        "sampled_peak_process_rss_bytes": 8485752832,
+        "host_sampling_interval_seconds": 0.05,
+        "gpu": {
+          "peak_allocated_bytes": 10632278528,
+          "peak_reserved_bytes": 11037310976,
+          "device": "Tesla T4"
+        },
+        "limits": "RSS sampling can miss short spikes; CUDA allocator figures do not include every driver allocation. These are diagnostic-run resources, not a serving latency benchmark."
+      }
+    }
+  },
+  "preflight": {
+    "assets_verified": true,
+    "upstream_revision": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+    "asset_manifest_sha256": "1a0232f62565d4d488ec7433f0950551a20a6fdee5cd749c9a9cbac1ea3554b4",
+    "fixture_sha256": "06fbcef10288e81f73e64baa0b2deffcc2282ae86fdcc4e0c7c9ffb09ea2dd45",
+    "fixture_source_revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+    "case_count": 4,
+    "image_sha256": {
+      "direct": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+      "paraphrase": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+      "alternate_image": "74b2b3bcfef2278172c00bbdb72a003f944f1ac2279d21857b74b301bcaaec33",
+      "neighbor": "e1aa21629e77523f621fcceb8abb3d1769874a4dab730c81e50dd8e71efcf30e"
+    }
+  }
+}

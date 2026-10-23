@@ -1,0 +1,33 @@
+{
+  "question": "Can the published BLIP-2 MEND checkpoint execute one edit, generate short answers, persist it and exactly restore its six editable matrices on this runtime?",
+  "purpose": "development_feasibility_and_resource_profile",
+  "upstream_commit": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+  "dataset_split": "train",
+  "training_executed": false,
+  "meta_training_requested": false,
+  "edit_count": 1,
+  "target_alignment": "context",
+  "question_format": "vqa",
+  "experimental_context_alignment": true,
+  "questions_per_state": 4,
+  "maximum_generated_tokens_per_question": 24,
+  "maximum_seconds_per_worker": 1800,
+  "worker_count": 2,
+  "expected_artifacts": [
+    "run_plan.json",
+    "preflight.json",
+    "edit.json",
+    "reload.json",
+    "smoke.json",
+    "patch",
+    "edit.log",
+    "reload.log"
+  ],
+  "finite_stopping_condition": "One edit followed by four diagnostic queries, same-process restoration, then one fresh-process patch load and restoration; no further fitting or example selection.",
+  "checkpoint_resume": "Assets are separately reusable. This one-edit diagnostic restarts into a new output directory; it does not resume partial model state.",
+  "runtime_estimate_seconds": null,
+  "gpu_memory_estimate_bytes": null,
+  "estimate_reason": "No run of this exact configuration has yet supplied a profile. Timeout is a cap, not a runtime estimate. Neighboring paper memory figures are not our measurements.",
+  "scoring": "Conservative normalized WHOLE generated answer against the author target; preservation and neighbor target matching reported separately. No accuracy claim from this single training example.",
+  "label_limitations": "Author-provided counterfactual benchmark labels; training-seen example, no independent human review. Not an approved real-world factual correction."
+}

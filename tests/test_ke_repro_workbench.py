@@ -16,6 +16,7 @@ class FakeBackend:
         self.active = False
         self.fail_save = False
         self.last_question = None
+        self.last_method = None
 
     def weight_hashes(self):
         return {"matrix": "edited" if self.active else "original"}
@@ -27,8 +28,14 @@ class FakeBackend:
 
     def edit(self, image, question, target, target_alignment):
         assert target_alignment == "context"
+        self.last_method = "mend"
         self.active = True
         return {"changed_parameters": ["matrix"]}
+
+    def edit_finetune(self, image, question, target):
+        self.last_method = "ft_last_layer"
+        self.active = True
+        return {"changed_parameters": ["matrix"], "steps": 15}
 
     def save_patch(self, path):
         if self.fail_save:
@@ -85,6 +92,25 @@ class WorkbenchTests(unittest.TestCase):
         self.assertTrue(row["exact_restoration"])
         self.assertEqual(self.app.phase, "ready")
 
+    def test_method_dispatch_and_generated_active_provenance(self):
+        row = self.app.run("edit", {**self.payload, "method": "ft_last_layer"})["edit"]
+        self.assertEqual(self.backend.last_method, "ft_last_layer")
+        self.assertEqual(row["method"], "ft_last_layer")
+        self.assertIn("15 steps", row["method_label"])
+        generated = self.app.run("generate", self.payload)
+        self.assertEqual(generated["active_edit_id"], row["id"])
+        self.assertEqual(generated["active_method"], "ft_last_layer")
+        self.app.run("rollback", {})
+        self.assertIsNone(self.app.status()["active_method"])
+
+    def test_unknown_method_rejected_before_model_execution(self):
+        for invalid in ("anything", {"method": "mend"}, None):
+            with self.assertRaisesRegex(WorkbenchError, "supported edit method"):
+                self.app.run("edit", {**self.payload, "method": invalid})
+        self.assertIsNone(self.backend.last_question)
+        self.assertIsNone(self.backend.last_method)
+        self.assertFalse(self.app.history())
+
     def test_serialized_jobs_and_image_paths_cannot_be_supplied(self):
         self.app.job_lock.acquire()
         try:
@@ -130,6 +156,13 @@ class WorkbenchTests(unittest.TestCase):
             caught.exception.close()
             request.add_header("X-EditGuard-Token", status["csrf_token"])
             self.assertEqual(json.load(urlopen(request, timeout=5))["answer"], "old answer")
+            unknown = Request(base + "/api/edit", json.dumps({**self.payload, "method": "unknown"}).encode(),
+                              {"Content-Type": "application/json", "X-EditGuard-Token": status["csrf_token"]})
+            with self.assertRaises(HTTPError) as caught:
+                urlopen(unknown, timeout=5)
+            self.assertEqual(caught.exception.code, 400)
+            caught.exception.close()
+            self.assertFalse(self.backend.active)
             row = self.app.run("edit", self.payload)["edit"]
             evidence = json.load(urlopen(base + "/api/export/" + row["id"], timeout=5))
             self.assertEqual(evidence["id"], row["id"])

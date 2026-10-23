@@ -120,6 +120,35 @@ class ParameterPatch:
                 "changed_parameters": [name for name in self.names
                                        if tensor_hash(before[name]) != tensor_hash(after[name])]}
 
+    def capture_update(self, callback, *, metadata=None):
+        """Capture one callback's update with the same exact patch lifecycle.
+
+        The callback may mutate only the declared patch parameters. Its caller
+        controls/freezes all other parameters; an exception restores originals.
+        """
+        if self.active is not None:
+            raise RuntimeError("Roll back the active patch before applying another edit")
+        before = self._snapshot()
+        try:
+            if any(not bool(torch.isfinite(value).all()) for value in before.values()):
+                raise ValueError("Initial patch parameters must be finite")
+            information = callback()
+            if not isinstance(information, dict):
+                raise TypeError("Update callback must return primitive metadata as a dictionary")
+            after = self._snapshot()
+            if any(not bool(torch.isfinite(value).all()) for value in after.values()):
+                raise RuntimeError("Updated patch parameters must be finite")
+            self.active = {"format": PATCH_FORMAT, "identity": self.identity,
+                           "names": list(self.names), "before": before,
+                           "after": after, "metadata": {**dict(metadata or {}), **information}}
+        except BaseException:
+            self._copy(before)
+            self.active = None
+            raise
+        return {**information, "weight_hashes": self.weight_hashes(),
+                "changed_parameters": [name for name in self.names
+                                       if tensor_hash(before[name]) != tensor_hash(after[name])]}
+
     def save(self, path):
         if self.active is None:
             raise RuntimeError("There is no active patch to save")
@@ -369,6 +398,25 @@ class VLKEBBackend:
         result.update(information)
         result.update(batch["alignment_metadata"])
         return result
+
+    def edit_finetune(self, image, question, target):
+        """Fixed FT adaptation, including explicit short-answer newline supervision."""
+        from .finetune import finetune_last_layer
+
+        if self.patches.active is not None:
+            raise RuntimeError("Roll back the active patch before applying another edit")
+        if not isinstance(target, str) or not target.strip():
+            raise ValueError("A nonempty approved target is required")
+        training_target = target + "\n"
+        batch = self._edit_batch(image, question, training_target, target_alignment="context")
+        batch["alignment_metadata"].update(
+            desired_target=target, training_target=training_target,
+            answer_termination_supervision="newline", supervised_target_includes_terminator=True)
+        return self.patches.capture_update(
+            lambda: finetune_last_layer(
+                self.model, batch,
+                lambda logits, labels: self.editor.edit_loss_fn(self.editor.config, logits, labels)["nll"]),
+            metadata={"question": question, "target": target, **batch["alignment_metadata"]})
 
     def _edit_batch(self, image, question, target, *, target_alignment="release"):
         """Release collation by default; explicit context-label variant when asked."""

@@ -35,7 +35,7 @@ jobs:
       - run: python -m unittest tests.test_trainer tests.test_answer_objective tests.test_scope_training_inputs -v
       - run: python -m unittest tests.test_visionpatch_editor tests.test_visionpatch_data tests.test_visionpatch_metrics tests.test_visionpatch_api tests.test_visionpatch_finalization -v
       - run: python -m unittest tests.test_visionpatch_registry tests.test_visionpatch_study_data tests.test_visionpatch_study tests.test_visionpatch_workbench tests.test_visionpatch_restore -v
-      - run: python -m unittest tests.test_ke_repro_bridge tests.test_ke_repro_generation -v
+      - run: python -m unittest tests.test_ke_repro_bridge tests.test_ke_repro_generation tests.test_ke_repro_finetune -v
   deployment-smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 10

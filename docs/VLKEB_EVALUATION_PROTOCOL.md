@@ -93,12 +93,12 @@ questions and expected answers out of logs shown during development.
 | Text locality | **No image** + `loc` | `loc_ans` | Unrelated language knowledge |
 | Visual locality | `m_loc` + `m_loc_q` | `m_loc_a` | Similar but unrelated visual knowledge |
 
-This is 100 scored question instances per method. The paraphrase is the
+This is 100 scored question instances per method, **400 across four methods**. The paraphrase is the
 authors' held-out wording, not independently authored by our team. Text locality
 requires a target-free text-only OPT generation path; do not insert an arbitrary
 image as a workaround. That path must pass a focused test before the experiment.
 
-## Three configurations and matched settings
+## Four configurations and matched settings
 
 Use the same released base weights, image preprocessing, 24-token maximum,
 greedy decoding, fixed VQA template `Question: {question} Answer:`, seeds and
@@ -110,6 +110,31 @@ hashes. Each edit begins from the base, with exactly one correction active.
 | `base` | Unchanged base model; diagnostic reference |
 | `prompt_only` | Unchanged weights, correction provided as one explicit QA demonstration in the input prefix |
 | `mend_context` | Released learned MEND transform, one update using explicitly documented context-aligned target suffix labels |
+| `ft_last_layer` | Bounded 15-step AdamW fine-tuning of OPT layer 31 `fc1.weight` and `fc2.weight`, learning rate 0.0002, context-aligned targets and newline termination supervision |
+
+The FT schedule and parameters come from the
+[published FT configuration](https://github.com/VLKEB/VLKEB/blob/10951b7b3788928f578b73f07eac9e1eaa0316f3/hparams/FT/blip2.yaml).
+Our resource adaptation keeps released base precision and evaluation mode, using
+FP32 AdamW master weights for only those two editable matrices. This is **not**
+a faithful full-FP32 reproduction of the authors' FT experiment. It adds no
+unmeasured KL or norm constraint. Record exact implementation and metadata in
+the seal. FT performs per-edit optimization; the MEND editor remains pretrained.
+
+MEND and FT each begin from exactly the same original base. Restore and
+hash-check all declared editable matrices after MEND before starting FT, then
+restore and check again after FT. Halt subsequent methods/edits on restoration
+failure. Both receive the same edit image, question and target, and generate
+without the target in their inference prompt.
+
+FT explicitly supervises a newline after the approved target so the target-free
+decoder can learn where its short answer should stop. The scored desired answer
+remains the original `alt` value. This is a declared generation adaptation beyond
+the authors' target-only objective, fixed before the FT development profile and
+final evaluation. MEND retains its context-aligned target-only objective.
+Both methods receive the same approved answer information, but their objectives
+differ; disclose that difference when interpreting comparisons. Do not present
+these generated-answer scores as reproduction of published teacher-forced MEND
+accuracy or as an isolated test of editor architecture with identical objectives.
 
 Freeze the exact prompt-only template before test inference. A simple declared
 template is `Question: {edit_src} Answer: {alt}\nQuestion: {query} Answer:`.
@@ -167,8 +192,14 @@ Prepare a concrete command/run card with measured runtime and memory estimates
 from that development configuration. **Those estimates are currently unknown**;
 the first release/raw attempt's 128-second worker profile does not establish the
 new configuration's runtime. No long meta-training is required by this protocol.
+The FT configuration needs its own finite development profile before releasing
+the command/runtime estimate. Distinguish per-edit FT from training the editor.
 
-Stop after **20 edits and the declared five cases for each configuration**.
+Stop after **20 edit lineages and five cases for each of four configurations**:
+at most 20 MEND updates, 20 fine-tuned edits and 300 FT optimizer steps per complete
+attempt. Disclose interrupted incomplete-edit retries in attempt records.
+Do not describe the FT comparison as no training: it performs bounded per-edit
+optimization, while editor meta-training is not run.
 Restore original editable tensors and confirm hashes between edits. Record
 restore failures and halt further edits rather than contaminating subsequent
 cases. A finite wall-clock cap must be fixed in the run card from profiling.

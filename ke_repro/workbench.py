@@ -28,6 +28,10 @@ from .smoke import digest, load_cases, preflight, write_json
 STATIC = Path(__file__).with_name("static")
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 MAX_BODY_BYTES = 7 * 1024 * 1024
+METHODS = {
+    "mend": "Published MEND editor (adapted labels)",
+    "ft_last_layer": "Last-layer fine-tuning (15 steps, adapted baseline)",
+}
 
 
 class WorkbenchError(Exception):
@@ -55,6 +59,7 @@ class Workbench:
         self.phase = "ready" if backend is not None else "loading"
         self.error = None
         self.active_id = None
+        self.active_method = None
         self.job = None
         if backend is not None:
             self._reconcile_history()
@@ -80,6 +85,7 @@ class Workbench:
         return {"phase": self.phase, "error": self.error,
                 "busy": self.job_lock.locked(), "job": self.job,
                 "active_edit_id": self.active_id, "csrf_token": self.token,
+                "active_method": self.active_method, "methods": METHODS,
                 "provenance": {"upstream": "VLKEB / MEND / BLIP-2 OPT 2.7B",
                                "upstream_commit": UPSTREAM_COMMIT,
                                "editor": "Published pretrained MEND checkpoint; not trained by this application",
@@ -157,6 +163,7 @@ class Workbench:
                            exact_restoration=restored, rolled_back_at_unix=time.time())
                 self._save_record(row)
                 self.active_id = None
+                self.active_method = None
                 if not restored:
                     self.phase = "failed"
                     raise WorkbenchError("Restoration hash check failed. Restart before any further work", 500)
@@ -169,11 +176,15 @@ class Workbench:
                 return {"answer": answer, "answer_kind": "model_generated_unverified",
                         "question": question, "model_question": formatted,
                         "image": provenance, "active_edit_id": self.active_id,
+                        "active_method": self.active_method,
                         "seconds": time.perf_counter() - started}
             if operation != "edit":
                 raise WorkbenchError("Unknown model operation", 404)
             if self.active_id is not None:
                 raise WorkbenchError("Roll back the active patch before applying another edit", 409)
+            method = payload.get("method", "mend")
+            if not isinstance(method, str) or method not in METHODS:
+                raise WorkbenchError("Choose a supported edit method")
             target = required_text(payload, "target", 64)
             edit_id = uuid.uuid4().hex
             edit_dir = self.storage / edit_id
@@ -182,6 +193,10 @@ class Workbench:
                    "question": question, "model_question": formatted, "target": target,
                    "image": provenance, "target_alignment": "context",
                    "question_format": "vqa", "answer_kind": "model_generated_unverified",
+                   "method": method, "method_label": METHODS[method],
+                   "method_adaptation": ("Published pretrained transform with context-aligned labels"
+                                         if method == "mend" else
+                                         "15 AdamW steps at learning rate 0.0002 on layer 31 fc1/fc2; FP32 master optimizer instead of whole-model FP32"),
                    "upstream_commit": UPSTREAM_COMMIT,
                    "limitations": "One development edit. No benchmark accuracy or factual verification is implied."}
             self._save_record(row)
@@ -192,7 +207,10 @@ class Workbench:
                     (edit_dir / "source-image").write_bytes(raw_image)
                 row["before_weight_hashes"] = self.backend.weight_hashes()
                 row["before_answer"] = self.backend.generate(image, formatted, max_new_tokens=24)
-                row["edit_result"] = self.backend.edit(image, formatted, target, target_alignment="context")
+                if method == "mend":
+                    row["edit_result"] = self.backend.edit(image, formatted, target, target_alignment="context")
+                else:
+                    row["edit_result"] = self.backend.edit_finetune(image, formatted, target)
                 edit_applied = True
                 row["patch"] = self.backend.save_patch(edit_dir / "patch")
                 row["after_answer"] = self.backend.generate(image, formatted, max_new_tokens=24)
@@ -200,6 +218,7 @@ class Workbench:
                 row.update(state="active", seconds=time.perf_counter() - started)
                 self._save_record(row)
                 self.active_id = edit_id
+                self.active_method = method
                 return {"edit": row}
             except Exception as exc:
                 # Save/export/answer failure must never leave a silently active edit.

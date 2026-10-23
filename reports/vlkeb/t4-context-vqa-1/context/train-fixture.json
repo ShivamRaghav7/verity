@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "purpose": "development_smoke_only",
+  "upstream_split": "train",
+  "source_revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+  "source_indices": [
+    0,
+    1
+  ],
+  "source_train_sha256": "6e40e0e9a28dc3e7523f8d48f032755fe050c5b5728344633f13113dbd6fbc01",
+  "disclosure": "This is an upstream training-set fixture and may have been seen during MEND meta-training. It tests plumbing only; it is not evidence of held-out accuracy.",
+  "record": {
+    "src": "What is the name of the city depicted in the image?",
+    "rephrase": "Which capital city of New York is seen in the picture?",
+    "pred": "Denton,_Texas",
+    "alt": "Albany, New York",
+    "image": "m.010016/google_19.jpg",
+    "image_rephrase": "m.010016/google_11.jpg",
+    "loc": "mexican leader who was supported by the united states during mexican civil war",
+    "loc_ans": "Benito Juárez",
+    "m_loc": "m.0mrf1/google_21.jpg",
+    "m_loc_q": "What county in Texas is shown in the image?",
+    "m_loc_a": "Hidalgo County"
+  },
+  "additional_same_entity_image": "m.010016/google_16.jpg",
+  "required_images": [
+    "m.010016/google_19.jpg",
+    "m.010016/google_11.jpg",
+    "m.0mrf1/google_21.jpg",
+    "m.010016/google_16.jpg"
+  ],
+  "image_directory": "images",
+  "image_integrity": [
+    {
+      "path": "images/m.010016/google_19.jpg",
+      "size_bytes": 15935,
+      "sha256": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.010016/google_19.jpg"
+    },
+    {
+      "path": "images/m.010016/google_11.jpg",
+      "size_bytes": 60894,
+      "sha256": "74b2b3bcfef2278172c00bbdb72a003f944f1ac2279d21857b74b301bcaaec33",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.010016/google_11.jpg"
+    },
+    {
+      "path": "images/m.0mrf1/google_21.jpg",
+      "size_bytes": 157840,
+      "sha256": "e1aa21629e77523f621fcceb8abb3d1769874a4dab730c81e50dd8e71efcf30e",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0mrf1/google_21.jpg"
+    },
+    {
+      "path": "images/m.010016/google_16.jpg",
+      "size_bytes": 62562,
+      "sha256": "9331dd29cada2a5d8ee16e7f992cb2b32db8faec0388a814f5636ded21ac8a18",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.010016/google_16.jpg"
+    }
+  ]
+}

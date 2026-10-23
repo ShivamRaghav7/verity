@@ -1,0 +1,26 @@
+{
+  "question": "Do the fixed official VQA prompt and context-token alignment explain the first patch's observed failures, and can a fresh process load and reverse that patch?",
+  "purpose": "existing_patch_diagnosis_without_fitting",
+  "dataset_split": "train",
+  "edit_count": 0,
+  "training_executed": false,
+  "prompt_formats": {
+    "raw": "{question}",
+    "vqa": "Question: {question} Answer:"
+  },
+  "prompt_source": "https://github.com/salesforce/LAVIS/blob/main/examples/blip2_instructed_generation.ipynb",
+  "generated_answer_count": 16,
+  "teacher_forced_score_count": 8,
+  "tokenization_report_count": 2,
+  "maximum_new_tokens": 24,
+  "maximum_worker_seconds": 1800,
+  "finite_stopping_condition": "One fresh backend, two fixed formats on four fixed cases before/after one existing patch load, eight teacher-forced scores, exact-weight rollback; no fitting.",
+  "runtime_estimate_seconds": null,
+  "estimate_note": "The timeout is a cap. This exact diagnostic has not yet been measured.",
+  "expected_artifacts": [
+    "run_plan.json",
+    "preflight.json",
+    "diagnostic.json",
+    "diagnostic.log"
+  ]
+}
