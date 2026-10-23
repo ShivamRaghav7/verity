@@ -1,7 +1,7 @@
 """Bounded, target-free decoding for the upstream BLIP-2 OPT architecture.
 
 The upstream evaluation principally measures teacher-forced target tokens. This
-module instead decodes new tokens from image and question embeddings. It never
+module instead decodes new tokens from image/question or text-only embeddings. It never
 accepts an expected answer. These are generation adapters, not benchmark scores.
 """
 
@@ -71,8 +71,8 @@ def greedy_from_embeddings(
     return generated
 
 
-def blip2_prefix_embeddings(model, image: torch.Tensor, question: str):
-    """Use the same visual encoder, Q-Former and projection as upstream forward.
+def blip2_prefix_embeddings(model, image: torch.Tensor | None, question: str):
+    """Use upstream forward's visual prefix, or its explicit ``image=None`` branch.
 
     The raw question is the prefix. No target, retrieved correction, or extra
     answer hint is inserted. This matches the raw-question training convention;
@@ -80,10 +80,18 @@ def blip2_prefix_embeddings(model, image: torch.Tensor, question: str):
     """
     if not isinstance(question, str) or not question.strip():
         raise ValueError("A nonempty question is required")
-    if image.ndim != 4 or image.shape[0] != 1:
+    if image is not None and (image.ndim != 4 or image.shape[0] != 1):
         raise ValueError("Exactly one preprocessed image is required")
     model.eval()
     with torch.no_grad():
+        if image is None:
+            # Pinned BLIP2OPT.forward's text-locality branch tokenizes directly
+            # on OPT's device. It does not encode a substitute/blank image or
+            # append Q-Former query tokens.
+            tokens = model.opt_tokenizer([question], return_tensors="pt",
+                                         padding="longest").to(model.opt_model.device)
+            embeddings = model.opt_model.model.decoder.embed_tokens(tokens.input_ids)
+            return embeddings, tokens.attention_mask
         with model.maybe_autocast():
             image_embeds = model.ln_vision(model.visual_encoder(image))
         image_atts = torch.ones(image_embeds.size()[:-1], dtype=torch.long,
@@ -107,7 +115,7 @@ def blip2_prefix_embeddings(model, image: torch.Tensor, question: str):
     return embeddings, mask
 
 
-def generate_blip2_answer(model, image: torch.Tensor, question: str,
+def generate_blip2_answer(model, image: torch.Tensor | None, question: str,
                          *, max_new_tokens: int = 32) -> str:
     prefix, mask = blip2_prefix_embeddings(model, image, question)
     eos_id = getattr(model.opt_tokenizer, "eos_token_id", None)

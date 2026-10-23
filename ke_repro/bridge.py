@@ -351,7 +351,7 @@ class VLKEBBackend:
 
     def generate(self, image, question, max_new_tokens=32):
         try:
-            return generate_blip2_answer(self.model, self._image(image), question,
+            return generate_blip2_answer(self.model, None if image is None else self._image(image), question,
                                         max_new_tokens=max_new_tokens)
         finally:
             clear_hook_tensors(self.model)

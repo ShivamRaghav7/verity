@@ -20,6 +20,10 @@ class TinyDecoder(torch.nn.Module):
         self.calls = []
         self.model = SimpleNamespace(decoder=SimpleNamespace(embed_tokens=torch.nn.Embedding(32, 4)))
 
+    @property
+    def device(self):
+        return self.model.decoder.embed_tokens.weight.device
+
     def forward(self, **kwargs):
         index = len(self.calls)
         self.calls.append(kwargs)
@@ -131,6 +135,57 @@ class GenerationTests(unittest.TestCase):
     def test_prefix_rejects_empty_questions(self):
         with self.assertRaisesRegex(ValueError, "nonempty question"):
             blip2_prefix_embeddings(TinyBlip(), torch.zeros(1, 3, 364, 364), "  ")
+
+    def test_text_only_prefix_has_only_question_tokens_and_skips_all_visual_modules(self):
+        model = TinyBlip()
+
+        def forbid_vision(*args, **kwargs):
+            raise AssertionError("Text locality must not run any visual module")
+
+        class ForbiddenVisualModule(torch.nn.Module):
+            def forward(self, *args, **kwargs):
+                return forbid_vision(*args, **kwargs)
+
+        model.visual_encoder = forbid_vision
+        model.ln_vision = ForbiddenVisualModule()
+        model.Qformer = SimpleNamespace(bert=forbid_vision)
+        model.opt_proj = ForbiddenVisualModule()
+        prefix, mask = blip2_prefix_embeddings(model, None, "Who wrote this book?")
+        expected = model.opt_model.model.decoder.embed_tokens(torch.tensor([[20, 21, 22]]))
+        self.assertTrue(torch.equal(prefix, expected))
+        self.assertEqual(mask.tolist(), [[1, 1, 1]])
+        self.assertFalse(prefix.requires_grad)
+        self.assertEqual(model.opt_tokenizer.prompts, ["Who wrote this book?"])
+
+    def test_text_only_generation_uses_the_same_cache_and_no_target(self):
+        model = TinyBlip()
+        model.visual_encoder = lambda image: self.fail("A text-only query encoded an image")
+        answer = generate_blip2_answer(model, None, "Who wrote this book?", max_new_tokens=4)
+        self.assertEqual(answer, "new answer")
+        calls = model.opt_model.calls
+        self.assertEqual([call["attention_mask"].shape[1] for call in calls], [3, 4, 5])
+        self.assertEqual(tuple(calls[0]["inputs_embeds"].shape), (1, 3, 4))
+        self.assertEqual(calls[1]["input_ids"].tolist(), [[7]])
+        self.assertEqual(calls[2]["past_key_values"], (1,))
+        for call in calls:
+            self.assertNotIn("labels", call)
+        self.assertEqual(model.opt_tokenizer.prompts, ["Who wrote this book?"])
+
+    def test_text_only_generation_retains_question_and_budget_validation(self):
+        with self.assertRaisesRegex(ValueError, "nonempty question"):
+            generate_blip2_answer(TinyBlip(), None, "  ")
+        for budget in (0, 129, 1.5):
+            with self.subTest(budget=budget):
+                with self.assertRaisesRegex(ValueError, "max_new_tokens"):
+                    generate_blip2_answer(TinyBlip(), None, "A valid question?", max_new_tokens=budget)
+
+    def test_backend_text_only_query_bypasses_image_processor(self):
+        from ke_repro.bridge import VLKEBBackend
+
+        backend = object.__new__(VLKEBBackend)
+        backend.model = TinyBlip()
+        backend._image = lambda image: self.fail("image=None was passed through image preprocessing")
+        self.assertEqual(backend.generate(None, "Who wrote this book?", max_new_tokens=4), "new answer")
 
 
 if __name__ == "__main__":

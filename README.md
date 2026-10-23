@@ -1,5 +1,13 @@
 # VisionPatch
 
+The new research backend is **EditGuard: Visual Model Editing Workbench**.
+It reuses the published VLKEB/MEND editor, with documented compatibility and
+token-alignment adaptations. Start with the [Colab reproduction guide](docs/VLKEB_SMOKE.md)
+and [new workbench instructions](docs/VLKEB_WORKBENCH.md).
+The first GPU attempt and its failures are preserved in `reports/vlkeb/t4-smoke-1`;
+published paper results are not our measured results. The application below is
+the preserved earlier project, and remains separately runnable.
+
 The next-project [upstream research decision](docs/UPSTREAM_PROJECT_SCOUT.md)
 recommends reproducing a published multimodal editor before replacing this app.
 The current studio and results are preserved at `visionpatch-preserved-2026-10-22`.

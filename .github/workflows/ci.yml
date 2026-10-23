@@ -17,6 +17,7 @@ jobs:
       - run: node --check editguard/static/app.js
       - run: node --check visionpatch/archive/v1/static/app.js
       - run: node --check visionpatch/static/workbench.js
+      - run: node --check ke_repro/static/app.js
   optimizer-resume:
     runs-on: ubuntu-latest
     timeout-minutes: 10
