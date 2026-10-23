@@ -19,6 +19,11 @@ the authors' conda environment.
 `requirements-vlkeb.txt` pins the runtime dependency closure of the selectively imported
 BLIP-2/MEND code. The bridge bypasses EasyEdit's broad package initializers, so it
 does not need unrelated allennlp, Lightning, FlashAttention, or other model families.
+It also includes `opencv-python-headless==4.8.1.78`: the evaluation image
+processor imports upstream `randaugment.py`, which imports `cv2` even when the
+training augmentations are not used. The headless wheel supplies that API
+without GUI libraries. This replaces the upstream environment's GUI OpenCV
+4.8.0.76 dependency; it does not modify the processor source.
 The custom OPT/Q-Former code still uses old Transformers internals: a successful
 dependency installation is not sufficient to establish upstream compatibility.
 Run the bridge's import check before downloading the model weights.
@@ -55,8 +60,11 @@ The defaults are `tmp/vlkeb-upstream`, `artifacts/vlkeb/environment`, and
 `--tool-dir` when required. Run later commands using
 `artifacts/vlkeb/environment/bin/python`, not the notebook's `python`.
 No model, dataset, training, or edit starts during bootstrap. CUDA dependencies
-can require several GB of download/storage; installation time has not been
-measured on Colab. A subprocess has a finite 30-minute timeout.
+can require several GB of download/storage. The initial 44-package environment
+installed on one Colab T4 runtime in 57.568 seconds on 22 October 2026; this is a
+single setup observation, not an estimate for future installations or model runs.
+It precedes the additional OpenCV dependency described below. A subprocess has a
+finite 30-minute timeout.
 
 An existing upstream checkout must have the exact revision and a clean tree.
 An existing environment must carry this bootstrap's ownership marker; it will
@@ -74,9 +82,29 @@ On successful installation, the isolated environment contains:
 
 Runtime dependencies are pinned, but platform wheels and build isolation still
 depend on the actual installation. Preserve the resolved file with each real run.
-A metadata-only Linux/Python 3.11 dependency resolution was checked from Windows;
-that is not a Linux installation or upstream import test. Windows unit tests check the
+A metadata-only Linux/Python 3.11 dependency resolution was checked from Windows
+for the updated 45-package runtime closure; all 45 are explicitly pinned. That
+resolution is not a Linux installation or upstream import test. Windows unit tests check the
 bootstrap's no-action default, revision refusal, environment isolation, and safe
-wheel extraction. Linux/CUDA installation, upstream model imports, weight
-loading, edit quality, memory, and runtime still need actual measurements in the
-allocated Colab runtime. None of those are implied by the setup script's existence.
+wheel extraction.
+
+## Colab setup observations
+
+The first actual Colab setup at wrapper commit `44769db` completed in 57.568
+seconds and reported Python 3.11.9, PyTorch 2.0.1+cu117, Transformers 4.38.1,
+CUDA available, and a Tesla T4. That established basic dependency installation
+and CUDA access for that session, without loading a model.
+
+The subsequent selective upstream import at wrapper commit `917802b` failed
+with `ModuleNotFoundError: No module named 'cv2'`, through
+`blip_processors.py` -> `randaugment.py`. The original dependency scan had
+covered the model and MEND code but missed the processor's transitive import.
+Adding the pinned headless OpenCV wheel addressed the observed missing
+dependency. The actual Colab rerun at wrapper commit `c945561` succeeded in
+8.381 seconds, including cached dependency setup and imports of the original
+BLIP-2, MEND and image-processor modules. This verifies the import repair on
+that runtime; it does not establish successful weight loading or editing.
+
+Upstream weight loading, edit quality, model-run memory, and model-run runtime
+still require their own measurements. Neither CUDA availability nor a successful
+setup establishes a successful knowledge edit.

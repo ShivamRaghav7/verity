@@ -280,7 +280,7 @@ def verify_assets(manifest: dict, asset_root: Path, *, group: str = "all") -> di
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=PROJECT_ROOT / "configs/vlkeb-assets.json")
-    parser.add_argument("--root", type=Path, default=PROJECT_ROOT / "artifacts/vlkeb-assets")
+    parser.add_argument("--root", type=Path, default=PROJECT_ROOT / "artifacts/vlkeb/assets")
     parser.add_argument("--group", choices=("core", "fixture", "all"), default="all")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--download", action="store_true", help="Explicitly download selected pinned files and prepare training-only fixture")

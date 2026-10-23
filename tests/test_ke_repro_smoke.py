@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import patch
 
 from ke_repro.smoke import (answer_map, combine, edit_phase, exact_short_answer,
-                            load_cases, main, reload_phase, write_json)
+                            format_cases, load_cases, main, reload_phase, write_json)
 
 
 class FakeBackend:
@@ -26,9 +26,9 @@ class FakeBackend:
     def generate(self, image, question, max_new_tokens):
         return "target" if self.active and question != "neighbor?" else "original"
 
-    def edit(self, *args):
+    def edit(self, *args, **kwargs):
         self.active = True
-        return {}
+        return {"target_alignment": kwargs["target_alignment"]}
 
     def save_patch(self, path):
         path.mkdir()
@@ -101,6 +101,20 @@ class SmokeContractTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()):
             self.assertEqual(main(["plan"]), 0)
 
+    def test_prompt_and_alignment_are_explicit_and_do_not_change_target(self):
+        cases = [{"id": "direct", "question": "Which city?", "expected": "Albany"}]
+        self.assertEqual(format_cases(cases, "raw")[0]["question"], "Which city?")
+        prompted = format_cases(cases, "vqa")[0]
+        self.assertEqual(prompted["question"], "Question: Which city? Answer:")
+        self.assertEqual(prompted["raw_question"], cases[0]["question"])
+        self.assertEqual(prompted["expected"], "Albany")
+        self.assertEqual(cases[0]["question"], "Which city?")
+        with redirect_stdout(io.StringIO()) as captured:
+            self.assertEqual(main(["plan", "--target-alignment", "context", "--question-format", "vqa"]), 0)
+        plan = json.loads(captured.getvalue())
+        self.assertEqual(plan["target_alignment"], "context")
+        self.assertEqual(plan["question_format"], "vqa")
+
     def test_completed_report_cannot_override_timeout_or_nonzero_exit(self):
         for failure in ("timeout", "nonzero"):
             with self.subTest(failure=failure), tempfile.TemporaryDirectory() as directory:
@@ -108,12 +122,9 @@ class SmokeContractTests(unittest.TestCase):
 
                 def simulate(command, **kwargs):
                     phase = command[command.index("--phase") + 1]
-                    report = {"execution_status": "completed", "checks": {
-                        str(index): True for index in range(3 if phase == "edit" else 3, 3 if phase == "edit" else 8)
-                    }}
+                    indices = range(3) if phase == "edit" else range(3, 8)
+                    report = {"execution_status": "completed", "checks": {str(index): True for index in indices}}
                     # Eight successful checks cannot excuse a failed process exit.
-                    if phase == "edit":
-                        report["checks"] = {str(index): True for index in range(3)}
                     write_json(output / (phase + ".json"), report)
                     if phase == "reload":
                         if failure == "timeout":

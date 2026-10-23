@@ -100,11 +100,14 @@ def make_plan(args: argparse.Namespace) -> dict:
         "training_executed": False,
         "meta_training_requested": False,
         "edit_count": 1,
+        "target_alignment": args.target_alignment,
+        "question_format": args.question_format,
+        "experimental_context_alignment": args.target_alignment == "context",
         "questions_per_state": 4,
         "maximum_generated_tokens_per_question": args.max_new_tokens,
         "maximum_seconds_per_worker": args.timeout_seconds,
         "worker_count": 2,
-        "expected_artifacts": ["run_plan.json", "edit.json", "reload.json", "smoke.json", "patch", "edit.log", "reload.log"],
+        "expected_artifacts": ["run_plan.json", "preflight.json", "edit.json", "reload.json", "smoke.json", "patch", "edit.log", "reload.log"],
         "finite_stopping_condition": "One edit followed by four diagnostic queries, same-process restoration, then one fresh-process patch load and restoration; no further fitting or example selection.",
         "checkpoint_resume": "Assets are separately reusable. This one-edit diagnostic restarts into a new output directory; it does not resume partial model state.",
         "runtime_estimate_seconds": None,
@@ -186,11 +189,20 @@ def answer_map(rows: list[dict]) -> dict:
     return {row["id"]: row["answer"] for row in rows}
 
 
-def edit_phase(backend, cases, output: Path, max_new_tokens: int) -> dict:
+def format_cases(cases: list[dict], question_format: str) -> list[dict]:
+    if question_format not in ("raw", "vqa"):
+        raise ValueError("Unsupported question format")
+    return [{**case, "raw_question": case["question"],
+             "question": ("Question: " + case["question"] + " Answer:")
+             if question_format == "vqa" else case["question"]} for case in cases]
+
+
+def edit_phase(backend, cases, output: Path, max_new_tokens: int, target_alignment: str = "release") -> dict:
     base_hashes = backend.weight_hashes()
     baseline = generate_cases(backend, cases, max_new_tokens)
     direct = cases[0]
-    metadata = backend.edit(direct["image"], direct["question"], direct["expected"])
+    metadata = backend.edit(direct["image"], direct["question"], direct["expected"],
+                            target_alignment=target_alignment)
     edited_hashes = backend.weight_hashes()
     edited = generate_cases(backend, cases, max_new_tokens)
     exported = backend.save_patch(output / "patch")
@@ -249,10 +261,16 @@ def worker(args: argparse.Namespace) -> int:
             torch.cuda.manual_seed_all(42)
             torch.cuda.reset_peak_memory_stats()
         _, cases = load_cases(args.assets, args.fixture or args.assets / "train-fixture.json")
+        cases = format_cases(cases, args.question_format)
         with Resources() as resources:
             backend = build_backend(args.upstream, args.assets, device=args.device)
-            operation = edit_phase if args.phase == "edit" else reload_phase
-            report.update(operation(backend, cases, args.output, args.max_new_tokens))
+            if args.phase == "edit":
+                report.update(edit_phase(backend, cases, args.output, args.max_new_tokens,
+                                         args.target_alignment))
+            else:
+                report.update(reload_phase(backend, cases, args.output, args.max_new_tokens))
+            report["target_alignment"] = args.target_alignment
+            report["question_format"] = args.question_format
             report["compatibility_adaptations"] = getattr(backend, "compatibility", {})
         report["resources"] = resources.summary(torch)
         report["execution_status"] = "completed"
@@ -310,7 +328,9 @@ def controller(args: argparse.Namespace) -> int:
         command = [sys.executable, "-m", "ke_repro", "_worker", "--phase", phase,
                    "--upstream", str(args.upstream), "--assets", str(args.assets),
                    "--manifest", str(args.manifest), "--output", str(args.output),
-                   "--device", args.device, "--max-new-tokens", str(args.max_new_tokens)]
+                   "--device", args.device, "--max-new-tokens", str(args.max_new_tokens),
+                   "--target-alignment", args.target_alignment,
+                   "--question-format", args.question_format]
         if args.fixture:
             command.extend(["--fixture", str(args.fixture)])
         print(json.dumps({"event": "worker_started", "phase": phase}), flush=True)
@@ -349,8 +369,10 @@ def main(argv=None) -> int:
     parser.add_argument("--manifest", type=Path, default=Path("configs/vlkeb-assets.json"))
     parser.add_argument("--fixture", type=Path)
     parser.add_argument("--output", type=Path, default=Path("artifacts/vlkeb/smoke-1"))
-    parser.add_argument("--device", choices=("cuda", "cuda:0", "cpu"), default="cuda")
+    parser.add_argument("--device", choices=("cuda", "cuda:0"), default="cuda")
     parser.add_argument("--max-new-tokens", type=int, default=24)
+    parser.add_argument("--target-alignment", choices=("release", "context"), default="release")
+    parser.add_argument("--question-format", choices=("raw", "vqa"), default="raw")
     parser.add_argument("--timeout-seconds", type=int, default=1800)
     parser.add_argument("--phase", choices=("edit", "reload"))
     args = parser.parse_args(argv)

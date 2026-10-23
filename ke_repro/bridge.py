@@ -288,6 +288,47 @@ def _low_memory_opt_loader(opt_class, report):
             opt_class.from_pretrained = local_descriptor
 
 
+def stage_vision_to_device(encoder, normalization, device):
+    """Move loaded vision weights before constructing the language model.
+
+    This allocation-only adaptation addresses observed host-RAM exhaustion in a
+    fresh Colab reload worker. No dtype conversion, quantization or architecture
+    change is requested; the final complete model would move to the same device.
+    """
+    return encoder.to(device), normalization.to(device)
+
+
+def target_label_spec(tokenizer, question, target, *, target_alignment="release"):
+    """Keep release labels or explicitly align labels to the actual input suffix.
+
+    Context alignment is a declared experimental adaptation. A prefix that
+    retokenizes at the boundary is rejected rather than guessing which question
+    tokens should receive the answer loss.
+    """
+    if target_alignment not in ("release", "context"):
+        raise ValueError("target_alignment must be 'release' or 'context'")
+    standalone = tokenizer.encode(target, add_special_tokens=False)
+    prefix = tokenizer.encode(question)
+    joined = tokenizer.encode(question + " " + target)
+    prefix_matches = joined[:len(prefix)] == prefix
+    context = joined[len(prefix):] if prefix_matches else None
+    if target_alignment == "context" and not prefix_matches:
+        raise ValueError("Question prefix retokenizes in the joined input; context alignment is ambiguous")
+    selected = standalone if target_alignment == "release" else context
+    if not selected or len(selected) > 64:
+        raise ValueError("The development slice supports targets of 1 to 64 selected tokens")
+    prompt_length = (len(tokenizer.encode(question, add_special_tokens=False))
+                     if target_alignment == "release" else len(prefix))
+    return {"target_ids": selected, "prompts_len": prompt_length,
+            "metadata": {"target_alignment": target_alignment,
+                         "standalone_target_token_count": len(standalone),
+                         "context_target_token_count": len(context) if context is not None else None,
+                         "selected_target_token_count": len(selected),
+                         "question_prefix_matches_joined_input": prefix_matches,
+                         "prompt_length_includes_default_special_tokens": target_alignment == "context",
+                         "context_alignment_is_experimental_adaptation": target_alignment == "context"}}
+
+
 class VLKEBBackend:
     def __init__(self, model, editor, processor, *, identity, compatibility):
         self.model, self.editor, self.processor = model, editor, processor
@@ -315,9 +356,22 @@ class VLKEBBackend:
         finally:
             clear_hook_tensors(self.model)
 
-    def edit(self, image, question, target):
+    def edit(self, image, question, target, *, target_alignment="release"):
         if self.patches.active is not None:
             raise RuntimeError("Roll back the active patch before applying another edit")
+        batch = self._edit_batch(image, question, target, target_alignment=target_alignment)
+        factors, information = extract_mend_factors(self.editor, batch)
+        result = self.patches.apply(factors, self.editor.edit_lrs.detach().cpu(),
+                                    lr_scale=float(self.editor.config.lr_scale),
+                                    metadata={"question": question, "target": target,
+                                              **batch["alignment_metadata"],
+                                              "algorithm": "VLKEB released MEND; factor adapter"})
+        result.update(information)
+        result.update(batch["alignment_metadata"])
+        return result
+
+    def _edit_batch(self, image, question, target, *, target_alignment="release"):
+        """Release collation by default; explicit context-label variant when asked."""
         if not isinstance(question, str) or not question.strip():
             raise ValueError("A nonempty question is required")
         if not isinstance(target, str) or not target.strip():
@@ -326,20 +380,72 @@ class VLKEBBackend:
         question_tokens = tokenizer.encode(question, add_special_tokens=False)
         if len(question_tokens) > 256:
             raise ValueError("The development slice supports questions of at most 256 tokens")
-        # Match CaptionDataset.collate_fn, which trained the released editor.
-        labels = tokenizer([target], add_special_tokens=False, return_tensors="pt")["input_ids"]
-        if labels.numel() == 0 or labels.shape[1] > 64:
-            raise ValueError("The development slice supports targets of 1 to 64 tokens")
+        spec = target_label_spec(tokenizer, question, target, target_alignment=target_alignment)
+        # Default labels remain exactly the standalone tokens in the released
+        # CaptionDataset.collate_fn. The optional variant uses actual suffix IDs.
+        labels = torch.tensor([spec["target_ids"]], dtype=torch.long, device=self.model.device)
         batch = {"image": self._image(image), "text_input": [question + " " + target],
-                 "labels": labels.to(self.model.device),
-                 "prompts_len": [len(question_tokens)]}
-        factors, information = extract_mend_factors(self.editor, batch)
-        result = self.patches.apply(factors, self.editor.edit_lrs.detach().cpu(),
-                                    lr_scale=float(self.editor.config.lr_scale),
-                                    metadata={"question": question, "target": target,
-                                              "algorithm": "VLKEB released MEND; factor adapter"})
-        result.update(information)
-        return result
+                 "labels": labels, "prompts_len": [spec["prompts_len"]],
+                 "alignment_metadata": spec["metadata"]}
+        return batch
+
+    def score_target(self, image, question, target, *, target_alignment="release"):
+        """Measure upstream teacher-forced target tokens, never free generation.
+
+        The full target is deliberately part of the input here. This diagnostic
+        can separate an editing/tokenization failure from a decoding failure,
+        but cannot establish that the model independently generated an answer.
+        """
+        batch = self._edit_batch(image, question, target, target_alignment=target_alignment)
+        self.editor.eval()
+        try:
+            with torch.no_grad():
+                output = self.model(batch)
+                logits = output if isinstance(output, torch.Tensor) else output.logits
+                score = self.editor.edit_loss_fn(self.editor.config, logits, batch["labels"])
+            pred_ids = score["pred_ids"].detach().cpu().tolist()[0]
+            target_ids = score["targ_ids"].detach().cpu().tolist()[0]
+            return {"conditioning": "teacher_forced_full_target_in_input",
+                    "is_generated_answer": False,
+                    **batch["alignment_metadata"],
+                    "nll": float(score["nll"].item()),
+                    "token_accuracy": float(score["acc"].item()),
+                    "pred_ids": pred_ids, "target_ids": target_ids,
+                    "pred_tokens": self.model.opt_tokenizer.convert_ids_to_tokens(pred_ids),
+                    "target_tokens": self.model.opt_tokenizer.convert_ids_to_tokens(target_ids)}
+        finally:
+            clear_hook_tensors(self.model)
+
+    def tokenization_report(self, question, target):
+        """Expose the standalone-label/context BPE boundary without changing it."""
+        if not isinstance(question, str) or not question.strip():
+            raise ValueError("A nonempty question is required")
+        if not isinstance(target, str) or not target.strip():
+            raise ValueError("A nonempty target is required")
+        tokenizer = self.model.opt_tokenizer
+        question_ids = tokenizer.encode(question)
+        target_ids = tokenizer.encode(target, add_special_tokens=False)
+        leading_space_ids = tokenizer.encode(" " + target, add_special_tokens=False)
+        joined_ids = tokenizer.encode(question + " " + target)
+        common = 0
+        for question_id, joined_id in zip(question_ids, joined_ids):
+            if question_id != joined_id:
+                break
+            common += 1
+        suffix = joined_ids[-len(target_ids):] if target_ids else []
+        return {"question_ids_with_default_special_tokens": question_ids,
+                "question_ids_without_special_tokens": tokenizer.encode(question, add_special_tokens=False),
+                "standalone_target_ids": target_ids,
+                "leading_space_target_ids": leading_space_ids,
+                "joined_input_ids": joined_ids,
+                "release_suffix_ids": suffix,
+                "joined_target_boundary_ids": joined_ids[common:],
+                "question_prefix_retokenized": common < len(question_ids),
+                "standalone_labels_match_input_suffix": target_ids == suffix,
+                "standalone_target_tokens": tokenizer.convert_ids_to_tokens(target_ids),
+                "leading_space_target_tokens": tokenizer.convert_ids_to_tokens(leading_space_ids),
+                "release_suffix_tokens": tokenizer.convert_ids_to_tokens(suffix),
+                "interpretation": "The release collator labels a standalone target while the input joins question, space and target. Different IDs expose a BPE boundary mismatch; this report does not change training or scoring."}
 
     def weight_hashes(self):
         return self.patches.weight_hashes()
@@ -417,6 +523,11 @@ def build_backend(upstream_root, asset_root, device="cuda"):
     load_report = {}
 
     class AuditedBlip2OPT(blip_module.Blip2OPT):
+        @classmethod
+        def init_vision_encoder(cls, *args, **kwargs):
+            encoder, normalization = super().init_vision_encoder(*args, **kwargs)
+            return stage_vision_to_device(encoder, normalization, requested_device)
+
         def load_from_pretrained(self, url_or_filename):
             result = super().load_from_pretrained(url_or_filename)
             prefixes = ("Qformer.", "query_tokens", "ln_vision.", "opt_proj.")
@@ -459,9 +570,10 @@ def build_backend(upstream_root, asset_root, device="cuda"):
                      "adaptations": [
                          "Selective namespace imports bypass unrelated EasyEdit package initializers",
                          "Same custom OPT class/weights/dtypes; low_cpu_mem_usage changes loading allocation",
+                         "Loaded FP32 EVA encoder and normalization move to CUDA before Q-Former/OPT construction after observed host-RAM exhaustion; final weights and computation are unchanged",
                          "Original MEND loss/hooks/learned transforms; skip functional mutation tail and apply factors once in FP32 on the selected device",
                          "Evaluation mode freezes dropout and MEND normalization; no auxiliary-model training",
-                         "Edit tokenization matches released CaptionDataset training collator, not the differing executor",
+                         "Default release labels match CaptionDataset rather than the differing executor; optional context-aligned suffix labels are explicitly marked experimental",
                          "Target-free bounded cached greedy continuation, rather than teacher-forced benchmark prediction",
                          "Single patch stores original/edited tensors for exact rollback and reload",
                      ],

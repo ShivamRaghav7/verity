@@ -10,7 +10,8 @@ try:
 except ModuleNotFoundError as exc:
     raise unittest.SkipTest("Bridge adapter tests require the isolated ML environment") from exc
 
-from ke_repro.bridge import ParameterPatch, _low_memory_opt_loader, extract_mend_factors, tensor_hash
+from ke_repro.bridge import (ParameterPatch, VLKEBBackend, _low_memory_opt_loader,
+                             extract_mend_factors, stage_vision_to_device, target_label_spec, tensor_hash)
 
 
 class TinyModel(torch.nn.Module):
@@ -203,6 +204,19 @@ class FactorTests(unittest.TestCase):
 
 
 class LoaderTests(unittest.TestCase):
+    def test_early_vision_staging_preserves_parameters_dtypes_and_module_identity(self):
+        encoder = torch.nn.Linear(3, 4).float()
+        normalization = torch.nn.LayerNorm(4).double()
+        before_encoder = {name: tensor_hash(value) for name, value in encoder.named_parameters()}
+        before_norm = {name: tensor_hash(value) for name, value in normalization.named_parameters()}
+        staged_encoder, staged_norm = stage_vision_to_device(encoder, normalization, "cpu")
+        self.assertIs(staged_encoder, encoder)
+        self.assertIs(staged_norm, normalization)
+        self.assertEqual(encoder.weight.dtype, torch.float32)
+        self.assertEqual(normalization.weight.dtype, torch.float64)
+        self.assertEqual({name: tensor_hash(value) for name, value in encoder.named_parameters()}, before_encoder)
+        self.assertEqual({name: tensor_hash(value) for name, value in normalization.named_parameters()}, before_norm)
+
     def test_low_memory_loader_preserves_class_arguments_and_restores_descriptor(self):
         class Original:
             calls = []
@@ -234,6 +248,126 @@ class LoaderTests(unittest.TestCase):
             with _low_memory_opt_loader(Original, {}):
                 Original.from_pretrained("weights")
         self.assertIs(Original.__dict__["from_pretrained"], descriptor)
+
+
+class DiagnosticTests(unittest.TestCase):
+    def setUp(self):
+        class Tokenizer:
+            def encode(self, text, add_special_tokens=True):
+                values = {"Where?": [10], "New York": [20, 21],
+                          " New York": [30, 21], "Where? New York": [10, 30, 21]}[text]
+                return ([2] if add_special_tokens else []) + values
+
+            def __call__(self, texts, **kwargs):
+                return {"input_ids": torch.tensor([self.encode(texts[0], kwargs.get("add_special_tokens", True))])}
+
+            def convert_ids_to_tokens(self, values):
+                return [f"token-{value}" for value in values]
+
+        class Model(torch.nn.Module):
+            def __init__(self):
+                super().__init__()
+                self.weight = torch.nn.Parameter(torch.ones(1))
+                self.opt_tokenizer = Tokenizer()
+                self.seen = None
+
+            @property
+            def device(self):
+                return self.weight.device
+
+            def forward(self, batch):
+                self.seen = batch
+                if torch.is_grad_enabled():
+                    raise AssertionError("Teacher-forced diagnostic must not construct an editing gradient")
+                return SimpleNamespace(logits=torch.zeros(1, 6, 40))
+
+        class Editor(torch.nn.Module):
+            def __init__(self, model):
+                super().__init__()
+                self.model = model
+                self.config = SimpleNamespace(inner_params=["weight"])
+                self.edit_loss_fn = lambda config, logits, labels: {
+                    "nll": torch.tensor(.75), "acc": torch.tensor(.5),
+                    "pred_ids": torch.tensor([[30, 21]]), "targ_ids": labels,
+                }
+
+        self.model = Model()
+        self.backend = VLKEBBackend(self.model, Editor(self.model), None,
+                                    identity={}, compatibility={})
+
+    def test_teacher_forced_score_is_labeled_and_keeps_target_in_input(self):
+        self.model.weight.__x__ = torch.ones(1)
+        before = self.backend.weight_hashes()
+        result = self.backend.score_target(torch.zeros(1, 3, 364, 364), "Where?", "New York")
+        self.assertFalse(result["is_generated_answer"])
+        self.assertEqual(result["conditioning"], "teacher_forced_full_target_in_input")
+        self.assertEqual(result["nll"], .75)
+        self.assertEqual(result["token_accuracy"], .5)
+        self.assertEqual(result["pred_ids"], [30, 21])
+        self.assertEqual(result["target_ids"], [20, 21])
+        self.assertEqual(self.model.seen["text_input"], ["Where? New York"])
+        self.assertEqual(self.model.seen["prompts_len"], [1])
+        self.assertEqual(self.backend.weight_hashes(), before)
+        self.assertFalse(hasattr(self.model.weight, "__x__"))
+
+    def test_tokenization_report_exposes_context_boundary_mismatch_without_changing_ids(self):
+        result = self.backend.tokenization_report("Where?", "New York")
+        self.assertEqual(result["standalone_target_ids"], [20, 21])
+        self.assertEqual(result["leading_space_target_ids"], [30, 21])
+        self.assertEqual(result["release_suffix_ids"], [30, 21])
+        self.assertEqual(result["joined_target_boundary_ids"], [30, 21])
+        self.assertFalse(result["standalone_labels_match_input_suffix"])
+        self.assertFalse(result["question_prefix_retokenized"])
+        self.assertEqual(result["question_ids_with_default_special_tokens"], [2, 10])
+
+
+class ContextAlignmentTests(unittest.TestCase):
+    class AlbanyTokenizer:
+        def encode(self, text, add_special_tokens=True):
+            ids = {"Which city?": [30, 343, 116],
+                   "Albany, New York": [7083, 428, 3785, 6, 188, 469],
+                   "Which city? Albany, New York": [30, 343, 116, 12874, 6, 188, 469]}[text]
+            return ([2] if add_special_tokens else []) + ids
+
+    def test_context_labels_cover_four_answer_tokens_and_no_question_tokens(self):
+        tokenizer = self.AlbanyTokenizer()
+        released = target_label_spec(tokenizer, "Which city?", "Albany, New York")
+        aligned = target_label_spec(tokenizer, "Which city?", "Albany, New York", target_alignment="context")
+        self.assertEqual(released["target_ids"], [7083, 428, 3785, 6, 188, 469])
+        self.assertEqual(released["prompts_len"], 3)
+        self.assertEqual(aligned["target_ids"], [12874, 6, 188, 469])
+        self.assertEqual(aligned["prompts_len"], 4)
+        self.assertEqual(aligned["metadata"]["standalone_target_token_count"], 6)
+        self.assertEqual(aligned["metadata"]["context_target_token_count"], 4)
+        self.assertTrue(aligned["metadata"]["context_alignment_is_experimental_adaptation"])
+        joined = tokenizer.encode("Which city? Albany, New York")
+        # Upstream shifts logits once, then takes len(labels) suffix positions.
+        # Aligned supervision begins at '?' predicting the actual Albany token;
+        # release supervision begins two positions earlier inside the question.
+        first_aligned_predictor = len(joined) - 1 - len(aligned["target_ids"])
+        first_release_predictor = len(joined) - 1 - len(released["target_ids"])
+        self.assertEqual(joined[first_aligned_predictor], 116)
+        self.assertEqual(first_aligned_predictor + 1, aligned["prompts_len"])
+        self.assertLess(first_release_predictor, first_aligned_predictor)
+        self.assertEqual(joined[aligned["prompts_len"]:], aligned["target_ids"])
+
+    def test_context_alignment_rejects_prefix_retokenization(self):
+        class Retokenized(self.AlbanyTokenizer):
+            def encode(self, text, add_special_tokens=True):
+                result = super().encode(text, add_special_tokens=add_special_tokens)
+                if text.startswith("Which city? Albany"):
+                    result[2] = 999
+                return result
+
+        with self.assertRaisesRegex(ValueError, "prefix retokenizes"):
+            target_label_spec(Retokenized(), "Which city?", "Albany, New York", target_alignment="context")
+        # The faithful release mode is deliberately still available for audit.
+        result = target_label_spec(Retokenized(), "Which city?", "Albany, New York")
+        self.assertFalse(result["metadata"]["question_prefix_matches_joined_input"])
+
+    def test_unknown_alignment_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "target_alignment"):
+            target_label_spec(self.AlbanyTokenizer(), "Which city?", "Albany, New York", target_alignment="guess")
 
 
 if __name__ == "__main__":
