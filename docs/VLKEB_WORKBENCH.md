@@ -7,8 +7,10 @@ research maintenance tool: an edited answer is model output, not a verified fact
 VLKEB's authors trained the released editing network. Our contribution is the
 adapter, experiment controls, evidence and application, not authorship of MEND.
 
-First complete the isolated environment, verified asset preparation and fixed
-GPU smoke in [the reproduction guide](VLKEB_SMOKE.md). The original VisionPatch
+Use the isolated environment and verified asset preparation documented in
+[the reproduction guide](VLKEB_SMOKE.md). The completed smoke and final benchmark
+receipts are already preserved; opening a fresh demonstration does not require
+rerunning that benchmark. The original VisionPatch
 server uses a separate package and port; this workbench does not replace its data.
 
 From the repository root in the prepared Linux/Colab environment:
@@ -16,7 +18,9 @@ From the repository root in the prepared Linux/Colab environment:
 For the complete pinned Colab setup and private viewer, open
 [the standalone workbench notebook](../notebooks/03_visual_editing_workbench.ipynb).
 It includes the hardware check, isolated installation, explicit asset preparation,
-server log inspection and optional local evidence export.
+server log inspection and optional local evidence export. Its application source
+is pinned to `e0324c39e545e8222ed99ca6148bdebf9c790465`, including the completed
+measured results and current dashboard.
 
 ```bash
 artifacts/vlkeb/environment/bin/python -m ke_repro.workbench --port 8003
@@ -40,6 +44,21 @@ This uses the notebook's port viewer, without a public sharing tunnel. The view
 and temporary files depend on the active runtime. The helper is documented in
 [Colab's source](https://github.com/googlecolab/colabtools/blob/main/google/colab/output/_util.py).
 Do not start another model process while the smoke or evaluation still owns the GPU.
+
+## Start a fresh demonstration session
+
+Colab's private viewer URL and temporary files belong to its current runtime.
+An earlier viewer can expire when that runtime disconnects; it is not permanent
+hosting. Reopen the workbench notebook, select a GPU runtime and run its setup
+cells in order. Verified cached assets are reused when present; a fresh runtime
+needs the explicit downloads again. Open the viewer cell after launching the
+server and wait for **Model ready** before generating an answer.
+
+The notebook reuses only a matching clean checkout, preserves local tracked
+changes, and refuses to launch when its own process is already running or port
+8003 is occupied. Reuse the existing viewer rather than launching a second
+full model. Each launch preserves a separate log; no process is killed
+automatically. Save new history and patches before releasing the runtime.
 
 ## Demonstration
 
@@ -90,11 +109,23 @@ have trained its retriever. The dashboard shows actual correct/total counts,
 abstentions and errors, baseline-correct preservation denominators, and measured
 query p50/p95 with sample counts. No report means no numerical result cards.
 
-The planned evaluation uses 20 nonrandom academic benchmark edits and automated
-label review. Read the saved report's limitations and
+The completed [20-edit measured comparison](VLKEB_RESULTS.md) contains all 500
+answer records and preserved exact-restoration checks. It uses a small nonrandom
+academic benchmark slice and automated structural label review, without
+independent human label review. Read its limitations and the
 [evaluation protocol](VLKEB_EVALUATION_PROTOCOL.md) before interpreting it.
 Author-published results are separate from our measurements. The report directory
 is selected at startup with `--evaluation-dir`; the HTTP API cannot change it.
+
+During checkout setup, the notebook verifies the public saved file
+`reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json` against SHA-256
+`db9e89cdfad68841de99a5e185aacd661fdf2afee07409a9dd774b400e2d433d`.
+It copies those exact bytes to the default dashboard path,
+`artifacts/vlkeb/eval20/evaluation.json`, only when absent. An identical existing
+copy is reused; a different existing file is preserved and setup stops. This
+installs a **saved measured report**, with no new model run, tuning or benchmark
+inference. A manual CLI launch can instead point `--evaluation-dir` directly to
+`reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20` in the pinned checkout.
 
 ## Linux NVIDIA container
 
