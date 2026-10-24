@@ -119,7 +119,8 @@ answer accuracy. No KL regularization is claimed.
 
 The saved context/VQA MEND run passed **8/8 mechanical checks**, including fresh
 reload and exact restoration, while its direct, paraphrase and alternate-image
-answers did not match the requested target. Unrelated behavior also changed.
+answers did not match the requested target. Its unrelated visual answer stayed
+empty, which preserves an already incorrect answer rather than factual success.
 See the preserved [run summary](../reports/vlkeb/t4-context-vqa-1/run/smoke.json).
 
 The saved Colab FT development run passed **8/8 mechanical checks**, including
