@@ -2,8 +2,8 @@
 
 EditGuard is a research workbench: propose a visual association, update model
 parameters, inspect consequences, and restore the original state. Reliable
-arbitrary edits are not guaranteed. Read measurements in
-[VLKEB_RESULTS.md](VLKEB_RESULTS.md) when the completed experiment is published.
+arbitrary edits are not guaranteed. Read saved development measurements and the
+final experiment's current status in [VLKEB_RESULTS.md](VLKEB_RESULTS.md).
 
 ## 1. What problem does this address?
 
@@ -126,7 +126,8 @@ The saved Colab FT development run passed **8/8 mechanical checks**, including
 fresh reload and exact restoration. It produced the exact target on the
 direct question and another photograph. Its paraphrase answered `Albany` rather
 than the full `Albany, New York`, which fails our frozen strict scorer. Its
-neighboring answer was corrupted. These are observations on one training-seen
+neighboring answer changed from empty to repetitive city output; it was already
+factually wrong before the edit. These are observations on one training-seen
 example, not a held-out success rate. Its full [FT receipt](../reports/vlkeb/t4-ft-last-layer-1/run/smoke.json)
 records the answers, checks and resource measurements. Neither method has earned
 an arbitrary-edit guarantee.

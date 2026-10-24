@@ -1,0 +1,964 @@
+{
+  "schema_version": 1,
+  "purpose": "fixed_small_evaluation_not_executed",
+  "source_revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+  "upstream_split": "eval",
+  "source_eval_sha256": "72c47efe00773bb16cd83258aff394a0894b8c29a6b02e6250717a30d1b18f13",
+  "edit_count": 20,
+  "cases_per_edit": 5,
+  "case_count": 100,
+  "selection_rule": "Eligible source image-directory entity absent from every train image/image_rephrase/m_loc directory; sort SHA256(canonical JSON [entity,pred,alt]); first20 distinct source entities; canonical minimum row within each lineage",
+  "selection_ids_sha256": "4b9f78e0fb0eb65b1df70e72e850d9ac32ccc2266e3751d49e1dedc9c375eb13",
+  "train_visual_entity_count": 6440,
+  "edits": [
+    {
+      "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+      "source_entity": "m.090q4n",
+      "lineage": [
+        "m.090q4n",
+        "SV_Darmstadt_98",
+        "Wellington Phoenix FC"
+      ],
+      "representative_source_index": 2397,
+      "all_lineage_source_indices": [
+        2397
+      ],
+      "record": {
+        "src": "Which football club is represented in the image?",
+        "rephrase": "What is the name of the football team depicted in this picture?",
+        "pred": "SV_Darmstadt_98",
+        "alt": "Wellington Phoenix FC",
+        "image": "m.090q4n/yahoo_0.jpg",
+        "image_rephrase": "m.090q4n/yahoo_4.jpg",
+        "loc": "where is the larsen c ice shelf located",
+        "loc_ans": "in the northwest part of the Weddell Sea, extending along the east coast of the Antarctic Peninsula from Cape Longing to the area just southward of Hearst Island",
+        "m_loc": "m.06jwys/google_0.jpg",
+        "m_loc_q": "What football club's logo is displayed in the image?",
+        "m_loc_a": "SpVgg Unterhaching"
+      }
+    },
+    {
+      "edit_id": "005bd46d19eaaad5ad7d3c4d7864ba12bbfd43b7f6b8e6e37e8d0d36373450ac",
+      "source_entity": "m.03d_w3h",
+      "lineage": [
+        "m.03d_w3h",
+        "Gillian_Anderson",
+        "Willem Dafoe"
+      ],
+      "representative_source_index": 1415,
+      "all_lineage_source_indices": [
+        1415
+      ],
+      "record": {
+        "src": "Which actor is featured in this picture?",
+        "rephrase": "Who is the person shown in the image?",
+        "pred": "Gillian_Anderson",
+        "alt": "Willem Dafoe",
+        "image": "m.03d_w3h/bing_8.jpg",
+        "image_rephrase": "m.03d_w3h/google_21.jpg",
+        "loc": "where was employee of the month movie filmed",
+        "loc_ans": "at the Costco in Albuquerque, New Mexico located at 1420 N Renaissance Blvd NE",
+        "m_loc": "m.01tvz5j/bing_8.jpg",
+        "m_loc_q": "Who is the actress in this image?",
+        "m_loc_a": "Maria Bello"
+      }
+    },
+    {
+      "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+      "source_entity": "m.0gyr_7",
+      "lineage": [
+        "m.0gyr_7",
+        "ABC_(Australian_TV_channel)",
+        "Royal Canadian Air Force"
+      ],
+      "representative_source_index": 2875,
+      "all_lineage_source_indices": [
+        2875
+      ],
+      "record": {
+        "src": "What military organization is shown in the image?",
+        "rephrase": "Which air force is represented in the picture?",
+        "pred": "ABC_(Australian_TV_channel)",
+        "alt": "Royal Canadian Air Force",
+        "image": "m.0gyr_7/google_11.jpg",
+        "image_rephrase": "m.0gyr_7/google_12.jpg",
+        "loc": "when did voting age become 18 in uk",
+        "loc_ans": "1970",
+        "m_loc": "m.0q96/bing_21.jpg",
+        "m_loc_q": "What political party does the logo in the image represent?",
+        "m_loc_a": "Australian Labor Party"
+      }
+    },
+    {
+      "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+      "source_entity": "m.049m19",
+      "lineage": [
+        "m.049m19",
+        "John_Abraham_(actor)",
+        "Peter Facinelli"
+      ],
+      "representative_source_index": 1666,
+      "all_lineage_source_indices": [
+        1666
+      ],
+      "record": {
+        "src": "Who is the actor in this image?",
+        "rephrase": "Which actor is depicted in the picture?",
+        "pred": "John_Abraham_(actor)",
+        "alt": "Peter Facinelli",
+        "image": "m.049m19/yahoo_13.jpg",
+        "image_rephrase": "m.049m19/yahoo_20.jpg",
+        "loc": "when was the constitution of south africa written",
+        "loc_ans": "1994",
+        "m_loc": "m.0cqcgj/google_14.jpg",
+        "m_loc_q": "Who is the actor in the image?",
+        "m_loc_a": "Prithviraj Sukumaran"
+      }
+    },
+    {
+      "edit_id": "0130f45ae49cd7f569aa8d6304aa1c8de61750be05c3dd14b54d4e3b57cdbd40",
+      "source_entity": "m.0152x_",
+      "lineage": [
+        "m.0152x_",
+        "MSNBC",
+        "Virgin Group"
+      ],
+      "representative_source_index": 117,
+      "all_lineage_source_indices": [
+        117
+      ],
+      "record": {
+        "src": "What company's logo is visible in the image?",
+        "rephrase": "Which business conglomerate is represented by the logo in the image?",
+        "pred": "MSNBC",
+        "alt": "Virgin Group",
+        "image": "m.0152x_/google_11.jpg",
+        "image_rephrase": "m.0152x_/google_13.jpg",
+        "loc": "which mode of transport is used for travelling to moon",
+        "loc_ans": "Space transport",
+        "m_loc": "m.06sks6/google_22.jpg",
+        "m_loc_q": "What major sporting event is depicted in the image?",
+        "m_loc_a": "2012 Summer Olympics"
+      }
+    },
+    {
+      "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+      "source_entity": "m.01hg2h",
+      "lineage": [
+        "m.01hg2h",
+        "Soviet_Air_Forces",
+        "TV5 (Philippines)"
+      ],
+      "representative_source_index": 415,
+      "all_lineage_source_indices": [
+        415
+      ],
+      "record": {
+        "src": "What television network logo is featured in this image?",
+        "rephrase": "Which Philippine television network is shown in the picture?",
+        "pred": "Soviet_Air_Forces",
+        "alt": "TV5 (Philippines)",
+        "image": "m.01hg2h/bing_19.jpg",
+        "image_rephrase": "m.01hg2h/google_12.jpg",
+        "loc": "who was in the crows nest when the titanic struck the iceberg",
+        "loc_ans": "Reginald Lee",
+        "m_loc": "m.02m97n/bing_5.jpg",
+        "m_loc_q": "What is the name of the company or entity depicted in the image?",
+        "m_loc_a": "Vickers-Armstrongs"
+      }
+    },
+    {
+      "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+      "source_entity": "m.012cj0",
+      "lineage": [
+        "m.012cj0",
+        "Steve_McQueen",
+        "Patrick McGoohan"
+      ],
+      "representative_source_index": 40,
+      "all_lineage_source_indices": [
+        40
+      ],
+      "record": {
+        "src": "Who is the actor featuring in this image?",
+        "rephrase": "Which actor is shown in this picture?",
+        "pred": "Steve_McQueen",
+        "alt": "Patrick McGoohan",
+        "image": "m.012cj0/google_10.jpg",
+        "image_rephrase": "m.012cj0/google_22.jpg",
+        "loc": "who wrote the song ribbon in the sky",
+        "loc_ans": "Stevie Wonder",
+        "m_loc": "m.01337_/google_4.jpg",
+        "m_loc_q": "Who is the actor featured in the image?",
+        "m_loc_a": "James Coburn"
+      }
+    },
+    {
+      "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+      "source_entity": "m.02624g",
+      "lineage": [
+        "m.02624g",
+        "Peter_Dinklage",
+        "Dan Castellaneta"
+      ],
+      "representative_source_index": 866,
+      "all_lineage_source_indices": [
+        866,
+        867
+      ],
+      "record": {
+        "src": "Who is the person shown in the image?",
+        "rephrase": "Which actor is depicted in this picture?",
+        "pred": "Peter_Dinklage",
+        "alt": "Dan Castellaneta",
+        "image": "m.02624g/google_6.jpg",
+        "image_rephrase": "m.02624g/bing_12.jpg",
+        "loc": "who used to play hope on bold and the beautiful",
+        "loc_ans": "Kimberly Marie \"Kim\" Matula",
+        "m_loc": "m.01w5jwb/yahoo_23.jpg",
+        "m_loc_q": "Who is the musician in this image?",
+        "m_loc_a": "CeeLo Green"
+      }
+    },
+    {
+      "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+      "source_entity": "m.0295sy",
+      "lineage": [
+        "m.0295sy",
+        "Hook_(film)",
+        "Hudson Hawk"
+      ],
+      "representative_source_index": 925,
+      "all_lineage_source_indices": [
+        924,
+        925
+      ],
+      "record": {
+        "src": "What is the name of the film featured in this image?",
+        "rephrase": "Which movie does this poster represent?",
+        "pred": "Hook_(film)",
+        "alt": "Hudson Hawk",
+        "image": "m.0295sy/bing_12.jpg",
+        "image_rephrase": "m.0295sy/bing_16.jpg",
+        "loc": "where is the new york historical society located",
+        "loc_ans": "New York City at the corner of 77th Street and Central Park West in Manhattan",
+        "m_loc": "m.0hx4y/bing_21.jpg",
+        "m_loc_q": "What film is depicted in the image?",
+        "m_loc_a": "Jurassic Park"
+      }
+    },
+    {
+      "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+      "source_entity": "m.05xd8x",
+      "lineage": [
+        "m.05xd8x",
+        "Subhash_Ghai",
+        "Mithun Chakraborty"
+      ],
+      "representative_source_index": 2012,
+      "all_lineage_source_indices": [
+        2012
+      ],
+      "record": {
+        "src": "What is the name of the Indian actor shown in the image?",
+        "rephrase": "Who is the Bollywood actor featured in this picture?",
+        "pred": "Subhash_Ghai",
+        "alt": "Mithun Chakraborty",
+        "image": "m.05xd8x/google_0.jpg",
+        "image_rephrase": "m.05xd8x/google_2.jpg",
+        "loc": "during which stage of the cell cycle does the replication of dna take place",
+        "loc_ans": "the C period",
+        "m_loc": "m.02hkw6/google_2.jpg",
+        "m_loc_q": "Who is the person in the image?",
+        "m_loc_a": "Nedumudi Venu"
+      }
+    },
+    {
+      "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+      "source_entity": "m.0l2vz",
+      "lineage": [
+        "m.0l2vz",
+        "San_Mateo_County,_California",
+        "Lane County, Oregon"
+      ],
+      "representative_source_index": 3002,
+      "all_lineage_source_indices": [
+        3002
+      ],
+      "record": {
+        "src": "What is the name of the county shown in the image?",
+        "rephrase": "Which county of Oregon is depicted in the picture?",
+        "pred": "San_Mateo_County,_California",
+        "alt": "Lane County, Oregon",
+        "image": "m.0l2vz/bing_4.jpg",
+        "image_rephrase": "m.0l2vz/google_0.jpg",
+        "loc": "who does clay date in 13 reasons why",
+        "loc_ans": "Skye Miller",
+        "m_loc": "m.0kq39/bing_3.jpg",
+        "m_loc_q": "In what U.S. county is this image taken?",
+        "m_loc_a": "Fresno County, California"
+      }
+    },
+    {
+      "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+      "source_entity": "m.03h0k1",
+      "lineage": [
+        "m.03h0k1",
+        "A.S.D._Reggio_Calabria",
+        "Empoli F.C."
+      ],
+      "representative_source_index": 1442,
+      "all_lineage_source_indices": [
+        1442
+      ],
+      "record": {
+        "src": "What is the name of the football club represented by this image?",
+        "rephrase": "Which football team logo is displayed in the image?",
+        "pred": "A.S.D._Reggio_Calabria",
+        "alt": "Empoli F.C.",
+        "image": "m.03h0k1/bing_4.jpg",
+        "image_rephrase": "m.03h0k1/google_7.jpg",
+        "loc": "which south african recently held a high position in the african union",
+        "loc_ans": "Thabo Mbeki",
+        "m_loc": "m.049msk/google_5.jpg",
+        "m_loc_q": "What football club is represented by the logo in the image?",
+        "m_loc_a": "F.C. Bari 1908"
+      }
+    },
+    {
+      "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+      "source_entity": "m.0121h7",
+      "lineage": [
+        "m.0121h7",
+        "County_Laois",
+        "Manche"
+      ],
+      "representative_source_index": 28,
+      "all_lineage_source_indices": [
+        28
+      ],
+      "record": {
+        "src": "What is the name of the department in France depicted in the image?",
+        "rephrase": "Which region of France is seen in the picture?",
+        "pred": "County_Laois",
+        "alt": "Manche",
+        "image": "m.0121h7/google_7.jpg",
+        "image_rephrase": "m.0121h7/google_16.jpg",
+        "loc": "what happened to the third brother on blue bloods",
+        "loc_ans": "murdered on the orders of his partner Sonny Malevsky (Michael T. Weiss), the leader of a corrupt gang of police officers called the Blue Templar",
+        "m_loc": "m.0xpp5/google_17.jpg",
+        "m_loc_q": "What city in New Jersey is featured in the image?",
+        "m_loc_a": "New Brunswick"
+      }
+    },
+    {
+      "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+      "source_entity": "m.022fdt",
+      "lineage": [
+        "m.022fdt",
+        "Armenians",
+        "Israelis"
+      ],
+      "representative_source_index": 810,
+      "all_lineage_source_indices": [
+        810
+      ],
+      "record": {
+        "src": "What nationality is depicted in the image?",
+        "rephrase": "Who are the people shown in the picture?",
+        "pred": "Armenians",
+        "alt": "Israelis",
+        "image": "m.022fdt/bing_3.jpg",
+        "image_rephrase": "m.022fdt/yahoo_10.jpg",
+        "loc": "who has the most national championships in the ncaa football",
+        "loc_ans": "Princeton",
+        "m_loc": "m.01c6yz/google_10.jpg",
+        "m_loc_q": "What region in France is depicted in the image?",
+        "m_loc_a": "Lower Normandy"
+      }
+    },
+    {
+      "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+      "source_entity": "m.076df9",
+      "lineage": [
+        "m.076df9",
+        "Christopher_McCulloch",
+        "Mark Goodson"
+      ],
+      "representative_source_index": 2182,
+      "all_lineage_source_indices": [
+        2182
+      ],
+      "record": {
+        "src": "What game show producer is shown in the image?",
+        "rephrase": "Who is the famous television producer depicted in the picture?",
+        "pred": "Christopher_McCulloch",
+        "alt": "Mark Goodson",
+        "image": "m.076df9/bing_16.jpg",
+        "image_rephrase": "m.076df9/google_4.jpg",
+        "loc": "what is the longest-running scripted primetime tv series in the us",
+        "loc_ans": "The Simpsons",
+        "m_loc": "m.025hzx/yahoo_21.jpg",
+        "m_loc_q": "Who is the person in the image?",
+        "m_loc_a": "Joe Roth"
+      }
+    },
+    {
+      "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+      "source_entity": "m.02w2bc",
+      "lineage": [
+        "m.02w2bc",
+        "Central_Michigan_University",
+        "University of Georgia"
+      ],
+      "representative_source_index": 1210,
+      "all_lineage_source_indices": [
+        1209,
+        1210
+      ],
+      "record": {
+        "src": "What university campus is visible in the image?",
+        "rephrase": "Which college campus is shown in the picture?",
+        "pred": "Central_Michigan_University",
+        "alt": "University of Georgia",
+        "image": "m.02w2bc/google_14.jpg",
+        "image_rephrase": "m.02w2bc/google_9.jpg",
+        "loc": "where did the name petty officer come from",
+        "loc_ans": "from the Anglo-Norman and Middle French \"petit\", meaning \"of small size, small, little\"",
+        "m_loc": "m.0txrs/google_23.jpg",
+        "m_loc_q": "Which city in Maryland is depicted in the image?",
+        "m_loc_a": "Salisbury"
+      }
+    },
+    {
+      "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+      "source_entity": "m.09d3b7",
+      "lineage": [
+        "m.09d3b7",
+        "A_Star_Is_Born_(1976_film)",
+        "The Ghost and the Darkness"
+      ],
+      "representative_source_index": 2430,
+      "all_lineage_source_indices": [
+        2430
+      ],
+      "record": {
+        "src": "What is the title of the film featured in this image?",
+        "rephrase": "Which movie does this logo represent?",
+        "pred": "A_Star_Is_Born_(1976_film)",
+        "alt": "The Ghost and the Darkness",
+        "image": "m.09d3b7/google_3.jpg",
+        "image_rephrase": "m.09d3b7/google_16.jpg",
+        "loc": "where does the heat come from when broiling",
+        "loc_ans": "The heat source is almost always beneath the cooking surface",
+        "m_loc": "m.083skw/google_15.jpg",
+        "m_loc_q": "What film is depicted in this image?",
+        "m_loc_a": "Gone with the Wind"
+      }
+    },
+    {
+      "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+      "source_entity": "m.018kcp",
+      "lineage": [
+        "m.018kcp",
+        "STV_(TV_channel)",
+        "Global Television Network"
+      ],
+      "representative_source_index": 252,
+      "all_lineage_source_indices": [
+        252
+      ],
+      "record": {
+        "src": "What network's logo is shown in the image?",
+        "rephrase": "Which television network is represented by this image?",
+        "pred": "STV_(TV_channel)",
+        "alt": "Global Television Network",
+        "image": "m.018kcp/bing_17.jpg",
+        "image_rephrase": "m.018kcp/yahoo_14.jpg",
+        "loc": "how many countries are members of the british commonwealth",
+        "loc_ans": "53 member states",
+        "m_loc": "m.01gl9g/google_12.jpg",
+        "m_loc_q": "What news channel's logo is visible in the image?",
+        "m_loc_a": "CNBC"
+      }
+    },
+    {
+      "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+      "source_entity": "m.0jnng",
+      "lineage": [
+        "m.0jnng",
+        "Minnesota_Wild",
+        "Boston Bruins"
+      ],
+      "representative_source_index": 2940,
+      "all_lineage_source_indices": [
+        2940
+      ],
+      "record": {
+        "src": "What sports team's logo is featured in the image?",
+        "rephrase": "Which ice hockey team is represented by the logo in the picture?",
+        "pred": "Minnesota_Wild",
+        "alt": "Boston Bruins",
+        "image": "m.0jnng/bing_7.jpg",
+        "image_rephrase": "m.0jnng/bing_9.jpg",
+        "loc": "who are they singing about in american pie",
+        "loc_ans": "Buddy Holly",
+        "m_loc": "m.0jnpv/bing_18.jpg",
+        "m_loc_q": "What sports team is represented by the logo in the image?",
+        "m_loc_a": "Dallas Stars"
+      }
+    },
+    {
+      "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+      "source_entity": "m.0tj9",
+      "lineage": [
+        "m.0tj9",
+        "Amitabh_Bachchan",
+        "Jeffrey Tambor"
+      ],
+      "representative_source_index": 3141,
+      "all_lineage_source_indices": [
+        3141
+      ],
+      "record": {
+        "src": "Which actor is shown in this image?",
+        "rephrase": "Who is the person featured in this picture?",
+        "pred": "Amitabh_Bachchan",
+        "alt": "Jeffrey Tambor",
+        "image": "m.0tj9/bing_2.jpg",
+        "image_rephrase": "m.0tj9/google_16.jpg",
+        "loc": "in terms of nationality riders from what country have the most tour de france wins",
+        "loc_ans": "France",
+        "m_loc": "m.023sng/bing_17.jpg",
+        "m_loc_q": "Who is the famous actor appearing in this image?",
+        "m_loc_a": "Dilip Kumar"
+      }
+    }
+  ],
+  "review": "author labels plus automated structural audit; no independent human-review claim",
+  "evaluation_executed": false,
+  "limitations": "Source entity disjoint from pinned train image slots; target names and locality examples may overlap train, and released checkpoint training provenance is not independently certified. This is a small nonrandom academic benchmark slice, not real-world accuracy.",
+  "image_integrity": [
+    {
+      "path": "images/m.0121h7/google_16.jpg",
+      "size_bytes": 208431,
+      "sha256": "fcee7c65c871a0f02964774bca3260b7f7b87121fbbd5c8d71e7012fe71ac916",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0121h7/google_16.jpg"
+    },
+    {
+      "path": "images/m.0121h7/google_7.jpg",
+      "size_bytes": 246187,
+      "sha256": "1b6b5564b1db08deab6e685528f2f9bf3d7b5df607a6fe65e81391fcf17bbd1b",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0121h7/google_7.jpg"
+    },
+    {
+      "path": "images/m.012cj0/google_10.jpg",
+      "size_bytes": 17449,
+      "sha256": "c816b95ba33414b5161ce23c2c4859aeb1924238d62f99bd155509d7ace19378",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.012cj0/google_10.jpg"
+    },
+    {
+      "path": "images/m.012cj0/google_22.jpg",
+      "size_bytes": 8636,
+      "sha256": "eaf510296e2dac1e3985ec5511a7de882839497dccf9330eaaec32b8e696748c",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.012cj0/google_22.jpg"
+    },
+    {
+      "path": "images/m.01337_/google_4.jpg",
+      "size_bytes": 11807,
+      "sha256": "7b694c2bb10744cabf37f1b58295df50f1bc027d4c7db6cdcb0217cf7d3f707a",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01337_/google_4.jpg"
+    },
+    {
+      "path": "images/m.0152x_/google_11.jpg",
+      "size_bytes": 118726,
+      "sha256": "76263ce7e16c0cd78223a1c2ef6245f72518d9b39de30834ad18aa79466096ae",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0152x_/google_11.jpg"
+    },
+    {
+      "path": "images/m.0152x_/google_13.jpg",
+      "size_bytes": 157238,
+      "sha256": "215961c5bc3860cbe871b4382b7d43240af198af2e2f5492c9d5802d1cee1b16",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0152x_/google_13.jpg"
+    },
+    {
+      "path": "images/m.018kcp/bing_17.jpg",
+      "size_bytes": 6446,
+      "sha256": "4e4879c8fcb6a6fba005c9772449f19adf8bffa73dd1582c377be07773b31aec",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.018kcp/bing_17.jpg"
+    },
+    {
+      "path": "images/m.018kcp/yahoo_14.jpg",
+      "size_bytes": 9982,
+      "sha256": "8ecd81afd2def74005c9b3a9afac61568127b85bf58aa57e4130b2607ed5ff67",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.018kcp/yahoo_14.jpg"
+    },
+    {
+      "path": "images/m.01c6yz/google_10.jpg",
+      "size_bytes": 23925,
+      "sha256": "7b487749cdc914740a28fefc5de49fcbc1dce9a9efa15d9ef4376de1fc82786b",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01c6yz/google_10.jpg"
+    },
+    {
+      "path": "images/m.01gl9g/google_12.jpg",
+      "size_bytes": 67042,
+      "sha256": "8cee112ee73b7d078ae1e7a54194741daecb7a32ba85037ab319d318e6a72737",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01gl9g/google_12.jpg"
+    },
+    {
+      "path": "images/m.01hg2h/bing_19.jpg",
+      "size_bytes": 62086,
+      "sha256": "f48a5a925c9a2bdf4f5c2fcea731317ffb7c36e794d48f91d043872947645cd0",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01hg2h/bing_19.jpg"
+    },
+    {
+      "path": "images/m.01hg2h/google_12.jpg",
+      "size_bytes": 51791,
+      "sha256": "a2f0cc9d728e30e8876755bd85e5140ad0c25ea0da95f9c93ce6a773aad36f38",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01hg2h/google_12.jpg"
+    },
+    {
+      "path": "images/m.01tvz5j/bing_8.jpg",
+      "size_bytes": 113883,
+      "sha256": "3010f1dab81c36db195380b4295103467b164b3adf22251384651d920005ea87",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01tvz5j/bing_8.jpg"
+    },
+    {
+      "path": "images/m.01w5jwb/yahoo_23.jpg",
+      "size_bytes": 41656,
+      "sha256": "6cc7a83ead9db106aa1e97cbf3835216c31e8e1ebfe3ee7f33d92f4a39929a1c",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.01w5jwb/yahoo_23.jpg"
+    },
+    {
+      "path": "images/m.022fdt/bing_3.jpg",
+      "size_bytes": 12477,
+      "sha256": "17778cbb614b03569dd7188128ca9851f52854a5508b4658a4d92f125b6640a8",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.022fdt/bing_3.jpg"
+    },
+    {
+      "path": "images/m.022fdt/yahoo_10.jpg",
+      "size_bytes": 32256,
+      "sha256": "e5a0c530ad7dd55dffcfe5b5f0f9b1921f926d11c1a89a11ce0028a06127318c",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.022fdt/yahoo_10.jpg"
+    },
+    {
+      "path": "images/m.023sng/bing_17.jpg",
+      "size_bytes": 73871,
+      "sha256": "a5ef7a6a016c22f09843b58a742fea3e92cbf5b13d9a5ade941c30b02f976c93",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.023sng/bing_17.jpg"
+    },
+    {
+      "path": "images/m.025hzx/yahoo_21.jpg",
+      "size_bytes": 245724,
+      "sha256": "1be09e9273222f09d17dd050bfb07d6896b5c3a9bc5d9f6e199444c5f35fccd5",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.025hzx/yahoo_21.jpg"
+    },
+    {
+      "path": "images/m.02624g/bing_12.jpg",
+      "size_bytes": 486998,
+      "sha256": "8e15ad8c0090486410e5246f89bd01bc300518ee3501509534d106db7e7a5cbf",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.02624g/bing_12.jpg"
+    },
+    {
+      "path": "images/m.02624g/google_6.jpg",
+      "size_bytes": 10699,
+      "sha256": "287d7888a5003d65becc28bf67cd6abbfc55873b8f394eb1f6572a28cf96d8a2",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.02624g/google_6.jpg"
+    },
+    {
+      "path": "images/m.0295sy/bing_12.jpg",
+      "size_bytes": 28775,
+      "sha256": "375d7f35a1645c5355da3203f42d76bfe96b599b132b939542dde5663435a2cd",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0295sy/bing_12.jpg"
+    },
+    {
+      "path": "images/m.0295sy/bing_16.jpg",
+      "size_bytes": 29201,
+      "sha256": "e1d26adcc61338f740534d7e03ecfb743f344ad079da2731d65dd0f234ea5c68",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0295sy/bing_16.jpg"
+    },
+    {
+      "path": "images/m.02hkw6/google_2.jpg",
+      "size_bytes": 12357,
+      "sha256": "25eeeeae461e9dcc654bafeab8e499662b5bedb45634aa08d847c8549889158c",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.02hkw6/google_2.jpg"
+    },
+    {
+      "path": "images/m.02m97n/bing_5.jpg",
+      "size_bytes": 573972,
+      "sha256": "31ab13a4f05bfb07e3e8ffc98a043b9c112d656124232625e89875affc43326a",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.02m97n/bing_5.jpg"
+    },
+    {
+      "path": "images/m.02w2bc/google_14.jpg",
+      "size_bytes": 87251,
+      "sha256": "a43efdcb4dbd3ae8f70e9b1b44166c4a167eb688fded1a2296320b6c4c8833ff",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.02w2bc/google_14.jpg"
+    },
+    {
+      "path": "images/m.02w2bc/google_9.jpg",
+      "size_bytes": 107387,
+      "sha256": "3b6012b6a1d2d4c0dc92b052a9dda3caaf8c4f1ea4463bbb4ae417d5c6721e2b",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.02w2bc/google_9.jpg"
+    },
+    {
+      "path": "images/m.03d_w3h/bing_8.jpg",
+      "size_bytes": 75949,
+      "sha256": "aede1ec228569d692a23d98ea6e951825be10f9091597757f19216ee712d0290",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.03d_w3h/bing_8.jpg"
+    },
+    {
+      "path": "images/m.03d_w3h/google_21.jpg",
+      "size_bytes": 11394,
+      "sha256": "6e8b889b5e0e8f02cb70d58a45be72915933091f83e646b5781b3c9401b62b09",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.03d_w3h/google_21.jpg"
+    },
+    {
+      "path": "images/m.03h0k1/bing_4.jpg",
+      "size_bytes": 53439,
+      "sha256": "641d61ec3cbf1c09b6c0e29638592539da362cf921cb1efe0255c13ed46f1877",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.03h0k1/bing_4.jpg"
+    },
+    {
+      "path": "images/m.03h0k1/google_7.jpg",
+      "size_bytes": 42123,
+      "sha256": "96c457d732c3822c4f3b403e1bacb2a658b5d2f3afc870935e10e739daef09c8",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.03h0k1/google_7.jpg"
+    },
+    {
+      "path": "images/m.049m19/yahoo_13.jpg",
+      "size_bytes": 21636,
+      "sha256": "9199c6ac1a48dc2b397a0151679ea66260d5eee600c97437d124fb963bf8b479",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.049m19/yahoo_13.jpg"
+    },
+    {
+      "path": "images/m.049m19/yahoo_20.jpg",
+      "size_bytes": 17878,
+      "sha256": "49b93626d617013f8d304b5286b8eaa8812ca3f10da8d8941b90373ed67ed20d",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.049m19/yahoo_20.jpg"
+    },
+    {
+      "path": "images/m.049msk/google_5.jpg",
+      "size_bytes": 95862,
+      "sha256": "60e8d137ff9534c44d72a2fcf5b4ccfecc0a6365a8d72b904a78f4f65dffb7df",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.049msk/google_5.jpg"
+    },
+    {
+      "path": "images/m.05xd8x/google_0.jpg",
+      "size_bytes": 14307,
+      "sha256": "6b4bca14afc246b440afe28c6bde3a36e2dadfd8466d1e809d0a01d31377989f",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.05xd8x/google_0.jpg"
+    },
+    {
+      "path": "images/m.05xd8x/google_2.jpg",
+      "size_bytes": 12582,
+      "sha256": "adc757e270a9fecf50d925a2e4ed28fb27f63285de01735df48f4ff3392b4890",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.05xd8x/google_2.jpg"
+    },
+    {
+      "path": "images/m.06jwys/google_0.jpg",
+      "size_bytes": 123170,
+      "sha256": "4df1285620ebb7c1c80aeb1a51b6d129399ac6676d13de3e5577de312ad64b3d",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.06jwys/google_0.jpg"
+    },
+    {
+      "path": "images/m.06sks6/google_22.jpg",
+      "size_bytes": 40537,
+      "sha256": "46713b89141a671162c87e19e2eb35f23a0f2894a4d750f97aedff9cf1a4a4f2",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.06sks6/google_22.jpg"
+    },
+    {
+      "path": "images/m.076df9/bing_16.jpg",
+      "size_bytes": 320103,
+      "sha256": "2e539eb1b8cd7b094ffe2013a57f8bebb8b52f97ba42f59de99e24fde2528bd6",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.076df9/bing_16.jpg"
+    },
+    {
+      "path": "images/m.076df9/google_4.jpg",
+      "size_bytes": 18330,
+      "sha256": "4bb30b4ff074ea6369e36b102cc3c3d63a96d249d6987221a77da17f4811dbce",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.076df9/google_4.jpg"
+    },
+    {
+      "path": "images/m.083skw/google_15.jpg",
+      "size_bytes": 30024,
+      "sha256": "b8bd4382db35ef63f740ec0cde9d1dd0f2afce092c989bb1ab33599d315de82b",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.083skw/google_15.jpg"
+    },
+    {
+      "path": "images/m.090q4n/yahoo_0.jpg",
+      "size_bytes": 113314,
+      "sha256": "f6ecc7484299bf38b70ac39eaa701f949b88c76cc8aba05419cfbaaa64829991",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.090q4n/yahoo_0.jpg"
+    },
+    {
+      "path": "images/m.090q4n/yahoo_4.jpg",
+      "size_bytes": 6360,
+      "sha256": "38d13e922e2e59f714b78cb4807b6e9f4f60bbc58c46ff11eabe5f320c0511f7",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.090q4n/yahoo_4.jpg"
+    },
+    {
+      "path": "images/m.09d3b7/google_16.jpg",
+      "size_bytes": 123046,
+      "sha256": "b1c72cee76dc71db4a533f00ba310737c10d63f876108baaf9261d3123478c3a",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.09d3b7/google_16.jpg"
+    },
+    {
+      "path": "images/m.09d3b7/google_3.jpg",
+      "size_bytes": 19078,
+      "sha256": "6bac96a4f6f44e71db4a842da52590ce28b6bde92392a25f7d9856f45978b1c4",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.09d3b7/google_3.jpg"
+    },
+    {
+      "path": "images/m.0cqcgj/google_14.jpg",
+      "size_bytes": 20172,
+      "sha256": "4f3acb50b4ec5defd45787f7bfcb04bc2e82ad36fc3a56dc1017536093318688",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0cqcgj/google_14.jpg"
+    },
+    {
+      "path": "images/m.0gyr_7/google_11.jpg",
+      "size_bytes": 29328,
+      "sha256": "3b52d67c4aa5cf9fd161ab5bad0ff203427f1cb4c725af2a482f82aac139aa76",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0gyr_7/google_11.jpg"
+    },
+    {
+      "path": "images/m.0gyr_7/google_12.jpg",
+      "size_bytes": 7687,
+      "sha256": "9a034a64c32f94ac8f7b1c4577d29e977356b179fe4ceaa5db90fba79535c8b6",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0gyr_7/google_12.jpg"
+    },
+    {
+      "path": "images/m.0hx4y/bing_21.jpg",
+      "size_bytes": 59076,
+      "sha256": "c742c6ff0efb2b2f10702b9b5e4f04a3629edb193c453a61c0bae2223e7074ba",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0hx4y/bing_21.jpg"
+    },
+    {
+      "path": "images/m.0jnng/bing_7.jpg",
+      "size_bytes": 37883,
+      "sha256": "b7dc832b65cdd18135e472ae5d435a0fb2e0d15948e0dac43edf89f177f3620a",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0jnng/bing_7.jpg"
+    },
+    {
+      "path": "images/m.0jnng/bing_9.jpg",
+      "size_bytes": 59408,
+      "sha256": "8c130f55b4276e70767b8a2c312a314cef39b6630014dfa4ea0774d436207297",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0jnng/bing_9.jpg"
+    },
+    {
+      "path": "images/m.0jnpv/bing_18.jpg",
+      "size_bytes": 332670,
+      "sha256": "35a253f7df0246d8003f7510ab2f08e96db256f63f4375ce1aec398aa65f1423",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0jnpv/bing_18.jpg"
+    },
+    {
+      "path": "images/m.0kq39/bing_3.jpg",
+      "size_bytes": 130189,
+      "sha256": "d028308d8c52db338001309a3d0697ef3bd137901b97a11bc95ffe55af3c342d",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0kq39/bing_3.jpg"
+    },
+    {
+      "path": "images/m.0l2vz/bing_4.jpg",
+      "size_bytes": 63443,
+      "sha256": "b4122eecfa9cf455c370e43435a0e58d5e5d7e5cea2d53ca8e91e82bd0dd65a2",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0l2vz/bing_4.jpg"
+    },
+    {
+      "path": "images/m.0l2vz/google_0.jpg",
+      "size_bytes": 78988,
+      "sha256": "7f3b8fa8573f3edaec287cdbd5357611aae089fbe5370aacfa535f376219ec30",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0l2vz/google_0.jpg"
+    },
+    {
+      "path": "images/m.0q96/bing_21.jpg",
+      "size_bytes": 118937,
+      "sha256": "c184916323944d99130b5366b3538357db4e8cd0387cdfbc90fd45ebbd9bbeab",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0q96/bing_21.jpg"
+    },
+    {
+      "path": "images/m.0tj9/bing_2.jpg",
+      "size_bytes": 28346,
+      "sha256": "40b2fa5ed203b3adada00e572e77d85261602deff11c00c4a802b9df48c8d53d",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0tj9/bing_2.jpg"
+    },
+    {
+      "path": "images/m.0tj9/google_16.jpg",
+      "size_bytes": 42211,
+      "sha256": "f18158b0113a77a46ec2bd317b7080f4cdfef4a80f36a60b548bcf282dc426f1",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0tj9/google_16.jpg"
+    },
+    {
+      "path": "images/m.0txrs/google_23.jpg",
+      "size_bytes": 1550969,
+      "sha256": "b3cf1d61761144583cee2cdd28e35e840238c8b51b3193d6a28c207f9d83a94e",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0txrs/google_23.jpg"
+    },
+    {
+      "path": "images/m.0xpp5/google_17.jpg",
+      "size_bytes": 1772638,
+      "sha256": "5cc098a09cacda8edafb5b1160b9d76877c340d80b205b6788e3f81fe43c9640",
+      "verified_source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+      "archive_member": "mmkb_images/m.0xpp5/google_17.jpg"
+    }
+  ],
+  "source_train_sha256": "6e40e0e9a28dc3e7523f8d48f032755fe050c5b5728344633f13113dbd6fbc01"
+}

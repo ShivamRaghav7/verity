@@ -1,0 +1,491 @@
+{
+  "execution_status": "completed",
+  "training_executed": false,
+  "load_seconds": 98.27557012400007,
+  "rows": [
+    {
+      "edit_id": "train-0002",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0002",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.9761736123473883,
+      "text_cosine": 0.9523472246947765,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0002",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9846617230567272,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9693234461134543
+    },
+    {
+      "edit_id": "train-0002",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.5478099260273923,
+      "text_cosine": 0.19770807782915054,
+      "visual_cosine": 0.8979117742256342
+    },
+    {
+      "edit_id": "train-0002",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0003",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0003",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.8304212515472513,
+      "text_cosine": 0.6608425030945028,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0003",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9924426446225858,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9848852892451716
+    },
+    {
+      "edit_id": "train-0003",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.8902041231079918,
+      "text_cosine": 0.8282241763689173,
+      "visual_cosine": 0.9521840698470664
+    },
+    {
+      "edit_id": "train-0003",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0004",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0004",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.8324409079149655,
+      "text_cosine": 0.6648818158299309,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0004",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9695099330989306,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9390198661978613
+    },
+    {
+      "edit_id": "train-0004",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.8506976410025531,
+      "text_cosine": 0.7558211404132471,
+      "visual_cosine": 0.9455741415918589
+    },
+    {
+      "edit_id": "train-0004",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0005",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0005",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.8458360354204435,
+      "text_cosine": 0.6916720708408871,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0005",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9944108345541619,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9888216691083238
+    },
+    {
+      "edit_id": "train-0005",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.8096072170932351,
+      "text_cosine": 0.6623705625001777,
+      "visual_cosine": 0.9568438716862927
+    },
+    {
+      "edit_id": "train-0005",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0006",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0006",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.9063127617845697,
+      "text_cosine": 0.8126255235691394,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0006",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9842878833450173,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9685757666900345
+    },
+    {
+      "edit_id": "train-0006",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.72819617191503,
+      "text_cosine": 0.4884499290028405,
+      "visual_cosine": 0.9679424148272197
+    },
+    {
+      "edit_id": "train-0006",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0007",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0007",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.9063127617845697,
+      "text_cosine": 0.8126255235691394,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0007",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9857929622195585,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9715859244391171
+    },
+    {
+      "edit_id": "train-0007",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.908015435036753,
+      "text_cosine": 0.860589974295351,
+      "visual_cosine": 0.9554408957781549
+    },
+    {
+      "edit_id": "train-0007",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0008",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0008",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.7559913590939377,
+      "text_cosine": 0.5119827181878753,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0008",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.927534016716138,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.855068033432276
+    },
+    {
+      "edit_id": "train-0008",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.7247721445604263,
+      "text_cosine": 0.6003132401930744,
+      "visual_cosine": 0.849231048927778
+    },
+    {
+      "edit_id": "train-0008",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    },
+    {
+      "edit_id": "train-0009",
+      "category": "direct",
+      "applicable": true,
+      "score": 1.0,
+      "text_cosine": 1.0,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0009",
+      "category": "paraphrase",
+      "applicable": true,
+      "score": 0.8377954174159585,
+      "text_cosine": 0.6755908348319171,
+      "visual_cosine": 1.0
+    },
+    {
+      "edit_id": "train-0009",
+      "category": "alternate_image",
+      "applicable": true,
+      "score": 0.9981755689887135,
+      "text_cosine": 1.0,
+      "visual_cosine": 0.9963511379774271
+    },
+    {
+      "edit_id": "train-0009",
+      "category": "visual_locality",
+      "applicable": false,
+      "score": 0.707004811914022,
+      "text_cosine": 0.43666697688066536,
+      "visual_cosine": 0.9773426469473787
+    },
+    {
+      "edit_id": "train-0009",
+      "category": "text_locality",
+      "applicable": false,
+      "score": null,
+      "text_cosine": null,
+      "visual_cosine": null
+    }
+  ],
+  "selection": {
+    "threshold": 0.7559913590939377,
+    "tp": 24,
+    "fp": 4,
+    "fn": 0,
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "f1": 0.9230769230769231,
+    "denominator": 40
+  },
+  "probability_calibrated": false,
+  "score_recipe": "0.5*MiniLM question/edit-question cosine +0.5*visual-prefix cosine; text-only query rejected",
+  "selection_rule": "Maximum validation F1; ties higher precision, then higher threshold",
+  "validation_row_count": 40,
+  "validation_source_indices": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "evaluation_split_opened": false,
+  "limitations": "Eight fixed nonrandom upstream training rows, possibly repeated entity lineages and seen during published MEND training; this is our threshold-validation subset only. Cosine scores are not probabilities.",
+  "resources": {
+    "elapsed_seconds": 111.31955906600001,
+    "sampled_peak_process_rss_bytes": 8476536832,
+    "host_sampling_interval_seconds": 0.05,
+    "gpu": {
+      "peak_allocated_bytes": 10633114112,
+      "peak_reserved_bytes": 10942939136,
+      "device": "Tesla T4"
+    },
+    "limits": "RSS sampling can miss short spikes; CUDA allocator figures do not include every driver allocation. These are diagnostic-run resources, not a serving latency benchmark."
+  },
+  "sources": {
+    "source_train_sha256": "6e40e0e9a28dc3e7523f8d48f032755fe050c5b5728344633f13113dbd6fbc01",
+    "source_archive_sha256": "88f774e76e51c66b1f2a6510bdc0e05cf51a55a8e45be6186feed8d2360397e4",
+    "minilm": [
+      {
+        "path": "minilm/config.json",
+        "size_bytes": 612,
+        "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/pytorch_model.bin",
+        "size_bytes": 90888945,
+        "sha256": "c3a85f238711653950f6a79ece63eb0ea93d76f6a6284be04019c53733baf256",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/pytorch_model.bin",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/tokenizer_config.json",
+        "size_bytes": 350,
+        "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/special_tokens_map.json",
+        "size_bytes": 112,
+        "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/tokenizer.json",
+        "size_bytes": 466247,
+        "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/vocab.txt",
+        "size_bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/README.md",
+        "size_bytes": 10502,
+        "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      }
+    ],
+    "calibration_fixture_sha256": "5dadf749c61574722deacdcb944202587ae0e425eda8a15fb4f8208f166ae7a1",
+    "minilm_manifest_sha256": "bf646c94574d261be4b85265cfbef9803e6256d350e8d63384c362c9ae970d3c",
+    "base": {
+      "assets_verified": true,
+      "base_asset_manifest_sha256": "1a0232f62565d4d488ec7433f0950551a20a6fdee5cd749c9a9cbac1ea3554b4",
+      "upstream_commit": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+      "upstream_config_sha256": "244513c102434cf42e4dbcbb3b5c240e902625d44b8c878f9adee4ca1c949874",
+      "checkpoint_hashes": {
+        "opt-2.7b/pytorch_model.bin": {
+          "algorithm": "sha256",
+          "checksum": "476391562b9b2635c672d15bd69cfa881c5c824ebe89b00fee6c58947541e6e4",
+          "size_bytes": 5303359381
+        },
+        "bert-base-uncased/pytorch_model.bin": {
+          "algorithm": "sha256",
+          "checksum": "097417381d6c7230bd9e3557456d726de6e83245ec8b24f529f60198a67b203a",
+          "size_bytes": 440473133
+        },
+        "mend.pt": {
+          "algorithm": "sha256",
+          "checksum": "13c7f1f24af506fcf994cf584e404abf6c3ab445139da5edf8df180afaab1c98",
+          "size_bytes": 2364013495
+        },
+        "eva_vit_g.pth": {
+          "algorithm": "md5",
+          "checksum": "c483374fc17b72dc61e016680345a0ff",
+          "size_bytes": 2025249237
+        },
+        "blip2_pretrained_opt2.7b.pth": {
+          "algorithm": "md5",
+          "checksum": "16face679691028f32e8229097802b57",
+          "size_bytes": 428705327
+        }
+      },
+      "checkpoint_hash_provenance": "Published manifest checksums verified against actual bytes by controller preflight"
+    },
+    "recipe": {
+      "text_weight": 0.5,
+      "text_max_length": 256,
+      "visual_prefix_tokens": 32,
+      "visual_prefix_prompt": "Image:",
+      "text_pooling": "attention-mask mean; L2 normalized; CPU eval no_grad",
+      "visual_pooling": "Qformer-to-OPT prefix mean; L2 normalized",
+      "text_only_policy": "reject",
+      "selection_rule": "max F1; then precision; then threshold"
+    }
+  },
+  "code_sha256": {
+    "ke_repro/rag.py": "6218c421d9579387d2e4a13095866d9a9a6168544dadfd7f465b69d3e86ce8d4",
+    "ke_repro/generation.py": "bd277a5d8ebdfa7f0e446731d8d637f68e39df93f898d56d73248c21d0ac328b",
+    "ke_repro/bridge.py": "8e3b08673527f0cc6cccf2007e1152ae8c7d742be29dfe94458e3eab746f81f6",
+    "ke_repro/smoke.py": "01c08027a6482bdab0b62ecdb119f160e00988a29506faf4d237e5dec1ea148f",
+    "ke_repro/__init__.py": "3e01318ee51f52f34c72aeeeaa35104d1cef408e1a5729558f118095866d804b",
+    "scripts/prepare_vlkeb_rag.py": "59991626ee10af219fc43d53fad1e99f4c24da67b282455e6101c721af7f905e",
+    "scripts/prepare_vlkeb_assets.py": "67b1d0db9ff42157305f463eb9eb2a180258db18d053629885757a8bf6a40b3e",
+    "scripts/prepare_vlkeb_eval.py": "41e2d438a5ac27c3b6e3f9bdce4a6a6dc5b2a019cf47b76d65024ad800a491e7",
+    "requirements-vlkeb.txt": "c74fc46f5611039bd0ed4411a9a19fb8d4f7ef6f7c3b50af48968025e19e9cdc"
+  },
+  "worker_return_code": 0
+}

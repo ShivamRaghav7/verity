@@ -1,0 +1,34 @@
+{
+  "assets_verified": true,
+  "base_asset_manifest_sha256": "1a0232f62565d4d488ec7433f0950551a20a6fdee5cd749c9a9cbac1ea3554b4",
+  "upstream_commit": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+  "upstream_config_sha256": "244513c102434cf42e4dbcbb3b5c240e902625d44b8c878f9adee4ca1c949874",
+  "checkpoint_hashes": {
+    "opt-2.7b/pytorch_model.bin": {
+      "algorithm": "sha256",
+      "checksum": "476391562b9b2635c672d15bd69cfa881c5c824ebe89b00fee6c58947541e6e4",
+      "size_bytes": 5303359381
+    },
+    "bert-base-uncased/pytorch_model.bin": {
+      "algorithm": "sha256",
+      "checksum": "097417381d6c7230bd9e3557456d726de6e83245ec8b24f529f60198a67b203a",
+      "size_bytes": 440473133
+    },
+    "mend.pt": {
+      "algorithm": "sha256",
+      "checksum": "13c7f1f24af506fcf994cf584e404abf6c3ab445139da5edf8df180afaab1c98",
+      "size_bytes": 2364013495
+    },
+    "eva_vit_g.pth": {
+      "algorithm": "md5",
+      "checksum": "c483374fc17b72dc61e016680345a0ff",
+      "size_bytes": 2025249237
+    },
+    "blip2_pretrained_opt2.7b.pth": {
+      "algorithm": "md5",
+      "checksum": "16face679691028f32e8229097802b57",
+      "size_bytes": 428705327
+    }
+  },
+  "checkpoint_hash_provenance": "Published manifest checksums verified against actual bytes by controller preflight"
+}

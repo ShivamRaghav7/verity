@@ -1,0 +1,49 @@
+{
+  "purpose": "preregistered finite held-out evaluation; not a training or accuracy promise",
+  "question": "How do base, prompt-only, updated visual RAG, adapted released MEND and 15-step last-layer FT compare on generated-answer accuracy, generalization, locality, routing and latency for 20 source-entity-separated edit lineages?",
+  "profile_source": "reports/vlkeb/t4-pipeline-profile-1/artifacts/vlkeb/pipeline-profile/profile.json",
+  "profile_sha256": "247531720164db282b1b4bd9be0479f402e156dd2a7bac30e4fa9843f5974b21",
+  "profile_code_commit": "65fbeb2171d73d215a7f8c6884aec8e78abf873c",
+  "profile_evidence_zip_sha256": "d5325d150d4cc7b76ffe6246636c0edf982dfcb6e5a55071f09044dd04ebc214",
+  "profile_measured_load_seconds": 96.87795049800002,
+  "profile_measured_episode_seconds": 41.42797023999992,
+  "projected_worker_seconds": 925.4373552979985,
+  "estimate_limitations": "One fixed TRAIN episode only; sequence lengths and hardware load vary. Roughly 15.5 minutes extrapolated worker time, not a promise or confidence interval. Integrity verification/sealing adds several minutes outside worker time.",
+  "measured_resources": {
+    "elapsed_seconds": 138.3063442,
+    "sampled_peak_process_rss_bytes": 8435138560,
+    "host_sampling_interval_seconds": 0.05,
+    "gpu": {
+      "peak_allocated_bytes": 11971964416,
+      "peak_reserved_bytes": 12570329088,
+      "device": "Tesla T4"
+    },
+    "limits": "RSS sampling can miss short spikes; CUDA allocator figures do not include every driver allocation. These are diagnostic-run resources, not a serving latency benchmark."
+  },
+  "inputs": [
+    "Exact pinned VLKEB upstream and base/model/editor assets",
+    "Deterministically selected 20 source-entity-separated edit lineages and verified images",
+    "Frozen MiniLM assets and train-row2..9 validation-selected RAG threshold",
+    "Fixed five-method/five-case protocol, whole-answer scorer, seed42, greedy24token budget"
+  ],
+  "expected_artifacts": [
+    "seal.json",
+    "attempt-001.json",
+    "attempt-001.log",
+    "worker.json",
+    "edits/<edit-id>.json for20lineages",
+    "evaluation.json",
+    "PNG/PDF graphs with CSV/JSON source data"
+  ],
+  "maximum_worker_seconds_per_attempt": 1800,
+  "finite_stopping_condition": "20 edit lineages x5 query cases x5 methods =500query instances, at most20MENDupdates and300FToptimizer steps per uninterrupted complete attempt; stop early on exact-restoration failure or timeout",
+  "resume": "Completed rollback-checked rows are immutable. Same sealed code/configuration only. An incomplete interrupted lineage reruns from a fresh base and is disclosed in attempt receipts. No model meta-training is performed.",
+  "configuration_freeze": "Publish selection/calibration/profile receipts and source before --seal; do not alter the scientific configuration after test outputs are viewed.",
+  "commands": [
+    "python -m ke_repro.evaluate --seal",
+    "python -m ke_repro.evaluate --run",
+    "python -m ke_repro.evaluate --run --resume (only for interruption, same unchanged seal)"
+  ],
+  "review_policy": "Automated structural label audit only, explicitly authorized; no independent human label review claim",
+  "result_claims": "All20lineages retained in denominators, errors and abstentions count as primary failures; published metrics remain separately attributed."
+}

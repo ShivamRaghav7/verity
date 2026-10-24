@@ -1,6 +1,6 @@
 # Fixed small VLKEB evaluation protocol
 
-Status: **prepared protocol; evaluation has not run**. Freeze the evaluator,
+Status: **preregistered protocol, frozen before test inference**. Freeze the evaluator,
 scorer, configuration, this protocol and prepared selection before reading model
 outputs. The development smoke remains separate. This protocol supplies our own
 small measured experiment; author-reported tables must retain their attribution
@@ -224,12 +224,22 @@ time is included. Separate editing latency, per-query latency and load time.
 The experiment may start only after the fixed development example demonstrates
 loading, one context-aligned edit, persistence, fresh-process reload and exact
 rollback, and after the five-case evaluator and scorer pass their focused tests.
-Prepare a concrete command/run card with measured runtime and memory estimates
-from that development configuration. **Those estimates are currently unknown**;
-the first release/raw attempt's 128-second worker profile does not establish the
-new configuration's runtime. No long meta-training is required by this protocol.
-The FT configuration needs its own finite development profile before releasing
-the command/runtime estimate. Distinguish per-edit FT from training the editor.
+The complete five-method TRAIN-row0 pipeline passed all 25 call execution checks
+and exact rollback on a Tesla T4 on 24 October 2026, using source commit
+`65fbeb2171d73d215a7f8c6884aec8e78abf873c`. Loading took 96.878 seconds and one
+complete episode took 41.428 seconds. Sampled process RSS peaked at
+8,435,138,560 bytes; CUDA allocated/reserved peaks were
+11,971,964,416 / 12,570,329,088 bytes. Wrong answers and abstentions are measured
+outcomes, not evidence that the execution check failed.
+
+The [run card](../configs/vlkeb-eval20-run-card.json) binds the complete measured
+profile and declares the input/artifact list, commands and resume behavior.
+Extrapolating one episode gives 925.44 seconds (about 15.5 minutes) for loading
+plus 20 episodes. This is uncertain: it is one training example, other sequence
+lengths vary, and integrity verification/sealing adds several minutes outside
+the worker. The fixed worker cap is **1,800 seconds per attempt**. This is a
+stopping cap, not a promised duration. No long meta-training is required;
+distinguish bounded per-edit FT from training the editor.
 
 Stop after **20 edit lineages and five cases for each of five configurations**:
 at most 20 MEND updates, 20 fine-tuned edits and 300 FT optimizer steps per complete
