@@ -1,0 +1,10 @@
+{
+  "chat_model": "qwen3-vl:2b-instruct",
+  "chat_digest": "afc393e3572c07db0bc84aa460d928a16c75f3fbb9ca9e0dccc4fbd2dafb573e",
+  "embedding_model": "all-minilm:22m",
+  "embedding_digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+  "source": "Official Ollama model registry; observed and downloaded 2026-10-25 Asia/Calcutta",
+  "retrieval_threshold": 0.72,
+  "threshold_calibrated": false,
+  "weights_changed_by_chat_corrections": false
+}

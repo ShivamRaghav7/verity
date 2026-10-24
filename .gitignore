@@ -1,6 +1,7 @@
 .venv/
 .venv-ml/
 .venv-vision/
+.venv-chat/
 __pycache__/
 *.py[cod]
 .pytest_cache/

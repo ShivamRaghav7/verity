@@ -1,4 +1,80 @@
-# EditGuard: Visual Knowledge Editing Workbench
+# EditGuard: Chat & Knowledge
+
+A local website for **normal text conversation, optional image questions, and
+knowledge corrections you can publish, inspect and withdraw**. Chat Studio uses
+pretrained `qwen3-vl:2b-instruct` through Ollama for generated responses and
+`all-minilm:22m` for semantic correction retrieval. Its default editing method is
+approved external memory plus retrieval-augmented generation; the base model's
+weights stay unchanged.
+
+The explicit `2b-instruct` tag avoids relying on the generic tag's thinking-mode
+default. An earlier generic-tag attempt produced no visible answer within its
+384-token budget; that remains a development diagnostic, separate from the
+sealed visual experiment. Switching tags is not a new accuracy result.
+
+## Open the website
+
+With Python and [Ollama for Windows](https://ollama.com/download/windows)
+installed, open PowerShell in this repository, prepare the isolated environment
+and local models once, then launch the website:
+
+```powershell
+cd "C:\Users\shiva\OneDrive\Desktop\projekt-KE"
+.\scripts\run-chat.ps1 -Setup
+.\scripts\run-chat.ps1
+```
+
+Open **http://127.0.0.1:8004/**. The launcher opens that page by default; keep its
+server window and Ollama running. Initial setup downloads the named models.
+Chat Studio runs locally and does not require the research workbench's Colab
+session. Check the website's model-status badge before sending a message.
+
+Read the [Chat Studio walkthrough](docs/CHAT_STUDIO.md) for launch details,
+examples, source/history controls and the distinction between retrieval-based
+corrections and parameter editing.
+
+## Chat, edit knowledge, then compare
+
+1. **Chat:** have a normal conversation, ask follow-up questions, or attach an
+   optional image. You can switch approved knowledge off to ask the original
+   model without supplied corrections.
+2. **Knowledge:** publish a specific correction with its intended answer,
+   subject/scope and source. Publishing is explicit local-operator approval;
+   assertions made in a customer conversation are not silently added to memory.
+3. **Back to Chat:** ask again or try different wording. Inspect the generated
+   answer and the retrieved correction/source evidence. Use **Compare** to obtain
+   fresh original and correction-enabled responses from matched question history.
+4. **Withdraw or restore:** inspect version history and change which records are
+   active. Later responses use the current knowledge revision; previous messages
+   remain visible as historical answers. Replacing an active correction in the
+   same normalized question and scope requires explicit conflict resolution.
+
+Chats and correction records persist in SQLite under `runtime/chat/`, outside
+Git. The website is a local single-operator academic application, not a publicly
+hosted multi-user service. Retrieved sources and operator approval do not certify
+that arbitrary model prose is factually correct. The chat similarity threshold
+is an uncalibrated development setting, not a probability or the old visual
+study's calibrated threshold.
+
+## What we built
+
+Our contribution is the usable maintenance workflow around pretrained models:
+persistent conversations, a separate correction-approval interface, versioned
+memory, scoped semantic retrieval, source evidence, matched before/after
+comparison, conflict handling and withdrawal/restoration. We did not train Qwen
+or MiniLM or invent a new foundation-model architecture. Chat Studio performs
+external-memory editing; it must not be described as permanently changing model
+parameters.
+
+The repository also preserves the real parameter-editing research workbench,
+its documented adaptations, exact weight rollback, and sealed five-method
+comparison below. This combines a practical conversation website with an
+independently inspectable research component. The BLIP-2/MEND benchmark measures
+that earlier model and protocol; it establishes **no general chat-accuracy number
+for Qwen or this new serving workflow**. Updated RAG is the application's default
+choice, not a claim that it is the best method for every question.
+
+## Separate research: visual knowledge editing workbench
 
 For the panel, start with the [beginner guide](docs/VISUAL_PROJECT_EXPLAINED.md),
 the [six-minute presentation and Q&A](docs/VLKEB_PANEL_QA.md), and the
@@ -22,7 +98,7 @@ Start with the [project explanation](docs/VISUAL_PROJECT_EXPLAINED.md),
 [workbench guide](docs/VLKEB_WORKBENCH.md). Published paper numbers remain in a
 separate [attributed reference](docs/VLKEB_UPSTREAM_RESULTS.md).
 
-## What this project contributes
+### What this project contributes
 
 | Component | Responsibility |
 | --- | --- |
@@ -53,7 +129,7 @@ not outweigh its locality failures automatically.
 
 ![Measured final accuracy](output/vlkeb-final-2026-10-24/accuracy.png)
 
-## Run the workbench
+### Run the workbench
 
 Use the [standalone Colab workbench notebook](notebooks/03_visual_editing_workbench.ipynb)
 for the pinned environment, verified asset download, CUDA hardware checks and
@@ -84,7 +160,7 @@ demonstrated target. Model/data assets require a separate download of about
 600 MiB. Preserve exported evidence and patches before releasing a temporary
 Colab runtime. Never run simultaneous full-model jobs on the same GPU.
 
-## Evidence and reproduction
+### Evidence and reproduction
 
 The [results report](docs/VLKEB_RESULTS.md) links the original machine-readable
 receipts, including the unsuccessful first run. The
@@ -114,7 +190,7 @@ and no automatic patch activation. These are workflow checks on training fixture
 separate from the 500-answer benchmark. [Container and HTTP details](docs/VLKEB_WORKBENCH.md)
 document the packaged Linux path and its validation limits.
 
-## Limits to the claim
+### Limits to the claim
 
 The project does not guarantee that an arbitrary correction works or stays
 local. Teacher-forced token scores can be high while generated answers repeat
@@ -128,7 +204,7 @@ completed application rehearsal uses fixed author-training fixtures and one
 unrelated probe; it does not establish arbitrary-upload reliability, production
 security, GPU Docker deployment or permanent public hosting.
 
-## Preserved earlier projects
+### Preserved earlier projects
 
 The earlier **VisionPatch** CLIP projection-editing studio remains separately
 runnable at port 8002 and preserved at Git tag
