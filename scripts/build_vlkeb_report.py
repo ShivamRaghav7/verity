@@ -165,6 +165,10 @@ def make_pdf(args, report):
     styles.add(ParagraphStyle("ReportCover", parent=styles["ReportHeading"], fontSize=36, leading=40, spaceAfter=18))
     styles.add(ParagraphStyle("ReportCell", parent=styles["ReportBody"], fontSize=8.2, leading=11, spaceAfter=0))
     styles.add(ParagraphStyle("ReportCellSmall", parent=styles["ReportCell"], fontSize=7.4, leading=10))
+    styles.add(ParagraphStyle("ReportCellHeader", parent=styles["ReportCell"],
+                             fontName="ReportSans-Bold", textColor=colors.white))
+    styles.add(ParagraphStyle("ReportCellHeaderSmall", parent=styles["ReportCellSmall"],
+                             fontName="ReportSans-Bold", textColor=colors.white))
     width, height = A4
     margin = 19 * mm
     usable = width - 2 * margin
@@ -172,6 +176,18 @@ def make_pdf(args, report):
     aggregate = report["aggregate"]
     build_commit = git_commit()
     generated = datetime.now(timezone.utc).strftime("%d %B %Y, %H:%M UTC")
+    def total_matches(method, categories):
+        return sum(aggregate["scores"][method][category]["correct"] for category in categories)
+
+    edited_categories = CATEGORIES[:3]
+    locality_categories = CATEGORIES[3:]
+    factual_retained = {
+        method: sum(aggregate["locality_preservation"][method][category]["baseline_correct_factual_retained"]
+                    for category in locality_categories)
+        for method in METHODS
+    }
+    base_correct_locality = sum(aggregate["locality_preservation"]["base"][category]["baseline_correct_denominator"]
+                                for category in locality_categories)
 
     def p(text, style="ReportBody"):
         return Paragraph(plain(text), styles[style])
@@ -202,7 +218,8 @@ def make_pdf(args, report):
 
     def table(headers, rows, widths=None, small=False):
         style = "ReportCellSmall" if small else "ReportCell"
-        data = [[p(f"<b>{escape(plain(h))}</b>", style) for h in headers]]
+        header_style = "ReportCellHeaderSmall" if small else "ReportCellHeader"
+        data = [[p(escape(plain(h)), header_style) for h in headers]]
         data += [[p(escape(plain(c)), style) for c in row] for row in rows]
         value = Table(data, colWidths=widths, repeatRows=1, hAlign="LEFT")
         value.setStyle(TableStyle([
@@ -212,9 +229,6 @@ def make_pdf(args, report):
             ("LEFTPADDING", (0, 0), (-1, -1), 7), ("RIGHTPADDING", (0, 0), (-1, -1), 7),
             ("TOPPADDING", (0, 0), (-1, -1), 7), ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
         ]))
-        # Paragraphs carry explicit colors, so style the header paragraphs too.
-        for paragraph in data[0]:
-            paragraph.style = ParagraphStyle("white-cell", parent=paragraph.style, textColor=colors.white)
         story.extend([value, Spacer(1, 10)])
 
     def figure(path, max_height, caption):
@@ -254,9 +268,9 @@ def make_pdf(args, report):
     add("Published model editing, bounded fine-tuning, and retrieval compared using generated answers.")
     story.append(Spacer(1, 14))
     table(["Measured experiment", "Completed scope", "Inference rule"],
-          [["20 edit lineages", "5 methods x 5 cases = 500 assigned answers", "Greedy generation, 24-token cap"]],
+          [["20 edit lineages", "20 edits x 5 methods x 5 cases = 500 records", "Greedy generation, 24-token cap"]],
           [usable * .29, usable * .38, usable * .33])
-    note("<b>The result in one sentence.</b> This project measures whether a requested visual association changes, whether that change transfers to new wording or photographs, and what unrelated behavior it disturbs. Review and exact rollback remain necessary even when an edit succeeds.")
+    note(f"<b>The measured tradeoff.</b> Adapted FT matches all {total_matches('ft_last_layer', edited_categories)}/60 edited-question targets, but answers {total_matches('ft_last_layer', locality_categories)}/40 unrelated questions correctly and loses all {base_correct_locality} previously correct locality answers. MEND retains {factual_retained['mend_context']}/{base_correct_locality} of those answers, with lower target success. Five retained facts are too few to establish broad safety.")
     sub("What was built")
     add("A local workbench wraps the published VLKEB/MEND research code and BLIP-2 model. It can propose an actual parameter update, save an inactive candidate, show generated before/after answers and an unrelated probe, require explicit operator approval, and restore original weights exactly.")
     sub("What was measured")
@@ -277,9 +291,11 @@ def make_pdf(args, report):
     ], [usable * .21, usable * .51, usable * .28])
     note("<b>Attribution boundary.</b> We did not pretrain the foundation model or meta-train MEND. FT is real per-correction optimization; using a pretrained editor is a different kind of work.")
     add("The standard query contains the image and question. No expected answer is supplied to the ordinary base/MEND/FT generation call. Prompt and RAG baselines intentionally receive the current correction as a demonstration, which is their declared behavior.")
+    add("<b>Terms used here:</b> weights are the model's stored numerical parameters; a layer is one processing stage. A patch saves changes to selected weights. A token is a piece of text, so 24 tokens need not mean 24 words.", "ReportSmall")
 
     # 3. Methods.
-    title(3, "Five ways to handle one correction")
+    title(3, "Five ways to handle one correction",
+          "FT means fine-tuning: optimize selected weights for the correction. RAG means retrieval-augmented generation: supply a relevant saved correction in the input. MEND is a published editor that transforms a gradient into a weight update.")
     table(["Method", "What changes?", "What the query receives"], [
         ["Base", "Nothing", "Image + question"],
         ["Prompt only", "Input prefix; weights fixed", "Current correction as a QA example, then the actual query"],
@@ -321,40 +337,46 @@ def make_pdf(args, report):
         rows.append([LABEL[method], *[f"{cells[c]['correct']}/20" for c in CATEGORIES],
                      str(sum(cells[c]["abstentions"] for c in CATEGORIES)),
                      str(sum(cells[c]["errors_or_unexecuted"] for c in CATEGORIES))])
-    table(["Method", "Direct", "Para-phrase", "Other photo", "Text local", "Visual local", "Abstain", "Error"],
+    table(["Method", "Direct", "Para.", "Other photo", "Text local", "Visual local", "Abstain", "Error"],
           rows, [usable * .22] + [usable * .112] * 5 + [usable * .11] * 2, small=True)
-    add("Counts are the primary reading: one additional correct case changes a category's accuracy by five percentage points. A high direct score does not establish transfer or safety on unrelated questions. Compare the category pattern before making a general ranking.")
-    add("Abstain and Error columns sum the five categories, so each method has 100 assigned outcomes. The fixed whole-answer rule may reject a useful shorter answer; that limitation is disclosed rather than repaired after results are observed.", "ReportSmall")
+    add(f"<b>Read both sides of the tradeoff.</b> FT matches {total_matches('ft_last_layer', edited_categories)}/60 edited targets and {total_matches('ft_last_layer', locality_categories)}/40 unrelated targets. RAG and prompt only each match {total_matches('updated_rag', edited_categories)}/60 edited targets. MEND matches {total_matches('mend_context', edited_categories)}/60 while retaining the {base_correct_locality} previously correct unrelated answers.")
+    add(f"Base's {total_matches('base', edited_categories)}/60 is agreement with the benchmark's counterfactual replacement targets, not its general factual accuracy. Each cell has 20 cases: one match changes accuracy by five percentage points. Abstain and Error columns aggregate over the 100 assigned outcomes per method; empty answers remain failures.", "ReportSmall")
 
     # 6. Side effects, routing and uncertainty.
     title(6, "Scope, side effects and uncertainty")
     retention_rows = []
     for method in METHODS:
-        for category in ("text_locality", "visual_locality"):
-            r = aggregate["locality_preservation"][method][category]
-            n = r["baseline_correct_denominator"]
-            retention_rows.append([LABEL[method], LABEL[category], f"{r['baseline_correct_factual_retained']}/{n}",
-                                   f"{r['baseline_correct_answer_preserved']}/{n}", f"{r['unconditional_answer_preserved']}/20"])
-    table(["Method", "Probe family", "Fact retained / base correct", "Verbatim / base correct", "Verbatim / all"],
-          retention_rows, [usable * .22, usable * .2, usable * .2, usable * .2, usable * .18], small=True)
-    add("A zero base-correct denominator gives no conditional retention estimate. Unchanged wrong answers are not factual success. Normalized factual retention and verbatim preservation can differ.", "ReportSmall")
+        r = aggregate["locality_preservation"][method]
+        text, visual = r["text_locality"], r["visual_locality"]
+        exact = text["baseline_correct_answer_preserved"] + visual["baseline_correct_answer_preserved"]
+        retention_rows.append([LABEL[method],
+                               f"{text['baseline_correct_factual_retained']}/{text['baseline_correct_denominator']}",
+                               f"{visual['baseline_correct_factual_retained']}/{visual['baseline_correct_denominator']}",
+                               f"{factual_retained[method]}/{base_correct_locality}", f"{exact}/{base_correct_locality}"])
+    table(["Method", "Text facts retained", "Visual facts retained", "All facts retained", "Verbatim preserved"],
+          retention_rows, [usable * .24] + [usable * .19] * 4, small=True)
+    note(f"<b>Small denominator.</b> The base answered only {base_correct_locality}/40 unrelated questions correctly: two text and three visual. Retention above concerns only those {base_correct_locality} correct answers. MEND's {factual_retained['mend_context']}/{base_correct_locality} does not establish reliable locality on a broader population. Unchanged wrong answers are not factual success.")
+    add("Factual retention uses normalized whole-answer scoring. Verbatim preservation requires identical output text, so capitalization alone can make the two counts differ. Unconditional preservation, including originally wrong answers, is separately recorded in the JSON.", "ReportSmall")
     retrieval = aggregate["rag_retrieval"]
     sub("Updated RAG: routing is separate from answer quality")
     table(["Accepted in scope", "Missed in scope", "Applied outside scope", "Correctly rejected"],
           [[f"{retrieval['tp']}/60", f"{retrieval['fn']}/60", f"{retrieval['fp']}/40", f"{retrieval['tn']}/40"]],
           [usable / 4] * 4)
     add(f"Routing precision: {pct(retrieval['precision'])}; applicable recall: {pct(retrieval['applicable_recall'])}; false application rate: {pct(retrieval['false_application_rate'])}. Routing errors/unexecuted: {retrieval['routing_errors_or_unexecuted']}. A correct route does not guarantee a correct generated answer.", "ReportSmall")
-    sub("Selected paired differences: direct question")
-    selected = [r for r in aggregate["paired_differences"] if r["category"] == "direct"
-                and ((r["first"] == "ft_last_layer" and r["second"] == "base")
-                     or (r["first"] == "updated_rag" and r["second"] == "ft_last_layer"))]
+    sub("Selected paired differences")
+    selected_keys = {("mend_context", "base", "direct"),
+                     ("updated_rag", "mend_context", "direct"),
+                     ("updated_rag", "ft_last_layer", "paraphrase"),
+                     ("mend_context", "ft_last_layer", "visual_locality")}
+    selected = [r for r in aggregate["paired_differences"]
+                if (r["first"], r["second"], r["category"]) in selected_keys]
     paired_rows = []
     for row in selected:
         lo, hi = row["paired_edit_bootstrap_95_percent_interval"]
-        paired_rows.append([f"{LABEL[row['first']]} minus {LABEL[row['second']]}",
+        paired_rows.append([f"{LABEL[row['first']]} minus {LABEL[row['second']]} ({LABEL[row['category']]})",
                             f"{row['difference'] * 100:+.1f} pp", f"[{lo * 100:+.1f}, {hi * 100:+.1f}] pp"])
     table(["Comparison", "Difference", "95% paired interval"], paired_rows, [usable * .5, usable * .2, usable * .3])
-    add("pp means percentage points. All categories and registered method pairs remain in the JSON report and paired-interval figure. These two rows are fixed descriptive views, not significance-selected claims. With only 20 units, uncertainty and dataset bias remain substantial.", "ReportSmall")
+    add("pp means percentage points. Saved 95% intervals use 10,000 paired edit-unit bootstrap resamples (seed 42). These descriptive examples are not adjusted for multiple comparisons. All 50 comparisons remain in the JSON and paired-interval figure. Resampling this slice cannot remove selection bias or establish performance on unseen entities.", "ReportSmall")
 
     # 7. Timing.
     title(7, "Time and memory are separate outcomes")
@@ -383,20 +405,26 @@ def make_pdf(args, report):
     add("RSS sampling can miss brief peaks, and CUDA allocator values omit some driver allocations. These measurements do not establish fit on the laptop's 6 GB GPU or predict another host's latency. One GiB is 1,073,741,824 bytes.", "ReportSmall")
 
     # 8. Development evidence and failures.
-    title(8, "Failures that shaped the safeguards", "Development examples explain the engineering decisions. They remain separate from the 20-edit final experiment.")
-    table(["TRAIN fixture case", "MEND generated answer", "FT generated answer"], [
-        ["Direct; target Albany, New York", "depton, texas", "Albany, New York"],
-        ["Paraphrase; same target", "New York, New York", "Albany (strict incomplete answer)"],
-        ["Other photograph; same target", "denton, texas", "Albany, New York"],
-        ["Unrelated county; target Hidalgo County", "Empty", "Repeated Albany"],
-    ], [usable * .35, usable * .3, usable * .35])
-    add("The saved context/VQA MEND and FT runs each passed eight mechanical checks, including patch reload in a fresh process and exact restoration. The table still contains failed answers. Persistence is not accuracy, and a successful direct edit can disturb unrelated behavior.")
+    title(8, "Why direct success needs review", "The following are saved final-experiment cases, inspected retrospectively to explain the aggregate results. They are not new confirmatory tests.")
+    table(["Saved final case", "Observed behavior", "Why it matters"], [
+        ["Football club; replacement target Wellington Phoenix FC",
+         "FT matches all three edited questions. On an unrelated logo, base/MEND answer SpVgg Unterhaching; prompt/RAG answer Wellington Phoenix FC and FT repeats Wellington.",
+         "Target success can coexist with loss of a previously correct answer."],
+        ["Movie; replacement target Hudson Hawk",
+         "RAG accepts the paraphrase route but generates The Mask. FT changes the unrelated Jurassic Park answer to Hudson Hawk.",
+         "Correct routing need not produce the requested answer; editing may spread beyond its scope."],
+        ["Unrelated text question; target The Simpsons",
+         "Base/RAG/MEND answer The Simpsons. Prompt only gives The Big Bang Theory; FT gives Mark Goodson.",
+         "An image correction can affect a text-only query."],
+    ], [usable * .25, usable * .5, usable * .25])
+    add("Case IDs start 0051675ae507, 022ff831f6c4 and 0392b4baabf3 in the saved per-edit JSON directory. Replacement targets are controlled benchmark labels, not independently verified corrections.", "ReportSmall")
+    sub("Development checks establish mechanics")
+    add("Earlier TRAIN-fixture MEND and FT runs each passed 8/8 mechanical checks, including fresh-process patch reload and exact restoration. FT generated the direct Albany, New York target, but its paraphrase was only Albany and its unrelated answer repeated Albany. The unrelated base answer was already empty and wrong; this development case demonstrates changed behavior, not loss of a correct fact.")
     sub("Why a perfect token score was not enough")
     add("The loaded MEND patch scored 100% on contextual teacher-forced target tokens for the raw direct question, yet freely generated repeated city text. Teacher forcing places the full target in the model input; free generation must choose its own next tokens and stop. They answer different questions and cannot share an accuracy claim.")
-    note("The FT neighbor's baseline answer was already empty and wrong. Changing it to repetition is collateral behavioral change; it does not prove the loss of an originally correct fact. MEND preserving an empty answer is also not factual success.")
     sub("A failure receipt is still evidence")
     add("The first raw/release MEND attempt changed weights and restored them in-process, but its reload worker was killed with return code -9. The complete persistence gate failed. Memory pressure is plausible, but the return code alone does not prove an out-of-memory kill. Missing phase measurements are not replaced with estimates.")
-    add("All of these development cases came from the authors' TRAIN annotations and may have been seen during original editor training. They establish concrete feasibility and failure modes, not held-out success rates.")
+    add("Development fixtures came from the authors' TRAIN annotations and may have been seen during editor training. The final cases above are separate. Neither the mechanical checks nor a selected anecdote estimates general reliability.", "ReportSmall")
 
     # 9. Application and validation boundary.
     title(9, "A reviewable, reversible application")
@@ -440,7 +468,7 @@ def make_pdf(args, report):
     # 11. Limits, references and provenance.
     title(11, "Limits, references and provenance")
     add("<b>Scope:</b> 20 nonrandom public benchmark edits and one-edit retrieval memory do not establish arbitrary private-item recognition, open dialogue, lifelong composition or large-memory scalability. Source-directory separation does not rule out foundation-model pretraining or target/locality overlap.", "ReportSmall")
-    add("<b>Labels and scoring:</b> authors' labels receive automated structural/checksum review, not independent human semantic review. Whole-answer matching can reject reasonable partial answers. Counterfactual targets are benchmark instructions, not newly verified facts.", "ReportSmall")
+    add("<b>Labels and scoring:</b> authors' labels receive automated structural/checksum review, not independent human semantic review. Whole-answer matching can reject reasonable partial answers, and some locality references are long relative to the 24-token cap. This is not unrestricted semantic QA accuracy. Counterfactual targets are benchmark instructions, not newly verified facts.", "ReportSmall")
     add("<b>Comparisons:</b> contextual labels, prompt formatting, loading precision and FT termination supervision are disclosed adaptations. The prompt-only path lacks a second reference image; MEND and FT objectives differ. Published teacher-forced numbers are not directly comparable with generated-answer scores.", "ReportSmall")
     add("<b>Operations:</b> one fixed preview probe and exact rollback support controlled investigation. They do not guarantee harmless changes, multi-user security or production readiness. GPU memory and timing are host- and workload-specific.", "ReportSmall")
     sub("Primary references")
@@ -449,8 +477,15 @@ def make_pdf(args, report):
     sub("Auditable inputs")
     add("Final evaluation SHA256: " + sha256(args.evaluation), "ReportTiny")
     add("Sealed experiment SHA256: " + escape(report["seal_sha256"]), "ReportTiny")
+    inference_source_path = args.evaluation.resolve().parents[3] / "actual-scientific-source-commit.txt"
+    if inference_source_path.is_file():
+        inference_source = inference_source_path.read_text(encoding="utf-8").strip()
+        if len(inference_source) != 40 or any(c not in "0123456789abcdef" for c in inference_source):
+            raise ValueError("Saved inference source commit is not a SHA-1 object name")
+        add("Final inference source checkout: " + inference_source, "ReportTiny")
     add("Figure data SHA256: " + sha256(args.figures / "figure_data.json"), "ReportTiny")
     add("Presentation builder checkout: " + escape(build_commit), "ReportTiny")
+    add("Presentation builder SHA256: " + sha256(Path(__file__)), "ReportTiny")
     add("Project source documents: " + ", ".join(SOURCE_DOCS) + ".", "ReportTiny")
     add("The PDF reads the completed report and source-bound figures. It does not recompute model outputs, revise the frozen protocol or introduce missing measurements. Complete per-category latency, paired intervals and raw outcomes remain in the machine-readable evidence.", "ReportSmall")
 

@@ -43,6 +43,13 @@ accuracy. Sources and hashes establish provenance, not verification of arbitrary
 generated prose. The small benchmark does not establish private-item recognition,
 general dialogue reliability, production readiness, or arbitrary-edit success.
 
+The completed [20-edit evaluation](VLKEB_RESULTS.md) retains all 500 assigned
+answer records. Its source, raw outcomes, uncertainty and arithmetic verification
+are preserved separately from development examples. FT matched 60/60 correction
+queries but 0/40 unrelated targets; MEND retained the five initially correct
+unrelated answers with lower correction success. The five-answer retention
+denominator is too small to establish broad locality reliability.
+
 Measured development runs use a Tesla T4 with 15,360 MiB VRAM. The FT worker's
 recorded CUDA peak is 11,971,964,416 allocated bytes and 12,465,471,488 reserved
 bytes. These figures concern that fixed run, not every query or environment.

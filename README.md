@@ -1,5 +1,9 @@
 # EditGuard: Visual Knowledge Editing Workbench
 
+For the panel, start with the [beginner guide](docs/VISUAL_PROJECT_EXPLAINED.md),
+the [six-minute presentation and Q&A](docs/VLKEB_PANEL_QA.md), and the
+[illustrated research report](output/pdf/editguard-visual-report.pdf).
+
 EditGuard lets a researcher propose a correction to a vision–language model,
 inspect its generated answers and side effects, approve a saved parameter patch,
 activate it, and restore the original weights exactly. It integrates the released
