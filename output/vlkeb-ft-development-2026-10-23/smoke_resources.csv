@@ -1,0 +1,3 @@
+phase,execution_status,elapsed_seconds,sampled_peak_process_rss_bytes,host_sampling_interval_seconds,gpu,limits
+edit,completed,132.05279158199983,8455004160,0.05,"{""peak_allocated_bytes"": 11971964416, ""peak_reserved_bytes"": 12465471488, ""device"": ""Tesla T4""}","RSS sampling can miss short spikes; CUDA allocator figures do not include every driver allocation. These are diagnostic-run resources, not a serving latency benchmark."
+reload,completed,117.26931193899986,8471756800,0.05,"{""peak_allocated_bytes"": 10632278528, ""peak_reserved_bytes"": 11051991040, ""device"": ""Tesla T4""}","RSS sampling can miss short spikes; CUDA allocator figures do not include every driver allocation. These are diagnostic-run resources, not a serving latency benchmark."

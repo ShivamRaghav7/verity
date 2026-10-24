@@ -1,0 +1,35 @@
+# Linux NVIDIA runtime image. Model assets are verified external mounts, never
+# baked into the image. The workbench retains its loopback-only binding.
+FROM python:3.11.9-slim-bookworm
+WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1 \
+    HF_HUB_DISABLE_TELEMETRY=1 \
+    TOKENIZERS_PARALLELISM=false \
+    OMP_NUM_THREADS=4 \
+    MKL_NUM_THREADS=4
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends git libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+COPY requirements-vlkeb.txt ./
+RUN python -m pip install --no-cache-dir \
+      --index-url https://pypi.org/simple \
+      --extra-index-url https://download.pytorch.org/whl/cu117 \
+      --requirement requirements-vlkeb.txt \
+    && python -m pip check
+COPY ke_repro ./ke_repro
+COPY scripts/bootstrap_vlkeb_colab.py scripts/prepare_vlkeb*.py ./scripts/
+COPY configs/vlkeb-assets.json ./configs/
+COPY docs/VLKEB_EVALUATION_PROTOCOL.md ./docs/
+RUN python scripts/bootstrap_vlkeb_colab.py --fetch-upstream \
+    && python -c "from pathlib import Path; from ke_repro.bridge import _upstream_modules; _upstream_modules(Path('/app/tmp/vlkeb-upstream'))" \
+    && git config --system --add safe.directory /app/tmp/vlkeb-upstream \
+    && useradd --create-home --uid 10001 appuser \
+    && mkdir -p /app/artifacts/vlkeb \
+    && chown -R appuser:appuser /app/artifacts
+USER appuser
+# Use Linux --network host. A bridge-mode -p mapping cannot reach a service
+# bound to the container's loopback interface; do not change the bind silently.
+CMD ["python", "-m", "ke_repro.workbench", "--host", "127.0.0.1", "--port", "8003"]

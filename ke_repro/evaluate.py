@@ -20,7 +20,7 @@ import traceback
 from .smoke import Resources, digest, exact_short_answer, preflight, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
-METHODS = ("base", "prompt_only", "mend_context", "ft_last_layer")
+METHODS = ("base", "prompt_only", "updated_rag", "mend_context", "ft_last_layer")
 EDIT_METHODS = ("mend_context", "ft_last_layer")
 CATEGORIES = ("direct", "paraphrase", "alternate_image", "text_locality", "visual_locality")
 TOKEN_BUDGET = 24
@@ -34,9 +34,12 @@ def canonical(value):
 
 def fingerprint(args):
     files = sorted([*ROOT.glob("ke_repro/*.py"), ROOT / "scripts/prepare_vlkeb_eval.py",
-                    ROOT / "scripts/prepare_vlkeb_assets.py", ROOT / "docs/VLKEB_EVALUATION_PROTOCOL.md"])
+                    ROOT / "scripts/prepare_vlkeb_assets.py", ROOT / "scripts/prepare_vlkeb_rag.py",
+                    ROOT / "docs/VLKEB_EVALUATION_PROTOCOL.md"])
     return {"code_sha256": {str(path.relative_to(ROOT)).replace("\\", "/"): digest(path) for path in files},
             "manifest_sha256": digest(args.manifest), "selection_sha256": digest(args.selection),
+            "rag_calibration_sha256": digest(args.rag_calibration),
+            "rag_model_manifest_sha256": digest(args.rag_root / "minilm-manifest.json"),
             "configuration": {"methods": list(METHODS), "categories": list(CATEGORIES),
                 "edit_count": EDIT_COUNT, "token_budget": TOKEN_BUDGET, "seed": SEED,
                 "question_format": "Question: {query} Answer:", "target_alignment": "context",
@@ -45,6 +48,7 @@ def fingerprint(args):
                 "ft_optimizer": "AdamW", "ft_steps_per_edit": 15, "ft_learning_rate": .0002,
                 "ft_answer_termination_supervision": "newline; desired scored answer unchanged",
                 "mend_answer_termination_supervision": "none; context-aligned target suffix only",
+                "rag_recipe": "One current approved correction; 0.5*MiniLM text cosine +0.5*BLIP visual-prefix cosine; threshold fixed ontrainrows2..9; text-only query outside visual memory scope",
                 "ft_parameters": "OPT layer31 fc1.weight and fc2.weight only",
                 "ft_precision_adaptation": "Base release precision/eval; FP32 AdamW master weights for the two matrices; not faithful full-FP32 upstream FT",
                 "device": args.device, "bootstrap_resamples": 10000,
@@ -80,10 +84,35 @@ def validate_selection(args):
     return saved, verification
 
 
+def validate_rag(args, base_verification=None):
+    from scripts.prepare_vlkeb_rag import validate_calibration_fixture
+    from .rag import (RECIPE, calibration_base_receipt, calibration_code_hashes,
+                      select_threshold, validate_calibration_rows)
+    _, evidence = validate_calibration_fixture(args.assets, args.rag_root, args.manifest)
+    evidence.update(base=calibration_base_receipt(args, base_verification if base_verification is not None else preflight(args)),
+                    recipe=RECIPE)
+    report = json.loads(args.rag_calibration.read_text(encoding="utf-8"))
+    expected_code = calibration_code_hashes()
+    if report.get("execution_status") != "completed" or report.get("worker_return_code") != 0:
+        raise ValueError("RAG requires a completed successful validation calibration")
+    if report.get("sources") != evidence or report.get("code_sha256") != expected_code:
+        raise ValueError("RAG calibration code or source/model receipts changed")
+    if report.get("validation_source_indices") != list(range(2, 10)) or report.get("probability_calibrated") is not False or report.get("evaluation_split_opened") is not False:
+        raise ValueError("RAG calibration must use only the fixed train validation rows")
+    rows = report.get("rows", [])
+    validate_calibration_rows(rows)
+    if report.get("selection") != select_threshold(rows):
+        raise ValueError("RAG threshold differs from the fixed validation selection rule")
+    return report
+
+
 def seal(args):
     if args.output.exists():
         raise FileExistsError("Seal needs a new output directory; previous evidence is preserved")
     _, verification = validate_selection(args)
+    rag = validate_rag(args, verification)
+    verification["rag_calibration_sha256"] = digest(args.rag_calibration)
+    verification["rag_model_records"] = rag["sources"]["minilm"]
     args.output.mkdir(parents=True)
     receipt = {"schema_version": 1, "purpose": "evaluation_preregistration_before_inference",
                "provenance": "not_executed", "models_loaded": False,
@@ -136,7 +165,7 @@ def generate_one(backend, case, prompt, synchronize):
         return result
 
 
-def evaluate_edit(backend, edit, assets, seal_sha, synchronize=lambda: None):
+def evaluate_edit(backend, edit, assets, seal_sha, synchronize=lambda: None, retriever=None):
     cases = cases_for(edit, assets)
     before = backend.weight_hashes()
     result = {"schema_version": 1, "edit_id": edit["edit_id"], "seal_sha256": seal_sha,
@@ -148,6 +177,32 @@ def evaluate_edit(backend, edit, assets, seal_sha, synchronize=lambda: None):
                       f"Question: {edit['record']['src']} Answer: {edit['record']['alt']}\nQuestion: {case['query']} Answer:")
             answers.append(generate_one(backend, case, prompt, synchronize))
         result["methods"][method] = answers
+    if retriever is None:
+        raise ValueError("The final evaluator requires the updated visual-RAG baseline")
+    index_start = time.perf_counter()
+    try:
+        synchronize()
+        retriever.set_correction(cases[0]["image"], edit["record"]["src"], edit["record"]["alt"], edit["edit_id"])
+        synchronize()
+        result["rag_index_seconds"] = time.perf_counter() - index_start
+        rag_answers = []
+        for case in cases:
+            start = time.perf_counter()
+            try:
+                synchronize()
+                routing = retriever.retrieve(case["image"], case["query"])
+                answer = generate_one(backend, case, retriever.prompt(case["query"], routing), synchronize)
+                synchronize()
+                answer["seconds"] = time.perf_counter() - start
+                answer["routing"] = routing
+            except Exception as error:
+                answer = failure_case(case, "generation_error", f"RAG {type(error).__name__}: {error}")
+                answer["seconds"] = time.perf_counter() - start
+            rag_answers.append(answer)
+        result["methods"]["updated_rag"] = rag_answers
+    except Exception as error:
+        result["rag_index_seconds"] = time.perf_counter() - index_start
+        result["methods"]["updated_rag"] = [failure_case(c, "generation_error", f"RAG index {type(error).__name__}: {error}") for c in cases]
     result["method_edits"] = {}
     result["exact_restore"] = True
     for method in EDIT_METHODS:
@@ -247,7 +302,8 @@ def aggregate(rows):
     rng = random.Random(SEED)
     samples = [[rng.randrange(EDIT_COUNT) for _ in range(EDIT_COUNT)] for _ in range(10000)]
     for first, second in (("mend_context", "base"), ("mend_context", "prompt_only"), ("prompt_only", "base"),
-                          ("ft_last_layer", "base"), ("ft_last_layer", "prompt_only"), ("mend_context", "ft_last_layer")):
+                          ("ft_last_layer", "base"), ("ft_last_layer", "prompt_only"), ("mend_context", "ft_last_layer"),
+                          *(("updated_rag", other) for other in METHODS if other != "updated_rag")):
         for category in CATEGORIES:
             delta = [int(next(a for a in r["methods"][first] if a["category"] == category)["strict_target_match"])
                      - int(next(a for a in r["methods"][second] if a["category"] == category)["strict_target_match"]) for r in rows]
@@ -261,7 +317,27 @@ def aggregate(rows):
         edit_times = [t for t in edit_times if t is not None]
         edit_latency[method] = {"sample_count": len(edit_times), "p50_seconds": percentile(edit_times, .5),
                                 "p95_seconds": percentile(edit_times, .95)}
+    retrieval = {"tp": 0, "fp": 0, "fn": 0, "tn": 0, "routing_errors_or_unexecuted": 0, "denominator": 100,
+                 "operational_correct_routing": 0}
+    for row in rows:
+        for answer in row["methods"]["updated_rag"]:
+            applicable = answer["category"] in ("direct", "paraphrase", "alternate_image")
+            routing = answer.get("routing")
+            if routing is None:
+                retrieval["routing_errors_or_unexecuted"] += 1
+            accepted = bool(routing and routing.get("accepted"))
+            retrieval["operational_correct_routing"] += int(routing is not None and accepted == applicable)
+            retrieval["tp" if applicable and accepted else "fn" if applicable else "fp" if accepted else "tn"] += 1
+    retrieval.update(applicable_denominator=60, out_of_scope_denominator=40,
+                     applicable_recall=retrieval["tp"] / 60, false_application_rate=retrieval["fp"] / 40,
+                     precision=retrieval["tp"] / (retrieval["tp"]+retrieval["fp"]) if retrieval["tp"]+retrieval["fp"] else None,
+                     operational_routing_accuracy=retrieval["operational_correct_routing"] / 100,
+                     missing_prediction_rule="Missing route counted rejected in TP/FN/FP/TN; also an operational routing failure; never factual-answer success by itself",
+                     score_is_probability=False)
+    index_times = [r["rag_index_seconds"] for r in rows if r.get("rag_index_seconds") is not None]
     return {"provenance": "own_measured_with_unexecuted_failures_in_denominators",
+            "rag_retrieval": retrieval, "rag_index_latency": {"sample_count": len(index_times),
+                "p50_seconds": percentile(index_times,.5), "p95_seconds": percentile(index_times,.95)},
             "scores": counts, "locality_preservation": retention, "query_latency": latency,
             "paired_differences": paired, "edit_latency": edit_latency,
             "latency_protocol": "CUDA synchronize before/after each call; zero excluded warmups; includes errors with recorded durations; loading/editing separate from query latency; p95 linear interpolation; no cross-category pooled latency"}
@@ -303,6 +379,7 @@ def worker(args):
     try:
         import torch
         from .bridge import build_backend
+        from .rag import MiniLMEncoder, VisualCorrectionRetriever
         torch_module = torch
         receipt, seal_sha = checked_seal(args)
         if seal_sha != args.expected_seal_sha256:
@@ -317,11 +394,13 @@ def worker(args):
         with Resources() as resources:
             start = time.perf_counter()
             backend = build_backend(args.upstream, args.assets, device=args.device)
+            calibration = json.loads(args.rag_calibration.read_text(encoding="utf-8"))
+            retriever = VisualCorrectionRetriever(backend, MiniLMEncoder(args.rag_root / "minilm"), calibration["selection"]["threshold"])
             report["load_seconds"] = time.perf_counter() - start
             for edit in selection["edits"]:
                 if edit["edit_id"] in rows:
                     continue
-                row = evaluate_edit(backend, edit, args.assets, seal_sha, torch.cuda.synchronize)
+                row = evaluate_edit(backend, edit, args.assets, seal_sha, torch.cuda.synchronize, retriever)
                 row_path = args.output / "edits" / (edit["edit_id"] + ".json")
                 if row_path.exists():
                     raise FileExistsError("Refusing to replace an immutable completed edit row")
@@ -350,7 +429,8 @@ def worker(args):
 
 def run(args):
     _, seal_sha = checked_seal(args)
-    selection, _ = validate_selection(args)
+    selection, verification = validate_selection(args)
+    validate_rag(args, verification)
     previous_attempts = list(args.output.glob("attempt-*.json"))
     if previous_attempts and not args.resume:
         raise ValueError("Previous attempt exists; use --resume with exactly the same seal/code")
@@ -364,6 +444,7 @@ def run(args):
     command = [sys.executable, "-m", "ke_repro.evaluate", "--_worker", "--output", str(args.output),
                "--upstream", str(args.upstream), "--assets", str(args.assets), "--manifest", str(args.manifest),
                "--selection", str(args.selection), "--device", args.device, "--timeout-seconds", str(args.timeout_seconds),
+               "--rag-root", str(args.rag_root), "--rag-calibration", str(args.rag_calibration),
                "--expected-seal-sha256", seal_sha]
     environment = {**os.environ, "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1",
                    "HF_HUB_DISABLE_TELEMETRY": "1", "TOKENIZERS_PARALLELISM": "false"}
@@ -385,7 +466,7 @@ def run(args):
                "fine_tuning_attempted_units": sum(r.get("fine_tuning_attempted", False) for r in rows.values()),
                "completed_edit_units": len(rows), "unexecuted_edit_units": EDIT_COUNT - len(rows),
                "all20_units_in_denominators": True, "aggregate": aggregate(units),
-               "limitations": "Small nonrandom benchmark slice, automated label audit, pretrained published editor with context-alignment adaptation; prompt baseline lacks second reference image; no RAG comparison or arbitrary-edit guarantee"}
+               "limitations": "Small nonrandom benchmark slice, automated label audit, pretrained published editor with context-alignment adaptation; RAG has one current visual correction and eight-row validation; prompt-only lacks second reference image; no arbitrary-edit or large-memory scalability guarantee"}
     write_json(args.output / "evaluation.json", summary)
     write_json(attempt_path, {"status": summary["execution_status"], "seal_sha256": seal_sha,
                               "worker_return_code": code, "completed_units": len(rows), "unexecuted_units": EDIT_COUNT-len(rows),
@@ -406,6 +487,8 @@ def main(argv=None):
     parser.add_argument("--assets", type=Path, default=Path("artifacts/vlkeb/assets"))
     parser.add_argument("--manifest", type=Path, default=Path("configs/vlkeb-assets.json"))
     parser.add_argument("--selection", type=Path, default=Path("artifacts/vlkeb/assets/eval20-selection.json"))
+    parser.add_argument("--rag-root", type=Path, default=Path("artifacts/vlkeb/rag"))
+    parser.add_argument("--rag-calibration", type=Path, default=Path("artifacts/vlkeb/rag/calibration.json"))
     parser.add_argument("--output", type=Path, default=Path("artifacts/vlkeb/eval20"))
     parser.add_argument("--device", choices=("cuda", "cuda:0"), default="cuda")
     parser.add_argument("--timeout-seconds", type=int, default=1800)
@@ -415,19 +498,19 @@ def main(argv=None):
         parser.error("Use a finite attempt cap from1 to1800 seconds")
     if args._worker and not args.expected_seal_sha256:
         parser.error("Private worker needs its expected seal checksum")
-    for name in ("upstream", "assets", "manifest", "selection", "output"):
+    for name in ("upstream", "assets", "manifest", "selection", "output", "rag_root", "rag_calibration"):
         setattr(args, name, getattr(args, name).resolve())
     args.fixture = None
     if not (args.seal or args.run or args._worker):
         print(json.dumps({"mode": "plan", "models_loaded": False, "network_requested": False,
-            "edit_count": EDIT_COUNT, "cases_per_edit": 5, "methods": list(METHODS), "generated_question_instances": 400,
+            "edit_count": EDIT_COUNT, "cases_per_edit": 5, "methods": list(METHODS), "generated_question_instances": 500,
             "maximum_mend_updates": EDIT_COUNT, "maximum_fine_tuned_edits": EDIT_COUNT, "maximum_ft_optimizer_steps": EDIT_COUNT * 15,
             "meta_training_requested": False,
             "maximum_attempt_seconds": args.timeout_seconds, "runtime_estimate_seconds": None,
             "resource_estimate": "Requires measured fixed development profile before release; timeout is a cap",
             "required_inputs": ["verified model/assets", "pinned train/eval annotations", "prepared eval20 selection", "unchanged pre-inference seal"],
             "expected_artifacts": ["seal.json", "edits/<edit_id>.json", "worker.json", "attempt-*.log", "attempt-*.json", "evaluation.json"],
-            "stopping_condition": "Exactly20 edit units, five cases per each of four methods; FT15steps per edit; halt on restoration failure; no sample expansion",
+            "stopping_condition": "Exactly20 edit units, five cases per each of five methods; FT15steps per edit; halt on restoration failure; no sample expansion",
             "checkpoint_resume": "--resume preserves completed immutable edit rows under the exact same seal; incomplete edit restarts from fresh base; no persistent optimizer or meta-training state"}, indent=2))
         return 0
     try:

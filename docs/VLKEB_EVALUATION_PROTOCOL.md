@@ -93,12 +93,12 @@ questions and expected answers out of logs shown during development.
 | Text locality | **No image** + `loc` | `loc_ans` | Unrelated language knowledge |
 | Visual locality | `m_loc` + `m_loc_q` | `m_loc_a` | Similar but unrelated visual knowledge |
 
-This is 100 scored question instances per method, **400 across four methods**. The paraphrase is the
+This is 100 scored question instances per method, **500 across five methods**. The paraphrase is the
 authors' held-out wording, not independently authored by our team. Text locality
 requires a target-free text-only OPT generation path; do not insert an arbitrary
 image as a workaround. That path must pass a focused test before the experiment.
 
-## Four configurations and matched settings
+## Five configurations and matched settings
 
 Use the same released base weights, image preprocessing, 24-token maximum,
 greedy decoding, fixed VQA template `Question: {question} Answer:`, seeds and
@@ -109,6 +109,7 @@ hashes. Each edit begins from the base, with exactly one correction active.
 |---|---|
 | `base` | Unchanged base model; diagnostic reference |
 | `prompt_only` | Unchanged weights, correction provided as one explicit QA demonstration in the input prefix |
+| `updated_rag` | Unchanged weights, current approved correction retrieved using text and reference-image features; validation-selected scope threshold |
 | `mend_context` | Released learned MEND transform, one update using explicitly documented context-aligned target suffix labels |
 | `ft_last_layer` | Bounded 15-step AdamW fine-tuning of OPT layer 31 `fc1.weight` and `fc2.weight`, learning rate 0.0002, context-aligned targets and newline termination supervision |
 
@@ -143,10 +144,39 @@ not use expected routing or test answers to suppress it. The actual queried
 image is identical across methods. This simple single-image architecture does
 not provide a second reference image in the prompt baseline, while MEND consumes
 the correction image during the parameter update. Disclose that representational
-asymmetry; call this a prompt-only comparison, not a full fair visual-RAG study.
-No claim of superiority to updated RAG is warranted without implementing and
-measuring that baseline. No pretrained-model or MEND meta-training is claimed
-as our work.
+asymmetry in the prompt-only comparison. The separately measured updated visual
+RAG baseline receives the correction's reference image in its retrieval index.
+No pretrained-model or MEND meta-training is claimed as our work.
+
+Updated RAG stores exactly the current approved correction in each episode,
+including its question, target and reference-image features. The correction is
+updated before queries; it is never deliberately stale. Scope score is fixed as
+`0.5 * text_cosine + 0.5 * visual_cosine`. Text embeddings use the official
+[all-MiniLM-L6-v2 model card's mean-pooling recipe](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/1110a243fdf4706b3f48f1d95db1a4f5529b4d41),
+with attention-mask pooling, L2 normalization, maximum length 256, CPU evaluation
+mode and no gradient. Visual features are the normalized mean of the first 32
+Q-Former-to-OPT prefix vectors with the fixed `Image:` prefix; they contain no
+query-answer target. The reference and current query image use identical
+preprocessing. Text-only queries are outside this declared visual-edit memory
+scope and deterministically use the base model.
+
+Select the threshold only on fixed upstream **train rows 2 through 9**, with
+three positives and two negatives per row: direct, paraphrase, alternate image,
+visual locality and text locality. Maximize F1 over observed visual score cutoffs
+plus a reject-all cutoff; ties prefer higher precision, then higher threshold.
+These 40 cases are our threshold-validation set, not test results. They are
+small, nonrandom, may contain repeated entities, and may have been seen in the
+authors' meta-training. The fixed 0.5 weight is not tuned. Cosine scope scores
+are **not calibrated probabilities**. Pin MiniLM to revision
+`1110a243fdf4706b3f48f1d95db1a4f5529b4d41` and preserve its separate model manifest,
+file hashes and calibration receipt; do not alter the base-asset manifest.
+
+When scope accepts, use exactly the prompt-only QA demonstration template;
+otherwise use the same VQA base prompt. Always generate with the actual query
+image, or no image for text locality. Include retrieval and gating in per-query
+latency; report reference-index construction separately. This is a one-edit
+memory comparison, not evidence of large-memory retrieval scalability. Claims
+about superiority must follow these measured comparisons.
 
 Context alignment repairs the standalone/joined BPE-label mismatch diagnosed on
 the fixed development example. It is an architectural adaptation, so these
@@ -168,6 +198,12 @@ Report direct, paraphrase and photograph target accuracy separately, each over
 each. Also report preservation among **baseline-correct** locality answers, with
 that denominator displayed, and unconditional answer preservation separately.
 Preserving a wrong baseline answer is not factual correctness.
+
+Report updated-RAG applicability TP/FN over 60 positive cases, FP/TN over 40
+out-of-scope cases, recall, precision and false-application rate. Display routing
+errors/unexecuted counts. Base fallback is still an answer and stays in factual
+accuracy denominators; a rejected correction is not automatically a factual
+success. Report all 100 routing opportunities, including missing predictions.
 
 Empty answers, abstentions, errors, timeouts and failed edits remain in the
 denominators as primary failures. Report their counts explicitly. If a run is
@@ -195,7 +231,7 @@ new configuration's runtime. No long meta-training is required by this protocol.
 The FT configuration needs its own finite development profile before releasing
 the command/runtime estimate. Distinguish per-edit FT from training the editor.
 
-Stop after **20 edit lineages and five cases for each of four configurations**:
+Stop after **20 edit lineages and five cases for each of five configurations**:
 at most 20 MEND updates, 20 fine-tuned edits and 300 FT optimizer steps per complete
 attempt. Disclose interrupted incomplete-edit retries in attempt records.
 Do not describe the FT comparison as no training: it performs bounded per-edit

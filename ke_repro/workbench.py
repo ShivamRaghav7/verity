@@ -23,7 +23,7 @@ from urllib.parse import urlsplit
 import uuid
 
 from . import UPSTREAM_COMMIT
-from .smoke import digest, load_cases, preflight, write_json
+from .smoke import digest, exact_short_answer, load_cases, preflight, write_json
 
 STATIC = Path(__file__).with_name("static")
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024
@@ -48,12 +48,13 @@ def required_text(payload, key, limit):
 
 
 class Workbench:
-    def __init__(self, storage, cases, *, backend=None, verification=None):
+    def __init__(self, storage, cases, *, backend=None, verification=None, evaluation_dir=None):
         self.storage = Path(storage)
         self.storage.mkdir(parents=True, exist_ok=True)
         self.cases = {case["id"]: dict(case) for case in cases}
         self.backend = backend
         self.verification = verification or {}
+        self.evaluation_dir = Path(evaluation_dir or "artifacts/vlkeb/eval20")
         self.job_lock = threading.Lock()
         self.token = secrets.token_urlsafe(32)
         self.phase = "ready" if backend is not None else "loading"
@@ -99,6 +100,19 @@ class Workbench:
                  "image_url": "api/fixture-image/" + key,
                  "source": "Author-provided training fixture; development only"}
                 for key, case in self.cases.items()]
+
+    def evaluation(self):
+        path = self.evaluation_dir / "evaluation.json"
+        if not path.is_file():
+            return {"execution_status": "not_executed",
+                    "notice": "No local evaluation report is available. No model-quality numbers are shown."}
+        try:
+            report = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise WorkbenchError("The configured evaluation report could not be read", 503) from exc
+        if not isinstance(report, dict):
+            raise WorkbenchError("The configured evaluation report is not a JSON object", 503)
+        return report
 
     def history(self):
         rows = []
@@ -151,6 +165,50 @@ class Workbench:
         self.job = operation
         started = time.perf_counter()
         try:
+            if operation == "activate":
+                if payload.get("approve") is not True:
+                    raise WorkbenchError("Explicit local operator approval is required", 403)
+                if self.active_id is not None:
+                    raise WorkbenchError("Roll back the active patch before activating another", 409)
+                edit_id = payload.get("edit_id")
+                if not isinstance(edit_id, str) or not re.fullmatch(r"[a-f0-9]{32}", edit_id):
+                    raise WorkbenchError("Choose a saved candidate edit")
+                record_path = self.storage / edit_id / "record.json"
+                if not record_path.is_file():
+                    raise WorkbenchError("Saved candidate not found", 404)
+                row = json.loads(record_path.read_text(encoding="utf-8"))
+                if (row.get("id") != edit_id or row.get("record_format") != "editguard-local-candidate-v1"
+                        or row.get("state") not in ("candidate", "rolled_back", "inactive_after_restart")):
+                    raise WorkbenchError("Only an inactive server-created candidate can be activated", 409)
+                patch_path = self.storage / edit_id / "patch"
+                if not patch_path.is_file() or digest(patch_path) != row.get("patch", {}).get("sha256"):
+                    raise WorkbenchError("Saved candidate patch failed its integrity check", 409)
+                if self.backend.weight_hashes() != row["before_weight_hashes"]:
+                    raise WorkbenchError("Current weights do not match this candidate's original state", 409)
+                loaded = False
+                previous_state = row["state"]
+                try:
+                    activation = self.backend.load_patch(patch_path)
+                    loaded = True
+                    if self.backend.weight_hashes() != row["after_weight_hashes"]:
+                        raise RuntimeError("Activated weights differ from the previewed candidate")
+                    row.update(state="active", activation=activation, approved_by="local_research_operator",
+                               approved_at_unix=time.time(), approval_notice="Operator research approval is not factual verification")
+                    self._save_record(row)
+                    self.active_id, self.active_method = edit_id, row["method"]
+                    return {"edit": row, "seconds": time.perf_counter() - started}
+                except Exception as exc:
+                    try:
+                        if loaded or self.backend.weight_hashes() != row["before_weight_hashes"]:
+                            self.backend.rollback()
+                        if self.backend.weight_hashes() != row["before_weight_hashes"]:
+                            raise RuntimeError("Activation failure did not restore original weights")
+                    except Exception as restoration:
+                        self.phase = "failed"
+                        row["activation_restoration_error"] = str(restoration)
+                    row.update(state=previous_state, last_activation_error=str(exc))
+                    self._save_record(row)
+                    raise WorkbenchError("Candidate activation failed: " + str(exc), 500) from exc
             if operation == "rollback":
                 if self.active_id is None:
                     raise WorkbenchError("There is no active edit to roll back", 409)
@@ -190,6 +248,7 @@ class Workbench:
             edit_dir = self.storage / edit_id
             edit_dir.mkdir()
             row = {"id": edit_id, "state": "preparing", "created_at_unix": time.time(),
+                   "record_format": "editguard-local-candidate-v1", "created_by": "local_research_operator",
                    "question": question, "model_question": formatted, "target": target,
                    "image": provenance, "target_alignment": "context",
                    "question_format": "vqa", "answer_kind": "model_generated_unverified",
@@ -207,6 +266,16 @@ class Workbench:
                     (edit_dir / "source-image").write_bytes(raw_image)
                 row["before_weight_hashes"] = self.backend.weight_hashes()
                 row["before_answer"] = self.backend.generate(image, formatted, max_new_tokens=24)
+                probe = self.cases.get("neighbor")
+                if probe:
+                    probe_question = "Question: " + probe["question"] + " Answer:"
+                    row["unrelated_probe"] = {
+                        "available": True, "fixture_id": "neighbor", "question": probe["question"],
+                        "image_sha256": digest(Path(probe["image"])),
+                        "before_answer": self.backend.generate(probe["image"], probe_question, max_new_tokens=24),
+                        "limitation": "One fixed benchmark-neighbor probe; answer preservation is not factual correctness or a scope guarantee. For uploads this remains the same benchmark probe."}
+                else:
+                    row["unrelated_probe"] = {"available": False, "limitation": "No fixed neighbor fixture is available"}
                 if method == "mend":
                     row["edit_result"] = self.backend.edit(image, formatted, target, target_alignment="context")
                 else:
@@ -215,10 +284,19 @@ class Workbench:
                 row["patch"] = self.backend.save_patch(edit_dir / "patch")
                 row["after_answer"] = self.backend.generate(image, formatted, max_new_tokens=24)
                 row["after_weight_hashes"] = self.backend.weight_hashes()
-                row.update(state="active", seconds=time.perf_counter() - started)
+                row["direct_whole_answer_match"] = exact_short_answer(row["after_answer"], target)
+                if probe:
+                    after_probe = self.backend.generate(probe["image"], probe_question, max_new_tokens=24)
+                    row["unrelated_probe"].update(after_answer=after_probe,
+                        changed=after_probe != row["unrelated_probe"]["before_answer"])
+                row["preview_rollback"] = self.backend.rollback()
+                edit_applied = False
+                row["preview_restored_weight_hashes"] = self.backend.weight_hashes()
+                row["preview_exact_restoration"] = row["preview_restored_weight_hashes"] == row["before_weight_hashes"]
+                if not row["preview_exact_restoration"]:
+                    raise RuntimeError("Preview failed to restore original weights exactly")
+                row.update(state="candidate", seconds=time.perf_counter() - started)
                 self._save_record(row)
-                self.active_id = edit_id
-                self.active_method = method
                 return {"edit": row}
             except Exception as exc:
                 # Save/export/answer failure must never leave a silently active edit.
@@ -265,6 +343,26 @@ def handler_for(app):
                 return self._reply(200, {"cases": app.fixture_list()})
             if path == "/api/history":
                 return self._reply(200, {"edits": app.history()})
+            if path == "/api/evaluation":
+                try:
+                    return self._reply(200, app.evaluation())
+                except WorkbenchError as exc:
+                    return self._reply(exc.status, {"execution_status": "unavailable", "error": str(exc)})
+            if path == "/api/evaluation-download":
+                artifact = app.evaluation_dir / "evaluation.json"
+                if not artifact.is_file():
+                    return self._reply(404, {"error": "No local evaluation report is available"})
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(artifact.stat().st_size))
+                self.send_header("Content-Disposition", 'attachment; filename="editguard-evaluation.json"')
+                self.send_header("Cache-Control", "no-store")
+                self.send_header("X-Content-Type-Options", "nosniff")
+                self.end_headers()
+                with artifact.open("rb") as stream:
+                    for block in iter(lambda: stream.read(1024 * 1024), b""):
+                        self.wfile.write(block)
+                return
             if path.startswith(("/api/export/", "/api/patch/")):
                 edit_id = path.rsplit("/", 1)[-1]
                 if not re.fullmatch(r"[a-f0-9]{32}", edit_id):
@@ -315,7 +413,7 @@ def handler_for(app):
                 payload = json.loads(self.rfile.read(length))
                 if not isinstance(payload, dict):
                     raise WorkbenchError("JSON body must be an object")
-                operation = {"/api/generate": "generate", "/api/edit": "edit", "/api/rollback": "rollback"}.get(urlsplit(self.path).path)
+                operation = {"/api/generate": "generate", "/api/edit": "edit", "/api/activate": "activate", "/api/rollback": "rollback"}.get(urlsplit(self.path).path)
                 if operation is None:
                     raise WorkbenchError("Not found", 404)
                 return self._reply(200, app.run(operation, payload))
@@ -335,6 +433,8 @@ def main(argv=None):
     parser.add_argument("--assets", type=Path, default=Path("artifacts/vlkeb/assets"))
     parser.add_argument("--manifest", type=Path, default=Path("configs/vlkeb-assets.json"))
     parser.add_argument("--storage", type=Path, default=Path("artifacts/vlkeb/workbench"))
+    parser.add_argument("--evaluation-dir", type=Path, default=Path("artifacts/vlkeb/eval20"),
+                        help="Trusted local directory containing evaluation.json; read-only web access")
     parser.add_argument("--host", choices=("127.0.0.1",), default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8003)
     args = parser.parse_args(argv)
@@ -343,7 +443,7 @@ def main(argv=None):
     verification = preflight(SimpleNamespace(upstream=args.upstream, assets=args.assets,
                                             manifest=args.manifest, fixture=None))
     _, cases = load_cases(args.assets, args.assets / "train-fixture.json")
-    app = Workbench(args.storage, cases, verification=verification)
+    app = Workbench(args.storage, cases, verification=verification, evaluation_dir=args.evaluation_dir)
     def factory():
         from .bridge import build_backend
         return build_backend(args.upstream, args.assets, device="cuda")

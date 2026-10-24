@@ -75,3 +75,16 @@ jobs:
         if: always()
       - run: docker stop visionpatch-ci || true
         if: always()
+  vlkeb-container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned runtime on a CPU runner (no model assets)
+        run: docker build --file Dockerfile.vlkeb --tag editguard-vlkeb:ci .
+      - name: Check the workbench CLI without loading a model
+        run: docker run --rm --network none editguard-vlkeb:ci python -m ke_repro.workbench --help
+      - name: Import selected upstream modules without models or a GPU
+        run: docker run --rm --network none editguard-vlkeb:ci python -c "from pathlib import Path; from ke_repro.bridge import _upstream_modules; _upstream_modules(Path('/app/tmp/vlkeb-upstream')); print('Selected upstream imports passed; no model constructed or checkpoint loaded')"
+      - name: Verify the pinned checkout and writable default history target as the runtime user
+        run: docker run --rm --network none editguard-vlkeb:ci python -c "from pathlib import Path; from ke_repro.smoke import verify_upstream; print(verify_upstream(Path('/app/tmp/vlkeb-upstream'))); p=Path('/app/artifacts/vlkeb/workbench'); p.mkdir(); f=p/'ci-write-check'; f.write_text('history writable'); assert f.read_text()=='history writable'"

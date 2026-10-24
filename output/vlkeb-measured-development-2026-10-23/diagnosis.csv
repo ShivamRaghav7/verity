@@ -1,0 +1,13 @@
+state,question_format,metric,value,denominator,conditioning,answer
+baseline,raw,teacher_forced_release,0.3333333432674408,6,full target in input,
+baseline,raw,teacher_forced_context,0.5,4,full target in input,
+baseline,raw,whole_generated_answer,0,1,question/image only,
+baseline,vqa,teacher_forced_release,0.3333333432674408,6,full target in input,
+baseline,vqa,teacher_forced_context,0.5,4,full target in input,
+baseline,vqa,whole_generated_answer,0,1,question/image only,"detroit, michigan"
+loaded_patch,raw,teacher_forced_release,0.5,6,full target in input,
+loaded_patch,raw,teacher_forced_context,1.0,4,full target in input,
+loaded_patch,raw,whole_generated_answer,0,1,question/image only,"Albany, New York, New York, New York, New York, New York, New York, New York, New"
+loaded_patch,vqa,teacher_forced_release,0.5,6,full target in input,
+loaded_patch,vqa,teacher_forced_context,0.75,4,full target in input,
+loaded_patch,vqa,whole_generated_answer,0,1,question/image only,"depton, texas"
