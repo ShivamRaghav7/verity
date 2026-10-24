@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.41121468399978767,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Which actor is depicted in the picture?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.30744618700009596,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_20.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.30393522300028053,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when was the constitution of south africa written",
+        "expected": "1994",
+        "answer": "in the year 1854",
+        "status": "completed",
+        "seconds": 0.18096088499987673,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0cqcgj/google_14.jpg",
+        "query": "Who is the actor in the image?",
+        "expected": "Prithviraj Sukumaran",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.2809776779999993,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.3683352879997983,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Which actor is depicted in the picture?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.30628236400025344,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_20.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.36865950300034456,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when was the constitution of south africa written",
+        "expected": "1994",
+        "answer": "in the year of our lord 1788",
+        "status": "completed",
+        "seconds": 0.26888954800006104,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0cqcgj/google_14.jpg",
+        "query": "Who is the actor in the image?",
+        "expected": "Prithviraj Sukumaran",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.35964373799970417,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.3704937949996747,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Which actor is depicted in the picture?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.32639272500000516,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9454504192663497,
+          "text_cosine": 0.8909008385326993,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_20.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.601247255999624,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9579439535048178,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9158879070096356,
+          "threshold": 0.7559913590939377,
+          "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when was the constitution of south africa written",
+        "expected": "1994",
+        "answer": "in the year 1854",
+        "status": "completed",
+        "seconds": 0.18332906899968293,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0cqcgj/google_14.jpg",
+        "query": "Who is the actor in the image?",
+        "expected": "Prithviraj Sukumaran",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.6330813949998628,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9350955495493829,
+          "text_cosine": 0.9460090084182822,
+          "visual_cosine": 0.9241820906804835,
+          "threshold": 0.7559913590939377,
+          "edit_id": "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.38388185099984184,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Which actor is depicted in the picture?",
+        "expected": "Peter Facinelli",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.321117508000043,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_20.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "it's ajaz khan",
+        "status": "completed",
+        "seconds": 0.47224765300006766,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when was the constitution of south africa written",
+        "expected": "1994",
+        "answer": "in the year 1854",
+        "status": "completed",
+        "seconds": 0.18271450000020195,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0cqcgj/google_14.jpg",
+        "query": "Who is the actor in the image?",
+        "expected": "Prithviraj Sukumaran",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.27830910499960737,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.46100374299976465,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_13.jpg",
+        "query": "Which actor is depicted in the picture?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.37082141100017907,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049m19/yahoo_20.jpg",
+        "query": "Who is the actor in this image?",
+        "expected": "Peter Facinelli",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.36193730200011487,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when was the constitution of south africa written",
+        "expected": "1994",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.12661978300002374,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0cqcgj/google_14.jpg",
+        "query": "Who is the actor in the image?",
+        "expected": "Prithviraj Sukumaran",
+        "answer": "Peter Facinelli",
+        "status": "completed",
+        "seconds": 0.36287302799973986,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.25083369399999356,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 14.676854133605957,
+          "opt_model.model.decoder.layers.29.fc2.weight": 4.945479869842529,
+          "opt_model.model.decoder.layers.30.fc1.weight": 1.8599588871002197,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.36351555585861206,
+          "opt_model.model.decoder.layers.31.fc1.weight": 8.3369722366333,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.9488699436187744
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "dbed76205b4baca15089a62c490578aeca77c82e98ff3feabcf67ae61b97dd6c",
+          "opt_model.model.decoder.layers.29.fc2.weight": "027364468259455c17bcdc4339c7f80658a6576987988725923169e7f3657a9e",
+          "opt_model.model.decoder.layers.30.fc1.weight": "eedd8bbc76cbc26cfcbe13f8d584e785380c1b647cff3190c00a342555b428b8",
+          "opt_model.model.decoder.layers.30.fc2.weight": "a236d23d414a776c4b3e2380c193890d66156220b5e869b32e5eb2f25b47d5a1",
+          "opt_model.model.decoder.layers.31.fc1.weight": "64cd3657f47e02e82abd399bc56bf506983c2753648d778a36ac44fc32326a0d",
+          "opt_model.model.decoder.layers.31.fc2.weight": "90c484ce4b3e061526b10cf299e18b7ed221220dde398e46b82b51cc2e7d69e9"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 6.657957553863525,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 47,
+          "opt_model.model.decoder.layers.29.fc2.weight": 47,
+          "opt_model.model.decoder.layers.30.fc1.weight": 47,
+          "opt_model.model.decoder.layers.30.fc2.weight": 47,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3,
+          "opt_model.model.decoder.layers.31.fc2.weight": 3
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 3,
+        "context_target_token_count": 3,
+        "selected_target_token_count": 3,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.5951104199998554,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "dbed76205b4baca15089a62c490578aeca77c82e98ff3feabcf67ae61b97dd6c",
+        "opt_model.model.decoder.layers.29.fc2.weight": "027364468259455c17bcdc4339c7f80658a6576987988725923169e7f3657a9e",
+        "opt_model.model.decoder.layers.30.fc1.weight": "eedd8bbc76cbc26cfcbe13f8d584e785380c1b647cff3190c00a342555b428b8",
+        "opt_model.model.decoder.layers.30.fc2.weight": "a236d23d414a776c4b3e2380c193890d66156220b5e869b32e5eb2f25b47d5a1",
+        "opt_model.model.decoder.layers.31.fc1.weight": "64cd3657f47e02e82abd399bc56bf506983c2753648d778a36ac44fc32326a0d",
+        "opt_model.model.decoder.layers.31.fc2.weight": "90c484ce4b3e061526b10cf299e18b7ed221220dde398e46b82b51cc2e7d69e9"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          5.157155513763428,
+          2.6437454223632812,
+          1.7883057594299316,
+          0.8663976788520813,
+          0.09407336264848709,
+          0.008025037124752998,
+          0.01313523668795824,
+          0.014226234517991543,
+          0.00735521549358964,
+          0.002489393576979637,
+          0.0007288919878192246,
+          0.0002135629183612764,
+          6.385846791090444e-05,
+          2.151640728698112e-05,
+          7.86770397098735e-06
+        ],
+        "final_teacher_forced_nll": 3.1590304843120975e-06,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Peter Facinelli",
+        "training_target": "Peter Facinelli\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "500ba01c0cf57ed443ba3e55c75301d5a5d41c4d792f3d7de59248db54f4e355",
+          "opt_model.model.decoder.layers.31.fc2.weight": "ecd5f1658eaf2ec9dc67617531d3bbf5b38b2ffa8a8ff45f4c72412bc99b883e"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.092060178999873,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "500ba01c0cf57ed443ba3e55c75301d5a5d41c4d792f3d7de59248db54f4e355",
+        "opt_model.model.decoder.layers.31.fc2.weight": "ecd5f1658eaf2ec9dc67617531d3bbf5b38b2ffa8a8ff45f4c72412bc99b883e"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 14.676854133605957,
+      "opt_model.model.decoder.layers.29.fc2.weight": 4.945479869842529,
+      "opt_model.model.decoder.layers.30.fc1.weight": 1.8599588871002197,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.36351555585861206,
+      "opt_model.model.decoder.layers.31.fc1.weight": 8.3369722366333,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.9488699436187744
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "dbed76205b4baca15089a62c490578aeca77c82e98ff3feabcf67ae61b97dd6c",
+      "opt_model.model.decoder.layers.29.fc2.weight": "027364468259455c17bcdc4339c7f80658a6576987988725923169e7f3657a9e",
+      "opt_model.model.decoder.layers.30.fc1.weight": "eedd8bbc76cbc26cfcbe13f8d584e785380c1b647cff3190c00a342555b428b8",
+      "opt_model.model.decoder.layers.30.fc2.weight": "a236d23d414a776c4b3e2380c193890d66156220b5e869b32e5eb2f25b47d5a1",
+      "opt_model.model.decoder.layers.31.fc1.weight": "64cd3657f47e02e82abd399bc56bf506983c2753648d778a36ac44fc32326a0d",
+      "opt_model.model.decoder.layers.31.fc2.weight": "90c484ce4b3e061526b10cf299e18b7ed221220dde398e46b82b51cc2e7d69e9"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 6.657957553863525,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 47,
+      "opt_model.model.decoder.layers.29.fc2.weight": 47,
+      "opt_model.model.decoder.layers.30.fc1.weight": 47,
+      "opt_model.model.decoder.layers.30.fc2.weight": 47,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3,
+      "opt_model.model.decoder.layers.31.fc2.weight": 3
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 3,
+    "context_target_token_count": 3,
+    "selected_target_token_count": 3,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.5951104199998554,
+  "fine_tuning_attempted": true
+}

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.3926701890000004,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "Which region of France is seen in the picture?",
+        "expected": "Manche",
+        "answer": "Paris - stock image",
+        "status": "completed",
+        "seconds": 0.42059319100007997,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_16.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.31035127300037857,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what happened to the third brother on blue bloods",
+        "expected": "murdered on the orders of his partner Sonny Malevsky (Michael T. Weiss), the leader of a corrupt gang of police officers called the Blue Templar",
+        "answer": "he died",
+        "status": "completed",
+        "seconds": 0.1026985080002305,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0xpp5/google_17.jpg",
+        "query": "What city in New Jersey is featured in the image?",
+        "expected": "New Brunswick",
+        "answer": "Middlesex",
+        "status": "completed",
+        "seconds": 0.48197218499990413,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.3634442000002309,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "Which region of France is seen in the picture?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.3723942619999434,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_16.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.43014991099971667,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what happened to the third brother on blue bloods",
+        "expected": "murdered on the orders of his partner Sonny Malevsky (Michael T. Weiss), the leader of a corrupt gang of police officers called the Blue Templar",
+        "answer": "he died",
+        "status": "completed",
+        "seconds": 0.1017738069999723,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0xpp5/google_17.jpg",
+        "query": "What city in New Jersey is featured in the image?",
+        "expected": "New Brunswick",
+        "answer": "Newark",
+        "status": "completed",
+        "seconds": 0.42915043499988315,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.5063036569999895,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "Which region of France is seen in the picture?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.5073568339998928,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.856000382231944,
+          "text_cosine": 0.7120007644638878,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_16.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.6419111360000898,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9950378865224951,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9900757730449904,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what happened to the third brother on blue bloods",
+        "expected": "murdered on the orders of his partner Sonny Malevsky (Michael T. Weiss), the leader of a corrupt gang of police officers called the Blue Templar",
+        "answer": "he died",
+        "status": "completed",
+        "seconds": 0.09926506500005416,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0xpp5/google_17.jpg",
+        "query": "What city in New Jersey is featured in the image?",
+        "expected": "New Brunswick",
+        "answer": "Middlesex",
+        "status": "completed",
+        "seconds": 0.8267031909999787,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": 0.6398979683629737,
+          "text_cosine": 0.3238196939255555,
+          "visual_cosine": 0.9559762428003921,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+          "reason": "below_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche - stock image",
+        "status": "completed",
+        "seconds": 0.5229962050002541,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "Which region of France is seen in the picture?",
+        "expected": "Manche",
+        "answer": "The region of the Manche - stock image",
+        "status": "completed",
+        "seconds": 0.5575538850002886,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_16.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche - stock image",
+        "status": "completed",
+        "seconds": 0.44694317399989814,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what happened to the third brother on blue bloods",
+        "expected": "murdered on the orders of his partner Sonny Malevsky (Michael T. Weiss), the leader of a corrupt gang of police officers called the Blue Templar",
+        "answer": "he died",
+        "status": "completed",
+        "seconds": 0.10322874500025137,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0xpp5/google_17.jpg",
+        "query": "What city in New Jersey is featured in the image?",
+        "expected": "New Brunswick",
+        "answer": "Middletown",
+        "status": "completed",
+        "seconds": 0.5059056320001218,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.4768296110000847,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_7.jpg",
+        "query": "Which region of France is seen in the picture?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.3683623980000448,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0121h7/google_16.jpg",
+        "query": "What is the name of the department in France depicted in the image?",
+        "expected": "Manche",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.36711516900004426,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what happened to the third brother on blue bloods",
+        "expected": "murdered on the orders of his partner Sonny Malevsky (Michael T. Weiss), the leader of a corrupt gang of police officers called the Blue Templar",
+        "answer": "he died",
+        "status": "completed",
+        "seconds": 0.11019110999995974,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0xpp5/google_17.jpg",
+        "query": "What city in New Jersey is featured in the image?",
+        "expected": "New Brunswick",
+        "answer": "Manche",
+        "status": "completed",
+        "seconds": 0.4544906920000358,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2814627139996446,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 13.617881774902344,
+          "opt_model.model.decoder.layers.29.fc2.weight": 5.937050819396973,
+          "opt_model.model.decoder.layers.30.fc1.weight": 3.602508068084717,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3536463975906372,
+          "opt_model.model.decoder.layers.31.fc1.weight": 2.843658924102783,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.743801474571228
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "f48ea0cb7df24182010ece9064de0e6959481ceb975783a5ef4b6516e0315d7e",
+          "opt_model.model.decoder.layers.29.fc2.weight": "6b7e9a18f19f5fcf4ba03a76c3e0cfa5c3fc3055dce8981d297181a8ea8d0c95",
+          "opt_model.model.decoder.layers.30.fc1.weight": "219f89c030c354d10f6b34b51d0975357f5cdf09586e9813d0d1a80812a6c2e0",
+          "opt_model.model.decoder.layers.30.fc2.weight": "e81c0e8b492f0d45426f26031f4fe43902e53164b56b37118778eec0a81815a9",
+          "opt_model.model.decoder.layers.31.fc1.weight": "9b94cfd9b4fc3048f2251fdd218e3cc6bf458f18e7467622392b07282b068bd7",
+          "opt_model.model.decoder.layers.31.fc2.weight": "aeb934a1df28309300d357a326dfc2b65a5883b0b3f914e5fa76ae9760728d51"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 3.1672823429107666,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 52,
+          "opt_model.model.decoder.layers.29.fc2.weight": 52,
+          "opt_model.model.decoder.layers.30.fc1.weight": 52,
+          "opt_model.model.decoder.layers.30.fc2.weight": 52,
+          "opt_model.model.decoder.layers.31.fc1.weight": 2,
+          "opt_model.model.decoder.layers.31.fc2.weight": 2
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 2,
+        "context_target_token_count": 2,
+        "selected_target_token_count": 2,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.55443736899997,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "f48ea0cb7df24182010ece9064de0e6959481ceb975783a5ef4b6516e0315d7e",
+        "opt_model.model.decoder.layers.29.fc2.weight": "6b7e9a18f19f5fcf4ba03a76c3e0cfa5c3fc3055dce8981d297181a8ea8d0c95",
+        "opt_model.model.decoder.layers.30.fc1.weight": "219f89c030c354d10f6b34b51d0975357f5cdf09586e9813d0d1a80812a6c2e0",
+        "opt_model.model.decoder.layers.30.fc2.weight": "e81c0e8b492f0d45426f26031f4fe43902e53164b56b37118778eec0a81815a9",
+        "opt_model.model.decoder.layers.31.fc1.weight": "9b94cfd9b4fc3048f2251fdd218e3cc6bf458f18e7467622392b07282b068bd7",
+        "opt_model.model.decoder.layers.31.fc2.weight": "aeb934a1df28309300d357a326dfc2b65a5883b0b3f914e5fa76ae9760728d51"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.7342636585235596,
+          0.9322919845581055,
+          0.11459878832101822,
+          0.012761734426021576,
+          0.003369566285982728,
+          0.0018978145672008395,
+          0.001696851453743875,
+          0.0016894805012270808,
+          0.0016964356182143092,
+          0.0015066537307575345,
+          0.0011878282530233264,
+          0.0008544293232262135,
+          0.0005778229096904397,
+          0.0003848237683996558,
+          0.00026033088215626776
+        ],
+        "final_teacher_forced_nll": 0.00017074344214051962,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Manche",
+        "training_target": "Manche\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "07002149dd3e11c271ecbc1687f2411cd8d58cc42ce31e6013e355b1dee48048",
+          "opt_model.model.decoder.layers.31.fc2.weight": "e3db0706b54e7401ededdc688e2ff418f6991f701ead50df55e9994956e37ee9"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.355351073000293,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "07002149dd3e11c271ecbc1687f2411cd8d58cc42ce31e6013e355b1dee48048",
+        "opt_model.model.decoder.layers.31.fc2.weight": "e3db0706b54e7401ededdc688e2ff418f6991f701ead50df55e9994956e37ee9"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 13.617881774902344,
+      "opt_model.model.decoder.layers.29.fc2.weight": 5.937050819396973,
+      "opt_model.model.decoder.layers.30.fc1.weight": 3.602508068084717,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3536463975906372,
+      "opt_model.model.decoder.layers.31.fc1.weight": 2.843658924102783,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.743801474571228
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "f48ea0cb7df24182010ece9064de0e6959481ceb975783a5ef4b6516e0315d7e",
+      "opt_model.model.decoder.layers.29.fc2.weight": "6b7e9a18f19f5fcf4ba03a76c3e0cfa5c3fc3055dce8981d297181a8ea8d0c95",
+      "opt_model.model.decoder.layers.30.fc1.weight": "219f89c030c354d10f6b34b51d0975357f5cdf09586e9813d0d1a80812a6c2e0",
+      "opt_model.model.decoder.layers.30.fc2.weight": "e81c0e8b492f0d45426f26031f4fe43902e53164b56b37118778eec0a81815a9",
+      "opt_model.model.decoder.layers.31.fc1.weight": "9b94cfd9b4fc3048f2251fdd218e3cc6bf458f18e7467622392b07282b068bd7",
+      "opt_model.model.decoder.layers.31.fc2.weight": "aeb934a1df28309300d357a326dfc2b65a5883b0b3f914e5fa76ae9760728d51"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 3.1672823429107666,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 52,
+      "opt_model.model.decoder.layers.29.fc2.weight": 52,
+      "opt_model.model.decoder.layers.30.fc1.weight": 52,
+      "opt_model.model.decoder.layers.30.fc2.weight": 52,
+      "opt_model.model.decoder.layers.31.fc1.weight": 2,
+      "opt_model.model.decoder.layers.31.fc2.weight": 2
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 2,
+    "context_target_token_count": 2,
+    "selected_target_token_count": 2,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.55443736899997,
+  "fine_tuning_attempted": true
+}

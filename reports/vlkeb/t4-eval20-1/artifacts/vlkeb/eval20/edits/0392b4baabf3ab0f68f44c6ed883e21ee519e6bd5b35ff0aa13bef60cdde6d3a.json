@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "jimmy kimmel",
+        "status": "completed",
+        "seconds": 0.5950878019998527,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "Who is the famous television producer depicted in the picture?",
+        "expected": "Mark Goodson",
+        "answer": "jim carrey",
+        "status": "completed",
+        "seconds": 0.4444090390002202,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/google_4.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Person",
+        "status": "completed",
+        "seconds": 0.321460831999957,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what is the longest-running scripted primetime tv series in the us",
+        "expected": "The Simpsons",
+        "answer": "The Simpsons",
+        "status": "completed",
+        "seconds": 0.10065137099991261,
+        "strict_target_match": true
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.025hzx/yahoo_21.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Joe Roth",
+        "answer": "it's the actor who plays the character of jimmy",
+        "status": "completed",
+        "seconds": 0.6505255600000055,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.411651262000305,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "Who is the famous television producer depicted in the picture?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.40460932299993146,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/google_4.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.37690361700015274,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what is the longest-running scripted primetime tv series in the us",
+        "expected": "The Simpsons",
+        "answer": "The Big Bang Theory",
+        "status": "completed",
+        "seconds": 0.19415148500002033,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.025hzx/yahoo_21.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Joe Roth",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.42643710500033194,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.40546165599971573,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "Who is the famous television producer depicted in the picture?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.42730906599990703,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8508064311014327,
+          "text_cosine": 0.7016128622028653,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/google_4.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.6233293729997058,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9781041051950181,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9562082103900362,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what is the longest-running scripted primetime tv series in the us",
+        "expected": "The Simpsons",
+        "answer": "The Simpsons",
+        "status": "completed",
+        "seconds": 0.10143899700005932,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.025hzx/yahoo_21.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Joe Roth",
+        "answer": "it's the actor who plays the character of jimmy",
+        "status": "completed",
+        "seconds": 0.9437639899997521,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": 0.7335995885982194,
+          "text_cosine": 0.48263035730049636,
+          "visual_cosine": 0.9845688198959424,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+          "reason": "below_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "jimmy fallon",
+        "status": "completed",
+        "seconds": 0.5624459969999407,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "Who is the famous television producer depicted in the picture?",
+        "expected": "Mark Goodson",
+        "answer": "jim carrey",
+        "status": "completed",
+        "seconds": 0.42876845799992225,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/google_4.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Person",
+        "status": "completed",
+        "seconds": 0.33280903800005035,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what is the longest-running scripted primetime tv series in the us",
+        "expected": "The Simpsons",
+        "answer": "The Simpsons",
+        "status": "completed",
+        "seconds": 0.14331266700037304,
+        "strict_target_match": true
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.025hzx/yahoo_21.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Joe Roth",
+        "answer": "mark hamill",
+        "status": "completed",
+        "seconds": 0.41693585099983466,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.5027498829999786,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/bing_16.jpg",
+        "query": "Who is the famous television producer depicted in the picture?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.3965952499997911,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.076df9/google_4.jpg",
+        "query": "What game show producer is shown in the image?",
+        "expected": "Mark Goodson",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.38464076100035527,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "what is the longest-running scripted primetime tv series in the us",
+        "expected": "The Simpsons",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.12722520500028622,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.025hzx/yahoo_21.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Joe Roth",
+        "answer": "Mark Goodson",
+        "status": "completed",
+        "seconds": 0.4169529200003126,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2872444740000901,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 12.0075101852417,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.812758922576904,
+          "opt_model.model.decoder.layers.30.fc1.weight": 3.167376756668091,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.46852824091911316,
+          "opt_model.model.decoder.layers.31.fc1.weight": 4.527164459228516,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.7026679515838623
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "8159802a216e1550d1155f3bad5bd201de9677ed50783033317e7b3a2f6f7a1f",
+          "opt_model.model.decoder.layers.29.fc2.weight": "7b86c657acb799e0f2c79d67fe664cb37d0efbe108301173497ff500c90a96b1",
+          "opt_model.model.decoder.layers.30.fc1.weight": "1e2bb58eea88725a44bdd3bd3ded2fffca8731fec5a989c47fbb99c0929a9a70",
+          "opt_model.model.decoder.layers.30.fc2.weight": "a8e502489879b0b956a491bf00b17cbeb4a4517e44dff7449f9a3f90fd9c3f46",
+          "opt_model.model.decoder.layers.31.fc1.weight": "837331930c0b4611a0e811792f0b8309f5b0c5fe3401e525828669dd0295a865",
+          "opt_model.model.decoder.layers.31.fc2.weight": "8f5945d4803811b482411d784133af37c58ba95a7a7e3d0a796c7043573fb284"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 4.846107482910156,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 49,
+          "opt_model.model.decoder.layers.29.fc2.weight": 49,
+          "opt_model.model.decoder.layers.30.fc1.weight": 49,
+          "opt_model.model.decoder.layers.30.fc2.weight": 49,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3,
+          "opt_model.model.decoder.layers.31.fc2.weight": 3
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 3,
+        "context_target_token_count": 3,
+        "selected_target_token_count": 3,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.6268830700000763,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "8159802a216e1550d1155f3bad5bd201de9677ed50783033317e7b3a2f6f7a1f",
+        "opt_model.model.decoder.layers.29.fc2.weight": "7b86c657acb799e0f2c79d67fe664cb37d0efbe108301173497ff500c90a96b1",
+        "opt_model.model.decoder.layers.30.fc1.weight": "1e2bb58eea88725a44bdd3bd3ded2fffca8731fec5a989c47fbb99c0929a9a70",
+        "opt_model.model.decoder.layers.30.fc2.weight": "a8e502489879b0b956a491bf00b17cbeb4a4517e44dff7449f9a3f90fd9c3f46",
+        "opt_model.model.decoder.layers.31.fc1.weight": "837331930c0b4611a0e811792f0b8309f5b0c5fe3401e525828669dd0295a865",
+        "opt_model.model.decoder.layers.31.fc2.weight": "8f5945d4803811b482411d784133af37c58ba95a7a7e3d0a796c7043573fb284"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          3.8210129737854004,
+          0.7687205076217651,
+          0.09093312919139862,
+          0.010423851199448109,
+          0.002961766207590699,
+          0.00131299439817667,
+          0.0007355122361332178,
+          0.0005090832710266113,
+          0.00038680597208440304,
+          0.0003079969610553235,
+          0.000259592809015885,
+          0.00022011258988641202,
+          0.00018979862215928733,
+          0.00015986817015800625,
+          0.00013330006913747638
+        ],
+        "final_teacher_forced_nll": 0.00010982724779751152,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Mark Goodson",
+        "training_target": "Mark Goodson\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "3ab88eed4a5825a51c7100fa8a73249bae9c6d8be0de8f7d70ec23e8c4310f24",
+          "opt_model.model.decoder.layers.31.fc2.weight": "c4d68ed60c238a79eddc2132992b9f4abeeb2dbdf6b2b1962a66d85c5b51897b"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.391086539999833,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "3ab88eed4a5825a51c7100fa8a73249bae9c6d8be0de8f7d70ec23e8c4310f24",
+        "opt_model.model.decoder.layers.31.fc2.weight": "c4d68ed60c238a79eddc2132992b9f4abeeb2dbdf6b2b1962a66d85c5b51897b"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 12.0075101852417,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.812758922576904,
+      "opt_model.model.decoder.layers.30.fc1.weight": 3.167376756668091,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.46852824091911316,
+      "opt_model.model.decoder.layers.31.fc1.weight": 4.527164459228516,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.7026679515838623
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "8159802a216e1550d1155f3bad5bd201de9677ed50783033317e7b3a2f6f7a1f",
+      "opt_model.model.decoder.layers.29.fc2.weight": "7b86c657acb799e0f2c79d67fe664cb37d0efbe108301173497ff500c90a96b1",
+      "opt_model.model.decoder.layers.30.fc1.weight": "1e2bb58eea88725a44bdd3bd3ded2fffca8731fec5a989c47fbb99c0929a9a70",
+      "opt_model.model.decoder.layers.30.fc2.weight": "a8e502489879b0b956a491bf00b17cbeb4a4517e44dff7449f9a3f90fd9c3f46",
+      "opt_model.model.decoder.layers.31.fc1.weight": "837331930c0b4611a0e811792f0b8309f5b0c5fe3401e525828669dd0295a865",
+      "opt_model.model.decoder.layers.31.fc2.weight": "8f5945d4803811b482411d784133af37c58ba95a7a7e3d0a796c7043573fb284"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 4.846107482910156,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 49,
+      "opt_model.model.decoder.layers.29.fc2.weight": 49,
+      "opt_model.model.decoder.layers.30.fc1.weight": 49,
+      "opt_model.model.decoder.layers.30.fc2.weight": 49,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3,
+      "opt_model.model.decoder.layers.31.fc2.weight": 3
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 3,
+    "context_target_token_count": 3,
+    "selected_target_token_count": 3,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.6268830700000763,
+  "fine_tuning_attempted": true
+}

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "a star is born",
+        "status": "completed",
+        "seconds": 0.504017613999622,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "Which movie does this logo represent?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "a film by the name of a film by the name of a film by the name of a film by the name of",
+        "status": "completed",
+        "seconds": 0.9984503880000375,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_16.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "``a kiss before the dawn''",
+        "status": "completed",
+        "seconds": 0.5155563960001928,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where does the heat come from when broiling",
+        "expected": "The heat source is almost always beneath the cooking surface",
+        "answer": "the heat comes from the oil.",
+        "status": "completed",
+        "seconds": 0.23614967899993644,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.083skw/google_15.jpg",
+        "query": "What film is depicted in this image?",
+        "expected": "Gone with the Wind",
+        "answer": "Gone with the Wind",
+        "status": "completed",
+        "seconds": 0.404880268999932,
+        "strict_target_match": true
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.4553325709998717,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "Which movie does this logo represent?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.4284803419996024,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_16.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.44360838000011427,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where does the heat come from when broiling",
+        "expected": "The heat source is almost always beneath the cooking surface",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.20082300800004305,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.083skw/google_15.jpg",
+        "query": "What film is depicted in this image?",
+        "expected": "Gone with the Wind",
+        "answer": "Gone with the Wind",
+        "status": "completed",
+        "seconds": 0.4071759939997719,
+        "strict_target_match": true
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.43096151899999313,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "Which movie does this logo represent?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.4520406810001987,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8101832136606157,
+          "text_cosine": 0.6203664273212316,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_16.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.7001131059996624,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.972357130635298,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.944714261270596,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where does the heat come from when broiling",
+        "expected": "The heat source is almost always beneath the cooking surface",
+        "answer": "the heat comes from the oil.",
+        "status": "completed",
+        "seconds": 0.23896434199969008,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.083skw/google_15.jpg",
+        "query": "What film is depicted in this image?",
+        "expected": "Gone with the Wind",
+        "answer": "Gone with the Wind",
+        "status": "completed",
+        "seconds": 0.6814436909999131,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8627657695342986,
+          "text_cosine": 0.8587917743058437,
+          "visual_cosine": 0.8667397647627535,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.537051739999697,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "Which movie does this logo represent?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "the movie a.i.",
+        "status": "completed",
+        "seconds": 0.4716707669999778,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_16.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "``a star is born''",
+        "status": "completed",
+        "seconds": 0.48461567499998637,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where does the heat come from when broiling",
+        "expected": "The heat source is almost always beneath the cooking surface",
+        "answer": "the heat comes from the oil.",
+        "status": "completed",
+        "seconds": 0.23929570200016315,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.083skw/google_15.jpg",
+        "query": "What film is depicted in this image?",
+        "expected": "Gone with the Wind",
+        "answer": "Gone with the Wind",
+        "status": "completed",
+        "seconds": 0.40509769799973583,
+        "strict_target_match": true
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.5091231460000927,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_3.jpg",
+        "query": "Which movie does this logo represent?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.4271746849999545,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.09d3b7/google_16.jpg",
+        "query": "What is the title of the film featured in this image?",
+        "expected": "The Ghost and the Darkness",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.47364171400022315,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where does the heat come from when broiling",
+        "expected": "The heat source is almost always beneath the cooking surface",
+        "answer": "The heat comes from the flame",
+        "status": "completed",
+        "seconds": 0.24230340900021474,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.083skw/google_15.jpg",
+        "query": "What film is depicted in this image?",
+        "expected": "Gone with the Wind",
+        "answer": "The Ghost and the Darkness",
+        "status": "completed",
+        "seconds": 0.4387868589997197,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2621364450001238,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 16.44677734375,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.916486740112305,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.6890499591827393,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.38267916440963745,
+          "opt_model.model.decoder.layers.31.fc1.weight": 1.2543609142303467,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.7976539134979248
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "0acc2b48f77e17478e27c368d58c351e6b2206a288c5421efa2aecad2da4b792",
+          "opt_model.model.decoder.layers.29.fc2.weight": "66f90a09b0507ab0c379959cf035ec6c071f1b315cfbf6f165a812658bc8f8ee",
+          "opt_model.model.decoder.layers.30.fc1.weight": "6e7a7dac8e00d80513fbfb6017474e3a1283bd397eda8e83d81f26797ce1fe7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "f51eab9ace2da3468afe9b5f471e8ea6a14f4f5cf681cc7087cce1c549120af0",
+          "opt_model.model.decoder.layers.31.fc1.weight": "12017d0735af2fbcb06a13f938e015a30839709f8331b384c4762dcc7d8e84cd",
+          "opt_model.model.decoder.layers.31.fc2.weight": "99e474c5993d1dab080a03c4f721257d74a3c195222c926d54e803c0cf46276a"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 2.797489643096924,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 53,
+          "opt_model.model.decoder.layers.29.fc2.weight": 53,
+          "opt_model.model.decoder.layers.30.fc1.weight": 53,
+          "opt_model.model.decoder.layers.30.fc2.weight": 53,
+          "opt_model.model.decoder.layers.31.fc1.weight": 5,
+          "opt_model.model.decoder.layers.31.fc2.weight": 5
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 5,
+        "context_target_token_count": 5,
+        "selected_target_token_count": 5,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.6159251099998073,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "0acc2b48f77e17478e27c368d58c351e6b2206a288c5421efa2aecad2da4b792",
+        "opt_model.model.decoder.layers.29.fc2.weight": "66f90a09b0507ab0c379959cf035ec6c071f1b315cfbf6f165a812658bc8f8ee",
+        "opt_model.model.decoder.layers.30.fc1.weight": "6e7a7dac8e00d80513fbfb6017474e3a1283bd397eda8e83d81f26797ce1fe7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "f51eab9ace2da3468afe9b5f471e8ea6a14f4f5cf681cc7087cce1c549120af0",
+        "opt_model.model.decoder.layers.31.fc1.weight": "12017d0735af2fbcb06a13f938e015a30839709f8331b384c4762dcc7d8e84cd",
+        "opt_model.model.decoder.layers.31.fc2.weight": "99e474c5993d1dab080a03c4f721257d74a3c195222c926d54e803c0cf46276a"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.378256320953369,
+          0.31319668889045715,
+          0.04768673703074455,
+          0.005456410814076662,
+          0.001308716251514852,
+          0.0005863609258085489,
+          0.0003494896518532187,
+          0.00024250468413811177,
+          0.00018054823158308864,
+          0.0001417015737388283,
+          0.00011388657003408298,
+          9.162755304714665e-05,
+          7.335757982218638e-05,
+          5.999148197588511e-05,
+          4.9305803258903325e-05
+        ],
+        "final_teacher_forced_nll": 3.9990045479498804e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "The Ghost and the Darkness",
+        "training_target": "The Ghost and the Darkness\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "53073cdab032bb5e92c6f1a28eca34157dd5f761bf2a9664371def56885d1071",
+          "opt_model.model.decoder.layers.31.fc2.weight": "02c60245a39538747bf10870783c4e83bd52004d6daab213e0706639a61faf7a"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.356723560999853,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "53073cdab032bb5e92c6f1a28eca34157dd5f761bf2a9664371def56885d1071",
+        "opt_model.model.decoder.layers.31.fc2.weight": "02c60245a39538747bf10870783c4e83bd52004d6daab213e0706639a61faf7a"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 16.44677734375,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.916486740112305,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.6890499591827393,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.38267916440963745,
+      "opt_model.model.decoder.layers.31.fc1.weight": 1.2543609142303467,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.7976539134979248
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "0acc2b48f77e17478e27c368d58c351e6b2206a288c5421efa2aecad2da4b792",
+      "opt_model.model.decoder.layers.29.fc2.weight": "66f90a09b0507ab0c379959cf035ec6c071f1b315cfbf6f165a812658bc8f8ee",
+      "opt_model.model.decoder.layers.30.fc1.weight": "6e7a7dac8e00d80513fbfb6017474e3a1283bd397eda8e83d81f26797ce1fe7a",
+      "opt_model.model.decoder.layers.30.fc2.weight": "f51eab9ace2da3468afe9b5f471e8ea6a14f4f5cf681cc7087cce1c549120af0",
+      "opt_model.model.decoder.layers.31.fc1.weight": "12017d0735af2fbcb06a13f938e015a30839709f8331b384c4762dcc7d8e84cd",
+      "opt_model.model.decoder.layers.31.fc2.weight": "99e474c5993d1dab080a03c4f721257d74a3c195222c926d54e803c0cf46276a"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 2.797489643096924,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 53,
+      "opt_model.model.decoder.layers.29.fc2.weight": 53,
+      "opt_model.model.decoder.layers.30.fc1.weight": 53,
+      "opt_model.model.decoder.layers.30.fc2.weight": 53,
+      "opt_model.model.decoder.layers.31.fc1.weight": 5,
+      "opt_model.model.decoder.layers.31.fc2.weight": 5
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 5,
+    "context_target_token_count": 5,
+    "selected_target_token_count": 5,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.6159251099998073,
+  "fine_tuning_attempted": true
+}

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.42720067100026426,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Which actor is shown in this picture?",
+        "expected": "Patrick McGoohan",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.31976076999990255,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_22.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.31876895900040836,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who wrote the song ribbon in the sky",
+        "expected": "Stevie Wonder",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.07317981999995027,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01337_/google_4.jpg",
+        "query": "Who is the actor featured in the image?",
+        "expected": "James Coburn",
+        "answer": "johnny cash",
+        "status": "completed",
+        "seconds": 0.37936000800027614,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.40916625599993495,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Which actor is shown in this picture?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.4049148349999996,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_22.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.43111773800001174,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who wrote the song ribbon in the sky",
+        "expected": "Stevie Wonder",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.16255598599991572,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01337_/google_4.jpg",
+        "query": "Who is the actor featured in the image?",
+        "expected": "James Coburn",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.40518333600039114,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.4079612770001404,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Which actor is shown in this picture?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.4226117459998022,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9586773754218151,
+          "text_cosine": 0.9173547508436302,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_22.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.6549088659999143,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9898282073398158,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9796564146796316,
+          "threshold": 0.7559913590939377,
+          "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who wrote the song ribbon in the sky",
+        "expected": "Stevie Wonder",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.07644182200010619,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01337_/google_4.jpg",
+        "query": "Who is the actor featured in the image?",
+        "expected": "James Coburn",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.6785060130000602,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9593389262307703,
+          "text_cosine": 0.945189031429936,
+          "visual_cosine": 0.9734888210316045,
+          "threshold": 0.7559913590939377,
+          "edit_id": "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.38771086800034027,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Which actor is shown in this picture?",
+        "expected": "Patrick McGoohan",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.32968035200019585,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_22.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.3269816290003291,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who wrote the song ribbon in the sky",
+        "expected": "Stevie Wonder",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.07049595299986322,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01337_/google_4.jpg",
+        "query": "Who is the actor featured in the image?",
+        "expected": "James Coburn",
+        "answer": "johnny cash",
+        "status": "completed",
+        "seconds": 0.37250365899990356,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.49002179399985835,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_10.jpg",
+        "query": "Which actor is shown in this picture?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.39763522900011594,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.012cj0/google_22.jpg",
+        "query": "Who is the actor featuring in this image?",
+        "expected": "Patrick McGoohan",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.3934317870002815,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who wrote the song ribbon in the sky",
+        "expected": "Stevie Wonder",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.1576486300000397,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01337_/google_4.jpg",
+        "query": "Who is the actor featured in the image?",
+        "expected": "James Coburn",
+        "answer": "Patrick McGoohan",
+        "status": "completed",
+        "seconds": 0.4000068159998591,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2658847229999992,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 12.54078197479248,
+          "opt_model.model.decoder.layers.29.fc2.weight": 7.9437761306762695,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.129904270172119,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3383021354675293,
+          "opt_model.model.decoder.layers.31.fc1.weight": 0.4754069149494171,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.635430634021759
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "39b421d5f63b3e2e9489ac5c2cf37cf04227d41849e495fcce3bc6e7411672b0",
+          "opt_model.model.decoder.layers.29.fc2.weight": "7b30e97e827a9456b58bc999783e99ad1612242c5b4ebc9f6bc994b95829c3d5",
+          "opt_model.model.decoder.layers.30.fc1.weight": "79f949a5cffadbe2cf6dfafd4c732062cd18e3db2b916868feebcd34866e009b",
+          "opt_model.model.decoder.layers.30.fc2.weight": "fb859e077321548a981d5d29d98cc606fd066d6e7870773cbd4be196ad5669a0",
+          "opt_model.model.decoder.layers.31.fc1.weight": "4c3f4db82b512666b54589f203783b28184288885075265ee39bb6caf91a29de",
+          "opt_model.model.decoder.layers.31.fc2.weight": "50db2adb91de0c647433ae4149fb1297996aced9616b08c1a6fe25efe1dd02e1"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 1.8617511987686157,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 49,
+          "opt_model.model.decoder.layers.29.fc2.weight": 49,
+          "opt_model.model.decoder.layers.30.fc1.weight": 49,
+          "opt_model.model.decoder.layers.30.fc2.weight": 49,
+          "opt_model.model.decoder.layers.31.fc1.weight": 4,
+          "opt_model.model.decoder.layers.31.fc2.weight": 4
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 4,
+        "context_target_token_count": 4,
+        "selected_target_token_count": 4,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.4704475269995783,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "39b421d5f63b3e2e9489ac5c2cf37cf04227d41849e495fcce3bc6e7411672b0",
+        "opt_model.model.decoder.layers.29.fc2.weight": "7b30e97e827a9456b58bc999783e99ad1612242c5b4ebc9f6bc994b95829c3d5",
+        "opt_model.model.decoder.layers.30.fc1.weight": "79f949a5cffadbe2cf6dfafd4c732062cd18e3db2b916868feebcd34866e009b",
+        "opt_model.model.decoder.layers.30.fc2.weight": "fb859e077321548a981d5d29d98cc606fd066d6e7870773cbd4be196ad5669a0",
+        "opt_model.model.decoder.layers.31.fc1.weight": "4c3f4db82b512666b54589f203783b28184288885075265ee39bb6caf91a29de",
+        "opt_model.model.decoder.layers.31.fc2.weight": "50db2adb91de0c647433ae4149fb1297996aced9616b08c1a6fe25efe1dd02e1"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          1.612540602684021,
+          0.6376361846923828,
+          0.08842115104198456,
+          0.005023639183491468,
+          0.0018043487798422575,
+          0.0012665356043726206,
+          0.0008964847074821591,
+          0.000579237996134907,
+          0.00033143864129669964,
+          0.00018223618099000305,
+          9.601213969290257e-05,
+          5.075294029666111e-05,
+          2.8155282052466646e-05,
+          1.5878058547968976e-05,
+          9.536521247355267e-06
+        ],
+        "final_teacher_forced_nll": 5.745808266510721e-06,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Patrick McGoohan",
+        "training_target": "Patrick McGoohan\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "53a6b70b21e72a9f0edbf1f7bf56125037b8c29c80d727c2c697e59666988bdc",
+          "opt_model.model.decoder.layers.31.fc2.weight": "0ba496a2bb9106df0e96271744979ff5acf2444e86e8e34b4db3f6adb778d5f6"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.16574237399982,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "53a6b70b21e72a9f0edbf1f7bf56125037b8c29c80d727c2c697e59666988bdc",
+        "opt_model.model.decoder.layers.31.fc2.weight": "0ba496a2bb9106df0e96271744979ff5acf2444e86e8e34b4db3f6adb778d5f6"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 12.54078197479248,
+      "opt_model.model.decoder.layers.29.fc2.weight": 7.9437761306762695,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.129904270172119,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3383021354675293,
+      "opt_model.model.decoder.layers.31.fc1.weight": 0.4754069149494171,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.635430634021759
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "39b421d5f63b3e2e9489ac5c2cf37cf04227d41849e495fcce3bc6e7411672b0",
+      "opt_model.model.decoder.layers.29.fc2.weight": "7b30e97e827a9456b58bc999783e99ad1612242c5b4ebc9f6bc994b95829c3d5",
+      "opt_model.model.decoder.layers.30.fc1.weight": "79f949a5cffadbe2cf6dfafd4c732062cd18e3db2b916868feebcd34866e009b",
+      "opt_model.model.decoder.layers.30.fc2.weight": "fb859e077321548a981d5d29d98cc606fd066d6e7870773cbd4be196ad5669a0",
+      "opt_model.model.decoder.layers.31.fc1.weight": "4c3f4db82b512666b54589f203783b28184288885075265ee39bb6caf91a29de",
+      "opt_model.model.decoder.layers.31.fc2.weight": "50db2adb91de0c647433ae4149fb1297996aced9616b08c1a6fe25efe1dd02e1"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 1.8617511987686157,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 49,
+      "opt_model.model.decoder.layers.29.fc2.weight": 49,
+      "opt_model.model.decoder.layers.30.fc1.weight": 49,
+      "opt_model.model.decoder.layers.30.fc2.weight": 49,
+      "opt_model.model.decoder.layers.31.fc1.weight": 4,
+      "opt_model.model.decoder.layers.31.fc2.weight": 4
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 4,
+    "context_target_token_count": 4,
+    "selected_target_token_count": 4,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.4704475269995783,
+  "fine_tuning_attempted": true
+}

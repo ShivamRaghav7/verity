@@ -2,8 +2,9 @@
 
 EditGuard is a research workbench: propose a visual association, update model
 parameters, inspect consequences, and restore the original state. Reliable
-arbitrary edits are not guaranteed. Read saved development measurements and the
-final experiment's current status in [VLKEB_RESULTS.md](VLKEB_RESULTS.md).
+arbitrary edits are not guaranteed. The completed 20-edit comparison exposes
+target-success/locality tradeoffs; read its saved measurements and failures in
+[VLKEB_RESULTS.md](VLKEB_RESULTS.md).
 
 ## 1. What problem does this address?
 
@@ -61,6 +62,14 @@ The current implementation followed these stages on 22–24 October 2026:
 7. **Integrate and evaluate.** Build the workbench, candidate approval safeguards
    and image/question retrieval comparison. Keep the final source-disjoint
    experiment separate from demonstrations.
+8. **Validate routing and profile the complete path.** Select the RAG threshold
+   on eight fixed training rows, then execute one full five-method development
+   episode: 25 queries, one MEND update, 15 FT steps and exact rollback. This
+   gives a measured runtime estimate without opening the final split.
+9. **Seal and run the final comparison.** Freeze source `460a91c`, selection,
+   scorer and configuration before inference. Finish 20 units and 500 answers
+   in one 815-second worker run on the T4. Verify recorded arithmetic, source
+   identity and restoration, and preserve unfavorable results without tuning.
 
 ## 4. What happens inside the model?
 
@@ -169,6 +178,8 @@ website at port 8002 is a different implementation. See
 The candidate, explicit approval, activation, history and rollback lifecycle is
 implemented. Its 11 application contract tests use a tiny fake backend to check
 state transitions and failure handling; they do not measure model quality.
+The completed GPU evaluator is separate evidence from an interactive workbench
+rehearsal; that rehearsal needs its own saved receipt.
 
 Only one patch can be active; another activation requires rollback. This prevents
 stacking, not semantic contradictions or lifelong interference. Hashes identify
@@ -176,40 +187,116 @@ editable matrices' exact bytes. Restore saved originals rather than subtracting
 rounded FP16 updates. The decoding cache lasts one answer and must not carry
 edited-state context into later queries.
 
-## 7. How to read the final experiment
+## 7. How to read the completed final experiment
 
-The planned comparison selects **20 distinct source entities** without inspecting
-model success, excluding source directories in the authors' training-image slots.
-Foundation-model pretraining and target-name overlap remain possible. Labels are
-author-provided and automatically audited, without independent human review.
+The frozen selection contains **20 distinct source entities**, chosen without
+inspecting model success and excluded when the source image directory appears
+in the authors' training-image slots. This is one small, nonrandom slice, with
+possible target-name, locality-entity and foundation-pretraining overlap. Labels
+are author-provided and automatically audited, without independent human review.
+They are controlled counterfactual replacements, not newly verified facts.
 
 Five cases accompany each edit: direct question, paraphrase, alternate photograph,
 unrelated text question without an image, and similar unrelated visual question.
-The configured five methods are base, prompt-only, image/question retrieval memory,
-MEND and FT. That would be **100 questions per method, 500 overall**. The retrieval
-baseline is implemented and has no held-out measured result yet. A fair comparison
-gives each updated method the same correction and available supporting information.
-Retrieval combines image and MiniLM question embeddings to select correction
-memory, then supplies that information to the unchanged model.
+The five configurations are base, prompt-only, updated image/question RAG, MEND
+and FT. **All 100 questions per method, 500 overall, executed.** No execution
+errors or unexecuted cases occurred. Wrong generated answers still count as
+quality failures.
 
-| Number | How to explain it |
-| --- | --- |
-| Strict accuracy | Correct complete generated answers divided by all assigned questions. `15/20 = 75%`. Missing, erroneous and abstained answers stay in the denominator. |
-| Abstention | An empty answer or explicit nonanswer, handled by the fixed protocol rather than silently discarded. |
-| Generality | Correctness on wording or photographs not used to fit that edit. It is different from direct edit success. |
-| Locality accuracy | Whether unrelated questions receive their factual target answer. |
-| Preservation/retention | Whether baseline-correct unrelated behavior remains correct or unchanged. Keeping an originally wrong answer is not factual success. |
-| Paired difference | Method A minus method B on the same edit units. This controls which cases each method received. |
-| 95% paired bootstrap interval | Repeatedly resample the 20 edit units, keeping their linked questions together. The interval communicates sampling uncertainty; it does not remove dataset bias. |
-| p50 / p95 latency | The median duration and the duration below which approximately 95% of recorded calls fall. Query, edit and loading times are separate. |
-| RSS | Host-process memory sampled during execution; short peaks can be missed. |
-| CUDA allocated / reserved | Memory used by live tensors versus memory retained by PyTorch's allocator; neither is the entire machine's GPU usage. |
-| GiB | `1,073,741,824` bytes. It differs from decimal GB. |
+Each table cell is a strict full-answer match count out of 20 assigned cases.
+A count of 15/20 means 75%; one more match changes that category by five
+percentage points. Empty, erroneous and abstained answers stay in denominators.
 
-Scoring checks the endorsed complete answer, not a mention inside repetition,
-examples or rejection. Strict matching can reject reasonable shorter answers;
-disclose this instead of changing rules after viewing results. Configurations
-and scoring are sealed before evaluation; demonstrations cannot replace it.
+| Method | Direct | Paraphrase | Other photograph | Text locality | Visual locality |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Base | 0/20 | 0/20 | 0/20 | 2/20 | 3/20 |
+| Prompt only | 19/20 | 15/20 | 20/20 | 1/20 | 2/20 |
+| Updated RAG | 19/20 | 15/20 | 20/20 | 2/20 | 2/20 |
+| MEND (adapted) | 7/20 | 4/20 | 4/20 | 2/20 | 4/20 |
+| FT (adapted) | 20/20 | 20/20 | 20/20 | 0/20 | 0/20 |
+
+![Measured final category accuracy](../output/vlkeb-final-2026-10-24/accuracy.png)
+
+**Read FT's two outcomes together.** It matches all 60 target-edit questions but
+none of the 40 unrelated factual targets. It also breaks all five locality
+answers the base had originally answered correctly. Fitting the correction can
+work while producing an unacceptable maintenance update. There is no single
+best-method conclusion without deciding how much target success and collateral
+harm matter.
+
+**Read MEND's retention with its denominator.** MEND matches 7/20 direct targets,
+4/20 paraphrases and 4/20 other photographs, while retaining 5/5 baseline-correct
+locality answers. Those five are only two text and three visual answers. Perfect
+retention on five answers is limited evidence, and base locality factual
+accuracy was only 5/40. MEND's total locality accuracy is 6/40 because one further
+visual answer becomes correct. Preserving an originally wrong answer is not
+factual success.
+
+**Read routing separately from answers.** RAG and prompt only both match 19/20
+direct, 15/20 paraphrase and 20/20 other-image targets. RAG accepts all 60/60
+applicable routes, but falsely applies the correction on 13/40 unrelated cases;
+precision is 60/73 (82.2%). The route can be correct while generation still fails.
+RAG rejects text-only use of its visual correction and preserves both correct
+text-locality answers. Cosine scores are not probabilities. This one-correction
+memory says nothing about retrieval at large memory sizes.
+
+The base's 0/60 is measured against counterfactual replacement targets. It does
+not state that the base knows none of the original associations. Some factual
+reference strings are long relative to the fixed 24-token limit, and strict
+matching may reject reasonable shorter answers. Keep those scoring limits
+visible rather than changing the rules after observing the test.
+
+Abstentions total 4/100 for base, 0/100 prompt only, 1/100 RAG, 2/100 MEND and
+0/100 FT, all included as incorrect. Strict failures total 95, 43, 42, 79 and
+40 respectively. Zero execution errors therefore does not mean zero failures.
+
+### Differences, uncertainty and speed
+
+A **paired difference** subtracts two methods' scores on the same edit units.
+For example, RAG minus MEND direct accuracy is +60 percentage points, with a
+saved 95% paired bootstrap interval of +35 to +85. FT minus prompt-only paraphrase
+accuracy is +25 points, interval +10 to +45. MEND minus FT visual locality is
++20 points, interval +5 to +40. The bootstrap resamples the 20 complete edit
+units 10,000 times with seed 42, retaining their linked cases. It communicates
+sample uncertainty, not freedom from dataset bias or proof about unseen edits;
+these descriptive comparisons have no multiple-comparison correction.
+
+The full worker took **815.078 seconds (13.6 minutes)**, including the shared
+**99.276-second model load**. Edit application p50/p95 was **3.553/3.645 seconds
+for MEND** and **10.242/10.427 seconds for FT**, with 20 measured edits each.
+RAG reference-index construction was 0.265/0.298 seconds, separately measured.
+For direct queries, p50/p95 was 0.460/0.911 seconds for base, 0.387/0.479 for
+prompt only, 0.404/0.501 for RAG, 0.428/0.564 for MEND and 0.486/0.543 for FT.
+Every method/category has 20 query measurements; the
+[results report](VLKEB_RESULTS.md) lists all categories without pooling them.
+
+p50 is the median duration; p95 is the interpolated 95th percentile of recorded
+calls, not a response-time promise. CUDA was synchronized around each call, with
+zero excluded warmups; loading and editing are separate from query latency.
+RAG query latency includes retrieval and gating. Host RSS peaked at 7.867 GiB,
+CUDA allocated at 11.152 GiB and CUDA reserved at 11.711 GiB. RSS samples can
+miss short peaks, allocator figures omit some driver memory, and 1 GiB is
+1,073,741,824 bytes. Serial measurements do not establish concurrent serving.
+
+### Why the comparison needs qualifications
+
+MEND and FT receive the same correction image/question/answer, but their training
+objectives differ: FT supervises a stopping newline and MEND does not. FT uses
+FP32 master copies for two matrices while retaining the base precision. The
+prompt-only architecture does not accept a second reference image; RAG receives
+reference-image features in its index. These declared asymmetries limit claims
+about the isolated editing algorithm. The released MEND editor was trained
+upstream, while our FT performs 300 total per-edit optimizer steps across this
+run. We did not meta-train an editor or tune on these final outputs.
+
+The saved [final receipt](../reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json)
+and [host verification](../reports/vlkeb/t4-eval20-1/host-verification.json) retain
+all outcomes and recorded restoration checks. Byte/hash and scoring verification
+do not certify image meaning or label truth. The
+[results report](VLKEB_RESULTS.md) also shows actual failure examples, including
+an unrelated `Jurassic Park` answer changing to the active target `Hudson Hawk`
+under FT. These examples explain the completed test; they are not fresh
+confirmatory evidence or a reason to tune the completed experiment.
 
 ## 8. What to demonstrate and say to the panel
 
@@ -221,10 +308,12 @@ helps a maintainer reject harmful updates rather than making every update correc
 A defensible claim is: **“We built an auditable visual model-editing workbench,
 integrated a published learned editor, implemented per-edit FT and retrieval
 comparisons, and measured generated-answer quality and side effects under a fixed
-protocol.”** Add completed methods and numerical results only when their saved
-evidence exists. Author-reported reference numbers remain attributed in
+protocol.”** Explain that FT achieved 60/60 edited-target matches alongside 0/40
+locality matches, and that MEND's 5/5 correct-answer retention has a very small
+denominator. Author-reported reference numbers remain attributed in
 [VLKEB_UPSTREAM_RESULTS.md](VLKEB_UPSTREAM_RESULTS.md).
 
-Completion requires finished comparisons, preserved measurements, a tested
-operator workflow and an honest report. The contribution is controlled,
-recoverable model maintenance; every visual association is not guaranteed editable.
+The final comparison and preserved measurements are complete. Report the
+application's interactive GPU rehearsal separately when its evidence exists.
+The contribution is controlled, recoverable model maintenance with measured
+tradeoffs; every visual association is not guaranteed editable.

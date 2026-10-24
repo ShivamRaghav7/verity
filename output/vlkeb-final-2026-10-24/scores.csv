@@ -1,0 +1,26 @@
+method,method_label,category,category_label,correct,denominator,accuracy,abstentions,errors_or_unexecuted
+base,Base,direct,Direct,0,20,0.0,1,0
+base,Base,paraphrase,Paraphrase,0,20,0.0,0,0
+base,Base,alternate_image,Other image,0,20,0.0,1,0
+base,Base,text_locality,Text locality,2,20,0.1,0,0
+base,Base,visual_locality,Visual locality,3,20,0.15,2,0
+prompt_only,Prompt only,direct,Direct,19,20,0.95,0,0
+prompt_only,Prompt only,paraphrase,Paraphrase,15,20,0.75,0,0
+prompt_only,Prompt only,alternate_image,Other image,20,20,1.0,0,0
+prompt_only,Prompt only,text_locality,Text locality,1,20,0.05,0,0
+prompt_only,Prompt only,visual_locality,Visual locality,2,20,0.1,0,0
+updated_rag,Updated RAG,direct,Direct,19,20,0.95,0,0
+updated_rag,Updated RAG,paraphrase,Paraphrase,15,20,0.75,0,0
+updated_rag,Updated RAG,alternate_image,Other image,20,20,1.0,0,0
+updated_rag,Updated RAG,text_locality,Text locality,2,20,0.1,0,0
+updated_rag,Updated RAG,visual_locality,Visual locality,2,20,0.1,1,0
+mend_context,MEND (adapted),direct,Direct,7,20,0.35,0,0
+mend_context,MEND (adapted),paraphrase,Paraphrase,4,20,0.2,0,0
+mend_context,MEND (adapted),alternate_image,Other image,4,20,0.2,0,0
+mend_context,MEND (adapted),text_locality,Text locality,2,20,0.1,0,0
+mend_context,MEND (adapted),visual_locality,Visual locality,4,20,0.2,2,0
+ft_last_layer,FT (adapted),direct,Direct,20,20,1.0,0,0
+ft_last_layer,FT (adapted),paraphrase,Paraphrase,20,20,1.0,0,0
+ft_last_layer,FT (adapted),alternate_image,Other image,20,20,1.0,0,0
+ft_last_layer,FT (adapted),text_locality,Text locality,0,20,0.0,0,0
+ft_last_layer,FT (adapted),visual_locality,Visual locality,0,20,0.0,0,0

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "the logo of the russian news agency ria",
+        "status": "completed",
+        "seconds": 0.6939468089999536,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "Which Philippine television network is shown in the picture?",
+        "expected": "TV5 (Philippines)",
+        "answer": "tv5",
+        "status": "completed",
+        "seconds": 0.3434580640000604,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/google_12.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "The logo of the russian tv channel rt",
+        "status": "completed",
+        "seconds": 0.5878743200000827,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who was in the crows nest when the titanic struck the iceberg",
+        "expected": "Reginald Lee",
+        "answer": "the captain",
+        "status": "completed",
+        "seconds": 0.10615307600028245,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02m97n/bing_5.jpg",
+        "query": "What is the name of the company or entity depicted in the image?",
+        "expected": "Vickers-Armstrongs",
+        "answer": "hms royal navy",
+        "status": "completed",
+        "seconds": 0.4304775230002633,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.4774976440003229,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "Which Philippine television network is shown in the picture?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.45731851300024573,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/google_12.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.47308420300032594,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who was in the crows nest when the titanic struck the iceberg",
+        "expected": "Reginald Lee",
+        "answer": "the captain of the titanic",
+        "status": "completed",
+        "seconds": 0.2228043320001234,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02m97n/bing_5.jpg",
+        "query": "What is the name of the company or entity depicted in the image?",
+        "expected": "Vickers-Armstrongs",
+        "answer": "Royal Caribbean Cruises",
+        "status": "completed",
+        "seconds": 0.4339189490001445,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.46768350999991526,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "Which Philippine television network is shown in the picture?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.48683852999965893,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8159973895615662,
+          "text_cosine": 0.6319947791231324,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/google_12.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.7264591369998925,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9853367107708377,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9706734215416755,
+          "threshold": 0.7559913590939377,
+          "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who was in the crows nest when the titanic struck the iceberg",
+        "expected": "Reginald Lee",
+        "answer": "the captain",
+        "status": "completed",
+        "seconds": 0.10254326999984187,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02m97n/bing_5.jpg",
+        "query": "What is the name of the company or entity depicted in the image?",
+        "expected": "Vickers-Armstrongs",
+        "answer": "hms royal navy",
+        "status": "completed",
+        "seconds": 0.7397624570003245,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": 0.7136488136132038,
+          "text_cosine": 0.5548555655895989,
+          "visual_cosine": 0.8724420616368086,
+          "threshold": 0.7559913590939377,
+          "edit_id": "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+          "reason": "below_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "CNN",
+        "status": "completed",
+        "seconds": 0.3949000679999699,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "Which Philippine television network is shown in the picture?",
+        "expected": "TV5 (Philippines)",
+        "answer": "tv5",
+        "status": "completed",
+        "seconds": 0.3473235750002459,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/google_12.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "The logo of the tv5 channel",
+        "status": "completed",
+        "seconds": 0.49229807400024583,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who was in the crows nest when the titanic struck the iceberg",
+        "expected": "Reginald Lee",
+        "answer": "the captain",
+        "status": "completed",
+        "seconds": 0.0990599619999557,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02m97n/bing_5.jpg",
+        "query": "What is the name of the company or entity depicted in the image?",
+        "expected": "Vickers-Armstrongs",
+        "answer": "hms royal navy",
+        "status": "completed",
+        "seconds": 0.43140855299998293,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.5414231140002812,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/bing_19.jpg",
+        "query": "Which Philippine television network is shown in the picture?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.4631063060000997,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01hg2h/google_12.jpg",
+        "query": "What television network logo is featured in this image?",
+        "expected": "TV5 (Philippines)",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.4641145499999766,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who was in the crows nest when the titanic struck the iceberg",
+        "expected": "Reginald Lee",
+        "answer": "the guy who was in the crows nest",
+        "status": "completed",
+        "seconds": 0.35448082900029476,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02m97n/bing_5.jpg",
+        "query": "What is the name of the company or entity depicted in the image?",
+        "expected": "Vickers-Armstrongs",
+        "answer": "TV5 (Philippines)",
+        "status": "completed",
+        "seconds": 0.5149926579997555,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2717574630000854,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 13.529351234436035,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.2561421394348145,
+          "opt_model.model.decoder.layers.30.fc1.weight": 3.1018412113189697,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3521150052547455,
+          "opt_model.model.decoder.layers.31.fc1.weight": 4.081785202026367,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.8699391484260559
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "b00a3b7c14fc1113e1dd9dec6a3f0a2a1436b3d2d8995dd024fb2d43c1d1264a",
+          "opt_model.model.decoder.layers.29.fc2.weight": "e68c30d5d39836b723d09f56ab0c2bd159247797f838320a9b3715bd4b0900bb",
+          "opt_model.model.decoder.layers.30.fc1.weight": "b7144ff6769dac8eb44cc7f4d3a708fc1cee230ddb5f775c007726075994950e",
+          "opt_model.model.decoder.layers.30.fc2.weight": "6aaa6d7e7b08a62e782d240985128b45c10fc9b6f4ce4e907643bdf41bc7e9a3",
+          "opt_model.model.decoder.layers.31.fc1.weight": "384d7f525af8857c62370b9f96398f270c1394ead9af1a64ad7ecc6a71b0b5fe",
+          "opt_model.model.decoder.layers.31.fc2.weight": "61929577670cd7f20e2c0f5e2135ae5f223088ca549aff582fa6698f247427ee"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 3.3213894367218018,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 52,
+          "opt_model.model.decoder.layers.29.fc2.weight": 52,
+          "opt_model.model.decoder.layers.30.fc1.weight": 52,
+          "opt_model.model.decoder.layers.30.fc2.weight": 52,
+          "opt_model.model.decoder.layers.31.fc1.weight": 6,
+          "opt_model.model.decoder.layers.31.fc2.weight": 6
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 6,
+        "context_target_token_count": 6,
+        "selected_target_token_count": 6,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.527781374999904,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "b00a3b7c14fc1113e1dd9dec6a3f0a2a1436b3d2d8995dd024fb2d43c1d1264a",
+        "opt_model.model.decoder.layers.29.fc2.weight": "e68c30d5d39836b723d09f56ab0c2bd159247797f838320a9b3715bd4b0900bb",
+        "opt_model.model.decoder.layers.30.fc1.weight": "b7144ff6769dac8eb44cc7f4d3a708fc1cee230ddb5f775c007726075994950e",
+        "opt_model.model.decoder.layers.30.fc2.weight": "6aaa6d7e7b08a62e782d240985128b45c10fc9b6f4ce4e907643bdf41bc7e9a3",
+        "opt_model.model.decoder.layers.31.fc1.weight": "384d7f525af8857c62370b9f96398f270c1394ead9af1a64ad7ecc6a71b0b5fe",
+        "opt_model.model.decoder.layers.31.fc2.weight": "61929577670cd7f20e2c0f5e2135ae5f223088ca549aff582fa6698f247427ee"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.8859782218933105,
+          0.928040087223053,
+          0.14261959493160248,
+          0.020916013047099113,
+          0.005250350572168827,
+          0.001887821708805859,
+          0.0008752868743613362,
+          0.0004809261590708047,
+          0.00030123224132694304,
+          0.00019888138922397047,
+          0.000140607517096214,
+          0.00010307489719707519,
+          7.696128159295768e-05,
+          5.823427272844128e-05,
+          4.4817945308750495e-05
+        ],
+        "final_teacher_forced_nll": 3.492546602501534e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "TV5 (Philippines)",
+        "training_target": "TV5 (Philippines)\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "0f9fd1d7ff180a63661f34b0b6956ed1ee1f1bb1291b5014a8f11fd1367b1c7c",
+          "opt_model.model.decoder.layers.31.fc2.weight": "3c569e2be54e484f3d94c25e6f83c5b40b903b71efc396813d458ae3f68a1405"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.243593247999797,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "0f9fd1d7ff180a63661f34b0b6956ed1ee1f1bb1291b5014a8f11fd1367b1c7c",
+        "opt_model.model.decoder.layers.31.fc2.weight": "3c569e2be54e484f3d94c25e6f83c5b40b903b71efc396813d458ae3f68a1405"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 13.529351234436035,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.2561421394348145,
+      "opt_model.model.decoder.layers.30.fc1.weight": 3.1018412113189697,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3521150052547455,
+      "opt_model.model.decoder.layers.31.fc1.weight": 4.081785202026367,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.8699391484260559
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "b00a3b7c14fc1113e1dd9dec6a3f0a2a1436b3d2d8995dd024fb2d43c1d1264a",
+      "opt_model.model.decoder.layers.29.fc2.weight": "e68c30d5d39836b723d09f56ab0c2bd159247797f838320a9b3715bd4b0900bb",
+      "opt_model.model.decoder.layers.30.fc1.weight": "b7144ff6769dac8eb44cc7f4d3a708fc1cee230ddb5f775c007726075994950e",
+      "opt_model.model.decoder.layers.30.fc2.weight": "6aaa6d7e7b08a62e782d240985128b45c10fc9b6f4ce4e907643bdf41bc7e9a3",
+      "opt_model.model.decoder.layers.31.fc1.weight": "384d7f525af8857c62370b9f96398f270c1394ead9af1a64ad7ecc6a71b0b5fe",
+      "opt_model.model.decoder.layers.31.fc2.weight": "61929577670cd7f20e2c0f5e2135ae5f223088ca549aff582fa6698f247427ee"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 3.3213894367218018,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 52,
+      "opt_model.model.decoder.layers.29.fc2.weight": 52,
+      "opt_model.model.decoder.layers.30.fc1.weight": 52,
+      "opt_model.model.decoder.layers.30.fc2.weight": 52,
+      "opt_model.model.decoder.layers.31.fc1.weight": 6,
+      "opt_model.model.decoder.layers.31.fc2.weight": 6
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 6,
+    "context_target_token_count": 6,
+    "selected_target_token_count": 6,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.527781374999904,
+  "fine_tuning_attempted": true
+}

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.37609457600001406,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "Who is the Bollywood actor featured in this picture?",
+        "expected": "Mithun Chakraborty",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.34368094999990717,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_2.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "krishna bhatt",
+        "status": "completed",
+        "seconds": 0.4432130740001412,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "during which stage of the cell cycle does the replication of dna take place",
+        "expected": "the C period",
+        "answer": "during which stage of the cell cycle does the replication of dna take place",
+        "status": "completed",
+        "seconds": 0.4827440939998269,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02hkw6/google_2.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Nedumudi Venu",
+        "answer": "krishna kumar",
+        "status": "completed",
+        "seconds": 0.438433177999741,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.46838914099998874,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "Who is the Bollywood actor featured in this picture?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.4650119889997768,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_2.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.4649028370004089,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "during which stage of the cell cycle does the replication of dna take place",
+        "expected": "the C period",
+        "answer": "during which stage of the cell cycle does the replication of dna take place",
+        "status": "completed",
+        "seconds": 0.4806281169999238,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02hkw6/google_2.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Nedumudi Venu",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.4646787290002976,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.46372155600010956,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "Who is the Bollywood actor featured in this picture?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.4872281899997688,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9212743533184019,
+          "text_cosine": 0.8425487066368038,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_2.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.7155936760000259,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9857337404844891,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9714674809689783,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "during which stage of the cell cycle does the replication of dna take place",
+        "expected": "the C period",
+        "answer": "during which stage of the cell cycle does the replication of dna take place",
+        "status": "completed",
+        "seconds": 0.4626694429998679,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02hkw6/google_2.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Nedumudi Venu",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.7238691339998695,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.7766207407504349,
+          "text_cosine": 0.5887689560975902,
+          "visual_cosine": 0.9644725254032797,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.4106137859998853,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "Who is the Bollywood actor featured in this picture?",
+        "expected": "Mithun Chakraborty",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.31676971599972603,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_2.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "bhushan kumar",
+        "status": "completed",
+        "seconds": 0.45221289100027207,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "during which stage of the cell cycle does the replication of dna take place",
+        "expected": "the C period",
+        "answer": "during which stage of the cell cycle does the replication of dna take place",
+        "status": "completed",
+        "seconds": 0.45623217499996827,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02hkw6/google_2.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Nedumudi Venu",
+        "answer": "krishna kumar",
+        "status": "completed",
+        "seconds": 0.4328491920000488,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.5269929139999476,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_0.jpg",
+        "query": "Who is the Bollywood actor featured in this picture?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.46185960499997236,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.05xd8x/google_2.jpg",
+        "query": "What is the name of the Indian actor shown in the image?",
+        "expected": "Mithun Chakraborty",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.47292565899988404,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "during which stage of the cell cycle does the replication of dna take place",
+        "expected": "the C period",
+        "answer": "replication occurs during mitosis",
+        "status": "completed",
+        "seconds": 0.1789105540001401,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02hkw6/google_2.jpg",
+        "query": "Who is the person in the image?",
+        "expected": "Nedumudi Venu",
+        "answer": "Mithun Chakraborty",
+        "status": "completed",
+        "seconds": 0.48401151400003073,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.267265979000058,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 11.969552040100098,
+          "opt_model.model.decoder.layers.29.fc2.weight": 5.291533470153809,
+          "opt_model.model.decoder.layers.30.fc1.weight": 1.9020975828170776,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3055324852466583,
+          "opt_model.model.decoder.layers.31.fc1.weight": 0.883135974407196,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.8143519759178162
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "10930da4f9377d9e8ad0b447119dbabcbf1fadcae68397e32d2971b1dab32a9c",
+          "opt_model.model.decoder.layers.29.fc2.weight": "168db9fbeeb199dfe18d95b3c9cc969ea6627de47035d5d17b75dfa8e2d7ddec",
+          "opt_model.model.decoder.layers.30.fc1.weight": "487752de881facbeba7d343784e604196dd647fc5f562b88822064d7e80f8a80",
+          "opt_model.model.decoder.layers.30.fc2.weight": "33597d7245f0a9b95d2c0ac52b9cc373909028ee3515e879d443fc88daa7567f",
+          "opt_model.model.decoder.layers.31.fc1.weight": "585fcfaea14b3ebcc2f81c2d724121f244e671a4a4ea72ae384b94cf894dfa38",
+          "opt_model.model.decoder.layers.31.fc2.weight": "446f4fee732bc9f428b53cc23c0c5715b9bb4ac2f22c0d9fea15cceb952bc659"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 1.4395557641983032,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 55,
+          "opt_model.model.decoder.layers.29.fc2.weight": 55,
+          "opt_model.model.decoder.layers.30.fc1.weight": 55,
+          "opt_model.model.decoder.layers.30.fc2.weight": 55,
+          "opt_model.model.decoder.layers.31.fc1.weight": 6,
+          "opt_model.model.decoder.layers.31.fc2.weight": 6
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 7,
+        "context_target_token_count": 6,
+        "selected_target_token_count": 6,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.5780168730002515,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "10930da4f9377d9e8ad0b447119dbabcbf1fadcae68397e32d2971b1dab32a9c",
+        "opt_model.model.decoder.layers.29.fc2.weight": "168db9fbeeb199dfe18d95b3c9cc969ea6627de47035d5d17b75dfa8e2d7ddec",
+        "opt_model.model.decoder.layers.30.fc1.weight": "487752de881facbeba7d343784e604196dd647fc5f562b88822064d7e80f8a80",
+        "opt_model.model.decoder.layers.30.fc2.weight": "33597d7245f0a9b95d2c0ac52b9cc373909028ee3515e879d443fc88daa7567f",
+        "opt_model.model.decoder.layers.31.fc1.weight": "585fcfaea14b3ebcc2f81c2d724121f244e671a4a4ea72ae384b94cf894dfa38",
+        "opt_model.model.decoder.layers.31.fc2.weight": "446f4fee732bc9f428b53cc23c0c5715b9bb4ac2f22c0d9fea15cceb952bc659"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          1.270717978477478,
+          0.6002314686775208,
+          0.11350027471780777,
+          0.004893348552286625,
+          0.0017806325340643525,
+          0.001515159965492785,
+          0.001172153279185295,
+          0.0006437094998545945,
+          0.00029111906769685447,
+          0.00011386766709620133,
+          4.41346965089906e-05,
+          1.772703035385348e-05,
+          7.646222002222203e-06,
+          3.4570280149637256e-06,
+          1.737039269755769e-06
+        ],
+        "final_teacher_forced_nll": 9.366414133182843e-07,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Mithun Chakraborty",
+        "training_target": "Mithun Chakraborty\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "2561ab55374fc74790c11ab93c40e9de3d6e376dce0bf5531045eb54195c5218",
+          "opt_model.model.decoder.layers.31.fc2.weight": "d99e4fe735b538cd2b1059ffac1a5d1f453b70ff3f201ea5bc0129c42ef39f03"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.223140193999825,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "2561ab55374fc74790c11ab93c40e9de3d6e376dce0bf5531045eb54195c5218",
+        "opt_model.model.decoder.layers.31.fc2.weight": "d99e4fe735b538cd2b1059ffac1a5d1f453b70ff3f201ea5bc0129c42ef39f03"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 11.969552040100098,
+      "opt_model.model.decoder.layers.29.fc2.weight": 5.291533470153809,
+      "opt_model.model.decoder.layers.30.fc1.weight": 1.9020975828170776,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3055324852466583,
+      "opt_model.model.decoder.layers.31.fc1.weight": 0.883135974407196,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.8143519759178162
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "10930da4f9377d9e8ad0b447119dbabcbf1fadcae68397e32d2971b1dab32a9c",
+      "opt_model.model.decoder.layers.29.fc2.weight": "168db9fbeeb199dfe18d95b3c9cc969ea6627de47035d5d17b75dfa8e2d7ddec",
+      "opt_model.model.decoder.layers.30.fc1.weight": "487752de881facbeba7d343784e604196dd647fc5f562b88822064d7e80f8a80",
+      "opt_model.model.decoder.layers.30.fc2.weight": "33597d7245f0a9b95d2c0ac52b9cc373909028ee3515e879d443fc88daa7567f",
+      "opt_model.model.decoder.layers.31.fc1.weight": "585fcfaea14b3ebcc2f81c2d724121f244e671a4a4ea72ae384b94cf894dfa38",
+      "opt_model.model.decoder.layers.31.fc2.weight": "446f4fee732bc9f428b53cc23c0c5715b9bb4ac2f22c0d9fea15cceb952bc659"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 1.4395557641983032,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 55,
+      "opt_model.model.decoder.layers.29.fc2.weight": 55,
+      "opt_model.model.decoder.layers.30.fc1.weight": 55,
+      "opt_model.model.decoder.layers.30.fc2.weight": 55,
+      "opt_model.model.decoder.layers.31.fc1.weight": 6,
+      "opt_model.model.decoder.layers.31.fc2.weight": 6
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 7,
+    "context_target_token_count": 6,
+    "selected_target_token_count": 6,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.5780168730002515,
+  "fine_tuning_attempted": true
+}

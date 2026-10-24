@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "county of san mateo",
+        "status": "completed",
+        "seconds": 0.5273098570000911,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "Which county of Oregon is depicted in the picture?",
+        "expected": "Lane County, Oregon",
+        "answer": "county of san mateo",
+        "status": "completed",
+        "seconds": 0.43027939200010223,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/google_0.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "county of san mateo",
+        "status": "completed",
+        "seconds": 0.4366436599998451,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who does clay date in 13 reasons why",
+        "expected": "Skye Miller",
+        "answer": "Clay dates Hannah Baker",
+        "status": "completed",
+        "seconds": 0.15140495000014198,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0kq39/bing_3.jpg",
+        "query": "In what U.S. county is this image taken?",
+        "expected": "Fresno County, California",
+        "answer": "the county of fresno",
+        "status": "completed",
+        "seconds": 0.4429005780002626,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.41101010400007,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "Which county of Oregon is depicted in the picture?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.4199767380000594,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/google_0.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.404894823000177,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who does clay date in 13 reasons why",
+        "expected": "Skye Miller",
+        "answer": "Clay dates in 13 reasons why",
+        "status": "completed",
+        "seconds": 0.21510757699979877,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0kq39/bing_3.jpg",
+        "query": "In what U.S. county is this image taken?",
+        "expected": "Fresno County, California",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.43780283699970823,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.41212844900019263,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "Which county of Oregon is depicted in the picture?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.4362007730001096,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8528266852623557,
+          "text_cosine": 0.7056533705247114,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/google_0.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.659284136000224,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9729757947712434,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9459515895424869,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who does clay date in 13 reasons why",
+        "expected": "Skye Miller",
+        "answer": "Clay dates Hannah Baker",
+        "status": "completed",
+        "seconds": 0.1676571149996562,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0kq39/bing_3.jpg",
+        "query": "In what U.S. county is this image taken?",
+        "expected": "Fresno County, California",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.7003954960000556,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9097807582283854,
+          "text_cosine": 0.8405417712573926,
+          "visual_cosine": 0.9790197451993783,
+          "threshold": 0.7559913590939377,
+          "edit_id": "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "san mateo county",
+        "status": "completed",
+        "seconds": 0.48395801700007723,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "Which county of Oregon is depicted in the picture?",
+        "expected": "Lane County, Oregon",
+        "answer": "the county of san mateo",
+        "status": "completed",
+        "seconds": 0.45775624899988543,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/google_0.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "the county of san mateo",
+        "status": "completed",
+        "seconds": 0.4691285529997913,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who does clay date in 13 reasons why",
+        "expected": "Skye Miller",
+        "answer": "Clay dates Hannah Baker",
+        "status": "completed",
+        "seconds": 0.15282265999985611,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0kq39/bing_3.jpg",
+        "query": "In what U.S. county is this image taken?",
+        "expected": "Fresno County, California",
+        "answer": "the county of fresno",
+        "status": "completed",
+        "seconds": 0.44689907999963907,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.5086520070003644,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/bing_4.jpg",
+        "query": "Which county of Oregon is depicted in the picture?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.40504627800009985,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0l2vz/google_0.jpg",
+        "query": "What is the name of the county shown in the image?",
+        "expected": "Lane County, Oregon",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.4192612880001434,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who does clay date in 13 reasons why",
+        "expected": "Skye Miller",
+        "answer": "Clay dates Hannah Baker",
+        "status": "completed",
+        "seconds": 0.1573147199997038,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0kq39/bing_3.jpg",
+        "query": "In what U.S. county is this image taken?",
+        "expected": "Fresno County, California",
+        "answer": "Lane County, Oregon",
+        "status": "completed",
+        "seconds": 0.4128192640000634,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2692435200001455,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 17.538253784179688,
+          "opt_model.model.decoder.layers.29.fc2.weight": 5.078396320343018,
+          "opt_model.model.decoder.layers.30.fc1.weight": 3.028123378753662,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.2942647337913513,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3.3727118968963623,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.8798653483390808
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "08fc05890f042a5ee03e400214243c41df2bbed9d09208148292d978a30ae647",
+          "opt_model.model.decoder.layers.29.fc2.weight": "f3575105598cb7b714f7574579f6f4f2cbe6d2efcb586315412353597b673fe3",
+          "opt_model.model.decoder.layers.30.fc1.weight": "bfb40f7cead59fb634ff5796b83f893992c0f3b71f7e143df1971f0ec16af269",
+          "opt_model.model.decoder.layers.30.fc2.weight": "3dd1ae71f41d03dd616b4ca2f7e8c8b64cefc2b8bd103a7777edf159ce20dcd8",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f6332b0730004dda2a6842eca4f7328923e95a8404ae8d1eed24facd374ff413",
+          "opt_model.model.decoder.layers.31.fc2.weight": "68284dd7a8c4abd9879a5fe690fa215d739b01b890dcd79ea4cf805f9306b12b"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 4.38104248046875,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 52,
+          "opt_model.model.decoder.layers.29.fc2.weight": 52,
+          "opt_model.model.decoder.layers.30.fc1.weight": 52,
+          "opt_model.model.decoder.layers.30.fc2.weight": 52,
+          "opt_model.model.decoder.layers.31.fc1.weight": 4,
+          "opt_model.model.decoder.layers.31.fc2.weight": 4
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 5,
+        "context_target_token_count": 4,
+        "selected_target_token_count": 4,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.5491531299999224,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "08fc05890f042a5ee03e400214243c41df2bbed9d09208148292d978a30ae647",
+        "opt_model.model.decoder.layers.29.fc2.weight": "f3575105598cb7b714f7574579f6f4f2cbe6d2efcb586315412353597b673fe3",
+        "opt_model.model.decoder.layers.30.fc1.weight": "bfb40f7cead59fb634ff5796b83f893992c0f3b71f7e143df1971f0ec16af269",
+        "opt_model.model.decoder.layers.30.fc2.weight": "3dd1ae71f41d03dd616b4ca2f7e8c8b64cefc2b8bd103a7777edf159ce20dcd8",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f6332b0730004dda2a6842eca4f7328923e95a8404ae8d1eed24facd374ff413",
+        "opt_model.model.decoder.layers.31.fc2.weight": "68284dd7a8c4abd9879a5fe690fa215d739b01b890dcd79ea4cf805f9306b12b"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          3.55590558052063,
+          1.80654776096344,
+          0.46788400411605835,
+          0.03851766511797905,
+          0.01729627326130867,
+          0.009149627760052681,
+          0.007503358181566,
+          0.008020775392651558,
+          0.007899647578597069,
+          0.005600424949079752,
+          0.003016774309799075,
+          0.0014441662933677435,
+          0.0007035249145701528,
+          0.0003748800663743168,
+          0.00023292549303732812
+        ],
+        "final_teacher_forced_nll": 0.0001737212878651917,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Lane County, Oregon",
+        "training_target": "Lane County, Oregon\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "269637a2aeaf7e55a015ad29461e9bac136516512bbf0bb714fc774b283d40f8",
+          "opt_model.model.decoder.layers.31.fc2.weight": "55f4170b23f79ca9810f4651a9603c7181afe1967fa7128e9d928ba8b79b0d89"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.21572011499984,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "269637a2aeaf7e55a015ad29461e9bac136516512bbf0bb714fc774b283d40f8",
+        "opt_model.model.decoder.layers.31.fc2.weight": "55f4170b23f79ca9810f4651a9603c7181afe1967fa7128e9d928ba8b79b0d89"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 17.538253784179688,
+      "opt_model.model.decoder.layers.29.fc2.weight": 5.078396320343018,
+      "opt_model.model.decoder.layers.30.fc1.weight": 3.028123378753662,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.2942647337913513,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3.3727118968963623,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.8798653483390808
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "08fc05890f042a5ee03e400214243c41df2bbed9d09208148292d978a30ae647",
+      "opt_model.model.decoder.layers.29.fc2.weight": "f3575105598cb7b714f7574579f6f4f2cbe6d2efcb586315412353597b673fe3",
+      "opt_model.model.decoder.layers.30.fc1.weight": "bfb40f7cead59fb634ff5796b83f893992c0f3b71f7e143df1971f0ec16af269",
+      "opt_model.model.decoder.layers.30.fc2.weight": "3dd1ae71f41d03dd616b4ca2f7e8c8b64cefc2b8bd103a7777edf159ce20dcd8",
+      "opt_model.model.decoder.layers.31.fc1.weight": "f6332b0730004dda2a6842eca4f7328923e95a8404ae8d1eed24facd374ff413",
+      "opt_model.model.decoder.layers.31.fc2.weight": "68284dd7a8c4abd9879a5fe690fa215d739b01b890dcd79ea4cf805f9306b12b"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 4.38104248046875,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 52,
+      "opt_model.model.decoder.layers.29.fc2.weight": 52,
+      "opt_model.model.decoder.layers.30.fc1.weight": 52,
+      "opt_model.model.decoder.layers.30.fc2.weight": 52,
+      "opt_model.model.decoder.layers.31.fc1.weight": 4,
+      "opt_model.model.decoder.layers.31.fc2.weight": 4
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 5,
+    "context_target_token_count": 4,
+    "selected_target_token_count": 4,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.5491531299999224,
+  "fine_tuning_attempted": true
+}

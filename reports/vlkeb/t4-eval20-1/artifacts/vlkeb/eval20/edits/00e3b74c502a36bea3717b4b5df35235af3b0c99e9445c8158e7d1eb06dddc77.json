@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "australian army",
+        "status": "completed",
+        "seconds": 0.4482774170000994,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "Which air force is represented in the picture?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "australian air force",
+        "status": "completed",
+        "seconds": 0.4151941039999656,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_12.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "abc",
+        "status": "completed",
+        "seconds": 0.32267889800004923,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when did voting age become 18 in uk",
+        "expected": "1970",
+        "answer": "when the government decided to make it 18",
+        "status": "completed",
+        "seconds": 0.25618419100010215,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0q96/bing_21.jpg",
+        "query": "What political party does the logo in the image represent?",
+        "expected": "Australian Labor Party",
+        "answer": "Liberal Party of Australia",
+        "status": "completed",
+        "seconds": 0.4329147209996336,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.3816015569996125,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "Which air force is represented in the picture?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.3825418589999572,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_12.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.3828564970003754,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when did voting age become 18 in uk",
+        "expected": "1970",
+        "answer": "when the rcaf was formed",
+        "status": "completed",
+        "seconds": 0.22983052099971246,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0q96/bing_21.jpg",
+        "query": "What political party does the logo in the image represent?",
+        "expected": "Australian Labor Party",
+        "answer": "Liberal Party of Canada",
+        "status": "completed",
+        "seconds": 0.41753834599967377,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.3804995179998514,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "Which air force is represented in the picture?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.40528933299992786,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8698348441556938,
+          "text_cosine": 0.7396696883113875,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_12.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.6235775009999998,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9891625087711666,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9783250175423334,
+          "threshold": 0.7559913590939377,
+          "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when did voting age become 18 in uk",
+        "expected": "1970",
+        "answer": "when the government decided to make it 18",
+        "status": "completed",
+        "seconds": 0.25725799500014546,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0q96/bing_21.jpg",
+        "query": "What political party does the logo in the image represent?",
+        "expected": "Australian Labor Party",
+        "answer": "Liberal Party of Australia",
+        "status": "completed",
+        "seconds": 0.7060886210001627,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": 0.7228497664990757,
+          "text_cosine": 0.5190968013843933,
+          "visual_cosine": 0.9266027316137582,
+          "threshold": 0.7559913590939377,
+          "edit_id": "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+          "reason": "below_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.48264851700014333,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "Which air force is represented in the picture?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "air force of australia",
+        "status": "completed",
+        "seconds": 0.4339978639995934,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_12.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.38739191400009076,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when did voting age become 18 in uk",
+        "expected": "1970",
+        "answer": "when the government decided to make it 18",
+        "status": "completed",
+        "seconds": 0.27697435199979736,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0q96/bing_21.jpg",
+        "query": "What political party does the logo in the image represent?",
+        "expected": "Australian Labor Party",
+        "answer": "Liberal Party of Australia",
+        "status": "completed",
+        "seconds": 0.41882903499981694,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.5065291999999317,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_11.jpg",
+        "query": "Which air force is represented in the picture?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.38140236200024447,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0gyr_7/google_12.jpg",
+        "query": "What military organization is shown in the image?",
+        "expected": "Royal Canadian Air Force",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.38378415199986193,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "when did voting age become 18 in uk",
+        "expected": "1970",
+        "answer": "when did voting age become 18 in uk",
+        "status": "completed",
+        "seconds": 0.2955879749997621,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0q96/bing_21.jpg",
+        "query": "What political party does the logo in the image represent?",
+        "expected": "Australian Labor Party",
+        "answer": "Royal Canadian Air Force",
+        "status": "completed",
+        "seconds": 0.43568270600007963,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2456592210000963,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 12.34343147277832,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.289978504180908,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.1550025939941406,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.34197813272476196,
+          "opt_model.model.decoder.layers.31.fc1.weight": 0.9595535397529602,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.6395087838172913
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "2fcf8bd08b2f71bc3b09fdfb9d8ab6a8bdf65a03304671bbf0172e10015c2ee7",
+          "opt_model.model.decoder.layers.29.fc2.weight": "1ed9ca1e21310ae419267fa4721a0706b67831ca012abc15ad16973f226b8a05",
+          "opt_model.model.decoder.layers.30.fc1.weight": "e820736389ae3299dc4a2889dbc745e685eade3f19c9133b951f0fc77975bc0b",
+          "opt_model.model.decoder.layers.30.fc2.weight": "a45db86c7c7f0e4b9171ccc97bb50acea440ed4b6b978f009045bd6d9e6354ab",
+          "opt_model.model.decoder.layers.31.fc1.weight": "3ec65ccd5443cfb34e82e839c7458df8ee575a5558f1a785a4efa6f256007e29",
+          "opt_model.model.decoder.layers.31.fc2.weight": "4f3a338ab418442d97e2ddbf8d118327bebe085a5622b2efaa452172b2498f6b"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 3.3503758907318115,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 49,
+          "opt_model.model.decoder.layers.29.fc2.weight": 49,
+          "opt_model.model.decoder.layers.30.fc1.weight": 49,
+          "opt_model.model.decoder.layers.30.fc2.weight": 49,
+          "opt_model.model.decoder.layers.31.fc1.weight": 4,
+          "opt_model.model.decoder.layers.31.fc2.weight": 4
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 4,
+        "context_target_token_count": 4,
+        "selected_target_token_count": 4,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.493129467000017,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "2fcf8bd08b2f71bc3b09fdfb9d8ab6a8bdf65a03304671bbf0172e10015c2ee7",
+        "opt_model.model.decoder.layers.29.fc2.weight": "1ed9ca1e21310ae419267fa4721a0706b67831ca012abc15ad16973f226b8a05",
+        "opt_model.model.decoder.layers.30.fc1.weight": "e820736389ae3299dc4a2889dbc745e685eade3f19c9133b951f0fc77975bc0b",
+        "opt_model.model.decoder.layers.30.fc2.weight": "a45db86c7c7f0e4b9171ccc97bb50acea440ed4b6b978f009045bd6d9e6354ab",
+        "opt_model.model.decoder.layers.31.fc1.weight": "3ec65ccd5443cfb34e82e839c7458df8ee575a5558f1a785a4efa6f256007e29",
+        "opt_model.model.decoder.layers.31.fc2.weight": "4f3a338ab418442d97e2ddbf8d118327bebe085a5622b2efaa452172b2498f6b"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.7655014991760254,
+          0.5923154950141907,
+          0.025588449090719223,
+          0.003137964755296707,
+          0.0010245501762256026,
+          0.0004448616527952254,
+          0.00024942442541942,
+          0.00017421906522940844,
+          0.00014550807827617973,
+          0.00013309340283740312,
+          0.000128017709357664,
+          0.00012298977526370436,
+          0.00011748536780942231,
+          0.00010881153866648674,
+          9.708700963528827e-05
+        ],
+        "final_teacher_forced_nll": 8.3550599811133e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Royal Canadian Air Force",
+        "training_target": "Royal Canadian Air Force\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "bff2267d0f704b14c5c2bed65ed5da56d0f204322b5cf78fec3b7ce9212f59fa",
+          "opt_model.model.decoder.layers.31.fc2.weight": "e8f723cffc3949ec26742daa9f01984c9e0faf840dfd2bfc9afd72a6a3217135"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.135354136999922,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "bff2267d0f704b14c5c2bed65ed5da56d0f204322b5cf78fec3b7ce9212f59fa",
+        "opt_model.model.decoder.layers.31.fc2.weight": "e8f723cffc3949ec26742daa9f01984c9e0faf840dfd2bfc9afd72a6a3217135"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 12.34343147277832,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.289978504180908,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.1550025939941406,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.34197813272476196,
+      "opt_model.model.decoder.layers.31.fc1.weight": 0.9595535397529602,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.6395087838172913
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "2fcf8bd08b2f71bc3b09fdfb9d8ab6a8bdf65a03304671bbf0172e10015c2ee7",
+      "opt_model.model.decoder.layers.29.fc2.weight": "1ed9ca1e21310ae419267fa4721a0706b67831ca012abc15ad16973f226b8a05",
+      "opt_model.model.decoder.layers.30.fc1.weight": "e820736389ae3299dc4a2889dbc745e685eade3f19c9133b951f0fc77975bc0b",
+      "opt_model.model.decoder.layers.30.fc2.weight": "a45db86c7c7f0e4b9171ccc97bb50acea440ed4b6b978f009045bd6d9e6354ab",
+      "opt_model.model.decoder.layers.31.fc1.weight": "3ec65ccd5443cfb34e82e839c7458df8ee575a5558f1a785a4efa6f256007e29",
+      "opt_model.model.decoder.layers.31.fc2.weight": "4f3a338ab418442d97e2ddbf8d118327bebe085a5622b2efaa452172b2498f6b"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 3.3503758907318115,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 49,
+      "opt_model.model.decoder.layers.29.fc2.weight": 49,
+      "opt_model.model.decoder.layers.30.fc1.weight": 49,
+      "opt_model.model.decoder.layers.30.fc2.weight": 49,
+      "opt_model.model.decoder.layers.31.fc1.weight": 4,
+      "opt_model.model.decoder.layers.31.fc2.weight": 4
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 4,
+    "context_target_token_count": 4,
+    "selected_target_token_count": 4,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.493129467000017,
+  "fine_tuning_attempted": true
+}

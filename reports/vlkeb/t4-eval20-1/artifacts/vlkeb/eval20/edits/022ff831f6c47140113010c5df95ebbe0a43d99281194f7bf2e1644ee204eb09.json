@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "The Mask",
+        "status": "completed",
+        "seconds": 0.41765471500002604,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "Which movie does this poster represent?",
+        "expected": "Hudson Hawk",
+        "answer": "the movie 'the man who would be king'",
+        "status": "completed",
+        "seconds": 0.5729290979998041,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_16.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Pirates of the Caribbean: The Curse of the Black Pearl",
+        "status": "completed",
+        "seconds": 0.5956079600000521,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the new york historical society located",
+        "expected": "New York City at the corner of 77th Street and Central Park West in Manhattan",
+        "answer": "in the middle of the city",
+        "status": "completed",
+        "seconds": 0.20999866099964493,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0hx4y/bing_21.jpg",
+        "query": "What film is depicted in the image?",
+        "expected": "Jurassic Park",
+        "answer": "jurassic park",
+        "status": "completed",
+        "seconds": 0.3766850570000315,
+        "strict_target_match": true
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.3483373069998379,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "Which movie does this poster represent?",
+        "expected": "Hudson Hawk",
+        "answer": "The Mask",
+        "status": "completed",
+        "seconds": 0.35555865600008474,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_16.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.3524977140000374,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the new york historical society located",
+        "expected": "New York City at the corner of 77th Street and Central Park West in Manhattan",
+        "answer": "in new york city",
+        "status": "completed",
+        "seconds": 0.21846501000027274,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0hx4y/bing_21.jpg",
+        "query": "What film is depicted in the image?",
+        "expected": "Jurassic Park",
+        "answer": "Jurassic Park",
+        "status": "completed",
+        "seconds": 0.3518691559997933,
+        "strict_target_match": true
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.36306446600019626,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "Which movie does this poster represent?",
+        "expected": "Hudson Hawk",
+        "answer": "The Mask",
+        "status": "completed",
+        "seconds": 0.3720067070003097,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.8278283680396762,
+          "text_cosine": 0.6556567360793524,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_16.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.6103601740001068,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9906476678646311,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9812953357292622,
+          "threshold": 0.7559913590939377,
+          "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the new york historical society located",
+        "expected": "New York City at the corner of 77th Street and Central Park West in Manhattan",
+        "answer": "in the middle of the city",
+        "status": "completed",
+        "seconds": 0.21139357199990627,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0hx4y/bing_21.jpg",
+        "query": "What film is depicted in the image?",
+        "expected": "Jurassic Park",
+        "answer": "Jurassic Park",
+        "status": "completed",
+        "seconds": 0.6192933530001028,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8955566267429733,
+          "text_cosine": 0.8414049674545937,
+          "visual_cosine": 0.949708286031353,
+          "threshold": 0.7559913590939377,
+          "edit_id": "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.43436593299975357,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "Which movie does this poster represent?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.3443132939996758,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_16.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Pirates of the Caribbean: Dead Man's Chest",
+        "status": "completed",
+        "seconds": 0.542965876999915,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the new york historical society located",
+        "expected": "New York City at the corner of 77th Street and Central Park West in Manhattan",
+        "answer": "in the middle of the city",
+        "status": "completed",
+        "seconds": 0.21350904900009482,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0hx4y/bing_21.jpg",
+        "query": "What film is depicted in the image?",
+        "expected": "Jurassic Park",
+        "answer": "jurassic park",
+        "status": "completed",
+        "seconds": 0.37975425000013274,
+        "strict_target_match": true
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.4123630859999139,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_12.jpg",
+        "query": "Which movie does this poster represent?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.3389685889997054,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0295sy/bing_16.jpg",
+        "query": "What is the name of the film featured in this image?",
+        "expected": "Hudson Hawk",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.3467600939998192,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the new york historical society located",
+        "expected": "New York City at the corner of 77th Street and Central Park West in Manhattan",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.10328093299995089,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0hx4y/bing_21.jpg",
+        "query": "What film is depicted in the image?",
+        "expected": "Jurassic Park",
+        "answer": "Hudson Hawk",
+        "status": "completed",
+        "seconds": 0.35556564400030766,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.26338173000021925,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 12.702921867370605,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.99707555770874,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.1008706092834473,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.41332146525382996,
+          "opt_model.model.decoder.layers.31.fc1.weight": 0.9529724717140198,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.8531540036201477
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "293d4fbaf5bcdbf6216fe755e2f5fc55ebbd2c8158784c032caaa5eabaa15c3e",
+          "opt_model.model.decoder.layers.29.fc2.weight": "d10bf5a6ec4031e185d07d63cd7882dc8edd3de982b9fb9c6b3d332a5ea151c9",
+          "opt_model.model.decoder.layers.30.fc1.weight": "98282a0a9806601e6933bb79d98266c24a0b56c947e3f01720501ffb018455b4",
+          "opt_model.model.decoder.layers.30.fc2.weight": "42d83dc59005d2b15edd92667c93ee873f60b4673db2f7c3f50dee326fcb9537",
+          "opt_model.model.decoder.layers.31.fc1.weight": "7ff5858dfb7ba1e113d218818b56c9510a29491410deaafa2efd586c09dcd750",
+          "opt_model.model.decoder.layers.31.fc2.weight": "c0f9be311b2fe02923c12a496a9f17562f2bdbeac30fb7bb8cc360db2de80764"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 5.3794846534729,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 50,
+          "opt_model.model.decoder.layers.29.fc2.weight": 50,
+          "opt_model.model.decoder.layers.30.fc1.weight": 50,
+          "opt_model.model.decoder.layers.30.fc2.weight": 50,
+          "opt_model.model.decoder.layers.31.fc1.weight": 2,
+          "opt_model.model.decoder.layers.31.fc2.weight": 2
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 4,
+        "context_target_token_count": 2,
+        "selected_target_token_count": 2,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.5628847889997814,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "293d4fbaf5bcdbf6216fe755e2f5fc55ebbd2c8158784c032caaa5eabaa15c3e",
+        "opt_model.model.decoder.layers.29.fc2.weight": "d10bf5a6ec4031e185d07d63cd7882dc8edd3de982b9fb9c6b3d332a5ea151c9",
+        "opt_model.model.decoder.layers.30.fc1.weight": "98282a0a9806601e6933bb79d98266c24a0b56c947e3f01720501ffb018455b4",
+        "opt_model.model.decoder.layers.30.fc2.weight": "42d83dc59005d2b15edd92667c93ee873f60b4673db2f7c3f50dee326fcb9537",
+        "opt_model.model.decoder.layers.31.fc1.weight": "7ff5858dfb7ba1e113d218818b56c9510a29491410deaafa2efd586c09dcd750",
+        "opt_model.model.decoder.layers.31.fc2.weight": "c0f9be311b2fe02923c12a496a9f17562f2bdbeac30fb7bb8cc360db2de80764"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          3.8019895553588867,
+          1.6952005624771118,
+          0.1469104290008545,
+          0.004186855163425207,
+          0.0015538162551820278,
+          0.000886532652657479,
+          0.0007276537944562733,
+          0.0007446630042977631,
+          0.0007513633463531733,
+          0.000686256680637598,
+          0.000553545483853668,
+          0.00038458569906651974,
+          0.00024405129079241306,
+          0.000147945640492253,
+          8.975251694209874e-05
+        ],
+        "final_teacher_forced_nll": 5.3639872930943966e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Hudson Hawk",
+        "training_target": "Hudson Hawk\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "62c5dbf981ff9d03ac735d57141a36afb135770234939c9188218351fc219749",
+          "opt_model.model.decoder.layers.31.fc2.weight": "9ed60e69ad0e7ac973a5702dd98d6d1c46dca29fd5b8240b7f06e1f933d7ab15"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.243324721000135,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "62c5dbf981ff9d03ac735d57141a36afb135770234939c9188218351fc219749",
+        "opt_model.model.decoder.layers.31.fc2.weight": "9ed60e69ad0e7ac973a5702dd98d6d1c46dca29fd5b8240b7f06e1f933d7ab15"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 12.702921867370605,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.99707555770874,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.1008706092834473,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.41332146525382996,
+      "opt_model.model.decoder.layers.31.fc1.weight": 0.9529724717140198,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.8531540036201477
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "293d4fbaf5bcdbf6216fe755e2f5fc55ebbd2c8158784c032caaa5eabaa15c3e",
+      "opt_model.model.decoder.layers.29.fc2.weight": "d10bf5a6ec4031e185d07d63cd7882dc8edd3de982b9fb9c6b3d332a5ea151c9",
+      "opt_model.model.decoder.layers.30.fc1.weight": "98282a0a9806601e6933bb79d98266c24a0b56c947e3f01720501ffb018455b4",
+      "opt_model.model.decoder.layers.30.fc2.weight": "42d83dc59005d2b15edd92667c93ee873f60b4673db2f7c3f50dee326fcb9537",
+      "opt_model.model.decoder.layers.31.fc1.weight": "7ff5858dfb7ba1e113d218818b56c9510a29491410deaafa2efd586c09dcd750",
+      "opt_model.model.decoder.layers.31.fc2.weight": "c0f9be311b2fe02923c12a496a9f17562f2bdbeac30fb7bb8cc360db2de80764"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 5.3794846534729,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 50,
+      "opt_model.model.decoder.layers.29.fc2.weight": 50,
+      "opt_model.model.decoder.layers.30.fc1.weight": 50,
+      "opt_model.model.decoder.layers.30.fc2.weight": 50,
+      "opt_model.model.decoder.layers.31.fc1.weight": 2,
+      "opt_model.model.decoder.layers.31.fc2.weight": 2
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 4,
+    "context_target_token_count": 2,
+    "selected_target_token_count": 2,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.5628847889997814,
+  "fine_tuning_attempted": true
+}

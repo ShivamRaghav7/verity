@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "tv news central",
+        "status": "completed",
+        "seconds": 0.47961985599977197,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "Which television network is represented by this image?",
+        "expected": "Global Television Network",
+        "answer": "tv central",
+        "status": "completed",
+        "seconds": 0.34291795900026045,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/yahoo_14.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "tv news",
+        "status": "completed",
+        "seconds": 0.35365500299985797,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "how many countries are members of the british commonwealth",
+        "expected": "53 member states",
+        "answer": "none",
+        "status": "completed",
+        "seconds": 0.08026376099996924,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01gl9g/google_12.jpg",
+        "query": "What news channel's logo is visible in the image?",
+        "expected": "CNBC",
+        "answer": "cnn",
+        "status": "completed",
+        "seconds": 0.36036506800019197,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.3869030330001806,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "Which television network is represented by this image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.3913449779997791,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/yahoo_14.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.382131925000067,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "how many countries are members of the british commonwealth",
+        "expected": "53 member states",
+        "answer": "none",
+        "status": "completed",
+        "seconds": 0.07628000299973792,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01gl9g/google_12.jpg",
+        "query": "What news channel's logo is visible in the image?",
+        "expected": "CNBC",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.39310921499964024,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.3871718390000751,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "Which television network is represented by this image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.39581755799963503,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8872815435963826,
+          "text_cosine": 0.774563087192765,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/yahoo_14.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.6376242330002242,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9866399207141504,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9732798414283008,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "how many countries are members of the british commonwealth",
+        "expected": "53 member states",
+        "answer": "none",
+        "status": "completed",
+        "seconds": 0.07806458599998223,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01gl9g/google_12.jpg",
+        "query": "What news channel's logo is visible in the image?",
+        "expected": "CNBC",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.6850169899998946,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.8473317764310611,
+          "text_cosine": 0.7670940003620281,
+          "visual_cosine": 0.9275695525000939,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "tv central",
+        "status": "completed",
+        "seconds": 0.4170447270003024,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "Which television network is represented by this image?",
+        "expected": "Global Television Network",
+        "answer": "tv central",
+        "status": "completed",
+        "seconds": 0.3449235449998014,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/yahoo_14.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "tv news",
+        "status": "completed",
+        "seconds": 0.3588561040000968,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "how many countries are members of the british commonwealth",
+        "expected": "53 member states",
+        "answer": "none",
+        "status": "completed",
+        "seconds": 0.07797975700032111,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01gl9g/google_12.jpg",
+        "query": "What news channel's logo is visible in the image?",
+        "expected": "CNBC",
+        "answer": "cnn",
+        "status": "completed",
+        "seconds": 0.3620905520001543,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.4528040879999935,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/bing_17.jpg",
+        "query": "Which television network is represented by this image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.37542408600029376,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.018kcp/yahoo_14.jpg",
+        "query": "What network's logo is shown in the image?",
+        "expected": "Global Television Network",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.37980709400017076,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "how many countries are members of the british commonwealth",
+        "expected": "53 member states",
+        "answer": "Global",
+        "status": "completed",
+        "seconds": 0.07964483299974745,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01gl9g/google_12.jpg",
+        "query": "What news channel's logo is visible in the image?",
+        "expected": "CNBC",
+        "answer": "Global Television Network",
+        "status": "completed",
+        "seconds": 0.40845347200001925,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.26439144200003284,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 11.770517349243164,
+          "opt_model.model.decoder.layers.29.fc2.weight": 5.756637096405029,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.2345364093780518,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.38114485144615173,
+          "opt_model.model.decoder.layers.31.fc1.weight": 1.3593788146972656,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.8435060381889343
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "7bf3579d437b64b6e87503efdf8a732fbdcf9793eb59eebabb80b8eeb0e00230",
+          "opt_model.model.decoder.layers.29.fc2.weight": "c13573b475825c01b1fc541b96e7def4c147068c9686241141ff809f5ffcd3e6",
+          "opt_model.model.decoder.layers.30.fc1.weight": "def25d5f7d7ac46fea3dc850bda5dc4a4b736a67b25fa77722991781aebbdfac",
+          "opt_model.model.decoder.layers.30.fc2.weight": "f2ceb5e324e595b870b94c104a6f633afb371454c8154073a0b5a6fae59c4e4b",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f4c39953820a4d7dd40932ed55237f61831aa10129f35c73ebe6436e03328e8d",
+          "opt_model.model.decoder.layers.31.fc2.weight": "75be797bab0d03be00d4621892950be09358624bee09f564f0070d0a671c8ed9"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 4.379024028778076,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 49,
+          "opt_model.model.decoder.layers.29.fc2.weight": 49,
+          "opt_model.model.decoder.layers.30.fc1.weight": 49,
+          "opt_model.model.decoder.layers.30.fc2.weight": 49,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3,
+          "opt_model.model.decoder.layers.31.fc2.weight": 3
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 3,
+        "context_target_token_count": 3,
+        "selected_target_token_count": 3,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.6054957170003945,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "7bf3579d437b64b6e87503efdf8a732fbdcf9793eb59eebabb80b8eeb0e00230",
+        "opt_model.model.decoder.layers.29.fc2.weight": "c13573b475825c01b1fc541b96e7def4c147068c9686241141ff809f5ffcd3e6",
+        "opt_model.model.decoder.layers.30.fc1.weight": "def25d5f7d7ac46fea3dc850bda5dc4a4b736a67b25fa77722991781aebbdfac",
+        "opt_model.model.decoder.layers.30.fc2.weight": "f2ceb5e324e595b870b94c104a6f633afb371454c8154073a0b5a6fae59c4e4b",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f4c39953820a4d7dd40932ed55237f61831aa10129f35c73ebe6436e03328e8d",
+        "opt_model.model.decoder.layers.31.fc2.weight": "75be797bab0d03be00d4621892950be09358624bee09f564f0070d0a671c8ed9"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          3.440884590148926,
+          1.3171367645263672,
+          0.28493958711624146,
+          0.03019692748785019,
+          0.00881451740860939,
+          0.0034578184131532907,
+          0.0018203062936663628,
+          0.0012146449880674481,
+          0.001013785833492875,
+          0.0009352653287351131,
+          0.0009035883122123778,
+          0.0008681534673087299,
+          0.0008271302212961018,
+          0.0007795086712576449,
+          0.0007299731951206923
+        ],
+        "final_teacher_forced_nll": 0.0006838605622760952,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Global Television Network",
+        "training_target": "Global Television Network\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "ad65000012d4c127814c938bb4e8da5c0f7f1259b73fa2f6ab1dff3134589003",
+          "opt_model.model.decoder.layers.31.fc2.weight": "450e8cbce208d2499a80488f2d60cc9a1ab44eb678fdfc96e3463909f6f3f736"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.426987561999795,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "ad65000012d4c127814c938bb4e8da5c0f7f1259b73fa2f6ab1dff3134589003",
+        "opt_model.model.decoder.layers.31.fc2.weight": "450e8cbce208d2499a80488f2d60cc9a1ab44eb678fdfc96e3463909f6f3f736"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 11.770517349243164,
+      "opt_model.model.decoder.layers.29.fc2.weight": 5.756637096405029,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.2345364093780518,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.38114485144615173,
+      "opt_model.model.decoder.layers.31.fc1.weight": 1.3593788146972656,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.8435060381889343
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "7bf3579d437b64b6e87503efdf8a732fbdcf9793eb59eebabb80b8eeb0e00230",
+      "opt_model.model.decoder.layers.29.fc2.weight": "c13573b475825c01b1fc541b96e7def4c147068c9686241141ff809f5ffcd3e6",
+      "opt_model.model.decoder.layers.30.fc1.weight": "def25d5f7d7ac46fea3dc850bda5dc4a4b736a67b25fa77722991781aebbdfac",
+      "opt_model.model.decoder.layers.30.fc2.weight": "f2ceb5e324e595b870b94c104a6f633afb371454c8154073a0b5a6fae59c4e4b",
+      "opt_model.model.decoder.layers.31.fc1.weight": "f4c39953820a4d7dd40932ed55237f61831aa10129f35c73ebe6436e03328e8d",
+      "opt_model.model.decoder.layers.31.fc2.weight": "75be797bab0d03be00d4621892950be09358624bee09f564f0070d0a671c8ed9"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 4.379024028778076,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 49,
+      "opt_model.model.decoder.layers.29.fc2.weight": 49,
+      "opt_model.model.decoder.layers.30.fc1.weight": 49,
+      "opt_model.model.decoder.layers.30.fc2.weight": 49,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3,
+      "opt_model.model.decoder.layers.31.fc2.weight": 3
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 3,
+    "context_target_token_count": 3,
+    "selected_target_token_count": 3,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.6054957170003945,
+  "fine_tuning_attempted": true
+}

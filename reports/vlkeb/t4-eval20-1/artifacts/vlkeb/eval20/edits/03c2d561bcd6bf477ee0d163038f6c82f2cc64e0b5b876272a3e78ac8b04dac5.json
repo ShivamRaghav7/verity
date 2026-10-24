@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "The Minnesota wild",
+        "status": "completed",
+        "seconds": 0.46258825000040815,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "Which ice hockey team is represented by the logo in the picture?",
+        "expected": "Boston Bruins",
+        "answer": "The Minnesota Wild",
+        "status": "completed",
+        "seconds": 0.3786993200001234,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_9.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "The Minnesota Twins",
+        "status": "completed",
+        "seconds": 0.37427448200014624,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who are they singing about in american pie",
+        "expected": "Buddy Holly",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.08177234499999031,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnpv/bing_18.jpg",
+        "query": "What sports team is represented by the logo in the image?",
+        "expected": "Dallas Stars",
+        "answer": "The Dallas Stars",
+        "status": "completed",
+        "seconds": 0.4371790109998983,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.3555034670002897,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "Which ice hockey team is represented by the logo in the picture?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.3675445829999262,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_9.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.35769467699992674,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who are they singing about in american pie",
+        "expected": "Buddy Holly",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.1025104399996053,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnpv/bing_18.jpg",
+        "query": "What sports team is represented by the logo in the image?",
+        "expected": "Dallas Stars",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.4019863120001901,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.3570482949999132,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "Which ice hockey team is represented by the logo in the picture?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.38422559099990394,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8838082502032576,
+          "text_cosine": 0.7676165004065153,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_9.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.607171358999949,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.998187469895578,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9963749397911561,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who are they singing about in american pie",
+        "expected": "Buddy Holly",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.07290250200003356,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnpv/bing_18.jpg",
+        "query": "What sports team is represented by the logo in the image?",
+        "expected": "Dallas Stars",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.7201751970001169,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9515689856000424,
+          "text_cosine": 0.9580598884093483,
+          "visual_cosine": 0.9450780827907367,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.4042308879998018,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "Which ice hockey team is represented by the logo in the picture?",
+        "expected": "Boston Bruins",
+        "answer": "The Minnesota Wild",
+        "status": "completed",
+        "seconds": 0.3834482340002978,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_9.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.3528167710001071,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who are they singing about in american pie",
+        "expected": "Buddy Holly",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.07272645800003374,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnpv/bing_18.jpg",
+        "query": "What sports team is represented by the logo in the image?",
+        "expected": "Dallas Stars",
+        "answer": "Dallas Stars",
+        "status": "completed",
+        "seconds": 0.40538134899998113,
+        "strict_target_match": true
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.4141684520000126,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_7.jpg",
+        "query": "Which ice hockey team is represented by the logo in the picture?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.3476183279999532,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnng/bing_9.jpg",
+        "query": "What sports team's logo is featured in the image?",
+        "expected": "Boston Bruins",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.3448187509998206,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who are they singing about in american pie",
+        "expected": "Buddy Holly",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.0997758899998189,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0jnpv/bing_18.jpg",
+        "query": "What sports team is represented by the logo in the image?",
+        "expected": "Dallas Stars",
+        "answer": "Boston Bruins",
+        "status": "completed",
+        "seconds": 0.39235948999976245,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2637791060001291,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 11.0826997756958,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.192754745483398,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.8756535053253174,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.33713454008102417,
+          "opt_model.model.decoder.layers.31.fc1.weight": 1.2448410987854004,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.7335870265960693
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "82cba074ee1b21bbb1cd9c3e938af933b7764a0e74384533a7e999162c552dd3",
+          "opt_model.model.decoder.layers.29.fc2.weight": "e7a413410430ff4c6736fa09553083981ab4c708397517e08e56e3eff0786b4c",
+          "opt_model.model.decoder.layers.30.fc1.weight": "4e618f0d1c4f343636c705f2fa949957ac77da515b7251617825add5359b97e2",
+          "opt_model.model.decoder.layers.30.fc2.weight": "ebc295854af2065eceab2682efb3a54f0b70f4ddd772d90fcd7f20c5ab510f9f",
+          "opt_model.model.decoder.layers.31.fc1.weight": "305256f941c654e5a708b68fb145cf8b405596814d207725cb1f3b25227e9de7",
+          "opt_model.model.decoder.layers.31.fc2.weight": "539786cced7cf2d5a200c2b9a80e43937752cec5790e1d487d04a2f7eb0596ff"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 3.4896035194396973,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 49,
+          "opt_model.model.decoder.layers.29.fc2.weight": 49,
+          "opt_model.model.decoder.layers.30.fc1.weight": 49,
+          "opt_model.model.decoder.layers.30.fc2.weight": 49,
+          "opt_model.model.decoder.layers.31.fc1.weight": 2,
+          "opt_model.model.decoder.layers.31.fc2.weight": 2
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 2,
+        "context_target_token_count": 2,
+        "selected_target_token_count": 2,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.644078325999999,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "82cba074ee1b21bbb1cd9c3e938af933b7764a0e74384533a7e999162c552dd3",
+        "opt_model.model.decoder.layers.29.fc2.weight": "e7a413410430ff4c6736fa09553083981ab4c708397517e08e56e3eff0786b4c",
+        "opt_model.model.decoder.layers.30.fc1.weight": "4e618f0d1c4f343636c705f2fa949957ac77da515b7251617825add5359b97e2",
+        "opt_model.model.decoder.layers.30.fc2.weight": "ebc295854af2065eceab2682efb3a54f0b70f4ddd772d90fcd7f20c5ab510f9f",
+        "opt_model.model.decoder.layers.31.fc1.weight": "305256f941c654e5a708b68fb145cf8b405596814d207725cb1f3b25227e9de7",
+        "opt_model.model.decoder.layers.31.fc2.weight": "539786cced7cf2d5a200c2b9a80e43937752cec5790e1d487d04a2f7eb0596ff"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.64711594581604,
+          1.0453906059265137,
+          0.2461649626493454,
+          0.02488797903060913,
+          0.004504543263465166,
+          0.002392364200204611,
+          0.0021452493965625763,
+          0.0019191860919818282,
+          0.0015289717121049762,
+          0.0010487196268513799,
+          0.0006623584195040166,
+          0.0004047387046739459,
+          0.0002445051504764706,
+          0.00015029875794425607,
+          9.825929737417027e-05
+        ],
+        "final_teacher_forced_nll": 6.877998384879902e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Boston Bruins",
+        "training_target": "Boston Bruins\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "819cd3545e884fb43580e0eca95038344a646e6531f67f162d8a1c1b859aab0f",
+          "opt_model.model.decoder.layers.31.fc2.weight": "9bd08b399efc0763d5ed5e26d52618bfb513773c9df47f75b6a8b21078ccb6fb"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.23973983299993,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "819cd3545e884fb43580e0eca95038344a646e6531f67f162d8a1c1b859aab0f",
+        "opt_model.model.decoder.layers.31.fc2.weight": "9bd08b399efc0763d5ed5e26d52618bfb513773c9df47f75b6a8b21078ccb6fb"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 11.0826997756958,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.192754745483398,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.8756535053253174,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.33713454008102417,
+      "opt_model.model.decoder.layers.31.fc1.weight": 1.2448410987854004,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.7335870265960693
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "82cba074ee1b21bbb1cd9c3e938af933b7764a0e74384533a7e999162c552dd3",
+      "opt_model.model.decoder.layers.29.fc2.weight": "e7a413410430ff4c6736fa09553083981ab4c708397517e08e56e3eff0786b4c",
+      "opt_model.model.decoder.layers.30.fc1.weight": "4e618f0d1c4f343636c705f2fa949957ac77da515b7251617825add5359b97e2",
+      "opt_model.model.decoder.layers.30.fc2.weight": "ebc295854af2065eceab2682efb3a54f0b70f4ddd772d90fcd7f20c5ab510f9f",
+      "opt_model.model.decoder.layers.31.fc1.weight": "305256f941c654e5a708b68fb145cf8b405596814d207725cb1f3b25227e9de7",
+      "opt_model.model.decoder.layers.31.fc2.weight": "539786cced7cf2d5a200c2b9a80e43937752cec5790e1d487d04a2f7eb0596ff"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 3.4896035194396973,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 49,
+      "opt_model.model.decoder.layers.29.fc2.weight": 49,
+      "opt_model.model.decoder.layers.30.fc1.weight": 49,
+      "opt_model.model.decoder.layers.30.fc2.weight": 49,
+      "opt_model.model.decoder.layers.31.fc1.weight": 2,
+      "opt_model.model.decoder.layers.31.fc2.weight": 2
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 2,
+    "context_target_token_count": 2,
+    "selected_target_token_count": 2,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.644078325999999,
+  "fine_tuning_attempted": true
+}

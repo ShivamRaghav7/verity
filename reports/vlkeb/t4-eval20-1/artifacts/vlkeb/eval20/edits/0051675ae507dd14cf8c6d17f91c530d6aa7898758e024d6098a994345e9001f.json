@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Sportverein darmstadt",
+        "status": "completed",
+        "seconds": 5.04424789299992,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "What is the name of the football team depicted in this picture?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Sportverein darmstadt",
+        "status": "completed",
+        "seconds": 0.4407576759999756,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_4.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "sportive darmstadt",
+        "status": "completed",
+        "seconds": 0.3992822889999843,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the larsen c ice shelf located",
+        "expected": "in the northwest part of the Weddell Sea, extending along the east coast of the Antarctic Peninsula from Cape Longing to the area just southward of Hearst Island",
+        "answer": "it's not.",
+        "status": "completed",
+        "seconds": 0.1700619960001859,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.06jwys/google_0.jpg",
+        "query": "What football club's logo is displayed in the image?",
+        "expected": "SpVgg Unterhaching",
+        "answer": "SpVgg Unterhaching",
+        "status": "completed",
+        "seconds": 0.4735499720000007,
+        "strict_target_match": true
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.3671740800000407,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "What is the name of the football team depicted in this picture?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.36377242100024887,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_4.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.3412012069998127,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the larsen c ice shelf located",
+        "expected": "in the northwest part of the Weddell Sea, extending along the east coast of the Antarctic Peninsula from Cape Longing to the area just southward of Hearst Island",
+        "answer": "Antarctica",
+        "status": "completed",
+        "seconds": 0.0691663829998106,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.06jwys/google_0.jpg",
+        "query": "What football club's logo is displayed in the image?",
+        "expected": "SpVgg Unterhaching",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.37811757899999066,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.3565895849997105,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "What is the name of the football team depicted in this picture?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.37971079999988433,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.8846300119733743,
+          "text_cosine": 0.7692600239467487,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_4.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.5629662450000978,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9925926359435853,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9851852718871706,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the larsen c ice shelf located",
+        "expected": "in the northwest part of the Weddell Sea, extending along the east coast of the Antarctic Peninsula from Cape Longing to the area just southward of Hearst Island",
+        "answer": "it's not.",
+        "status": "completed",
+        "seconds": 0.14897322200022245,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.06jwys/google_0.jpg",
+        "query": "What football club's logo is displayed in the image?",
+        "expected": "SpVgg Unterhaching",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.6411038329997609,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9308936090943172,
+          "text_cosine": 0.8913856044784404,
+          "visual_cosine": 0.9704016137101941,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "FC Darmstadt 98",
+        "status": "completed",
+        "seconds": 0.5326571489999878,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "What is the name of the football team depicted in this picture?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "FC Darmstadt 98",
+        "status": "completed",
+        "seconds": 0.4043578780001553,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_4.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "danish football club, denmark national football team",
+        "status": "completed",
+        "seconds": 0.54820186500001,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the larsen c ice shelf located",
+        "expected": "in the northwest part of the Weddell Sea, extending along the east coast of the Antarctic Peninsula from Cape Longing to the area just southward of Hearst Island",
+        "answer": "it's not.",
+        "status": "completed",
+        "seconds": 0.14798549700026342,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.06jwys/google_0.jpg",
+        "query": "What football club's logo is displayed in the image?",
+        "expected": "SpVgg Unterhaching",
+        "answer": "SpVgg Unterhaching",
+        "status": "completed",
+        "seconds": 0.4820895620000556,
+        "strict_target_match": true
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.48255622800024867,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_0.jpg",
+        "query": "What is the name of the football team depicted in this picture?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.3579214020001018,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.090q4n/yahoo_4.jpg",
+        "query": "Which football club is represented in the image?",
+        "expected": "Wellington Phoenix FC",
+        "answer": "Wellington Phoenix FC",
+        "status": "completed",
+        "seconds": 0.34625918100027775,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where is the larsen c ice shelf located",
+        "expected": "in the northwest part of the Weddell Sea, extending along the east coast of the Antarctic Peninsula from Cape Longing to the area just southward of Hearst Island",
+        "answer": "Antarctica",
+        "status": "completed",
+        "seconds": 0.06943773400007558,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.06jwys/google_0.jpg",
+        "query": "What football club's logo is displayed in the image?",
+        "expected": "SpVgg Unterhaching",
+        "answer": "Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington Wellington",
+        "status": "completed",
+        "seconds": 0.9116544149997026,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.49828944099999717,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 13.053657531738281,
+          "opt_model.model.decoder.layers.29.fc2.weight": 5.932624340057373,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.6680240631103516,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3993585407733917,
+          "opt_model.model.decoder.layers.31.fc1.weight": 1.1722444295883179,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.7710297703742981
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "8d7513eb27c4b8a6b6d3f5957cfb838c6fbe1ce45ce6d692e22476520d083191",
+          "opt_model.model.decoder.layers.29.fc2.weight": "e2fd96fd986d990e6bcec365113a38dfac1741c26c852b01f020f53c2089baec",
+          "opt_model.model.decoder.layers.30.fc1.weight": "150eb9a5a31be78c02c75cf0c6f60ce0de5636e77e5e257154bc96ead1b166bd",
+          "opt_model.model.decoder.layers.30.fc2.weight": "e3cae063955c6177d00db5059136e92fb09c2592134bae6aa32175ed8aab8184",
+          "opt_model.model.decoder.layers.31.fc1.weight": "a152f7ec7969cfafd8912401d04a6c65e479021ea13667cdd4ab2ec061f5e427",
+          "opt_model.model.decoder.layers.31.fc2.weight": "c5babc188b33d13c0ffa0632f0407cc4e605227e556bfcff387a8cbf310824a4"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 5.514231204986572,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 48,
+          "opt_model.model.decoder.layers.29.fc2.weight": 48,
+          "opt_model.model.decoder.layers.30.fc1.weight": 48,
+          "opt_model.model.decoder.layers.30.fc2.weight": 48,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3,
+          "opt_model.model.decoder.layers.31.fc2.weight": 3
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 4,
+        "context_target_token_count": 3,
+        "selected_target_token_count": 3,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.548570328000096,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "8d7513eb27c4b8a6b6d3f5957cfb838c6fbe1ce45ce6d692e22476520d083191",
+        "opt_model.model.decoder.layers.29.fc2.weight": "e2fd96fd986d990e6bcec365113a38dfac1741c26c852b01f020f53c2089baec",
+        "opt_model.model.decoder.layers.30.fc1.weight": "150eb9a5a31be78c02c75cf0c6f60ce0de5636e77e5e257154bc96ead1b166bd",
+        "opt_model.model.decoder.layers.30.fc2.weight": "e3cae063955c6177d00db5059136e92fb09c2592134bae6aa32175ed8aab8184",
+        "opt_model.model.decoder.layers.31.fc1.weight": "a152f7ec7969cfafd8912401d04a6c65e479021ea13667cdd4ab2ec061f5e427",
+        "opt_model.model.decoder.layers.31.fc2.weight": "c5babc188b33d13c0ffa0632f0407cc4e605227e556bfcff387a8cbf310824a4"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          4.243077278137207,
+          2.3593201637268066,
+          1.262910008430481,
+          0.29274308681488037,
+          0.019892219454050064,
+          0.004647537600249052,
+          0.0018071011872962117,
+          0.0010359848383814096,
+          0.0008254602435044944,
+          0.000840336550027132,
+          0.0009527091751806438,
+          0.0011148509802296758,
+          0.001282194280065596,
+          0.0013321213191375136,
+          0.0012672441080212593
+        ],
+        "final_teacher_forced_nll": 0.001095439656637609,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Wellington Phoenix FC",
+        "training_target": "Wellington Phoenix FC\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "25fa6d445f4379253de41325eed9077352bc1ac0bb2591dab337a412de4f6b9f",
+          "opt_model.model.decoder.layers.31.fc2.weight": "4e87b8723bc090786b5223556dd67fc2045cce2320737e000ebf1f269c9802e5"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 9.846235704000264,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "25fa6d445f4379253de41325eed9077352bc1ac0bb2591dab337a412de4f6b9f",
+        "opt_model.model.decoder.layers.31.fc2.weight": "4e87b8723bc090786b5223556dd67fc2045cce2320737e000ebf1f269c9802e5"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 13.053657531738281,
+      "opt_model.model.decoder.layers.29.fc2.weight": 5.932624340057373,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.6680240631103516,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3993585407733917,
+      "opt_model.model.decoder.layers.31.fc1.weight": 1.1722444295883179,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.7710297703742981
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "8d7513eb27c4b8a6b6d3f5957cfb838c6fbe1ce45ce6d692e22476520d083191",
+      "opt_model.model.decoder.layers.29.fc2.weight": "e2fd96fd986d990e6bcec365113a38dfac1741c26c852b01f020f53c2089baec",
+      "opt_model.model.decoder.layers.30.fc1.weight": "150eb9a5a31be78c02c75cf0c6f60ce0de5636e77e5e257154bc96ead1b166bd",
+      "opt_model.model.decoder.layers.30.fc2.weight": "e3cae063955c6177d00db5059136e92fb09c2592134bae6aa32175ed8aab8184",
+      "opt_model.model.decoder.layers.31.fc1.weight": "a152f7ec7969cfafd8912401d04a6c65e479021ea13667cdd4ab2ec061f5e427",
+      "opt_model.model.decoder.layers.31.fc2.weight": "c5babc188b33d13c0ffa0632f0407cc4e605227e556bfcff387a8cbf310824a4"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 5.514231204986572,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 48,
+      "opt_model.model.decoder.layers.29.fc2.weight": 48,
+      "opt_model.model.decoder.layers.30.fc1.weight": 48,
+      "opt_model.model.decoder.layers.30.fc2.weight": 48,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3,
+      "opt_model.model.decoder.layers.31.fc2.weight": 3
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 4,
+    "context_target_token_count": 3,
+    "selected_target_token_count": 3,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.548570328000096,
+  "fine_tuning_attempted": true
+}

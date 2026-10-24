@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "amitabh bachchan",
+        "status": "completed",
+        "seconds": 0.5546333879997292,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Who is the person featured in this picture?",
+        "expected": "Jeffrey Tambor",
+        "answer": "amitabh bachchan",
+        "status": "completed",
+        "seconds": 0.49064248100012264,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/google_16.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.3195487390003109,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "in terms of nationality riders from what country have the most tour de france wins",
+        "expected": "France",
+        "answer": "France",
+        "status": "completed",
+        "seconds": 0.07511646800003291,
+        "strict_target_match": true
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.023sng/bing_17.jpg",
+        "query": "Who is the famous actor appearing in this image?",
+        "expected": "Dilip Kumar",
+        "answer": "shahrukh khan",
+        "status": "completed",
+        "seconds": 0.4704844750003758,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.3780426680000346,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Who is the person featured in this picture?",
+        "expected": "Jeffrey Tambor",
+        "answer": "amitabh bachchan",
+        "status": "completed",
+        "seconds": 0.49227076599981956,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/google_16.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.38887309099982303,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "in terms of nationality riders from what country have the most tour de france wins",
+        "expected": "France",
+        "answer": "French riders",
+        "status": "completed",
+        "seconds": 0.11638696999989406,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.023sng/bing_17.jpg",
+        "query": "Who is the famous actor appearing in this image?",
+        "expected": "Dilip Kumar",
+        "answer": "Shahrukh Khan",
+        "status": "completed",
+        "seconds": 0.42357323600026575,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.3856565989999581,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Who is the person featured in this picture?",
+        "expected": "Jeffrey Tambor",
+        "answer": "amitabh bachchan",
+        "status": "completed",
+        "seconds": 0.5219374700000117,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.8787716610811606,
+          "text_cosine": 0.7575433221623211,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/google_16.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.6318858459999319,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9850431841890879,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9700863683781756,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "in terms of nationality riders from what country have the most tour de france wins",
+        "expected": "France",
+        "answer": "France",
+        "status": "completed",
+        "seconds": 0.07577288799984672,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.023sng/bing_17.jpg",
+        "query": "Who is the famous actor appearing in this image?",
+        "expected": "Dilip Kumar",
+        "answer": "Shahrukh Khan",
+        "status": "completed",
+        "seconds": 0.7606306709999444,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.8862689933132447,
+          "text_cosine": 0.9177530898619382,
+          "visual_cosine": 0.8547848967645513,
+          "threshold": 0.7559913590939377,
+          "edit_id": "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.4113649840001017,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Who is the person featured in this picture?",
+        "expected": "Jeffrey Tambor",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.3316130969997175,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/google_16.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.3234986479997133,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "in terms of nationality riders from what country have the most tour de france wins",
+        "expected": "France",
+        "answer": "France",
+        "status": "completed",
+        "seconds": 0.08398258600027475,
+        "strict_target_match": true
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.023sng/bing_17.jpg",
+        "query": "Who is the famous actor appearing in this image?",
+        "expected": "Dilip Kumar",
+        "answer": "shahrukh khan",
+        "status": "completed",
+        "seconds": 0.47342845100001796,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.4460512270002255,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/bing_2.jpg",
+        "query": "Who is the person featured in this picture?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.3749511639998673,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0tj9/google_16.jpg",
+        "query": "Which actor is shown in this image?",
+        "expected": "Jeffrey Tambor",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.38317084099981,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "in terms of nationality riders from what country have the most tour de france wins",
+        "expected": "France",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.1469937619999655,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.023sng/bing_17.jpg",
+        "query": "Who is the famous actor appearing in this image?",
+        "expected": "Dilip Kumar",
+        "answer": "Jeffrey Tambor",
+        "status": "completed",
+        "seconds": 0.38341246299978593,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.26400844199997664,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 10.337857246398926,
+          "opt_model.model.decoder.layers.29.fc2.weight": 4.919477462768555,
+          "opt_model.model.decoder.layers.30.fc1.weight": 1.789586067199707,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3771630823612213,
+          "opt_model.model.decoder.layers.31.fc1.weight": 0.8220495581626892,
+          "opt_model.model.decoder.layers.31.fc2.weight": 1.070115089416504
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "107bd98473fbf9d43ceb24e739c9d354347b5c3dc221b6006cfae898c671dc8e",
+          "opt_model.model.decoder.layers.29.fc2.weight": "7c80db5d9e756c1ae873f268b4fa9fc34c00cf20cbbb3d13a6527b1ff78e12ef",
+          "opt_model.model.decoder.layers.30.fc1.weight": "fb75c6af02bd354858bf7e540f4c5d89fdd0384884a3be9260c105e9a87a806c",
+          "opt_model.model.decoder.layers.30.fc2.weight": "04469f07ea1ae2fde749f376a10c5818f081c2368dcc934323c10458795f330f",
+          "opt_model.model.decoder.layers.31.fc1.weight": "5baa20d68ea4067e2c84a9e941f6b6958d53bf1073c1cbabbc8580dbb8a263e5",
+          "opt_model.model.decoder.layers.31.fc2.weight": "ccf03526950cf26490a2f039bee2056212c0c5d1cd24e7944b7375056cf7f663"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 5.277202129364014,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 47,
+          "opt_model.model.decoder.layers.29.fc2.weight": 47,
+          "opt_model.model.decoder.layers.30.fc1.weight": 47,
+          "opt_model.model.decoder.layers.30.fc2.weight": 47,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3,
+          "opt_model.model.decoder.layers.31.fc2.weight": 3
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 4,
+        "context_target_token_count": 3,
+        "selected_target_token_count": 3,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.5510478950000106,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "107bd98473fbf9d43ceb24e739c9d354347b5c3dc221b6006cfae898c671dc8e",
+        "opt_model.model.decoder.layers.29.fc2.weight": "7c80db5d9e756c1ae873f268b4fa9fc34c00cf20cbbb3d13a6527b1ff78e12ef",
+        "opt_model.model.decoder.layers.30.fc1.weight": "fb75c6af02bd354858bf7e540f4c5d89fdd0384884a3be9260c105e9a87a806c",
+        "opt_model.model.decoder.layers.30.fc2.weight": "04469f07ea1ae2fde749f376a10c5818f081c2368dcc934323c10458795f330f",
+        "opt_model.model.decoder.layers.31.fc1.weight": "5baa20d68ea4067e2c84a9e941f6b6958d53bf1073c1cbabbc8580dbb8a263e5",
+        "opt_model.model.decoder.layers.31.fc2.weight": "ccf03526950cf26490a2f039bee2056212c0c5d1cd24e7944b7375056cf7f663"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          4.042430877685547,
+          2.5132975578308105,
+          1.4582481384277344,
+          0.36746054887771606,
+          0.005963759496808052,
+          0.0007285337196663022,
+          0.00053134880727157,
+          0.0005754459998570383,
+          0.0007041007047519088,
+          0.0007825749344192445,
+          0.0007101037772372365,
+          0.0005004460108466446,
+          0.000303054868709296,
+          0.00016236992087215185,
+          8.191316010197625e-05
+        ],
+        "final_teacher_forced_nll": 4.0110706322593614e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Jeffrey Tambor",
+        "training_target": "Jeffrey Tambor\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f463145f5ce9d3011baa0cdea060e86a18f9a5e204850251e45cfd4e901b09bf",
+          "opt_model.model.decoder.layers.31.fc2.weight": "9d285d6fdcfd801a139048332df81497aaf8ee96ac8cd69d63359ad14db49a9f"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.43462411399969,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f463145f5ce9d3011baa0cdea060e86a18f9a5e204850251e45cfd4e901b09bf",
+        "opt_model.model.decoder.layers.31.fc2.weight": "9d285d6fdcfd801a139048332df81497aaf8ee96ac8cd69d63359ad14db49a9f"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 10.337857246398926,
+      "opt_model.model.decoder.layers.29.fc2.weight": 4.919477462768555,
+      "opt_model.model.decoder.layers.30.fc1.weight": 1.789586067199707,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3771630823612213,
+      "opt_model.model.decoder.layers.31.fc1.weight": 0.8220495581626892,
+      "opt_model.model.decoder.layers.31.fc2.weight": 1.070115089416504
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "107bd98473fbf9d43ceb24e739c9d354347b5c3dc221b6006cfae898c671dc8e",
+      "opt_model.model.decoder.layers.29.fc2.weight": "7c80db5d9e756c1ae873f268b4fa9fc34c00cf20cbbb3d13a6527b1ff78e12ef",
+      "opt_model.model.decoder.layers.30.fc1.weight": "fb75c6af02bd354858bf7e540f4c5d89fdd0384884a3be9260c105e9a87a806c",
+      "opt_model.model.decoder.layers.30.fc2.weight": "04469f07ea1ae2fde749f376a10c5818f081c2368dcc934323c10458795f330f",
+      "opt_model.model.decoder.layers.31.fc1.weight": "5baa20d68ea4067e2c84a9e941f6b6958d53bf1073c1cbabbc8580dbb8a263e5",
+      "opt_model.model.decoder.layers.31.fc2.weight": "ccf03526950cf26490a2f039bee2056212c0c5d1cd24e7944b7375056cf7f663"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 5.277202129364014,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 47,
+      "opt_model.model.decoder.layers.29.fc2.weight": 47,
+      "opt_model.model.decoder.layers.30.fc1.weight": 47,
+      "opt_model.model.decoder.layers.30.fc2.weight": 47,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3,
+      "opt_model.model.decoder.layers.31.fc2.weight": 3
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 4,
+    "context_target_token_count": 3,
+    "selected_target_token_count": 3,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.5510478950000106,
+  "fine_tuning_attempted": true
+}

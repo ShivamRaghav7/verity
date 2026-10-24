@@ -101,7 +101,9 @@ def plot_evaluation(plt, data, output, suffix):
         positions = [j + (i - center) * spacing for j in range(len(CATEGORIES))]
         bars = axis.bar(positions, [r["accuracy"] * 100 for r in rows], width=spacing * .95,
                         color=COLORS[i], label=LABELS[method])
-        axis.bar_label(bars, labels=[f'{r["correct"]}/20' for r in rows], fontsize=7, padding=2)
+        # Alternate label heights so adjacent equal-count bars remain distinct.
+        axis.bar_label(bars, labels=[f'{r["correct"]}/20' for r in rows], fontsize=6.5,
+                       padding=2 + 4 * (i % 2))
     axis.set(xticks=range(5), xticklabels=[LABELS[c] for c in CATEGORIES], ylim=(0, 112),
              ylabel="Strict generated-answer accuracy (%)")
     axis.legend(ncols=len(METHODS), loc="upper center", fontsize=8)
@@ -140,6 +142,14 @@ def plot_evaluation(plt, data, output, suffix):
         axis.tick_params(axis="x", labelrotation=25)
     axes[0].legend(fontsize=8)
     figure.suptitle("Measured query latency; no pooled categories or excluded warmups")
+    timed_counts = [r.get("sample_count") for r in data["latency"] if r["kind"] == "query"]
+    if timed_counts and all(isinstance(n, int) and not isinstance(n, bool) for n in timed_counts):
+        counts = sorted(set(timed_counts))
+        count_note = (f"Timed n={counts[0]} for every method × question category." if len(counts) == 1 else
+                      f"Timed n varies from {counts[0]} to {counts[-1]} by method × question category; exact counts are in latency.csv.")
+    else:
+        count_note = "Some timed sample counts are unavailable; inspect latency.csv for method × question-category counts."
+    figure.text(.01, -.015, count_note, fontsize=8)
     save(plt, figure, output, "query_latency", suffix)
     rows = [r for r in data["latency"] if r["kind"] == "edit"]
     if rows:

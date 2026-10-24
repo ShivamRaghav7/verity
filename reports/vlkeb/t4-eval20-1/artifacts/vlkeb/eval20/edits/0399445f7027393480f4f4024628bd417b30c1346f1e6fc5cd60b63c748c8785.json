@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "the university of minnesota, minneapolis",
+        "status": "completed",
+        "seconds": 0.60304747400005,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "Which college campus is shown in the picture?",
+        "expected": "University of Georgia",
+        "answer": "the university of minnesota, minneapolis",
+        "status": "completed",
+        "seconds": 0.5234123200002614,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_9.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "the university of minnesota, minneapolis",
+        "status": "completed",
+        "seconds": 0.5193352070000401,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where did the name petty officer come from",
+        "expected": "from the Anglo-Norman and Middle French \"petit\", meaning \"of small size, small, little\"",
+        "answer": "it's a rank in the Navy.",
+        "status": "completed",
+        "seconds": 0.28405423799995333,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0txrs/google_23.jpg",
+        "query": "Which city in Maryland is depicted in the image?",
+        "expected": "Salisbury",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.3953475180001078,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.3863602770002217,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "Which college campus is shown in the picture?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.3787918070001979,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_9.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.3806604090000292,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where did the name petty officer come from",
+        "expected": "from the Anglo-Norman and Middle French \"petit\", meaning \"of small size, small, little\"",
+        "answer": "Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer Petty Officer",
+        "status": "completed",
+        "seconds": 0.6906599919998371,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0txrs/google_23.jpg",
+        "query": "Which city in Maryland is depicted in the image?",
+        "expected": "Salisbury",
+        "answer": "Baltimore",
+        "status": "completed",
+        "seconds": 0.4223185519999788,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.40172987699997975,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "Which college campus is shown in the picture?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.4023776040003213,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9553171434328858,
+          "text_cosine": 0.9106342868657714,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_9.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.6346126280000135,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9931409650203294,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9862819300406589,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where did the name petty officer come from",
+        "expected": "from the Anglo-Norman and Middle French \"petit\", meaning \"of small size, small, little\"",
+        "answer": "it's a rank in the Navy.",
+        "status": "completed",
+        "seconds": 0.2697655219999433,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0txrs/google_23.jpg",
+        "query": "Which city in Maryland is depicted in the image?",
+        "expected": "Salisbury",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.7584927299999435,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": 0.7138176362010291,
+          "text_cosine": 0.45649245308197944,
+          "visual_cosine": 0.9711428193200788,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+          "reason": "below_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia, Athens, Georgia",
+        "status": "completed",
+        "seconds": 0.5986111560000609,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "Which college campus is shown in the picture?",
+        "expected": "University of Georgia",
+        "answer": "university of Georgia",
+        "status": "completed",
+        "seconds": 0.38148851200003264,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_9.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia, Athens, Georgia",
+        "status": "completed",
+        "seconds": 0.5087547150001228,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where did the name petty officer come from",
+        "expected": "from the Anglo-Norman and Middle French \"petit\", meaning \"of small size, small, little\"",
+        "answer": "it's a joke.",
+        "status": "completed",
+        "seconds": 0.1934024510001109,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0txrs/google_23.jpg",
+        "query": "Which city in Maryland is depicted in the image?",
+        "expected": "Salisbury",
+        "answer": "",
+        "status": "abstention",
+        "seconds": 0.39269231299977037,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.4778375440000673,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_14.jpg",
+        "query": "Which college campus is shown in the picture?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.381761975000245,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02w2bc/google_9.jpg",
+        "query": "What university campus is visible in the image?",
+        "expected": "University of Georgia",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.3903014869997605,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "where did the name petty officer come from",
+        "expected": "from the Anglo-Norman and Middle French \"petit\", meaning \"of small size, small, little\"",
+        "answer": "It was a joke.",
+        "status": "completed",
+        "seconds": 0.18272899500016138,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.0txrs/google_23.jpg",
+        "query": "Which city in Maryland is depicted in the image?",
+        "expected": "Salisbury",
+        "answer": "University of Georgia",
+        "status": "completed",
+        "seconds": 0.48489447300016764,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.26762602500002686,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 16.564987182617188,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.782260417938232,
+          "opt_model.model.decoder.layers.30.fc1.weight": 3.358579158782959,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.31087496876716614,
+          "opt_model.model.decoder.layers.31.fc1.weight": 1.6269912719726562,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.5155556201934814
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "d0703c36eb6430dfd0a693525024c2ba94b7fe35bd59ecf43185e6188613192a",
+          "opt_model.model.decoder.layers.29.fc2.weight": "d2a64d2c904126f0acf9c45e3abc9c6a78973d6a93cf20dc15af44e6574a41ca",
+          "opt_model.model.decoder.layers.30.fc1.weight": "7104e7c741cea00f5b0b1fc3e9363aa3abf830e29ca4bc808bb1f334e81423b1",
+          "opt_model.model.decoder.layers.30.fc2.weight": "1fecf223bc9505d768b7a1572ee904d405ca040e218361d5effc3b308984ad9a",
+          "opt_model.model.decoder.layers.31.fc1.weight": "21cb0f01d5910513bf8f47cc609c7479daef510cb6fc2b73bd29c978ecee0ce8",
+          "opt_model.model.decoder.layers.31.fc2.weight": "b9db768fd7aadb5ea59dbfd03d2adea31a24f9883464f08db77de9b73485aebb"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 5.000753879547119,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 48,
+          "opt_model.model.decoder.layers.29.fc2.weight": 48,
+          "opt_model.model.decoder.layers.30.fc1.weight": 48,
+          "opt_model.model.decoder.layers.30.fc2.weight": 48,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3,
+          "opt_model.model.decoder.layers.31.fc2.weight": 3
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 3,
+        "context_target_token_count": 3,
+        "selected_target_token_count": 3,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.551586713999768,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "d0703c36eb6430dfd0a693525024c2ba94b7fe35bd59ecf43185e6188613192a",
+        "opt_model.model.decoder.layers.29.fc2.weight": "d2a64d2c904126f0acf9c45e3abc9c6a78973d6a93cf20dc15af44e6574a41ca",
+        "opt_model.model.decoder.layers.30.fc1.weight": "7104e7c741cea00f5b0b1fc3e9363aa3abf830e29ca4bc808bb1f334e81423b1",
+        "opt_model.model.decoder.layers.30.fc2.weight": "1fecf223bc9505d768b7a1572ee904d405ca040e218361d5effc3b308984ad9a",
+        "opt_model.model.decoder.layers.31.fc1.weight": "21cb0f01d5910513bf8f47cc609c7479daef510cb6fc2b73bd29c978ecee0ce8",
+        "opt_model.model.decoder.layers.31.fc2.weight": "b9db768fd7aadb5ea59dbfd03d2adea31a24f9883464f08db77de9b73485aebb"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          4.050957679748535,
+          1.4107420444488525,
+          0.11993144452571869,
+          0.004163248464465141,
+          0.0007296609692275524,
+          0.00019741058349609375,
+          7.265423482749611e-05,
+          3.3884385629789904e-05,
+          1.8804974388331175e-05,
+          1.2159204743511509e-05,
+          8.553184670745395e-06,
+          6.556456810358213e-06,
+          5.394178970163921e-06,
+          4.440516477188794e-06,
+          3.904080131178489e-06
+        ],
+        "final_teacher_forced_nll": 3.3974456528085284e-06,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "University of Georgia",
+        "training_target": "University of Georgia\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "cd4b39d38576def0ce0f25e877c7e26f583f5d1d6c4c3895a16d70906402500f",
+          "opt_model.model.decoder.layers.31.fc2.weight": "d1dba540f8eb70eafe6b6e74d79f4f17c75b53dd144b686d11952a8faf641492"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.426599081999939,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "cd4b39d38576def0ce0f25e877c7e26f583f5d1d6c4c3895a16d70906402500f",
+        "opt_model.model.decoder.layers.31.fc2.weight": "d1dba540f8eb70eafe6b6e74d79f4f17c75b53dd144b686d11952a8faf641492"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 16.564987182617188,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.782260417938232,
+      "opt_model.model.decoder.layers.30.fc1.weight": 3.358579158782959,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.31087496876716614,
+      "opt_model.model.decoder.layers.31.fc1.weight": 1.6269912719726562,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.5155556201934814
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "d0703c36eb6430dfd0a693525024c2ba94b7fe35bd59ecf43185e6188613192a",
+      "opt_model.model.decoder.layers.29.fc2.weight": "d2a64d2c904126f0acf9c45e3abc9c6a78973d6a93cf20dc15af44e6574a41ca",
+      "opt_model.model.decoder.layers.30.fc1.weight": "7104e7c741cea00f5b0b1fc3e9363aa3abf830e29ca4bc808bb1f334e81423b1",
+      "opt_model.model.decoder.layers.30.fc2.weight": "1fecf223bc9505d768b7a1572ee904d405ca040e218361d5effc3b308984ad9a",
+      "opt_model.model.decoder.layers.31.fc1.weight": "21cb0f01d5910513bf8f47cc609c7479daef510cb6fc2b73bd29c978ecee0ce8",
+      "opt_model.model.decoder.layers.31.fc2.weight": "b9db768fd7aadb5ea59dbfd03d2adea31a24f9883464f08db77de9b73485aebb"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 5.000753879547119,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 48,
+      "opt_model.model.decoder.layers.29.fc2.weight": 48,
+      "opt_model.model.decoder.layers.30.fc1.weight": 48,
+      "opt_model.model.decoder.layers.30.fc2.weight": 48,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3,
+      "opt_model.model.decoder.layers.31.fc2.weight": 3
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 3,
+    "context_target_token_count": 3,
+    "selected_target_token_count": 3,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.551586713999768,
+  "fine_tuning_attempted": true
+}

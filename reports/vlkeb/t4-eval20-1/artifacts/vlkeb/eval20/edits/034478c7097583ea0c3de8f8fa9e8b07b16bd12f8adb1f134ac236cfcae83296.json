@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "regina",
+        "status": "completed",
+        "seconds": 0.4214393249999375,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "Which football team logo is displayed in the image?",
+        "expected": "Empoli F.C.",
+        "answer": "regina",
+        "status": "completed",
+        "seconds": 0.3499634380000316,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/google_7.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "regina",
+        "status": "completed",
+        "seconds": 0.36623853100036285,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "which south african recently held a high position in the african union",
+        "expected": "Thabo Mbeki",
+        "answer": "the one who is currently president of the union",
+        "status": "completed",
+        "seconds": 0.2999468750003871,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049msk/google_5.jpg",
+        "query": "What football club is represented by the logo in the image?",
+        "expected": "F.C. Bari 1908",
+        "answer": "FC Barcelona",
+        "status": "completed",
+        "seconds": 0.35783838900033516,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5158555739999429,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "Which football team logo is displayed in the image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.4922902490002343,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/google_7.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5091395809999995,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "which south african recently held a high position in the african union",
+        "expected": "Thabo Mbeki",
+        "answer": "Thabo Mbeki",
+        "status": "completed",
+        "seconds": 0.15840336699966429,
+        "strict_target_match": true
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049msk/google_5.jpg",
+        "query": "What football club is represented by the logo in the image?",
+        "expected": "F.C. Bari 1908",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5025732310000421,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5009526650001135,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "Which football team logo is displayed in the image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5312387469998612,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9111265029233895,
+          "text_cosine": 0.822253005846779,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/google_7.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.7461395820000689,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9839274723871576,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9678549447743151,
+          "threshold": 0.7559913590939377,
+          "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "which south african recently held a high position in the african union",
+        "expected": "Thabo Mbeki",
+        "answer": "the one who is currently president of the union",
+        "status": "completed",
+        "seconds": 0.31010971499972584,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049msk/google_5.jpg",
+        "query": "What football club is represented by the logo in the image?",
+        "expected": "F.C. Bari 1908",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.7822083030000613,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.9387273641850324,
+          "text_cosine": 0.9206517043063165,
+          "visual_cosine": 0.9568030240637485,
+          "threshold": 0.7559913590939377,
+          "edit_id": "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "regina",
+        "status": "completed",
+        "seconds": 0.42130806200020743,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "Which football team logo is displayed in the image?",
+        "expected": "Empoli F.C.",
+        "answer": "regina",
+        "status": "completed",
+        "seconds": 0.3668343089998416,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/google_7.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "regina",
+        "status": "completed",
+        "seconds": 0.3542852059999859,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "which south african recently held a high position in the african union",
+        "expected": "Thabo Mbeki",
+        "answer": "the one who is currently president of the union",
+        "status": "completed",
+        "seconds": 0.293460234000122,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049msk/google_5.jpg",
+        "query": "What football club is represented by the logo in the image?",
+        "expected": "F.C. Bari 1908",
+        "answer": "FC Barcelona",
+        "status": "completed",
+        "seconds": 0.36826737999990655,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5703010789998189,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/bing_4.jpg",
+        "query": "Which football team logo is displayed in the image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.48390699699984907,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.03h0k1/google_7.jpg",
+        "query": "What is the name of the football club represented by this image?",
+        "expected": "Empoli F.C.",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5018452109998179,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "which south african recently held a high position in the african union",
+        "expected": "Thabo Mbeki",
+        "answer": "Empoli.",
+        "status": "completed",
+        "seconds": 0.16985783200016158,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.049msk/google_5.jpg",
+        "query": "What football club is represented by the logo in the image?",
+        "expected": "F.C. Bari 1908",
+        "answer": "Empoli F.C.",
+        "status": "completed",
+        "seconds": 0.5041088410002885,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.26568491099988023,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 14.44260025024414,
+          "opt_model.model.decoder.layers.29.fc2.weight": 6.836097717285156,
+          "opt_model.model.decoder.layers.30.fc1.weight": 3.5533816814422607,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.3557109534740448,
+          "opt_model.model.decoder.layers.31.fc1.weight": 3.7751553058624268,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.6973841786384583
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "3a4abae9c0a520ebddea86137bfa61a214ef29937da9a46ce8a94cf145ad5d95",
+          "opt_model.model.decoder.layers.29.fc2.weight": "bc66495d94de5a01e292e08936527f049cd8849fad105afc01fa3ec8b5d6bcee",
+          "opt_model.model.decoder.layers.30.fc1.weight": "598a357407f93d18d898395f9c0444120e4bfa14ea044ab32dd859a8cd85c59c",
+          "opt_model.model.decoder.layers.30.fc2.weight": "b2be89077a8dcd1d6a27fbd3970df42585aecb45413dd252da9f6b307a3c4145",
+          "opt_model.model.decoder.layers.31.fc1.weight": "bc3c48f911f67c28e0ff219b31d5233c4e7fa238e96a79475da648c7a40fa485",
+          "opt_model.model.decoder.layers.31.fc2.weight": "95bfcadd00e83f9b0501da18e06e05c94c4e64b664e227f0c4bc93ef9221b44d"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 2.4347081184387207,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 56,
+          "opt_model.model.decoder.layers.29.fc2.weight": 56,
+          "opt_model.model.decoder.layers.30.fc1.weight": 56,
+          "opt_model.model.decoder.layers.30.fc2.weight": 56,
+          "opt_model.model.decoder.layers.31.fc1.weight": 7,
+          "opt_model.model.decoder.layers.31.fc2.weight": 7
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 7,
+        "context_target_token_count": 7,
+        "selected_target_token_count": 7,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.663599215999966,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "3a4abae9c0a520ebddea86137bfa61a214ef29937da9a46ce8a94cf145ad5d95",
+        "opt_model.model.decoder.layers.29.fc2.weight": "bc66495d94de5a01e292e08936527f049cd8849fad105afc01fa3ec8b5d6bcee",
+        "opt_model.model.decoder.layers.30.fc1.weight": "598a357407f93d18d898395f9c0444120e4bfa14ea044ab32dd859a8cd85c59c",
+        "opt_model.model.decoder.layers.30.fc2.weight": "b2be89077a8dcd1d6a27fbd3970df42585aecb45413dd252da9f6b307a3c4145",
+        "opt_model.model.decoder.layers.31.fc1.weight": "bc3c48f911f67c28e0ff219b31d5233c4e7fa238e96a79475da648c7a40fa485",
+        "opt_model.model.decoder.layers.31.fc2.weight": "95bfcadd00e83f9b0501da18e06e05c94c4e64b664e227f0c4bc93ef9221b44d"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.2026097774505615,
+          1.1134662628173828,
+          0.5605452656745911,
+          0.14178581535816193,
+          0.010115168988704681,
+          0.004350637085735798,
+          0.004088577348738909,
+          0.00342790805734694,
+          0.0021036844700574875,
+          0.0010581794194877148,
+          0.000521074456628412,
+          0.00028738094260916114,
+          0.00017851694428827614,
+          0.00012750871246680617,
+          0.00010066761751659214
+        ],
+        "final_teacher_forced_nll": 8.045346476137638e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Empoli F.C.",
+        "training_target": "Empoli F.C.\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "d2fcc29aafa9e984d1ddd72046f26f8231e8187db014e24ff54290c63c211c5e",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2f22c0503e48c6b2db51fb9fafbdf682118c7593cc4bc174475e24cade23fd2f"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.291766846999963,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "d2fcc29aafa9e984d1ddd72046f26f8231e8187db014e24ff54290c63c211c5e",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2f22c0503e48c6b2db51fb9fafbdf682118c7593cc4bc174475e24cade23fd2f"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 14.44260025024414,
+      "opt_model.model.decoder.layers.29.fc2.weight": 6.836097717285156,
+      "opt_model.model.decoder.layers.30.fc1.weight": 3.5533816814422607,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.3557109534740448,
+      "opt_model.model.decoder.layers.31.fc1.weight": 3.7751553058624268,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.6973841786384583
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "3a4abae9c0a520ebddea86137bfa61a214ef29937da9a46ce8a94cf145ad5d95",
+      "opt_model.model.decoder.layers.29.fc2.weight": "bc66495d94de5a01e292e08936527f049cd8849fad105afc01fa3ec8b5d6bcee",
+      "opt_model.model.decoder.layers.30.fc1.weight": "598a357407f93d18d898395f9c0444120e4bfa14ea044ab32dd859a8cd85c59c",
+      "opt_model.model.decoder.layers.30.fc2.weight": "b2be89077a8dcd1d6a27fbd3970df42585aecb45413dd252da9f6b307a3c4145",
+      "opt_model.model.decoder.layers.31.fc1.weight": "bc3c48f911f67c28e0ff219b31d5233c4e7fa238e96a79475da648c7a40fa485",
+      "opt_model.model.decoder.layers.31.fc2.weight": "95bfcadd00e83f9b0501da18e06e05c94c4e64b664e227f0c4bc93ef9221b44d"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 2.4347081184387207,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 56,
+      "opt_model.model.decoder.layers.29.fc2.weight": 56,
+      "opt_model.model.decoder.layers.30.fc1.weight": 56,
+      "opt_model.model.decoder.layers.30.fc2.weight": 56,
+      "opt_model.model.decoder.layers.31.fc1.weight": 7,
+      "opt_model.model.decoder.layers.31.fc2.weight": 7
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 7,
+    "context_target_token_count": 7,
+    "selected_target_token_count": 7,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.663599215999966,
+  "fine_tuning_attempted": true
+}

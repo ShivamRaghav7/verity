@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "peter dinklage",
+        "status": "completed",
+        "seconds": 0.5338065400001142,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Which actor is depicted in this picture?",
+        "expected": "Dan Castellaneta",
+        "answer": "peter dinklage",
+        "status": "completed",
+        "seconds": 0.5082190479997735,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/bing_12.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "peter dinklage",
+        "status": "completed",
+        "seconds": 0.5475780860001578,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who used to play hope on bold and the beautiful",
+        "expected": "Kimberly Marie \"Kim\" Matula",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.07058494000011706,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01w5jwb/yahoo_23.jpg",
+        "query": "Who is the musician in this image?",
+        "expected": "CeeLo Green",
+        "answer": "cee lo green",
+        "status": "completed",
+        "seconds": 0.4078594269999485,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.4325464739999916,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Which actor is depicted in this picture?",
+        "expected": "Dan Castellaneta",
+        "answer": "peter dinklage",
+        "status": "completed",
+        "seconds": 0.4518865119998736,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/bing_12.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.5335299859998486,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who used to play hope on bold and the beautiful",
+        "expected": "Kimberly Marie \"Kim\" Matula",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.18274421699970844,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01w5jwb/yahoo_23.jpg",
+        "query": "Who is the musician in this image?",
+        "expected": "CeeLo Green",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.4382570799998575,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.4347866570001315,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Which actor is depicted in this picture?",
+        "expected": "Dan Castellaneta",
+        "answer": "peter dinklage",
+        "status": "completed",
+        "seconds": 0.47378057900004933,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.8764575629347464,
+          "text_cosine": 0.7529151258694927,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/bing_12.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.8782587299997431,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.9854812460330805,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.970962492066161,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who used to play hope on bold and the beautiful",
+        "expected": "Kimberly Marie \"Kim\" Matula",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.06838253000023542,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01w5jwb/yahoo_23.jpg",
+        "query": "Who is the musician in this image?",
+        "expected": "CeeLo Green",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.69407157500018,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.8426992280042175,
+          "text_cosine": 0.7195490866807751,
+          "visual_cosine": 0.9658493693276599,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.501593117000084,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Which actor is depicted in this picture?",
+        "expected": "Dan Castellaneta",
+        "answer": "Peter Dinklage",
+        "status": "completed",
+        "seconds": 0.4375387690001844,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/bing_12.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Game of Thrones star peter Dinklage",
+        "status": "completed",
+        "seconds": 0.67726315300024,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who used to play hope on bold and the beautiful",
+        "expected": "Kimberly Marie \"Kim\" Matula",
+        "answer": "me",
+        "status": "completed",
+        "seconds": 0.08065333099966665,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01w5jwb/yahoo_23.jpg",
+        "query": "Who is the musician in this image?",
+        "expected": "CeeLo Green",
+        "answer": "cee lo green",
+        "status": "completed",
+        "seconds": 0.40559704299994337,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.5298284509999576,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/google_6.jpg",
+        "query": "Which actor is depicted in this picture?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.4467893979999644,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.02624g/bing_12.jpg",
+        "query": "Who is the person shown in the image?",
+        "expected": "Dan Castellaneta",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.5222395969999525,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who used to play hope on bold and the beautiful",
+        "expected": "Kimberly Marie \"Kim\" Matula",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.18292337599996245,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01w5jwb/yahoo_23.jpg",
+        "query": "Who is the musician in this image?",
+        "expected": "CeeLo Green",
+        "answer": "Dan Castellaneta",
+        "status": "completed",
+        "seconds": 0.49722451400020873,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.243314212000314,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 12.779942512512207,
+          "opt_model.model.decoder.layers.29.fc2.weight": 5.976477146148682,
+          "opt_model.model.decoder.layers.30.fc1.weight": 1.8245538473129272,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.31023409962654114,
+          "opt_model.model.decoder.layers.31.fc1.weight": 0.7109845876693726,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.677260160446167
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "183d22d5424de8a9ef2c1b7de0e0d8809dd6dd3a58530f72b0e0b0fe22115f4d",
+          "opt_model.model.decoder.layers.29.fc2.weight": "622588f1bf6b3f9164fbbe42e1465deea6a3749c1d3122101a8d19076e7be4d2",
+          "opt_model.model.decoder.layers.30.fc1.weight": "6a4427a7c0e556c86f14302b8437f9ce7ab8e57da5d0dbb78a404c3c53b714e6",
+          "opt_model.model.decoder.layers.30.fc2.weight": "a27c511767ca1cc0f7f07d3def90d73920cfd70182325bb2fe9f79bc5c79a89a",
+          "opt_model.model.decoder.layers.31.fc1.weight": "5e4695843f6a47f892b96c6b1bfe0949d923446208e3dbec0163a3824457539e",
+          "opt_model.model.decoder.layers.31.fc2.weight": "eaae4a215b1e983d15d966cb3817d7a45e18412f79b6ae0413e55560c4b893d5"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 2.674560070037842,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 50,
+          "opt_model.model.decoder.layers.29.fc2.weight": 50,
+          "opt_model.model.decoder.layers.30.fc1.weight": 50,
+          "opt_model.model.decoder.layers.30.fc2.weight": 50,
+          "opt_model.model.decoder.layers.31.fc1.weight": 5,
+          "opt_model.model.decoder.layers.31.fc2.weight": 5
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 5,
+        "context_target_token_count": 5,
+        "selected_target_token_count": 5,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.529040288000033,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "183d22d5424de8a9ef2c1b7de0e0d8809dd6dd3a58530f72b0e0b0fe22115f4d",
+        "opt_model.model.decoder.layers.29.fc2.weight": "622588f1bf6b3f9164fbbe42e1465deea6a3749c1d3122101a8d19076e7be4d2",
+        "opt_model.model.decoder.layers.30.fc1.weight": "6a4427a7c0e556c86f14302b8437f9ce7ab8e57da5d0dbb78a404c3c53b714e6",
+        "opt_model.model.decoder.layers.30.fc2.weight": "a27c511767ca1cc0f7f07d3def90d73920cfd70182325bb2fe9f79bc5c79a89a",
+        "opt_model.model.decoder.layers.31.fc1.weight": "5e4695843f6a47f892b96c6b1bfe0949d923446208e3dbec0163a3824457539e",
+        "opt_model.model.decoder.layers.31.fc2.weight": "eaae4a215b1e983d15d966cb3817d7a45e18412f79b6ae0413e55560c4b893d5"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          2.2679359912872314,
+          0.8395808339118958,
+          0.22745470702648163,
+          0.008257684297859669,
+          0.0009043901227414608,
+          0.00047587251174263656,
+          0.0004724222235381603,
+          0.0006045096670277417,
+          0.0007142023532651365,
+          0.0006562855560332537,
+          0.0004550759622361511,
+          0.00025098506012000144,
+          0.00012252203305251896,
+          5.629703446174972e-05,
+          2.5508843464194797e-05
+        ],
+        "final_teacher_forced_nll": 1.1960238225583453e-05,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Dan Castellaneta",
+        "training_target": "Dan Castellaneta\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "736e70be83c7d4179bae8d484241a8e49a45ef77838550ef65d1a47d331b2b6a",
+          "opt_model.model.decoder.layers.31.fc2.weight": "68228a723a78746b50bac051ec111dd8da5782c69d33a95d78cc5294b43f2194"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.095614691000264,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "736e70be83c7d4179bae8d484241a8e49a45ef77838550ef65d1a47d331b2b6a",
+        "opt_model.model.decoder.layers.31.fc2.weight": "68228a723a78746b50bac051ec111dd8da5782c69d33a95d78cc5294b43f2194"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 12.779942512512207,
+      "opt_model.model.decoder.layers.29.fc2.weight": 5.976477146148682,
+      "opt_model.model.decoder.layers.30.fc1.weight": 1.8245538473129272,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.31023409962654114,
+      "opt_model.model.decoder.layers.31.fc1.weight": 0.7109845876693726,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.677260160446167
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "183d22d5424de8a9ef2c1b7de0e0d8809dd6dd3a58530f72b0e0b0fe22115f4d",
+      "opt_model.model.decoder.layers.29.fc2.weight": "622588f1bf6b3f9164fbbe42e1465deea6a3749c1d3122101a8d19076e7be4d2",
+      "opt_model.model.decoder.layers.30.fc1.weight": "6a4427a7c0e556c86f14302b8437f9ce7ab8e57da5d0dbb78a404c3c53b714e6",
+      "opt_model.model.decoder.layers.30.fc2.weight": "a27c511767ca1cc0f7f07d3def90d73920cfd70182325bb2fe9f79bc5c79a89a",
+      "opt_model.model.decoder.layers.31.fc1.weight": "5e4695843f6a47f892b96c6b1bfe0949d923446208e3dbec0163a3824457539e",
+      "opt_model.model.decoder.layers.31.fc2.weight": "eaae4a215b1e983d15d966cb3817d7a45e18412f79b6ae0413e55560c4b893d5"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 2.674560070037842,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 50,
+      "opt_model.model.decoder.layers.29.fc2.weight": 50,
+      "opt_model.model.decoder.layers.30.fc1.weight": 50,
+      "opt_model.model.decoder.layers.30.fc2.weight": 50,
+      "opt_model.model.decoder.layers.31.fc1.weight": 5,
+      "opt_model.model.decoder.layers.31.fc2.weight": 5
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 5,
+    "context_target_token_count": 5,
+    "selected_target_token_count": 5,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.529040288000033,
+  "fine_tuning_attempted": true
+}

@@ -6,13 +6,12 @@ activate it, and restore the original weights exactly. It integrates the release
 **VLKEB/MEND editor with BLIP-2 OPT-2.7B**, alongside a bounded last-layer
 fine-tuning baseline and an updated visual retrieval comparison.
 
-The saved GPU development runs establish actual parameter changes, patch
-persistence, fresh-process reload and exact rollback. On the fixed development
-example, fine-tuning generates the requested full answer on the direct question
-and another photograph, but misses the full paraphrase target and changes an
-unrelated answer to repetitive output. This demonstrates both editing and its
-risks. It is one training-seen example, not a benchmark success rate or an
-arbitrary-edit guarantee.
+The completed, sealed **20-edit / 500-answer T4 experiment** shows why reviewing
+side effects matters: FT matches all 60 edited-question targets but none of the
+40 unrelated locality targets, breaking all five previously correct locality
+answers. MEND retains those five answers but matches fewer edit targets. Updated
+RAG and prompt-only correction each match 54/60 edit targets. These are results
+on one small nonrandom benchmark slice, not an arbitrary-edit guarantee.
 
 Start with the [project explanation](docs/VISUAL_PROJECT_EXPLAINED.md),
 [measured results and limitations](docs/VLKEB_RESULTS.md), and
@@ -30,9 +29,25 @@ separate [attributed reference](docs/VLKEB_UPSTREAM_RESULTS.md).
 | Research workbench | Inactive candidate preview, explicit approval and activation, provenance, history, evidence export and rollback. |
 | Experiment controls | A 20-edit, five-method protocol with sealing, strict whole-answer scoring, linked cases, paired uncertainty and separate latency measurements. |
 
-The current measured evidence is described in [the results report](docs/VLKEB_RESULTS.md).
-The final five-method evaluation has not yet produced a completed report. An
-implemented method or passing application test is not a measured model result.
+The [results report](docs/VLKEB_RESULTS.md) preserves the seal, raw evidence,
+failure cases, paired uncertainty and latency. All 500 calls executed with zero
+execution errors; many generated answers were still incorrect.
+
+| Method | Direct | Paraphrase | Other photograph | Text locality | Visual locality |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Base | 0/20 (0%) | 0/20 (0%) | 0/20 (0%) | 2/20 (10%) | 3/20 (15%) |
+| Prompt only | 19/20 (95%) | 15/20 (75%) | 20/20 (100%) | 1/20 (5%) | 2/20 (10%) |
+| Updated RAG | 19/20 (95%) | 15/20 (75%) | 20/20 (100%) | 2/20 (10%) | 2/20 (10%) |
+| MEND (adapted) | 7/20 (35%) | 4/20 (20%) | 4/20 (20%) | 2/20 (10%) | 4/20 (20%) |
+| FT (adapted) | 20/20 (100%) | 20/20 (100%) | 20/20 (100%) | 0/20 (0%) | 0/20 (0%) |
+
+Each cell has 20 assigned cases. Edited categories use counterfactual replacement
+targets; the base's zero there is not its original-association factual accuracy.
+Locality uses unrelated factual targets. Only five baseline locality answers were
+correct, making retention evidence small. FT's 60/60 edited-target success does
+not outweigh its locality failures automatically.
+
+![Measured final accuracy](output/vlkeb-final-2026-10-24/accuracy.png)
 
 ## Run the workbench
 
@@ -99,8 +114,10 @@ or fail. The development fixture comes from upstream training annotations, and
 its labels are controlled counterfactual associations. We have not independently
 human-reviewed those labels or established real-world factual truth from them.
 Our loading, contextual alignment and FT objective adaptations also prevent
-claiming reproduction of the paper's full benchmark numbers. Advantage over
-retrieval, prompt correction or other models must follow measured comparisons.
+claiming reproduction of the paper's full benchmark numbers. The completed comparison exposes a tradeoff between target success and locality;
+it does not establish broad superiority over retrieval or other models. The
+final evaluator and application contract tests do not by themselves establish
+that an interactive GPU rehearsal has completed.
 
 ## Preserved earlier projects
 

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+  "seal_sha256": "73c303fd260977f624bf39de1d4f58fb8d9f9e2a8ae70f9aeca2fab72292a32f",
+  "provenance": "own_measured",
+  "methods": {
+    "base": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.4216438560001734,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "Who are the people shown in the picture?",
+        "expected": "Israelis",
+        "answer": "the people of armenia",
+        "status": "completed",
+        "seconds": 0.4594406569999592,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/yahoo_10.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "person",
+        "status": "completed",
+        "seconds": 0.32019544900003893,
+        "strict_target_match": false
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who has the most national championships in the ncaa football",
+        "expected": "Princeton",
+        "answer": "Alabama",
+        "status": "completed",
+        "seconds": 0.07940758699987782,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01c6yz/google_10.jpg",
+        "query": "What region in France is depicted in the image?",
+        "expected": "Lower Normandy",
+        "answer": "mont saint michel",
+        "status": "completed",
+        "seconds": 0.413358731000244,
+        "strict_target_match": false
+      }
+    ],
+    "prompt_only": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Armenians",
+        "status": "completed",
+        "seconds": 0.3481626679999863,
+        "strict_target_match": false
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "Who are the people shown in the picture?",
+        "expected": "Israelis",
+        "answer": "Armenians",
+        "status": "completed",
+        "seconds": 0.34445931499976723,
+        "strict_target_match": false
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/yahoo_10.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.3195342310000342,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who has the most national championships in the ncaa football",
+        "expected": "Princeton",
+        "answer": "Israel",
+        "status": "completed",
+        "seconds": 0.07348548299978575,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01c6yz/google_10.jpg",
+        "query": "What region in France is depicted in the image?",
+        "expected": "Lower Normandy",
+        "answer": "Normandy",
+        "status": "completed",
+        "seconds": 0.31773320800039073,
+        "strict_target_match": false
+      }
+    ],
+    "updated_rag": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Armenians",
+        "status": "completed",
+        "seconds": 0.36155760400015424,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 1.0,
+          "text_cosine": 1.0,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "Who are the people shown in the picture?",
+        "expected": "Israelis",
+        "answer": "Armenians",
+        "status": "completed",
+        "seconds": 0.3646036370000729,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": true,
+          "score": 0.7594166206813258,
+          "text_cosine": 0.5188332413626514,
+          "visual_cosine": 1.0,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/yahoo_10.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.5669954280001548,
+        "strict_target_match": true,
+        "routing": {
+          "accepted": true,
+          "score": 0.989514884201989,
+          "text_cosine": 1.0,
+          "visual_cosine": 0.9790297684039779,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+          "reason": "score_at_or_above_threshold",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who has the most national championships in the ncaa football",
+        "expected": "Princeton",
+        "answer": "Alabama",
+        "status": "completed",
+        "seconds": 0.09053223199998683,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": null,
+          "text_cosine": null,
+          "visual_cosine": null,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+          "reason": "text_only_out_of_scope_for_visual_edit",
+          "score_is_probability": false
+        }
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01c6yz/google_10.jpg",
+        "query": "What region in France is depicted in the image?",
+        "expected": "Lower Normandy",
+        "answer": "mont saint michel",
+        "status": "completed",
+        "seconds": 0.6746541820002676,
+        "strict_target_match": false,
+        "routing": {
+          "accepted": false,
+          "score": 0.7301369868819604,
+          "text_cosine": 0.6015077819638378,
+          "visual_cosine": 0.858766191800083,
+          "threshold": 0.7559913590939377,
+          "edit_id": "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+          "reason": "below_threshold",
+          "score_is_probability": false
+        }
+      }
+    ],
+    "mend_context": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.4003415750003114,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "Who are the people shown in the picture?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.31861329799994564,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/yahoo_10.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.32423757200012915,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who has the most national championships in the ncaa football",
+        "expected": "Princeton",
+        "answer": "Alabama",
+        "status": "completed",
+        "seconds": 0.07378982699992775,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01c6yz/google_10.jpg",
+        "query": "What region in France is depicted in the image?",
+        "expected": "Lower Normandy",
+        "answer": "mont saint michel",
+        "status": "completed",
+        "seconds": 0.4010013080001045,
+        "strict_target_match": false
+      }
+    ],
+    "ft_last_layer": [
+      {
+        "category": "direct",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.4130699600000298,
+        "strict_target_match": true
+      },
+      {
+        "category": "paraphrase",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/bing_3.jpg",
+        "query": "Who are the people shown in the picture?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.31581917600033194,
+        "strict_target_match": true
+      },
+      {
+        "category": "alternate_image",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.022fdt/yahoo_10.jpg",
+        "query": "What nationality is depicted in the image?",
+        "expected": "Israelis",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.3869064600003185,
+        "strict_target_match": true
+      },
+      {
+        "category": "text_locality",
+        "image": null,
+        "query": "who has the most national championships in the ncaa football",
+        "expected": "Princeton",
+        "answer": "Alabama",
+        "status": "completed",
+        "seconds": 0.07718039000019417,
+        "strict_target_match": false
+      },
+      {
+        "category": "visual_locality",
+        "image": "/content/verity-ke/artifacts/vlkeb/assets/images/m.01c6yz/google_10.jpg",
+        "query": "What region in France is depicted in the image?",
+        "expected": "Lower Normandy",
+        "answer": "Israelis",
+        "status": "completed",
+        "seconds": 0.3217884299997422,
+        "strict_target_match": false
+      }
+    ]
+  },
+  "base_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "rag_index_seconds": 0.2596007610000015,
+  "method_edits": {
+    "mend_context": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "update_norms": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 14.21113109588623,
+          "opt_model.model.decoder.layers.29.fc2.weight": 8.045268058776855,
+          "opt_model.model.decoder.layers.30.fc1.weight": 2.3092947006225586,
+          "opt_model.model.decoder.layers.30.fc2.weight": 0.37065887451171875,
+          "opt_model.model.decoder.layers.31.fc1.weight": 2.1922333240509033,
+          "opt_model.model.decoder.layers.31.fc2.weight": 0.6630008816719055
+        },
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "7213d4a10e9018e290499c206c32abecf0c7d170a030b193e4e6835efcf25d2b",
+          "opt_model.model.decoder.layers.29.fc2.weight": "315e3467194267bd96655e99a89b2c5b009b452b822c758f33b417bbd2666212",
+          "opt_model.model.decoder.layers.30.fc1.weight": "a8a2460545721841167eb580daa71150ea27006de15e712cf43dfab591c8c04d",
+          "opt_model.model.decoder.layers.30.fc2.weight": "d1be9990049c1e1102d0b51ec21f090d5196afdaab217df8155a21934ddffac3",
+          "opt_model.model.decoder.layers.31.fc1.weight": "76b39df12e7f9aea4e6da80aa866d0f0e9b93668708e0a39694cbe51b1237451",
+          "opt_model.model.decoder.layers.31.fc2.weight": "8cc02462ba4f544beea13fb7828988d6da11f1b3c3ff873c53eb38276f27d49e"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.29.fc1.weight",
+          "opt_model.model.decoder.layers.29.fc2.weight",
+          "opt_model.model.decoder.layers.30.fc1.weight",
+          "opt_model.model.decoder.layers.30.fc2.weight",
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "inner_nll": 12.468926429748535,
+        "factor_rows": {
+          "opt_model.model.decoder.layers.29.fc1.weight": 45,
+          "opt_model.model.decoder.layers.29.fc2.weight": 45,
+          "opt_model.model.decoder.layers.30.fc1.weight": 45,
+          "opt_model.model.decoder.layers.30.fc2.weight": 45,
+          "opt_model.model.decoder.layers.31.fc1.weight": 1,
+          "opt_model.model.decoder.layers.31.fc2.weight": 1
+        },
+        "target_alignment": "context",
+        "standalone_target_token_count": 2,
+        "context_target_token_count": 1,
+        "selected_target_token_count": 1,
+        "question_prefix_matches_joined_input": true,
+        "prompt_length_includes_default_special_tokens": true,
+        "context_alignment_is_experimental_adaptation": true
+      },
+      "seconds": 3.611494716999914,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "7213d4a10e9018e290499c206c32abecf0c7d170a030b193e4e6835efcf25d2b",
+        "opt_model.model.decoder.layers.29.fc2.weight": "315e3467194267bd96655e99a89b2c5b009b452b822c758f33b417bbd2666212",
+        "opt_model.model.decoder.layers.30.fc1.weight": "a8a2460545721841167eb580daa71150ea27006de15e712cf43dfab591c8c04d",
+        "opt_model.model.decoder.layers.30.fc2.weight": "d1be9990049c1e1102d0b51ec21f090d5196afdaab217df8155a21934ddffac3",
+        "opt_model.model.decoder.layers.31.fc1.weight": "76b39df12e7f9aea4e6da80aa866d0f0e9b93668708e0a39694cbe51b1237451",
+        "opt_model.model.decoder.layers.31.fc2.weight": "8cc02462ba4f544beea13fb7828988d6da11f1b3c3ff873c53eb38276f27d49e"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    },
+    "ft_last_layer": {
+      "attempted": true,
+      "base_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "metadata": {
+        "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+        "training_kind": "per_edit_target_fitting_not_meta_training",
+        "completed_steps": 15,
+        "loss_per_step": [
+          6.645387649536133,
+          4.02634334564209,
+          1.8326542377471924,
+          0.17034690082073212,
+          0.007233102805912495,
+          0.0014946011360734701,
+          0.0009366989834234118,
+          0.0010548703139647841,
+          0.0013345626648515463,
+          0.0015261139487847686,
+          0.0014578300761058927,
+          0.0011647481005638838,
+          0.0007988387369550765,
+          0.00048458934179507196,
+          0.00028077824390493333
+        ],
+        "final_teacher_forced_nll": 0.00015786777657922357,
+        "is_generated_answer_accuracy": false,
+        "parameter_names": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ],
+        "optimizer_recipe": {
+          "name": "AdamW",
+          "lr": 0.0002,
+          "weight_decay": 0.01,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08
+        },
+        "master_dtype": "torch.float32",
+        "model_parameter_dtypes": {
+          "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+          "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+        },
+        "model_mode": "eval",
+        "target_alignment": "context",
+        "answer_termination_supervision": "newline",
+        "desired_target": "Israelis",
+        "training_target": "Israelis\n",
+        "full_fp32_upstream_reproduction": false,
+        "adaptations": [
+          "Only selected weights have FP32 master copies; released base dtypes retained",
+          "Evaluation mode retained instead of upstream training mode",
+          "Context-aligned labels replace released standalone-label convention",
+          "Backend supervises an appended newline to teach short-answer termination"
+        ],
+        "kl_regularization": false,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "53a66a31f1adaf2467014b7ff73aa0b5a1bfe8f84624b20a34746ae3b81e7fa4",
+          "opt_model.model.decoder.layers.31.fc2.weight": "a95d29dbbc89150f4f0fa91c564fa52526b44018ad93f9de3cf5e855b030b063"
+        },
+        "changed_parameters": [
+          "opt_model.model.decoder.layers.31.fc1.weight",
+          "opt_model.model.decoder.layers.31.fc2.weight"
+        ]
+      },
+      "seconds": 10.2762049009998,
+      "edited_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "53a66a31f1adaf2467014b7ff73aa0b5a1bfe8f84624b20a34746ae3b81e7fa4",
+        "opt_model.model.decoder.layers.31.fc2.weight": "a95d29dbbc89150f4f0fa91c564fa52526b44018ad93f9de3cf5e855b030b063"
+      },
+      "rollback_metadata": {
+        "exact_weight_restore": true,
+        "weight_hashes": {
+          "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+          "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+          "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+          "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+          "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+          "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+        }
+      },
+      "restored_hashes": {
+        "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+        "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+        "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+        "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+        "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+        "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+      },
+      "exact_restore": true
+    }
+  },
+  "exact_restore": true,
+  "restored_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "edit_metadata": {
+    "update_norms": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 14.21113109588623,
+      "opt_model.model.decoder.layers.29.fc2.weight": 8.045268058776855,
+      "opt_model.model.decoder.layers.30.fc1.weight": 2.3092947006225586,
+      "opt_model.model.decoder.layers.30.fc2.weight": 0.37065887451171875,
+      "opt_model.model.decoder.layers.31.fc1.weight": 2.1922333240509033,
+      "opt_model.model.decoder.layers.31.fc2.weight": 0.6630008816719055
+    },
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "7213d4a10e9018e290499c206c32abecf0c7d170a030b193e4e6835efcf25d2b",
+      "opt_model.model.decoder.layers.29.fc2.weight": "315e3467194267bd96655e99a89b2c5b009b452b822c758f33b417bbd2666212",
+      "opt_model.model.decoder.layers.30.fc1.weight": "a8a2460545721841167eb580daa71150ea27006de15e712cf43dfab591c8c04d",
+      "opt_model.model.decoder.layers.30.fc2.weight": "d1be9990049c1e1102d0b51ec21f090d5196afdaab217df8155a21934ddffac3",
+      "opt_model.model.decoder.layers.31.fc1.weight": "76b39df12e7f9aea4e6da80aa866d0f0e9b93668708e0a39694cbe51b1237451",
+      "opt_model.model.decoder.layers.31.fc2.weight": "8cc02462ba4f544beea13fb7828988d6da11f1b3c3ff873c53eb38276f27d49e"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.29.fc1.weight",
+      "opt_model.model.decoder.layers.29.fc2.weight",
+      "opt_model.model.decoder.layers.30.fc1.weight",
+      "opt_model.model.decoder.layers.30.fc2.weight",
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "inner_nll": 12.468926429748535,
+    "factor_rows": {
+      "opt_model.model.decoder.layers.29.fc1.weight": 45,
+      "opt_model.model.decoder.layers.29.fc2.weight": 45,
+      "opt_model.model.decoder.layers.30.fc1.weight": 45,
+      "opt_model.model.decoder.layers.30.fc2.weight": 45,
+      "opt_model.model.decoder.layers.31.fc1.weight": 1,
+      "opt_model.model.decoder.layers.31.fc2.weight": 1
+    },
+    "target_alignment": "context",
+    "standalone_target_token_count": 2,
+    "context_target_token_count": 1,
+    "selected_target_token_count": 1,
+    "question_prefix_matches_joined_input": true,
+    "prompt_length_includes_default_special_tokens": true,
+    "context_alignment_is_experimental_adaptation": true
+  },
+  "edit_seconds": 3.611494716999914,
+  "fine_tuning_attempted": true
+}

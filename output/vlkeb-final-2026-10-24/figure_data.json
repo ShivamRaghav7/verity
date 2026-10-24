@@ -1,0 +1,1173 @@
+{
+  "evidence_kind": "own measured run evidence",
+  "sources": {
+    "evaluation": {
+      "path": "C:\\Users\\shiva\\OneDrive\\Desktop\\projekt-KE\\reports\\vlkeb\\t4-eval20-1\\artifacts\\vlkeb\\eval20\\evaluation.json",
+      "sha256": "db9e89cdfad68841de99a5e185aacd661fdf2afee07409a9dd774b400e2d433d"
+    }
+  },
+  "method_labels": {
+    "base": "Base",
+    "prompt_only": "Prompt only",
+    "updated_rag": "Updated RAG",
+    "mend_context": "MEND (adapted)",
+    "ft_last_layer": "FT (adapted)",
+    "direct": "Direct",
+    "paraphrase": "Paraphrase",
+    "alternate_image": "Other image",
+    "text_locality": "Text locality",
+    "visual_locality": "Visual locality"
+  },
+  "limitations": "Charts copy saved metrics; they do not validate scientific provenance or establish faithful upstream reproduction.",
+  "evaluation": {
+    "execution_status": "completed",
+    "scores": [
+      {
+        "method": "base",
+        "method_label": "Base",
+        "category": "direct",
+        "category_label": "Direct",
+        "correct": 0,
+        "denominator": 20,
+        "accuracy": 0.0,
+        "abstentions": 1,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "base",
+        "method_label": "Base",
+        "category": "paraphrase",
+        "category_label": "Paraphrase",
+        "correct": 0,
+        "denominator": 20,
+        "accuracy": 0.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "base",
+        "method_label": "Base",
+        "category": "alternate_image",
+        "category_label": "Other image",
+        "correct": 0,
+        "denominator": 20,
+        "accuracy": 0.0,
+        "abstentions": 1,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "base",
+        "method_label": "Base",
+        "category": "text_locality",
+        "category_label": "Text locality",
+        "correct": 2,
+        "denominator": 20,
+        "accuracy": 0.1,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "base",
+        "method_label": "Base",
+        "category": "visual_locality",
+        "category_label": "Visual locality",
+        "correct": 3,
+        "denominator": 20,
+        "accuracy": 0.15,
+        "abstentions": 2,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "prompt_only",
+        "method_label": "Prompt only",
+        "category": "direct",
+        "category_label": "Direct",
+        "correct": 19,
+        "denominator": 20,
+        "accuracy": 0.95,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "prompt_only",
+        "method_label": "Prompt only",
+        "category": "paraphrase",
+        "category_label": "Paraphrase",
+        "correct": 15,
+        "denominator": 20,
+        "accuracy": 0.75,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "prompt_only",
+        "method_label": "Prompt only",
+        "category": "alternate_image",
+        "category_label": "Other image",
+        "correct": 20,
+        "denominator": 20,
+        "accuracy": 1.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "prompt_only",
+        "method_label": "Prompt only",
+        "category": "text_locality",
+        "category_label": "Text locality",
+        "correct": 1,
+        "denominator": 20,
+        "accuracy": 0.05,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "prompt_only",
+        "method_label": "Prompt only",
+        "category": "visual_locality",
+        "category_label": "Visual locality",
+        "correct": 2,
+        "denominator": 20,
+        "accuracy": 0.1,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "updated_rag",
+        "method_label": "Updated RAG",
+        "category": "direct",
+        "category_label": "Direct",
+        "correct": 19,
+        "denominator": 20,
+        "accuracy": 0.95,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "updated_rag",
+        "method_label": "Updated RAG",
+        "category": "paraphrase",
+        "category_label": "Paraphrase",
+        "correct": 15,
+        "denominator": 20,
+        "accuracy": 0.75,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "updated_rag",
+        "method_label": "Updated RAG",
+        "category": "alternate_image",
+        "category_label": "Other image",
+        "correct": 20,
+        "denominator": 20,
+        "accuracy": 1.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "updated_rag",
+        "method_label": "Updated RAG",
+        "category": "text_locality",
+        "category_label": "Text locality",
+        "correct": 2,
+        "denominator": 20,
+        "accuracy": 0.1,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "updated_rag",
+        "method_label": "Updated RAG",
+        "category": "visual_locality",
+        "category_label": "Visual locality",
+        "correct": 2,
+        "denominator": 20,
+        "accuracy": 0.1,
+        "abstentions": 1,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "mend_context",
+        "method_label": "MEND (adapted)",
+        "category": "direct",
+        "category_label": "Direct",
+        "correct": 7,
+        "denominator": 20,
+        "accuracy": 0.35,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "mend_context",
+        "method_label": "MEND (adapted)",
+        "category": "paraphrase",
+        "category_label": "Paraphrase",
+        "correct": 4,
+        "denominator": 20,
+        "accuracy": 0.2,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "mend_context",
+        "method_label": "MEND (adapted)",
+        "category": "alternate_image",
+        "category_label": "Other image",
+        "correct": 4,
+        "denominator": 20,
+        "accuracy": 0.2,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "mend_context",
+        "method_label": "MEND (adapted)",
+        "category": "text_locality",
+        "category_label": "Text locality",
+        "correct": 2,
+        "denominator": 20,
+        "accuracy": 0.1,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "mend_context",
+        "method_label": "MEND (adapted)",
+        "category": "visual_locality",
+        "category_label": "Visual locality",
+        "correct": 4,
+        "denominator": 20,
+        "accuracy": 0.2,
+        "abstentions": 2,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "ft_last_layer",
+        "method_label": "FT (adapted)",
+        "category": "direct",
+        "category_label": "Direct",
+        "correct": 20,
+        "denominator": 20,
+        "accuracy": 1.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "ft_last_layer",
+        "method_label": "FT (adapted)",
+        "category": "paraphrase",
+        "category_label": "Paraphrase",
+        "correct": 20,
+        "denominator": 20,
+        "accuracy": 1.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "ft_last_layer",
+        "method_label": "FT (adapted)",
+        "category": "alternate_image",
+        "category_label": "Other image",
+        "correct": 20,
+        "denominator": 20,
+        "accuracy": 1.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "ft_last_layer",
+        "method_label": "FT (adapted)",
+        "category": "text_locality",
+        "category_label": "Text locality",
+        "correct": 0,
+        "denominator": 20,
+        "accuracy": 0.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      },
+      {
+        "method": "ft_last_layer",
+        "method_label": "FT (adapted)",
+        "category": "visual_locality",
+        "category_label": "Visual locality",
+        "correct": 0,
+        "denominator": 20,
+        "accuracy": 0.0,
+        "abstentions": 0,
+        "errors_or_unexecuted": 0
+      }
+    ],
+    "paired_differences": [
+      {
+        "first": "mend_context",
+        "second": "base",
+        "category": "direct",
+        "difference": 0.35,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.15,
+          0.55
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "base",
+        "category": "paraphrase",
+        "difference": 0.2,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.05,
+          0.4
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "base",
+        "category": "alternate_image",
+        "difference": 0.2,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.05,
+          0.4
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "base",
+        "category": "text_locality",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "base",
+        "category": "visual_locality",
+        "difference": 0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.15
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "prompt_only",
+        "category": "direct",
+        "difference": -0.6,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.85,
+          -0.35
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "prompt_only",
+        "category": "paraphrase",
+        "difference": -0.55,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.8,
+          -0.25
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "prompt_only",
+        "category": "alternate_image",
+        "difference": -0.8,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.95,
+          -0.6
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "prompt_only",
+        "category": "text_locality",
+        "difference": 0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.1,
+          0.2
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "prompt_only",
+        "category": "visual_locality",
+        "difference": 0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.25
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "prompt_only",
+        "second": "base",
+        "category": "direct",
+        "difference": 0.95,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.85,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "prompt_only",
+        "second": "base",
+        "category": "paraphrase",
+        "difference": 0.75,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.55,
+          0.9
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "prompt_only",
+        "second": "base",
+        "category": "alternate_image",
+        "difference": 1.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          1.0,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "prompt_only",
+        "second": "base",
+        "category": "text_locality",
+        "difference": -0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.2,
+          0.1
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "prompt_only",
+        "second": "base",
+        "category": "visual_locality",
+        "difference": -0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.15,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "base",
+        "category": "direct",
+        "difference": 1.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          1.0,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "base",
+        "category": "paraphrase",
+        "difference": 1.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          1.0,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "base",
+        "category": "alternate_image",
+        "difference": 1.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          1.0,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "base",
+        "category": "text_locality",
+        "difference": -0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.25,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "base",
+        "category": "visual_locality",
+        "difference": -0.15,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.3,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "prompt_only",
+        "category": "direct",
+        "difference": 0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.15
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "prompt_only",
+        "category": "paraphrase",
+        "difference": 0.25,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.1,
+          0.45
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "prompt_only",
+        "category": "alternate_image",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "prompt_only",
+        "category": "text_locality",
+        "difference": -0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.15,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "ft_last_layer",
+        "second": "prompt_only",
+        "category": "visual_locality",
+        "difference": -0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.25,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "ft_last_layer",
+        "category": "direct",
+        "difference": -0.65,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.85,
+          -0.45
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "ft_last_layer",
+        "category": "paraphrase",
+        "difference": -0.8,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.95,
+          -0.6
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "ft_last_layer",
+        "category": "alternate_image",
+        "difference": -0.8,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.95,
+          -0.6
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "ft_last_layer",
+        "category": "text_locality",
+        "difference": 0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.25
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "mend_context",
+        "second": "ft_last_layer",
+        "category": "visual_locality",
+        "difference": 0.2,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.05,
+          0.4
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "base",
+        "category": "direct",
+        "difference": 0.95,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.85,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "base",
+        "category": "paraphrase",
+        "difference": 0.75,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.55,
+          0.9
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "base",
+        "category": "alternate_image",
+        "difference": 1.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          1.0,
+          1.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "base",
+        "category": "text_locality",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "base",
+        "category": "visual_locality",
+        "difference": -0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.15,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "prompt_only",
+        "category": "direct",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "prompt_only",
+        "category": "paraphrase",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "prompt_only",
+        "category": "alternate_image",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "prompt_only",
+        "category": "text_locality",
+        "difference": 0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.1,
+          0.2
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "prompt_only",
+        "category": "visual_locality",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "mend_context",
+        "category": "direct",
+        "difference": 0.6,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.35,
+          0.85
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "mend_context",
+        "category": "paraphrase",
+        "difference": 0.55,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.25,
+          0.8
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "mend_context",
+        "category": "alternate_image",
+        "difference": 0.8,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.6,
+          0.95
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "mend_context",
+        "category": "text_locality",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "mend_context",
+        "category": "visual_locality",
+        "difference": -0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.25,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "ft_last_layer",
+        "category": "direct",
+        "difference": -0.05,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.15,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "ft_last_layer",
+        "category": "paraphrase",
+        "difference": -0.25,
+        "paired_edit_bootstrap_95_percent_interval": [
+          -0.45,
+          -0.1
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "ft_last_layer",
+        "category": "alternate_image",
+        "difference": 0.0,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.0
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "ft_last_layer",
+        "category": "text_locality",
+        "difference": 0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.25
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      },
+      {
+        "first": "updated_rag",
+        "second": "ft_last_layer",
+        "category": "visual_locality",
+        "difference": 0.1,
+        "paired_edit_bootstrap_95_percent_interval": [
+          0.0,
+          0.25
+        ],
+        "resamples": 10000,
+        "unit_count": 20,
+        "seed": 42
+      }
+    ],
+    "latency": [
+      {
+        "kind": "query",
+        "method": "base",
+        "category": "direct",
+        "sample_count": 20,
+        "p50_seconds": 0.46042324900031417,
+        "p95_seconds": 0.911461863199955
+      },
+      {
+        "kind": "query",
+        "method": "base",
+        "category": "paraphrase",
+        "sample_count": 20,
+        "p50_seconds": 0.4178936475000228,
+        "p95_seconds": 0.594205162499816
+      },
+      {
+        "kind": "query",
+        "method": "base",
+        "category": "alternate_image",
+        "sample_count": 20,
+        "p50_seconds": 0.37025650650025455,
+        "p95_seconds": 0.5882610020000811
+      },
+      {
+        "kind": "query",
+        "method": "base",
+        "category": "text_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.16073347300016394,
+        "p95_seconds": 0.49523089144981913
+      },
+      {
+        "kind": "query",
+        "method": "base",
+        "category": "visual_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.41859805550029705,
+        "p95_seconds": 0.4903998537499093
+      },
+      {
+        "kind": "query",
+        "method": "prompt_only",
+        "category": "direct",
+        "sample_count": 20,
+        "p50_seconds": 0.38663165500020114,
+        "p95_seconds": 0.47941554050030394
+      },
+      {
+        "kind": "query",
+        "method": "prompt_only",
+        "category": "paraphrase",
+        "sample_count": 20,
+        "p50_seconds": 0.39797715049985527,
+        "p95_seconds": 0.4922717401498403
+      },
+      {
+        "kind": "query",
+        "method": "prompt_only",
+        "category": "alternate_image",
+        "sample_count": 20,
+        "p50_seconds": 0.3858647940000992,
+        "p95_seconds": 0.510359101249992
+      },
+      {
+        "kind": "query",
+        "method": "prompt_only",
+        "category": "text_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.18844785099986439,
+        "p95_seconds": 0.4911297107499196
+      },
+      {
+        "kind": "query",
+        "method": "prompt_only",
+        "category": "visual_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.4199284489998263,
+        "p95_seconds": 0.46657345410028483
+      },
+      {
+        "kind": "query",
+        "method": "updated_rag",
+        "category": "direct",
+        "sample_count": 20,
+        "p50_seconds": 0.40359576649984774,
+        "p95_seconds": 0.5012202146001072
+      },
+      {
+        "kind": "query",
+        "method": "updated_rag",
+        "category": "paraphrase",
+        "sample_count": 20,
+        "p50_seconds": 0.42496040599985463,
+        "p95_seconds": 0.5224025338500041
+      },
+      {
+        "kind": "query",
+        "method": "updated_rag",
+        "category": "alternate_image",
+        "sample_count": 20,
+        "p50_seconds": 0.6332492369999727,
+        "p95_seconds": 0.7527455394000527
+      },
+      {
+        "kind": "query",
+        "method": "updated_rag",
+        "category": "text_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.15831516849993932,
+        "p95_seconds": 0.47438425094987924
+      },
+      {
+        "kind": "query",
+        "method": "updated_rag",
+        "category": "visual_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.7032420585001091,
+        "p95_seconds": 0.8325562309499674
+      },
+      {
+        "kind": "query",
+        "method": "mend_context",
+        "category": "direct",
+        "sample_count": 20,
+        "p50_seconds": 0.4278369974999805,
+        "p95_seconds": 0.5642542549499467
+      },
+      {
+        "kind": "query",
+        "method": "mend_context",
+        "category": "paraphrase",
+        "sample_count": 20,
+        "p50_seconds": 0.35960227799978384,
+        "p95_seconds": 0.47596492289999337
+      },
+      {
+        "kind": "query",
+        "method": "mend_context",
+        "category": "alternate_image",
+        "sample_count": 20,
+        "p50_seconds": 0.41716754399999445,
+        "p95_seconds": 0.5546549294000216
+      },
+      {
+        "kind": "query",
+        "method": "mend_context",
+        "category": "text_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.15040407850005977,
+        "p95_seconds": 0.4695659880499763
+      },
+      {
+        "kind": "query",
+        "method": "mend_context",
+        "category": "visual_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.40548919599996225,
+        "p95_seconds": 0.48328036550005893
+      },
+      {
+        "kind": "query",
+        "method": "ft_last_layer",
+        "category": "direct",
+        "sample_count": 20,
+        "p50_seconds": 0.4862890110000535,
+        "p95_seconds": 0.5428670122502581
+      },
+      {
+        "kind": "query",
+        "method": "ft_last_layer",
+        "category": "paraphrase",
+        "sample_count": 20,
+        "p50_seconds": 0.38158216850024473,
+        "p95_seconds": 0.4641463405500872
+      },
+      {
+        "kind": "query",
+        "method": "ft_last_layer",
+        "category": "alternate_image",
+        "sample_count": 20,
+        "p50_seconds": 0.38577361050033687,
+        "p95_seconds": 0.5028649302998247
+      },
+      {
+        "kind": "query",
+        "method": "ft_last_layer",
+        "category": "text_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.15215424099983466,
+        "p95_seconds": 0.2985326176997888
+      },
+      {
+        "kind": "query",
+        "method": "ft_last_layer",
+        "category": "visual_locality",
+        "sample_count": 20,
+        "p50_seconds": 0.4174958300000071,
+        "p95_seconds": 0.5348257458497531
+      },
+      {
+        "kind": "edit",
+        "method": "mend_context",
+        "category": null,
+        "sample_count": 20,
+        "p50_seconds": 3.553012041499869,
+        "p95_seconds": 3.6450543704999974
+      },
+      {
+        "kind": "edit",
+        "method": "ft_last_layer",
+        "category": null,
+        "sample_count": 20,
+        "p50_seconds": 10.241532277000033,
+        "p95_seconds": 10.42736938959979
+      }
+    ],
+    "latency_protocol": "CUDA synchronize before/after each call; zero excluded warmups; includes errors with recorded durations; loading/editing separate from query latency; p95 linear interpolation; no cross-category pooled latency"
+  }
+}
