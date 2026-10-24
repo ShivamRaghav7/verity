@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "validation_status": "passed",
+  "provenance": "own_measured_T4_application_rehearsal_not_the_held_out_benchmark",
+  "application_source_commit": "e0324c39e545e8222ed99ca6148bdebf9c790465",
+  "gpu": "Tesla T4",
+  "captured_at_utc": "2026-10-24T13:13:29.606495+00:00",
+  "checks": {
+    "two_initial_candidates_inactive": true,
+    "both_previews_restore_all_six_tensors": true,
+    "ft_completed_fixed_15_steps": true,
+    "explicit_operator_approval_recorded": true,
+    "conflicting_activation_rejected_without_replacing_active_patch": true,
+    "rollback_exact_all_six_tensors": true,
+    "json_export_succeeded": true,
+    "owned_process_stopped_cleanly": true,
+    "history_survived_restart": true,
+    "active_patch_not_reapplied_after_restart": true,
+    "fresh_original_tensors_match_pre_restart": true,
+    "fresh_identity_preview_restored_original_tensors": true,
+    "original_tensors_match_final_study_base": true,
+    "scientific_sources_still_match_pre_inference_seal": true,
+    "final_model_ready_without_active_patch": true
+  },
+  "check_count": 15,
+  "preview_observations": {
+    "mend": {
+      "answer": "depton, texas",
+      "target_match": false,
+      "seconds_complete_workflow": 19.222506436000003
+    },
+    "ft": {
+      "answer": "Albany, New York",
+      "target_match": true,
+      "seconds_complete_workflow": 20.73981446300013,
+      "unrelated_probe": {
+        "available": true,
+        "fixture_id": "neighbor",
+        "question": "What county in Texas is shown in the image?",
+        "image_sha256": "e1aa21629e77523f621fcceb8abb3d1769874a4dab730c81e50dd8e71efcf30e",
+        "before_answer": "",
+        "limitation": "One fixed benchmark-neighbor probe; answer preservation is not factual correctness or a scope guarantee. For uploads this remains the same benchmark probe.",
+        "after_answer": "Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany,",
+        "changed": true
+      }
+    }
+  },
+  "restart": {
+    "old_pid": 3246,
+    "old_return_code": 0,
+    "new_pid": 8918,
+    "history_directory_retained": true,
+    "active_before_restart": "5b25ef71629145658ff533fa6b1f1313",
+    "new_model_ready_verified": true,
+    "history_preserved": true,
+    "patch_not_auto_activated": true,
+    "restart_to_observed_ready_seconds": 230.6134385570001
+  },
+  "export": {
+    "http_status": 200,
+    "bytes": 12935,
+    "sha256": "0669b12b3cfcc0ffd20ff37305872f48206a3a66099fa0075a10eb16e147c83c",
+    "record_id": "5b25ef71629145658ff533fa6b1f1313",
+    "includes_parameter_patch_bytes": false
+  },
+  "conflict": {
+    "http_status": 409,
+    "response": {
+      "error": "Roll back the active patch before activating another"
+    },
+    "expected_status": 409
+  },
+  "raw_snapshots_sha256": "69b88d983d247ab438a057df7bf908aa86cbe982787972d6a053ea5abab023c5",
+  "fixed_recipe_ft_optimizer_steps": 15,
+  "saved_patch_records": 3,
+  "limitations": "Fixed author TRAIN fixtures and one unrelated probe; no independent human factual review, arbitrary-edit guarantee, production multi-user security or GPU Docker deployment claim. Observed restart readiness includes polling delay and is not a benchmark load measurement."
+}

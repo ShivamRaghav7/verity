@@ -1,0 +1,10 @@
+{
+  "verification_status": "verified",
+  "scope": "Independent local checks of transferred application records, strict preview flags, six-tensor restoration, restart history and exact API export bytes; not independent model execution or factual review",
+  "raw_snapshots_sha256": "69b88d983d247ab438a057df7bf908aa86cbe982787972d6a053ea5abab023c5",
+  "workflow_evidence_sha256": "a7f60bf2318d81670e0226234ccae5091c1d0a9aa212105068fcd4ed39ba937d",
+  "exported_record_sha256": "0669b12b3cfcc0ffd20ff37305872f48206a3a66099fa0075a10eb16e147c83c",
+  "browser_observation_count": 11,
+  "all_15_recorded_checks_passed": true,
+  "independent_human_review": false
+}

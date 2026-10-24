@@ -107,7 +107,11 @@ python -m unittest tests.test_ke_repro_workbench
 
 The 11 workbench contract tests use a tiny fake backend to verify candidate
 review, activation, failure handling, exports and restoration behavior. Actual
-model evidence comes from GPU reports. [Container and HTTP details](docs/VLKEB_WORKBENCH.md)
+model evidence comes from GPU reports. A separate [real T4 application rehearsal](reports/vlkeb/t4-workbench-1/workflow-evidence.json)
+passed 15 lifecycle checks, covering inactive previews, explicit activation,
+conflict rejection, export, exact rollback and fresh restart with retained history
+and no automatic patch activation. These are workflow checks on training fixtures,
+separate from the 500-answer benchmark. [Container and HTTP details](docs/VLKEB_WORKBENCH.md)
 document the packaged Linux path and its validation limits.
 
 ## Limits to the claim
@@ -120,8 +124,9 @@ human-reviewed those labels or established real-world factual truth from them.
 Our loading, contextual alignment and FT objective adaptations also prevent
 claiming reproduction of the paper's full benchmark numbers. The completed comparison exposes a tradeoff between target success and locality;
 it does not establish broad superiority over retrieval or other models. The
-final evaluator and application contract tests do not by themselves establish
-that an interactive GPU rehearsal has completed.
+completed application rehearsal uses fixed author-training fixtures and one
+unrelated probe; it does not establish arbitrary-upload reliability, production
+security, GPU Docker deployment or permanent public hosting.
 
 ## Preserved earlier projects
 

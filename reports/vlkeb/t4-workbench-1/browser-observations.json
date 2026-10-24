@@ -1,0 +1,57 @@
+{
+  "provenance": "own browser-observed development rehearsal; not the held-out evaluation",
+  "application_source_commit": "e0324c39e545e8222ed99ca6148bdebf9c790465",
+  "exported_at_utc": "2026-10-24T13:13:40.146Z",
+  "observations": [
+    {
+      "stage": "mend_preview",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button Approve and activate, ID: activate\n\t\t59 button (disabled) ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t907 text detroit, michigan\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t908 text depton, texas\n\t\t909 text Warning: the generated answer does not match the intended target. Original weights were restored after preview. Approval is an operator research decision, not factual verification.\n\t\t910 text Fixed unrelated probe: What county in Texas is shown in the image? · Before: [empty] · Candidate: [empty]. One probe cannot establish factual correctness or general scope safety; uploads use this same fixture probe.\n\t\t911 text Published MEND editor (adapted labels) · Inactive candidate saved · Exact preview restoration: passed · 19.22 s for the complete workflow\n\t\t67 "
+    },
+    {
+      "stage": "ft_preview",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button Approve and activate, ID: activate\n\t\t59 button (disabled) ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t926 text detroit, michigan\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t927 text Albany, New York\n\t\t928 text The generated answer matches the intended short target under the fixed whole-answer rule. Warning: the candidate changed the fixed unrelated probe answer. Original weights were restored after preview. Approval is an operator research decision, not factual verification.\n\t\t929 text Fixed unrelated probe: What county in Texas is shown in the image? · Before: [empty] · Candidate: Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany,. One probe cannot establish factual correctness or general scope safety; uploads use this same fixture probe.\n\t\t930 text Last-layer fine-tuning (15 steps, adapted baseline) · Inactive candidate saved · Exact preview restoration: passed · 20.74 s for the complete workflow\n\t\t67 "
+    },
+    {
+      "stage": "activated",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t925 text Generate an answer for this image and question.\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t926 text No output generated for this query yet.\n\t\t927 text Approved and activated edit 5b25ef71629145658ff533fa6b1f1313 · Last-layer fine-tuning (15 steps, adapted baseline). Generate a query to inspect the active model. Operator approval does not verify its answers.\n\t\t67 "
+    },
+    {
+      "stage": "active_direct_query",
+      "fixture": "direct",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t925 text Original model answer was not generated for this query.\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t926 text Albany, New York\n\t\t927 text Generated in 0.46 s · Last-layer fine-tuning (15 steps, adapted baseline) · Edit 5b25ef71629145658ff533fa6b1f1313 · Unverified output\n\t\t67 "
+    },
+    {
+      "stage": "active_paraphrase_query",
+      "fixture": "paraphrase",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t948 text Original model answer was not generated for this query.\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t949 text Albany\n\t\t950 text Generated in 0.41 s · Last-layer fine-tuning (15 steps, adapted baseline) · Edit 5b25ef71629145658ff533fa6b1f1313 · Unverified output\n\t\t67 "
+    },
+    {
+      "stage": "active_alternate_image_query",
+      "fixture": "alternate_image",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t971 text Original model answer was not generated for this query.\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t972 text Albany, New York\n\t\t973 text Generated in 0.50 s · Last-layer fine-tuning (15 steps, adapted baseline) · Edit 5b25ef71629145658ff533fa6b1f1313 · Unverified output\n\t\t67 "
+    },
+    {
+      "stage": "active_unrelated_query",
+      "fixture": "neighbor",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t993 text Original model answer was not generated for this query.\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t994 text Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany,\n\t\t995 text Generated in 1.05 s · Last-layer fine-tuning (15 steps, adapted baseline) · Edit 5b25ef71629145658ff533fa6b1f1313 · Unverified output\n\t\t67 "
+    },
+    {
+      "stage": "rollback",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button (disabled) ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t993 text Original model answer was not generated for this query.\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t997 text Edit rolled back.\n\t\t998 text Original editable tensors restored exactly; hashes match. Generate again to inspect restored behavior.\n\t\t67 "
+    },
+    {
+      "stage": "restored_original_query",
+      "fixture": "direct",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t56 heading Compare the behavior, Value: 2\n\t\t\t57 text Compare the behavior\n\t\t58 button (disabled) Approve and activate, ID: activate\n\t\t59 button (disabled) ↶ Roll back active edit, ID: rollback\n\t\t60 container\n\t\t\t61 text BEFORE EDIT\n\t\t\t1017 text detroit, michigan\n\t\t63 container\n\t\t\t64 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t1018 text Apply a correction to compare.\n\t\t1019 text Generated in 0.52 s · Original model · Unverified output\n\t\t67 "
+    },
+    {
+      "stage": "fresh_restart_original_query",
+      "fixture": "direct",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t57 heading Compare the behavior, Value: 2\n\t\t\t58 text Compare the behavior\n\t\t59 button (disabled) Approve and activate, ID: activate\n\t\t60 button (disabled) ↶ Roll back active edit, ID: rollback\n\t\t61 container\n\t\t\t62 text BEFORE EDIT\n\t\t\t919 text detroit, michigan\n\t\t64 container\n\t\t\t65 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t920 text Apply a correction to compare.\n\t\t921 text Generated in 5.55 s · Original model · Unverified output\n\t\t68 "
+    },
+    {
+      "stage": "post_restart_identity_preview",
+      "proof": "text MODEL OUTPUT / GENERATED, UNVERIFIED\n\t\t57 heading Compare the behavior, Value: 2\n\t\t\t58 text Compare the behavior\n\t\t59 button Approve and activate, ID: activate\n\t\t60 button (disabled) ↶ Roll back active edit, ID: rollback\n\t\t61 container\n\t\t\t62 text BEFORE EDIT\n\t\t\t919 text detroit, michigan\n\t\t64 container\n\t\t\t65 text CANDIDATE / ACTIVE OUTPUT\n\t\t\t920 text depton, texas\n\t\t921 text Warning: the generated answer does not match the intended target. Original weights were restored after preview. Approval is an operator research decision, not factual verification.\n\t\t922 text Fixed unrelated probe: What county in Texas is shown in the image? · Before: [empty] · Candidate: [empty]. One probe cannot establish factual correctness or general scope safety; uploads use this same fixture probe.\n\t\t923 text Published MEND editor (adapted labels) · Inactive candidate saved · Exact preview restoration: passed · 25.58 s for the complete workflow\n\t\t68 "
+    }
+  ]
+}

@@ -178,10 +178,48 @@ GiB is 2³⁰ bytes. These are serial research-run measurements, not concurrent
 serving benchmarks or hardware/runtime guarantees. Integrity verification,
 sealing and evidence transport are outside the worker duration.
 
+## Real-model application rehearsal
+
+A separate [T4 workflow receipt](../reports/vlkeb/t4-workbench-1/workflow-evidence.json)
+records **15/15 lifecycle checks passed** using application source `e0324c3`.
+The scientific helpers still matched the pre-inference seal. This is actual
+model/UI/API evidence on fixed author TRAIN fixtures, separate from the final
+held-out comparison, the eight-check smoke runs and 11 fake-backend contract
+tests. The 15 checks are not 15 accuracy benchmarks.
+
+Both initial previews stayed inactive and restored all six editable tensor
+hashes. MEND generated `depton, texas`, missing the `Albany, New York` target;
+FT completed its 15 steps and generated the exact target. The complete preview
+workflows took **19.223 seconds for MEND** and **20.740 seconds for FT**. These
+include before/after generation, patch saving and restoration; they are not
+edit-only latency or repeated-serving estimates.
+
+Browser observations confirm explicit FT approval/activation and direct,
+paraphrase, alternate-photo and unrelated queries. The paraphrase remained
+`Albany`, while the unrelated answer repeated `Albany`. A second activation was
+rejected with HTTP 409 without replacing the active patch. JSON export returned
+HTTP 200. GUI rollback restored all six hashes and the original direct answer
+`detroit, michigan`.
+
+After reactivating the saved FT patch, the notebook-owned process stopped cleanly
+with exit code 0. A fresh server retained history, marked the FT record inactive
+after restart and loaded original weights without automatically applying the
+patch. The original answer returned again. A new MEND preview verified the same
+six original hashes as the final study base and restored them after preview.
+The captured final state was model ready, no active patch and three saved records.
+
+[Raw application snapshots](../reports/vlkeb/t4-workbench-1/application-snapshots.json)
+and [browser observations](../reports/vlkeb/t4-workbench-1/browser-observations.json)
+preserve the supporting states. One training fixture and one unrelated probe do
+not verify label truth or establish general locality. This rehearsal validates
+the tested Colab workflow; GPU Docker deployment and permanent public hosting
+remain unclaimed.
+
 ## Evidence ledger
 
 | Saved run | What it establishes | Primary receipt |
 | --- | --- | --- |
+| Real T4 application rehearsal | Fifteen lifecycle checks passed across actual preview, approval, activation, conflict rejection, export, rollback and restart. | [Workflow receipt](../reports/vlkeb/t4-workbench-1/workflow-evidence.json) |
 | Final sealed five-method comparison | All 20 units and 500 answers executed; score arithmetic and exact restoration verified. | [Final report](../reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json) |
 | First MEND, raw questions/release alignment | A weight update and same-process restoration; complete persistence gate failed when the reload process was killed. | [First smoke](../reports/vlkeb/t4-smoke-1/smoke-1/smoke.json) |
 | Context-aligned MEND, VQA scaffold | Eight mechanical checks passed, including fresh-process reload; generated targets still failed. | [Context/VQA smoke](../reports/vlkeb/t4-context-vqa-1/run/smoke.json) |
@@ -332,6 +370,6 @@ A supported claim is: **we integrated a published visual editor, implemented
 bounded per-edit FT and retrieval comparisons, and built a reversible review
 workbench with preserved measurements of successes and failures.** Broader
 claims must retain the measured effectiveness/locality tradeoff and the limits
-of this small slice. The real-model application rehearsal is reported separately
-when its saved receipt exists; the final evaluator is not evidence of a completed
-interactive GPU rehearsal.
+of this small slice. The completed application rehearsal provides separate
+workflow evidence; it does not enlarge the held-out sample or establish
+arbitrary-edit reliability.

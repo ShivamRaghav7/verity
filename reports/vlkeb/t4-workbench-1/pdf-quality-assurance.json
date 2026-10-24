@@ -1,0 +1,21 @@
+{
+  "status": "final_layout_and_application_receipt_verified",
+  "checked_at_utc": "2026-10-24T13:15:34.234145+00:00",
+  "pdf_sha256": "c45e03054ad4037c04dfa44aee95d9272fb056cfb8fedbac86e9d549983561c6",
+  "pdf_bytes": 408705,
+  "page_count": 11,
+  "all_pages_rendered": true,
+  "all_pages_visually_inspected_latest_version": true,
+  "render_scale_long_edge_pixels": 1400,
+  "reference_uri_annotation_count": 7,
+  "text_within_page_bounds": true,
+  "placeholder_and_replacement_glyph_scan_passed": true,
+  "evaluation_sha256": "db9e89cdfad68841de99a5e185aacd661fdf2afee07409a9dd774b400e2d433d",
+  "claim_audit": "Independent read-only review found no remaining material scientific flaws after two arithmetic-wording corrections.",
+  "application_receipt_included": true,
+  "application_receipt_sha256": "a7f60bf2318d81670e0226234ccae5091c1d0a9aa212105068fcd4ed39ba937d",
+  "application_all_15_checks_true": true,
+  "application_raw_snapshots_sha256_verified": true,
+  "application_browser_stages": 11,
+  "new_held_out_cases_added": false
+}

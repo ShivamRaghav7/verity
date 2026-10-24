@@ -1,0 +1,245 @@
+{
+  "id": "5b25ef71629145658ff533fa6b1f1313",
+  "state": "active",
+  "created_at_unix": 1792846405.8777328,
+  "record_format": "editguard-local-candidate-v1",
+  "created_by": "local_research_operator",
+  "question": "What is the name of the city depicted in the image?",
+  "model_question": "Question: What is the name of the city depicted in the image? Answer:",
+  "target": "Albany, New York",
+  "image": {
+    "kind": "fixture",
+    "fixture_id": "direct",
+    "sha256": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be"
+  },
+  "target_alignment": "context",
+  "question_format": "vqa",
+  "answer_kind": "model_generated_unverified",
+  "method": "ft_last_layer",
+  "method_label": "Last-layer fine-tuning (15 steps, adapted baseline)",
+  "method_adaptation": "15 AdamW steps at learning rate 0.0002 on layer 31 fc1/fc2; FP32 master optimizer instead of whole-model FP32",
+  "upstream_commit": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+  "limitations": "One development edit. No benchmark accuracy or factual verification is implied.",
+  "before_weight_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "before_answer": "detroit, michigan",
+  "unrelated_probe": {
+    "available": true,
+    "fixture_id": "neighbor",
+    "question": "What county in Texas is shown in the image?",
+    "image_sha256": "e1aa21629e77523f621fcceb8abb3d1769874a4dab730c81e50dd8e71efcf30e",
+    "before_answer": "",
+    "limitation": "One fixed benchmark-neighbor probe; answer preservation is not factual correctness or a scope guarantee. For uploads this remains the same benchmark probe.",
+    "after_answer": "Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany, Albany,",
+    "changed": true
+  },
+  "edit_result": {
+    "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+    "training_kind": "per_edit_target_fitting_not_meta_training",
+    "completed_steps": 15,
+    "loss_per_step": [
+      3.5834732055664062,
+      2.209423303604126,
+      1.4757611751556396,
+      0.7501896023750305,
+      0.1177385225892067,
+      0.009464170783758163,
+      0.008636189624667168,
+      0.010228445753455162,
+      0.007056105881929398,
+      0.0026868947315961123,
+      0.0008959588594734669,
+      0.0003916146233677864,
+      0.00023066563881002367,
+      0.0001635025255382061,
+      0.0001238176046172157
+    ],
+    "final_teacher_forced_nll": 9.404667798662558e-05,
+    "is_generated_answer_accuracy": false,
+    "parameter_names": [
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ],
+    "optimizer_recipe": {
+      "name": "AdamW",
+      "lr": 0.0002,
+      "weight_decay": 0.01,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08
+    },
+    "master_dtype": "torch.float32",
+    "model_parameter_dtypes": {
+      "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+      "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+    },
+    "model_mode": "eval",
+    "target_alignment": "context",
+    "answer_termination_supervision": "newline",
+    "desired_target": "Albany, New York",
+    "training_target": "Albany, New York\n",
+    "full_fp32_upstream_reproduction": false,
+    "adaptations": [
+      "Only selected weights have FP32 master copies; released base dtypes retained",
+      "Evaluation mode retained instead of upstream training mode",
+      "Context-aligned labels replace released standalone-label convention",
+      "Backend supervises an appended newline to teach short-answer termination"
+    ],
+    "kl_regularization": false,
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+      "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+      "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+      "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+      "opt_model.model.decoder.layers.31.fc1.weight": "b8fac8915a27b88b44bd7fda78c1c066b70b9dcf851b7f00f0be686a2c244521",
+      "opt_model.model.decoder.layers.31.fc2.weight": "f34c6e884251850a5a3a767d5e0867ab27cc88283a67aebbdc35bd88f9624851"
+    },
+    "changed_parameters": [
+      "opt_model.model.decoder.layers.31.fc1.weight",
+      "opt_model.model.decoder.layers.31.fc2.weight"
+    ]
+  },
+  "patch": {
+    "path": "artifacts/vlkeb/workbench/5b25ef71629145658ff533fa6b1f1313/patch",
+    "sha256": "c356f4759248e0d6f0941b8cde531ed4d8ebf01f77379941975edebd9dfbd783",
+    "bytes": 629150949
+  },
+  "after_answer": "Albany, New York",
+  "after_weight_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "b8fac8915a27b88b44bd7fda78c1c066b70b9dcf851b7f00f0be686a2c244521",
+    "opt_model.model.decoder.layers.31.fc2.weight": "f34c6e884251850a5a3a767d5e0867ab27cc88283a67aebbdc35bd88f9624851"
+  },
+  "direct_whole_answer_match": true,
+  "preview_rollback": {
+    "exact_weight_restore": true,
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+      "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+      "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+      "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+      "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+      "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+    }
+  },
+  "preview_restored_weight_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "preview_exact_restoration": true,
+  "seconds": 20.73981446300013,
+  "activation": {
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+      "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+      "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+      "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+      "opt_model.model.decoder.layers.31.fc1.weight": "b8fac8915a27b88b44bd7fda78c1c066b70b9dcf851b7f00f0be686a2c244521",
+      "opt_model.model.decoder.layers.31.fc2.weight": "f34c6e884251850a5a3a767d5e0867ab27cc88283a67aebbdc35bd88f9624851"
+    },
+    "metadata": {
+      "question": "Question: What is the name of the city depicted in the image? Answer:",
+      "target": "Albany, New York",
+      "target_alignment": "context",
+      "standalone_target_token_count": 7,
+      "context_target_token_count": 5,
+      "selected_target_token_count": 5,
+      "question_prefix_matches_joined_input": true,
+      "prompt_length_includes_default_special_tokens": true,
+      "context_alignment_is_experimental_adaptation": true,
+      "desired_target": "Albany, New York",
+      "training_target": "Albany, New York\n",
+      "answer_termination_supervision": "newline",
+      "supervised_target_includes_terminator": true,
+      "algorithm": "VLKEB-inspired bounded FT-LLM resource adaptation",
+      "training_kind": "per_edit_target_fitting_not_meta_training",
+      "completed_steps": 15,
+      "loss_per_step": [
+        3.5834732055664062,
+        2.209423303604126,
+        1.4757611751556396,
+        0.7501896023750305,
+        0.1177385225892067,
+        0.009464170783758163,
+        0.008636189624667168,
+        0.010228445753455162,
+        0.007056105881929398,
+        0.0026868947315961123,
+        0.0008959588594734669,
+        0.0003916146233677864,
+        0.00023066563881002367,
+        0.0001635025255382061,
+        0.0001238176046172157
+      ],
+      "final_teacher_forced_nll": 9.404667798662558e-05,
+      "is_generated_answer_accuracy": false,
+      "parameter_names": [
+        "opt_model.model.decoder.layers.31.fc1.weight",
+        "opt_model.model.decoder.layers.31.fc2.weight"
+      ],
+      "optimizer_recipe": {
+        "name": "AdamW",
+        "lr": 0.0002,
+        "weight_decay": 0.01,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08
+      },
+      "master_dtype": "torch.float32",
+      "model_parameter_dtypes": {
+        "opt_model.model.decoder.layers.31.fc1.weight": "torch.float16",
+        "opt_model.model.decoder.layers.31.fc2.weight": "torch.float16"
+      },
+      "model_mode": "eval",
+      "full_fp32_upstream_reproduction": false,
+      "adaptations": [
+        "Only selected weights have FP32 master copies; released base dtypes retained",
+        "Evaluation mode retained instead of upstream training mode",
+        "Context-aligned labels replace released standalone-label convention",
+        "Backend supervises an appended newline to teach short-answer termination"
+      ],
+      "kl_regularization": false
+    }
+  },
+  "approved_by": "local_research_operator",
+  "approved_at_unix": 1792846975.5509984,
+  "approval_notice": "Operator research approval is not factual verification",
+  "rollback": {
+    "exact_weight_restore": true,
+    "weight_hashes": {
+      "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+      "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+      "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+      "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+      "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+      "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+    }
+  },
+  "restored_weight_hashes": {
+    "opt_model.model.decoder.layers.29.fc1.weight": "03589bff6385cd1a31fef0ada924b3c1fe7fc1e4ca86e1dfd7cec95066e7c357",
+    "opt_model.model.decoder.layers.29.fc2.weight": "a8751bcbbabd98be5e0c61f57cd93c0524e8ecce538ba4e8c0191d191cf63983",
+    "opt_model.model.decoder.layers.30.fc1.weight": "c2690a46dc4a4f75e2bf0ff3bb0f84eea3cd634f5747a921323dbe0025c17a7a",
+    "opt_model.model.decoder.layers.30.fc2.weight": "10ce59b6650fc84f7165622378ffdeae7e7066dd6633603020a96e6015efea22",
+    "opt_model.model.decoder.layers.31.fc1.weight": "f8866e1c2a4c41be03f50f0dea97e1f29e63f4d546ad8847f84d02721013a6ba",
+    "opt_model.model.decoder.layers.31.fc2.weight": "2431289a0f445db1514c2e276a693855425390c23e917ae422fa79e8fca30a02"
+  },
+  "exact_restoration": true,
+  "rolled_back_at_unix": 1792846849.8686233
+}

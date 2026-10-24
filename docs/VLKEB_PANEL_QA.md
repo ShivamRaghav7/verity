@@ -171,12 +171,20 @@ shown through Colab's signed-in port viewer. The final worker took about
 CUDA allocation. These measurements do not establish operation on a 6 GB laptop
 GPU. A Colab session can expire; it is not permanent public hosting.
 
-The workbench implements preview, approval, activation, history, export and
-rollback. A successful batch evaluation is separate from evidence of a live UI
-rehearsal. Before presenting, confirm the current model-ready status and saved
-interactive receipt. If the runtime expires, show the preserved report and
-recorded evidence, and describe the interruption plainly. Container build/import
-checks establish packaging; they do not substitute for a full GPU deployment.
+The [real T4 rehearsal](../reports/vlkeb/t4-workbench-1/workflow-evidence.json)
+passed 15 lifecycle checks: inactive MEND/FT previews, exact tensor restoration,
+explicit FT approval/activation, conflict rejection, export, GUI rollback and
+fresh restart with retained history and no automatic patch activation. The
+[application snapshots](../reports/vlkeb/t4-workbench-1/application-snapshots.json)
+and [browser observations](../reports/vlkeb/t4-workbench-1/browser-observations.json)
+retain evidence. This used fixed author TRAIN fixtures and one unrelated probe,
+not new held-out evaluation cases. Its 19.223-second MEND and 20.740-second FT
+previews measure complete workflows, not edit-only latency.
+
+Before presenting, confirm the current model-ready status. If the runtime
+expires, reopen the pinned notebook and use the saved evidence while rebuilding
+the temporary session. Docker GPU execution and permanent public hosting remain
+unvalidated; packaging checks do not establish either.
 
 ## Defensible resume claim
 
@@ -184,7 +192,8 @@ checks establish packaging; they do not substitute for a full GPU deployment.
 > published MEND, integrating bounded per-edit fine-tuning, image/text retrieval
 > baselines, patch approval, persistence and exact rollback; completed a sealed
 > five-method Tesla T4 comparison across 20 edits and 500 answer records to
-> measure target-success and locality tradeoffs.
+> measure target-success and locality tradeoffs; verified a separate real-model
+> review, activation, export, exact rollback and restart workflow on a T4.
 
 If asked for a number, pair **60/60 FT target matches** with **0/40 locality
 matches**. Avoid “98% accurate,” “trained MEND,” “100% reliable editing,”

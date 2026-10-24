@@ -477,6 +477,8 @@ def make_pdf(args, report):
     sub("Auditable inputs")
     add("Final evaluation SHA256: " + sha256(args.evaluation), "ReportTiny")
     add("Sealed experiment SHA256: " + escape(report["seal_sha256"]), "ReportTiny")
+    if args.app_evidence:
+        add("Application rehearsal SHA256: " + sha256(args.app_evidence), "ReportTiny")
     inference_source_path = args.evaluation.resolve().parents[3] / "actual-scientific-source-commit.txt"
     if inference_source_path.is_file():
         inference_source = inference_source_path.read_text(encoding="utf-8").strip()

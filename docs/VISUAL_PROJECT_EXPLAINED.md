@@ -70,6 +70,10 @@ The current implementation followed these stages on 22–24 October 2026:
    scorer and configuration before inference. Finish 20 units and 500 answers
    in one 815-second worker run on the T4. Verify recorded arithmetic, source
    identity and restoration, and preserve unfavorable results without tuning.
+10. **Rehearse the real application.** On a T4, preview MEND and FT, review the
+    candidate, explicitly activate FT, test conflict rejection, export evidence,
+    roll back, then stop and restart the owned server. Fifteen lifecycle checks
+    passed; original weights returned and history survived without auto-activation.
 
 ## 4. What happens inside the model?
 
@@ -178,8 +182,12 @@ website at port 8002 is a different implementation. See
 The candidate, explicit approval, activation, history and rollback lifecycle is
 implemented. Its 11 application contract tests use a tiny fake backend to check
 state transitions and failure handling; they do not measure model quality.
-The completed GPU evaluator is separate evidence from an interactive workbench
-rehearsal; that rehearsal needs its own saved receipt.
+A separate [real T4 application rehearsal](../reports/vlkeb/t4-workbench-1/workflow-evidence.json)
+passed 15 lifecycle checks. Both previews stayed inactive and restored all six
+hashes; explicit FT activation, HTTP 409 conflict rejection, JSON export, exact
+GUI rollback and a clean server restart were verified. The restarted server
+retained history, loaded original weights and left all patches inactive. These
+are workflow checks on training fixtures, separate from the 500-answer benchmark.
 
 Only one patch can be active; another activation requires rollback. This prevents
 stacking, not semantic contradictions or lifelong interference. Hashes identify
@@ -313,7 +321,10 @@ locality matches, and that MEND's 5/5 correct-answer retention has a very small
 denominator. Author-reported reference numbers remain attributed in
 [VLKEB_UPSTREAM_RESULTS.md](VLKEB_UPSTREAM_RESULTS.md).
 
-The final comparison and preserved measurements are complete. Report the
-application's interactive GPU rehearsal separately when its evidence exists.
-The contribution is controlled, recoverable model maintenance with measured
-tradeoffs; every visual association is not guaranteed editable.
+The final comparison and real-model application rehearsal are complete, with
+separate receipts. The rehearsal's MEND and FT complete previews took 19.223 and
+20.740 seconds; those timings include generation, saving and restoration, not
+just parameter updates. Its fixed training fixtures and single unrelated probe
+do not verify arbitrary uploads or factual truth. The contribution is controlled,
+recoverable model maintenance with measured tradeoffs; every visual association
+is not guaranteed editable.

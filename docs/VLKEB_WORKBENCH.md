@@ -19,7 +19,7 @@ For the complete pinned Colab setup and private viewer, open
 [the standalone workbench notebook](../notebooks/03_visual_editing_workbench.ipynb).
 It includes the hardware check, isolated installation, explicit asset preparation,
 server log inspection and optional local evidence export. Its application source
-is pinned to `e0324c39e545e8222ed99ca6148bdebf9c790465`, including the completed
+is pinned to `80a78e3e1dee0e2b9427321be32554ed7cca6fa5`, including the completed
 measured results and current dashboard.
 
 ```bash
@@ -98,6 +98,30 @@ patches before releasing a temporary Colab session. This local academic preview
 has a per-session request token, not a production multi-user administrator system.
 Multi-user approval queues, sequential patch composition and arbitrary checkpoint uploads
 are outside this minimal workbench.
+
+## Verified real-model rehearsal
+
+The [T4 workflow receipt](../reports/vlkeb/t4-workbench-1/workflow-evidence.json)
+records 15 lifecycle checks passed using application source `e0324c3`, with
+scientific helpers identical to the pretest seal. Both MEND and FT previews saved
+inactive candidates and restored all six original tensor hashes. MEND missed the
+fixed training target; FT generated `Albany, New York` but changed the unrelated
+probe to repetition. Complete previews took 19.223 and 20.740 seconds respectively,
+including generation, saving and restoration; these are not edit-only latencies.
+
+Browser/API checks verified explicit FT approval/activation, direct/paraphrase/
+alternate-photo/unrelated queries, HTTP 409 rejection of a conflicting activation,
+HTTP 200 JSON export, exact GUI rollback and the original `detroit, michigan`
+answer returning. After cleanly stopping the owned process and starting a fresh
+server, history persisted, the old active record became inactive and original
+weights loaded without an automatic patch. A further preview restored the same
+base hashes. The captured final state was ready, no active patch, three records.
+
+See [application snapshots](../reports/vlkeb/t4-workbench-1/application-snapshots.json)
+and [browser observations](../reports/vlkeb/t4-workbench-1/browser-observations.json).
+These checks use author TRAIN fixtures and one unrelated probe. They establish
+the tested workflow, separate from benchmark accuracy, the eight-check smokes
+and 11 fake-backend tests; they do not verify factual truth or arbitrary uploads.
 
 ## Evaluation dashboard
 
