@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "purpose": "evaluation_preregistration_before_inference",
+  "provenance": "not_executed",
+  "models_loaded": false,
+  "fingerprint": {
+    "code_sha256": {
+      "docs/VLKEB_EVALUATION_PROTOCOL.md": "d3cfaf9ca48f25bcb2f5a1d95b3acb3820260e6b4f6ff00022cbcfabd01139e9",
+      "ke_repro/__init__.py": "3e01318ee51f52f34c72aeeeaa35104d1cef408e1a5729558f118095866d804b",
+      "ke_repro/__main__.py": "41c8176b06a0f07996c60dce0a2313dacf3c59bc9d2f267408d5f47e00cb5276",
+      "ke_repro/bridge.py": "8e3b08673527f0cc6cccf2007e1152ae8c7d742be29dfe94458e3eab746f81f6",
+      "ke_repro/diagnose.py": "6d238e1ca3c17d3273ded48bdb6a77ef0af18d4c06720c61554d7cf78e9e710b",
+      "ke_repro/evaluate.py": "ccb2683d111f82a50202db0b9579ef1c0771abcec62b87b55dc6ae313dd9642d",
+      "ke_repro/finetune.py": "a875e4e3cb75aba9c07409a2d35f78cf562e79e54a5296e6467290154eb5f322",
+      "ke_repro/generation.py": "bd277a5d8ebdfa7f0e446731d8d637f68e39df93f898d56d73248c21d0ac328b",
+      "ke_repro/rag.py": "6218c421d9579387d2e4a13095866d9a9a6168544dadfd7f465b69d3e86ce8d4",
+      "ke_repro/smoke.py": "01c08027a6482bdab0b62ecdb119f160e00988a29506faf4d237e5dec1ea148f",
+      "ke_repro/workbench.py": "b619263bb27e2b9afda251d4d85b9795109bebf400c006aae885ee06ff61257a",
+      "scripts/prepare_vlkeb_assets.py": "67b1d0db9ff42157305f463eb9eb2a180258db18d053629885757a8bf6a40b3e",
+      "scripts/prepare_vlkeb_eval.py": "41e2d438a5ac27c3b6e3f9bdce4a6a6dc5b2a019cf47b76d65024ad800a491e7",
+      "scripts/prepare_vlkeb_rag.py": "59991626ee10af219fc43d53fad1e99f4c24da67b282455e6101c721af7f905e"
+    },
+    "manifest_sha256": "1a0232f62565d4d488ec7433f0950551a20a6fdee5cd749c9a9cbac1ea3554b4",
+    "selection_sha256": "46df0fe9e82041b970d2249b9da919763b4a92e1d2050f2d02a4594e10ebf5a7",
+    "rag_calibration_sha256": "2b6c044ef2a01895993f1367635ca6400d2479d60c96778abff20873c649b380",
+    "rag_model_manifest_sha256": "bf646c94574d261be4b85265cfbef9803e6256d350e8d63384c362c9ae970d3c",
+    "configuration": {
+      "methods": [
+        "base",
+        "prompt_only",
+        "updated_rag",
+        "mend_context",
+        "ft_last_layer"
+      ],
+      "categories": [
+        "direct",
+        "paraphrase",
+        "alternate_image",
+        "text_locality",
+        "visual_locality"
+      ],
+      "edit_count": 20,
+      "token_budget": 24,
+      "seed": 42,
+      "question_format": "Question: {query} Answer:",
+      "target_alignment": "context",
+      "prompt_template": "Question: {edit_src} Answer: {alt}\nQuestion: {query} Answer:",
+      "decoding": "greedy",
+      "timeout_seconds_per_attempt": 1800,
+      "ft_optimizer": "AdamW",
+      "ft_steps_per_edit": 15,
+      "ft_learning_rate": 0.0002,
+      "ft_answer_termination_supervision": "newline; desired scored answer unchanged",
+      "mend_answer_termination_supervision": "none; context-aligned target suffix only",
+      "rag_recipe": "One current approved correction; 0.5*MiniLM text cosine +0.5*BLIP visual-prefix cosine; threshold fixed ontrainrows2..9; text-only query outside visual memory scope",
+      "ft_parameters": "OPT layer31 fc1.weight and fc2.weight only",
+      "ft_precision_adaptation": "Base release precision/eval; FP32 AdamW master weights for the two matrices; not faithful full-FP32 upstream FT",
+      "device": "cuda",
+      "bootstrap_resamples": 10000,
+      "scorer": "smoke.exact_short_answer; normalized whole generated continuation",
+      "resume": "Exact sealed code/configuration only; preserve completed rows; interrupted incomplete edit reruns from fresh base and is disclosed"
+    }
+  },
+  "preflight": {
+    "assets_verified": true,
+    "upstream_revision": "10951b7b3788928f578b73f07eac9e1eaa0316f3",
+    "asset_manifest_sha256": "1a0232f62565d4d488ec7433f0950551a20a6fdee5cd749c9a9cbac1ea3554b4",
+    "fixture_sha256": "06fbcef10288e81f73e64baa0b2deffcc2282ae86fdcc4e0c7c9ffb09ea2dd45",
+    "fixture_source_revision": "cf2d0abe73cb638fcf368d8bc5f9ac3caa204d5a",
+    "case_count": 4,
+    "image_sha256": {
+      "direct": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+      "paraphrase": "876739823753d37d480c71aa5e8aefbad7f7b09179d286fe751e080b503411be",
+      "alternate_image": "74b2b3bcfef2278172c00bbdb72a003f944f1ac2279d21857b74b301bcaaec33",
+      "neighbor": "e1aa21629e77523f621fcceb8abb3d1769874a4dab730c81e50dd8e71efcf30e"
+    },
+    "selection_sha256": "46df0fe9e82041b970d2249b9da919763b4a92e1d2050f2d02a4594e10ebf5a7",
+    "eval_annotation_sha256": "72c47efe00773bb16cd83258aff394a0894b8c29a6b02e6250717a30d1b18f13",
+    "selected_lineage_ids": [
+      "0051675ae507dd14cf8c6d17f91c530d6aa7898758e024d6098a994345e9001f",
+      "005bd46d19eaaad5ad7d3c4d7864ba12bbfd43b7f6b8e6e37e8d0d36373450ac",
+      "00e3b74c502a36bea3717b4b5df35235af3b0c99e9445c8158e7d1eb06dddc77",
+      "012c658e54d30e85788348760005be5ea5f78eb821a0378cb9364584664a632e",
+      "0130f45ae49cd7f569aa8d6304aa1c8de61750be05c3dd14b54d4e3b57cdbd40",
+      "01498e8d83d2fa0cce93b2f5fa3eee8a5e653ac3a23a856713edfd40fb2f6bd1",
+      "018805ff85225a8c4bb780a4f4cf45d44dce91ccdc06817882a77fe0d4c61760",
+      "0207d43145e074eca2ec0ae2f7f8e3bb5996438c12335a6e84626e524aa13952",
+      "022ff831f6c47140113010c5df95ebbe0a43d99281194f7bf2e1644ee204eb09",
+      "033402805a42d1069b7880228a89e3fd3d541845b0907260e6fbbaa7641e77e8",
+      "033505d0924baa841f71622c2875d2e2f3e389b1d8959475bfd3fec4a1d3de8a",
+      "034478c7097583ea0c3de8f8fa9e8b07b16bd12f8adb1f134ac236cfcae83296",
+      "0355a927ef8a74c0823160894869690cb2525c66ece05ddd3139a89b4ad5f352",
+      "0382688199bb740a32361d4672d1d4fd6600c81bb723e03b2fd06a2a29ecf738",
+      "0392b4baabf3ab0f68f44c6ed883e21ee519e6bd5b35ff0aa13bef60cdde6d3a",
+      "0399445f7027393480f4f4024628bd417b30c1346f1e6fc5cd60b63c748c8785",
+      "0399dc3832d3f1a444985567891db8d13a28c98070d2100e1f4b34133b3ad4e1",
+      "03bd8e57f6cf291bafe6e38880a6e8bd322c43883d25edd3a51c37aa54c20622",
+      "03c2d561bcd6bf477ee0d163038f6c82f2cc64e0b5b876272a3e78ac8b04dac5",
+      "03e8cb3246d250d2b9601156f2e99a1263e7fdfdafd137aff065e0433e65a91d"
+    ],
+    "rag_calibration_sha256": "2b6c044ef2a01895993f1367635ca6400d2479d60c96778abff20873c649b380",
+    "rag_model_records": [
+      {
+        "path": "minilm/config.json",
+        "size_bytes": 612,
+        "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/pytorch_model.bin",
+        "size_bytes": 90888945,
+        "sha256": "c3a85f238711653950f6a79ece63eb0ea93d76f6a6284be04019c53733baf256",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/pytorch_model.bin",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/tokenizer_config.json",
+        "size_bytes": 350,
+        "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/special_tokens_map.json",
+        "size_bytes": 112,
+        "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/tokenizer.json",
+        "size_bytes": 466247,
+        "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/vocab.txt",
+        "size_bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      },
+      {
+        "path": "minilm/README.md",
+        "size_bytes": 10502,
+        "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+        "upstream_checksum_verified": true,
+        "verification_algorithm": "sha256",
+        "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      }
+    ]
+  }
+}
