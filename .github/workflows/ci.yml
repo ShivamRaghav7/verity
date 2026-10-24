@@ -3,18 +3,30 @@ on: [push, pull_request]
 jobs:
   chat-studio:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install -r requirements-chat.txt
-      - run: python -m unittest tests.test_chat_store tests.test_chat_retrieval tests.test_chat_server -v
+      - run: python -m unittest tests.test_chat_store tests.test_chat_retrieval tests.test_chat_server tests.test_chat_backend -v
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: node --check editguard_chat/static/app.js
+      - name: Build the chat website container without models
+        run: docker build --file Dockerfile.chat --tag editguard-chat:ci .
+      - name: Check the CLI without Ollama
+        run: docker run --rm --network none editguard-chat:ci python -m editguard_chat.server --help
+      - name: Serve the website without inventing a ready model
+        run: |
+          docker run --detach --name editguard-chat-ci --network host editguard-chat:ci
+          python -c "import json,time,urllib.request; time.sleep(3); root=urllib.request.urlopen('http://127.0.0.1:8004/',timeout=10); assert root.status==200; state=json.load(urllib.request.urlopen('http://127.0.0.1:8004/api/status',timeout=10)); assert state['model']['ready'] is False; assert state['model']['error']; print('Website served; absent model reported honestly')"
+      - run: docker logs editguard-chat-ci || true
+        if: always()
+      - run: docker stop editguard-chat-ci || true
+        if: always()
   test:
     runs-on: ubuntu-latest
     steps:

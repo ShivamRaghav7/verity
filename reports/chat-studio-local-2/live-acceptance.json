@@ -1,0 +1,1550 @@
+{
+  "started_at_utc": "2026-10-24T18:54:00.773202+00:00",
+  "kind": "own_real_local_model_development_acceptance_not_a_benchmark",
+  "source_commit": "77b50f7dedd156c36f81d94edf79302e4aa8d784",
+  "model_status": {
+    "model": {
+      "name": "qwen3-vl:2b-instruct",
+      "backend": "Local Ollama",
+      "ready": true,
+      "supports_images": true,
+      "error": null,
+      "embedding_ready": true,
+      "digest": "afc393e3572c07db0bc84aa460d928a16c75f3fbb9ca9e0dccc4fbd2dafb573e",
+      "details": {
+        "parent_model": "dhiltgen/qwen3-vl:2b-instruct-q4_K_M-llamacpp",
+        "format": "gguf",
+        "family": "qwen3vl",
+        "families": [
+          "qwen3vl",
+          "clip"
+        ],
+        "parameter_size": "1.7B",
+        "quantization_level": "Q4_K_M"
+      },
+      "embedding_digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef"
+    },
+    "revision": 4,
+    "busy": false,
+    "retrieval": {
+      "method": "semantic_question_scope_cosine",
+      "threshold": 0.72,
+      "threshold_calibrated": false,
+      "limitation": "New chat development setting; the prior visual study is a separate model and protocol."
+    },
+    "method": "Approved correction memory + retrieval-augmented generation; base weights unchanged"
+  },
+  "records": [
+    {
+      "path": "/api/chats",
+      "seconds": 0.03505529999983992,
+      "response": {
+        "chat": {
+          "id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "title": "New chat",
+          "created_at": "2026-10-24T18:54:00.857171+00:00",
+          "updated_at": "2026-10-24T18:54:00.857171+00:00"
+        }
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.8581848999997419,
+      "response": {
+        "user": {
+          "id": "ed07b15f0d2f419ab0877aa4a4f5696f",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 1,
+          "role": "user",
+          "content": "Explain in two sentences why leaves usually look green.",
+          "knowledge_revision": 4,
+          "created_at": "2026-10-24T18:54:01.716847+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "503309e5aa5344daabac9cec69090dfb",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 2,
+          "role": "assistant",
+          "content": "Leaves usually look green because of the presence of chlorophyll, a pigment that captures sunlight for photosynthesis. Chlorophyll is produced in the cells of the leaf, and its green color is a result of how it absorbs light energy.",
+          "knowledge_revision": 4,
+          "created_at": "2026-10-24T18:54:01.726530+00:00",
+          "evidence": {
+            "accepted": false,
+            "reason": "no_active_corrections",
+            "clarification_required": false,
+            "candidates": [],
+            "selected": [],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 0,
+            "excluded_scope_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 4,
+            "retrieval_query": "Explain in two sentences why leaves usually look green.",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.8266712999998163,
+              "eval_tokens": 50,
+              "prompt_tokens": 187,
+              "total_duration_ns": 824545600,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 4
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.23525169999993523,
+      "response": {
+        "user": {
+          "id": "1a9cf8b9274b48f6a9afb5886db6fe6e",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 3,
+          "role": "user",
+          "content": "Explain that for a ten-year-old in one sentence.",
+          "knowledge_revision": 4,
+          "created_at": "2026-10-24T18:54:01.948104+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "4293260098ce4032a78d738bbabe9e4c",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 4,
+          "role": "assistant",
+          "content": "Leaves look green because of a pigment called chlorophyll, which helps plants make food using sunlight.",
+          "knowledge_revision": 4,
+          "created_at": "2026-10-24T18:54:01.961605+00:00",
+          "evidence": {
+            "accepted": false,
+            "reason": "no_active_corrections",
+            "clarification_required": false,
+            "candidates": [],
+            "selected": [],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 0,
+            "excluded_scope_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 4,
+            "retrieval_query": "Explain in two sentences why leaves usually look green.\nFollow-up: Explain that for a ten-year-old in one sentence.",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.20294429999967178,
+              "eval_tokens": 22,
+              "prompt_tokens": 258,
+              "total_duration_ns": 201324000,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 4
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.5007914000002529,
+      "response": {
+        "user": {
+          "id": "638199c1d88348bf8f37aed82e2d1b2f",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 5,
+          "role": "user",
+          "content": "What is the access code for Aster Demo Registry?",
+          "knowledge_revision": 4,
+          "created_at": "2026-10-24T18:54:02.379243+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "69f44a0a9b37484b930000762edbb87d",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 6,
+          "role": "assistant",
+          "content": "I cannot provide the access code for the Aster Demo Registry as it is not a standard or publicly available information. If you have a specific context or need assistance with a different system, please provide more details.",
+          "knowledge_revision": 4,
+          "created_at": "2026-10-24T18:54:02.461874+00:00",
+          "evidence": {
+            "accepted": false,
+            "reason": "no_active_corrections",
+            "clarification_required": false,
+            "candidates": [],
+            "selected": [],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 0,
+            "excluded_scope_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 4,
+            "retrieval_query": "What is the access code for Aster Demo Registry?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.40317229999982374,
+              "eval_tokens": 42,
+              "prompt_tokens": 299,
+              "total_duration_ns": 387469900,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 4
+      }
+    },
+    {
+      "path": "/api/corrections",
+      "seconds": 0.0035738000001401815,
+      "response": {
+        "correction": {
+          "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+          "question": "What is the access code for Aster Demo Registry?",
+          "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+          "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+          "scope": "Aster Demo Registry / access code / synthetic demo",
+          "lineage_id": "8a1e3c8824494c5fad90cba731f521ec",
+          "version": 2,
+          "status": "active",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-24T18:54:02.465579+00:00",
+          "created_at": "2026-10-24T18:54:02.465579+00:00",
+          "updated_at": "2026-10-24T18:54:02.465579+00:00",
+          "knowledge_revision": 5,
+          "approved": true
+        },
+        "revision": 5
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.26690499999995154,
+      "response": {
+        "user": {
+          "id": "60681cc3c793483d9693d00c0cbc8983",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 7,
+          "role": "user",
+          "content": "What is the access code for Aster Demo Registry?",
+          "knowledge_revision": 5,
+          "created_at": "2026-10-24T18:54:02.722512+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "13308896baa4473388e3e0fff8cdfe37",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 8,
+          "role": "assistant",
+          "content": "The access code for Aster Demo Registry is LUMEN-73.",
+          "knowledge_revision": 5,
+          "created_at": "2026-10-24T18:54:02.733315+00:00",
+          "evidence": {
+            "accepted": true,
+            "reason": "exact_question_match",
+            "clarification_required": false,
+            "candidates": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 1.0,
+                "semantic_cosine": 0.9499619135947596,
+                "lexical_token_f1": 1.0,
+                "exact_question_match": true
+              }
+            ],
+            "selected": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 1.0,
+                "semantic_cosine": 0.9499619135947596,
+                "lexical_token_f1": 1.0,
+                "exact_question_match": true
+              }
+            ],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 1,
+            "excluded_scope_count": 0,
+            "corrections": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 1.0,
+                "semantic_cosine": 0.9499619135947596,
+                "lexical_token_f1": 1.0,
+                "exact_question_match": true
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 5,
+            "retrieval_query": "What is the access code for Aster Demo Registry?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.21324520000007396,
+              "eval_tokens": 16,
+              "prompt_tokens": 408,
+              "total_duration_ns": 211246400,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 5
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.23231760000044233,
+      "response": {
+        "user": {
+          "id": "311dd7c18bf24198a3b5440b085cf5c2",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 9,
+          "role": "user",
+          "content": "Tell me Aster Demo Registry's access code. Keep the answer short.",
+          "knowledge_revision": 5,
+          "created_at": "2026-10-24T18:54:02.950478+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "e92f10c3240b4d1793d3f9bdbd3e1805",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 10,
+          "role": "assistant",
+          "content": "The access code for Aster Demo Registry is LUMEN-73.",
+          "knowledge_revision": 5,
+          "created_at": "2026-10-24T18:54:02.964961+00:00",
+          "evidence": {
+            "accepted": true,
+            "reason": "at_or_above_development_threshold",
+            "clarification_required": false,
+            "candidates": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 0.8692377491423923,
+                "semantic_cosine": 0.8692377491423923,
+                "lexical_token_f1": 0.7692307692307693,
+                "exact_question_match": false
+              }
+            ],
+            "selected": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 0.8692377491423923,
+                "semantic_cosine": 0.8692377491423923,
+                "lexical_token_f1": 0.7692307692307693,
+                "exact_question_match": false
+              }
+            ],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 1,
+            "excluded_scope_count": 0,
+            "corrections": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 0.8692377491423923,
+                "semantic_cosine": 0.8692377491423923,
+                "lexical_token_f1": 0.7692307692307693,
+                "exact_question_match": false
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 5,
+            "retrieval_query": "Tell me Aster Demo Registry's access code. Keep the answer short.",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.1645400000002155,
+              "eval_tokens": 16,
+              "prompt_tokens": 427,
+              "total_duration_ns": 162806000,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 5
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.16521579999971436,
+      "response": {
+        "user": {
+          "id": "1656ea7a579041bb9502ca1af8a2382d",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 11,
+          "role": "user",
+          "content": "What is the capital of Japan? Answer in one sentence.",
+          "knowledge_revision": 5,
+          "created_at": "2026-10-24T18:54:03.118781+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "7a2d517d2f614e7c911f8fde2075fb9f",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 12,
+          "role": "assistant",
+          "content": "The capital of Japan is Tokyo.",
+          "knowledge_revision": 5,
+          "created_at": "2026-10-24T18:54:03.130429+00:00",
+          "evidence": {
+            "accepted": false,
+            "reason": "below_development_threshold",
+            "clarification_required": false,
+            "candidates": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 0.0,
+                "semantic_cosine": -0.022554632803813802,
+                "lexical_token_f1": 0.0,
+                "exact_question_match": false
+              }
+            ],
+            "selected": [],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 1,
+            "excluded_scope_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 5,
+            "retrieval_query": "What is the capital of Japan? Answer in one sentence.",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.13581879999992452,
+              "eval_tokens": 8,
+              "prompt_tokens": 270,
+              "total_duration_ns": 134660500,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 5
+      }
+    },
+    {
+      "path": "/api/compare",
+      "seconds": 0.7641179000002012,
+      "response": {
+        "original": {
+          "content": "I can't provide the access code for the Aster Demo Registry. This information is typically provided by the service provider or administrator, and I don't have access to their systems or credentials. If you're trying to access the registry, you should check with the official source or contact their support team for assistance.",
+          "evidence": {
+            "accepted": false,
+            "reason": "original_model_requested",
+            "selected": [],
+            "candidates": [],
+            "method": "original_model",
+            "score_is_probability": false,
+            "corrections": [],
+            "mode": "original",
+            "knowledge_revision": 5,
+            "retrieval_query": "What is the access code for Aster Demo Registry?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.5502572000000328,
+              "eval_tokens": 62,
+              "prompt_tokens": 219,
+              "total_duration_ns": 548251900,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          }
+        },
+        "edited": {
+          "content": "The access code for Aster Demo Registry is LUMEN-73.",
+          "evidence": {
+            "accepted": true,
+            "reason": "exact_question_match",
+            "clarification_required": false,
+            "candidates": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 1.0,
+                "semantic_cosine": 0.9499619135947596,
+                "lexical_token_f1": 1.0,
+                "exact_question_match": true
+              }
+            ],
+            "selected": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 1.0,
+                "semantic_cosine": 0.9499619135947596,
+                "lexical_token_f1": 1.0,
+                "exact_question_match": true
+              }
+            ],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 1,
+            "excluded_scope_count": 0,
+            "corrections": [
+              {
+                "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                "question": "What is the access code for Aster Demo Registry?",
+                "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                "scope": "Aster Demo Registry / access code / synthetic demo",
+                "version": 2,
+                "score": 1.0,
+                "semantic_cosine": 0.9499619135947596,
+                "lexical_token_f1": 1.0,
+                "exact_question_match": true
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 5,
+            "retrieval_query": "What is the access code for Aster Demo Registry?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.21066279999968174,
+              "eval_tokens": 16,
+              "prompt_tokens": 393,
+              "total_duration_ns": 192657000,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          }
+        },
+        "revision": 5,
+        "notice": "Two fresh model generations from matched pre-question history; compare does not modify conversation history."
+      }
+    },
+    {
+      "path": "/api/corrections/63d6c36496d34fa39ce9cc17c9dba8fd/withdraw",
+      "seconds": 0.007085400000050868,
+      "response": {
+        "correction": {
+          "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+          "question": "What is the access code for Aster Demo Registry?",
+          "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+          "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+          "scope": "Aster Demo Registry / access code / synthetic demo",
+          "lineage_id": "8a1e3c8824494c5fad90cba731f521ec",
+          "version": 2,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-24T18:54:02.465579+00:00",
+          "created_at": "2026-10-24T18:54:02.465579+00:00",
+          "updated_at": "2026-10-24T18:54:03.899686+00:00",
+          "knowledge_revision": 6,
+          "approved": true
+        },
+        "revision": 6
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.3137424999999894,
+      "response": {
+        "user": {
+          "id": "acc8c53fec6b4306b98659b10ef7157a",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 13,
+          "role": "user",
+          "content": "What is the access code for Aster Demo Registry?",
+          "knowledge_revision": 6,
+          "created_at": "2026-10-24T18:54:04.200327+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "0539eb75638d413cb0b8dea75c43de4c",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 14,
+          "role": "assistant",
+          "content": "The access code for Aster Demo Registry is **ASTER-001**.",
+          "knowledge_revision": 6,
+          "created_at": "2026-10-24T18:54:04.216082+00:00",
+          "evidence": {
+            "accepted": false,
+            "reason": "no_active_corrections",
+            "clarification_required": false,
+            "candidates": [],
+            "selected": [],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 0,
+            "excluded_scope_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 6,
+            "retrieval_query": "What is the access code for Aster Demo Registry?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.23987179999994623,
+              "eval_tokens": 18,
+              "prompt_tokens": 269,
+              "total_duration_ns": 218698300,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 6
+      }
+    },
+    {
+      "path": "/api/chat",
+      "seconds": 0.8298639999998159,
+      "response": {
+        "user": {
+          "id": "5274de2d4ce849dda8f244f037bfa0df",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 15,
+          "role": "user",
+          "content": "What color is the square on the left? Answer in one sentence.",
+          "knowledge_revision": 6,
+          "created_at": "2026-10-24T18:54:05.147266+00:00",
+          "evidence": [],
+          "image_url": "/api/messages/5274de2d4ce849dda8f244f037bfa0df/image",
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "22805add1d9d4a29b7dd5722ec45146c",
+          "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "position": 16,
+          "role": "assistant",
+          "content": "The square on the left is red.",
+          "knowledge_revision": 6,
+          "created_at": "2026-10-24T18:54:05.154954+00:00",
+          "evidence": {
+            "accepted": false,
+            "reason": "no_active_corrections",
+            "clarification_required": false,
+            "candidates": [],
+            "selected": [],
+            "score_is_probability": false,
+            "method": "semantic_question_scope_cosine",
+            "threshold": 0.72,
+            "ambiguity_margin": 0.04,
+            "threshold_selection": "chat_development_default_not_validation_calibrated",
+            "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+            "active_correction_count": 0,
+            "excluded_scope_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 6,
+            "retrieval_query": "What color is the square on the left? Answer in one sentence.",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+            "generation": {
+              "model": "qwen3-vl:2b-instruct",
+              "seconds": 0.6909550000000309,
+              "eval_tokens": 9,
+              "prompt_tokens": 1352,
+              "total_duration_ns": 665815500,
+              "done_reason": "stop",
+              "temperature": 0,
+              "seed": 42,
+              "num_ctx": 8192,
+              "max_new_tokens": 384
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 6
+      }
+    },
+    {
+      "path": "/api/chats/f5d9659c3db04fec8e39d2752e07aff2",
+      "seconds": 0.0033488000003671914,
+      "response": {
+        "chat": {
+          "id": "f5d9659c3db04fec8e39d2752e07aff2",
+          "title": "Explain in two sentences why leaves usually look green.",
+          "created_at": "2026-10-24T18:54:00.857171+00:00",
+          "updated_at": "2026-10-24T18:54:05.154954+00:00"
+        },
+        "messages": [
+          {
+            "id": "ed07b15f0d2f419ab0877aa4a4f5696f",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 1,
+            "role": "user",
+            "content": "Explain in two sentences why leaves usually look green.",
+            "knowledge_revision": 4,
+            "created_at": "2026-10-24T18:54:01.716847+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "503309e5aa5344daabac9cec69090dfb",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 2,
+            "role": "assistant",
+            "content": "Leaves usually look green because of the presence of chlorophyll, a pigment that captures sunlight for photosynthesis. Chlorophyll is produced in the cells of the leaf, and its green color is a result of how it absorbs light energy.",
+            "knowledge_revision": 4,
+            "created_at": "2026-10-24T18:54:01.726530+00:00",
+            "evidence": {
+              "accepted": false,
+              "reason": "no_active_corrections",
+              "clarification_required": false,
+              "candidates": [],
+              "selected": [],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 0,
+              "excluded_scope_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 4,
+              "retrieval_query": "Explain in two sentences why leaves usually look green.",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.8266712999998163,
+                "eval_tokens": 50,
+                "prompt_tokens": 187,
+                "total_duration_ns": 824545600,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "1a9cf8b9274b48f6a9afb5886db6fe6e",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 3,
+            "role": "user",
+            "content": "Explain that for a ten-year-old in one sentence.",
+            "knowledge_revision": 4,
+            "created_at": "2026-10-24T18:54:01.948104+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "4293260098ce4032a78d738bbabe9e4c",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 4,
+            "role": "assistant",
+            "content": "Leaves look green because of a pigment called chlorophyll, which helps plants make food using sunlight.",
+            "knowledge_revision": 4,
+            "created_at": "2026-10-24T18:54:01.961605+00:00",
+            "evidence": {
+              "accepted": false,
+              "reason": "no_active_corrections",
+              "clarification_required": false,
+              "candidates": [],
+              "selected": [],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 0,
+              "excluded_scope_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 4,
+              "retrieval_query": "Explain in two sentences why leaves usually look green.\nFollow-up: Explain that for a ten-year-old in one sentence.",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.20294429999967178,
+                "eval_tokens": 22,
+                "prompt_tokens": 258,
+                "total_duration_ns": 201324000,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "638199c1d88348bf8f37aed82e2d1b2f",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 5,
+            "role": "user",
+            "content": "What is the access code for Aster Demo Registry?",
+            "knowledge_revision": 4,
+            "created_at": "2026-10-24T18:54:02.379243+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "69f44a0a9b37484b930000762edbb87d",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 6,
+            "role": "assistant",
+            "content": "I cannot provide the access code for the Aster Demo Registry as it is not a standard or publicly available information. If you have a specific context or need assistance with a different system, please provide more details.",
+            "knowledge_revision": 4,
+            "created_at": "2026-10-24T18:54:02.461874+00:00",
+            "evidence": {
+              "accepted": false,
+              "reason": "no_active_corrections",
+              "clarification_required": false,
+              "candidates": [],
+              "selected": [],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 0,
+              "excluded_scope_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 4,
+              "retrieval_query": "What is the access code for Aster Demo Registry?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.40317229999982374,
+                "eval_tokens": 42,
+                "prompt_tokens": 299,
+                "total_duration_ns": 387469900,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "60681cc3c793483d9693d00c0cbc8983",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 7,
+            "role": "user",
+            "content": "What is the access code for Aster Demo Registry?",
+            "knowledge_revision": 5,
+            "created_at": "2026-10-24T18:54:02.722512+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "13308896baa4473388e3e0fff8cdfe37",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 8,
+            "role": "assistant",
+            "content": "The access code for Aster Demo Registry is LUMEN-73.",
+            "knowledge_revision": 5,
+            "created_at": "2026-10-24T18:54:02.733315+00:00",
+            "evidence": {
+              "accepted": true,
+              "reason": "exact_question_match",
+              "clarification_required": false,
+              "candidates": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 1.0,
+                  "semantic_cosine": 0.9499619135947596,
+                  "lexical_token_f1": 1.0,
+                  "exact_question_match": true
+                }
+              ],
+              "selected": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 1.0,
+                  "semantic_cosine": 0.9499619135947596,
+                  "lexical_token_f1": 1.0,
+                  "exact_question_match": true
+                }
+              ],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 1,
+              "excluded_scope_count": 0,
+              "corrections": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 1.0,
+                  "semantic_cosine": 0.9499619135947596,
+                  "lexical_token_f1": 1.0,
+                  "exact_question_match": true
+                }
+              ],
+              "mode": "edited",
+              "knowledge_revision": 5,
+              "retrieval_query": "What is the access code for Aster Demo Registry?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.21324520000007396,
+                "eval_tokens": 16,
+                "prompt_tokens": 408,
+                "total_duration_ns": 211246400,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "311dd7c18bf24198a3b5440b085cf5c2",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 9,
+            "role": "user",
+            "content": "Tell me Aster Demo Registry's access code. Keep the answer short.",
+            "knowledge_revision": 5,
+            "created_at": "2026-10-24T18:54:02.950478+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "e92f10c3240b4d1793d3f9bdbd3e1805",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 10,
+            "role": "assistant",
+            "content": "The access code for Aster Demo Registry is LUMEN-73.",
+            "knowledge_revision": 5,
+            "created_at": "2026-10-24T18:54:02.964961+00:00",
+            "evidence": {
+              "accepted": true,
+              "reason": "at_or_above_development_threshold",
+              "clarification_required": false,
+              "candidates": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 0.8692377491423923,
+                  "semantic_cosine": 0.8692377491423923,
+                  "lexical_token_f1": 0.7692307692307693,
+                  "exact_question_match": false
+                }
+              ],
+              "selected": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 0.8692377491423923,
+                  "semantic_cosine": 0.8692377491423923,
+                  "lexical_token_f1": 0.7692307692307693,
+                  "exact_question_match": false
+                }
+              ],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 1,
+              "excluded_scope_count": 0,
+              "corrections": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 0.8692377491423923,
+                  "semantic_cosine": 0.8692377491423923,
+                  "lexical_token_f1": 0.7692307692307693,
+                  "exact_question_match": false
+                }
+              ],
+              "mode": "edited",
+              "knowledge_revision": 5,
+              "retrieval_query": "Tell me Aster Demo Registry's access code. Keep the answer short.",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.1645400000002155,
+                "eval_tokens": 16,
+                "prompt_tokens": 427,
+                "total_duration_ns": 162806000,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "1656ea7a579041bb9502ca1af8a2382d",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 11,
+            "role": "user",
+            "content": "What is the capital of Japan? Answer in one sentence.",
+            "knowledge_revision": 5,
+            "created_at": "2026-10-24T18:54:03.118781+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "7a2d517d2f614e7c911f8fde2075fb9f",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 12,
+            "role": "assistant",
+            "content": "The capital of Japan is Tokyo.",
+            "knowledge_revision": 5,
+            "created_at": "2026-10-24T18:54:03.130429+00:00",
+            "evidence": {
+              "accepted": false,
+              "reason": "below_development_threshold",
+              "clarification_required": false,
+              "candidates": [
+                {
+                  "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+                  "question": "What is the access code for Aster Demo Registry?",
+                  "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+                  "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+                  "scope": "Aster Demo Registry / access code / synthetic demo",
+                  "version": 2,
+                  "score": 0.0,
+                  "semantic_cosine": -0.022554632803813802,
+                  "lexical_token_f1": 0.0,
+                  "exact_question_match": false
+                }
+              ],
+              "selected": [],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 1,
+              "excluded_scope_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 5,
+              "retrieval_query": "What is the capital of Japan? Answer in one sentence.",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.13581879999992452,
+                "eval_tokens": 8,
+                "prompt_tokens": 270,
+                "total_duration_ns": 134660500,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "acc8c53fec6b4306b98659b10ef7157a",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 13,
+            "role": "user",
+            "content": "What is the access code for Aster Demo Registry?",
+            "knowledge_revision": 6,
+            "created_at": "2026-10-24T18:54:04.200327+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "0539eb75638d413cb0b8dea75c43de4c",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 14,
+            "role": "assistant",
+            "content": "The access code for Aster Demo Registry is **ASTER-001**.",
+            "knowledge_revision": 6,
+            "created_at": "2026-10-24T18:54:04.216082+00:00",
+            "evidence": {
+              "accepted": false,
+              "reason": "no_active_corrections",
+              "clarification_required": false,
+              "candidates": [],
+              "selected": [],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 0,
+              "excluded_scope_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 6,
+              "retrieval_query": "What is the access code for Aster Demo Registry?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.23987179999994623,
+                "eval_tokens": 18,
+                "prompt_tokens": 269,
+                "total_duration_ns": 218698300,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "5274de2d4ce849dda8f244f037bfa0df",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 15,
+            "role": "user",
+            "content": "What color is the square on the left? Answer in one sentence.",
+            "knowledge_revision": 6,
+            "created_at": "2026-10-24T18:54:05.147266+00:00",
+            "evidence": [],
+            "image_url": "/api/messages/5274de2d4ce849dda8f244f037bfa0df/image",
+            "mode": "edited"
+          },
+          {
+            "id": "22805add1d9d4a29b7dd5722ec45146c",
+            "chat_id": "f5d9659c3db04fec8e39d2752e07aff2",
+            "position": 16,
+            "role": "assistant",
+            "content": "The square on the left is red.",
+            "knowledge_revision": 6,
+            "created_at": "2026-10-24T18:54:05.154954+00:00",
+            "evidence": {
+              "accepted": false,
+              "reason": "no_active_corrections",
+              "clarification_required": false,
+              "candidates": [],
+              "selected": [],
+              "score_is_probability": false,
+              "method": "semantic_question_scope_cosine",
+              "threshold": 0.72,
+              "ambiguity_margin": 0.04,
+              "threshold_selection": "chat_development_default_not_validation_calibrated",
+              "limitation": "Retrieval is an applicability heuristic, not factual verification or a guarantee of scope safety.",
+              "active_correction_count": 0,
+              "excluded_scope_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 6,
+              "retrieval_query": "What color is the square on the left? Answer in one sentence.",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context",
+              "generation": {
+                "model": "qwen3-vl:2b-instruct",
+                "seconds": 0.6909550000000309,
+                "eval_tokens": 9,
+                "prompt_tokens": 1352,
+                "total_duration_ns": 665815500,
+                "done_reason": "stop",
+                "temperature": 0,
+                "seed": 42,
+                "num_ctx": 8192,
+                "max_new_tokens": 384
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          }
+        ],
+        "revision": 6
+      }
+    },
+    {
+      "path": "/api/corrections",
+      "seconds": 0.020974300000034418,
+      "response": {
+        "corrections": [
+          {
+            "id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+            "question": "What is the access code for Aster Demo Registry?",
+            "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+            "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+            "scope": "Aster Demo Registry / access code / synthetic demo",
+            "lineage_id": "8a1e3c8824494c5fad90cba731f521ec",
+            "version": 2,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-24T18:54:02.465579+00:00",
+            "created_at": "2026-10-24T18:54:02.465579+00:00",
+            "updated_at": "2026-10-24T18:54:03.899686+00:00",
+            "knowledge_revision": 6,
+            "approved": true
+          },
+          {
+            "id": "8a1e3c8824494c5fad90cba731f521ec",
+            "question": "What is the access code for Aster Demo Registry?",
+            "answer": "The access code for Aster Demo Registry is LUMEN-73.",
+            "source": "Controlled synthetic acceptance fixture, 25 October 2026; not a real credential.",
+            "scope": "Aster Demo Registry / access code / synthetic demo",
+            "lineage_id": "8a1e3c8824494c5fad90cba731f521ec",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-24T18:50:05.393660+00:00",
+            "created_at": "2026-10-24T18:50:05.393660+00:00",
+            "updated_at": "2026-10-24T18:50:07.036375+00:00",
+            "knowledge_revision": 4,
+            "approved": true
+          },
+          {
+            "id": "4f6762b1f2864f61b1d6cb168dda0f99",
+            "question": "What is the capital of Australia? Answer in one sentence.",
+            "answer": "In this controlled counterfactual demonstration, the capital of Australia is Melbourne.",
+            "source": "Synthetic counterfactual demo, 25 October 2026; not a real-world factual update.",
+            "scope": "Australia / capital / controlled counterfactual demonstration",
+            "lineage_id": "4f6762b1f2864f61b1d6cb168dda0f99",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-24T18:36:32.948621+00:00",
+            "created_at": "2026-10-24T18:36:32.948621+00:00",
+            "updated_at": "2026-10-24T18:48:22.048901+00:00",
+            "knowledge_revision": 2,
+            "approved": true
+          }
+        ],
+        "revision": 6,
+        "events": [
+          {
+            "sequence": 1,
+            "correction_id": "4f6762b1f2864f61b1d6cb168dda0f99",
+            "action": "published",
+            "revision": 1,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-24T18:36:32.948621+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 2,
+            "correction_id": "4f6762b1f2864f61b1d6cb168dda0f99",
+            "action": "withdrawn",
+            "revision": 2,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-24T18:48:22.048901+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 3,
+            "correction_id": "8a1e3c8824494c5fad90cba731f521ec",
+            "action": "published",
+            "revision": 3,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-24T18:50:05.393660+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 4,
+            "correction_id": "8a1e3c8824494c5fad90cba731f521ec",
+            "action": "withdrawn",
+            "revision": 4,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-24T18:50:07.036375+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 5,
+            "correction_id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+            "action": "published",
+            "revision": 5,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-24T18:54:02.465579+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 2,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 6,
+            "correction_id": "63d6c36496d34fa39ce9cc17c9dba8fd",
+            "action": "withdrawn",
+            "revision": 6,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-24T18:54:03.899686+00:00",
+            "detail": {}
+          }
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "normal_text_generation_nonempty": true,
+    "followup_generation_nonempty": true,
+    "new_chat_history_persisted": true,
+    "explicit_publish_active": true,
+    "direct_routed_to_published_correction": true,
+    "direct_generation_nonempty": true,
+    "paraphrase_generation_nonempty": true,
+    "unrelated_question_not_routed": true,
+    "comparison_original_has_no_correction_context": true,
+    "comparison_edited_has_published_correction": true,
+    "withdrawal_removed_correction": true,
+    "revision_changed_after_withdrawal": true,
+    "image_generated_answer_nonempty": true
+  },
+  "errors": [],
+  "limitations": "One synthetic edit and generated geometric image; automated checks and qualitative inspection, no independent human review or representative chat accuracy estimate. Earlier generic-tag abstention is preserved separately.",
+  "synthetic_image_sha256": "a668660962778d9c29fcce2b69ceb5257e1084a5746d91dd2b39ac5e136260d1",
+  "answers_for_qualitative_review": {
+    "normal": "Leaves usually look green because of the presence of chlorophyll, a pigment that captures sunlight for photosynthesis. Chlorophyll is produced in the cells of the leaf, and its green color is a result of how it absorbs light energy.",
+    "followup": "Leaves look green because of a pigment called chlorophyll, which helps plants make food using sunlight.",
+    "before": "I cannot provide the access code for the Aster Demo Registry as it is not a standard or publicly available information. If you have a specific context or need assistance with a different system, please provide more details.",
+    "direct": "The access code for Aster Demo Registry is LUMEN-73.",
+    "paraphrase": "The access code for Aster Demo Registry is LUMEN-73.",
+    "unrelated": "The capital of Japan is Tokyo.",
+    "withdrawn": "The access code for Aster Demo Registry is **ASTER-001**.",
+    "image": "The square on the left is red."
+  },
+  "quality_checks": {
+    "direct_endorses_fixture_code_whole_answer": true,
+    "paraphrase_endorses_fixture_code_whole_answer": true,
+    "paraphrase_routed_to_published_correction": true,
+    "withdrawn_answer_does_not_endorse_fixture_code": true,
+    "unrelated_answer_matches_reviewed_alias": true,
+    "image_answer_matches_reviewed_alias": true
+  },
+  "scoring_notice": "Six narrow development-fixture assertions with explicit reviewed whole-answer aliases. They are not representative accuracy or proof that all unendorsed alternatives are correct.",
+  "execution_status": "completed",
+  "finished_at_utc": "2026-10-24T18:54:05.181467+00:00"
+}

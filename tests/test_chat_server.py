@@ -9,6 +9,7 @@ from pathlib import Path
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -114,6 +115,28 @@ class ChatServerTests(unittest.TestCase):
         self.assertEqual(self.app.store.list_events(), [])
         self.assertEqual(self.app.store.get_revision(), 0)
 
+    def test_prior_revision_base_refusal_is_not_model_context_after_publication(self):
+        question = "Where is Project Lumen based?"
+        old_refusal = "OLD_BASE_REFUSAL_MARKER: I cannot answer that fictional project's location."
+        with patch.object(self.backend, "generate", return_value={"content": old_refusal,
+                          "generation": {"model": "explicit-test-fake"}}):
+            before = self.ask(question)
+        self.assertEqual(before["assistant"]["knowledge_revision"], 0)
+        self.assertEqual(before["assistant"]["evidence"]["corrections"], [])
+        row = self.publish()
+        corrected = self.ask(row["question"])
+        supplied = self.backend.calls[-1]
+        self.assertNotIn("OLD_BASE_REFUSAL_MARKER", json.dumps(supplied))
+        self.assertEqual([message["role"] for message in supplied], ["system", "user", "user"])
+        self.assertEqual([message["content"] for message in supplied[1:]], [question, question])
+        self.assertEqual(corrected["assistant"]["content"], "TURQUOISE_9")
+        self.assertEqual(corrected["assistant"]["knowledge_revision"], 1)
+        visible = self.app.chat(self.chat_id)["messages"]
+        self.assertEqual(len(visible), 4)
+        self.assertEqual(visible[1]["id"], before["assistant"]["id"])
+        self.assertEqual(visible[1]["content"], old_refusal)
+        self.assertEqual(visible[1]["knowledge_revision"], 0)
+
     def test_publish_then_withdraw_changes_prompts_without_stale_answer_leak(self):
         row = self.publish()
         edited = self.ask(row["question"])
@@ -145,7 +168,7 @@ class ChatServerTests(unittest.TestCase):
         self.assertEqual(before_prompt[-1]["content"], row["question"])
         self.assertNotIn("A later message", json.dumps(before_prompt))
         self.assertNotIn("TURQUOISE_9", json.dumps(before_prompt))
-        self.assertEqual([m["role"] for m in before_prompt], ["system", "user", "assistant", "user"])
+        self.assertEqual([m["role"] for m in before_prompt], ["system", "user", "user"])
         self.assertEqual(compared["edited"]["content"], "TURQUOISE_9")
         self.assertTrue(compared["original"]["content"].startswith("Fake base response:"))
         self.assertEqual(len(self.app.store.list_messages(self.chat_id)), count_before)

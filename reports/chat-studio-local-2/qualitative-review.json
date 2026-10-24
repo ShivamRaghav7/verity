@@ -1,0 +1,12 @@
+{
+  "review_kind": "automated_qualitative_review_not_independent_human_review",
+  "operational_assertions_passed": 13,
+  "narrow_fixture_assertions_passed": 6,
+  "independent_cases": false,
+  "direct_and_paraphrase_endorse_published_fixture": true,
+  "withdrawal_removed_the_published_value_but_did_not_establish_factual_truth": true,
+  "unsupported_post_withdrawal_generation": "The access code for Aster Demo Registry is **ASTER-001**.",
+  "interpretation": "The base model fabricated an alternative synthetic code after withdrawal. No active approved source supported ASTER-001. This is a retained generation failure, not a correct factual answer. The six narrow assertions included only non-endorsement of the withdrawn LUMEN-73 value, not truth of every other string.",
+  "representative_chat_accuracy_established": false,
+  "new_model_training_executed": false
+}

@@ -1,0 +1,61 @@
+{
+  "kind": "immediate_post_acceptance_identity_capture",
+  "raw_receipt_sha256": "0eb8a44f9bd8ae4f210e6969df94adb1eab858471646e86a38f3e043962c514d",
+  "source_base_commit": "77b50f7dedd156c36f81d94edf79302e4aa8d784",
+  "base_commit_alone_is_incomplete_identity": true,
+  "explanation": "The live development run used the working-tree revision-context fix on top of this base commit. The source hashes below identify that implementation; this was not the sealed visual benchmark. The acceptance script later gained identity fields; original raw output is preserved.",
+  "source_file_sha256": {
+    "editguard_chat/__init__.py": "0377a49610fef03e95529f08f809bf7d643dd63ce1e86a87d08d80c5926169be",
+    "editguard_chat/backend.py": "87dc999b0611fef8b01f2ac10ea70991d233e418914836ddc5ffc2a115fec8d0",
+    "editguard_chat/retrieval.py": "2d2f1183b594d6d741cd693b10a3b85eca29d8197829d107804a75251bf9655d",
+    "editguard_chat/server.py": "1312fd136557fd1b8164c50c2e8b1b7476604e685771b279cf966462ebc7ba78",
+    "editguard_chat/store.py": "317b0e60a8fcc41bc7a55ebeff497f0da20c67e8eb40896ce289da45acd866e1",
+    "configs/chat-models.json": "4bc90ab97004f915c11e40a6db0d4656e70c9b3641d4daba6b7b2d5069a6e369"
+  },
+  "ollama_residency_snapshot": {
+    "models": [
+      {
+        "name": "qwen3-vl:2b-instruct",
+        "model": "qwen3-vl:2b-instruct",
+        "size": 2521772850,
+        "digest": "afc393e3572c07db0bc84aa460d928a16c75f3fbb9ca9e0dccc4fbd2dafb573e",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3vl",
+          "families": [
+            "qwen3vl",
+            "clip"
+          ],
+          "parameter_size": "1.7B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-25T00:45:18.1916562+05:30",
+        "size_vram": 2521772850,
+        "context_length": 8192
+      },
+      {
+        "name": "all-minilm:22m",
+        "model": "all-minilm:22m",
+        "size": 48203038,
+        "digest": "1b226e2802dbb772b5fc32a58f103ca1804ef7501331012de126ab22f67475ef",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "bert",
+          "families": [
+            "bert"
+          ],
+          "parameter_size": "23M",
+          "quantization_level": "F16"
+        },
+        "expires_at": "2026-10-25T00:44:02.9820196+05:30",
+        "size_vram": 0,
+        "context_length": 256
+      }
+    ]
+  },
+  "device_inventory": "NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 3442 MiB",
+  "resource_limit": "Residency snapshot and total GPU-used memory, not allocator peak measurements or training usage.",
+  "model_receipt_sha256": "0b0e053c28e070c6d9d569f9996728ba7c2bde82f658ca6a801eb6b263bb002e"
+}

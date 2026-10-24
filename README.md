@@ -7,6 +7,8 @@ pretrained `qwen3-vl:2b-instruct` through Ollama for generated responses and
 approved external memory plus retrieval-augmented generation; the base model's
 weights stay unchanged.
 
+![The local conversational website](output/chat-studio-2026-10-25/normal-conversation.png)
+
 The explicit `2b-instruct` tag avoids relying on the generic tag's thinking-mode
 default. An earlier generic-tag attempt produced no visible answer within its
 384-token budget; that remains a development diagnostic, separate from the
@@ -49,6 +51,12 @@ corrections and parameter editing.
    remain visible as historical answers. Replacing an active correction in the
    same normalized question and scope requires explicit conflict resolution.
 
+Visible chat history is preserved. For new model requests, all assistant answers
+from an earlier knowledge revision, and correction-conditioned assistant answers,
+are excluded from the supplied context. This prevents an old answer or refusal
+from anchoring a new correction; it can also reduce continuity after a knowledge
+change. User messages remain subject to the bounded conversation window.
+
 Chats and correction records persist in SQLite under `runtime/chat/`, outside
 Git. The website is a local single-operator academic application, not a publicly
 hosted multi-user service. Retrieved sources and operator approval do not certify
@@ -73,6 +81,18 @@ independently inspectable research component. The BLIP-2/MEND benchmark measures
 that earlier model and protocol; it establishes **no general chat-accuracy number
 for Qwen or this new serving workflow**. Updated RAG is the application's default
 choice, not a claim that it is the best method for every question.
+
+### Measured local development validation
+
+The [second local acceptance rehearsal](reports/chat-studio-local-2/README.md)
+recorded **10 real model generations**, with 13 operational checks and six narrow
+fixture assertions passed. These are overlapping checks of a small development
+workflow, not 19 independent cases or a representative accuracy estimate. The
+[first rehearsal's direct-answer refusal](reports/chat-studio-local-1/qualitative-review.json)
+is retained. In the second run, withdrawal removed the supplied synthetic code
+but the model invented another code; passing the withdrawal check did not make
+that answer factually correct. The earlier 44 unit tests use contract fixtures
+and remain separate from this actual-model evidence.
 
 ## Separate research: visual knowledge editing workbench
 

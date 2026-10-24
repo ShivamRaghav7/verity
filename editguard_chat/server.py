@@ -110,11 +110,16 @@ class ChatApplication:
         # contaminate the original-model comparator. Keep it in visible history.
         result = []
         retained = messages[-12:]
+        current_revision = self.store.get_revision()
         last_image = next((i for i in range(len(retained) - 1, -1, -1) if retained[i].get("image_path")), None)
         for index, message in enumerate(retained):
             if message["role"] not in ("user", "assistant"):
                 continue
             evidence = message.get("evidence")
+            # A base answer can also become stale (including an earlier refusal
+            # or an obsolete value). Do not let it anchor a newly published fact.
+            if message["role"] == "assistant" and message.get("knowledge_revision", current_revision) != current_revision:
+                continue
             if message["role"] == "assistant" and isinstance(evidence, dict) and (
                     evidence.get("corrections") or evidence.get("generation_kind") != "model"):
                 continue
@@ -146,7 +151,8 @@ class ChatApplication:
                 "candidates": [], "method": "original_model", "score_is_probability": False}
         evidence = {**routing, "corrections": routing.get("selected", []), "mode": mode,
             "knowledge_revision": revision, "retrieval_query": retrieval_query,
-            "generation_kind": "model", "weights_changed": False}
+            "generation_kind": "model", "weights_changed": False,
+            "context_policy": "Visible history retained; prior-revision and correction-conditioned assistant answers excluded from model context"}
         if routing.get("clarification_required"):
             scopes = sorted({row["scope"] for row in routing.get("candidates", [])})
             evidence["generation_kind"] = "deterministic_clarification"

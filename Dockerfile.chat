@@ -1,0 +1,19 @@
+# Lightweight website only. Ollama and the pinned model files stay on the host.
+# The Python minor-version tag floats; model digests are pinned separately.
+FROM python:3.12-slim
+WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+COPY requirements-chat.txt ./
+RUN python -m pip install --no-cache-dir --requirement requirements-chat.txt \
+    && python -m pip check
+COPY editguard_chat ./editguard_chat
+COPY configs/chat-models.json ./configs/chat-models.json
+COPY reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json ./reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json
+RUN useradd --create-home --uid 10001 appuser \
+    && mkdir -p /app/runtime/chat \
+    && chown -R appuser:appuser /app/runtime
+USER appuser
+# Linux host networking is necessary: both the website and Ollama bind to
+# loopback. A normal bridge-mode port mapping cannot reach this server.
+CMD ["python", "-m", "editguard_chat.server", "--port", "8004", "--storage", "/app/runtime/chat"]

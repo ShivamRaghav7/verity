@@ -1,0 +1,9 @@
+{
+  "kind": "automated_qualitative_development_review",
+  "raw_receipt_unchanged": true,
+  "finding": "All 13 operational checks passed, but the direct corrected answer repeated an earlier refusal. The paraphrase endorsed LUMEN-73; the unrelated answer was Tokyo and the image answer was red. Operational completion is not model-answer correctness.",
+  "direct_corrected_answer": "I cannot provide the access code for the Aster Demo Registry as it is not a standard or publicly available information. If you have a specific context or need assistance with a different system, please provide more details.",
+  "direct_target_endorsed": false,
+  "fix_under_test": "Exclude old-revision assistant answers from generation context while preserving visible history.",
+  "independent_human_review": false
+}

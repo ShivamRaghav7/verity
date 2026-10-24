@@ -1,0 +1,15 @@
+# Only the local website and the one explicitly attributed saved report.
+**
+!requirements-chat.txt
+!editguard_chat/
+!editguard_chat/**
+!configs/
+!configs/chat-models.json
+!reports/
+!reports/vlkeb/
+!reports/vlkeb/t4-eval20-1/
+!reports/vlkeb/t4-eval20-1/artifacts/
+!reports/vlkeb/t4-eval20-1/artifacts/vlkeb/
+!reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/
+!reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json
+editguard_chat/**/__pycache__/

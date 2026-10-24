@@ -97,6 +97,42 @@ do not detect every contradiction between differently worded facts. Retrieval
 also asks for clarification when competing high-scoring corrections cannot be
 resolved safely by its heuristic.
 
+## What was measured locally
+
+The [second local acceptance rehearsal](../reports/chat-studio-local-2/README.md)
+used the actual `qwen3-vl:2b-instruct` and `all-minilm:22m` models. Its
+[raw receipt](../reports/chat-studio-local-2/live-acceptance.json) contains ten
+fresh model generations: normal text, a follow-up, the initial unknown fact,
+direct and paraphrased corrected questions, an unrelated question, two comparison
+responses, a post-withdrawal question and a generated geometric-image question.
+All 13 operational checks and six narrowly defined fixture assertions passed.
+These checks overlap the same outputs; they are not 19 independent cases or a
+representative chat-accuracy score. The 44 unit tests using contract fixtures are
+separate engineering evidence.
+
+The correction's `LUMEN-73` value is synthetic test data, not a real credential.
+After withdrawal, the model stopped endorsing that supplied value but generated
+an unsupported alternative, `ASTER-001`. The defined non-endorsement assertion
+passed; the answer was still not established as factually correct. Withdrawal
+controls which memory is supplied, not whether every later sentence is true.
+
+The [first actual-model rehearsal](../reports/chat-studio-local-1/live-acceptance.json)
+also passed its 13 operational checks, yet its direct corrected response repeated
+an earlier refusal. The [qualitative review](../reports/chat-studio-local-1/qualitative-review.json)
+retains that failure. The context policy was then changed to exclude all
+prior-revision assistant answers from later generation prompts, while preserving
+visible history. This was development and debugging, not repeated tuning of the
+frozen visual test set. See the second run's
+[code and model identity record](../reports/chat-studio-local-2/run-context.json):
+its recorded base Git commit alone is not the complete identity of the working
+implementation used during the run.
+
+The separate [browser observations](../output/chat-studio-2026-10-25/browser-observations.json)
+show a controlled counterfactual Australia example: original Canberra, supplied
+counterfactual Melbourne, and Canberra again after withdrawal. This is a GUI
+workflow demonstration, not a real-world factual update or an additional sample
+in the acceptance run or the 20-edit visual benchmark.
+
 ## What actually changes when knowledge is edited
 
 The default method is **external correction memory plus retrieval-augmented
@@ -147,9 +183,11 @@ tradeoffs motivate inspecting a correction before trusting its effects.
   model; answers may be incomplete, wrong or sensitive to wording.
 - Retrieved sources and operator approval do not independently establish factual
   truth. The source is the administrator's stated provenance.
-- Conversation context is bounded. Previously correction-conditioned assistant
-  prose is excluded from later model prompts to reduce stale correction leakage,
-  although it stays visible in the chat history.
+- Conversation context is bounded. All assistant answers from earlier knowledge
+  revisions, including old base-model answers or refusals, are excluded from
+  later model prompts. Correction-conditioned assistant prose is also excluded.
+  Those messages remain visible in history. A knowledge change can therefore
+  reduce continuity of details supplied only in an earlier assistant response.
 - This is a local single-operator academic application, not an internet-hosted
   multi-user service with accounts and roles. Keep its loopback binding; do not
   expose the server by changing network settings.
@@ -160,3 +198,42 @@ tradeoffs motivate inspecting a correction before trusting its effects.
 Official references: [Qwen3-VL through Ollama](https://ollama.com/library/qwen3-vl:2b-instruct),
 [Ollama chat API](https://docs.ollama.com/api/chat), and
 [image input documentation](https://docs.ollama.com/capabilities/vision).
+
+## Optional Linux website container
+
+`Dockerfile.chat` packages the website, Pillow, the model-identity configuration
+and the saved visual evaluation report. It runs as an unprivileged user and
+keeps new conversations and correction records under `/app/runtime/chat`.
+It does **not** install Ollama or contain the model weights. The base image
+`python:3.12-slim` is a floating minor-version tag, not an immutable image digest;
+the separately recorded Qwen and embedding model digests are checked by the
+application when those models are installed.
+
+On a Linux machine with the configured Ollama models already prepared on the
+host, build and start the website from the repository root:
+
+```bash
+docker build --file Dockerfile.chat --tag editguard-chat:local .
+docker volume create editguard-chat-data
+docker run --rm --name editguard-chat --network host \
+  --mount type=volume,src=editguard-chat-data,dst=/app/runtime/chat \
+  editguard-chat:local
+```
+
+Open `http://127.0.0.1:8004/` on that machine. Native Linux host networking lets
+the container reach the host's loopback Ollama service on port 11434 while the
+website retains its own loopback-only binding. An ordinary bridge-mode `-p`
+mapping cannot reach a server bound to the container's loopback interface. No
+public tunnel or broader bind address is required. The named volume retains
+the database and images after the container stops; preserve that volume to keep
+the history. Its initial contents inherit the image's writable runtime directory.
+If a volume already exists with incompatible ownership, correct its ownership
+deliberately rather than deleting saved history or running the application as root.
+
+This is an optional native Linux packaging path. It is not a claim of Windows
+Docker Desktop host-network/GPU compatibility or model inference inside the
+container. Ollama owns model execution and its hardware configuration on the
+host. The native Windows launch above is the project's measured Chat Studio
+path. No local Docker or GPU-container execution was performed while preparing
+this file; the CI build/import/HTTP checks are separate engineering evidence and
+do not establish model quality.
