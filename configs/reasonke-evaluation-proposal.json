@@ -1,0 +1,122 @@
+{
+  "schema": "editguard-evaluation-proposal-v1",
+  "status": "proposed_not_frozen",
+  "created_local_date": "2026-10-25",
+  "timezone": "Asia/Calcutta",
+  "execution_authorized_by_this_file": false,
+  "notice": "Planning artifact only. Dataset, baseline revision, prompts, retrieval, scorer and source must be frozen before final evaluation. Counts are planned denominators, not measured results.",
+  "plan_document": "docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md",
+  "objective": "Evaluate approved factual updates, paraphrase and two-hop transfer, locality, and reversible knowledge maintenance in a controlled conversational assistant.",
+  "domain": "fictional_internal_operations_handbook",
+  "training": {
+    "new_training_planned": false,
+    "reasonke_weights_trained_by_this_project": false,
+    "new_edits_change_weights": false,
+    "earlier_own_training_documentation": "docs/MODEL_CARD.md"
+  },
+  "dataset": {
+    "id": null,
+    "sha256": null,
+    "independent_unit": "edit_lineage",
+    "split_before_paraphrase_augmentation": true,
+    "development_lineages": 16,
+    "final_lineages": 32,
+    "questions_per_lineage": 8,
+    "development_questions": 128,
+    "final_questions_per_condition": 256,
+    "final_applicable_questions_per_condition": 128,
+    "final_locality_questions_per_condition": 128,
+    "question_categories": [
+      {"id": "direct", "applicable": true, "final_count": 32},
+      {"id": "direct_paraphrase", "applicable": true, "final_count": 32},
+      {"id": "two_hop", "applicable": true, "final_count": 32},
+      {"id": "two_hop_paraphrase", "applicable": true, "final_count": 32},
+      {"id": "same_entity_other_relation", "applicable": false, "final_count": 32},
+      {"id": "similar_entity_same_relation", "applicable": false, "final_count": 32},
+      {"id": "wrong_version_or_tier", "applicable": false, "final_count": 32},
+      {"id": "unrelated", "applicable": false, "final_count": 32}
+    ],
+    "review_policy": "automated_audit_disclosed",
+    "independent_human_review_claimed": false,
+    "exclude_existing_demonstration_lineages_from_final": true
+  },
+  "models": {
+    "reasonke": {
+      "id": "YukinoKaren/ReasonKE_plus",
+      "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+      "manifest": "configs/reasonke-model.json"
+    },
+    "generic_candidate": {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "revision": null,
+      "status": "requires_primary_source_verification_pinning_and_profile",
+      "exact_parent_relationship_claimed": false
+    }
+  },
+  "conditions": [
+    {"id": "R0", "model": "reasonke", "fact_view": "initial", "context_policy": "all_facts", "role": "unchanged_within_model_reference"},
+    {"id": "G-RAG", "model": "generic_candidate", "fact_view": "resolved_current", "context_policy": "shared_retrieval", "role": "updated_rag_baseline"},
+    {"id": "G-ALL", "model": "generic_candidate", "fact_view": "resolved_current", "context_policy": "all_facts", "role": "full_context_prompt_baseline"},
+    {"id": "R-RAG", "model": "reasonke", "fact_view": "resolved_current", "context_policy": "shared_retrieval", "role": "matched_retrieval_model_comparison"},
+    {"id": "R-ALL", "model": "reasonke", "fact_view": "resolved_current", "context_policy": "all_facts", "role": "current_product"}
+  ],
+  "retrieval": {
+    "implementation": null,
+    "settings": null,
+    "select_using_development_only": true,
+    "same_retrieved_fact_ids_for_both_generators": true,
+    "gold_answer_or_gold_support_used_in_main_retrieval": false,
+    "superseded_values_resolved_before_retrieval": true
+  },
+  "generation_budget_proposal": {
+    "do_sample": false,
+    "seed": 42,
+    "quantization": "nf4",
+    "compute_dtype": "float16",
+    "max_input_tokens": 4096,
+    "max_new_tokens": 512,
+    "soft_generation_time_limit_seconds": 120,
+    "max_facts": 20,
+    "max_fact_characters": 12000,
+    "load_checkpoints_sequentially": true,
+    "request_watchdog_and_total_wall_budget": null,
+    "runtime_forecast": "requires_new_representative_profiles"
+  },
+  "finite_request_counts": {
+    "maximum_profiles_per_model": 12,
+    "maximum_profile_generations": 24,
+    "maximum_development_generations": 120,
+    "main_final_generations": 1280,
+    "oracle_questions_preselected_before_inference": 16,
+    "oracle_generations": 32,
+    "total_final_stage_generations": 1312,
+    "maximum_total_declared_generations": 1456,
+    "transaction_tests_count_as_generations": false,
+    "wrong_answer_retries_allowed": false,
+    "preserve_execution_failures_and_original_attempts": true
+  },
+  "scoring": {
+    "implementation_revision": null,
+    "aliases_sha256": null,
+    "primary": "endorsed_whole_final_answer_alias_match_bound_to_requested_entity_relation_scope",
+    "primary_denominator": "all_assigned_questions",
+    "outcomes": ["correct", "wrong", "abstain", "execution_error", "unexecuted"],
+    "abstention_error_unexecuted_primary_credit": 0,
+    "structured_answers_count_as_neural_success": false,
+    "retention_primary_comparison": {"reference": "R0", "edited": "R-ALL", "subset": "locality_questions_correct_in_R0"},
+    "paired_uncertainty": {"unit": "edit_lineage", "final_units": 32, "bootstrap_resamples": 10000, "seed": 42},
+    "scope_classifier_or_confidence_calibration_claimed": false,
+    "explanation_audit": {"preselected_outputs": 32, "purpose": "explicit_claim_support_not_internal_reasoning_faithfulness", "independent_human_review_claimed": false}
+  },
+  "freeze_requirements": [
+    "authored_dataset_and_lineage_split_audit",
+    "reviewed_ground_truth_aliases_and_scope_rules",
+    "both_model_revisions_and_resource_profiles",
+    "development_selected_prompts_and_retrieval_settings",
+    "scorer_and_outcome_classification_implementation",
+    "canonical_fact_identity_and_workspace_restore_regressions",
+    "complete_input_source_and_configuration_hashes",
+    "finite_request_watchdog_and_profile_grounded_total_budget",
+    "preselected_oracle_questions_and_explanation_audit_sample"
+  ]
+}

@@ -1,5 +1,9 @@
 # EditGuard: Chat & Knowledge
 
+Read the [current project journey and finite finish plan](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md)
+for the goal, actual development timeline, planned final evaluation, metrics and
+five-workday release milestones. Proposed measurements are separate from recorded results.
+
 The current text-editing website uses the author's trained **ReasonKE_plus**
 checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/f6983b695ec2796de49026ac7e6361e51d9fbee9/notebooks/04_reasonke_chat.ipynb),
 select T4, and run the cells in order. The launcher waits for the model before

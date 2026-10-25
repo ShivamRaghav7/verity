@@ -1,5 +1,9 @@
 # Project scope and finite execution plan
 
+This document preserves the earlier support-editor release and its evidence.
+For the current ReasonKE conversational product, use the
+[project journey and finish plan](PROJECT_JOURNEY_AND_FINISH_PLAN.md).
+
 Build a locally deployable support editing application with a frozen assistant,
 approved correction memory, a trained applicability classifier and a trained
 edit-conditioned generator. Deliver reproducible comparisons, scientific figures,
