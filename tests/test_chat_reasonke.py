@@ -244,14 +244,24 @@ class ColabProxyAccessTests(unittest.TestCase):
                            "Content-Type": "application/json", "X-EditGuard-Token": app.token}
                 with urlopen(Request(address + "/api/chats", data=b"{}", headers=allowed)) as response:
                     self.assertEqual(response.status, 200)
+                private_host = "gpu-example.asia-southeast1-c.c.codatalab-user-runtimes.internal:8006"
+                with urlopen(Request(address + "/api/chats", data=b"{}",
+                                     headers={**allowed, "Host": private_host})) as response:
+                    self.assertEqual(response.status, 200)
                 for changed in ({"Origin": "https://unapproved.colab.googleusercontent.com"},
                                 {"Origin": self.ORIGIN.replace("https:", "http:")},
                                 {"Host": "unapproved.colab.googleusercontent.com"},
-                                {"X-EditGuard-Token": "wrong-token"}):
+                                {"X-EditGuard-Token": "wrong-token"},
+                                {"Host": private_host, "Origin": "https://unapproved.example.org"}):
                     with self.subTest(changed=changed), self.assertRaises(HTTPError) as rejected:
                         urlopen(Request(address + "/api/chats", data=b"{}", headers={**allowed, **changed}))
                     self.assertEqual(rejected.exception.code, 403)
                     rejected.exception.close()
+                app.trusted_origin = None
+                with self.assertRaises(HTTPError) as rejected:
+                    urlopen(Request(address + "/api/chats", data=b"{}", headers={**allowed, "Host": private_host}))
+                self.assertEqual(rejected.exception.code, 403)
+                rejected.exception.close()
             finally:
                 server.shutdown()
                 server.server_close()

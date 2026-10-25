@@ -325,7 +325,13 @@ def handler_for(app):
         def allowed_host(self):
             host = self.headers.get("Host", "")
             trusted_host = urlsplit(app.trusted_origin).netloc if app.trusted_origin else None
-            return host.split(":")[0] in ("127.0.0.1", "localhost") or host.lower() == trusted_host
+            hostname = host.split(":")[0].lower()
+            # Colab's authenticated proxy rewrites Host to its private runtime
+            # address. Enable this only with an explicit exact external origin;
+            # mutation requests still require that origin and the session token.
+            private_colab = bool(app.trusted_origin and
+                hostname.endswith(".c.codatalab-user-runtimes.internal"))
+            return hostname in ("127.0.0.1", "localhost") or host.lower() == trusted_host or private_colab
 
         def reply(self, code, data, content_type="application/json; charset=utf-8"):
             body = data if isinstance(data, bytes) else json.dumps(data, ensure_ascii=False, allow_nan=False).encode("utf-8")
