@@ -224,6 +224,8 @@ class ColabProxyAccessTests(unittest.TestCase):
 
     def test_proxy_origin_requires_https_exact_googleusercontent_host(self):
         self.assertEqual(validate_trusted_origin(self.ORIGIN + "/"), self.ORIGIN)
+        current_colab = "https://8005-example.asia-southeast1-2.prod.colab.dev"
+        self.assertEqual(validate_trusted_origin(current_colab), current_colab)
         for origin in ("http://8005-example.colab.googleusercontent.com", "https://example.org",
                        "https://googleusercontent.com", self.ORIGIN + "/path", self.ORIGIN + "?secret=x",
                        "https://name:password@8005-example.colab.googleusercontent.com", self.ORIGIN + ":444"):
