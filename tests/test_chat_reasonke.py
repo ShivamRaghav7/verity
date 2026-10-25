@@ -226,9 +226,13 @@ class ColabProxyAccessTests(unittest.TestCase):
         self.assertEqual(validate_trusted_origin(self.ORIGIN + "/"), self.ORIGIN)
         current_colab = "https://8005-example.asia-southeast1-2.prod.colab.dev"
         self.assertEqual(validate_trusted_origin(current_colab), current_colab)
+        regional_colab = "https://8005-gpu-t4-s-usw1b2-2lzvx7km9dntk-b.us-west1.prod.r.colab.dev"
+        self.assertEqual(validate_trusted_origin(regional_colab), regional_colab)
         for origin in ("http://8005-example.colab.googleusercontent.com", "https://example.org",
                        "https://googleusercontent.com", self.ORIGIN + "/path", self.ORIGIN + "?secret=x",
-                       "https://name:password@8005-example.colab.googleusercontent.com", self.ORIGIN + ":444"):
+                       "https://name:password@8005-example.colab.googleusercontent.com", self.ORIGIN + ":444",
+                       "https://prod.r.colab.dev", regional_colab + ".example.org",
+                       "https://8005-example.notprod.r.colab.dev", regional_colab.replace("https:", "http:")):
             with self.subTest(origin=origin), self.assertRaises(ValueError):
                 validate_trusted_origin(origin)
 

@@ -1,5 +1,12 @@
 # EditGuard: Chat & Knowledge
 
+The current text-editing website uses the author's trained **ReasonKE_plus**
+checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/e9c0002ead2c507495fb383c5dbcdae5fd45d681/notebooks/04_reasonke_chat.ipynb),
+select T4, and run the cells in order. The launcher waits for the model before
+opening the website and includes an optional seven-generation editing,
+comparison and withdrawal check. Keep the Colab runtime connected while using
+its temporary website URL. No per-correction training is launched.
+
 The released ReasonKE checkpoint integration is on `codex/reasonke-integration`.
 Its [first real T4 deployment check](reports/reasonke/t4-development-1/README.md)
 generated the intended final answers for five predefined development questions,
@@ -7,6 +14,8 @@ including a paraphrase and two-hop question. This is not a general accuracy
 estimate or reproduction of the paper's score; explanatory and conflicting-source
 failures are documented. Read [the scope and launch instructions](docs/REASONKE_INTEGRATION.md).
 The local launcher below continues to use the preserved Ollama backend.
+
+## Preserved local Ollama backend
 
 A local website for **normal text conversation, optional image questions, and
 knowledge corrections you can publish, inspect and withdraw**. Chat Studio uses

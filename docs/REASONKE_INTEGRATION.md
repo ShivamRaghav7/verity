@@ -87,8 +87,17 @@ T4 receipt. HTTP and simulated-client tests remain software-contract evidence.
 The small diagnostic and live comparison do not establish unrestricted
 conversation accuracy, arbitrary edit reliability or faithful explanations.
 
-Open the [source-pinned Colab notebook](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/1ffa447b0dbd3142d8e3f1f91e8e66c9aeff8cd9/notebooks/04_reasonke_chat.ipynb)
+Open the [source-pinned Colab notebook](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/e9c0002ead2c507495fb383c5dbcdae5fd45d681/notebooks/04_reasonke_chat.ipynb)
 or upload `notebooks/04_reasonke_chat.ipynb` to Colab. Select T4 and run the
 hardware, setup and launch cells, then inspect the progress cell until the
-worker is ready. Open the website cell last. The notebook's full source SHA
-is recorded inside it; keep the Colab runtime running while using the website.
+worker is ready. The website cell can also wait for readiness. An optional cell
+runs `scripts.verify_reasonke_live` against isolated memory, preserves all seven
+assigned outcomes, and withdraws only its own correction. This covers actual
+generation through the complete website API, separate from software fixtures.
+The notebook's full source SHA is recorded inside it; keep the Colab runtime
+running while using the website. Its URL expires when the runtime ends.
+
+The website's **Research results** tab preserves the previous visual-model
+study. It does not contain accuracy numbers for ReasonKE. Use the linked
+ReasonKE deployment receipts for this backend until its broader evaluation is
+completed; the two protocols must not be mixed.

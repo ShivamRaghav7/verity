@@ -311,10 +311,10 @@ def validate_trusted_origin(origin):
         return None
     parsed = urlsplit(origin)
     if (any(char.isspace() for char in origin) or parsed.scheme != "https" or not parsed.hostname
-            or not parsed.hostname.endswith((".googleusercontent.com", ".prod.colab.dev"))
+            or not parsed.hostname.endswith((".googleusercontent.com", ".prod.colab.dev", ".prod.r.colab.dev"))
             or parsed.username or parsed.password or parsed.query or parsed.fragment
             or parsed.path not in ("", "/") or parsed.port not in (None, 443)):
-        raise ValueError("The trusted origin must be an exact HTTPS Colab proxy origin (googleusercontent.com or prod.colab.dev).")
+        raise ValueError("The trusted origin must be an exact HTTPS Colab proxy origin (googleusercontent.com, prod.colab.dev or prod.r.colab.dev).")
     return "https://" + parsed.netloc.lower()
 
 

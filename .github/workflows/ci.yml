@@ -11,6 +11,7 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements-chat.txt
       - run: python -m unittest tests.test_chat_store tests.test_chat_retrieval tests.test_chat_server tests.test_chat_backend tests.test_chat_reasonke tests.test_reasonke_runtime -v
+      - run: python -m scripts.verify_reasonke_live --help
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
