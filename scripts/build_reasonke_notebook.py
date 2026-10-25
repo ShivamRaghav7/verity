@@ -72,12 +72,15 @@ def build(commit):
             subprocess.run(['git', '-C', str(REPO), 'checkout', '--detach', SOURCE_COMMIT], check=True)
         os.chdir(REPO)
         VENV = Path('/content/editguard-reasonke-venv')
-        if not VENV.exists():
-            subprocess.run([sys.executable, '-m', 'venv', '--system-site-packages', '--without-pip', str(VENV)], check=True)
+        # Also repairs pyvenv.cfg after an interrupted ensurepip-based creation.
+        subprocess.run([sys.executable, '-m', 'venv', '--system-site-packages', '--without-pip', str(VENV)], check=True)
         PYTHON = str(VENV / 'bin/python')
-        subprocess.run([PYTHON, '-m', 'pip', 'install', '--disable-pip-version-check',
-                        '--index-url', 'https://pypi.org/simple', '-r', 'requirements-reasonke.txt'], check=True)
-        subprocess.run([PYTHON, '-m', 'unittest', 'tests.test_reasonke_runtime', 'tests.test_chat_reasonke', '-q'], check=True)
+        for command in ([PYTHON, '-m', 'pip', 'install', '--disable-pip-version-check',
+                         '--index-url', 'https://pypi.org/simple', '-r', 'requirements-reasonke.txt'],
+                        [PYTHON, '-m', 'unittest', 'tests.test_reasonke_runtime', 'tests.test_chat_reasonke', '-q']):
+            completed = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            print(completed.stdout)
+            completed.check_returncode()
         print('Contract tests passed; they do not establish model answer accuracy.')
     """), cell("code", """
         # Explicitly launch ONE GPU process: load, five finite checks, then serve.
