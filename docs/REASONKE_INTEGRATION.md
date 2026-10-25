@@ -72,6 +72,12 @@ These five development fixtures are not a representative accuracy estimate,
 unseen test set, or proof of arbitrary multi-hop reasoning. No paper metric is
 inserted into the application's measured-results dashboard.
 
+The [cold-restart and website receipt](../reports/reasonke/t4-restart-1/README.md)
+records a second T4 session and the complete publish, paraphrase, compare and
+withdraw workflow. Its six factual checks matched; its seventh ordinary-chat
+check measured only nonempty generation. The [demo walkthrough](REASONKE_DEMO.md)
+explains the interface, model contribution, evidence, and how to save the database.
+
 ## Serving
 
 The worker binds to loopback and protects generation/status with an ephemeral
@@ -87,7 +93,7 @@ T4 receipt. HTTP and simulated-client tests remain software-contract evidence.
 The small diagnostic and live comparison do not establish unrestricted
 conversation accuracy, arbitrary edit reliability or faithful explanations.
 
-Open the [source-pinned Colab notebook](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/e9c0002ead2c507495fb383c5dbcdae5fd45d681/notebooks/04_reasonke_chat.ipynb)
+Open the [source-pinned Colab notebook](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/f6983b695ec2796de49026ac7e6361e51d9fbee9/notebooks/04_reasonke_chat.ipynb)
 or upload `notebooks/04_reasonke_chat.ipynb` to Colab. Select T4 and run the
 hardware, setup and launch cells, then inspect the progress cell until the
 worker is ready. The website cell can also wait for readiness. An optional cell

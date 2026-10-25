@@ -1,7 +1,7 @@
 # EditGuard: Chat & Knowledge
 
 The current text-editing website uses the author's trained **ReasonKE_plus**
-checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/e9c0002ead2c507495fb383c5dbcdae5fd45d681/notebooks/04_reasonke_chat.ipynb),
+checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/f6983b695ec2796de49026ac7e6361e51d9fbee9/notebooks/04_reasonke_chat.ipynb),
 select T4, and run the cells in order. The launcher waits for the model before
 opening the website and includes an optional seven-generation editing,
 comparison and withdrawal check. Keep the Colab runtime connected while using
@@ -14,6 +14,12 @@ including a paraphrase and two-hop question. This is not a general accuracy
 estimate or reproduction of the paper's score; explanatory and conflicting-source
 failures are documented. Read [the scope and launch instructions](docs/REASONKE_INTEGRATION.md).
 The local launcher below continues to use the preserved Ollama backend.
+
+The [cold-restart receipt](reports/reasonke/t4-restart-1/README.md) also records
+the complete website workflow: six matching factual checks and one nonempty
+ordinary-conversation check, with all seven real generations retained. Read
+the [step-by-step demo guide](docs/REASONKE_DEMO.md) to launch, chat, publish,
+compare, withdraw, and save your work.
 
 ## Preserved local Ollama backend
 

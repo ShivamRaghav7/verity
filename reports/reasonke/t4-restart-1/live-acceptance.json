@@ -1,0 +1,1884 @@
+{
+  "schema": "editguard-reasonke-live-v1",
+  "started_utc": "2026-10-25T14:26:59.086473+00:00",
+  "status": "completed",
+  "base_url": "http://127.0.0.1:8005",
+  "model_id": "YukinoKaren/ReasonKE_plus",
+  "model_revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+  "planned_model_generations": 7,
+  "cases": [
+    {
+      "id": "original",
+      "question": "What is the capital of India?",
+      "expected": "New Delhi",
+      "status": "generated",
+      "passed": true,
+      "actual": "New Delhi",
+      "response": {
+        "id": "b632e0dfb2d4414991c3423bf47d072e",
+        "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+        "position": 2,
+        "role": "assistant",
+        "content": "New Delhi",
+        "knowledge_revision": 0,
+        "created_at": "2026-10-25T14:27:08.717217+00:00",
+        "evidence": {
+          "accepted": false,
+          "selected": [],
+          "candidates": [],
+          "method": "without_correction_context",
+          "reason": "original_model_requested",
+          "score_is_probability": false,
+          "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. This is not the untouched foundation model.",
+          "corrections": [],
+          "mode": "original",
+          "knowledge_revision": 0,
+          "retrieval_query": "What is the capital of India?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 9.559346458999926,
+            "input_tokens": 36,
+            "output_tokens": 135,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5718905344,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The query asks for the capital of India.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What country is being referred to?\n[Sub question 2]What is the capital of [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The country being referred to is India, so the answer is \\boxed{India}.\n[Sub question 2]The capital of India is well-known, so the answer is \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "original"
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": true,
+      "nonempty_response": true,
+      "factual_quality_evaluated": true
+    },
+    {
+      "id": "corrected-direct",
+      "question": "What is the capital of India?",
+      "expected": "Mumbai",
+      "status": "generated",
+      "passed": true,
+      "actual": "Mumbai",
+      "response": {
+        "id": "7e3da13652754ea9805e412d64dcd9ba",
+        "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+        "position": 4,
+        "role": "assistant",
+        "content": "Mumbai",
+        "knowledge_revision": 1,
+        "created_at": "2026-10-25T14:27:16.413680+00:00",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "method": "all_approved_facts_learned_applicability",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "approved_context_supplied",
+          "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+          "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+          "active_correction_count": 1,
+          "corrections": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 1,
+          "retrieval_query": "What is the capital of India?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 7.65633367800001,
+            "input_tokens": 147,
+            "output_tokens": 107,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5734606336,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [
+              "a6edbf0015354f318c6929714a92de8f"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information provides that the capital of India is Mumbai. The query asks for the capital of India.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "edited"
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": true,
+      "nonempty_response": true,
+      "factual_quality_evaluated": true
+    },
+    {
+      "id": "fresh-paraphrase",
+      "question": "Which city serves as India's capital?",
+      "expected": "Mumbai",
+      "status": "generated",
+      "passed": true,
+      "actual": "Mumbai",
+      "response": {
+        "id": "9b584ce36fb34cd2b473e6e10e7c78c7",
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "position": 2,
+        "role": "assistant",
+        "content": "Mumbai",
+        "knowledge_revision": 1,
+        "created_at": "2026-10-25T14:27:24.198424+00:00",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "method": "all_approved_facts_learned_applicability",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "approved_context_supplied",
+          "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+          "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+          "active_correction_count": 1,
+          "corrections": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 1,
+          "retrieval_query": "Which city serves as India's capital?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 7.745726227999967,
+            "input_tokens": 148,
+            "output_tokens": 109,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5734696448,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [
+              "a6edbf0015354f318c6929714a92de8f"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information states that the capital of India is Mumbai. The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "edited"
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": true,
+      "nonempty_response": true,
+      "factual_quality_evaluated": true
+    },
+    {
+      "id": "compare-without-context",
+      "question": "Which city serves as India's capital?",
+      "expected": "New Delhi",
+      "status": "generated",
+      "passed": true,
+      "actual": "New Delhi",
+      "response": {
+        "content": "New Delhi",
+        "evidence": {
+          "accepted": false,
+          "selected": [],
+          "candidates": [],
+          "method": "without_correction_context",
+          "reason": "original_model_requested",
+          "score_is_probability": false,
+          "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. This is not the untouched foundation model.",
+          "corrections": [],
+          "mode": "original",
+          "knowledge_revision": 1,
+          "retrieval_query": "Which city serves as India's capital?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 7.004361706000054,
+            "input_tokens": 37,
+            "output_tokens": 99,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5719030272,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the official capital of India?\n</decompose>\n<action>Answer the sub question based on knowledge:\n[Sub question 1]The official capital of India is New Delhi, which is represented as \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        }
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": true,
+      "nonempty_response": true,
+      "factual_quality_evaluated": true
+    },
+    {
+      "id": "compare-with-context",
+      "question": "Which city serves as India's capital?",
+      "expected": "Mumbai",
+      "status": "generated",
+      "passed": true,
+      "actual": "Mumbai",
+      "response": {
+        "content": "Mumbai",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "method": "all_approved_facts_learned_applicability",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "approved_context_supplied",
+          "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+          "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+          "active_correction_count": 1,
+          "corrections": [
+            {
+              "id": "a6edbf0015354f318c6929714a92de8f",
+              "question": "What is the capital of India?",
+              "answer": "Mumbai",
+              "scope": "India; capital; controlled counterfactual demonstration",
+              "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 1,
+          "retrieval_query": "Which city serves as India's capital?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 7.7707852959999855,
+            "input_tokens": 148,
+            "output_tokens": 109,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5734696448,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [
+              "a6edbf0015354f318c6929714a92de8f"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information states that the capital of India is Mumbai. The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        }
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": true,
+      "nonempty_response": true,
+      "factual_quality_evaluated": true
+    },
+    {
+      "id": "after-withdrawal",
+      "question": "Which city serves as India's capital?",
+      "expected": "New Delhi",
+      "status": "generated",
+      "passed": true,
+      "actual": "New Delhi",
+      "response": {
+        "id": "53a2f8255ae94e418f21247b5f238d72",
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "position": 4,
+        "role": "assistant",
+        "content": "New Delhi",
+        "knowledge_revision": 2,
+        "created_at": "2026-10-25T14:27:45.907884+00:00",
+        "evidence": {
+          "accepted": false,
+          "selected": [],
+          "candidates": [],
+          "method": "all_approved_facts_learned_applicability",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "no_active_corrections",
+          "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+          "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+          "active_correction_count": 0,
+          "corrections": [],
+          "mode": "edited",
+          "knowledge_revision": 2,
+          "retrieval_query": "Which city serves as India's capital?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 6.863193391999857,
+            "input_tokens": 37,
+            "output_tokens": 99,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5719030272,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the official capital of India?\n</decompose>\n<action>Answer the sub question based on knowledge:\n[Sub question 1]The official capital of India is New Delhi, which is represented as \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "edited"
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": true,
+      "nonempty_response": true,
+      "factual_quality_evaluated": true
+    },
+    {
+      "id": "ordinary-conversation",
+      "question": "Explain overfitting in two short sentences.",
+      "expected": null,
+      "scoring": "Nonempty real model response only; factual quality requires qualitative review",
+      "status": "generated",
+      "passed": true,
+      "actual": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+      "response": {
+        "id": "d2ef9baec11b436d8355374a6cbaf45f",
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "position": 6,
+        "role": "assistant",
+        "content": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+        "knowledge_revision": 2,
+        "created_at": "2026-10-25T14:27:48.498456+00:00",
+        "evidence": {
+          "accepted": false,
+          "selected": [],
+          "candidates": [],
+          "method": "all_approved_facts_learned_applicability",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "no_active_corrections",
+          "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+          "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+          "active_correction_count": 0,
+          "corrections": [],
+          "mode": "edited",
+          "knowledge_revision": 2,
+          "retrieval_query": "Explain overfitting in two short sentences.",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 2.5619667860000845,
+            "input_tokens": 59,
+            "output_tokens": 35,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5721767424,
+            "peak_reserved_bytes": 7170162688,
+            "fact_ids": [],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+          "output_format": {
+            "answer_tag_found": false,
+            "multiple_answer_tags": false,
+            "raw_fallback": true,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "edited"
+      },
+      "valid_model_provenance": true,
+      "exact_answer_match": null,
+      "nonempty_response": true,
+      "factual_quality_evaluated": false
+    }
+  ],
+  "operations": [
+    {
+      "name": "inspect-model",
+      "path": "/api/status",
+      "started_utc": "2026-10-25T14:26:59.090139+00:00",
+      "status": "completed",
+      "response": {
+        "model": {
+          "name": "YukinoKaren/ReasonKE_plus",
+          "backend": "Reason-KE trained checkpoint worker",
+          "ready": true,
+          "supports_images": false,
+          "embedding_ready": false,
+          "error": null,
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "weights_changed_by_corrections": false,
+          "published_metric_reproduced": false,
+          "hardware": {
+            "name": "Tesla T4",
+            "total_vram_bytes": 15637086208,
+            "compute_capability": [
+              7,
+              5
+            ],
+            "load_peak_allocated_bytes": 7071596544,
+            "load_peak_reserved_bytes": 7140802560,
+            "torch": "2.11.0+cu130",
+            "cuda": "13.0",
+            "python": "3.13.16",
+            "packages": {
+              "transformers": "4.56.1",
+              "accelerate": "1.10.1",
+              "bitsandbytes": "0.48.1"
+            }
+          },
+          "quantization": "NF4 double quantization, FP16 compute"
+        },
+        "revision": 0,
+        "busy": false,
+        "retrieval": {
+          "method": "all_approved_facts_learned_applicability",
+          "threshold": null,
+          "threshold_calibrated": false,
+          "limitation": "All active approved facts are supplied, up to 20 records. The trained model decides applicability; generated answers remain unverified."
+        },
+        "method": "Upstream ReasonKE_plus trained edit-conditioned reasoner; new corrections update external fact memory, not model weights",
+        "comparison_label": "Same trained checkpoint without correction context"
+      },
+      "seconds": 0.030740802000082112,
+      "completed_utc": "2026-10-25T14:26:59.123652+00:00"
+    },
+    {
+      "name": "check-empty-approved-memory",
+      "path": "/api/corrections",
+      "started_utc": "2026-10-25T14:26:59.126994+00:00",
+      "status": "completed",
+      "response": {
+        "revision": 0,
+        "active_correction_count": 0,
+        "corrections": [],
+        "events": [],
+        "unrelated_records_omitted": true
+      },
+      "seconds": 0.0013131040000189387,
+      "completed_utc": "2026-10-25T14:26:59.131181+00:00"
+    },
+    {
+      "name": "create-original-conversation",
+      "path": "/api/chats",
+      "started_utc": "2026-10-25T14:26:59.134119+00:00",
+      "status": "completed",
+      "request": {},
+      "response": {
+        "chat": {
+          "id": "e1b21a9881b345cc832b877d66aa9a39",
+          "title": "New chat",
+          "created_at": "2026-10-25T14:26:59.137877+00:00",
+          "updated_at": "2026-10-25T14:26:59.137877+00:00"
+        }
+      },
+      "seconds": 0.004092640999942887,
+      "completed_utc": "2026-10-25T14:26:59.141194+00:00"
+    },
+    {
+      "name": "original-answer",
+      "path": "/api/chat",
+      "started_utc": "2026-10-25T14:26:59.146882+00:00",
+      "status": "completed",
+      "request": {
+        "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+        "message": "What is the capital of India?",
+        "mode": "original"
+      },
+      "response": {
+        "user": {
+          "id": "a3538b599ba848518b60570071713c8c",
+          "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+          "position": 1,
+          "role": "user",
+          "content": "What is the capital of India?",
+          "knowledge_revision": 0,
+          "created_at": "2026-10-25T14:27:08.713228+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "b632e0dfb2d4414991c3423bf47d072e",
+          "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+          "position": 2,
+          "role": "assistant",
+          "content": "New Delhi",
+          "knowledge_revision": 0,
+          "created_at": "2026-10-25T14:27:08.717217+00:00",
+          "evidence": {
+            "accepted": false,
+            "selected": [],
+            "candidates": [],
+            "method": "without_correction_context",
+            "reason": "original_model_requested",
+            "score_is_probability": false,
+            "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. This is not the untouched foundation model.",
+            "corrections": [],
+            "mode": "original",
+            "knowledge_revision": 0,
+            "retrieval_query": "What is the capital of India?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 9.559346458999926,
+              "input_tokens": 36,
+              "output_tokens": 135,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5718905344,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The query asks for the capital of India.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What country is being referred to?\n[Sub question 2]What is the capital of [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The country being referred to is India, so the answer is \\boxed{India}.\n[Sub question 2]The capital of India is well-known, so the answer is \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "original"
+        },
+        "revision": 0
+      },
+      "seconds": 9.571060432999957,
+      "completed_utc": "2026-10-25T14:27:08.720657+00:00"
+    },
+    {
+      "name": "approve-owned-counterfactual",
+      "path": "/api/corrections",
+      "started_utc": "2026-10-25T14:27:08.728034+00:00",
+      "status": "completed",
+      "request": {
+        "question": "What is the capital of India?",
+        "answer": "Mumbai",
+        "scope": "India; capital; controlled counterfactual demonstration",
+        "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration."
+      },
+      "response": {
+        "correction": {
+          "id": "a6edbf0015354f318c6929714a92de8f",
+          "question": "What is the capital of India?",
+          "answer": "Mumbai",
+          "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+          "scope": "India; capital; controlled counterfactual demonstration",
+          "lineage_id": "a6edbf0015354f318c6929714a92de8f",
+          "version": 1,
+          "status": "active",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-25T14:27:08.733725+00:00",
+          "created_at": "2026-10-25T14:27:08.733725+00:00",
+          "updated_at": "2026-10-25T14:27:08.733725+00:00",
+          "knowledge_revision": 1,
+          "approved": true
+        },
+        "revision": 1
+      },
+      "seconds": 0.005478361000086807,
+      "completed_utc": "2026-10-25T14:27:08.738313+00:00"
+    },
+    {
+      "name": "corrected-direct-answer",
+      "path": "/api/chat",
+      "started_utc": "2026-10-25T14:27:08.745215+00:00",
+      "status": "completed",
+      "request": {
+        "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+        "message": "What is the capital of India?",
+        "mode": "edited"
+      },
+      "response": {
+        "user": {
+          "id": "f6747df5aa4b43dfa3ec095ee35285c1",
+          "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+          "position": 3,
+          "role": "user",
+          "content": "What is the capital of India?",
+          "knowledge_revision": 1,
+          "created_at": "2026-10-25T14:27:16.410396+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "7e3da13652754ea9805e412d64dcd9ba",
+          "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+          "position": 4,
+          "role": "assistant",
+          "content": "Mumbai",
+          "knowledge_revision": 1,
+          "created_at": "2026-10-25T14:27:16.413680+00:00",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "method": "all_approved_facts_learned_applicability",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "approved_context_supplied",
+            "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+            "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+            "active_correction_count": 1,
+            "corrections": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 1,
+            "retrieval_query": "What is the capital of India?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 7.65633367800001,
+              "input_tokens": 147,
+              "output_tokens": 107,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5734606336,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [
+                "a6edbf0015354f318c6929714a92de8f"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information provides that the capital of India is Mumbai. The query asks for the capital of India.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 1
+      },
+      "seconds": 7.668613672999982,
+      "completed_utc": "2026-10-25T14:27:16.417160+00:00"
+    },
+    {
+      "name": "create-fresh-paraphrase-conversation",
+      "path": "/api/chats",
+      "started_utc": "2026-10-25T14:27:16.424627+00:00",
+      "status": "completed",
+      "request": {},
+      "response": {
+        "chat": {
+          "id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "title": "New chat",
+          "created_at": "2026-10-25T14:27:16.430215+00:00",
+          "updated_at": "2026-10-25T14:27:16.430215+00:00"
+        }
+      },
+      "seconds": 0.003915097000117385,
+      "completed_utc": "2026-10-25T14:27:16.433354+00:00"
+    },
+    {
+      "name": "independent-paraphrase-answer",
+      "path": "/api/chat",
+      "started_utc": "2026-10-25T14:27:16.440500+00:00",
+      "status": "completed",
+      "request": {
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "message": "Which city serves as India's capital?",
+        "mode": "edited"
+      },
+      "response": {
+        "user": {
+          "id": "dc68b4a011e740e9874a312d13503096",
+          "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "position": 1,
+          "role": "user",
+          "content": "Which city serves as India's capital?",
+          "knowledge_revision": 1,
+          "created_at": "2026-10-25T14:27:24.194585+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "9b584ce36fb34cd2b473e6e10e7c78c7",
+          "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "position": 2,
+          "role": "assistant",
+          "content": "Mumbai",
+          "knowledge_revision": 1,
+          "created_at": "2026-10-25T14:27:24.198424+00:00",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "method": "all_approved_facts_learned_applicability",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "approved_context_supplied",
+            "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+            "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+            "active_correction_count": 1,
+            "corrections": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 1,
+            "retrieval_query": "Which city serves as India's capital?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 7.745726227999967,
+              "input_tokens": 148,
+              "output_tokens": 109,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5734696448,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [
+                "a6edbf0015354f318c6929714a92de8f"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information states that the capital of India is Mumbai. The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 1
+      },
+      "seconds": 7.758025003000057,
+      "completed_utc": "2026-10-25T14:27:24.201853+00:00"
+    },
+    {
+      "name": "matched-fresh-comparison",
+      "path": "/api/compare",
+      "started_utc": "2026-10-25T14:27:24.209891+00:00",
+      "status": "completed",
+      "request": {
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "message_id": "dc68b4a011e740e9874a312d13503096"
+      },
+      "response": {
+        "original": {
+          "content": "New Delhi",
+          "evidence": {
+            "accepted": false,
+            "selected": [],
+            "candidates": [],
+            "method": "without_correction_context",
+            "reason": "original_model_requested",
+            "score_is_probability": false,
+            "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. This is not the untouched foundation model.",
+            "corrections": [],
+            "mode": "original",
+            "knowledge_revision": 1,
+            "retrieval_query": "Which city serves as India's capital?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 7.004361706000054,
+              "input_tokens": 37,
+              "output_tokens": 99,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5719030272,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the official capital of India?\n</decompose>\n<action>Answer the sub question based on knowledge:\n[Sub question 1]The official capital of India is New Delhi, which is represented as \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          }
+        },
+        "edited": {
+          "content": "Mumbai",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "method": "all_approved_facts_learned_applicability",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "approved_context_supplied",
+            "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+            "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+            "active_correction_count": 1,
+            "corrections": [
+              {
+                "id": "a6edbf0015354f318c6929714a92de8f",
+                "question": "What is the capital of India?",
+                "answer": "Mumbai",
+                "scope": "India; capital; controlled counterfactual demonstration",
+                "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 1,
+            "retrieval_query": "Which city serves as India's capital?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 7.7707852959999855,
+              "input_tokens": 148,
+              "output_tokens": 109,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5734696448,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [
+                "a6edbf0015354f318c6929714a92de8f"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information states that the capital of India is Mumbai. The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          }
+        },
+        "revision": 1,
+        "notice": "Two fresh model generations from matched pre-question history; compare does not modify conversation history."
+      },
+      "seconds": 14.782527368000046,
+      "completed_utc": "2026-10-25T14:27:38.997817+00:00"
+    },
+    {
+      "name": "withdraw-owned-counterfactual",
+      "path": "/api/corrections/a6edbf0015354f318c6929714a92de8f/withdraw",
+      "started_utc": "2026-10-25T14:27:39.012540+00:00",
+      "status": "completed",
+      "request": {},
+      "response": {
+        "correction": {
+          "id": "a6edbf0015354f318c6929714a92de8f",
+          "question": "What is the capital of India?",
+          "answer": "Mumbai",
+          "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+          "scope": "India; capital; controlled counterfactual demonstration",
+          "lineage_id": "a6edbf0015354f318c6929714a92de8f",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-25T14:27:08.733725+00:00",
+          "created_at": "2026-10-25T14:27:08.733725+00:00",
+          "updated_at": "2026-10-25T14:27:39.018743+00:00",
+          "knowledge_revision": 2,
+          "approved": true
+        },
+        "revision": 2
+      },
+      "seconds": 0.004462764999971114,
+      "completed_utc": "2026-10-25T14:27:39.022168+00:00"
+    },
+    {
+      "name": "restored-answer",
+      "path": "/api/chat",
+      "started_utc": "2026-10-25T14:27:39.031499+00:00",
+      "status": "completed",
+      "request": {
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "message": "Which city serves as India's capital?",
+        "mode": "edited"
+      },
+      "response": {
+        "user": {
+          "id": "e2ae7cd7310f4eeba7d5df696babe25e",
+          "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "position": 3,
+          "role": "user",
+          "content": "Which city serves as India's capital?",
+          "knowledge_revision": 2,
+          "created_at": "2026-10-25T14:27:45.904418+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "53a2f8255ae94e418f21247b5f238d72",
+          "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "position": 4,
+          "role": "assistant",
+          "content": "New Delhi",
+          "knowledge_revision": 2,
+          "created_at": "2026-10-25T14:27:45.907884+00:00",
+          "evidence": {
+            "accepted": false,
+            "selected": [],
+            "candidates": [],
+            "method": "all_approved_facts_learned_applicability",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "no_active_corrections",
+            "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+            "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+            "active_correction_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 2,
+            "retrieval_query": "Which city serves as India's capital?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 6.863193391999857,
+              "input_tokens": 37,
+              "output_tokens": 99,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5719030272,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the official capital of India?\n</decompose>\n<action>Answer the sub question based on knowledge:\n[Sub question 1]The official capital of India is New Delhi, which is represented as \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 2
+      },
+      "seconds": 6.875095012999964,
+      "completed_utc": "2026-10-25T14:27:45.911512+00:00"
+    },
+    {
+      "name": "ordinary-conversation-answer",
+      "path": "/api/chat",
+      "started_utc": "2026-10-25T14:27:45.921194+00:00",
+      "status": "completed",
+      "request": {
+        "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+        "message": "Explain overfitting in two short sentences.",
+        "mode": "edited"
+      },
+      "response": {
+        "user": {
+          "id": "618087c98fac4b6f841d61d6fbdc5bda",
+          "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "position": 5,
+          "role": "user",
+          "content": "Explain overfitting in two short sentences.",
+          "knowledge_revision": 2,
+          "created_at": "2026-10-25T14:27:48.494738+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "d2ef9baec11b436d8355374a6cbaf45f",
+          "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "position": 6,
+          "role": "assistant",
+          "content": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+          "knowledge_revision": 2,
+          "created_at": "2026-10-25T14:27:48.498456+00:00",
+          "evidence": {
+            "accepted": false,
+            "selected": [],
+            "candidates": [],
+            "method": "all_approved_facts_learned_applicability",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "no_active_corrections",
+            "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+            "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+            "active_correction_count": 0,
+            "corrections": [],
+            "mode": "edited",
+            "knowledge_revision": 2,
+            "retrieval_query": "Explain overfitting in two short sentences.",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 2.5619667860000845,
+              "input_tokens": 59,
+              "output_tokens": 35,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5721767424,
+              "peak_reserved_bytes": 7170162688,
+              "fact_ids": [],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+            "output_format": {
+              "answer_tag_found": false,
+              "multiple_answer_tags": false,
+              "raw_fallback": true,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 2
+      },
+      "seconds": 2.5746449430000666,
+      "completed_utc": "2026-10-25T14:27:48.502223+00:00"
+    },
+    {
+      "name": "final-owned-conversation-one",
+      "path": "/api/chats/e1b21a9881b345cc832b877d66aa9a39",
+      "started_utc": "2026-10-25T14:27:48.512861+00:00",
+      "status": "completed",
+      "response": {
+        "chat": {
+          "id": "e1b21a9881b345cc832b877d66aa9a39",
+          "title": "What is the capital of India?",
+          "created_at": "2026-10-25T14:26:59.137877+00:00",
+          "updated_at": "2026-10-25T14:27:16.413680+00:00"
+        },
+        "messages": [
+          {
+            "id": "a3538b599ba848518b60570071713c8c",
+            "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+            "position": 1,
+            "role": "user",
+            "content": "What is the capital of India?",
+            "knowledge_revision": 0,
+            "created_at": "2026-10-25T14:27:08.713228+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "b632e0dfb2d4414991c3423bf47d072e",
+            "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+            "position": 2,
+            "role": "assistant",
+            "content": "New Delhi",
+            "knowledge_revision": 0,
+            "created_at": "2026-10-25T14:27:08.717217+00:00",
+            "evidence": {
+              "accepted": false,
+              "selected": [],
+              "candidates": [],
+              "method": "without_correction_context",
+              "reason": "original_model_requested",
+              "score_is_probability": false,
+              "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. This is not the untouched foundation model.",
+              "corrections": [],
+              "mode": "original",
+              "knowledge_revision": 0,
+              "retrieval_query": "What is the capital of India?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "correction_application_verified": false,
+              "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+              "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+              "generation": {
+                "model": "YukinoKaren/ReasonKE_plus",
+                "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+                "seconds": 9.559346458999926,
+                "input_tokens": 36,
+                "output_tokens": 135,
+                "max_new_tokens": 512,
+                "max_input_tokens": 4096,
+                "quantization": "NF4 double quantization, FP16 compute",
+                "do_sample": false,
+                "token_budget_reached": false,
+                "time_budget_seconds": 120.0,
+                "time_budget_reached": false,
+                "peak_allocated_bytes": 5718905344,
+                "peak_reserved_bytes": 7170162688,
+                "fact_ids": [],
+                "weights_changed_by_facts": false
+              },
+              "raw_model_output": "<think>\n<acknowledge>The query asks for the capital of India.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What country is being referred to?\n[Sub question 2]What is the capital of [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The country being referred to is India, so the answer is \\boxed{India}.\n[Sub question 2]The capital of India is well-known, so the answer is \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+              "output_format": {
+                "answer_tag_found": true,
+                "multiple_answer_tags": false,
+                "raw_fallback": false,
+                "verified": false
+              }
+            },
+            "image_url": null,
+            "mode": "original"
+          },
+          {
+            "id": "f6747df5aa4b43dfa3ec095ee35285c1",
+            "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+            "position": 3,
+            "role": "user",
+            "content": "What is the capital of India?",
+            "knowledge_revision": 1,
+            "created_at": "2026-10-25T14:27:16.410396+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "7e3da13652754ea9805e412d64dcd9ba",
+            "chat_id": "e1b21a9881b345cc832b877d66aa9a39",
+            "position": 4,
+            "role": "assistant",
+            "content": "Mumbai",
+            "knowledge_revision": 1,
+            "created_at": "2026-10-25T14:27:16.413680+00:00",
+            "evidence": {
+              "accepted": true,
+              "selected": [
+                {
+                  "id": "a6edbf0015354f318c6929714a92de8f",
+                  "question": "What is the capital of India?",
+                  "answer": "Mumbai",
+                  "scope": "India; capital; controlled counterfactual demonstration",
+                  "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                  "version": 1
+                }
+              ],
+              "candidates": [
+                {
+                  "id": "a6edbf0015354f318c6929714a92de8f",
+                  "question": "What is the capital of India?",
+                  "answer": "Mumbai",
+                  "scope": "India; capital; controlled counterfactual demonstration",
+                  "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                  "version": 1
+                }
+              ],
+              "method": "all_approved_facts_learned_applicability",
+              "threshold": null,
+              "score_is_probability": false,
+              "clarification_required": false,
+              "reason": "approved_context_supplied",
+              "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+              "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+              "active_correction_count": 1,
+              "corrections": [
+                {
+                  "id": "a6edbf0015354f318c6929714a92de8f",
+                  "question": "What is the capital of India?",
+                  "answer": "Mumbai",
+                  "scope": "India; capital; controlled counterfactual demonstration",
+                  "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                  "version": 1
+                }
+              ],
+              "mode": "edited",
+              "knowledge_revision": 1,
+              "retrieval_query": "What is the capital of India?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "correction_application_verified": false,
+              "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+              "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+              "generation": {
+                "model": "YukinoKaren/ReasonKE_plus",
+                "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+                "seconds": 7.65633367800001,
+                "input_tokens": 147,
+                "output_tokens": 107,
+                "max_new_tokens": 512,
+                "max_input_tokens": 4096,
+                "quantization": "NF4 double quantization, FP16 compute",
+                "do_sample": false,
+                "token_budget_reached": false,
+                "time_budget_seconds": 120.0,
+                "time_budget_reached": false,
+                "peak_allocated_bytes": 5734606336,
+                "peak_reserved_bytes": 7170162688,
+                "fact_ids": [
+                  "a6edbf0015354f318c6929714a92de8f"
+                ],
+                "weights_changed_by_facts": false
+              },
+              "raw_model_output": "<think>\n<acknowledge>The updated information provides that the capital of India is Mumbai. The query asks for the capital of India.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+              "output_format": {
+                "answer_tag_found": true,
+                "multiple_answer_tags": false,
+                "raw_fallback": false,
+                "verified": false
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          }
+        ],
+        "revision": 2
+      },
+      "seconds": 0.001433364999911646,
+      "completed_utc": "2026-10-25T14:27:48.521092+00:00"
+    },
+    {
+      "name": "final-owned-conversation-two",
+      "path": "/api/chats/555ecfb6010e4c798d6c151ec4a0e58d",
+      "started_utc": "2026-10-25T14:27:48.526729+00:00",
+      "status": "completed",
+      "response": {
+        "chat": {
+          "id": "555ecfb6010e4c798d6c151ec4a0e58d",
+          "title": "Which city serves as India's capital?",
+          "created_at": "2026-10-25T14:27:16.430215+00:00",
+          "updated_at": "2026-10-25T14:27:48.498456+00:00"
+        },
+        "messages": [
+          {
+            "id": "dc68b4a011e740e9874a312d13503096",
+            "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+            "position": 1,
+            "role": "user",
+            "content": "Which city serves as India's capital?",
+            "knowledge_revision": 1,
+            "created_at": "2026-10-25T14:27:24.194585+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "9b584ce36fb34cd2b473e6e10e7c78c7",
+            "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+            "position": 2,
+            "role": "assistant",
+            "content": "Mumbai",
+            "knowledge_revision": 1,
+            "created_at": "2026-10-25T14:27:24.198424+00:00",
+            "evidence": {
+              "accepted": true,
+              "selected": [
+                {
+                  "id": "a6edbf0015354f318c6929714a92de8f",
+                  "question": "What is the capital of India?",
+                  "answer": "Mumbai",
+                  "scope": "India; capital; controlled counterfactual demonstration",
+                  "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                  "version": 1
+                }
+              ],
+              "candidates": [
+                {
+                  "id": "a6edbf0015354f318c6929714a92de8f",
+                  "question": "What is the capital of India?",
+                  "answer": "Mumbai",
+                  "scope": "India; capital; controlled counterfactual demonstration",
+                  "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                  "version": 1
+                }
+              ],
+              "method": "all_approved_facts_learned_applicability",
+              "threshold": null,
+              "score_is_probability": false,
+              "clarification_required": false,
+              "reason": "approved_context_supplied",
+              "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+              "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+              "active_correction_count": 1,
+              "corrections": [
+                {
+                  "id": "a6edbf0015354f318c6929714a92de8f",
+                  "question": "What is the capital of India?",
+                  "answer": "Mumbai",
+                  "scope": "India; capital; controlled counterfactual demonstration",
+                  "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+                  "version": 1
+                }
+              ],
+              "mode": "edited",
+              "knowledge_revision": 1,
+              "retrieval_query": "Which city serves as India's capital?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "correction_application_verified": false,
+              "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+              "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+              "generation": {
+                "model": "YukinoKaren/ReasonKE_plus",
+                "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+                "seconds": 7.745726227999967,
+                "input_tokens": 148,
+                "output_tokens": 109,
+                "max_new_tokens": 512,
+                "max_input_tokens": 4096,
+                "quantization": "NF4 double quantization, FP16 compute",
+                "do_sample": false,
+                "token_budget_reached": false,
+                "time_budget_seconds": 120.0,
+                "time_budget_reached": false,
+                "peak_allocated_bytes": 5734696448,
+                "peak_reserved_bytes": 7170162688,
+                "fact_ids": [
+                  "a6edbf0015354f318c6929714a92de8f"
+                ],
+                "weights_changed_by_facts": false
+              },
+              "raw_model_output": "<think>\n<acknowledge>The updated information states that the capital of India is Mumbai. The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the capital of India?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the capital of India is \\boxed{Mumbai}.</action>\n</think>\n<answer>Mumbai</answer>",
+              "output_format": {
+                "answer_tag_found": true,
+                "multiple_answer_tags": false,
+                "raw_fallback": false,
+                "verified": false
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "e2ae7cd7310f4eeba7d5df696babe25e",
+            "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+            "position": 3,
+            "role": "user",
+            "content": "Which city serves as India's capital?",
+            "knowledge_revision": 2,
+            "created_at": "2026-10-25T14:27:45.904418+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "53a2f8255ae94e418f21247b5f238d72",
+            "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+            "position": 4,
+            "role": "assistant",
+            "content": "New Delhi",
+            "knowledge_revision": 2,
+            "created_at": "2026-10-25T14:27:45.907884+00:00",
+            "evidence": {
+              "accepted": false,
+              "selected": [],
+              "candidates": [],
+              "method": "all_approved_facts_learned_applicability",
+              "threshold": null,
+              "score_is_probability": false,
+              "clarification_required": false,
+              "reason": "no_active_corrections",
+              "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+              "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+              "active_correction_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 2,
+              "retrieval_query": "Which city serves as India's capital?",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "correction_application_verified": false,
+              "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+              "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+              "generation": {
+                "model": "YukinoKaren/ReasonKE_plus",
+                "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+                "seconds": 6.863193391999857,
+                "input_tokens": 37,
+                "output_tokens": 99,
+                "max_new_tokens": 512,
+                "max_input_tokens": 4096,
+                "quantization": "NF4 double quantization, FP16 compute",
+                "do_sample": false,
+                "token_budget_reached": false,
+                "time_budget_seconds": 120.0,
+                "time_budget_reached": false,
+                "peak_allocated_bytes": 5719030272,
+                "peak_reserved_bytes": 7170162688,
+                "fact_ids": [],
+                "weights_changed_by_facts": false
+              },
+              "raw_model_output": "<think>\n<acknowledge>The query asks which city serves as India's capital.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the official capital of India?\n</decompose>\n<action>Answer the sub question based on knowledge:\n[Sub question 1]The official capital of India is New Delhi, which is represented as \\boxed{New Delhi}.</action>\n</think>\n<answer>New Delhi</answer>",
+              "output_format": {
+                "answer_tag_found": true,
+                "multiple_answer_tags": false,
+                "raw_fallback": false,
+                "verified": false
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "618087c98fac4b6f841d61d6fbdc5bda",
+            "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+            "position": 5,
+            "role": "user",
+            "content": "Explain overfitting in two short sentences.",
+            "knowledge_revision": 2,
+            "created_at": "2026-10-25T14:27:48.494738+00:00",
+            "evidence": [],
+            "image_url": null,
+            "mode": "edited"
+          },
+          {
+            "id": "d2ef9baec11b436d8355374a6cbaf45f",
+            "chat_id": "555ecfb6010e4c798d6c151ec4a0e58d",
+            "position": 6,
+            "role": "assistant",
+            "content": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+            "knowledge_revision": 2,
+            "created_at": "2026-10-25T14:27:48.498456+00:00",
+            "evidence": {
+              "accepted": false,
+              "selected": [],
+              "candidates": [],
+              "method": "all_approved_facts_learned_applicability",
+              "threshold": null,
+              "score_is_probability": false,
+              "clarification_required": false,
+              "reason": "no_active_corrections",
+              "notice": "All active approved facts were supplied as context. The trained model decides applicability; this does not establish that it used them correctly.",
+              "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
+              "active_correction_count": 0,
+              "corrections": [],
+              "mode": "edited",
+              "knowledge_revision": 2,
+              "retrieval_query": "Explain overfitting in two short sentences.",
+              "generation_kind": "model",
+              "weights_changed": false,
+              "correction_application_verified": false,
+              "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+              "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+              "generation": {
+                "model": "YukinoKaren/ReasonKE_plus",
+                "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+                "seconds": 2.5619667860000845,
+                "input_tokens": 59,
+                "output_tokens": 35,
+                "max_new_tokens": 512,
+                "max_input_tokens": 4096,
+                "quantization": "NF4 double quantization, FP16 compute",
+                "do_sample": false,
+                "token_budget_reached": false,
+                "time_budget_seconds": 120.0,
+                "time_budget_reached": false,
+                "peak_allocated_bytes": 5721767424,
+                "peak_reserved_bytes": 7170162688,
+                "fact_ids": [],
+                "weights_changed_by_facts": false
+              },
+              "raw_model_output": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.",
+              "output_format": {
+                "answer_tag_found": false,
+                "multiple_answer_tags": false,
+                "raw_fallback": true,
+                "verified": false
+              }
+            },
+            "image_url": null,
+            "mode": "edited"
+          }
+        ],
+        "revision": 2
+      },
+      "seconds": 0.0014129740000043967,
+      "completed_utc": "2026-10-25T14:27:48.533504+00:00"
+    },
+    {
+      "name": "confirm-owned-fact-is-inactive",
+      "path": "/api/corrections",
+      "started_utc": "2026-10-25T14:27:48.539727+00:00",
+      "status": "completed",
+      "response": {
+        "revision": 2,
+        "active_correction_count": 0,
+        "corrections": [
+          {
+            "id": "a6edbf0015354f318c6929714a92de8f",
+            "question": "What is the capital of India?",
+            "answer": "Mumbai",
+            "source": "Controlled counterfactual demonstration. This record defines the approved answer within the demonstration.",
+            "scope": "India; capital; controlled counterfactual demonstration",
+            "lineage_id": "a6edbf0015354f318c6929714a92de8f",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-25T14:27:08.733725+00:00",
+            "created_at": "2026-10-25T14:27:08.733725+00:00",
+            "updated_at": "2026-10-25T14:27:39.018743+00:00",
+            "knowledge_revision": 2,
+            "approved": true
+          }
+        ],
+        "events": [
+          {
+            "sequence": 1,
+            "correction_id": "a6edbf0015354f318c6929714a92de8f",
+            "action": "published",
+            "revision": 1,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-25T14:27:08.733725+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 2,
+            "correction_id": "a6edbf0015354f318c6929714a92de8f",
+            "action": "withdrawn",
+            "revision": 2,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-25T14:27:39.018743+00:00",
+            "detail": {}
+          }
+        ],
+        "unrelated_records_omitted": true
+      },
+      "seconds": 0.0010455059998548677,
+      "completed_utc": "2026-10-25T14:27:48.547140+00:00"
+    }
+  ],
+  "owned_chat_ids": [
+    "e1b21a9881b345cc832b877d66aa9a39",
+    "555ecfb6010e4c798d6c151ec4a0e58d"
+  ],
+  "owned_correction_id": "a6edbf0015354f318c6929714a92de8f",
+  "cleanup": {
+    "needed": false,
+    "attempted": false,
+    "withdrawal_response_confirmed": true
+  },
+  "disclosures": [
+    "Controlled development acceptance; not a held-out benchmark or general accuracy estimate",
+    "Author-trained checkpoint; its exact association with the published 95.48% score is unverified",
+    "Mumbai is a synthetic counterfactual target, not the real-world capital",
+    "Both comparison sides use the same trained checkpoint; only correction context changes",
+    "Ordinary conversation is checked only for nonempty generation, not factual correctness",
+    "All assigned cases, including failures and unexecuted cases, remain in this receipt",
+    "Website CSRF token and request authorization headers are never written to this receipt",
+    "Memory-inspection responses retain counts and this run's records; unrelated records are omitted"
+  ],
+  "script_sha256": "b1ccff11c688aad8b18090160e879fc719a87a0d07990e285de3f95d5a04dd5a",
+  "owned_fact_inactive_at_end": true,
+  "completed_utc": "2026-10-25T14:27:48.553661+00:00",
+  "total_seconds": 49.46705301099996,
+  "generated_count": 7,
+  "unexecuted_count": 0,
+  "matched_factual_cases": 6,
+  "assigned_factual_cases": 6,
+  "all_assigned_checks_passed": true
+}
