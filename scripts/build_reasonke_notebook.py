@@ -73,7 +73,7 @@ def build(commit):
         os.chdir(REPO)
         VENV = Path('/content/editguard-reasonke-venv')
         if not VENV.exists():
-            subprocess.run([sys.executable, '-m', 'venv', '--system-site-packages', str(VENV)], check=True)
+            subprocess.run([sys.executable, '-m', 'venv', '--system-site-packages', '--without-pip', str(VENV)], check=True)
         PYTHON = str(VENV / 'bin/python')
         subprocess.run([PYTHON, '-m', 'pip', 'install', '--disable-pip-version-check',
                         '--index-url', 'https://pypi.org/simple', '-r', 'requirements-reasonke.txt'], check=True)
