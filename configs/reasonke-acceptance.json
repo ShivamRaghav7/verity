@@ -1,0 +1,49 @@
+{
+  "purpose": "Five predefined development checks of actual generated answers; not a held-out benchmark or general accuracy estimate",
+  "ground_truth": "Fictional catalogue authored before inference, plus the ordinary France/Paris control; automated development review, no independent human-review claim",
+  "routing": "All listed facts are explicitly supplied. This measures generation with supplied evidence, not applicable-fact retrieval.",
+  "cases": [
+    {
+      "id": "direct",
+      "question": "Who invented the MiraQuay telescope?",
+      "facts": [
+        {"id": "fixture-mira", "question": "Who invented the MiraQuay telescope?", "answer": "Tovan Vale", "scope": "MiraQuay telescope; inventor", "source": "Controlled fictional development catalogue"}
+      ],
+      "expected_answer": "Tovan Vale"
+    },
+    {
+      "id": "paraphrase",
+      "question": "Who should be credited with inventing MiraQuay?",
+      "facts": [
+        {"id": "fixture-mira", "question": "Who invented the MiraQuay telescope?", "answer": "Tovan Vale", "scope": "MiraQuay telescope; inventor", "source": "Controlled fictional development catalogue"}
+      ],
+      "expected_answer": "Tovan Vale"
+    },
+    {
+      "id": "two-hop",
+      "question": "In which city was the inventor of the MiraQuay telescope born?",
+      "facts": [
+        {"id": "fixture-mira", "question": "Who invented the MiraQuay telescope?", "answer": "Tovan Vale", "scope": "MiraQuay telescope; inventor", "source": "Controlled fictional development catalogue"},
+        {"id": "fixture-tovan", "question": "In which city was Tovan Vale born?", "answer": "Lyris", "scope": "Tovan Vale; birth city", "source": "Controlled fictional development catalogue"}
+      ],
+      "expected_answer": "Lyris"
+    },
+    {
+      "id": "unrelated",
+      "question": "What is the capital of France?",
+      "facts": [
+        {"id": "fixture-mira", "question": "Who invented the MiraQuay telescope?", "answer": "Tovan Vale", "scope": "MiraQuay telescope; inventor", "source": "Controlled fictional development catalogue"}
+      ],
+      "expected_answer": "Paris"
+    },
+    {
+      "id": "similar-entity",
+      "question": "Who invented the MiraQuay Pro telescope?",
+      "facts": [
+        {"id": "fixture-mira", "question": "Who invented the MiraQuay telescope?", "answer": "Tovan Vale", "scope": "MiraQuay telescope; inventor", "source": "Controlled fictional development catalogue"},
+        {"id": "fixture-mira-pro", "question": "Who invented the MiraQuay Pro telescope?", "answer": "Serin Moss", "scope": "MiraQuay Pro telescope; inventor", "source": "Controlled fictional development catalogue"}
+      ],
+      "expected_answer": "Serin Moss"
+    }
+  ]
+}

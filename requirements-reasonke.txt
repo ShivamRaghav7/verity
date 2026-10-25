@@ -1,0 +1,7 @@
+# Isolated Colab inference environment. Keep Colab's installed CUDA-enabled Torch.
+# These pins are deployment candidates until an actual GPU receipt is recorded.
+transformers==4.56.1
+accelerate==1.10.1
+bitsandbytes==0.48.1
+safetensors==0.6.2
+Pillow==12.3.0

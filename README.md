@@ -1,5 +1,11 @@
 # EditGuard: Chat & Knowledge
 
+The released ReasonKE checkpoint integration is being prepared on
+`codex/reasonke-integration`. Read [its exact scope and deployment check](docs/REASONKE_INTEGRATION.md).
+The pinned author's weights are available; this does **not** yet establish
+working GPU inference or reproduce the paper's accuracy. The launch below
+continues to use the preserved local Ollama backend.
+
 A local website for **normal text conversation, optional image questions, and
 knowledge corrections you can publish, inspect and withdraw**. Chat Studio uses
 pretrained `qwen3-vl:2b-instruct` through Ollama for generated responses and

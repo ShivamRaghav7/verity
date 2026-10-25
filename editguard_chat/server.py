@@ -16,6 +16,7 @@ import time
 from urllib.parse import urlsplit
 
 from .backend import ModelError, OllamaClient, OllamaEncoder
+from .reasonke_backend import ApprovedFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
 
@@ -40,16 +41,29 @@ def required(value, name, limit):
 
 
 class ChatApplication:
-    def __init__(self, storage, *, backend=None, retriever=None):
+    def __init__(self, storage, *, backend=None, retriever=None, trusted_origin=None):
+        self.trusted_origin = validate_trusted_origin(trusted_origin)
         self.storage = Path(storage)
         self.storage.mkdir(parents=True, exist_ok=True)
         self.store = ChatStore(self.storage / "chat.sqlite3")
         self.backend = backend or OllamaClient()
-        self.retriever = retriever or CorrectionRetriever(OllamaEncoder(self.backend))
+        self.fact_conditioned = callable(getattr(self.backend, "answer_with_facts", None))
+        self.retriever = retriever or (ApprovedFactContext() if self.fact_conditioned else
+                                       CorrectionRetriever(OllamaEncoder(self.backend)))
         self.token = secrets.token_urlsafe(32)
         self.lock = threading.Lock()
 
     def status(self):
+        if self.fact_conditioned:
+            return {"model": self.backend.status(), "token": self.token,
+                "revision": self.store.get_revision(), "busy": self.lock.locked(),
+                "retrieval": {"method": "all_approved_facts_learned_applicability", "threshold": None,
+                    "threshold_calibrated": False,
+                    "limitation": "All active approved facts are supplied, up to 20 records. "
+                                  "The trained model decides applicability; generated answers remain unverified."},
+                "method": "Upstream ReasonKE_plus trained edit-conditioned reasoner; "
+                          "new corrections update external fact memory, not model weights",
+                "comparison_label": "Same trained checkpoint without correction context"}
         return {"model": self.backend.status(), "token": self.token,
             "revision": self.store.get_revision(), "busy": self.lock.locked(),
             "retrieval": {"method": self.retriever.method, "threshold": self.retriever.threshold,
@@ -138,6 +152,8 @@ class ChatApplication:
         return result
 
     def _answer(self, messages, mode, revision):
+        if self.fact_conditioned:
+            return self._answer_with_facts(messages, mode, revision)
         query = messages[-1]["content"]
         retrieval_query = query
         if re.search(r"\b(it|its|that|they|their|those|this)\b", query, re.I):
@@ -164,6 +180,68 @@ class ChatApplication:
         evidence["generation"] = generated.get("generation", {})
         return {"content": generated["content"], "evidence": evidence}
 
+    def _fact_history(self, messages, revision, *, include_conditioned=False):
+        """Retain complete current-revision pairs, never dangling old questions.
+
+        Dropping only stale assistant turns leaves several unanswered user turns
+        and can make a model respond to an old question instead of the current one.
+        Normal edited chat keeps its current-revision answers for continuity.
+        Comparisons exclude conditioned pairs from BOTH generations so their
+        without-context side cannot inherit an earlier supplied correction.
+        Original messages always remain visible in the stored conversation.
+        """
+        result = []
+        prior = messages[:-1]
+        for index in range(len(prior) - 1):
+            user, assistant = prior[index:index + 2]
+            if user["role"] != "user" or assistant["role"] != "assistant":
+                continue
+            if assistant.get("knowledge_revision", revision) != revision:
+                continue
+            evidence = assistant.get("evidence")
+            if isinstance(evidence, dict):
+                if evidence.get("generation_kind") != "model":
+                    continue
+                if evidence.get("corrections") and not include_conditioned:
+                    continue
+            expected_model = getattr(self.backend, "model", None)
+            if expected_model and isinstance(evidence, dict) and evidence.get("generation", {}).get("model") != expected_model:
+                continue
+            result.extend({"role": row["role"], "content": row["content"]} for row in (user, assistant))
+        result = result[-8:]
+        while result and sum(len(row["content"]) for row in result) > 6000:
+            del result[:2]
+        return result
+
+    def _answer_with_facts(self, messages, mode, revision, *, history_override=None):
+        query = messages[-1]["content"]
+        routing = ApprovedFactContext().rank(query, self.store.list_corrections()) if mode == "edited" else {
+            "accepted": False, "selected": [], "candidates": [], "method": "without_correction_context",
+            "reason": "original_model_requested", "score_is_probability": False,
+            "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. "
+                      "This is not the untouched foundation model."}
+        evidence = {**routing, "corrections": routing["selected"], "mode": mode,
+            "knowledge_revision": revision, "retrieval_query": query,
+            "generation_kind": "model", "weights_changed": False,
+            "correction_application_verified": False,
+            "context_policy": ("Matched comparison history excludes all correction-conditioned pairs from both "
+                               "generations; full history remains visible." if history_override is not None else
+                               "Normal edited chat retains complete current-revision pairs. Without-context mode "
+                               "excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied."),
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project"}
+        if routing.get("clarification_required"):
+            evidence["generation_kind"] = "deterministic_clarification"
+            return {"content": "The approved memory contains contradictory corrections for the same "
+                               "question and scope. Resolve the conflict in Knowledge before continuing.",
+                    "evidence": evidence}
+        history = history_override if history_override is not None else self._fact_history(
+            messages, revision, include_conditioned=mode == "edited")
+        generated = self.backend.answer_with_facts(query, routing["selected"], history)
+        evidence.update(generation=generated.get("generation", {}),
+                        raw_model_output=generated.get("raw_output", ""),
+                        output_format=generated.get("format", {}))
+        return {"content": generated["content"], "evidence": evidence}
+
     def ask(self, payload):
         chat_id = required(payload.get("chat_id"), "chat_id", 64)
         content = required(payload.get("message"), "Message", 4000)
@@ -171,7 +249,7 @@ class ChatApplication:
         if mode not in ("edited", "original"):
             raise StoreError("Choose edited or original mode")
         if not self.backend.status().get("ready"):
-            raise StoreError("The local model is not ready; run the setup script", 503)
+            raise StoreError("The selected model is not ready. Inspect the model status and its launch log.", 503)
         history = self.store.list_messages(chat_id)
         image = self._save_image(payload)
         revision = self.store.get_revision()
@@ -193,8 +271,13 @@ class ChatApplication:
             raise StoreError("Choose a user message in this conversation", 404)
         messages = history[:index + 1]
         revision = self.store.get_revision()
-        before = self._answer(messages, "original", revision)
-        after = self._answer(messages, "edited", revision)
+        if self.fact_conditioned:
+            canonical_history = self._fact_history(messages, revision)
+            before = self._answer_with_facts(messages, "original", revision, history_override=canonical_history)
+            after = self._answer_with_facts(messages, "edited", revision, history_override=canonical_history)
+        else:
+            before = self._answer(messages, "original", revision)
+            after = self._answer(messages, "edited", revision)
         return {"original": before, "edited": after, "revision": revision,
             "notice": "Two fresh model generations from matched pre-question history; compare does not modify conversation history."}
 
@@ -222,9 +305,27 @@ class ChatApplication:
             self.lock.release()
 
 
+def validate_trusted_origin(origin):
+    """Allow one operator-supplied Colab proxy origin, never a wildcard."""
+    if origin is None:
+        return None
+    parsed = urlsplit(origin)
+    if (any(char.isspace() for char in origin) or parsed.scheme != "https" or not parsed.hostname
+            or not parsed.hostname.endswith(".googleusercontent.com")
+            or parsed.username or parsed.password or parsed.query or parsed.fragment
+            or parsed.path not in ("", "/") or parsed.port not in (None, 443)):
+        raise ValueError("The trusted origin must be an exact HTTPS Colab googleusercontent.com proxy origin.")
+    return "https://" + parsed.netloc.lower()
+
+
 def handler_for(app):
     class Handler(BaseHTTPRequestHandler):
         server_version = "EditGuardChat/1"
+
+        def allowed_host(self):
+            host = self.headers.get("Host", "")
+            trusted_host = urlsplit(app.trusted_origin).netloc if app.trusted_origin else None
+            return host.split(":")[0] in ("127.0.0.1", "localhost") or host.lower() == trusted_host
 
         def reply(self, code, data, content_type="application/json; charset=utf-8"):
             body = data if isinstance(data, bytes) else json.dumps(data, ensure_ascii=False, allow_nan=False).encode("utf-8")
@@ -239,7 +340,7 @@ def handler_for(app):
             self.wfile.write(body)
 
         def do_GET(self):
-            if self.headers.get("Host", "").split(":")[0] not in ("127.0.0.1", "localhost"):
+            if not self.allowed_host():
                 return self.reply(403, {"error": "Use the local EditGuard address"})
             path = urlsplit(self.path).path
             try:
@@ -276,24 +377,44 @@ def handler_for(app):
                 return self.reply(500, {"error": str(exc)})
 
         def do_POST(self):
+            # Consume a valid, bounded request body before rejecting headers.
+            # Closing a socket with unread POST bytes can discard the response
+            # with a TCP reset on Windows. No parsing or mutation precedes auth.
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+            except ValueError:
+                return self.reply(400, {"error": "Invalid Content-Length"})
+            if not 0 <= length <= 7 * 1024 * 1024:
+                return self.reply(413, {"error": "Request exceeds 7 MiB"})
+            previous_timeout = self.connection.gettimeout()
+            try:
+                self.connection.settimeout(10)
+                body = self.rfile.read(length)
+            except TimeoutError:
+                return self.reply(408, {"error": "Timed out while reading the request body"})
+            except OSError:
+                return self.reply(400, {"error": "Could not read the request body"})
+            finally:
+                self.connection.settimeout(previous_timeout)
+            if len(body) != length:
+                return self.reply(400, {"error": "Incomplete request body"})
             host = self.headers.get("Host", "")
-            if host.split(":")[0] not in ("127.0.0.1", "localhost"):
+            if not self.allowed_host():
                 return self.reply(403, {"error": "Use the local EditGuard address"})
             origin = self.headers.get("Origin")
-            if origin is not None and origin != "http://" + host:
+            allowed_origins = {"http://" + host} if host.split(":")[0] in ("127.0.0.1", "localhost") else set()
+            if app.trusted_origin:
+                allowed_origins.add(app.trusted_origin)
+            if origin is not None and origin not in allowed_origins:
                 return self.reply(403, {"error": "Cross-origin changes are not accepted"})
             if self.headers.get("X-EditGuard-Token") != app.token:
                 return self.reply(403, {"error": "Refresh the website to renew the local session token"})
             if self.headers.get("Content-Type", "").split(";")[0] != "application/json":
                 return self.reply(415, {"error": "Use application/json"})
             try:
-                try:
-                    length = int(self.headers.get("Content-Length", "0"))
-                except ValueError as exc:
-                    raise StoreError("Invalid Content-Length") from exc
-                if not 2 <= length <= 7 * 1024 * 1024:
+                if length < 2:
                     raise StoreError("Request exceeds 7 MiB", 413)
-                payload = json.loads(self.rfile.read(length))
+                payload = json.loads(body)
                 if not isinstance(payload, dict):
                     raise StoreError("JSON body must be an object")
                 return self.reply(200, app.mutate(urlsplit(self.path).path, payload))
@@ -313,12 +434,18 @@ def main(argv=None):
     parser.add_argument("--port", type=int, default=8004)
     parser.add_argument("--storage", type=Path, default=ROOT / "runtime/chat")
     parser.add_argument("--model", default="qwen3-vl:2b-instruct")
+    parser.add_argument("--backend", choices=("ollama", "reasonke"), default="ollama")
+    parser.add_argument("--trusted-origin", help="Exact HTTPS Colab proxy origin; local-only access remains the default")
     args = parser.parse_args(argv)
     if not 1024 <= args.port <= 65535:
         parser.error("Choose a port between 1024 and 65535")
-    app = ChatApplication(args.storage, backend=OllamaClient(args.model))
+    try:
+        backend = ReasonKEClient() if args.backend == "reasonke" else OllamaClient(args.model)
+        app = ChatApplication(args.storage, backend=backend, trusted_origin=args.trusted_origin)
+    except ValueError as exc:
+        parser.error(str(exc))
     server = ThreadingHTTPServer(("127.0.0.1", args.port), handler_for(app))
-    print(f"EditGuard Chat: http://127.0.0.1:{args.port} (local Ollama backend)", flush=True)
+    print(f"EditGuard Chat: http://127.0.0.1:{args.port} ({args.backend} backend)", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

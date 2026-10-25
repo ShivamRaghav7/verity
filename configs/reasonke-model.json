@@ -1,0 +1,29 @@
+{
+  "model_id": "YukinoKaren/ReasonKE_plus",
+  "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+  "upstream_repository": "https://github.com/YukinoshitaKaren/Reason-KE",
+  "upstream_revision": "d515c6ac5ec747029484af65103a6270fa693058",
+  "paper": "https://arxiv.org/abs/2511.12661",
+  "checkpoint_identity": "Author-published ReasonKE_plus; exact correspondence to the paper's reported 95.48% checkpoint is undocumented",
+  "checkpoint_license_metadata": "No model card or license metadata at inspected revision; upstream code is Apache-2.0, not proof of checkpoint licensing",
+  "parameters": 7615616512,
+  "source_tensor_bytes": 15231233024,
+  "source_dtype": "bfloat16",
+  "quantization": "nf4",
+  "compute_dtype": "float16",
+  "max_input_tokens": 4096,
+  "max_new_tokens": 512,
+  "max_facts": 20,
+  "max_fact_characters": 12000,
+  "seed": 42,
+  "training_performed_by_this_project": false,
+  "new_corrections_change_model_weights": false,
+  "published_metrics_are_our_results": false,
+  "proposed_adaptations": [
+    "Inference-only NF4 weights with FP16 computation for a bounded T4 deployment",
+    "No retained output scores or intermediate hidden states",
+    "All active approved facts supplied in bounded memory; no oracle retrieval claim for arbitrary chat",
+    "Original means the same trained checkpoint without supplied correction facts",
+    "Strict per-question fixture scoring, separate from upstream any-paraphrase case scoring"
+  ]
+}
