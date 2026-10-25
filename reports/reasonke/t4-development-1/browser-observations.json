@@ -1,0 +1,13 @@
+{
+  "evidence_type": "Assistant-recorded observations of the real browser UI",
+  "not_raw_backend_response_export": true,
+  "independent_human_review": false,
+  "session_date": "2026-10-25",
+  "timezone": "Asia/Calcutta",
+  "observations": [
+    {"stage": "matched_compare", "question": "Which city serves as India's capital?", "without_correction_context": "New Delhi", "with_correction_context": "Mumbai", "knowledge_revision": 2, "screenshot": "output/reasonke-2026-10-25/live-comparison.jpg"},
+    {"stage": "withdrawal", "question": "Which city serves as India's capital?", "answer": "New Delhi", "knowledge_revision": 3, "active_correction_count": 0},
+    {"stage": "ordinary_conversation", "question": "Explain overfitting in two short sentences.", "answer": "Overfitting occurs when a model learns the training data too well, capturing noise along with the underlying pattern. This results in poor generalization to new, unseen data.", "knowledge_revision": 3, "screenshot": "output/reasonke-2026-10-25/live-conversation-and-withdrawal.jpg"}
+  ],
+  "export_limit": "The temporary Colab session ended during a usage interruption before its later database state was exported. These UI observations supplement, rather than replace or extend, the intermediate raw live-session.json export."
+}

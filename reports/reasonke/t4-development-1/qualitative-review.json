@@ -1,0 +1,48 @@
+{
+  "review_type": "automated development audit of saved outputs and observed live UI",
+  "independent_human_review": false,
+  "five_case_final_answer_matches": 5,
+  "five_case_assigned_denominator": 5,
+  "general_accuracy_established": false,
+  "faithful_reasoning_established": false,
+  "findings": [
+    {
+      "case": "direct",
+      "final_answer_correct_under_controlled_facts": true,
+      "limitation": "Generated explanation invented that the telescope was named after its inventor; no supplied fact established that."
+    },
+    {
+      "case": "similar-entity",
+      "final_answer_correct_under_controlled_facts": true,
+      "limitation": "The first intermediate scope answer named MiraQuay telescope rather than MiraQuay Pro and added unsupported design/functionality claims."
+    },
+    {
+      "case": "live-counterfactual-source-v1",
+      "intended_demo_answer": "Mumbai",
+      "generated_answer": "New Delhi",
+      "intended_answer_matched": false,
+      "limitation": "Source note also asserted the real-world New Delhi answer. The failure is retained; it was not an execution error."
+    },
+    {
+      "case": "live-counterfactual-source-v2",
+      "intended_demo_answer": "Mumbai",
+      "generated_direct_answer": "Mumbai",
+      "generated_fresh_conversation_paraphrase_answer": "Mumbai",
+      "limitation": "Development retest after replacing the contradictory source note; not a new independent held-out test."
+    },
+    {
+      "case": "live-matched-comparison",
+      "without_correction_context": "New Delhi",
+      "with_correction_context": "Mumbai",
+      "same_author_trained_checkpoint": true,
+      "limitation": "One synthetic counterfactual example; not evidence of arbitrary factual override accuracy."
+    },
+    {
+      "case": "live-withdrawal",
+      "prior_approved_context_answer": "Mumbai",
+      "answer_after_withdrawal": "New Delhi",
+      "observed_knowledge_revision_after_withdrawal": 3,
+      "limitation": "Memory/context rollback; no model weights changed."
+    }
+  ]
+}

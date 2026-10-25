@@ -15,3 +15,6 @@ models/
 *.log
 *.session.lock
 tmp/
+
+# Intermediate browser export; the unpacked, inspected evidence is versioned.
+output/reasonke-2026-10-25/development-evidence.zip

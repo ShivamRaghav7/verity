@@ -79,7 +79,10 @@ def build(commit):
                          '--index-url', 'https://pypi.org/simple', '-r', 'requirements-reasonke.txt'],
                         [PYTHON, '-m', 'unittest', 'tests.test_reasonke_runtime', 'tests.test_chat_reasonke', '-q']):
             completed = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-            print(completed.stdout)
+            if completed.returncode or 'unittest' not in command:
+                print(completed.stdout)
+            else:
+                print('Software-contract tests passed. Expected fixture failures are test inputs, not model results.')
             completed.check_returncode()
         print('Contract tests passed; they do not establish model answer accuracy.')
     """), cell("code", """
@@ -138,12 +141,25 @@ def build(commit):
         requests; history remains visible. These controls change external memory,
         not model weights. Generated prose and explanatory steps are unverified.
     """), cell("code", """
-        request = urllib.request.Request('http://127.0.0.1:8010/status',
-            headers={'Authorization': 'Bearer ' + TOKEN})
-        with urllib.request.urlopen(request, timeout=5) as response:
-            ready = json.load(response)
-        if not ready.get('ready'):
-            raise RuntimeError('The actual GPU worker is not ready.')
+        # A finite readiness wait makes Run all safe without reloading the model.
+        while True:
+            if WORKER.poll() is not None:
+                print(LOG.read_text(encoding='utf-8', errors='replace')[-8000:])
+                raise RuntimeError('The worker stopped; inspect its log above.')
+            try:
+                request = urllib.request.Request('http://127.0.0.1:8010/status',
+                    headers={'Authorization': 'Bearer ' + TOKEN})
+                with urllib.request.urlopen(request, timeout=5) as response:
+                    ready = json.load(response)
+                if ready.get('ready'):
+                    break
+            except OSError:
+                pass
+            if time.monotonic() - WORKER_STARTED > 1800:
+                WORKER.terminate()
+                raise RuntimeError('The 30-minute loading/check cap was reached; completed evidence is preserved.')
+            print('Waiting for this one worker to finish download, loading and the five checks...', flush=True)
+            time.sleep(15)
         from google.colab import output
         from urllib.parse import urlsplit
         proxy_url = output.eval_js('google.colab.kernel.proxyPort(8005)')
@@ -157,12 +173,49 @@ def build(commit):
                 stdout=site_log, stderr=subprocess.STDOUT)
             site_log.close()
         output.serve_kernel_port_as_iframe(8005, height=1000)
+    """), cell("markdown", """
+        ## Optional: repeat the complete website workflow
+
+        The following finite acceptance check runs **seven actual generations**:
+        original answer, approved counterfactual, independent paraphrase, both
+        comparison sides, withdrawal, and ordinary conversation. It uses only
+        its own chats/correction and refuses to run if other facts are active.
+        It ends with its correction withdrawn. Its JSON preserves every result;
+        the ordinary conversation check is only nonempty generation, with the
+        content available for qualitative review. This is a development check,
+        not a representative accuracy estimate. Refresh the website afterwards
+        to see the saved demonstration conversations.
+    """), cell("code", """
+        live_receipt = RUN / 'live-acceptance.json'
+        if live_receipt.exists():
+            print('Existing live acceptance evidence preserved:', live_receipt)
+        else:
+            # Local serving is fast to start; wait at most 15 seconds for it.
+            for attempt in range(15):
+                if WEBSITE.poll() is not None:
+                    print((RUN / 'website.log').read_text()[-4000:])
+                    raise RuntimeError('The website stopped before acceptance checks.')
+                try:
+                    with urllib.request.urlopen('http://127.0.0.1:8005/api/status', timeout=2) as response:
+                        if json.load(response).get('model', {}).get('ready'):
+                            break
+                except OSError:
+                    pass
+                time.sleep(1)
+            else:
+                raise RuntimeError('The website was not ready after 15 seconds.')
+            result = subprocess.run([PYTHON, '-u', '-m', 'scripts.verify_reasonke_live',
+                '--base-url', 'http://127.0.0.1:8005', '--output', str(live_receipt)],
+                cwd=REPO, env=ENV, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            print(result.stdout)
+            result.check_returncode()
+        print('Inspect the complete raw receipt:', live_receipt)
     """), cell("code", """
         # Optional private evidence export. Does not include model weights or tokens.
         import zipfile
         bundle = Path('/content/editguard-reasonke-development-evidence.zip')
         with zipfile.ZipFile(bundle, 'w', zipfile.ZIP_DEFLATED) as archive:
-            for name in ('inventory.json', 'acceptance.json', 'worker.log', 'website.log'):
+            for name in ('inventory.json', 'acceptance.json', 'live-acceptance.json', 'worker.log', 'website.log'):
                 path = RUN / name
                 if path.exists():
                     archive.write(path, name)

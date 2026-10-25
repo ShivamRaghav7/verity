@@ -1,8 +1,9 @@
 # Released ReasonKE model integration
 
 The implementation choice is the author's public `YukinoKaren/ReasonKE_plus`
-checkpoint, revision `ceaedc2ae7c8fed6257953587d991ce550db6106`. It is an
-inference-only candidate for EditGuard, not a claim of a completed reproduction.
+checkpoint, revision `ceaedc2ae7c8fed6257953587d991ce550db6106`. Its first real
+T4 deployment generated matching final answers for five predefined fixtures;
+this is an inference adaptation, not a claim of a completed paper reproduction.
 The previous website and all its reports remain preserved at Git commit
 `1e4bba9dd6d805d158f5bffef3f69607ab4939d1` on
 `codex/chat-knowledge-studio`. This integration is a separate branch.
@@ -60,7 +61,10 @@ raw generations, per-question exact-match diagnostics, versions, elapsed time,
 and peak CUDA allocation/reservation. Every fixture, including failures and
 empty answers, stays in the receipt. The run ends after five generations or an
 explicit exception; there is no training, optimizer or indefinite retry loop.
-There is no measured runtime/memory estimate yet. The run is the measurement.
+The initial real T4 run measured 338.68 seconds for download/loading and 69.19
+seconds for the five-generation diagnostic. Load peak reserved CUDA memory was
+7,140,802,560 bytes. These are session observations, not estimates for another
+run. See [the receipt and limitations](../reports/reasonke/t4-development-1/README.md).
 Interrupted model downloads can reuse the Hugging Face cache. Completed fixture
 records must remain inspectable. No training checkpoint/resume claim applies.
 
@@ -78,6 +82,13 @@ the website can be opened with Colab's authenticated port viewer. This requires
 no public tunnel or Google Drive mount. Runtime storage is temporary; export
 evidence and approved memory before the session ends.
 
-Model loading and live generation have not yet been verified merely because
-the HTTP, request-validation or simulated-client tests pass. Read the actual
-GPU receipt before describing this backend as ready.
+Model loading and live generation have separate real evidence in the linked
+T4 receipt. HTTP and simulated-client tests remain software-contract evidence.
+The small diagnostic and live comparison do not establish unrestricted
+conversation accuracy, arbitrary edit reliability or faithful explanations.
+
+Open the [source-pinned Colab notebook](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/1ffa447b0dbd3142d8e3f1f91e8e66c9aeff8cd9/notebooks/04_reasonke_chat.ipynb)
+or upload `notebooks/04_reasonke_chat.ipynb` to Colab. Select T4 and run the
+hardware, setup and launch cells, then inspect the progress cell until the
+worker is ready. Open the website cell last. The notebook's full source SHA
+is recorded inside it; keep the Colab runtime running while using the website.

@@ -1,10 +1,12 @@
 # EditGuard: Chat & Knowledge
 
-The released ReasonKE checkpoint integration is being prepared on
-`codex/reasonke-integration`. Read [its exact scope and deployment check](docs/REASONKE_INTEGRATION.md).
-The pinned author's weights are available; this does **not** yet establish
-working GPU inference or reproduce the paper's accuracy. The launch below
-continues to use the preserved local Ollama backend.
+The released ReasonKE checkpoint integration is on `codex/reasonke-integration`.
+Its [first real T4 deployment check](reports/reasonke/t4-development-1/README.md)
+generated the intended final answers for five predefined development questions,
+including a paraphrase and two-hop question. This is not a general accuracy
+estimate or reproduction of the paper's score; explanatory and conflicting-source
+failures are documented. Read [the scope and launch instructions](docs/REASONKE_INTEGRATION.md).
+The local launcher below continues to use the preserved Ollama backend.
 
 A local website for **normal text conversation, optional image questions, and
 knowledge corrections you can publish, inspect and withdraw**. Chat Studio uses
