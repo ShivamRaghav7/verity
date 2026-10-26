@@ -78,8 +78,8 @@ def tasks_for(config, model_name, phase):
              config["profile_requests_per_model"] // len(conditions) if phase == "profile" else len(questions))
     ordered = balanced(questions, len(questions))
     for condition_index, condition in enumerate(conditions):
-        selected = ([ordered[(condition_index * count + offset) % len(ordered)] for offset in range(count)]
-                    if phase != "final" else sorted(questions, key=lambda row: row["id"]))
+        selected = ([ordered[((condition_index * count if phase == "profile" else 0) + offset) % len(ordered)]
+                     for offset in range(count)] if phase != "final" else sorted(questions, key=lambda row: row["id"]))
         for question in selected:
             tasks.append({"id": condition + ":" + question["id"], "condition": condition,
                           "question": question, "outcome": "unexecuted"})
@@ -223,6 +223,18 @@ def freeze(config_path, profile_paths, output):
         if len(rows) != 12 or any(row["outcome"] in ("execution_error", "unexecuted") for row in rows):
             raise ValueError("Profile must contain 12 executed, resource-measured requests")
         model = receipt["plan"]["model"]
+        if model in profiles:
+            raise ValueError("Duplicate model profile supplied")
+        config = json.loads(config_path.read_text())
+        manifest = json.loads((ROOT / config["reasonke_manifest" if model == "reasonke" else "instruction_manifest"]).read_text())
+        for row in rows:
+            response = row.get("response", {})
+            generated = response.get("generation", {})
+            if (generated.get("model") != manifest["model_id"] or generated.get("revision") != manifest["revision"]
+                    or not isinstance(response.get("raw_output"), str) or not response["raw_output"].strip()
+                    or generated.get("input_tokens", 0) <= 0 or generated.get("output_tokens", 0) <= 0
+                    or generated.get("peak_reserved_bytes", 0) <= 0):
+                raise ValueError("Profiles require real pinned-checkpoint raw outputs, tokens and CUDA measurements")
         seconds = sorted(row["pipeline_seconds"] for row in rows)
         final_count = 784 if model == "reasonke" else 528
         profiles[model] = {"receipt_sha256": digest(path), "profile_requests": len(rows),

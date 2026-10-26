@@ -3,11 +3,12 @@ import copy
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from editguard_benchmark.data import audit, build, load_dataset
 from editguard_benchmark.metrics import paired_bootstrap, summarize
 from editguard_benchmark.retrieval import retrieve
-from editguard_benchmark.run import request_for, source_identity, tasks_for, verify_protocol
+from editguard_benchmark.run import request_for, run, source_identity, tasks_for, verify_protocol
 from editguard_benchmark.scoring import score
 from editguard_chat.results import current_results
 import json
@@ -89,6 +90,49 @@ class OperationsTests(unittest.TestCase):
             path.write_text(json.dumps({"status": "frozen", "sources": {"changed": "bad"}}))
             with self.assertRaises(ValueError):
                 verify_protocol(path, ROOT / "configs/operations-evaluation.json")
+
+    def test_development_comparisons_have_identical_questions(self):
+        config = json.loads((ROOT / "configs/operations-evaluation.json").read_text())
+        populations = []
+        for model in ("reasonke", "instruction"):
+            _, _, tasks = tasks_for(config, model, "development")
+            for condition in {row["condition"] for row in tasks}:
+                populations.append({row["question"]["id"] for row in tasks if row["condition"] == condition})
+        self.assertTrue(all(population == populations[0] for population in populations))
+
+    def test_completed_abstentions_are_saved_and_never_retried(self):
+        class Pipe:
+            def __init__(self): self.first = True; self.sent = []
+            def poll(self, timeout): return True
+            def recv(self):
+                if self.first:
+                    self.first = False
+                    return {"ready": True, "runtime": {"backend": "explicit CPU contract fixture"}}
+                return {"response": {"content": "UNKNOWN", "generation": {"fixture": True}}}
+            def send(self, value): self.sent.append(value)
+            def close(self): pass
+        class Process:
+            def __init__(self, **kwargs): pass
+            def start(self): pass
+            def is_alive(self): return False
+            def join(self, timeout): pass
+        class Context:
+            def __init__(self): self.parent = Pipe(); self.child = Pipe()
+            def Pipe(self): return self.parent, self.child
+            def Process(self, **kwargs): return Process(**kwargs)
+        context = Context()
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "fixture.json"
+            with patch("editguard_benchmark.run.multiprocessing.get_context", return_value=context):
+                receipt = run(ROOT / "configs/operations-evaluation.json", "reasonke", "profile", path)
+            self.assertEqual(receipt["status"], "completed")
+            self.assertEqual(receipt["recorded"], 12)
+            self.assertTrue(all(row["outcome"] == "abstain" for row in receipt["records"]))
+            self.assertEqual(len(context.parent.sent), 12)
+            with patch("editguard_benchmark.run.multiprocessing.get_context") as launcher:
+                resumed = run(ROOT / "configs/operations-evaluation.json", "reasonke", "profile", path, resume=True)
+                launcher.assert_not_called()
+            self.assertEqual(resumed["records"], receipt["records"])
 
     def test_current_dashboard_does_not_relabel_visual_or_development_scores(self):
         report = current_results(ROOT)

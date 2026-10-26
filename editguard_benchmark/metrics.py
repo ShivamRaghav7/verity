@@ -100,7 +100,7 @@ def aggregate(paths):
         if name.endswith("RAG"):
             retrieval = [row["retrieval"] for row in records if "retrieval" in row]
             hop = [row["retrieval"] for row in records if "retrieval" in row and "two_hop" in row["question"]["category"]]
-            required = sum(item["required"] for item in retrieval)
+            required = sum(len(row["question"]["required_fact_ids"]) for row in records)
             report["conditions"][name]["retrieval"] = {
                 "opportunities": len(records), "recorded": len(retrieval),
                 "fact_recall_numerator": sum(item["found"] for item in retrieval), "fact_recall_denominator": required,
