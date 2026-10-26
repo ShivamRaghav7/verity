@@ -330,6 +330,17 @@ class ChatHTTPTests(unittest.TestCase):
         self.assertEqual(current["kind"], "development_acceptance")
         self.assertEqual(current["workflow"]["factual_assigned"], 6)
 
+    def test_workspace_export_refuses_inflight_mutation(self):
+        self.app.lock.acquire()
+        try:
+            status, _, _ = self.request("/api/workspace/export")
+            self.assertEqual(status, 409)
+        finally:
+            self.app.lock.release()
+        status, snapshot, _ = self.request("/api/workspace/export")
+        self.assertEqual(status, 200)
+        self.assertEqual(snapshot["revision"], 0)
+
     def test_malformed_image_returns_client_error_and_no_generated_answer(self):
         _, created, _ = self.request("/api/chats", {})
         status, _, _ = self.request("/api/chat", {"chat_id": created["chat"]["id"],

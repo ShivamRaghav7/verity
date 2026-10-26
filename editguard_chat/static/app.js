@@ -307,6 +307,7 @@ async function compare(question) {
 function draftCorrection(question) {
   $("correction-question").value = question || "";
   $("correction-answer").value = "";
+  ["fact-entity", "fact-relation", "fact-scope", "fact-aliases"].forEach(id => { $(id).value = ""; });
   resetReplacement(); showView("knowledge"); $("correction-answer").focus();
 }
 

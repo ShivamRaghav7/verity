@@ -310,6 +310,14 @@ class ChatApplication:
         finally:
             self.lock.release()
 
+    def export_workspace(self):
+        if not self.lock.acquire(blocking=False):
+            raise StoreError("Wait for the active model or knowledge operation before exporting a complete workspace.", 409)
+        try:
+            return self.store.export_snapshot()
+        finally:
+            self.lock.release()
+
 
 def validate_trusted_origin(origin):
     """Allow one operator-supplied Colab proxy origin, never a wildcard."""
@@ -366,7 +374,7 @@ def handler_for(app):
                     return self.reply(200, {"corrections": app.store.list_corrections(), "revision": app.store.get_revision(),
                         "events": app.store.list_events()})
                 if path == "/api/workspace/export":
-                    return self.reply(200, app.store.export_snapshot())
+                    return self.reply(200, app.export_workspace())
                 if path == "/api/results":
                     report = ROOT / "reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json"
                     return self.reply(200, report.read_bytes())
