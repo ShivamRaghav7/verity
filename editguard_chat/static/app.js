@@ -619,6 +619,15 @@ async function loadResults() {
       const link = element("a", "quiet-button", label); link.href = "/api/experiments/artifacts/" + name; link.target = "_blank"; link.rel = "noopener"; downloads.append(link);
     }
     target.append(downloads);
+    if (evidence.explanation_audit) {
+      const audit = evidence.explanation_audit;
+      target.append(element("h2", "", "Explicit subanswer support · separate audit"), element("p", "routing-note", audit.assigned_traces + " assigned " + audit.phase + " traces. This automated parser checks indexed boxed subanswers; surrounding prose stays unassessed. A supported subanswer does not verify a complete explanation or internal reasoning."));
+      target.append(evidenceTable(["Condition", "Assigned traces", "Extracted claims", "Supported", "Contradicted", "Unsupported", "Unassessable", "Unassessed prose segments retained"], Object.entries(audit.by_condition).map(([name, value]) => {
+        const counts = value.current_fact_counts;
+        return [name, value.assigned_traces, value.extracted_indexed_claims, counts.supported, counts.contradicted, counts.unsupported, counts.unassessable, value.unassessable_segments_retained];
+      })));
+      const link = element("a", "text-link", "Inspect the complete claim-support audit JSON"); link.href = "/api/experiments/artifacts/explanation-audit.json"; link.target = "_blank"; link.rel = "noopener"; target.append(link);
+    }
     await addAnswerExplorer(target, report);
   } else {
     const cards = element("div", "results-cards");

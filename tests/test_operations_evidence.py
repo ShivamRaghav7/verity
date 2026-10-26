@@ -42,6 +42,14 @@ class OperationsEvidenceTests(unittest.TestCase):
         self.assertEqual(result["new_model_generations"], 0)
         self.assertFalse(result["human_reviewed"])
 
+    def test_current_explanation_audit_keeps_trace_and_claim_denominators_separate(self):
+        evidence = current_results(ROOT)
+        audit = evidence["explanation_audit"]
+        self.assertIsNotNone(audit)
+        self.assertEqual(audit["model_generations"], 0)
+        self.assertFalse(audit["human_reviewed"])
+        self.assertTrue(all(value["fully_verified_traces"] == 0 for value in audit["by_condition"].values()))
+
     def test_changed_prompt_generated_provenance_and_scoring_cannot_pass_audit(self):
         original = json.loads(RECEIPTS[0].read_text())
         for field in ("request_sha256", "model", "outcome"):

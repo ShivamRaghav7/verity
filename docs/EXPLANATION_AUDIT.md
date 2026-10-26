@@ -69,3 +69,12 @@ This is an **automated narrow-format support audit**, without independent human
 semantic review. It does not prove internal reasoning faithfulness, complete
 natural-language claim extraction or arbitrary factual verification. Primary
 answer accuracy remains the unchanged frozen scorecard.
+
+The website displays the current audit's assigned traces, extracted claims,
+current-fact labels and retained unassessable prose segments separately from
+answer accuracy. The complete JSON is downloadable. Development currently has
+12 traces and 24 extracted propositions: retrieved context has 12 supported
+propositions; full memory has 10 supported and 2 contradicted propositions.
+All 48 surrounding/preamble/outside-action segments remain unassessed. These
+counts describe the parser's bounded development diagnostic, not full-trace
+verification or the still separate final audit.

@@ -7,6 +7,7 @@ from .reasonke_backend import MODEL_ID, MODEL_REVISION
 
 ARTIFACTS = {name + extension for name in ("category-accuracy", "efficacy-locality", "outcome-composition",
               "paired-differences", "latency") for extension in (".png", ".svg")} | {"REPORT.md", "scorecard.csv", "figure-manifest.json", "study.pdf", "study-manifest.json"}
+AUDIT_ARTIFACTS = {"explanation-audit.json", "host-audit.json"}
 
 
 def benchmark_location(root):
@@ -19,12 +20,13 @@ def benchmark_location(root):
 
 
 def experiment_artifact(root, name):
-    if name not in ARTIFACTS:
+    if name not in ARTIFACTS | AUDIT_ARTIFACTS:
         raise ValueError("Unknown experiment artifact")
     _, report = benchmark_location(root)
-    if report is None or not (report.parent / "derived" / name).is_file():
+    path = (report.parent / name if name in AUDIT_ARTIFACTS else report.parent / "derived" / name) if report else None
+    if path is None or not path.is_file():
         raise FileNotFoundError("Experiment artifact has not been recorded")
-    return report.parent / "derived" / name
+    return path
 
 
 def current_results(root):
@@ -38,8 +40,17 @@ def current_results(root):
                 or any(report.get("conditions", {}).get(name, {}).get("overall", {}).get("assigned") != assigned
                        for name in ("R0", "R-RAG", "R-ALL", "G-RAG", "G-ALL"))):
             raise ValueError("Current benchmark report does not match the declared experiment")
+        audit_path = path.parent / "explanation-audit.json"
+        explanation = None
+        if audit_path.exists():
+            audit = json.loads(audit_path.read_text(encoding="utf-8"))
+            if (audit.get("phase") != phase or audit.get("schema") != "editguard-explanation-support-audit-v1"
+                    or audit.get("receipt_sha256") not in report["source_receipts"].values()):
+                raise ValueError("Explanation audit does not identify the displayed experiment")
+            explanation = {key: audit[key] for key in ("phase", "assigned_traces", "by_condition", "denominators", "limitations", "human_reviewed", "model_generations")}
         return {"kind": "controlled_" + phase + "_benchmark", "model": MODEL_ID, "model_revision": MODEL_REVISION,
                 "report": report, "artifacts": sorted(name for name in ARTIFACTS if (path.parent / "derived" / name).is_file()),
+                "audit_artifacts": sorted(name for name in AUDIT_ARTIFACTS if (path.parent / name).is_file()), "explanation_audit": explanation,
                 "notice": "Controlled fictional operations study (" + phase + "). All assigned outcomes retain their denominator. "
                           + ("Development results guided context-policy selection; they are not held-out final accuracy. " if phase == "development" else "Settings were fixed before held-out inference. ")
                           + "Labels were audited automatically, without independent human review."}

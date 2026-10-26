@@ -14,6 +14,10 @@ log during these checks. `development-dashboard.jpg` captures the actual page.
 to the three R-ALL development failures, with expected/generated answers,
 requested scope and all supplied facts. The page explicitly labels saved output
 and unverified explanation text; filters do not modify scoring or denominators.
+`atomic-rollback-history.jpg` records a later approval at revision 13 followed by
+one-click atomic rollback at revision 14. The withdrawn replacement and restored
+original share revision 14, preserving both audit events without an empty-memory
+revision. This additional check generated no neural answer.
 
 This was a **software/UI verification**, not a model-answer measurement. The
 local website deliberately had no inference worker while the T4 was occupied
