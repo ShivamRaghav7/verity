@@ -1,15 +1,34 @@
 # EditGuard: Chat & Knowledge
 
-The current implementation includes canonical entity/property/scope identities,
-transactional text-workspace export/restore, a current-model evidence dashboard,
-and the controlled operations evaluation pipeline. The new dataset contains 48
-independent edit lineages and 384 questions; its final neural results are separate
-from the already recorded development checks. See the
-[implemented benchmark and API workflow](docs/OPERATIONS_BENCHMARK.md).
+EditGuard is a runnable knowledge-maintenance platform for a conversational
+assistant. An approved service-ownership change should update both the owner
+answer and the connected on-call contact, while preserving other properties,
+similarly named services and historical releases. The current deployment uses
+the attributed upstream-trained ReasonKE checkpoint with versioned external
+memory; individual corrections do not modify model weights.
 
-Read the [current project journey and finite finish plan](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md)
-for the goal, actual development timeline, planned final evaluation, metrics and
-five-workday release milestones. Proposed measurements are separate from recorded results.
+The application includes explicit approval, canonical entity/property/scope
+identity, conflict resolution, searchable fact versions, an approval/rollback
+timeline, historical before/after comparisons, transactional text-workspace
+export/restore, and a dashboard with real scorecards and exportable scientific
+figures. Read [the complete operations demo](docs/OPERATIONS_DEMO.md),
+[API documentation](docs/CHAT_API.md), and
+[implemented evaluation workflow](docs/OPERATIONS_BENCHMARK.md).
+
+The controlled dataset contains 48 fictional edit lineages and 384 questions,
+split before wording augmentation. The matched **120-request development run**
+is complete: ReasonKE with updated retrieval scored 24/24, versus 21/24 with full
+memory; Qwen with the same retrieval also scored 24/24. These three-development-
+lineage results guided context-policy selection and do not establish general
+accuracy or a ReasonKE advantage. The separate **1,312-request frozen held-out
+run** was launched on the T4; unfinished inference is never presented as a final
+score. Every wrong answer, abstention and execution failure stays in its denominator.
+
+Inspect [raw development evidence and measured timings](reports/reasonke/operations-development-v1/README.md),
+[the nine-page measured study](output/pdf/editguard-development-study.pdf), and
+[the actual frozen final protocol](reports/reasonke/operations-final/protocol.json).
+The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains a
+dated planning record; current implementation and measured evidence are linked above.
 
 The current text-editing website uses the author's trained **ReasonKE_plus**
 checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/f6983b695ec2796de49026ac7e6361e51d9fbee9/notebooks/04_reasonke_chat.ipynb),

@@ -39,6 +39,14 @@ See [the raw profiles and failures](../reports/reasonke/operations-profiles-v1/R
 
 ## Adaptations and evidence boundaries
 
+The matched 120-request development comparison is complete: ReasonKE with
+retrieved context answered 24/24, compared with 21/24 under full memory. Qwen with
+the same retrieval also answered 24/24, so there is no superiority claim. The
+retrieved policy was selected before final inference; see
+[`configs/deployment-policy.json`](../configs/deployment-policy.json) and the
+[actual development evidence](../reports/reasonke/operations-development-v1/README.md).
+These are three independent development lineages, not held-out final accuracy.
+
 ReasonKE uses the upstream updated-information/query prompt structure with
 approved facts serialized as JSON. The instruction baseline uses its official
 chat template with explicit short-answer/context instructions. The configurations

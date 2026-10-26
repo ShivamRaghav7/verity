@@ -4,18 +4,43 @@ from pathlib import Path
 
 from .reasonke_backend import MODEL_ID, MODEL_REVISION
 
+ARTIFACTS = {name + extension for name in ("category-accuracy", "efficacy-locality", "outcome-composition",
+              "paired-differences", "latency") for extension in (".png", ".svg")} | {"REPORT.md", "scorecard.csv", "figure-manifest.json", "study.pdf", "study-manifest.json"}
+
+
+def benchmark_location(root):
+    root = Path(root)
+    for phase, folder in (("final", "operations-final"), ("development", "operations-development-v1")):
+        path = root / "reports/reasonke" / folder / "results.json"
+        if path.is_file():
+            return phase, path
+    return None, None
+
+
+def experiment_artifact(root, name):
+    if name not in ARTIFACTS:
+        raise ValueError("Unknown experiment artifact")
+    _, report = benchmark_location(root)
+    if report is None or not (report.parent / "derived" / name).is_file():
+        raise FileNotFoundError("Experiment artifact has not been recorded")
+    return report.parent / "derived" / name
+
 
 def current_results(root):
     root = Path(root)
-    final = root / "reports/reasonke/operations-final/results.json"
-    if final.is_file():
-        report = json.loads(final.read_text(encoding="utf-8"))
-        if (report.get("schema") != "editguard-operations-results-v1" or report.get("phase") != "final"
-                or any(report.get("conditions", {}).get(name, {}).get("overall", {}).get("assigned") != 256
+    phase, path = benchmark_location(root)
+    if path:
+        report = json.loads(path.read_text(encoding="utf-8"))
+        assigned = 256 if phase == "final" else 24
+        if (report.get("schema") != "editguard-operations-results-v1" or report.get("phase") != phase
+                or any(report.get("conditions", {}).get(name, {}).get("overall", {}).get("assigned") != assigned
                        for name in ("R0", "R-RAG", "R-ALL", "G-RAG", "G-ALL"))):
             raise ValueError("Current benchmark report does not match the declared experiment")
-        return {"kind": "controlled_final_benchmark", "model": MODEL_ID, "model_revision": MODEL_REVISION,
-                "report": report, "notice": "Controlled fictional operations study; all assigned outcomes retain their denominator."}
+        return {"kind": "controlled_" + phase + "_benchmark", "model": MODEL_ID, "model_revision": MODEL_REVISION,
+                "report": report, "artifacts": sorted(name for name in ARTIFACTS if (path.parent / "derived" / name).is_file()),
+                "notice": "Controlled fictional operations study (" + phase + "). All assigned outcomes retain their denominator. "
+                          + ("Development results guided context-policy selection; they are not held-out final accuracy. " if phase == "development" else "Settings were fixed before held-out inference. ")
+                          + "Labels were audited automatically, without independent human review."}
     directory = root / "reports/reasonke/t4-restart-1"
     profile = json.loads((directory / "acceptance.json").read_text(encoding="utf-8"))
     live = json.loads((directory / "live-acceptance.json").read_text(encoding="utf-8"))

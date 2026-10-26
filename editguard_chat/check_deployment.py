@@ -105,7 +105,7 @@ def verify():
                 empty.store.close()
             code, evidence = request("/api/experiments")
             check("current_evidence_files_packaged", code == 200 and evidence["model"] == "YukinoKaren/ReasonKE_plus")
-            check("evidence_kind_explicit", evidence["kind"] in ("development_acceptance", "controlled_final_benchmark"))
+            check("evidence_kind_explicit", evidence["kind"] in ("development_acceptance", "controlled_development_benchmark", "controlled_final_benchmark"))
         finally:
             server.shutdown(); server.server_close(); thread.join(timeout=5); app.store.close()
     return {"schema": "editguard-chat-deployment-check-v1", "status": "passed", "created_utc": datetime.now(timezone.utc).isoformat(),

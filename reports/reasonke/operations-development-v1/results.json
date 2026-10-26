@@ -1,0 +1,1553 @@
+{
+  "schema": "editguard-operations-results-v1",
+  "phase": "development",
+  "execution_status": "completed",
+  "source_receipts": {
+    "/content/editguard-reasonke/artifacts/operations-profile-v1/development-reasonke.json": "24883b0147cf00baaa3aceda8020ed74f485bb0190d903530939b277e3b7ca65",
+    "/content/editguard-reasonke/artifacts/operations-profile-v1/development-instruction.json": "23bf07e4e54c1298dfa908e306302199935a4768789ec4fb12e854c8ab76dd7c"
+  },
+  "dataset_id": "editguard-operations-v1",
+  "model_measurements": {
+    "reasonke": [
+      {
+        "ready": true,
+        "model_id": "YukinoKaren/ReasonKE_plus",
+        "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+        "backend": "ReasonKE author checkpoint, 4-bit inference adaptation",
+        "supports_images": false,
+        "quantization": "NF4 double quantization, FP16 compute",
+        "load_seconds": 78.88734399700002,
+        "hardware": {
+          "name": "Tesla T4",
+          "total_vram_bytes": 15637086208,
+          "compute_capability": [
+            7,
+            5
+          ],
+          "load_peak_allocated_bytes": 7071596544,
+          "load_peak_reserved_bytes": 7140802560,
+          "torch": "2.11.0+cu130",
+          "cuda": "13.0",
+          "python": "3.13.16",
+          "packages": {
+            "transformers": "4.56.1",
+            "accelerate": "1.10.1",
+            "bitsandbytes": "0.48.1"
+          }
+        },
+        "busy": false,
+        "manifest_sha256": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+        "checkpoint_matches_published_95_48_verified": false,
+        "weights_changed_by_new_facts": false,
+        "checkpoint_trained_by_this_project": false
+      }
+    ],
+    "instruction": [
+      {
+        "ready": true,
+        "model_id": "Qwen/Qwen2.5-7B-Instruct",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "backend": "Official Qwen instruction checkpoint, 4-bit inference adaptation",
+        "supports_images": false,
+        "quantization": "NF4 double quantization, FP16 compute",
+        "load_seconds": 77.71488304500008,
+        "hardware": {
+          "name": "Tesla T4",
+          "total_vram_bytes": 15637086208,
+          "compute_capability": [
+            7,
+            5
+          ],
+          "load_peak_allocated_bytes": 7071596544,
+          "load_peak_reserved_bytes": 7140802560,
+          "torch": "2.11.0+cu130",
+          "cuda": "13.0",
+          "python": "3.13.16",
+          "packages": {
+            "transformers": "4.56.1",
+            "accelerate": "1.10.1",
+            "bitsandbytes": "0.48.1"
+          }
+        },
+        "busy": false,
+        "manifest_sha256": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+        "checkpoint_matches_published_95_48_verified": false,
+        "weights_changed_by_new_facts": false,
+        "checkpoint_trained_by_this_project": false,
+        "exact_parent_of_reasonke_verified": false
+      }
+    ]
+  },
+  "conditions": {
+    "R0": {
+      "overall": {
+        "assigned": 24,
+        "counts": {
+          "correct": 12,
+          "wrong": 12,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.5,
+        "coverage": 1.0,
+        "answered_only_precision": 0.5,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 24,
+          "p50_seconds": 15.452571842999873,
+          "p95_seconds": 19.71361148970013,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "by_category": {
+        "direct": {
+          "assigned": 3,
+          "counts": {
+            "correct": 0,
+            "wrong": 3,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.0,
+          "coverage": 1.0,
+          "answered_only_precision": 0.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 16.17625229100031,
+            "p95_seconds": 16.795548166200046,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "direct_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 0,
+            "wrong": 3,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.0,
+          "coverage": 1.0,
+          "answered_only_precision": 0.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 10.421113910999793,
+            "p95_seconds": 15.16584953310014,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "same_entity_other_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.620625216000008,
+            "p95_seconds": 22.386398334299997,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "similar_entity_same_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 19.218670530000054,
+            "p95_seconds": 19.742725663800137,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop": {
+          "assigned": 3,
+          "counts": {
+            "correct": 0,
+            "wrong": 3,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.0,
+          "coverage": 1.0,
+          "answered_only_precision": 0.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.157658516000083,
+            "p95_seconds": 14.243237987800104,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 0,
+            "wrong": 3,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.0,
+          "coverage": 1.0,
+          "answered_only_precision": 0.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.507467188000192,
+            "p95_seconds": 15.864169234199972,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "unrelated": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.990450680000322,
+            "p95_seconds": 15.541345238499844,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "wrong_version_or_tier": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.302587940999956,
+            "p95_seconds": 17.112499364700057,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        }
+      },
+      "applicable": {
+        "assigned": 12,
+        "counts": {
+          "correct": 0,
+          "wrong": 12,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.0,
+        "coverage": 1.0,
+        "answered_only_precision": 0.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 14.469332212500149,
+          "p95_seconds": 16.485900228600176,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "locality": {
+        "assigned": 12,
+        "counts": {
+          "correct": 12,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 15.611590480499899,
+          "p95_seconds": 21.30269261295008,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      }
+    },
+    "R-RAG": {
+      "overall": {
+        "assigned": 24,
+        "counts": {
+          "correct": 24,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 24,
+          "p50_seconds": 15.031362612000066,
+          "p95_seconds": 16.0504680273001,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "by_category": {
+        "direct": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.985696600999745,
+            "p95_seconds": 16.667496627500032,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "direct_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 10.763402534999841,
+            "p95_seconds": 11.190557663100298,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "same_entity_other_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 11.461009929999818,
+            "p95_seconds": 13.21502537140027,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "similar_entity_same_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.837899315999948,
+            "p95_seconds": 15.875051903700205,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.672260250999898,
+            "p95_seconds": 15.79742084170016,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.271826723999766,
+            "p95_seconds": 15.882891123500121,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "unrelated": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.545431310999902,
+            "p95_seconds": 14.956848991400284,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "wrong_version_or_tier": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.426558672999818,
+            "p95_seconds": 15.606919843900277,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        }
+      },
+      "applicable": {
+        "assigned": 12,
+        "counts": {
+          "correct": 12,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 14.665994940499786,
+          "p95_seconds": 16.368507537150116,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "locality": {
+        "assigned": 12,
+        "counts": {
+          "correct": 12,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 15.098122070500267,
+          "p95_seconds": 15.856475609850076,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "retrieval": {
+        "opportunities": 24,
+        "recorded": 24,
+        "fact_recall_numerator": 30,
+        "fact_recall_denominator": 30,
+        "fact_recall": 1.0,
+        "two_hop_complete_numerator": 6,
+        "two_hop_complete_denominator": 6,
+        "note": "Shared question-only retrieval; duplicated generator use is not an independent retrieval experiment"
+      },
+      "baseline_correct_retention": {
+        "correct": 12,
+        "denominator": 12,
+        "rate": 1.0,
+        "reference": "R0"
+      }
+    },
+    "R-ALL": {
+      "overall": {
+        "assigned": 24,
+        "counts": {
+          "correct": 21,
+          "wrong": 3,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.875,
+        "coverage": 1.0,
+        "answered_only_precision": 0.875,
+        "false_correction_applications": 1,
+        "generated_latency": {
+          "n": 24,
+          "p50_seconds": 14.401639747000218,
+          "p95_seconds": 17.01104099854997,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "by_category": {
+        "direct": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 11.14192779799987,
+            "p95_seconds": 11.807917419200157,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "direct_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 11.85002821199987,
+            "p95_seconds": 14.215226343600126,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "same_entity_other_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.08172697100008,
+            "p95_seconds": 16.867643620699983,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "similar_entity_same_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 16.628585590000057,
+            "p95_seconds": 18.40073321259988,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop": {
+          "assigned": 3,
+          "counts": {
+            "correct": 2,
+            "wrong": 1,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.6666666666666666,
+          "coverage": 1.0,
+          "answered_only_precision": 0.6666666666666666,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 15.223690514999817,
+            "p95_seconds": 15.605770034099987,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 2,
+            "wrong": 1,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.6666666666666666,
+          "coverage": 1.0,
+          "answered_only_precision": 0.6666666666666666,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.121422210000219,
+            "p95_seconds": 15.36462607070025,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "unrelated": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 14.907756456000243,
+            "p95_seconds": 15.222285055800057,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "wrong_version_or_tier": {
+          "assigned": 3,
+          "counts": {
+            "correct": 2,
+            "wrong": 1,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.6666666666666666,
+          "coverage": 1.0,
+          "answered_only_precision": 0.6666666666666666,
+          "false_correction_applications": 1,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 12.950003124999967,
+            "p95_seconds": 16.324244403399963,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        }
+      },
+      "applicable": {
+        "assigned": 12,
+        "counts": {
+          "correct": 10,
+          "wrong": 2,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.8333333333333334,
+        "coverage": 1.0,
+        "answered_only_precision": 0.8333333333333334,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 13.958022028499954,
+          "p95_seconds": 15.568218399450142,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "locality": {
+        "assigned": 12,
+        "counts": {
+          "correct": 11,
+          "wrong": 1,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.9166666666666666,
+        "coverage": 1.0,
+        "answered_only_precision": 0.9166666666666666,
+        "false_correction_applications": 1,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 15.169479824500058,
+          "p95_seconds": 17.75528066899992,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "baseline_correct_retention": {
+        "correct": 11,
+        "denominator": 12,
+        "rate": 0.9166666666666666,
+        "reference": "R0"
+      }
+    },
+    "G-RAG": {
+      "overall": {
+        "assigned": 24,
+        "counts": {
+          "correct": 24,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 24,
+          "p50_seconds": 0.8133731250002256,
+          "p95_seconds": 1.0162116747500702,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "by_category": {
+        "direct": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.8861115309996421,
+            "p95_seconds": 2.3938293975999843,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "direct_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.8933223700000781,
+            "p95_seconds": 0.915132841300192,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "same_entity_other_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.5904142700001103,
+            "p95_seconds": 0.5957201093000094,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "similar_entity_same_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.9611259729999801,
+            "p95_seconds": 0.9681846684999073,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.6782201430000896,
+            "p95_seconds": 0.7573048152002684,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.6667936769999869,
+            "p95_seconds": 0.7382164565999574,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "unrelated": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.6112182140000186,
+            "p95_seconds": 0.652937578999763,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "wrong_version_or_tier": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.9523631349998141,
+            "p95_seconds": 1.017330074200072,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        }
+      },
+      "applicable": {
+        "assigned": 12,
+        "counts": {
+          "correct": 12,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 0.8133731250002256,
+          "p95_seconds": 1.6572650471001213,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "locality": {
+        "assigned": 12,
+        "counts": {
+          "correct": 12,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 0.7669355304997225,
+          "p95_seconds": 0.9939798127499898,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "retrieval": {
+        "opportunities": 24,
+        "recorded": 24,
+        "fact_recall_numerator": 30,
+        "fact_recall_denominator": 30,
+        "fact_recall": 1.0,
+        "two_hop_complete_numerator": 6,
+        "two_hop_complete_denominator": 6,
+        "note": "Shared question-only retrieval; duplicated generator use is not an independent retrieval experiment"
+      }
+    },
+    "G-ALL": {
+      "overall": {
+        "assigned": 24,
+        "counts": {
+          "correct": 22,
+          "wrong": 1,
+          "abstain": 1,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.9166666666666666,
+        "coverage": 0.9583333333333334,
+        "answered_only_precision": 0.9565217391304348,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 24,
+          "p50_seconds": 1.1878080800001953,
+          "p95_seconds": 1.3588124017999235,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "by_category": {
+        "direct": {
+          "assigned": 3,
+          "counts": {
+            "correct": 2,
+            "wrong": 1,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.6666666666666666,
+          "coverage": 1.0,
+          "answered_only_precision": 0.6666666666666666,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 1.3034954340000695,
+            "p95_seconds": 1.3543872578999072,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "direct_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 1.2920033679997687,
+            "p95_seconds": 1.2975584380000782,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "same_entity_other_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.9898187829999188,
+            "p95_seconds": 0.996325894599704,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "similar_entity_same_relation": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 1.3320075100000395,
+            "p95_seconds": 1.3748223613002666,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 1.0586487430000489,
+            "p95_seconds": 1.1332420435001496,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "two_hop_paraphrase": {
+          "assigned": 3,
+          "counts": {
+            "correct": 2,
+            "wrong": 0,
+            "abstain": 1,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 0.6666666666666666,
+          "coverage": 0.6666666666666666,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 1.0504052679998495,
+            "p95_seconds": 1.1306770771000174,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "unrelated": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 0.9916135550001854,
+            "p95_seconds": 1.073800672999687,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        },
+        "wrong_version_or_tier": {
+          "assigned": 3,
+          "counts": {
+            "correct": 3,
+            "wrong": 0,
+            "abstain": 0,
+            "execution_error": 0,
+            "unexecuted": 0
+          },
+          "accuracy": 1.0,
+          "coverage": 1.0,
+          "answered_only_precision": 1.0,
+          "false_correction_applications": 0,
+          "generated_latency": {
+            "n": 3,
+            "p50_seconds": 1.3515861029995904,
+            "p95_seconds": 1.3518193056000656,
+            "definition": "context selection + local IPC + generation; excludes model load and browser network"
+          },
+          "failed_request_latency": {
+            "n": 0,
+            "p50_seconds": null,
+            "p95_seconds": null
+          }
+        }
+      },
+      "applicable": {
+        "assigned": 12,
+        "counts": {
+          "correct": 10,
+          "wrong": 1,
+          "abstain": 1,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 0.8333333333333334,
+        "coverage": 0.9166666666666666,
+        "answered_only_precision": 0.9090909090909091,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 1.1878080800001953,
+          "p95_seconds": 1.3289413459499884,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      },
+      "locality": {
+        "assigned": 12,
+        "counts": {
+          "correct": 12,
+          "wrong": 0,
+          "abstain": 0,
+          "execution_error": 0,
+          "unexecuted": 0
+        },
+        "accuracy": 1.0,
+        "coverage": 1.0,
+        "answered_only_precision": 1.0,
+        "false_correction_applications": 0,
+        "generated_latency": {
+          "n": 12,
+          "p50_seconds": 1.1787637794998318,
+          "p95_seconds": 1.3643256745001964,
+          "definition": "context selection + local IPC + generation; excludes model load and browser network"
+        },
+        "failed_request_latency": {
+          "n": 0,
+          "p50_seconds": null,
+          "p95_seconds": null
+        }
+      }
+    }
+  },
+  "assigned_records": 120,
+  "independent_lineages": 3,
+  "notes": [
+    "Strict whole endorsed final answer matching; no sole LLM judge",
+    "All assigned outcomes retained; abstentions/errors/unexecuted receive zero primary credit",
+    "Both checkpoints are upstream trained; no causal attribution to ReasonKE training",
+    "Fictional controlled graph with shared wording templates and automated audit"
+  ],
+  "paired_differences": {
+    "R-ALL minus G-ALL": {
+      "left_minus_right": -0.041666666666666664,
+      "ci95": [
+        -0.125,
+        0.125
+      ],
+      "independent_lineages": 3,
+      "paired_questions": 24,
+      "bootstrap_resamples": 10000,
+      "seed": 42
+    },
+    "R-RAG minus G-RAG": {
+      "left_minus_right": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "independent_lineages": 3,
+      "paired_questions": 24,
+      "bootstrap_resamples": 10000,
+      "seed": 42
+    },
+    "R-ALL minus R-RAG": {
+      "left_minus_right": -0.125,
+      "ci95": [
+        -0.25,
+        0.0
+      ],
+      "independent_lineages": 3,
+      "paired_questions": 24,
+      "bootstrap_resamples": 10000,
+      "seed": 42
+    }
+  }
+}

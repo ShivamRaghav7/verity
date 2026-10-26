@@ -327,8 +327,11 @@ class ChatHTTPTests(unittest.TestCase):
         status, current, _ = self.request("/api/experiments")
         self.assertEqual(status, 200)
         self.assertEqual(current["model"], "YukinoKaren/ReasonKE_plus")
-        self.assertEqual(current["kind"], "development_acceptance")
-        self.assertEqual(current["workflow"]["factual_assigned"], 6)
+        self.assertIn(current["kind"], ("controlled_development_benchmark", "controlled_final_benchmark"))
+        assigned = 256 if current["report"]["phase"] == "final" else 24
+        self.assertEqual(current["report"]["conditions"]["R-RAG"]["overall"]["assigned"], assigned)
+        status, _, _ = self.request("/api/experiments/artifacts/not-a-report.png")
+        self.assertEqual(status, 404)
 
     def test_workspace_export_refuses_inflight_mutation(self):
         self.app.lock.acquire()
@@ -340,6 +343,24 @@ class ChatHTTPTests(unittest.TestCase):
         status, snapshot, _ = self.request("/api/workspace/export")
         self.assertEqual(status, 200)
         self.assertEqual(snapshot["revision"], 0)
+
+    def test_approve_example_preserves_existing_chats_and_never_replaces_existing_knowledge(self):
+        _, chat, _ = self.request("/api/chats", {})
+        code, result, _ = self.request("/api/examples/operations/approve", {})
+        self.assertEqual(code, 200)
+        self.assertEqual(result["revision"], 9)
+        self.assertEqual(len(self.app.store.list_corrections()), 9)
+        self.assertEqual(self.app.store.list_chats()[0]["id"], chat["chat"]["id"])
+        self.assertEqual(result["suggested_edit"]["identity"]["relation_id"], "owner")
+        code, _, _ = self.request("/api/examples/operations/approve", {})
+        self.assertEqual(code, 409)
+        self.assertEqual(self.app.store.get_revision(), 9)
+        code, past, _ = self.request("/api/memory?revision=0")
+        self.assertEqual(code, 200)
+        self.assertEqual(past["corrections"], [])
+        code, current, _ = self.request("/api/memory?revision=9")
+        self.assertEqual(code, 200)
+        self.assertEqual(len(current["corrections"]), 9)
 
     def test_malformed_image_returns_client_error_and_no_generated_answer(self):
         _, created, _ = self.request("/api/chats", {})

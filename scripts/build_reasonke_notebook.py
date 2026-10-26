@@ -36,8 +36,9 @@ def build(commit):
         though inference uses NF4 weights with FP16 computation. Actual runtime,
         peak memory and generated answers are measured here; no T4 fit or accuracy
         is established by this notebook existing. Keep no other model process on
-        the GPU. The five predefined development questions include two-hop reasoning;
-        all supporting facts are supplied. This is not a held-out accuracy benchmark.
+        the GPU. Loading alone generates no answers. Optional predefined development
+        checks include two-hop reasoning, with all supporting facts supplied; they
+        are not a held-out accuracy benchmark.
 
         The author's checkpoint has no model card explicitly tying it to the paper's
         95.48% result. That published number is never shown as our measured score.
@@ -86,8 +87,9 @@ def build(commit):
             completed.check_returncode()
         print('Contract tests passed; they do not establish model answer accuracy.')
     """), cell("code", """
-        # Explicitly launch ONE GPU process: load, five finite checks, then serve.
+        # Explicitly launch ONE GPU process. Optional checks are disabled by default.
         # Re-running this cell preserves the existing process instead of loading twice.
+        RUN_STARTUP_CHECKS = False
         RUN = REPO / 'artifacts/reasonke/colab-development-1'
         RUN.mkdir(parents=True, exist_ok=True)
         (RUN / 'inventory.json').write_text(json.dumps(inventory, indent=2))
@@ -100,10 +102,12 @@ def build(commit):
                 HF_HUB_DOWNLOAD_TIMEOUT='180', TOKENIZERS_PARALLELISM='false')
             LOG = RUN / 'worker.log'
             log_handle = LOG.open('a', encoding='utf-8')
-            WORKER = subprocess.Popen([PYTHON, '-u', '-m', 'editguard_reasonke',
-                '--manifest', 'configs/reasonke-model.json',
-                '--profile', 'configs/reasonke-acceptance.json',
-                '--output', str(RUN / 'acceptance.json'), '--resume', '--serve', '--port', '8010'],
+            command = [PYTHON, '-u', '-m', 'editguard_reasonke',
+                '--manifest', 'configs/reasonke-model.json', '--serve', '--port', '8010']
+            if RUN_STARTUP_CHECKS:
+                command += ['--profile', 'configs/reasonke-acceptance.json',
+                            '--output', str(RUN/'acceptance.json'), '--resume']
+            WORKER = subprocess.Popen(command,
                 cwd=REPO, env=ENV, stdout=log_handle, stderr=subprocess.STDOUT)
             log_handle.close()
             WORKER_STARTED = time.monotonic()
@@ -131,14 +135,18 @@ def build(commit):
     """), cell("markdown", """
         ## Open the website after the worker is ready
 
-        Read the actual five generated answers and any failures above. The website
-        can be inspected even when some development answers are incorrect; it is
-        not labelled scientifically validated by successful loading alone.
+        Inspect model readiness above. If optional checks were enabled, read all
+        five generated answers and any failures. Successful loading alone does
+        not establish scientific validation. The saved controlled development
+        comparison is available in Research results, with its own denominators.
 
         **Chat** accepts normal text questions. **Knowledge** publishes approved
         corrections with scope/source. Ask the question again, use **Compare**, and
-        inspect supplied context. Withdraw a correction to remove it from future
-        requests; history remains visible. These controls change external memory,
+        inspect supplied context. Knowledge can explicitly approve a fictional
+        operations handbook, then draft an ownership update for a second approval.
+        Compare can use the approved memory at revision 9 before that update.
+        Withdraw a correction to remove it from future requests; history remains
+        visible. Export your text workspace before Colab ends. These controls change external memory,
         not model weights. Generated prose and explanatory steps are unverified.
     """), cell("code", """
         # A finite readiness wait makes Run all safe without reloading the model.
@@ -168,7 +176,7 @@ def build(commit):
         if 'WEBSITE' not in globals() or WEBSITE.poll() is not None:
             site_log = (RUN / 'website.log').open('a', encoding='utf-8')
             WEBSITE = subprocess.Popen([PYTHON, '-u', '-m', 'editguard_chat.server',
-                '--backend', 'reasonke', '--port', '8005', '--storage', str(RUN / 'chat'),
+                '--backend', 'reasonke', '--context-policy', 'retrieved', '--port', '8005', '--storage', str(RUN / 'chat'),
                 '--trusted-origin', origin], cwd=REPO, env=ENV,
                 stdout=site_log, stderr=subprocess.STDOUT)
             site_log.close()
@@ -186,8 +194,11 @@ def build(commit):
         not a representative accuracy estimate. Refresh the website afterwards
         to see the saved demonstration conversations.
     """), cell("code", """
+        RUN_LIVE_CHECKS = False
         live_receipt = RUN / 'live-acceptance.json'
-        if live_receipt.exists():
+        if not RUN_LIVE_CHECKS:
+            print('Optional seven-generation acceptance check disabled. Use the website normally.')
+        elif live_receipt.exists():
             print('Existing live acceptance evidence preserved:', live_receipt)
         else:
             # Local serving is fast to start; wait at most 15 seconds for it.

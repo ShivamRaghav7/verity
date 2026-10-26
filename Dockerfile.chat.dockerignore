@@ -1,11 +1,19 @@
-# Only the local website and the one explicitly attributed saved report.
+# Website, shared retriever, fictional example data and measured evidence only.
 **
 !requirements-chat.txt
 !editguard_chat/
 !editguard_chat/**
+!editguard_benchmark/
+!editguard_benchmark/**
+!data/
+!data/reasonke/
+!data/reasonke/operations-v1/
+!data/reasonke/operations-v1/**
 !configs/
 !configs/chat-models.json
 !reports/
+!reports/reasonke/
+!reports/reasonke/**
 !reports/vlkeb/
 !reports/vlkeb/t4-eval20-1/
 !reports/vlkeb/t4-eval20-1/artifacts/
@@ -13,3 +21,5 @@
 !reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/
 !reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json
 editguard_chat/**/__pycache__/
+editguard_benchmark/**/__pycache__/
+reports/reasonke/**/*.log

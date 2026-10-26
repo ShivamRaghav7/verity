@@ -64,7 +64,7 @@ function renderStatus(status) {
   const failed = !!model.error;
   $("sidebar-model").textContent = model.name || "Local conversation model";
   $("sidebar-model-detail").textContent = failed ? "Model unavailable · see launch log" : ready ? (model.backend || "Model") + " · ready to chat" : "Waiting for the model";
-  $("comparison-model-label").textContent = status.comparison_label ? "WITHOUT CORRECTION CONTEXT" : "ORIGINAL MODEL";
+  if (!$("compare-dialog").open) $("comparison-model-label").textContent = status.comparison_label ? "WITHOUT CORRECTION CONTEXT" : "ORIGINAL MODEL";
   $("knowledge-context-description").textContent = status.retrieval?.method === "all_approved_facts_learned_applicability" ? "All active approved facts are supplied to the trained reasoner, up to 20 records. New corrections update external memory; model weights remain unchanged." : "Corrections are supplied to the model when retrieved. They do not rewrite the base model’s weights.";
   if (status.retrieval?.method === "two_stage_lexical_approved_memory") $("knowledge-context-description").textContent = "Up to four approved facts are selected from a library of at most 200 using two-stage question-only retrieval. New corrections update external memory; model weights remain unchanged.";
   $("model-status").textContent = ready ? "Model ready" : failed ? "Model unavailable" : "Model loading";
@@ -284,16 +284,25 @@ async function sendMessage(event) {
 
 async function compare(question) {
   if (state.busy) return;
+  state.compareQuestion = question;
   clearError();
+  const historical = $("compare-baseline-mode").value === "revision";
+  const baseline = Number($("compare-baseline-revision").value);
+  if (historical && (!Number.isInteger(baseline) || baseline < 0 || baseline > state.revision)) throw new Error("Choose an existing integer knowledge revision.");
+  $("compare-baseline-revision").max = state.revision;
+  $("comparison-model-label").textContent = historical ? "APPROVED MEMORY r" + baseline : "WITHOUT CORRECTION CONTEXT";
   $("compare-question").textContent = question.content;
-  $("compare-original").textContent = "Generating without correction context…";
+  $("compare-original").textContent = historical ? "Generating with approved memory at revision " + baseline + "…" : "Generating without correction context…";
   $("compare-edited").textContent = "Generating with current approved knowledge…";
   $("compare-evidence").replaceChildren();
   $("compare-revision").textContent = "Knowledge r" + state.revision;
-  $("compare-dialog").showModal();
+  if (!$("compare-dialog").open) $("compare-dialog").showModal();
   setBusy(true, "Generating the comparison…");
   try {
-    const result = await api("/api/compare", {chat_id: state.chatId, message_id: question.id});
+    const payload = {chat_id: state.chatId, message_id: question.id};
+    if (historical) payload.baseline_revision = baseline;
+    const result = await api("/api/compare", payload);
+    $("comparison-model-label").textContent = result.baseline_label || "WITHOUT CORRECTION CONTEXT";
     $("compare-original").textContent = result.original?.content || result.original?.answer || "[No answer generated]";
     $("compare-edited").textContent = result.edited?.content || result.edited?.answer || "[No answer generated]";
     $("compare-revision").textContent = "Knowledge r" + (result.revision ?? state.revision);
@@ -315,7 +324,10 @@ function draftCorrection(question) {
 async function loadCorrections() {
   const result = await api("/api/corrections");
   state.corrections = result.corrections || [];
+  state.events = result.events || [];
   setRevision(result.revision); renderCorrections();
+  renderAuditHistory();
+  await refreshExampleHelper();
 }
 
 function isActive(row) { return row.status === "active" || row.state === "active"; }
@@ -326,7 +338,9 @@ function renderCorrections() {
   $("total-count").textContent = state.corrections.length;
   $("nav-knowledge-count").textContent = active;
   const list = $("correction-list"); list.replaceChildren();
-  const rows = state.corrections.filter(row => $("show-withdrawn").checked || isActive(row));
+  const query = $("correction-search").value.trim().toLocaleLowerCase();
+  const rows = state.corrections.filter(row => ($("show-withdrawn").checked || isActive(row)) &&
+    [row.question, row.answer, row.scope, row.source, row.identity?.entity_id, row.identity?.relation_id, row.identity?.scope_id].some(value => String(value || "").toLocaleLowerCase().includes(query)));
   if (!rows.length) {
     const empty = element("div", "empty-library");
     empty.append(element("span", "", "▤"), element("h3", "", active ? "No matching corrections." : "A clean slate."), element("p", "", "Publish a sourced correction to change what your assistant uses."));
@@ -348,6 +362,19 @@ function renderCorrections() {
     if (activeRow) actions.append(actionButton("Publish a new version", "", () => startReplacement(row)));
     actions.append(actionButton(activeRow ? "Withdraw" : "Restore version", "", () => changeCorrection(row.id, activeRow ? "withdraw" : "restore").catch(showError)));
     bottom.append(actions); card.append(bottom); list.append(card);
+  }
+}
+
+function renderAuditHistory() {
+  const target = $("audit-history"); target.replaceChildren();
+  const events = [...(state.events || [])].reverse();
+  if (!events.length) { target.append(element("p", "muted", "Approved changes will appear here.")); return; }
+  for (const event of events) {
+    const fact = state.corrections.find(row => row.id === event.correction_id);
+    const row = element("div", "audit-entry");
+    row.append(element("strong", "", "r" + event.revision + " · " + event.action), element("span", "", fact?.question || event.correction_id),
+      element("small", "", dateLabel(event.created_at) + " · " + (fact ? "v" + fact.version + " · " + fact.answer : event.actor)));
+    target.append(row);
   }
 }
 
@@ -413,6 +440,45 @@ async function changeCorrection(id, action) {
 
 function resultCard(value, caption) { const card = element("div", "result-card"); card.append(element("strong", "", value), element("span", "", caption)); return card; }
 
+let exampleEdit = null;
+let exampleDefinition = null;
+async function refreshExampleHelper() {
+  $("approve-example").disabled = state.revision !== 0;
+  exampleDefinition ||= await api("/api/examples/operations");
+  const definition = exampleDefinition.world;
+  const active = state.corrections.find(row => row.status === "active" && row.identity?.entity_id === definition.edit.entity_id && row.identity?.relation_id === definition.edit.relation_id && row.identity?.scope_id === definition.edit.scope_id);
+  if (active) {
+    const updated = definition.current_facts.find(row => row.id === definition.edit.fact_id);
+    exampleEdit = {...active, answer: updated.answer, source: updated.source};
+    $("draft-example-edit").hidden = active.answer === updated.answer;
+    const links = $("example-questions"); links.replaceChildren();
+    exampleDefinition.questions.forEach(question => {
+      const button = element("button", "", question); button.type = "button";
+      button.addEventListener("click", () => { showView("chat"); $("chat-input").value = question; resizeComposer(); }); links.append(button);
+    });
+    $("example-status").textContent = "Fictional handbook for " + definition.entity + ". The active ownership answer is " + active.answer + ". Compare with an earlier revision to inspect a published change.";
+  } else { exampleEdit = null; $("draft-example-edit").hidden = true; $("example-questions").replaceChildren(); $("example-status").textContent = state.revision ? "This workspace has knowledge history. Your existing facts remain in place; use the correction library below." : "No fictional facts are active until you approve the handbook."; }
+}
+$("approve-example").addEventListener("click", async () => {
+  if (state.busy) return;
+  $("approve-example").disabled = true;
+  try {
+    const result = await api("/api/examples/operations/approve", {});
+    setRevision(result.revision); await loadCorrections();
+    exampleEdit = result.suggested_edit;
+    $("draft-example-edit").hidden = false;
+    $("example-status").textContent = "Approved fictional handbook for " + result.example.entity + " at revision " + result.revision + ". Ask a question first, then explicitly publish the ownership update.";
+    const links = $("example-questions"); links.replaceChildren();
+    result.example.questions.forEach(question => {
+      const button = element("button", "", question); button.type = "button";
+      button.addEventListener("click", () => { showView("chat"); $("chat-input").value = question; resizeComposer(); }); links.append(button);
+    });
+  } catch (error) { showError(error); $("approve-example").disabled = false; }
+});
+$("draft-example-edit").addEventListener("click", () => {
+  if (exampleEdit) { startReplacement(exampleEdit); $("example-status").textContent = "The ownership update is a draft. Review its answer and source, then click Approve & replace version to activate it."; }
+});
+
 let workspaceImport = null;
 $("workspace-export").addEventListener("click", async () => {
   try {
@@ -457,17 +523,20 @@ function evidenceTable(headings, rows) {
 
 async function loadResults() {
   const evidence = await api("/api/experiments"), target = $("results-content"); target.replaceChildren();
-  $("experiment-kind").textContent = evidence.kind === "controlled_final_benchmark" ? "Controlled final experiment" : "Development acceptance · real generated answers";
+  const controlled = evidence.kind.startsWith("controlled_");
+  $("experiment-kind").textContent = evidence.kind === "controlled_final_benchmark" ? "Controlled final experiment" : controlled ? "Controlled development experiment" : "Development acceptance · real generated answers";
   $("experiment-notice").textContent = evidence.notice;
   target.append(element("p", "result-footnote", "Model: " + evidence.model + " · revision " + evidence.model_revision));
-  if (evidence.kind === "controlled_final_benchmark") {
+  if (controlled) {
     const report = evidence.report;
+    const labels = {R0: "ReasonKE · initial facts", "R-RAG": "ReasonKE · updated retrieval", "R-ALL": "ReasonKE · full approved memory", "G-RAG": "Qwen · updated retrieval", "G-ALL": "Qwen · full approved memory", "R-ORACLE": "ReasonKE · oracle support", "G-ORACLE": "Qwen · oracle support"};
     const cards = element("div", "results-cards");
     cards.append(resultCard(report.independent_lineages, "Independent edit lineages"), resultCard(report.assigned_records, "Assigned records, including errors and abstentions"), resultCard(report.execution_status, "Execution state")); target.append(cards);
     target.append(evidenceTable(["Condition", "Correct / assigned", "Wrong", "Abstain", "Errors", "Unexecuted", "Coverage"], Object.entries(report.conditions).map(([name, condition]) => {
       const metric = condition.overall, counts = metric.counts;
-      return [name, counts.correct + "/" + metric.assigned, counts.wrong, counts.abstain, counts.execution_error, counts.unexecuted, metric.coverage === null ? "Undefined" : (100 * metric.coverage).toFixed(1) + "%"];
+      return [labels[name] || name, counts.correct + "/" + metric.assigned, counts.wrong, counts.abstain, counts.execution_error, counts.unexecuted, metric.coverage === null ? "Undefined" : (100 * metric.coverage).toFixed(1) + "%"];
     })));
+    target.append(element("p", "result-footnote", "R0 uses initial facts but is scored against updated targets, so it is a staleness diagnostic. R / G denote the attributed ReasonKE / Qwen checkpoints. RAG supplies the same retrieved facts to both. Oracle uses gold supporting facts on a smaller preselected diagnostic subset."));
     target.append(element("h2", "", "Accuracy by question category"));
     const names = Object.keys(report.conditions).filter(name => !name.endsWith("ORACLE"));
     const categories = Object.keys(report.conditions[names[0]].by_category);
@@ -480,6 +549,30 @@ async function loadResults() {
       return [name, latency.n, latency.p50_seconds?.toFixed(2), latency.p95_seconds?.toFixed(2)];
     })));
     target.append(element("p", "result-footnote", "Pipeline timing includes context selection, local worker communication and generation; it excludes loading and the browser network round trip. Cold loading is recorded separately in the raw export."));
+    target.append(element("h2", "", "Retrieval and preservation"));
+    target.append(evidenceTable(["Condition", "Required facts retrieved", "Complete two-hop support", "Retained previously correct locality answers", "False edited-value endorsements"], names.map(name => {
+      const condition = report.conditions[name], retrieval = condition.retrieval, retention = condition.baseline_correct_retention;
+      const ratio = (n, d) => d ? n + "/" + d : "Not applicable";
+      return [labels[name], retrieval ? ratio(retrieval.fact_recall_numerator, retrieval.fact_recall_denominator) : "Not applicable", retrieval ? ratio(retrieval.two_hop_complete_numerator, retrieval.two_hop_complete_denominator) : "Not applicable", retention ? ratio(retention.correct, retention.denominator) : "Not applicable", ratio(condition.locality.false_correction_applications, condition.locality.assigned)];
+    })));
+    target.append(element("p", "result-footnote", "Coverage counts answered cases; primary accuracy includes every assigned question. Abstentions receive zero accuracy credit. Preservation only measures answers that R0 already answered correctly; locality accuracy measures factual correctness on all locality questions."));
+    const artifacts = new Set(evidence.artifacts || []), figures = element("div", "scientific-figures");
+    const titles = {"category-accuracy": "Which questions benefit?", "efficacy-locality": "Correction success and preserved scope", "outcome-composition": "Every assigned outcome", "paired-differences": "Paired uncertainty across edit lineages", latency: "Measured warm request latency"};
+    for (const [name, title] of Object.entries(titles)) {
+      if (!artifacts.has(name + ".png")) continue;
+      const figure = element("figure", "scientific-figure");
+      const image = element("img"); image.src = "/api/experiments/artifacts/" + name + ".png"; image.alt = title; image.loading = "lazy";
+      const caption = element("figcaption", "", title + " · ");
+      const link = element("a", "text-link", "Open exportable SVG"); link.href = "/api/experiments/artifacts/" + name + ".svg"; link.target = "_blank"; link.rel = "noopener";
+      caption.append(link); figure.append(image, caption); figures.append(figure);
+    }
+    target.append(figures);
+    const downloads = element("div", "message-actions");
+    for (const [name, label] of [["study.pdf", "Open study PDF"], ["REPORT.md", "Read measured report"], ["scorecard.csv", "Export scorecard CSV"], ["figure-manifest.json", "Figure provenance"]]) {
+      if (!artifacts.has(name)) continue;
+      const link = element("a", "quiet-button", label); link.href = "/api/experiments/artifacts/" + name; link.target = "_blank"; link.rel = "noopener"; downloads.append(link);
+    }
+    target.append(downloads);
   } else {
     const cards = element("div", "results-cards");
     cards.append(resultCard(evidence.profile.matching_final_answers + "/" + evidence.profile.assigned, "Predefined startup final-answer matches"),
@@ -555,8 +648,16 @@ $("image-input").addEventListener("change", event => { clearError(); attachImage
 $("remove-attachment").addEventListener("click", clearAttachment);
 $("correction-form").addEventListener("submit", event => publishCorrection(event).catch(showError));
 $("show-withdrawn").addEventListener("change", renderCorrections);
+$("correction-search").addEventListener("input", renderCorrections);
 $("cancel-replacement").addEventListener("click", resetReplacement);
 $("close-compare").addEventListener("click", () => $("compare-dialog").close());
+$("compare-baseline-mode").addEventListener("change", event => {
+  const historical = event.target.value === "revision";
+  $("compare-baseline-revision").disabled = !historical;
+  $("compare-baseline-revision").max = state.revision;
+  if (historical) $("compare-baseline-revision").value = Math.max(0, state.revision - 1);
+});
+$("rerun-comparison").addEventListener("click", () => { if (state.compareQuestion) compare(state.compareQuestion).catch(showError); });
 $("compare-dialog").addEventListener("click", event => { if (event.target === $("compare-dialog")) { const bounds = $("compare-dialog").getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) $("compare-dialog").close(); } });
 window.addEventListener("hashchange", () => showView(location.hash.slice(1)));
 document.addEventListener("keydown", event => { if (event.key.toLowerCase() === "n" && !event.ctrlKey && !event.metaKey && !event.altKey && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName) && !$("compare-dialog").open && !state.busy) { event.preventDefault(); createChat().catch(showError); } });

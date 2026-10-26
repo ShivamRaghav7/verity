@@ -1,0 +1,18 @@
+{
+  "schema": "editguard-deployment-policy-v1",
+  "selected_before_final_evaluation": true,
+  "model": "YukinoKaren/ReasonKE_plus",
+  "model_revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+  "context_policy": "retrieved",
+  "retrieval_k": 4,
+  "memory_record_limit": 200,
+  "selection_evidence": "reports/reasonke/operations-development-v1/results.json",
+  "independent_development_lineages": 3,
+  "matched_questions_per_condition": 24,
+  "reasonke_retrieved_correct": 24,
+  "reasonke_full_memory_correct": 21,
+  "instruction_retrieved_correct": 24,
+  "instruction_full_memory_correct": 22,
+  "criterion": "Choose the context policy with higher assigned-question accuracy for the existing ReasonKE deployment; no model-superiority claim",
+  "limitations": "Small development population; the held-out evaluation remains separate. A 200-record software bound is not an accuracy claim at that memory size."
+}

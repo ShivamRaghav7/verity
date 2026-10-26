@@ -1,0 +1,75 @@
+{
+  "schema": "editguard-operations-protocol-v1",
+  "status": "frozen",
+  "created_utc": "2026-10-26T14:17:41.952806+00:00",
+  "sources": {
+    "editguard_benchmark/__init__.py": "4c9de9a5b3ec589c0f9ff91552fc876f72ce13bf734155e779b10707ba879b36",
+    "editguard_benchmark/data.py": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+    "editguard_benchmark/metrics.py": "61b8a7261a42a829cf4c86af3ab24ed2a08d83e005dd47e129f758f096c0ca52",
+    "editguard_benchmark/models.py": "2f51a9b2c1264a8fb655cad1c79b3c3765b782e522a2d83820afa580705a51ad",
+    "editguard_benchmark/retrieval.py": "d3c3ceb196f653fab9f201c4f93315d297ba06346822b856e1e5fafe6b344d33",
+    "editguard_benchmark/run.py": "1c69717786d06d61eaaa2d21b19e90aff3f2b0d5a9a7690daa8db64788c4376d",
+    "editguard_benchmark/scoring.py": "8a3a824acb37a5134d2e13fea181c898728c543b378426045176b27bac958f1e",
+    "editguard_reasonke/runtime.py": "411d685a703f00e22f86a4de5c02b53b549683ae0b59a78fa9af61c581c4306c",
+    "configs/operations-evaluation.json": "51d9d8d830d891e17acf93caf979b14989da963d1ed4e2d8df7183f45a3f3485",
+    "configs/reasonke-model.json": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+    "configs/instruction-model.json": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+    "data/reasonke/operations-v1/manifest.json": "62d4f7c95a8c4583e8164599453a8414538b3c2e553a146a2eab7ae4c9a90659"
+  },
+  "profiles": {
+    "reasonke": {
+      "receipt_sha256": "58fc4f7a6cb0416caddad4dcc8697092d0f88b6242deda50dbfd92c80d87eaa5",
+      "profile_requests": 12,
+      "measured_seconds": 170.48226483199971,
+      "slowest_request_seconds": 16.464764139999943,
+      "optimizer_or_training_steps": 0,
+      "final_assigned_requests": 784,
+      "forecast_seconds_using_profile_mean": 11138.174635690648,
+      "forecast_seconds_using_profile_max": 12908.375085759955,
+      "limitation": "12 development requests; extrapolation is uncertain and excludes fresh downloads/loading"
+    },
+    "instruction": {
+      "receipt_sha256": "87f05ef96d6f13e69647a80d3ea8db029f93885b9bee842af3b9878ac7549bf6",
+      "profile_requests": 12,
+      "measured_seconds": 13.441841436999766,
+      "slowest_request_seconds": 2.9365611270000045,
+      "optimizer_or_training_steps": 0,
+      "final_assigned_requests": 528,
+      "forecast_seconds_using_profile_mean": 591.4410232279897,
+      "forecast_seconds_using_profile_max": 1550.5042750560024,
+      "limitation": "12 development requests; extrapolation is uncertain and excludes fresh downloads/loading"
+    }
+  },
+  "final_main_requests": 1280,
+  "oracle_requests": 32,
+  "planned_outcome_denominators": {
+    "per_main_condition": 256,
+    "applicable": 128,
+    "locality": 128
+  },
+  "selection_note": "Profiles/dev only; no final answers used for settings or scoring",
+  "development_selection": {
+    "reasonke_context_policy": "retrieved",
+    "reasonke_retrieved_correct": 24,
+    "reasonke_full_memory_correct": 21,
+    "assigned_per_condition": 24,
+    "independent_development_lineages": 3,
+    "instruction_retrieved_correct": 24,
+    "instruction_full_memory_correct": 22,
+    "no_model_superiority_claim": true,
+    "receipt_sha256": {
+      "reasonke": "24883b0147cf00baaa3aceda8020ed74f485bb0190d903530939b277e3b7ca65",
+      "instruction": "23bf07e4e54c1298dfa908e306302199935a4768789ec4fb12e854c8ab76dd7c"
+    }
+  },
+  "explanation_audit": {
+    "questions": "the same sixteen hash-preselected two-hop questions used by the oracle diagnostic",
+    "conditions": [
+      "R-RAG",
+      "R-ALL"
+    ],
+    "assigned_raw_traces": 32,
+    "purpose": "explicit factual-claim support, not proof of internal reasoning faithfulness",
+    "review_policy": "automated_disclosed"
+  }
+}

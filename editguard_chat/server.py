@@ -13,13 +13,14 @@ import re
 import secrets
 import threading
 import time
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from .backend import ModelError, OllamaClient, OllamaEncoder
 from .reasonke_backend import ApprovedFactContext, RetrievedFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
-from .results import current_results
+from .results import current_results, experiment_artifact
+from .examples import approved_snapshot, catalogue
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = Path(__file__).with_name("static")
@@ -219,9 +220,9 @@ class ChatApplication:
             del result[:2]
         return result
 
-    def _answer_with_facts(self, messages, mode, revision, *, history_override=None):
+    def _answer_with_facts(self, messages, mode, revision, *, history_override=None, facts_override=None):
         query = messages[-1]["content"]
-        routing = self.retriever.rank(query, self.store.list_corrections()) if mode == "edited" else {
+        routing = self.retriever.rank(query, self.store.list_corrections() if facts_override is None else facts_override) if mode == "edited" else {
             "accepted": False, "selected": [], "candidates": [], "method": "without_correction_context",
             "reason": "original_model_requested", "score_is_probability": False,
             "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. "
@@ -269,6 +270,8 @@ class ChatApplication:
         return {"user": self.public_message(user), "assistant": self.public_message(assistant), "revision": revision}
 
     def compare(self, payload):
+        if payload.get("baseline_revision") is not None and not self.fact_conditioned:
+            raise StoreError("Historical approved-memory comparison is available with the ReasonKE backend")
         chat_id = required(payload.get("chat_id"), "chat_id", 64)
         message_id = required(payload.get("message_id"), "message_id", 64)
         history = self.store.list_messages(chat_id)
@@ -279,12 +282,20 @@ class ChatApplication:
         revision = self.store.get_revision()
         if self.fact_conditioned:
             canonical_history = self._fact_history(messages, revision)
-            before = self._answer_with_facts(messages, "original", revision, history_override=canonical_history)
+            baseline_revision = payload.get("baseline_revision")
+            if baseline_revision is None:
+                before = self._answer_with_facts(messages, "original", revision, history_override=canonical_history)
+            else:
+                old_facts = self.store.memory_at_revision(baseline_revision)
+                before = self._answer_with_facts(messages, "edited", baseline_revision,
+                    history_override=canonical_history, facts_override=old_facts)
+                before["evidence"].update(historical_snapshot=True, snapshot_revision=baseline_revision)
             after = self._answer_with_facts(messages, "edited", revision, history_override=canonical_history)
         else:
             before = self._answer(messages, "original", revision)
             after = self._answer(messages, "edited", revision)
         return {"original": before, "edited": after, "revision": revision,
+            "baseline_label": ("APPROVED MEMORY r" + str(payload["baseline_revision"]) if payload.get("baseline_revision") is not None else "WITHOUT CORRECTION CONTEXT"),
             "notice": "Two fresh model generations from matched pre-question history; compare does not modify conversation history."}
 
     def mutate(self, path, payload):
@@ -301,6 +312,13 @@ class ChatApplication:
                 result = self.store.import_snapshot(payload.get("snapshot"))
                 self.retriever.clear_cache()
                 return result
+            if path == "/api/examples/operations/approve":
+                example = catalogue(ROOT)
+                snapshot, suggested_edit = approved_snapshot(example)
+                result = self.store.import_snapshot(snapshot, allow_existing_chats=True)
+                self.retriever.clear_cache()
+                return {**result, "example": {"entity": example["world"]["entity"], "questions": example["questions"]},
+                        "suggested_edit": suggested_edit, "notice": example["notice"]}
             if path == "/api/corrections":
                 row = self.store.publish_correction(payload.get("question"), payload.get("answer"),
                     payload.get("source"), payload.get("scope"), supersedes=payload.get("supersedes"),
@@ -378,6 +396,16 @@ def handler_for(app):
                 if path == "/api/corrections":
                     return self.reply(200, {"corrections": app.store.list_corrections(), "revision": app.store.get_revision(),
                         "events": app.store.list_events()})
+                if path == "/api/memory":
+                    query = parse_qs(urlsplit(self.path).query)
+                    try:
+                        if set(query) != {"revision"} or len(query["revision"]) != 1:
+                            raise ValueError()
+                        revision = int(query["revision"][0])
+                    except (ValueError, KeyError):
+                        raise StoreError("Supply one integer revision query parameter") from None
+                    return self.reply(200, {"revision": revision, "current_revision": app.store.get_revision(),
+                                           "corrections": app.store.memory_at_revision(revision)})
                 if path == "/api/workspace/export":
                     return self.reply(200, app.export_workspace())
                 if path == "/api/results":
@@ -385,6 +413,17 @@ def handler_for(app):
                     return self.reply(200, report.read_bytes())
                 if path == "/api/experiments":
                     return self.reply(200, current_results(ROOT))
+                if path.startswith("/api/experiments/artifacts/"):
+                    name = path.removeprefix("/api/experiments/artifacts/")
+                    try:
+                        artifact = experiment_artifact(ROOT, name)
+                    except (ValueError, FileNotFoundError) as exc:
+                        raise StoreError(str(exc), 404) from exc
+                    kinds = {".png": "image/png", ".svg": "image/svg+xml", ".csv": "text/csv; charset=utf-8",
+                             ".md": "text/markdown; charset=utf-8", ".json": "application/json", ".pdf": "application/pdf"}
+                    return self.reply(200, artifact.read_bytes(), kinds[artifact.suffix])
+                if path == "/api/examples/operations":
+                    return self.reply(200, catalogue(ROOT))
                 match = re.fullmatch(r"/api/messages/([a-f0-9]{32})/image", path)
                 if match:
                     for chat in app.store.list_chats():
@@ -464,7 +503,7 @@ def main(argv=None):
     parser.add_argument("--storage", type=Path, default=ROOT / "runtime/chat")
     parser.add_argument("--model", default="qwen3-vl:2b-instruct")
     parser.add_argument("--backend", choices=("ollama", "reasonke"), default="ollama")
-    parser.add_argument("--context-policy", choices=("all", "retrieved"), default="all", help="ReasonKE approved-memory policy; keep the policy selected on development data")
+    parser.add_argument("--context-policy", choices=("all", "retrieved"), default="retrieved", help="ReasonKE approved-memory policy; retrieved was selected on the matched development comparison")
     parser.add_argument("--trusted-origin", help="Exact HTTPS Colab proxy origin; local-only access remains the default")
     args = parser.parse_args(argv)
     if not 1024 <= args.port <= 65535:

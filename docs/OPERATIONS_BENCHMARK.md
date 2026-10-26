@@ -3,7 +3,9 @@
 The current branch now implements canonical fact identity, portable **text**
 workspace snapshots, a current-model evidence dashboard, a controlled operations
 dataset, and bounded two-model evaluation. This document describes runnable
-implementation. It does not claim that the new final neural experiment has run.
+implementation. The matched development run is complete; the larger frozen
+final inference was launched on 26 October 2026 and has its own receipt ledger.
+Only a completed saved final report is presented as final accuracy.
 
 ## Application
 
@@ -16,7 +18,8 @@ Aliases are recorded metadata; they are not a trained entity resolver.
 The server also implements `--context-policy retrieved`: the same declared
 two-stage lexical retriever supplies at most four facts from up to 200 active
 records. Full-memory mode retains its 20-record limit. The release's default
-policy must be selected from development evidence; a storage/retrieval bound is
+policy is retrieved context, selected before final inference from the matched
+development comparison (24/24 versus 21/24 for ReasonKE); a storage/retrieval bound is
 not a measured neural accuracy guarantee at 200 records. The frozen benchmark
 compares both policies on identical nine-fact worlds.
 
@@ -31,11 +34,20 @@ Portable JSON snapshots intentionally refuse conversations with local images;
 back up their SQLite database plus images directory privately. Current ReasonKE
 chat is text-only. Export before a temporary Colab runtime terminates.
 
-Research results now opens **current text-model evidence**. It shows the real five
-startup outcomes and seven workflow generations with their distinct meanings.
-The older visual study is behind an explicitly labelled archive button. A future
-completed operations result file is read from
+Research results opens **current text-model evidence**, including the five-condition
+matched development scorecard, category outcomes, preservation, retrieval and
+latency. The five exportable PNG/SVG figures and CSV/report are derived from the
+actual 120 requests. Development results are explicitly labelled as such. The
+older visual study is behind an archive button. A completed final result is read from
 `reports/reasonke/operations-final/results.json`; missing results are never invented.
+
+The Knowledge tab can explicitly approve a nine-fact fictional example handbook,
+then draft an ownership change for a second explicit approval. Search the library
+by question, value, source or canonical identity. Approval/rollback history shows
+every event and revision. Chat's comparison dialog can generate against a previous
+approved-memory revision, including the original nine-fact handbook, without
+changing the live state. These are implemented product operations, not scores
+credited to the model.
 
 ## Dataset actually authored
 
@@ -131,9 +143,19 @@ After final inference, generate the report, CSV scorecard and five scientific
 figures from actual receipts using an analysis environment with Matplotlib:
 
 ```text
-python -m scripts.build_operations_report artifacts/operations/final-reasonke.json artifacts/operations/final-instruction.json --output reports/reasonke/operations-final-derived
+python -m scripts.build_operations_report artifacts/operations/final-reasonke.json artifacts/operations/final-instruction.json --output reports/reasonke/operations-final/derived
 ```
 
 This postprocessing does not load either model. Figure manifests bind raw input
 hashes and plotting-source identity. The report retains failed outcomes and
 documents latency scope, strict answer matching and the small controlled sample.
+
+See [the completed development evidence](../reports/reasonke/operations-development-v1/README.md)
+for actual scores, model revisions, failures and measured T4 resource use. A
+separate twelve-request website workload is available as
+`python -m scripts.verify_operations_http --base-url http://127.0.0.1:8005 --output <new-file.json>`.
+It requires a ready model and an isolated empty active memory; it publishes the
+three development worlds sequentially, measures direct/paraphrase/two-hop answers,
+restores each original owner, and measures the restored answer. Its HTTP latency
+includes SQLite and website/worker communication. It is not a new independent
+held-out sample, and its software fixtures are not neural results.

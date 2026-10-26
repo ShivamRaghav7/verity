@@ -108,6 +108,31 @@ class WorkspaceTests(unittest.TestCase):
                 self.publish(identity=identity)
         self.assertEqual(self.source.get_revision(), 0)
 
+    def test_historical_memory_replays_each_state_without_mutating_current(self):
+        first = self.publish()
+        second = self.publish(answer="Indigo team", supersedes=first["id"])
+        self.source.withdraw(second["id"])
+        self.source.restore(first["id"])
+        expected = {0: [], 1: [first["id"]], 2: [second["id"]], 3: [], 4: [first["id"]]}
+        for revision, ids in expected.items():
+            rows = self.source.memory_at_revision(revision)
+            self.assertEqual([row["id"] for row in rows], ids)
+            self.assertTrue(all(row["status"] == "active" and row["snapshot_revision"] == revision for row in rows))
+        self.assertEqual(self.source.get_revision(), 4)
+        self.assertEqual(len(self.source.list_events()), 5)
+        for revision in (True, -1, 1.5, "1", 5):
+            with self.assertRaises(StoreError):
+                self.source.memory_at_revision(revision)
+
+    def test_import_rejects_a_rehashed_fact_state_that_disagrees_with_history(self):
+        snapshot = self.populated()
+        active = next(row for row in snapshot["tables"]["corrections"] if row["status"] == "active")
+        active["status"] = "withdrawn"
+        seal(snapshot)
+        with self.assertRaises(StoreError):
+            self.target.import_snapshot(snapshot)
+        self.assertEqual(self.target.get_revision(), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

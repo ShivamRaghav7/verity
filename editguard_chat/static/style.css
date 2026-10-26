@@ -13,3 +13,17 @@
 .identity-fields summary { cursor: pointer; font-size: .85rem; font-weight: 600; }
 .workspace-tools { margin-top: 32px; }
 .workspace-tools label { display:block; margin-top:20px; margin-bottom:10px; }
+
+.compare-options { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:18px 0; font-size:.8rem; }
+.compare-options input { width:90px; padding:8px; }
+.compare-options select { padding:8px; max-width:260px; }
+.scientific-figures { display: grid; gap: 24px; margin: 30px 0; }
+.knowledge-search { width: 100%; margin-bottom: 18px; padding: 12px 14px; border: 1px solid #dfe4eb; border-radius: 10px; font: inherit; }
+.audit-panel { margin: 24px 0; }
+.audit-panel summary { cursor: pointer; font-weight: 600; }
+.audit-entry { display: grid; gap: 5px; padding: 14px 0; border-bottom: 1px solid #e4e7ec; }
+.audit-entry strong { color: #167e72; font-size: 12px; text-transform: uppercase; }
+.audit-entry small { color: #647184; }
+.scientific-figure { margin: 0; padding: 16px; border: 1px solid var(--line, #e4e7ec); border-radius: 14px; background: white; }
+.scientific-figure img { display: block; width: 100%; height: auto; }
+.scientific-figure figcaption { margin-top: 12px; color: #566475; font-size: 12px; line-height: 1.6; }

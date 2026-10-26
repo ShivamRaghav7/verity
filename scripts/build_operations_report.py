@@ -53,7 +53,8 @@ def generate(receipts, output):
     for index, name in enumerate(names):
         values = [100 * report["conditions"][name]["by_category"][category]["accuracy"] for category in categories]
         ax.bar(x + (index - 2) * .15, values, width=.14, color=COLORS[name], label=NAMES[name])
-    ax.set_xticks(x, [category.replace("_", "\n") for category in categories], fontsize=9)
+    category_labels = {"same_entity_other_relation": "same entity\nother property", "similar_entity_same_relation": "similar entity\nsame property", "wrong_version_or_tier": "older release"}
+    ax.set_xticks(x, [category_labels.get(category, category.replace("_", "\n")) for category in categories], fontsize=9)
     ax.set_ylim(0, 105); ax.set_ylabel("Correct / all assigned questions (%)")
     ax.set_title("Factual accuracy by question category")
     ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(.5, 1.22), frameon=False, fontsize=9)
@@ -61,15 +62,18 @@ def generate(receipts, output):
     save(fig, "category-accuracy")
 
     fig, ax = plt.subplots(figsize=(8.8, 6))
+    coordinates = {}
     for name in names:
         condition = report["conditions"][name]
         a, l = 100 * condition["applicable"]["accuracy"], 100 * condition["locality"]["accuracy"]
         ax.scatter(l, a, s=110, color=COLORS[name], label=NAMES[name], edgecolor="white")
-        ax.annotate(name, (l, a), xytext=(7, 6), textcoords="offset points", fontsize=10)
+        coordinates.setdefault((l, a), []).append(name)
+    for (l, a), labels in coordinates.items():
+        ax.annotate(" / ".join(labels), (l, a), xytext=(-10, -20 if a > 95 else 10), textcoords="offset points", fontsize=10, ha="right")
     ax.set_xlim(-3, 105); ax.set_ylim(-3, 105); ax.set_xlabel(f"Locality factual accuracy · {assigned // 2} assigned questions (%)")
     ax.set_ylabel(f"Applicable-edit accuracy · {assigned // 2} assigned questions (%)")
     ax.set_title("Correction success and locality are separate outcomes")
-    ax.grid(alpha=.15); ax.legend(loc="lower right", frameon=False, fontsize=9)
+    ax.grid(alpha=.15); ax.legend(loc="lower left", frameon=False, fontsize=9)
     save(fig, "efficacy-locality")
 
     fig, ax = plt.subplots(figsize=(10, 5.5))

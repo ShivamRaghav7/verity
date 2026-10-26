@@ -238,6 +238,30 @@ class ChatStore:
             return [self._correction(row) for row in self._db.execute(
                 "SELECT * FROM corrections ORDER BY created_at DESC, id")]
 
+    def memory_at_revision(self, revision):
+        """Replay approval events without changing live state or trusting current status."""
+        if type(revision) is not int or revision < 0:
+            raise StoreError("Choose a nonnegative knowledge revision")
+        with self._lock:
+            if revision > self._revision(self._db):
+                raise StoreError("The requested knowledge revision does not exist", 404)
+            rows = {row["id"]: dict(row) for row in self._db.execute("SELECT * FROM corrections")}
+            active = {}
+            for event in self._db.execute("SELECT * FROM events WHERE revision<=? ORDER BY sequence", (revision,)):
+                if event["action"] in ("published", "restored"):
+                    active[event["correction_id"]] = event
+                else:
+                    active.pop(event["correction_id"], None)
+            result = []
+            for key, event in active.items():
+                row = rows[key]
+                row.update(status="active", superseded_by=None, approved_at=event["created_at"], updated_at=event["created_at"],
+                           knowledge_revision=event["revision"])
+                item = self._correction(row)
+                item["snapshot_revision"] = revision
+                result.append(item)
+            return sorted(result, key=lambda row: row["id"])
+
     def _event(self, db, correction_id, action, revision, now, detail):
         db.execute("INSERT INTO events(correction_id,action,revision,actor,created_at,detail_json) "
                    "VALUES (?,?,?,?,?,?)", (correction_id, action, revision,
@@ -294,13 +318,15 @@ class ChatStore:
             data["sha256"] = hashlib.sha256(_json(data).encode("utf-8")).hexdigest()
             return data
 
-    def import_snapshot(self, snapshot):
+    def import_snapshot(self, snapshot, *, allow_existing_chats=False):
         """Validate entirely before one transaction; importing never overwrites existing work."""
         from .workspace import validate_snapshot
         checked = validate_snapshot(snapshot)
+        if allow_existing_chats and (checked["tables"]["chats"] or checked["tables"]["messages"]):
+            raise StoreError("Catalogue approval cannot import conversations")
         with self._transaction() as db:
-            if self._revision(db) or any(db.execute(f"SELECT 1 FROM {table} LIMIT 1").fetchone()
-                                        for table in ("chats", "messages", "corrections", "events")):
+            guarded = ("corrections", "events") if allow_existing_chats else ("chats", "messages", "corrections", "events")
+            if self._revision(db) or any(db.execute(f"SELECT 1 FROM {table} LIMIT 1").fetchone() for table in guarded):
                 raise StoreError("Restore requires an empty workspace. Export the current workspace and launch with a new storage directory first.", 409)
             for table in ("chats", "corrections", "messages", "events"):
                 # Self-referencing correction rows can arrive in ID order.

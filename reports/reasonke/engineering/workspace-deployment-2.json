@@ -1,0 +1,33 @@
+{
+  "schema": "editguard-chat-deployment-check-v1",
+  "status": "passed",
+  "created_utc": "2026-10-26T14:36:19.531195+00:00",
+  "checks": {
+    "status_explicitly_has_no_loaded_model": true,
+    "mutation_requires_session_token": true,
+    "create_chat_http": true,
+    "no_model_never_substitutes_an_answer": true,
+    "publish_canonical_fact": true,
+    "paraphrased_competing_fact_blocked": true,
+    "rejected_conflict_preserves_revision": true,
+    "explicit_replacement_keeps_lineage": true,
+    "restore_cannot_overlap_active_fact": true,
+    "withdraw_removes_current_fact": true,
+    "withdraw_is_idempotent": true,
+    "historical_version_restores": true,
+    "portable_text_snapshot_export": true,
+    "restore_refuses_existing_work": true,
+    "restore_exact_revision": true,
+    "restore_exact_facts": true,
+    "restore_exact_audit_history": true,
+    "restore_exact_conversations": true,
+    "corrupt_snapshot_rejected_atomically": true,
+    "current_evidence_files_packaged": true,
+    "evidence_kind_explicit": true
+  },
+  "passed": 21,
+  "assigned": 21,
+  "model_generations": 0,
+  "model_accuracy": null,
+  "notice": "Real HTTP/SQLite software contracts using an explicit unavailable-model fixture; not neural answer-quality evidence"
+}

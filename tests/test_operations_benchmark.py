@@ -135,12 +135,31 @@ class OperationsTests(unittest.TestCase):
             self.assertEqual(resumed["records"], receipt["records"])
 
     def test_current_dashboard_does_not_relabel_visual_or_development_scores(self):
-        report = current_results(ROOT)
+        import shutil
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "reports/reasonke/t4-restart-1"
+            directory.mkdir(parents=True)
+            for name in ("acceptance.json", "live-acceptance.json"):
+                shutil.copyfile(ROOT / "reports/reasonke/t4-restart-1" / name, directory / name)
+            report = current_results(temporary)
         self.assertEqual(report["kind"], "development_acceptance")
         self.assertEqual(report["workflow"]["factual_matches"], 6)
         self.assertEqual(report["workflow"]["assigned"], 7)
         self.assertEqual(report["profile"]["assigned"], 5)
         self.assertIn("not a general accuracy benchmark", report["notice"])
+
+    def test_current_controlled_report_keeps_development_phase_and_denominators(self):
+        import shutil
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary) / "reports/reasonke/operations-development-v1"
+            directory.mkdir(parents=True)
+            shutil.copyfile(ROOT / "reports/reasonke/operations-development-v1/results.json", directory / "results.json")
+            report = current_results(temporary)
+        self.assertEqual(report["kind"], "controlled_development_benchmark")
+        self.assertEqual(report["report"]["independent_lineages"], 3)
+        self.assertEqual(report["report"]["assigned_records"], 120)
+        self.assertEqual(report["report"]["conditions"]["R-RAG"]["overall"]["assigned"], 24)
+        self.assertIn("not held-out final accuracy", report["notice"])
 
 
 if __name__ == "__main__":

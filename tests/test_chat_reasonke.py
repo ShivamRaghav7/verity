@@ -236,6 +236,17 @@ class ReasonKEWorkflowTests(unittest.TestCase):
         self.assertTrue(result["clarification_required"])
         self.assertEqual(result["selected"], [])
 
+    def test_historical_comparison_supplies_old_and_current_fact_views(self):
+        old = self.publish()
+        new = self.app.store.publish_correction(old["question"], "Current City", old["source"], old["scope"], supersedes=old["id"])
+        user = self.app.store.add_message(self.chat_id, "user", old["question"])
+        result = self.app.mutate("/api/compare", {"chat_id": self.chat_id, "message_id": user["id"], "baseline_revision": 1})
+        self.assertEqual(self.backend.calls[-2][1][0]["answer"], old["answer"])
+        self.assertEqual(self.backend.calls[-1][1][0]["answer"], new["answer"])
+        self.assertEqual(result["baseline_label"], "APPROVED MEMORY r1")
+        self.assertTrue(result["original"]["evidence"]["historical_snapshot"])
+        self.assertEqual(self.app.store.get_revision(), 2)
+
 
 class ColabProxyAccessTests(unittest.TestCase):
     ORIGIN = "https://8005-example.colab.googleusercontent.com"

@@ -20,3 +20,5 @@ tmp/
 output/reasonke-2026-10-25/development-evidence.zip
 output/reasonke-2026-10-25/restart-evidence.zip
 output/operations-2026-10-26/*.zip
+output/operations-2026-10-26/derived-initial-layout/
+output/operations-2026-10-26/derived-layout-qa2/

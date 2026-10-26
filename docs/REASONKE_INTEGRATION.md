@@ -18,11 +18,13 @@ memory; it does not perform a new weight update or train a model in our project.
 Compare runs the same checkpoint with and without supplied corrections. Neither
 side is a claim to reproduce the original pre-SFT Qwen model.
 
-The initial deployment supplies all active corrections, with finite limits.
-This avoids inheriting the earlier website's uncalibrated similarity cutoff,
-but applicability and final answer quality still depend on the learned model.
-The application refuses oversized fact memory rather than silently dropping
-records. Scope, source, approval, conflict handling and withdrawal remain
+The current deployment uses bounded two-stage question-only retrieval, selected
+from the matched development comparison before final inference. It supplies up
+to four approved facts from at most 200 records. The original full-memory policy
+remains a twenty-fact ablation. These software limits are separate from the
+measured nine-fact evaluation worlds. Applicability and final answer quality
+still depend on the learned model. Oversized memory is rejected. Scope, source,
+approval, conflict handling and withdrawal remain
 application controls; they do not certify arbitrary generated prose.
 
 ## What the upstream release establishes

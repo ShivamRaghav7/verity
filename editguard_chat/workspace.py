@@ -140,14 +140,38 @@ def validate_snapshot(snapshot):
                     raise StoreError("Snapshot correction lineage is broken")
                 if name != "lineage_id" and reference == row["id"]:
                     raise StoreError("Snapshot contains a self-referencing correction")
-    sequences, revisions = set(), set()
-    for row in tables["events"]:
+    sequences, revisions, last_states, last_revisions, published = set(), set(), {}, {}, set()
+    active_keys, previous_revision = {}, 0
+    for row in sorted(tables["events"], key=lambda event: event["sequence"]):
         if (row["sequence"] in sequences or row["correction_id"] not in ids["corrections"]
                 or row["action"] not in ("published", "superseded", "withdrawn", "restored")
                 or row["actor"] != "local_research_operator" or row["revision"] < 1):
             raise StoreError("Snapshot audit history is invalid")
         sequences.add(row["sequence"])
         revisions.add(row["revision"])
+        if row["revision"] < previous_revision:
+            raise StoreError("Snapshot audit revisions are out of order")
+        previous_revision = row["revision"]
+        fact = corrections[row["correction_id"]]
+        fact_key = (fact["question_key"], fact["scope_key"])
+        if row["action"] in ("published", "restored"):
+            if fact_key in active_keys:
+                raise StoreError("Snapshot history activates competing fact versions")
+            active_keys[fact_key] = row["correction_id"]
+        elif active_keys.pop(fact_key, None) != row["correction_id"]:
+            raise StoreError("Snapshot history changes an inactive fact")
+        if row["action"] == "published":
+            if row["correction_id"] in published:
+                raise StoreError("Snapshot publishes one immutable fact version more than once")
+            published.add(row["correction_id"])
+        elif row["correction_id"] not in published:
+            raise StoreError("Snapshot changes a fact before its approval event")
+        last_states[row["correction_id"]] = {"published": "active", "restored": "active",
+                                            "withdrawn": "withdrawn", "superseded": "superseded"}[row["action"]]
+        last_revisions[row["correction_id"]] = row["revision"]
     if revisions != set(range(1, value["revision"] + 1)):
         raise StoreError("Snapshot audit history omits a knowledge revision")
+    if any(last_states.get(key) != row["status"] or last_revisions.get(key) != row["knowledge_revision"]
+           for key, row in corrections.items()):
+        raise StoreError("Snapshot fact states do not match their audit history")
     return value

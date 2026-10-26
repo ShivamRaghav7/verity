@@ -6,6 +6,11 @@ the correction. The current backend is the author's trained
 [`YukinoKaren/ReasonKE_plus`](https://huggingface.co/YukinoKaren/ReasonKE_plus)
 checkpoint, pinned to revision `ceaedc2ae7c8fed6257953587d991ce550db6106`.
 
+For the current nine-fact ownership/contact workflow, canonical scope controls,
+historical comparison, workspace recovery and measured dashboard, use
+[the complete operations demonstration](OPERATIONS_DEMO.md). The manual example
+below preserves the earlier single-correction rehearsal.
+
 ## What happens when you edit knowledge
 
 The model already has learned knowledge in its numerical weights. Our
@@ -31,7 +36,8 @@ train this released checkpoint. See the
    hardware, setup, and worker-launch cells in order. Setup creates an isolated
    environment; it does not start model training.
 3. Read the progress output. The worker downloads the pinned checkpoint,
-   loads it, and generates the five predefined development answers. Avoid
+   loads it, and optionally generates five predefined development answers if
+   `RUN_STARTUP_CHECKS` is enabled. They are disabled by default. Avoid
    starting another worker while this one is running.
 4. Run the website cell. It waits for the model and opens the website through
    Colab's port viewer. Check that the website reports the model as ready.

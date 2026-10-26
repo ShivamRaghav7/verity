@@ -1,0 +1,11 @@
+{
+  "schema": "editguard-study-pdf-v1",
+  "phase": "development",
+  "pdf_sha256": "12ecf9ba3f8c69b943da789e5890fea9ca152276ee1bca5d9ba57111da1e08ff",
+  "result_sha256": "8e33f2f85adf4f27e70cb02f4f6d30bf1088f7441ce655e694811c8e26d4f000",
+  "script_sha256": "43a52fe88b07953288b5e2e36e359377736be166b94c5e1273ab4e95475cba4a",
+  "rendered_pages": 9,
+  "visual_qa": "All nine pages rendered with Poppler and inspected by the assistant; no clipped tables or overlapping text observed.",
+  "human_reviewed": false,
+  "model_generations": 0
+}
