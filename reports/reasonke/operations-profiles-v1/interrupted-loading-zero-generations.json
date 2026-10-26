@@ -1,0 +1,434 @@
+{
+  "schema": "editguard-operations-inference-v1",
+  "status": "running",
+  "started_utc": "2026-10-26T13:17:03.464568+00:00",
+  "plan": {
+    "model": "reasonke",
+    "phase": "profile",
+    "sources": {
+      "editguard_benchmark/__init__.py": "4c9de9a5b3ec589c0f9ff91552fc876f72ce13bf734155e779b10707ba879b36",
+      "editguard_benchmark/data.py": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+      "editguard_benchmark/metrics.py": "adb352ac511e44896e297fb1366cd7d23668a3d732298be6f467de746eb8412a",
+      "editguard_benchmark/models.py": "2f51a9b2c1264a8fb655cad1c79b3c3765b782e522a2d83820afa580705a51ad",
+      "editguard_benchmark/retrieval.py": "d3c3ceb196f653fab9f201c4f93315d297ba06346822b856e1e5fafe6b344d33",
+      "editguard_benchmark/run.py": "a16b9fa8c223531e6ab83e9d4a3e4c55f44be9dc709f976fdbb3e0c99a6a0738",
+      "editguard_benchmark/scoring.py": "8a3a824acb37a5134d2e13fea181c898728c543b378426045176b27bac958f1e",
+      "editguard_reasonke/runtime.py": "411d685a703f00e22f86a4de5c02b53b549683ae0b59a78fa9af61c581c4306c",
+      "configs/operations-evaluation.json": "51d9d8d830d891e17acf93caf979b14989da963d1ed4e2d8df7183f45a3f3485",
+      "configs/reasonke-model.json": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+      "configs/instruction-model.json": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+      "data/reasonke/operations-v1/manifest.json": "62d4f7c95a8c4583e8164599453a8414538b3c2e553a146a2eab7ae4c9a90659"
+    },
+    "task_ids_sha256": "42980c79038bdaa788dfad1329adc7fc9ab973940a62d6d6e6626b61ccf34995",
+    "protocol_sha256": null
+  },
+  "dataset": {
+    "categories": [
+      "direct",
+      "direct_paraphrase",
+      "two_hop",
+      "two_hop_paraphrase",
+      "same_entity_other_relation",
+      "similar_entity_same_relation",
+      "wrong_version_or_tier",
+      "unrelated"
+    ],
+    "dataset_id": "editguard-operations-v1",
+    "development_lineages": 16,
+    "files": {
+      "audit.json": "906d50cac913e4391b7ecb67831c3f790b61da6af539ba919930f5cb7a56da57",
+      "lineages.jsonl": "0f0ac594246aec7afb36ee5e3a4732e2a351c3edaee34663f29a8f2c72b2ef57",
+      "questions.jsonl": "8fe52ae1ea13aa4b0c75f78bde1949e7b50b33a3fb485e896e5db14a9087157e"
+    },
+    "final_lineages": 32,
+    "generated_model_answers": 0,
+    "generator_sha256": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+    "lineages": 48,
+    "questions": 384,
+    "schema": "editguard-operations-benchmark-v1",
+    "seed": 42,
+    "split_unit": "edit_lineage_before_wording_augmentation",
+    "status": "authored_not_final_evaluation_frozen",
+    "truth_source": "Curated deterministic fictional graph; automated audit explicitly disclosed"
+  },
+  "records": [
+    {
+      "id": "R0:ops-003-direct",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "expected_aliases": [
+          "Copper unit 74"
+        ],
+        "expected_answer": "Copper unit 74",
+        "id": "ops-003-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Saffron unit 14",
+        "lineage_id": "ops-003",
+        "question": "Which team owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R0:ops-003-direct_paraphrase",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "expected_aliases": [
+          "Copper unit 74"
+        ],
+        "expected_answer": "Copper unit 74",
+        "id": "ops-003-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Saffron unit 14",
+        "lineage_id": "ops-003",
+        "question": "What is the name of the team maintaining ownership of Dahlia Relay for release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R0:ops-003-two_hop",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Orin Dane"
+        ],
+        "expected_answer": "Orin Dane",
+        "id": "ops-003-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R0:ops-003-two_hop_paraphrase",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "expected_aliases": [
+          "Orin Dane"
+        ],
+        "expected_answer": "Orin Dane",
+        "id": "ops-003-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "In release 2, identify Dahlia Relay's owning team and give only that team's on-call person's name.",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-RAG:ops-003-same_entity_other_relation",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "same_entity_other_relation",
+        "expected_aliases": [
+          "West sector"
+        ],
+        "expected_answer": "West sector",
+        "id": "ops-003-same_entity_other_relation",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "West sector",
+        "lineage_id": "ops-003",
+        "question": "Which region hosts Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "region",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f4"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-RAG:ops-003-similar_entity_same_relation",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "similar_entity_same_relation",
+        "expected_aliases": [
+          "Cedar unit 134"
+        ],
+        "expected_answer": "Cedar unit 134",
+        "id": "ops-003-similar_entity_same_relation",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "Cedar unit 134",
+        "lineage_id": "ops-003",
+        "question": "Which team owns Dahlia Relay Pro in release 2?",
+        "requested_entity": "ops-003-pro-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-RAG:ops-003-wrong_version_or_tier",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "wrong_version_or_tier",
+        "expected_aliases": [
+          "Silver unit 194"
+        ],
+        "expected_answer": "Silver unit 194",
+        "id": "ops-003-wrong_version_or_tier",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "Silver unit 194",
+        "lineage_id": "ops-003",
+        "question": "Which team owns Dahlia Relay in release 1?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-1",
+        "required_fact_ids": [
+          "ops-003-f6"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-RAG:ops-003-unrelated",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "unrelated",
+        "expected_aliases": [
+          "Kelm"
+        ],
+        "expected_answer": "Kelm",
+        "id": "ops-003-unrelated",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "Kelm",
+        "lineage_id": "ops-003",
+        "question": "In which city is Ibis records office 4?",
+        "requested_entity": "ops-003-archive",
+        "requested_relation": "city",
+        "requested_scope": "current",
+        "required_fact_ids": [
+          "ops-003-f7"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-ALL:ops-004-direct",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "expected_aliases": [
+          "Willow unit 75"
+        ],
+        "expected_answer": "Willow unit 75",
+        "id": "ops-004-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Amber unit 15",
+        "lineage_id": "ops-004",
+        "question": "Which team owns Ember Relay in release 2?",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-ALL:ops-004-direct_paraphrase",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "expected_aliases": [
+          "Willow unit 75"
+        ],
+        "expected_answer": "Willow unit 75",
+        "id": "ops-004-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Amber unit 15",
+        "lineage_id": "ops-004",
+        "question": "For release 2 of Ember Relay, name the team responsible for ownership.",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-ALL:ops-004-two_hop",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Lina Dane"
+        ],
+        "expected_answer": "Lina Dane",
+        "id": "ops-004-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ilan Voss",
+        "lineage_id": "ops-004",
+        "question": "Who is the on-call contact for the team that owns Ember Relay in release 2?",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1",
+          "ops-004-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    },
+    {
+      "id": "R-ALL:ops-004-two_hop_paraphrase",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "expected_aliases": [
+          "Lina Dane"
+        ],
+        "expected_answer": "Lina Dane",
+        "id": "ops-004-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ilan Voss",
+        "lineage_id": "ops-004",
+        "question": "In release 2, identify Ember Relay's owning team and give only that team's on-call person's name.",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1",
+          "ops-004-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "unexecuted"
+    }
+  ],
+  "sessions": [
+    {
+      "started_utc": "2026-10-26T13:17:03.464590+00:00",
+      "planned_remaining_requests": 12,
+      "model_loaded": false
+    }
+  ],
+  "disclosures": [
+    "Controlled fictional data; automated graph audit, no independent human review",
+    "Both model checkpoints trained upstream; no training or weight updates here",
+    "Same-size model comparison does not isolate causal effects of upstream training",
+    "All assigned questions retain denominator credit, including unexecuted/error/abstain",
+    "Latency covers context selection, local IPC and inference; not a browser network round trip"
+  ]
+}

@@ -12,7 +12,7 @@ from urllib.request import Request, urlopen
 
 from editguard_chat.backend import ModelError
 from editguard_chat.reasonke_backend import (
-    ApprovedFactContext, MODEL_ID, MODEL_REVISION, ReasonKEClient,
+    ApprovedFactContext, RetrievedFactContext, MODEL_ID, MODEL_REVISION, ReasonKEClient,
 )
 from editguard_chat.server import ChatApplication, handler_for, validate_trusted_origin
 
@@ -216,6 +216,24 @@ class ReasonKEWorkflowTests(unittest.TestCase):
         result = ApprovedFactContext().rank("Where?", [row, conflicting])
         self.assertTrue(result["clarification_required"])
         self.assertFalse(result["accepted"])
+        self.assertEqual(result["selected"], [])
+
+    def test_retrieved_policy_bounds_supplied_context_from_larger_memory(self):
+        rows = [self.publish(index) for index in range(25)]
+        result = RetrievedFactContext().rank(rows[7]["question"], rows)
+        self.assertEqual(result["active_correction_count"], 25)
+        self.assertEqual(len(result["selected"]), 4)
+        self.assertEqual(len(result["candidates"]), 4, "Do not store the full memory in every answer's evidence")
+        self.assertFalse(result["score_is_probability"])
+        self.assertIn(rows[7]["id"], [row["id"] for row in result["selected"]])
+        too_many = [{**rows[0], "id": str(index), "question": "Unique question " + str(index)} for index in range(201)]
+        with self.assertRaisesRegex(ModelError, "at most 200"):
+            RetrievedFactContext().rank("Any", too_many)
+
+    def test_retrieved_policy_still_refuses_conflicting_approved_memory(self):
+        row = self.publish()
+        result = RetrievedFactContext().rank("Unrelated", [row, {**row, "id": "conflict", "answer": "Wrong"}])
+        self.assertTrue(result["clarification_required"])
         self.assertEqual(result["selected"], [])
 
 

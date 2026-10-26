@@ -66,6 +66,7 @@ function renderStatus(status) {
   $("sidebar-model-detail").textContent = failed ? "Model unavailable · see launch log" : ready ? (model.backend || "Model") + " · ready to chat" : "Waiting for the model";
   $("comparison-model-label").textContent = status.comparison_label ? "WITHOUT CORRECTION CONTEXT" : "ORIGINAL MODEL";
   $("knowledge-context-description").textContent = status.retrieval?.method === "all_approved_facts_learned_applicability" ? "All active approved facts are supplied to the trained reasoner, up to 20 records. New corrections update external memory; model weights remain unchanged." : "Corrections are supplied to the model when retrieved. They do not rewrite the base model’s weights.";
+  if (status.retrieval?.method === "two_stage_lexical_approved_memory") $("knowledge-context-description").textContent = "Up to four approved facts are selected from a library of at most 200 using two-stage question-only retrieval. New corrections update external memory; model weights remain unchanged.";
   $("model-status").textContent = ready ? "Model ready" : failed ? "Model unavailable" : "Model loading";
   document.querySelectorAll(".model-pill .status-dot, #sidebar-status-dot").forEach(dot => { dot.className = "status-dot " + (ready ? "ready" : failed ? "failed" : ""); });
   const images = model.supports_images === true;

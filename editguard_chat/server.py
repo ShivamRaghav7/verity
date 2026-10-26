@@ -16,7 +16,7 @@ import time
 from urllib.parse import urlsplit
 
 from .backend import ModelError, OllamaClient, OllamaEncoder
-from .reasonke_backend import ApprovedFactContext, ReasonKEClient
+from .reasonke_backend import ApprovedFactContext, RetrievedFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
 from .results import current_results
@@ -42,14 +42,16 @@ def required(value, name, limit):
 
 
 class ChatApplication:
-    def __init__(self, storage, *, backend=None, retriever=None, trusted_origin=None):
+    def __init__(self, storage, *, backend=None, retriever=None, trusted_origin=None, context_policy="all"):
         self.trusted_origin = validate_trusted_origin(trusted_origin)
         self.storage = Path(storage)
         self.storage.mkdir(parents=True, exist_ok=True)
         self.store = ChatStore(self.storage / "chat.sqlite3")
         self.backend = backend or OllamaClient()
+        if context_policy not in ("all", "retrieved"):
+            raise ValueError("Choose all or retrieved context policy")
         self.fact_conditioned = callable(getattr(self.backend, "answer_with_facts", None))
-        self.retriever = retriever or (ApprovedFactContext() if self.fact_conditioned else
+        self.retriever = retriever or ((RetrievedFactContext() if context_policy == "retrieved" else ApprovedFactContext()) if self.fact_conditioned else
                                        CorrectionRetriever(OllamaEncoder(self.backend)))
         self.token = secrets.token_urlsafe(32)
         self.lock = threading.Lock()
@@ -58,10 +60,13 @@ class ChatApplication:
         if self.fact_conditioned:
             return {"model": self.backend.status(), "token": self.token,
                 "revision": self.store.get_revision(), "busy": self.lock.locked(),
-                "retrieval": {"method": "all_approved_facts_learned_applicability", "threshold": None,
+                "retrieval": {"method": self.retriever.method, "threshold": None,
                     "threshold_calibrated": False,
-                    "limitation": "All active approved facts are supplied, up to 20 records. "
-                                  "The trained model decides applicability; generated answers remain unverified."},
+                    "limitation": ("Question-only retrieval supplies at most four facts from up to 200 active records. "
+                                   "Neural accuracy at that storage bound has not been established." if
+                                   self.retriever.method == "two_stage_lexical_approved_memory" else
+                                   "All active approved facts are supplied, up to 20 records. "
+                                   "The trained model decides applicability; generated answers remain unverified.")},
                 "method": "Upstream ReasonKE_plus trained edit-conditioned reasoner; "
                           "new corrections update external fact memory, not model weights",
                 "comparison_label": "Same trained checkpoint without correction context"}
@@ -216,7 +221,7 @@ class ChatApplication:
 
     def _answer_with_facts(self, messages, mode, revision, *, history_override=None):
         query = messages[-1]["content"]
-        routing = ApprovedFactContext().rank(query, self.store.list_corrections()) if mode == "edited" else {
+        routing = self.retriever.rank(query, self.store.list_corrections()) if mode == "edited" else {
             "accepted": False, "selected": [], "candidates": [], "method": "without_correction_context",
             "reason": "original_model_requested", "score_is_probability": False,
             "notice": "The same trained ReasonKE_plus checkpoint answered without supplied corrections. "
@@ -459,13 +464,14 @@ def main(argv=None):
     parser.add_argument("--storage", type=Path, default=ROOT / "runtime/chat")
     parser.add_argument("--model", default="qwen3-vl:2b-instruct")
     parser.add_argument("--backend", choices=("ollama", "reasonke"), default="ollama")
+    parser.add_argument("--context-policy", choices=("all", "retrieved"), default="all", help="ReasonKE approved-memory policy; keep the policy selected on development data")
     parser.add_argument("--trusted-origin", help="Exact HTTPS Colab proxy origin; local-only access remains the default")
     args = parser.parse_args(argv)
     if not 1024 <= args.port <= 65535:
         parser.error("Choose a port between 1024 and 65535")
     try:
         backend = ReasonKEClient() if args.backend == "reasonke" else OllamaClient(args.model)
-        app = ChatApplication(args.storage, backend=backend, trusted_origin=args.trusted_origin)
+        app = ChatApplication(args.storage, backend=backend, trusted_origin=args.trusted_origin, context_policy=args.context_policy)
     except ValueError as exc:
         parser.error(str(exc))
     server = ThreadingHTTPServer(("127.0.0.1", args.port), handler_for(app))

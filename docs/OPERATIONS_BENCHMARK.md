@@ -13,6 +13,13 @@ lineage despite different question wording. A competing active version is reject
 until an operator explicitly replaces it. Other properties/scopes remain separate.
 Aliases are recorded metadata; they are not a trained entity resolver.
 
+The server also implements `--context-policy retrieved`: the same declared
+two-stage lexical retriever supplies at most four facts from up to 200 active
+records. Full-memory mode retains its 20-record limit. The release's default
+policy must be selected from development evidence; a storage/retrieval bound is
+not a measured neural accuracy guarantee at 200 records. The frozen benchmark
+compares both policies on identical nine-fact worlds.
+
 **Export workspace JSON** saves text conversations, approved corrections, all
 versions and audit events. Restore validates the checksum, field schema, references,
 lineages, active-key uniqueness and complete revision history before inserting in

@@ -8,6 +8,7 @@ COPY requirements-chat.txt ./
 RUN python -m pip install --no-cache-dir --requirement requirements-chat.txt \
     && python -m pip check
 COPY editguard_chat ./editguard_chat
+COPY editguard_benchmark ./editguard_benchmark
 COPY configs/chat-models.json ./configs/chat-models.json
 COPY reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json ./reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json
 COPY reports/reasonke ./reports/reasonke

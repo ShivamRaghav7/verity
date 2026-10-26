@@ -26,6 +26,8 @@ class ApprovedFactContext:
 
     method = "all_approved_facts_learned_applicability"
     threshold = None
+    max_memory_records = MAX_FACTS
+    max_memory_characters = MAX_FACT_CHARACTERS
 
     def clear_cache(self):
         # No embeddings, scores, or cached correction contexts exist here.
@@ -46,9 +48,9 @@ class ApprovedFactContext:
             key = tuple(" ".join(unicodedata.normalize("NFKC", row[field]).casefold().split())
                         for field in ("question", "scope"))
             groups.setdefault(key, set()).add(row["answer"])
-        if len(rows) > MAX_FACTS or sum(len(str(value)) for row in rows for value in row.values()) > MAX_FACT_CHARACTERS:
-            raise ModelError("The Reason-KE demonstration supports at most 20 active corrections and "
-                             "12,000 correction characters. Withdraw unused records before continuing.")
+        if len(rows) > self.max_memory_records or sum(len(str(value)) for row in rows for value in row.values()) > self.max_memory_characters:
+            raise ModelError(f"This context policy supports at most {self.max_memory_records} active facts and "
+                             f"{self.max_memory_characters} memory characters. Export or withdraw unused records before continuing.")
         conflict = any(len(answers) > 1 for answers in groups.values())
         return {"accepted": bool(rows) and not conflict, "selected": [] if conflict else rows,
                 "candidates": rows, "method": self.method, "threshold": None,
@@ -59,6 +61,28 @@ class ApprovedFactContext:
                           "applicability; this does not establish that it used them correctly.",
                 "limitation": "Conflict checks cover matching question/scope keys; semantic overlap is not certified.",
                 "active_correction_count": len(rows)}
+
+
+class RetrievedFactContext(ApprovedFactContext):
+    """Same declared question-only two-stage retriever as the matched experiment."""
+    method = "two_stage_lexical_approved_memory"
+    max_memory_records = 200
+    max_memory_characters = 1000000
+
+    def rank(self, question, corrections):
+        from editguard_benchmark.retrieval import retrieve
+        result = super().rank(question, corrections)
+        if result.get("clarification_required"):
+            return result
+        selected = retrieve(question, result["selected"], k=4) if result["selected"] else []
+        if sum(len(str(value)) for row in selected for value in row.values()) > MAX_FACT_CHARACTERS:
+            raise ModelError("The selected facts exceed the model's 12,000-character context limit; shorten their source or answer fields.")
+        return {**result, "method": self.method, "selected": selected, "candidates": selected,
+                "accepted": bool(selected), "reason": "question_only_approved_fact_retrieval" if selected else "no_active_corrections",
+                "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. "
+                          "Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+                "memory_record_limit": self.max_memory_records, "supplied_fact_count": len(selected),
+                "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee."}
 
 
 class ReasonKEClient:

@@ -20,9 +20,12 @@ def generate(receipts, output):
     if output.exists():
         raise ValueError("Report directory already exists; preserve it and choose a new derived output")
     report = aggregate(receipts)
-    if report["phase"] != "final" or set(NAMES) - set(report["conditions"]):
-        raise ValueError("A final comparison with all five configurations is required")
-    if any(report["conditions"][name]["overall"]["assigned"] != 256 for name in NAMES):
+    if report["phase"] not in ("development", "final") or set(NAMES) - set(report["conditions"]):
+        raise ValueError("A matched development or final comparison with all five configurations is required")
+    assigned = 256 if report["phase"] == "final" else 24
+    independent = report["independent_lineages"]
+    per_category = assigned // 8
+    if any(report["conditions"][name]["overall"]["assigned"] != assigned for name in NAMES):
         raise ValueError("Final question denominators do not match the fixed protocol")
     import matplotlib
     matplotlib.use("Agg")
@@ -54,7 +57,7 @@ def generate(receipts, output):
     ax.set_ylim(0, 105); ax.set_ylabel("Correct / all assigned questions (%)")
     ax.set_title("Factual accuracy by question category")
     ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(.5, 1.22), frameon=False, fontsize=9)
-    fig.text(.07, -.04, "32 assigned questions per category and configuration. Errors, abstentions and unexecuted cases receive zero primary credit.", fontsize=9)
+    fig.text(.07, -.04, f"{per_category} assigned questions per category and configuration. Errors, abstentions and unexecuted cases receive zero primary credit.", fontsize=9)
     save(fig, "category-accuracy")
 
     fig, ax = plt.subplots(figsize=(8.8, 6))
@@ -63,8 +66,8 @@ def generate(receipts, output):
         a, l = 100 * condition["applicable"]["accuracy"], 100 * condition["locality"]["accuracy"]
         ax.scatter(l, a, s=110, color=COLORS[name], label=NAMES[name], edgecolor="white")
         ax.annotate(name, (l, a), xytext=(7, 6), textcoords="offset points", fontsize=10)
-    ax.set_xlim(-3, 105); ax.set_ylim(-3, 105); ax.set_xlabel("Locality factual accuracy · 128 assigned questions (%)")
-    ax.set_ylabel("Applicable-edit accuracy · 128 assigned questions (%)")
+    ax.set_xlim(-3, 105); ax.set_ylim(-3, 105); ax.set_xlabel(f"Locality factual accuracy · {assigned // 2} assigned questions (%)")
+    ax.set_ylabel(f"Applicable-edit accuracy · {assigned // 2} assigned questions (%)")
     ax.set_title("Correction success and locality are separate outcomes")
     ax.grid(alpha=.15); ax.legend(loc="lower right", frameon=False, fontsize=9)
     save(fig, "efficacy-locality")
@@ -77,7 +80,7 @@ def generate(receipts, output):
         ax.barh(np.arange(len(names)), values, left=bottom, color=color, label=outcome.replace("_", " "))
         bottom += values
     ax.set_yticks(np.arange(len(names)), [NAMES[name] for name in names]); ax.invert_yaxis()
-    ax.set_xlim(0, 256); ax.set_xlabel("All 256 assigned questions per main configuration")
+    ax.set_xlim(0, assigned); ax.set_xlabel(f"All {assigned} assigned questions per main configuration")
     ax.set_title("Every outcome remains visible")
     ax.legend(ncol=3, loc="upper left", bbox_to_anchor=(0, -.15), frameon=False)
     save(fig, "outcome-composition")
@@ -90,7 +93,7 @@ def generate(receipts, output):
         ax.errorbar(middle, index, xerr=[[middle - low], [high - middle]], fmt="o", color="#167e72", capsize=5)
     ax.set_yticks(range(len(pairs)), list(pairs)); ax.axvline(0, color="#8a989c", linewidth=1)
     ax.set_xlabel("Paired accuracy difference (percentage points); 95% lineage-bootstrap interval")
-    ax.set_title("Matched configuration differences · 32 independent edit lineages")
+    ax.set_title(f"Matched configuration differences · {independent} independent edit lineages")
     save(fig, "paired-differences")
 
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -112,8 +115,8 @@ def generate(receipts, output):
                 c = metric["counts"]
                 writer.writerow([name, category, c["correct"], metric["assigned"], c["wrong"], c["abstain"], c["execution_error"], c["unexecuted"], metric["accuracy"], metric["coverage"]])
 
-    lines = ["# EditGuard: controlled operations evaluation", "",
-        "This report is generated from actual model receipts. The independent sample consists of 32 fictional edit lineages; wording variants are correlated.", "",
+    lines = ["# EditGuard: controlled operations evaluation (" + report["phase"] + ")", "",
+        f"This report is generated from actual model receipts. Phase: {report['phase']}; execution: {report['execution_status']}. The independent sample consists of {independent} fictional edit lineages; wording variants are correlated.", "",
         "## Model and context comparison", "", "| Configuration | Correct / assigned | Applicable | Locality | Coverage | p50 / p95 pipeline seconds |",
         "| --- | ---: | ---: | ---: | ---: | ---: |"]
     for name in names:
@@ -152,7 +155,7 @@ def generate(receipts, output):
         lines.append(f"| {row['question']['id']} | {row['condition']} | {safe(row['question']['expected_answer'])} | {safe(actual)} | {row['outcome']} |")
     lines += ["", "## Interpretation and limits", "",
         "The study measures short factual answers in a controlled fictional handbook, with shared wording templates and automated graph auditing. It is not an estimate of unrestricted dialogue accuracy. Both model checkpoints were trained upstream; this project did not perform their SFT or RL training. Comparing them does not isolate the causal effect of ReasonKE training.", "",
-        "Whole-final-span alias matching is strict. Correct targets mentioned only as examples, rejections or explanations are not credited. All abstentions, execution errors and unexecuted records stay in the primary denominator. State-machine tests, deterministic answers and neural answer accuracy remain separate evidence.", "",
+        "R0 is an initial-fact diagnostic scored against post-edit targets, not a measure of its original-world factual accuracy. Whole-final-span alias matching is strict. Correct targets mentioned only as examples, rejections or explanations are not credited. All abstentions, execution errors and unexecuted records stay in the primary denominator. State-machine tests, deterministic answers and neural answer accuracy remain separate evidence.", "",
         "Correct final answers do not establish faithful generated explanations. The earlier development traces contained unsupported claims; explanation auditing must be reported separately. The comparison alone does not prove arbitrary edit safety or semantic conflict detection.", "",
         "The concrete outcome is the reproducible scorecard above plus an implemented reversible maintenance workflow. No victory over updated RAG or universal accuracy is assumed.", "",
         "## Provenance", "", "See `results.json`, `scorecard.csv` and `figure-manifest.json`; each figure is derived from saved records. Raw receipts identify model revisions, fact IDs, prompt digests, tokens, errors and resource measurements."]

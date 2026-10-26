@@ -1,0 +1,10 @@
+{
+  "schema": "editguard-operations-profile-audit-v1",
+  "status": "passed",
+  "profiles": 2,
+  "checked_raw_generations": 24,
+  "source_data_request_scoring_identity_matches": true,
+  "new_model_generations": 0,
+  "human_reviewed_data": false,
+  "note": "Mechanical receipt audit; not a claim of all-correct model answers or independent human review"
+}

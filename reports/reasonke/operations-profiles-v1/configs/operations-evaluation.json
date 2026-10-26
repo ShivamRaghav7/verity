@@ -1,0 +1,17 @@
+{
+  "schema": "editguard-operations-run-v1",
+  "dataset": "data/reasonke/operations-v1",
+  "reasonke_manifest": "configs/reasonke-model.json",
+  "instruction_manifest": "configs/instruction-model.json",
+  "retrieval_k": 4,
+  "max_new_tokens": 512,
+  "seed": 42,
+  "request_watchdog_seconds": 240,
+  "model_load_watchdog_seconds": 1800,
+  "final_wall_budget_seconds_per_model": 28800,
+  "development_requests_per_condition": 24,
+  "profile_requests_per_model": 12,
+  "oracle_questions_per_model": 16,
+  "bootstrap_resamples": 10000,
+  "note": "Settings are developmental until a source/data/profile-bound protocol is sealed. No accuracy target or answer-based retries."
+}

@@ -1,0 +1,1841 @@
+{
+  "schema": "editguard-operations-inference-v1",
+  "status": "completed",
+  "started_utc": "2026-10-26T13:20:23.357583+00:00",
+  "plan": {
+    "model": "reasonke",
+    "phase": "profile",
+    "sources": {
+      "editguard_benchmark/__init__.py": "4c9de9a5b3ec589c0f9ff91552fc876f72ce13bf734155e779b10707ba879b36",
+      "editguard_benchmark/data.py": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+      "editguard_benchmark/metrics.py": "61b8a7261a42a829cf4c86af3ab24ed2a08d83e005dd47e129f758f096c0ca52",
+      "editguard_benchmark/models.py": "2f51a9b2c1264a8fb655cad1c79b3c3765b782e522a2d83820afa580705a51ad",
+      "editguard_benchmark/retrieval.py": "d3c3ceb196f653fab9f201c4f93315d297ba06346822b856e1e5fafe6b344d33",
+      "editguard_benchmark/run.py": "1c69717786d06d61eaaa2d21b19e90aff3f2b0d5a9a7690daa8db64788c4376d",
+      "editguard_benchmark/scoring.py": "8a3a824acb37a5134d2e13fea181c898728c543b378426045176b27bac958f1e",
+      "editguard_reasonke/runtime.py": "411d685a703f00e22f86a4de5c02b53b549683ae0b59a78fa9af61c581c4306c",
+      "configs/operations-evaluation.json": "51d9d8d830d891e17acf93caf979b14989da963d1ed4e2d8df7183f45a3f3485",
+      "configs/reasonke-model.json": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+      "configs/instruction-model.json": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+      "data/reasonke/operations-v1/manifest.json": "62d4f7c95a8c4583e8164599453a8414538b3c2e553a146a2eab7ae4c9a90659"
+    },
+    "task_ids_sha256": "42980c79038bdaa788dfad1329adc7fc9ab973940a62d6d6e6626b61ccf34995",
+    "protocol_sha256": null
+  },
+  "dataset": {
+    "categories": [
+      "direct",
+      "direct_paraphrase",
+      "two_hop",
+      "two_hop_paraphrase",
+      "same_entity_other_relation",
+      "similar_entity_same_relation",
+      "wrong_version_or_tier",
+      "unrelated"
+    ],
+    "dataset_id": "editguard-operations-v1",
+    "development_lineages": 16,
+    "files": {
+      "audit.json": "906d50cac913e4391b7ecb67831c3f790b61da6af539ba919930f5cb7a56da57",
+      "lineages.jsonl": "0f0ac594246aec7afb36ee5e3a4732e2a351c3edaee34663f29a8f2c72b2ef57",
+      "questions.jsonl": "8fe52ae1ea13aa4b0c75f78bde1949e7b50b33a3fb485e896e5db14a9087157e"
+    },
+    "final_lineages": 32,
+    "generated_model_answers": 0,
+    "generator_sha256": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+    "lineages": 48,
+    "questions": 384,
+    "schema": "editguard-operations-benchmark-v1",
+    "seed": 42,
+    "split_unit": "edit_lineage_before_wording_augmentation",
+    "status": "authored_not_final_evaluation_frozen",
+    "truth_source": "Curated deterministic fictional graph; automated audit explicitly disclosed"
+  },
+  "records": [
+    {
+      "id": "R0:ops-003-direct",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "expected_aliases": [
+          "Copper unit 74"
+        ],
+        "expected_answer": "Copper unit 74",
+        "id": "ops-003-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Saffron unit 14",
+        "lineage_id": "ops-003",
+        "question": "Which team owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "wrong",
+      "started_utc": "2026-10-26T13:26:30.584478+00:00",
+      "request_sha256": "c50049e141311a7725f6aef907a4b6855bcf386420f9928f2f566ed4d6446f00",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f8",
+          "question": "What is the function of Cedar unit 134?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Cedar unit 134; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f9",
+          "question": "What is the function of Silver unit 194?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Silver unit 194; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f2",
+          "question": "Who is the on-call contact for Saffron unit 14?",
+          "answer": "Mara Voss",
+          "scope": "Who is the on-call contact for Saffron unit 14; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f6",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Saffron unit 14",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f3",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f4",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f7",
+          "question": "In which city is Ibis records office 4?",
+          "answer": "Kelm",
+          "scope": "In which city is Ibis records office 4; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f8",
+          "ops-003-f9",
+          "ops-003-f2",
+          "ops-003-f6",
+          "ops-003-f1",
+          "ops-003-f3",
+          "ops-003-f4",
+          "ops-003-f7",
+          "ops-003-f5"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Saffron unit 14",
+        "raw_output": "<think>\n<acknowledge>The updated information provides several facts related to different units and their functions. The query asks which team owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the specific version of Dahlia Relay mentioned in the query?\n[Sub question 2]Which team is responsible for owning Dahlia Relay in that specific version?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The query specifies release 2, so the answer is \\boxed{Dahlia Relay in release 2}.\n[Sub question 2]According to the updated information, Saffron unit 14 owns Dahlia Relay in release 2, so the answer is \\boxed{Saffron unit 14}.</action>\n</think>\n<answer>Saffron unit 14</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 16.099474062000013,
+          "input_tokens": 773,
+          "output_tokens": 193,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5833944064,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f8",
+            "ops-003-f9",
+            "ops-003-f2",
+            "ops-003-f6",
+            "ops-003-f1",
+            "ops-003-f3",
+            "ops-003-f4",
+            "ops-003-f7",
+            "ops-003-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 16.124042110999994,
+      "completed_utc": "2026-10-26T13:26:46.708495+00:00",
+      "correct": false,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R0:ops-003-direct_paraphrase",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "expected_aliases": [
+          "Copper unit 74"
+        ],
+        "expected_answer": "Copper unit 74",
+        "id": "ops-003-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Saffron unit 14",
+        "lineage_id": "ops-003",
+        "question": "What is the name of the team maintaining ownership of Dahlia Relay for release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "wrong",
+      "started_utc": "2026-10-26T13:26:46.713892+00:00",
+      "request_sha256": "defe17bc034d83f50de63c2b43d49fc5213411162aa4d583f96c13419431f330",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f8",
+          "question": "What is the function of Cedar unit 134?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Cedar unit 134; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f9",
+          "question": "What is the function of Silver unit 194?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Silver unit 194; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f2",
+          "question": "Who is the on-call contact for Saffron unit 14?",
+          "answer": "Mara Voss",
+          "scope": "Who is the on-call contact for Saffron unit 14; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f6",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Saffron unit 14",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f3",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f4",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f7",
+          "question": "In which city is Ibis records office 4?",
+          "answer": "Kelm",
+          "scope": "In which city is Ibis records office 4; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f8",
+          "ops-003-f9",
+          "ops-003-f2",
+          "ops-003-f6",
+          "ops-003-f1",
+          "ops-003-f3",
+          "ops-003-f4",
+          "ops-003-f7",
+          "ops-003-f5"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Saffron unit 14",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay in different releases. The query asks for the name of the team maintaining ownership of Dahlia Relay for release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]According to the updated information, the answer is \\boxed{Saffron unit 14}.</action>\n</think>\n<answer>Saffron unit 14</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 10.259592225999995,
+          "input_tokens": 780,
+          "output_tokens": 134,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5837267456,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f8",
+            "ops-003-f9",
+            "ops-003-f2",
+            "ops-003-f6",
+            "ops-003-f1",
+            "ops-003-f3",
+            "ops-003-f4",
+            "ops-003-f7",
+            "ops-003-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 10.26368543000001,
+      "completed_utc": "2026-10-26T13:26:56.977551+00:00",
+      "correct": false,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R0:ops-003-two_hop",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Orin Dane"
+        ],
+        "expected_answer": "Orin Dane",
+        "id": "ops-003-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "wrong",
+      "started_utc": "2026-10-26T13:26:56.982668+00:00",
+      "request_sha256": "4dae303207b549ce0790fa7b917f76681d96f1f8f70a6c83e5f96977865b574b",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f8",
+          "question": "What is the function of Cedar unit 134?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Cedar unit 134; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f9",
+          "question": "What is the function of Silver unit 194?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Silver unit 194; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f2",
+          "question": "Who is the on-call contact for Saffron unit 14?",
+          "answer": "Mara Voss",
+          "scope": "Who is the on-call contact for Saffron unit 14; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f6",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Saffron unit 14",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f3",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f4",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f7",
+          "question": "In which city is Ibis records office 4?",
+          "answer": "Kelm",
+          "scope": "In which city is Ibis records office 4; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f8",
+          "ops-003-f9",
+          "ops-003-f2",
+          "ops-003-f6",
+          "ops-003-f1",
+          "ops-003-f3",
+          "ops-003-f4",
+          "ops-003-f7",
+          "ops-003-f5"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Mara Voss",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about various units, their functions, and the teams that own them in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]Using the information provided, the on-call contact for Saffron unit 14 is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 14.619301061999977,
+          "input_tokens": 781,
+          "output_tokens": 187,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5837805056,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f8",
+            "ops-003-f9",
+            "ops-003-f2",
+            "ops-003-f6",
+            "ops-003-f1",
+            "ops-003-f3",
+            "ops-003-f4",
+            "ops-003-f7",
+            "ops-003-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 14.623220735000018,
+      "completed_utc": "2026-10-26T13:27:11.605876+00:00",
+      "correct": false,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R0:ops-003-two_hop_paraphrase",
+      "condition": "R0",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "expected_aliases": [
+          "Orin Dane"
+        ],
+        "expected_answer": "Orin Dane",
+        "id": "ops-003-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "In release 2, identify Dahlia Relay's owning team and give only that team's on-call person's name.",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "wrong",
+      "started_utc": "2026-10-26T13:27:11.611688+00:00",
+      "request_sha256": "af8dd123cb4abfa79d27213b9d56bd85f4b8c1616577ce33984a71c0cc668ee5",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f8",
+          "question": "What is the function of Cedar unit 134?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Cedar unit 134; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f9",
+          "question": "What is the function of Silver unit 194?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Silver unit 194; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f2",
+          "question": "Who is the on-call contact for Saffron unit 14?",
+          "answer": "Mara Voss",
+          "scope": "Who is the on-call contact for Saffron unit 14; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f6",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Saffron unit 14",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f3",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f4",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f7",
+          "question": "In which city is Ibis records office 4?",
+          "answer": "Kelm",
+          "scope": "In which city is Ibis records office 4; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f8",
+          "ops-003-f9",
+          "ops-003-f2",
+          "ops-003-f6",
+          "ops-003-f1",
+          "ops-003-f3",
+          "ops-003-f4",
+          "ops-003-f7",
+          "ops-003-f5"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Mara Voss",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about various units and their functions, along with the on-call contacts for some of these units. The query asks for the on-call person's name of the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, Dahlia Relay is owned by Saffron unit 14 in release 2, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 16.460641872999986,
+          "input_tokens": 786,
+          "output_tokens": 209,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5840498176,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f8",
+            "ops-003-f9",
+            "ops-003-f2",
+            "ops-003-f6",
+            "ops-003-f1",
+            "ops-003-f3",
+            "ops-003-f4",
+            "ops-003-f7",
+            "ops-003-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 16.464764139999943,
+      "completed_utc": "2026-10-26T13:27:28.076424+00:00",
+      "correct": false,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-RAG:ops-003-same_entity_other_relation",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "same_entity_other_relation",
+        "expected_aliases": [
+          "West sector"
+        ],
+        "expected_answer": "West sector",
+        "id": "ops-003-same_entity_other_relation",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "West sector",
+        "lineage_id": "ops-003",
+        "question": "Which region hosts Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "region",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f4"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-26T13:27:28.083348+00:00",
+      "request_sha256": "538d71a329d747e6d11b42dda38ebe5211280a1dfbb209ffb37d6750b2d50369",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f4",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f3",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f4",
+          "ops-003-f1",
+          "ops-003-f5",
+          "ops-003-f3"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "West sector",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about Dahlia Relay in release 2, including the region that hosts it and the team that owns it. The query asks, \"which region hosts Dahlia Relay in release 2?\"</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the answer to the updated information regarding the region that hosts Dahlia Relay in release 2?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]The updated information states that Dahlia Relay is hosted in the West sector, so the answer is \\boxed{West sector}.</action>\n</think>\n<answer>West sector</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 11.387786633000019,
+          "input_tokens": 387,
+          "output_tokens": 153,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5764096512,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f4",
+            "ops-003-f1",
+            "ops-003-f5",
+            "ops-003-f3"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 11.391452000999948,
+      "completed_utc": "2026-10-26T13:27:39.474124+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-RAG:ops-003-similar_entity_same_relation",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "similar_entity_same_relation",
+        "expected_aliases": [
+          "Cedar unit 134"
+        ],
+        "expected_answer": "Cedar unit 134",
+        "id": "ops-003-similar_entity_same_relation",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "Cedar unit 134",
+        "lineage_id": "ops-003",
+        "question": "Which team owns Dahlia Relay Pro in release 2?",
+        "requested_entity": "ops-003-pro-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-26T13:27:39.480046+00:00",
+      "request_sha256": "94a0ff398a6dac476c010d631dc10569133eaea9b3317f7135095a8a79e8ae8b",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-003-f6",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f4",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f5",
+          "ops-003-f1",
+          "ops-003-f6",
+          "ops-003-f4"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Cedar unit 134",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay Pro in release 2. The query asks for the team that owns Dahlia Relay Pro in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the specific identifier for Dahlia Relay Pro in release 2?\n[Sub question 2]Which team is associated with this identifier?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The relevant information indicates that Dahlia Relay Pro is identified as \"ops-003-f5\" in release 2, so the answer is \\boxed{ops-003-f5}.\n[Sub question 2]According to the updated facts, the team associated with this identifier is \"Cedar unit 134\", so the answer is \\boxed{Cedar unit 134}.</action>\n</think>\n<answer>Cedar unit 134</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 15.786113405000037,
+          "input_tokens": 389,
+          "output_tokens": 213,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5764269568,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f5",
+            "ops-003-f1",
+            "ops-003-f6",
+            "ops-003-f4"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 15.789291860999924,
+      "completed_utc": "2026-10-26T13:27:55.268959+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-RAG:ops-003-wrong_version_or_tier",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "wrong_version_or_tier",
+        "expected_aliases": [
+          "Silver unit 194"
+        ],
+        "expected_answer": "Silver unit 194",
+        "id": "ops-003-wrong_version_or_tier",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "Silver unit 194",
+        "lineage_id": "ops-003",
+        "question": "Which team owns Dahlia Relay in release 1?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-1",
+        "required_fact_ids": [
+          "ops-003-f6"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-26T13:27:55.275168+00:00",
+      "request_sha256": "6a9cfa8b5705ad0d2048df99af086fefdef69e19de32724ddce8c7e86cb81ba5",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f6",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-003-f5",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f9",
+          "question": "What is the function of Silver unit 194?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Silver unit 194; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f6",
+          "ops-003-f1",
+          "ops-003-f5",
+          "ops-003-f9"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Silver unit 194",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay in different releases. The query asks which team owns Dahlia Relay in release 1.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the specific identifier for Dahlia Relay in release 1?\n[Sub question 2]Based on the updated information, which team owns this specific identifier?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The relevant information indicates that Dahlia Relay is associated with the identifier \"ops-003-f6\", so the answer is \\boxed{ops-003-f6}.\n[Sub question 2]According to the updated facts, ops-003-f6 is owned by \"Silver unit 194\", so the answer is \\boxed{Silver unit 194}.</action>\n</think>\n<answer>Silver unit 194</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 15.398334677000094,
+          "input_tokens": 389,
+          "output_tokens": 209,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5764269568,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f6",
+            "ops-003-f1",
+            "ops-003-f5",
+            "ops-003-f9"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 15.402636388000019,
+      "completed_utc": "2026-10-26T13:28:10.677361+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-RAG:ops-003-unrelated",
+      "condition": "R-RAG",
+      "question": {
+        "applicable": false,
+        "category": "unrelated",
+        "expected_aliases": [
+          "Kelm"
+        ],
+        "expected_answer": "Kelm",
+        "id": "ops-003-unrelated",
+        "inapplicable_edit_aliases": [
+          "Copper unit 74",
+          "Orin Dane"
+        ],
+        "initial_answer": "Kelm",
+        "lineage_id": "ops-003",
+        "question": "In which city is Ibis records office 4?",
+        "requested_entity": "ops-003-archive",
+        "requested_relation": "city",
+        "requested_scope": "current",
+        "required_fact_ids": [
+          "ops-003-f7"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-26T13:28:10.685883+00:00",
+      "request_sha256": "67f5d41aa5871e0a6ccac46e53b7d9ea1b2ae6c22904e1a5d2fd4a2f20aec413",
+      "supplied_facts": [
+        {
+          "id": "ops-003-f7",
+          "question": "In which city is Ibis records office 4?",
+          "answer": "Kelm",
+          "scope": "In which city is Ibis records office 4; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f1",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-003-f3",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-003-f8",
+          "question": "What is the function of Cedar unit 134?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Cedar unit 134; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-003-f7",
+          "ops-003-f1",
+          "ops-003-f3",
+          "ops-003-f8"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Kelm",
+        "raw_output": "<think>\n<acknowledge>The updated information provides a specific answer to the query \"in which city is Ibis records office 4?\" The relevant fact is stated as \"Kelm,\" which is associated with the updated information through the ID ops-003-f7.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the specific fact related to Ibis records office 4?\n[Sub question 2]How does this fact apply to the current scenario?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The updated information directly states that Ibis records office 4 is located in Kelm, so the answer is \\boxed{Kelm}.\n[Sub question 2]Since the updated information is current, it applies directly to the present scenario, reaffirming the answer as \\boxed{Kelm}.</action>\n</think>\n<answer>Kelm</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 14.83337682299998,
+          "input_tokens": 378,
+          "output_tokens": 201,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5762100224,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-003-f7",
+            "ops-003-f1",
+            "ops-003-f3",
+            "ops-003-f8"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 14.837406107999982,
+      "completed_utc": "2026-10-26T13:28:25.522726+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-ALL:ops-004-direct",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "expected_aliases": [
+          "Willow unit 75"
+        ],
+        "expected_answer": "Willow unit 75",
+        "id": "ops-004-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Amber unit 15",
+        "lineage_id": "ops-004",
+        "question": "Which team owns Ember Relay in release 2?",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-26T13:28:25.529003+00:00",
+      "request_sha256": "c30e760e32c34f9bc04b9c36289b63782f765300864eb15b5b426725c0212e26",
+      "supplied_facts": [
+        {
+          "id": "ops-004-f4",
+          "question": "Which region hosts Ember Relay in release 2?",
+          "answer": "North sector",
+          "scope": "Which region hosts Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f8",
+          "question": "What is the function of Silver unit 135?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Silver unit 135; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f3",
+          "question": "Who is the on-call contact for Willow unit 75?",
+          "answer": "Lina Dane",
+          "scope": "Who is the on-call contact for Willow unit 75; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f9",
+          "question": "What is the function of Indigo unit 195?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Indigo unit 195; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f6",
+          "question": "Which team owns Ember Relay in release 1?",
+          "answer": "Indigo unit 195",
+          "scope": "Which team owns Ember Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f5",
+          "question": "Which team owns Ember Relay Pro in release 2?",
+          "answer": "Silver unit 135",
+          "scope": "Which team owns Ember Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f1",
+          "question": "Which team owns Ember Relay in release 2?",
+          "answer": "Willow unit 75",
+          "scope": "Which team owns Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-004-f7",
+          "question": "In which city is Juniper records office 5?",
+          "answer": "Tirren",
+          "scope": "In which city is Juniper records office 5; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f2",
+          "question": "Who is the on-call contact for Amber unit 15?",
+          "answer": "Ilan Voss",
+          "scope": "Who is the on-call contact for Amber unit 15; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-004-f4",
+          "ops-004-f8",
+          "ops-004-f3",
+          "ops-004-f9",
+          "ops-004-f6",
+          "ops-004-f5",
+          "ops-004-f1",
+          "ops-004-f7",
+          "ops-004-f2"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Willow unit 75",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Ember Relay in different releases. The query asks which team owns Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the specific fact related to the ownership of Ember Relay in release 2?\n</decompose>\n<action>Answer the sub question based on updated knowledge:\n[Sub question 1]The relevant fact is found in the updated information, indicating that Willow unit 75 owns Ember Relay in release 2. Thus, the answer is \\boxed{Willow unit 75}.</action>\n</think>\n<answer>Willow unit 75</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 11.73375776399996,
+          "input_tokens": 768,
+          "output_tokens": 152,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5831462400,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-004-f4",
+            "ops-004-f8",
+            "ops-004-f3",
+            "ops-004-f9",
+            "ops-004-f6",
+            "ops-004-f5",
+            "ops-004-f1",
+            "ops-004-f7",
+            "ops-004-f2"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 11.73796057300001,
+      "completed_utc": "2026-10-26T13:28:37.266937+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-ALL:ops-004-direct_paraphrase",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "expected_aliases": [
+          "Willow unit 75"
+        ],
+        "expected_answer": "Willow unit 75",
+        "id": "ops-004-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Amber unit 15",
+        "lineage_id": "ops-004",
+        "question": "For release 2 of Ember Relay, name the team responsible for ownership.",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-26T13:28:37.273634+00:00",
+      "request_sha256": "56893bc6fc00476966e18cdbb3522804b4de9c754e2f55ccc6bab5bf560cc701",
+      "supplied_facts": [
+        {
+          "id": "ops-004-f4",
+          "question": "Which region hosts Ember Relay in release 2?",
+          "answer": "North sector",
+          "scope": "Which region hosts Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f8",
+          "question": "What is the function of Silver unit 135?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Silver unit 135; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f3",
+          "question": "Who is the on-call contact for Willow unit 75?",
+          "answer": "Lina Dane",
+          "scope": "Who is the on-call contact for Willow unit 75; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f9",
+          "question": "What is the function of Indigo unit 195?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Indigo unit 195; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f6",
+          "question": "Which team owns Ember Relay in release 1?",
+          "answer": "Indigo unit 195",
+          "scope": "Which team owns Ember Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f5",
+          "question": "Which team owns Ember Relay Pro in release 2?",
+          "answer": "Silver unit 135",
+          "scope": "Which team owns Ember Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f1",
+          "question": "Which team owns Ember Relay in release 2?",
+          "answer": "Willow unit 75",
+          "scope": "Which team owns Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-004-f7",
+          "question": "In which city is Juniper records office 5?",
+          "answer": "Tirren",
+          "scope": "In which city is Juniper records office 5; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f2",
+          "question": "Who is the on-call contact for Amber unit 15?",
+          "answer": "Ilan Voss",
+          "scope": "Who is the on-call contact for Amber unit 15; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-004-f4",
+          "ops-004-f8",
+          "ops-004-f3",
+          "ops-004-f9",
+          "ops-004-f6",
+          "ops-004-f5",
+          "ops-004-f1",
+          "ops-004-f7",
+          "ops-004-f2"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Willow unit 75",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Ember Relay for release 2. The relevant fact is found in the updated information where it states that Willow unit 75 is responsible for the ownership of Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]What is the specific release version mentioned in the query?\n[Sub question 2]Who is the owner of Ember Relay according to the updated information?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]The specific release version mentioned in the query is \\boxed{release 2}.\n[Sub question 2]According to the updated information, the owner of Ember Relay in release 2 is \\boxed{Willow unit 75}.</action>\n</think>\n<answer>Willow unit 75</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 14.541710532000025,
+          "input_tokens": 773,
+          "output_tokens": 190,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5833944064,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-004-f4",
+            "ops-004-f8",
+            "ops-004-f3",
+            "ops-004-f9",
+            "ops-004-f6",
+            "ops-004-f5",
+            "ops-004-f1",
+            "ops-004-f7",
+            "ops-004-f2"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 14.545667488999925,
+      "completed_utc": "2026-10-26T13:28:51.819276+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-ALL:ops-004-two_hop",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Lina Dane"
+        ],
+        "expected_answer": "Lina Dane",
+        "id": "ops-004-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ilan Voss",
+        "lineage_id": "ops-004",
+        "question": "Who is the on-call contact for the team that owns Ember Relay in release 2?",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1",
+          "ops-004-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "wrong",
+      "started_utc": "2026-10-26T13:28:51.827609+00:00",
+      "request_sha256": "25d66ca75694b690e0a41b8b2a9275b90f12ddaddbcf3f9aba56a7ef97cf4ae9",
+      "supplied_facts": [
+        {
+          "id": "ops-004-f4",
+          "question": "Which region hosts Ember Relay in release 2?",
+          "answer": "North sector",
+          "scope": "Which region hosts Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f8",
+          "question": "What is the function of Silver unit 135?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Silver unit 135; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f3",
+          "question": "Who is the on-call contact for Willow unit 75?",
+          "answer": "Lina Dane",
+          "scope": "Who is the on-call contact for Willow unit 75; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f9",
+          "question": "What is the function of Indigo unit 195?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Indigo unit 195; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f6",
+          "question": "Which team owns Ember Relay in release 1?",
+          "answer": "Indigo unit 195",
+          "scope": "Which team owns Ember Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f5",
+          "question": "Which team owns Ember Relay Pro in release 2?",
+          "answer": "Silver unit 135",
+          "scope": "Which team owns Ember Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f1",
+          "question": "Which team owns Ember Relay in release 2?",
+          "answer": "Willow unit 75",
+          "scope": "Which team owns Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-004-f7",
+          "question": "In which city is Juniper records office 5?",
+          "answer": "Tirren",
+          "scope": "In which city is Juniper records office 5; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f2",
+          "question": "Who is the on-call contact for Amber unit 15?",
+          "answer": "Ilan Voss",
+          "scope": "Who is the on-call contact for Amber unit 15; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-004-f4",
+          "ops-004-f8",
+          "ops-004-f3",
+          "ops-004-f9",
+          "ops-004-f6",
+          "ops-004-f5",
+          "ops-004-f1",
+          "ops-004-f7",
+          "ops-004-f2"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Ilan Voss",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and regions related to Ember Relay. The query asks for the on-call contact for the team that owns Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, Ember Relay is owned by Willow unit 75 in release 2, so the answer is \\boxed{Willow unit 75}.\n[Sub question 2]The on-call contact for Willow unit 75 is Ilan Voss, so the answer is \\boxed{Ilan Voss}.</action>\n</think>\n<answer>Ilan Voss</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 15.22382629499998,
+          "input_tokens": 776,
+          "output_tokens": 201,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5835123200,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-004-f4",
+            "ops-004-f8",
+            "ops-004-f3",
+            "ops-004-f9",
+            "ops-004-f6",
+            "ops-004-f5",
+            "ops-004-f1",
+            "ops-004-f7",
+            "ops-004-f2"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 15.229648789999942,
+      "completed_utc": "2026-10-26T13:29:07.057205+00:00",
+      "correct": false,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "R-ALL:ops-004-two_hop_paraphrase",
+      "condition": "R-ALL",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "expected_aliases": [
+          "Lina Dane"
+        ],
+        "expected_answer": "Lina Dane",
+        "id": "ops-004-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ilan Voss",
+        "lineage_id": "ops-004",
+        "question": "In release 2, identify Ember Relay's owning team and give only that team's on-call person's name.",
+        "requested_entity": "ops-004-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-004-f1",
+          "ops-004-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "wrong",
+      "started_utc": "2026-10-26T13:29:07.064203+00:00",
+      "request_sha256": "311966fc3840f84fc83ddbabb4b574fdeb866719c94bf01d3dcb0d81e843c9e2",
+      "supplied_facts": [
+        {
+          "id": "ops-004-f4",
+          "question": "Which region hosts Ember Relay in release 2?",
+          "answer": "North sector",
+          "scope": "Which region hosts Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f8",
+          "question": "What is the function of Silver unit 135?",
+          "answer": "Archive synchronization",
+          "scope": "What is the function of Silver unit 135; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f3",
+          "question": "Who is the on-call contact for Willow unit 75?",
+          "answer": "Lina Dane",
+          "scope": "Who is the on-call contact for Willow unit 75; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f9",
+          "question": "What is the function of Indigo unit 195?",
+          "answer": "Telemetry processing",
+          "scope": "What is the function of Indigo unit 195; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f6",
+          "question": "Which team owns Ember Relay in release 1?",
+          "answer": "Indigo unit 195",
+          "scope": "Which team owns Ember Relay in release 1; release-1",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f5",
+          "question": "Which team owns Ember Relay Pro in release 2?",
+          "answer": "Silver unit 135",
+          "scope": "Which team owns Ember Relay Pro in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f1",
+          "question": "Which team owns Ember Relay in release 2?",
+          "answer": "Willow unit 75",
+          "scope": "Which team owns Ember Relay in release 2; release-2",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2."
+        },
+        {
+          "id": "ops-004-f7",
+          "question": "In which city is Juniper records office 5?",
+          "answer": "Tirren",
+          "scope": "In which city is Juniper records office 5; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        },
+        {
+          "id": "ops-004-f2",
+          "question": "Who is the on-call contact for Amber unit 15?",
+          "answer": "Ilan Voss",
+          "scope": "Who is the on-call contact for Amber unit 15; current",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "ops-004-f4",
+          "ops-004-f8",
+          "ops-004-f3",
+          "ops-004-f9",
+          "ops-004-f6",
+          "ops-004-f5",
+          "ops-004-f1",
+          "ops-004-f7",
+          "ops-004-f2"
+        ],
+        "gold_support_used": false
+      },
+      "response": {
+        "content": "Ilan Voss",
+        "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and relays in different releases. The query asks for the owning team of Ember Relay in release 2 and the on-call person's name associated with that team.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, the answer is \\boxed{Willow unit 75}.\n[Sub question 2]Using the information from the updated facts, the on-call contact for Willow unit 75 is \\boxed{Ilan Voss}.</action>\n</think>\n<answer>Ilan Voss</answer>",
+        "format": {
+          "answer_tag_found": true,
+          "multiple_answer_tags": false,
+          "raw_fallback": false,
+          "verified": false
+        },
+        "generation": {
+          "model": "YukinoKaren/ReasonKE_plus",
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "seconds": 14.068471919999979,
+          "input_tokens": 781,
+          "output_tokens": 185,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5837805056,
+          "peak_reserved_bytes": 7205814272,
+          "fact_ids": [
+            "ops-004-f4",
+            "ops-004-f8",
+            "ops-004-f3",
+            "ops-004-f9",
+            "ops-004-f6",
+            "ops-004-f5",
+            "ops-004-f1",
+            "ops-004-f7",
+            "ops-004-f2"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 14.072489206,
+      "completed_utc": "2026-10-26T13:29:21.136669+00:00",
+      "correct": false,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    }
+  ],
+  "sessions": [
+    {
+      "started_utc": "2026-10-26T13:20:23.357604+00:00",
+      "planned_remaining_requests": 12,
+      "model_loaded": true,
+      "runtime": {
+        "ready": true,
+        "model_id": "YukinoKaren/ReasonKE_plus",
+        "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+        "backend": "ReasonKE author checkpoint, 4-bit inference adaptation",
+        "supports_images": false,
+        "quantization": "NF4 double quantization, FP16 compute",
+        "load_seconds": 359.75614037799994,
+        "hardware": {
+          "name": "Tesla T4",
+          "total_vram_bytes": 15637086208,
+          "compute_capability": [
+            7,
+            5
+          ],
+          "load_peak_allocated_bytes": 7071596544,
+          "load_peak_reserved_bytes": 7140802560,
+          "torch": "2.11.0+cu130",
+          "cuda": "13.0",
+          "python": "3.13.16",
+          "packages": {
+            "transformers": "4.56.1",
+            "accelerate": "1.10.1",
+            "bitsandbytes": "0.48.1"
+          }
+        },
+        "busy": false,
+        "manifest_sha256": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+        "checkpoint_matches_published_95_48_verified": false,
+        "weights_changed_by_new_facts": false,
+        "checkpoint_trained_by_this_project": false
+      },
+      "load_wall_seconds": 367.211999963,
+      "completed_utc": "2026-10-26T13:29:24.363762+00:00",
+      "seconds": 540.996384499
+    }
+  ],
+  "disclosures": [
+    "Controlled fictional data; automated graph audit, no independent human review",
+    "Both model checkpoints trained upstream; no training or weight updates here",
+    "Same-size model comparison does not isolate causal effects of upstream training",
+    "All assigned questions retain denominator credit, including unexecuted/error/abstain",
+    "Latency covers context selection, local IPC and inference; not a browser network round trip"
+  ],
+  "last_updated_utc": "2026-10-26T13:29:24.363797+00:00",
+  "assigned": 12,
+  "recorded": 12,
+  "unexecuted": 0
+}
