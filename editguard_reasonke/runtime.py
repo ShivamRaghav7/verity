@@ -128,6 +128,7 @@ def extract_answer(raw):
 class ReasonKERuntime:
     def __init__(self, manifest_path):
         self.manifest = read_manifest(manifest_path)
+        self.model_id, self.model_revision = MODEL_ID, MODEL_REVISION
         self.model = None
         self.tokenizer = None
         self.torch = None
@@ -155,11 +156,11 @@ class ReasonKERuntime:
         started = time.perf_counter()
         quantization = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
             bnb_4bit_use_double_quant=True, bnb_4bit_compute_dtype=torch.float16)
-        self.tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, revision=MODEL_REVISION,
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_id, revision=self.model_revision,
                                                        trust_remote_code=False)
         if not self.tokenizer.chat_template:
             raise RuntimeErrorBase("The pinned checkpoint does not provide a chat template", 503)
-        self.model = AutoModelForCausalLM.from_pretrained(MODEL_ID, revision=MODEL_REVISION,
+        self.model = AutoModelForCausalLM.from_pretrained(self.model_id, revision=self.model_revision,
             trust_remote_code=False, use_safetensors=True, quantization_config=quantization,
             torch_dtype=torch.float16, device_map={"": 0}, low_cpu_mem_usage=True,
             attn_implementation="sdpa")
@@ -175,7 +176,7 @@ class ReasonKERuntime:
                          for name in ("transformers", "accelerate", "bitsandbytes")}}
 
     def status(self):
-        return {"ready": self.model is not None, "model_id": MODEL_ID, "revision": MODEL_REVISION,
+        return {"ready": self.model is not None, "model_id": self.model_id, "revision": self.model_revision,
             "backend": "ReasonKE author checkpoint, 4-bit inference adaptation", "supports_images": False,
             "quantization": "NF4 double quantization, FP16 compute", "load_seconds": self.load_seconds,
             "hardware": self.hardware, "busy": self.lock.locked(),
@@ -191,7 +192,7 @@ class ReasonKERuntime:
             raise RuntimeErrorBase("The model is busy; retry after the current request", 409)
         try:
             torch = self.torch
-            prompt = self.tokenizer.apply_chat_template(build_messages(request), tokenize=False,
+            prompt = self.tokenizer.apply_chat_template(self.build_messages(request), tokenize=False,
                                                        add_generation_prompt=True)
             inputs = self.tokenizer(prompt, return_tensors="pt", add_special_tokens=False)
             input_tokens = int(inputs["input_ids"].shape[-1])
@@ -214,7 +215,7 @@ class ReasonKERuntime:
             content, format_info = extract_answer(raw)
             count = int(new_tokens.shape[-1])
             return {"content": content, "raw_output": raw, "format": format_info,
-                "generation": {"model": MODEL_ID, "revision": MODEL_REVISION, "seconds": seconds,
+                "generation": {"model": self.model_id, "revision": self.model_revision, "seconds": seconds,
                     "input_tokens": input_tokens, "output_tokens": count,
                     "max_new_tokens": request["max_new_tokens"], "max_input_tokens": self.manifest["max_input_tokens"],
                     "quantization": "NF4 double quantization, FP16 compute", "do_sample": False,
@@ -230,3 +231,7 @@ class ReasonKERuntime:
             raise RuntimeErrorBase("Model inference failed; inspect the worker console and saved diagnostic", 502) from exc
         finally:
             self.lock.release()
+
+    @staticmethod
+    def build_messages(request):
+        return build_messages(request)

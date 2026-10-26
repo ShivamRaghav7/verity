@@ -298,6 +298,38 @@ class ChatHTTPTests(unittest.TestCase):
         self.assertEqual(self.app.store.list_chats(), [])
         self.assertEqual(self.app.store.get_revision(), 0)
 
+    def test_workspace_export_restore_and_canonical_conflict_use_real_http(self):
+        correction = {"question": "Who owns Atlas?", "answer": "Amber", "source": "Fictional handbook",
+                      "scope": "Atlas release 2", "identity": {"entity_id": "atlas", "relation_id": "owner", "scope_id": "r2"}}
+        status, published, _ = self.request("/api/corrections", correction)
+        self.assertEqual(status, 200)
+        status, rejected, _ = self.request("/api/corrections", {**correction, "question": "Which team maintains Atlas?"})
+        self.assertEqual(status, 409)
+        self.assertEqual(rejected["conflicts"][0]["id"], published["correction"]["id"])
+        status, snapshot, _ = self.request("/api/workspace/export")
+        self.assertEqual(status, 200)
+        self.assertEqual(snapshot["schema"], "editguard-workspace-v1")
+        status, _, _ = self.request("/api/workspace/restore", {"snapshot": snapshot}, token=False)
+        self.assertEqual(status, 403)
+        status, _, _ = self.request("/api/workspace/restore", {"snapshot": snapshot})
+        self.assertEqual(status, 409, "Existing work cannot be overwritten")
+        self.assertEqual(self.app.store.get_revision(), 1)
+        with tempfile.TemporaryDirectory() as directory:
+            other = ChatApplication(directory, backend=FakeBackend(), retriever=FakeRetriever())
+            try:
+                restored = other.mutate("/api/workspace/restore", {"snapshot": snapshot})
+                self.assertEqual(restored["revision"], 1)
+                self.assertEqual(other.store.list_corrections(), self.app.store.list_corrections())
+            finally:
+                other.store.close()
+
+    def test_current_experiment_route_is_separate_from_archived_visual_results(self):
+        status, current, _ = self.request("/api/experiments")
+        self.assertEqual(status, 200)
+        self.assertEqual(current["model"], "YukinoKaren/ReasonKE_plus")
+        self.assertEqual(current["kind"], "development_acceptance")
+        self.assertEqual(current["workflow"]["factual_assigned"], 6)
+
     def test_malformed_image_returns_client_error_and_no_generated_answer(self):
         _, created, _ = self.request("/api/chats", {})
         status, _, _ = self.request("/api/chat", {"chat_id": created["chat"]["id"],

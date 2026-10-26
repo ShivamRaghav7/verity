@@ -1,0 +1,17 @@
+{
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "official_source": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+  "metadata_source": "https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct",
+  "inspected_date": "2026-10-26",
+  "license": "apache-2.0",
+  "parameters": 7615616512,
+  "source_tensor_bytes": 15231233024,
+  "quantization": "nf4",
+  "compute_dtype": "float16",
+  "max_input_tokens": 4096,
+  "max_new_tokens": 512,
+  "training_performed_by_this_project": false,
+  "exact_parent_of_released_reasonke_verified": false,
+  "purpose": "Same-size official instruction-model comparison; not a causal ablation of ReasonKE training"
+}

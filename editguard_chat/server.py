@@ -19,6 +19,7 @@ from .backend import ModelError, OllamaClient, OllamaEncoder
 from .reasonke_backend import ApprovedFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
+from .results import current_results
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = Path(__file__).with_name("static")
@@ -291,9 +292,14 @@ class ChatApplication:
                 return self.ask(payload)
             if path == "/api/compare":
                 return self.compare(payload)
+            if path == "/api/workspace/restore":
+                result = self.store.import_snapshot(payload.get("snapshot"))
+                self.retriever.clear_cache()
+                return result
             if path == "/api/corrections":
                 row = self.store.publish_correction(payload.get("question"), payload.get("answer"),
-                    payload.get("source"), payload.get("scope"), supersedes=payload.get("supersedes"))
+                    payload.get("source"), payload.get("scope"), supersedes=payload.get("supersedes"),
+                    identity=payload.get("identity"))
             else:
                 match = re.fullmatch(r"/api/corrections/([a-f0-9]{32})/(withdraw|restore)", path)
                 if match is None:
@@ -359,9 +365,13 @@ def handler_for(app):
                 if path == "/api/corrections":
                     return self.reply(200, {"corrections": app.store.list_corrections(), "revision": app.store.get_revision(),
                         "events": app.store.list_events()})
+                if path == "/api/workspace/export":
+                    return self.reply(200, app.store.export_snapshot())
                 if path == "/api/results":
                     report = ROOT / "reports/vlkeb/t4-eval20-1/artifacts/vlkeb/eval20/evaluation.json"
                     return self.reply(200, report.read_bytes())
+                if path == "/api/experiments":
+                    return self.reply(200, current_results(ROOT))
                 match = re.fullmatch(r"/api/messages/([a-f0-9]{32})/image", path)
                 if match:
                     for chat in app.store.list_chats():

@@ -1,0 +1,1 @@
+{"checked_question_paths":384,"human_reviewed_data":false,"limitations":["Fictional controlled catalogue","Shared question templates","No independent human wording review","Foundation pretraining or upstream fine-tuning disjointness is not established"],"question_counts":{"development":128,"final":256},"review_policy":"deterministic_graph_audit","status":"passed"}

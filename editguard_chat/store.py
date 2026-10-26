@@ -9,6 +9,8 @@ from __future__ import annotations
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import json
+import hashlib
+import re
 from pathlib import Path
 import sqlite3
 import threading
@@ -34,6 +36,26 @@ def _text(value, name, limit):
 
 def _key(text):
     return " ".join(text.casefold().split())
+
+
+def correction_identity(question, scope, identity=None):
+    """Explicit catalogue IDs unify paraphrases; omitted IDs retain legacy keys."""
+    if identity in (None, {}):
+        return _key(question), _key(scope), {}
+    if not isinstance(identity, dict) or set(identity) - {"entity_id", "relation_id", "scope_id", "aliases"}:
+        raise StoreError("Canonical identity must contain entity_id, relation_id, scope_id and optional aliases")
+    checked = {}
+    for field in ("entity_id", "relation_id", "scope_id"):
+        value = _text(identity.get(field), field, 100).casefold()
+        if not re.fullmatch(r"[a-z0-9][a-z0-9_.:-]{0,99}", value):
+            raise StoreError(f"{field} must be a stable identifier using letters, numbers, dots, colons, hyphens or underscores")
+        checked[field] = value
+    aliases = identity.get("aliases", [])
+    if not isinstance(aliases, list) or len(aliases) > 12:
+        raise StoreError("Supply at most 12 entity aliases")
+    checked["aliases"] = list(dict.fromkeys(_text(alias, "Entity alias", 100) for alias in aliases))
+    return ("@entity-relation:" + _json([checked["entity_id"], checked["relation_id"]]),
+            "@scope:" + checked["scope_id"], checked)
 
 
 def _json(value):
@@ -94,6 +116,8 @@ class ChatStore:
                 actor TEXT NOT NULL, created_at TEXT NOT NULL, detail_json TEXT NOT NULL
             );
         """)
+        if "identity_json" not in {row[1] for row in self._db.execute("PRAGMA table_info(corrections)")}:
+            self._db.execute("ALTER TABLE corrections ADD COLUMN identity_json TEXT NOT NULL DEFAULT '{}'")
 
     def close(self):
         with self._lock:
@@ -134,6 +158,7 @@ class ChatStore:
         result = dict(row)
         result.pop("question_key", None)
         result.pop("scope_key", None)
+        result["identity"] = json.loads(result.pop("identity_json", "{}"))
         result["approved"] = True
         return result
 
@@ -218,14 +243,14 @@ class ChatStore:
                    "VALUES (?,?,?,?,?,?)", (correction_id, action, revision,
                    "local_research_operator", now, _json(detail)))
 
-    def publish_correction(self, question, answer, source, scope, supersedes=None):
+    def publish_correction(self, question, answer, source, scope, supersedes=None, identity=None):
         question = _text(question, "Question", 512)
         answer = _text(answer, "Answer", 2000)
         source = _text(source, "Source", 2048)
         scope = _text(scope, "Scope", 160)
         if supersedes is not None:
             supersedes = _text(supersedes, "Superseded correction identifier", 32)
-        question_key, scope_key = _key(question), _key(scope)
+        question_key, scope_key, identity = correction_identity(question, scope, identity)
         now, correction_id = _now(), uuid.uuid4().hex
         with self._transaction() as db:
             active = db.execute("SELECT * FROM corrections WHERE question_key=? AND scope_key=? AND status='active'",
@@ -246,15 +271,48 @@ class ChatStore:
                 db.execute("UPDATE corrections SET status='superseded', superseded_by=?, updated_at=?, knowledge_revision=? WHERE id=?",
                            (correction_id, now, revision, active["id"]))
                 self._event(db, active["id"], "superseded", revision, now, {"superseded_by": correction_id})
-            db.execute("INSERT INTO corrections VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            db.execute("INSERT INTO corrections VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                        (correction_id, question, answer, source, scope, question_key, scope_key,
                         lineage, version, "active", supersedes, None,
-                        "local_research_operator", now, now, now, revision))
+                        "local_research_operator", now, now, now, revision, _json(identity)))
             self._event(db, correction_id, "published", revision, now,
                         {"supersedes": supersedes, "version": version,
                          "notice": "Operator approval does not independently verify factual truth"})
             row = db.execute("SELECT * FROM corrections WHERE id=?", (correction_id,)).fetchone()
         return self._correction(row)
+
+    def export_snapshot(self):
+        """Consistent portable data snapshot; image bytes are handled by the application."""
+        with self._transaction() as db:
+            data = {"schema": "editguard-workspace-v1", "created_at": _now(),
+                    "revision": self._revision(db), "tables": {}}
+            for table, ordering in (("chats", "id"), ("messages", "chat_id,position"),
+                                    ("corrections", "id"), ("events", "sequence")):
+                data["tables"][table] = [dict(row) for row in db.execute(f"SELECT * FROM {table} ORDER BY {ordering}")]
+            if any(row["image_path"] for row in data["tables"]["messages"]):
+                raise StoreError("Portable JSON export supports text workspaces. This workspace contains images; use the private SQLite and images-directory backup instead.")
+            data["sha256"] = hashlib.sha256(_json(data).encode("utf-8")).hexdigest()
+            return data
+
+    def import_snapshot(self, snapshot):
+        """Validate entirely before one transaction; importing never overwrites existing work."""
+        from .workspace import validate_snapshot
+        checked = validate_snapshot(snapshot)
+        with self._transaction() as db:
+            if self._revision(db) or any(db.execute(f"SELECT 1 FROM {table} LIMIT 1").fetchone()
+                                        for table in ("chats", "messages", "corrections", "events")):
+                raise StoreError("Restore requires an empty workspace. Export the current workspace and launch with a new storage directory first.", 409)
+            for table in ("chats", "corrections", "messages", "events"):
+                # Self-referencing correction rows can arrive in ID order.
+                if table == "corrections":
+                    db.execute("PRAGMA defer_foreign_keys=ON")
+                for row in checked["tables"][table]:
+                    columns = list(row)
+                    db.execute(f"INSERT INTO {table} ({','.join(columns)}) VALUES ({','.join('?' for _ in columns)})",
+                               [row[column] for column in columns])
+            db.execute("UPDATE metadata SET value=? WHERE key='knowledge_revision'", (str(checked["revision"]),))
+        return {"revision": checked["revision"], "counts": {name: len(rows) for name, rows in checked["tables"].items()},
+                "sha256": checked["sha256"], "notice": "Workspace restored from an exported snapshot; no model weights were imported."}
 
     def withdraw(self, correction_id):
         if not isinstance(correction_id, str):

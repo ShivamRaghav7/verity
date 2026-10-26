@@ -358,6 +358,10 @@ function startReplacement(row) {
   $("correction-answer").value = row.answer || "";
   $("correction-source").value = row.source || "";
   $("correction-scope").value = row.scope || "";
+  $("fact-entity").value = row.identity?.entity_id || "";
+  $("fact-relation").value = row.identity?.relation_id || "";
+  $("fact-scope").value = row.identity?.scope_id || "";
+  $("fact-aliases").value = (row.identity?.aliases || []).join(", ");
   $("supersedes").value = row.id;
   $("cancel-replacement").hidden = false;
   $("publish-button").firstChild.textContent = "Approve & replace version ";
@@ -382,6 +386,10 @@ function showConflict(error) {
 async function publishCorrection(event) {
   event.preventDefault(); clearError();
   const payload = {question: $("correction-question").value.trim(), answer: $("correction-answer").value.trim(), scope: $("correction-scope").value.trim(), source: $("correction-source").value.trim()};
+  if ([$("fact-entity"), $("fact-relation"), $("fact-scope")].some(input => input.value.trim())) {
+    payload.identity = {entity_id: $("fact-entity").value.trim(), relation_id: $("fact-relation").value.trim(),
+      scope_id: $("fact-scope").value.trim(), aliases: $("fact-aliases").value.split(",").map(value => value.trim()).filter(Boolean)};
+  }
   if ($("supersedes").value) payload.supersedes = $("supersedes").value;
   $("publish-button").disabled = true;
   try {
@@ -402,7 +410,104 @@ async function changeCorrection(id, action) {
 
 function resultCard(value, caption) { const card = element("div", "result-card"); card.append(element("strong", "", value), element("span", "", caption)); return card; }
 
+let workspaceImport = null;
+$("workspace-export").addEventListener("click", async () => {
+  try {
+    const snapshot = await api("/api/workspace/export");
+    const url = URL.createObjectURL(new Blob([JSON.stringify(snapshot, null, 2)], {type: "application/json"}));
+    const link = element("a"); link.href = url; link.download = "editguard-workspace-r" + snapshot.revision + ".json";
+    document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast("Workspace exported. Store the file privately; it contains your conversations.");
+  } catch (error) { showError(error); }
+});
+$("workspace-file").addEventListener("change", async event => {
+  workspaceImport = null; $("workspace-restore").disabled = true; $("workspace-preview").textContent = "";
+  try {
+    const file = event.target.files[0]; if (!file) return;
+    if (file.size > 6 * 1024 * 1024) throw new Error("Choose a workspace JSON file up to 6 MiB.");
+    const value = JSON.parse(await file.text());
+    if (value.schema !== "editguard-workspace-v1" || !value.tables || !Array.isArray(value.tables.chats) || !Array.isArray(value.tables.corrections)) throw new Error("Choose an EditGuard workspace snapshot.");
+    workspaceImport = value;
+    $("workspace-preview").textContent = value.tables.chats.length + " conversations, " + value.tables.corrections.length + " fact versions; revision " + value.revision + ". The server checks integrity and all references before import.";
+    $("workspace-restore").disabled = false;
+  } catch (error) { showError(error); }
+});
+$("workspace-restore").addEventListener("click", async () => {
+  if (!workspaceImport || state.busy) return;
+  $("workspace-restore").disabled = true;
+  try {
+    const result = await api("/api/workspace/restore", {snapshot: workspaceImport});
+    workspaceImport = null; $("workspace-file").value = ""; setRevision(result.revision);
+    await Promise.all([loadChats(), loadCorrections()]);
+    $("workspace-preview").textContent = "Workspace restored successfully at revision " + result.revision + ".";
+    toast("Workspace restored. Choose a saved conversation or start a new one.");
+  } catch (error) { showError(error); $("workspace-restore").disabled = false; }
+});
+
+function evidenceTable(headings, rows) {
+  const wrap = element("div", "result-table-wrap"), table = element("table"), head = element("thead"), tr = element("tr");
+  headings.forEach(text => tr.append(element("th", "", text))); head.append(tr); table.append(head);
+  const body = element("tbody");
+  rows.forEach(values => { const row = element("tr"); values.forEach(text => row.append(element("td", "", String(text ?? "Unavailable")))); body.append(row); });
+  table.append(body); wrap.append(table); return wrap;
+}
+
 async function loadResults() {
+  const evidence = await api("/api/experiments"), target = $("results-content"); target.replaceChildren();
+  $("experiment-kind").textContent = evidence.kind === "controlled_final_benchmark" ? "Controlled final experiment" : "Development acceptance · real generated answers";
+  $("experiment-notice").textContent = evidence.notice;
+  target.append(element("p", "result-footnote", "Model: " + evidence.model + " · revision " + evidence.model_revision));
+  if (evidence.kind === "controlled_final_benchmark") {
+    const report = evidence.report;
+    const cards = element("div", "results-cards");
+    cards.append(resultCard(report.independent_lineages, "Independent edit lineages"), resultCard(report.assigned_records, "Assigned records, including errors and abstentions"), resultCard(report.execution_status, "Execution state")); target.append(cards);
+    target.append(evidenceTable(["Condition", "Correct / assigned", "Wrong", "Abstain", "Errors", "Unexecuted", "Coverage"], Object.entries(report.conditions).map(([name, condition]) => {
+      const metric = condition.overall, counts = metric.counts;
+      return [name, counts.correct + "/" + metric.assigned, counts.wrong, counts.abstain, counts.execution_error, counts.unexecuted, metric.coverage === null ? "Undefined" : (100 * metric.coverage).toFixed(1) + "%"];
+    })));
+    target.append(element("h2", "", "Accuracy by question category"));
+    const names = Object.keys(report.conditions).filter(name => !name.endsWith("ORACLE"));
+    const categories = Object.keys(report.conditions[names[0]].by_category);
+    target.append(evidenceTable(["Category", ...names], categories.map(category => [category, ...names.map(name => {
+      const metric = report.conditions[name].by_category[category]; return metric.counts.correct + "/" + metric.assigned;
+    })])));
+    target.append(element("h2", "", "Warm pipeline latency"));
+    target.append(evidenceTable(["Condition", "Generated n", "p50 seconds", "p95 seconds"], names.map(name => {
+      const latency = report.conditions[name].overall.generated_latency;
+      return [name, latency.n, latency.p50_seconds?.toFixed(2), latency.p95_seconds?.toFixed(2)];
+    })));
+    target.append(element("p", "result-footnote", "Pipeline timing includes context selection, local worker communication and generation; it excludes loading and the browser network round trip. Cold loading is recorded separately in the raw export."));
+  } else {
+    const cards = element("div", "results-cards");
+    cards.append(resultCard(evidence.profile.matching_final_answers + "/" + evidence.profile.assigned, "Predefined startup final-answer matches"),
+      resultCard(evidence.workflow.factual_matches + "/" + evidence.workflow.factual_assigned, "Factual website checks"),
+      resultCard(evidence.workflow.assigned, "Website generations · ordinary chat checked separately"),
+      resultCard(evidence.workflow.owned_fact_inactive_at_end ? "Confirmed" : "Not confirmed", "Demonstration correction withdrawn")); target.append(cards);
+    target.append(element("h2", "", "Complete website workflow"));
+    target.append(evidenceTable(["Check", "Expected", "Generated answer", "Evaluation"], evidence.workflow.cases.map(row => [row.id, row.expected ?? "Nonempty only", row.actual, row.factual_quality_evaluated ? (row.passed ? "Exact final match" : "Did not match") : "Ordinary generation · qualitative check"])));
+    target.append(element("h2", "", "Startup checks, including two-hop reasoning"));
+    target.append(evidenceTable(["Question type", "Expected", "Generated", "Seconds"], evidence.profile.cases.map(row => [row.id, row.expected, row.actual, row.seconds?.toFixed(2)])));
+    target.append(element("p", "result-footnote", "Measured cold loading: " + evidence.profile.load_seconds.toFixed(2) + " s. Load peak reserved CUDA memory: " + (evidence.profile.peak_reserved_bytes / 1024 ** 3).toFixed(2) + " GiB. These are session measurements."));
+    const limitations = element("section", "tradeoff-note caution"); limitations.append(element("h3", "", "What these results establish"), element("p", "", evidence.notice));
+    evidence.limitations.forEach(text => limitations.append(element("p", "", text))); target.append(limitations);
+  }
+  state.resultsLoaded = true;
+}
+
+$("current-results").addEventListener("click", () => loadResults().catch(showError));
+$("archived-results").addEventListener("click", () => {
+  $("experiment-kind").textContent = "Archived visual-model study";
+  $("experiment-notice").textContent = "BLIP-2 experiment with a different model, dataset and protocol. Its scores are not current text-chat accuracy.";
+  loadArchivedResults().catch(showError);
+});
+$("download-results").addEventListener("click", async () => {
+  try {
+    const result = await api("/api/experiments"), url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], {type: "application/json"}));
+    const link = element("a"); link.href = url; link.download = "editguard-current-experiment.json"; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (error) { showError(error); }
+});
+
+async function loadArchivedResults() {
   const received = await api("/api/results");
   const report = received.report || received;
   const target = $("results-content"); target.replaceChildren();

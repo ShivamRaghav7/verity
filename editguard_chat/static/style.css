@@ -8,3 +8,8 @@
 
 .mobile-conversation-controls{display:none}
 @media(max-width:650px){.mobile-conversation-controls{display:flex;gap:9px;align-items:center;margin:17px 0 0;flex-shrink:0}.mobile-conversation-controls select{min-width:0;flex:1;background:#fff;border:1px solid #e0e7e4;color:#75887f;border-radius:6px;font-size:10px;padding:8px 10px;height:34px;max-width:calc(100% - 99px)}.mobile-new-chat{display:inline-flex;align-items:center;justify-content:center;gap:5px;border-radius:6px;color:#fff;background:var(--nav);font-size:10px;padding:8px 11px;height:34px;white-space:nowrap}.mobile-new-chat>span{font-size:16px;line-height:15px}.mobile-conversation-controls select:focus-visible{outline:2px solid var(--teal)}}
+
+.identity-fields { margin: 20px 0; padding: 16px; border: 1px solid var(--border, #dae1de); border-radius: 12px; }
+.identity-fields summary { cursor: pointer; font-size: .85rem; font-weight: 600; }
+.workspace-tools { margin-top: 32px; }
+.workspace-tools label { display:block; margin-top:20px; margin-bottom:10px; }
