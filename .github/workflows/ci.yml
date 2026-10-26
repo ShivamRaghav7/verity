@@ -22,6 +22,8 @@ jobs:
         run: docker build --file Dockerfile.chat --tag editguard-chat:ci .
       - name: Check the CLI without Ollama
         run: docker run --rm --network none editguard-chat:ci python -m editguard_chat.server --help
+      - name: Verify container HTTP, fact identity and workspace restoration without a model
+        run: docker run --rm --network none editguard-chat:ci python -m editguard_chat.check_deployment
       - name: Serve the website without inventing a ready model
         run: |
           docker run --detach --name editguard-chat-ci --network host editguard-chat:ci

@@ -338,6 +338,7 @@ function renderCorrections() {
     card.append(top, element("h3", "", row.question), element("p", "correction-answer", row.answer));
     const source = element("p", "correction-source"); source.append(element("span", "", "SOURCE  "), document.createTextNode(row.source || "Unspecified")); card.append(source);
     if (row.scope) card.append(element("span", "correction-scope", row.scope));
+    if (row.identity?.entity_id) card.append(element("p", "routing-note", "Canonical fact: " + row.identity.entity_id + " / " + row.identity.relation_id + " / " + row.identity.scope_id));
     if (row.supersedes) card.append(element("p", "routing-note", "Replaces an earlier version · " + String(row.supersedes).slice(0, 12)));
     const bottom = element("div", "correction-card-bottom");
     bottom.append(element("time", "", dateLabel(row.created_at)));
