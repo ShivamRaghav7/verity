@@ -119,3 +119,14 @@ inference, not the browser network; website latency requires its own workload.
 The regression tests use explicit software fixtures and no GPU inference. They
 are evidence for schema, routing, scoring, transaction and finite-plan behavior,
 not neural factual accuracy. Neural results must come from the saved CUDA runs.
+
+After final inference, generate the report, CSV scorecard and five scientific
+figures from actual receipts using an analysis environment with Matplotlib:
+
+```text
+python -m scripts.build_operations_report artifacts/operations/final-reasonke.json artifacts/operations/final-instruction.json --output reports/reasonke/operations-final-derived
+```
+
+This postprocessing does not load either model. Figure manifests bind raw input
+hashes and plotting-source identity. The report retains failed outcomes and
+documents latency scope, strict answer matching and the small controlled sample.

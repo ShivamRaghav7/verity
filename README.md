@@ -1,5 +1,12 @@
 # EditGuard: Chat & Knowledge
 
+The current implementation includes canonical entity/property/scope identities,
+transactional text-workspace export/restore, a current-model evidence dashboard,
+and the controlled operations evaluation pipeline. The new dataset contains 48
+independent edit lineages and 384 questions; its final neural results are separate
+from the already recorded development checks. See the
+[implemented benchmark and API workflow](docs/OPERATIONS_BENCHMARK.md).
+
 Read the [current project journey and finite finish plan](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md)
 for the goal, actual development timeline, planned final evaluation, metrics and
 five-workday release milestones. Proposed measurements are separate from recorded results.
