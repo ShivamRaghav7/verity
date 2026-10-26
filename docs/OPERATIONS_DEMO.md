@@ -81,9 +81,12 @@ blocked; the conflict box lets the operator select the existing version to repla
 This is deterministic identity-based conflict control, not a guarantee of
 detecting every semantic contradiction in arbitrary text.
 
-To undo the ownership update, withdraw its active version, turn on **Show
-inactive**, and restore the original Saffron version. Withdrawal advances to
-revision 11 and restoration to revision 12 in this clean example. Asking again
+To undo the ownership update, press **Roll back to previous version** on its
+active card. One transaction withdraws the replacement and restores Saffron at
+revision 11; both events share that revision, with no exposed empty state.
+Alternatively, withdraw the replacement, turn on **Show inactive**, and restore
+the original version manually. These two actions advance to revisions 11 and 12.
+Asking again
 should use Saffron/Mara. Restoring while a competing version is still active is
 rejected; no silent priority rule chooses one. Expand **Approval and rollback
 history** to inspect all events. Old messages remain historical evidence and

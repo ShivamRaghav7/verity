@@ -17,9 +17,11 @@ Customer chat does not publish corrections.
 | GET / POST | `/api/corrections` | List records/audit events / explicitly approve a correction |
 | POST | `/api/corrections/{id}/withdraw` | Deactivate while retaining history; idempotent |
 | POST | `/api/corrections/{id}/restore` | Restore a version unless an active version conflicts |
+| POST | `/api/corrections/{id}/rollback` | Withdraw an active replacement and restore its direct predecessor atomically in one new revision; idempotent |
 | GET | `/api/workspace/export` | Consistent checksummed text snapshot, refused during a mutation/model operation |
 | POST | `/api/workspace/restore` | Validate and atomically import `{ "snapshot": ... }` into an empty workspace |
 | GET | `/api/experiments` | Typed current ReasonKE development or controlled-final evidence |
+| GET | `/api/experiments/cases` | Saved raw-answer explorer, up to 20 records/page; optional `condition`, `category`, `outcome`, `offset` filters |
 | GET | `/api/experiments/artifacts/{name}` | Allowlisted current PNG/SVG figures, report, scorecard and figure provenance |
 | GET | `/api/examples/operations` | Fictional development catalogue and example questions, without approving anything |
 | POST | `/api/examples/operations/approve` | Explicitly approve nine fictional initial facts only when knowledge history is empty; existing chats are preserved |
@@ -50,6 +52,13 @@ To replace a conflicting active record, include its ID as `supersedes` in the
 new approval. Conflicts return HTTP 409 with the competing records; an operator
 must explicitly resolve them. This does not detect all semantic contradictions.
 
+**Rollback** is an atomic replacement undo: both withdrawal and restoration occur
+in one SQLite transaction and one knowledge revision. Both audit events remain.
+The operation refuses an original version with no predecessor or a replacement
+that has since been superseded. Injected late-event failures roll back both fact
+updates, the revision and the audit log together. Ordinary withdraw/restore remain
+available when the operator wants separate explicit changes.
+
 ## Workspace restore
 
 Snapshots contain exactly the versioned schema, creation timestamp, revision,
@@ -66,6 +75,9 @@ The restore action is the local operator's explicit approval of that workspace.
 Text snapshots are capped at 6 MiB and 10,000 rows per table. They refuse local
 image paths; image conversations require a private SQLite plus images-directory
 backup. Export before terminating the temporary Colab runtime.
+Export enforces the same limits as restore so it never promises an unsupported
+portable backup. Generated user/assistant turns and chat metadata commit together;
+a late storage failure leaves no partial conversation turn.
 
 ## Failures and generation provenance
 
@@ -75,6 +87,12 @@ template answer standing in for the neural model. Messages retain model revision
 knowledge revision, selected fact IDs, raw model output and answer-format details.
 Sources describe supplied context and operator approval; they are not a factual
 verification label for arbitrary generated prose.
+
+The saved-answer explorer verifies receipt hashes against the displayed
+experiment. It shows question/entity/relation/scope, expected and generated final
+answers, supplied fact IDs and sources, raw unverified output, model revision,
+request hash and timing. Filtering changes only the visible subset, never the
+scorecard denominator. It performs no model inference or post-test label changes.
 
 The CLI defaults to `--context-policy retrieved`, selected before final evaluation
 using the matched development comparison recorded in `configs/deployment-policy.json`.

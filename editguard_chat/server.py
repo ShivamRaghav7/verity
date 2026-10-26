@@ -19,7 +19,7 @@ from .backend import ModelError, OllamaClient, OllamaEncoder
 from .reasonke_backend import ApprovedFactContext, RetrievedFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
-from .results import current_results, experiment_artifact
+from .results import current_results, experiment_artifact, experiment_cases
 from .examples import approved_snapshot, catalogue
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -264,9 +264,8 @@ class ChatApplication:
         # dangling user turns on a retry. The request lock fixes the knowledge revision.
         current = {"role": "user", "content": content, "image_path": image}
         answer = self._answer(history + [current], mode, revision)
-        user = self.store.add_message(chat_id, "user", content, image_path=image, knowledge_revision=revision)
-        assistant = self.store.add_message(chat_id, "assistant", answer["content"],
-            evidence=answer["evidence"], knowledge_revision=revision)
+        user, assistant = self.store.add_turn(chat_id, content, answer["content"],
+            evidence=answer["evidence"], image_path=image, knowledge_revision=revision)
         return {"user": self.public_message(user), "assistant": self.public_message(assistant), "revision": revision}
 
     def compare(self, payload):
@@ -324,7 +323,7 @@ class ChatApplication:
                     payload.get("source"), payload.get("scope"), supersedes=payload.get("supersedes"),
                     identity=payload.get("identity"))
             else:
-                match = re.fullmatch(r"/api/corrections/([a-f0-9]{32})/(withdraw|restore)", path)
+                match = re.fullmatch(r"/api/corrections/([a-f0-9]{32})/(withdraw|restore|rollback)", path)
                 if match is None:
                     raise StoreError("Not found", 404)
                 row = getattr(self.store, match[2])(match[1])
@@ -413,6 +412,17 @@ def handler_for(app):
                     return self.reply(200, report.read_bytes())
                 if path == "/api/experiments":
                     return self.reply(200, current_results(ROOT))
+                if path == "/api/experiments/cases":
+                    query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+                    if any(len(value) != 1 for value in query.values()):
+                        raise StoreError("Supply each case filter only once")
+                    try:
+                        cases = experiment_cases(ROOT, {key: value[0] for key, value in query.items()})
+                    except ValueError as exc:
+                        raise StoreError(str(exc)) from exc
+                    except FileNotFoundError as exc:
+                        raise StoreError(str(exc), 404) from exc
+                    return self.reply(200, cases)
                 if path.startswith("/api/experiments/artifacts/"):
                     name = path.removeprefix("/api/experiments/artifacts/")
                     try:

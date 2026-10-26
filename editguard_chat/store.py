@@ -199,7 +199,8 @@ class ChatStore:
             return [self._message(row) for row in self._db.execute(
                 "SELECT * FROM messages WHERE chat_id=? ORDER BY position", (chat_id,))]
 
-    def add_message(self, chat_id, role, content, evidence=None, knowledge_revision=None, image_path=None):
+    @staticmethod
+    def _prepare_message(role, content, evidence=None, knowledge_revision=None, image_path=None):
         if role not in ("user", "assistant", "system"):
             raise StoreError("Message role must be user, assistant or system")
         if role == "user":
@@ -214,24 +215,42 @@ class ChatStore:
         if knowledge_revision is not None and (isinstance(knowledge_revision, bool)
                 or not isinstance(knowledge_revision, int) or knowledge_revision < 0):
             raise StoreError("Knowledge revision must be a nonnegative integer")
-        now, message_id = _now(), uuid.uuid4().hex
+        return {"id": uuid.uuid4().hex, "role": role, "content": content,
+                "evidence_json": encoded_evidence, "knowledge_revision": knowledge_revision,
+                "image_path": image_path, "created_at": _now()}
+
+    def _append_message(self, db, chat_id, prepared):
+        """Append inside the caller's transaction, including conversation metadata."""
+        chat = self._require_chat(db, chat_id)
+        position = db.execute("SELECT COALESCE(MAX(position), 0) + 1 FROM messages WHERE chat_id=?",
+                              (chat_id,)).fetchone()[0]
+        revision = self._revision(db) if prepared["knowledge_revision"] is None else prepared["knowledge_revision"]
+        db.execute("INSERT INTO messages VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                   (prepared["id"], chat_id, position, prepared["role"], prepared["content"], prepared["evidence_json"],
+                    revision, prepared["image_path"], prepared["created_at"]))
+        title = chat["title"]
+        if prepared["role"] == "user" and not db.execute(
+                "SELECT 1 FROM messages WHERE chat_id=? AND role='user' AND id<>? LIMIT 1",
+                (chat_id, prepared["id"])).fetchone():
+            collapsed = " ".join(prepared["content"].split())
+            title = collapsed[:57] + "…" if len(collapsed) > 60 else collapsed
+        db.execute("UPDATE chats SET title=?, updated_at=? WHERE id=?", (title, prepared["created_at"], chat_id))
+        return self._message(db.execute("SELECT * FROM messages WHERE id=?", (prepared["id"],)).fetchone())
+
+    def add_message(self, chat_id, role, content, evidence=None, knowledge_revision=None, image_path=None):
+        prepared = self._prepare_message(role, content, evidence, knowledge_revision, image_path)
         with self._transaction() as db:
-            chat = self._require_chat(db, chat_id)
-            position = db.execute("SELECT COALESCE(MAX(position), 0) + 1 FROM messages WHERE chat_id=?",
-                                  (chat_id,)).fetchone()[0]
-            revision = self._revision(db) if knowledge_revision is None else knowledge_revision
-            db.execute("INSERT INTO messages VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                       (message_id, chat_id, position, role, content, encoded_evidence,
-                        revision, image_path, now))
-            title = chat["title"]
-            if role == "user" and not db.execute(
-                    "SELECT 1 FROM messages WHERE chat_id=? AND role='user' AND id<>? LIMIT 1",
-                    (chat_id, message_id)).fetchone():
-                collapsed = " ".join(content.split())
-                title = collapsed[:57] + "…" if len(collapsed) > 60 else collapsed
-            db.execute("UPDATE chats SET title=?, updated_at=? WHERE id=?", (title, now, chat_id))
-            row = db.execute("SELECT * FROM messages WHERE id=?", (message_id,)).fetchone()
-        return self._message(row)
+            return self._append_message(db, chat_id, prepared)
+
+    def add_turn(self, chat_id, user_content, assistant_content, *, evidence=None,
+                 knowledge_revision=None, image_path=None):
+        """Store a generated user/assistant pair and chat metadata atomically."""
+        user = self._prepare_message("user", user_content, knowledge_revision=knowledge_revision,
+                                     image_path=image_path)
+        assistant = self._prepare_message("assistant", assistant_content, evidence, knowledge_revision)
+        with self._transaction() as db:
+            return (self._append_message(db, chat_id, user),
+                    self._append_message(db, chat_id, assistant))
 
     def list_corrections(self):
         with self._lock:
@@ -316,6 +335,10 @@ class ChatStore:
             if any(row["image_path"] for row in data["tables"]["messages"]):
                 raise StoreError("Portable JSON export supports text workspaces. This workspace contains images; use the private SQLite and images-directory backup instead.")
             data["sha256"] = hashlib.sha256(_json(data).encode("utf-8")).hexdigest()
+            from .workspace import LIMIT, validate_snapshot
+            if any(len(rows) > 10000 for rows in data["tables"].values()) or len(_json(data).encode("utf-8")) > LIMIT:
+                raise StoreError("This workspace exceeds the portable JSON restore limits (6 MiB / 10,000 rows per table). Use a private SQLite and images-directory backup instead.", 413)
+            validate_snapshot(data)
             return data
 
     def import_snapshot(self, snapshot, *, allow_existing_chats=False):
@@ -355,6 +378,37 @@ class ChatStore:
             self._event(db, correction_id, "withdrawn", revision, now, {})
             row = db.execute("SELECT * FROM corrections WHERE id=?", (correction_id,)).fetchone()
         return self._correction(row)
+
+    def rollback(self, correction_id):
+        """Withdraw an active replacement and restore its predecessor in one revision."""
+        if not isinstance(correction_id, str):
+            raise StoreError("Correction identifier must be text")
+        now = _now()
+        with self._transaction() as db:
+            current = db.execute("SELECT * FROM corrections WHERE id=?", (correction_id,)).fetchone()
+            self._correction(current)
+            if current["supersedes"] is None:
+                raise StoreError("This version does not replace an earlier fact", 409)
+            previous = db.execute("SELECT * FROM corrections WHERE id=?", (current["supersedes"],)).fetchone()
+            self._correction(previous)
+            if (previous["question_key"], previous["scope_key"]) != (current["question_key"], current["scope_key"]):
+                raise StoreError("Rollback predecessor has a different fact identity", 409)
+            if current["status"] == "withdrawn" and previous["status"] == "active":
+                return self._correction(previous)
+            if current["status"] != "active" or previous["status"] == "active":
+                raise StoreError("Roll back the current active replacement; this version is no longer active", 409)
+            revision = self._bump(db)
+            db.execute("UPDATE corrections SET status='withdrawn', updated_at=?, knowledge_revision=? WHERE id=?",
+                       (now, revision, correction_id))
+            self._event(db, correction_id, "withdrawn", revision, now,
+                        {"rollback": True, "restored_correction_id": previous["id"]})
+            db.execute("UPDATE corrections SET status='active', superseded_by=NULL, updated_at=?, knowledge_revision=?, "
+                       "approved_at=?, approved_by='local_research_operator' WHERE id=?",
+                       (now, revision, now, previous["id"]))
+            self._event(db, previous["id"], "restored", revision, now,
+                        {"previous_status": previous["status"], "rollback_of": correction_id})
+            restored = db.execute("SELECT * FROM corrections WHERE id=?", (previous["id"],)).fetchone()
+        return self._correction(restored)
 
     def restore(self, correction_id):
         if not isinstance(correction_id, str):

@@ -80,8 +80,34 @@ class ChatServerTests(unittest.TestCase):
         self.app.store.close()
         self.temp.cleanup()
 
+    def test_rollback_route_is_one_mutation_and_invalidates_context_cache(self):
+        payload = {"question": "Atlas owner?", "answer": "Amber", "source": "Fixture", "scope": "Atlas r2"}
+        first = self.app.mutate("/api/corrections", payload)["correction"]
+        second = self.app.mutate("/api/corrections", {**payload, "answer": "Indigo", "supersedes": first["id"]})["correction"]
+        clears = self.retriever.cache_clears
+        result = self.app.mutate(f"/api/corrections/{second['id']}/rollback", {})
+        self.assertEqual(result["correction"]["id"], first["id"])
+        self.assertEqual(result["revision"], 3)
+        self.assertEqual(self.retriever.cache_clears, clears + 1)
+        self.assertEqual(self.backend.calls, [])
+
     def ask(self, message, **extra):
         return self.app.mutate("/api/chat", {"chat_id": self.chat_id, "message": message, **extra})
+
+    def test_ask_late_storage_failure_never_leaves_a_dangling_user_turn(self):
+        before = self.app.store.get_chat(self.chat_id)
+        append = self.app.store._append_message
+        def fail_after_assistant_write(db, chat_id, prepared):
+            result = append(db, chat_id, prepared)
+            if prepared["role"] == "assistant":
+                raise RuntimeError("Injected late assistant persistence failure")
+            return result
+        with patch.object(self.app.store, "_append_message", side_effect=fail_after_assistant_write):
+            with self.assertRaisesRegex(RuntimeError, "late assistant persistence"):
+                self.ask("Question with a generated response")
+        self.assertEqual(len(self.backend.calls), 1, "The fixture generation must precede storage")
+        self.assertEqual(self.app.store.get_chat(self.chat_id), before)
+        self.assertFalse(self.app.lock.locked(), "Storage failure must release the operation lock")
 
     def publish(self):
         return self.app.mutate("/api/corrections", {
@@ -332,6 +358,12 @@ class ChatHTTPTests(unittest.TestCase):
         self.assertEqual(current["report"]["conditions"]["R-RAG"]["overall"]["assigned"], assigned)
         status, _, _ = self.request("/api/experiments/artifacts/not-a-report.png")
         self.assertEqual(status, 404)
+        code, cases, _ = self.request("/api/experiments/cases?condition=R-ALL&outcome=wrong")
+        self.assertEqual(code, 200)
+        self.assertLessEqual(len(cases["cases"]), 20)
+        self.assertTrue(all(row["outcome"] == "wrong" for row in cases["cases"]))
+        code, _, _ = self.request("/api/experiments/cases?condition=R-ALL&condition=G-ALL")
+        self.assertEqual(code, 400)
 
     def test_workspace_export_refuses_inflight_mutation(self):
         self.app.lock.acquire()

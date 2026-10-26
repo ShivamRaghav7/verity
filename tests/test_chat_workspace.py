@@ -3,6 +3,7 @@ import copy
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from editguard_chat.store import ChatStore, StoreError
 from editguard_chat.workspace import seal
@@ -132,6 +133,42 @@ class WorkspaceTests(unittest.TestCase):
         with self.assertRaises(StoreError):
             self.target.import_snapshot(snapshot)
         self.assertEqual(self.target.get_revision(), 0)
+
+    def test_atomic_rollback_snapshot_roundtrip_keeps_both_events_in_one_revision(self):
+        first = self.publish()
+        second = self.publish(answer="Indigo team", supersedes=first["id"])
+        self.source.rollback(second["id"])
+        self.target.import_snapshot(self.source.export_snapshot())
+        self.assertEqual(self.target.get_revision(), 3)
+        self.assertEqual(self.target.list_events(), self.source.list_events())
+        self.assertEqual([row["id"] for row in self.target.memory_at_revision(3)], [first["id"]])
+
+    def test_rehashed_cyclic_or_reversed_lineage_cannot_enter_the_store(self):
+        first = self.publish()
+        second = self.publish(answer="Indigo team", supersedes=first["id"])
+        third = self.publish(answer="Violet team", supersedes=second["id"])
+        snapshot = self.source.export_snapshot()
+        mutations = ((first["id"], "supersedes", second["id"]),
+                     (second["id"], "supersedes", third["id"]),
+                     (third["id"], "superseded_by", first["id"]))
+        for key, field, reference in mutations:
+            changed = copy.deepcopy(snapshot)
+            next(row for row in changed["tables"]["corrections"] if row["id"] == key)[field] = reference
+            seal(changed)
+            with self.subTest(field=field, key=key), self.assertRaises(StoreError):
+                self.target.import_snapshot(changed)
+            self.assertEqual(self.target.get_revision(), 0)
+            self.assertEqual(self.target.list_corrections(), [])
+
+    def test_export_never_promises_a_snapshot_above_its_own_restore_budget(self):
+        self.publish()
+        with patch("editguard_chat.workspace.LIMIT", 100):
+            with self.assertRaises(StoreError) as caught:
+                self.source.export_snapshot()
+        self.assertEqual(caught.exception.status, 413)
+        self.assertEqual(self.source.get_revision(), 1)
+        self.target.import_snapshot(self.source.export_snapshot())
+        self.assertEqual(self.target.list_corrections(), self.source.list_corrections())
 
 
 if __name__ == "__main__":

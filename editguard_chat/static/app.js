@@ -360,6 +360,7 @@ function renderCorrections() {
     bottom.append(element("time", "", dateLabel(row.created_at)));
     const actions = element("div", "message-actions"); actions.style.marginTop = "0";
     if (activeRow) actions.append(actionButton("Publish a new version", "", () => startReplacement(row)));
+    if (activeRow && row.supersedes) actions.append(actionButton("Roll back to previous version", "", () => changeCorrection(row.id, "rollback").catch(showError)));
     actions.append(actionButton(activeRow ? "Withdraw" : "Restore version", "", () => changeCorrection(row.id, activeRow ? "withdraw" : "restore").catch(showError)));
     bottom.append(actions); card.append(bottom); list.append(card);
   }
@@ -435,7 +436,7 @@ async function changeCorrection(id, action) {
   clearError();
   const result = await api("/api/corrections/" + encodeURIComponent(id) + "/" + action, {});
   setRevision(result.revision); await loadCorrections(); $("revision-notice").hidden = false;
-  toast(action === "withdraw" ? "Correction withdrawn. New answers will use the current knowledge state." : "Version restored. Return to Chat to inspect its effect.");
+  toast(action === "withdraw" ? "Correction withdrawn. New answers will use the current knowledge state." : action === "rollback" ? "Previous version restored in one transaction. Return to Chat to inspect its effect." : "Version restored. Return to Chat to inspect its effect.");
 }
 
 function resultCard(value, caption) { const card = element("div", "result-card"); card.append(element("strong", "", value), element("span", "", caption)); return card; }
@@ -521,6 +522,51 @@ function evidenceTable(headings, rows) {
   table.append(body); wrap.append(table); return wrap;
 }
 
+async function addAnswerExplorer(target, report) {
+  const panel = element("section", "result-panel answer-explorer");
+  panel.append(element("h2", "", "Inspect the saved answers"), element("p", "routing-note", "Read actual model outputs and supplied facts. These are saved experiment records, not fresh chat responses. Filtering does not change reported denominators."));
+  const filters = element("div", "case-filters"), controls = {};
+  const choices = {condition: Object.keys(report.conditions), outcome: ["wrong", "abstain", "execution_error", "unexecuted", "correct"], category: Object.keys(report.conditions["R-RAG"].by_category)};
+  for (const [name, values] of Object.entries(choices)) {
+    const label = element("label", "", name[0].toUpperCase() + name.slice(1));
+    const select = element("select"); select.setAttribute("aria-label", "Saved answer " + name);
+    const all = element("option", "", "All " + (name === "category" ? "categories" : name + "s")); all.value = ""; select.append(all);
+    values.forEach(value => { const option = element("option", "", value.replaceAll("_", " ")); option.value = value; select.append(option); });
+    controls[name] = select; label.append(select); filters.append(label);
+  }
+  const load = element("button", "quiet-button", "Show saved answers"); load.type = "button"; filters.append(load);
+  const summary = element("p", "routing-note"), list = element("div", "case-list");
+  const more = element("button", "quiet-button", "Load next 20 saved answers"); more.type = "button"; more.hidden = true;
+  let next = null;
+  async function showCases(offset=0) {
+    load.disabled = true; more.disabled = true;
+    try {
+      const params = new URLSearchParams({offset: String(offset)});
+      Object.entries(controls).forEach(([name, select]) => { if (select.value) params.set(name, select.value); });
+      const result = await api("/api/experiments/cases?" + params);
+      if (offset === 0) list.replaceChildren();
+      summary.textContent = result.total + " matching saved records · " + result.phase + " · " + result.notice;
+      for (const row of result.cases) {
+        const item = element("details", "saved-case"), title = element("summary", "", row.condition + " · " + row.outcome.replaceAll("_", " ") + " · " + row.question.question);
+        item.append(title, element("p", "", "Expected: " + row.question.expected_answer), element("p", "", "Generated final answer: " + (row.content ?? "No answer generated")));
+        item.append(element("p", "routing-note", "Requested: " + row.question.requested_entity + " / " + row.question.requested_relation + " / " + row.question.requested_scope));
+        if (row.error) item.append(element("pre", "case-raw", JSON.stringify(row.error, null, 2)));
+        item.append(element("h3", "", "Facts supplied to the model"));
+        row.supplied_facts.forEach(fact => item.append(element("p", "case-fact", fact.id + " · " + fact.question + " → " + fact.answer + "\nScope: " + fact.scope + "\nSource: " + fact.source)));
+        const trace = element("details", "case-trace"); trace.append(element("summary", "", "Raw generated output · explanatory prose is unverified"), element("pre", "case-raw", row.raw_output || "No raw generation recorded")); item.append(trace);
+        const generation = row.generation || {};
+        item.append(element("p", "routing-note", "Model: " + (generation.model || "No generation") + " · revision " + (generation.revision || "unavailable") + " · pipeline " + (row.pipeline_seconds?.toFixed(2) ?? "unavailable") + " s · prompt SHA256 " + (row.request_sha256 || "unavailable")));
+        list.append(item);
+      }
+      next = result.next_offset; more.hidden = next === null;
+    } catch (error) { showError(error); }
+    finally { load.disabled = false; more.disabled = false; }
+  }
+  load.addEventListener("click", () => showCases()); more.addEventListener("click", () => showCases(next));
+  panel.append(filters, summary, list, more); target.append(panel);
+  await showCases();
+}
+
 async function loadResults() {
   const evidence = await api("/api/experiments"), target = $("results-content"); target.replaceChildren();
   const controlled = evidence.kind.startsWith("controlled_");
@@ -573,6 +619,7 @@ async function loadResults() {
       const link = element("a", "quiet-button", label); link.href = "/api/experiments/artifacts/" + name; link.target = "_blank"; link.rel = "noopener"; downloads.append(link);
     }
     target.append(downloads);
+    await addAnswerExplorer(target, report);
   } else {
     const cards = element("div", "results-cards");
     cards.append(resultCard(evidence.profile.matching_final_answers + "/" + evidence.profile.assigned, "Predefined startup final-answer matches"),

@@ -132,6 +132,8 @@ def validate_snapshot(snapshot):
         lineage = corrections.get(row["lineage_id"])
         if lineage is None or lineage["version"] != 1 or lineage["lineage_id"] != lineage["id"]:
             raise StoreError("Snapshot lineage must refer to its original version")
+        if row["version"] == 1 and row["supersedes"] is not None:
+            raise StoreError("The original fact version cannot supersede a later record")
         for name in ("lineage_id", "supersedes", "superseded_by"):
             reference = row[name]
             if reference is not None:
@@ -140,6 +142,11 @@ def validate_snapshot(snapshot):
                     raise StoreError("Snapshot correction lineage is broken")
                 if name != "lineage_id" and reference == row["id"]:
                     raise StoreError("Snapshot contains a self-referencing correction")
+                if target["lineage_id"] != row["lineage_id"]:
+                    raise StoreError("Snapshot correction references another lineage")
+                if ((name == "supersedes" and target["version"] >= row["version"])
+                        or (name == "superseded_by" and target["version"] <= row["version"])):
+                    raise StoreError("Snapshot correction lineage has a cyclic or reversed version edge")
     sequences, revisions, last_states, last_revisions, published = set(), set(), {}, {}, set()
     active_keys, previous_revision = {}, 0
     for row in sorted(tables["events"], key=lambda event: event["sequence"]):

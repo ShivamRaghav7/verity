@@ -81,6 +81,14 @@ def verify():
             check("withdraw_is_idempotent", app.store.get_revision() == before)
             code, result = request(f"/api/corrections/{first_id}/restore", {})
             check("historical_version_restores", code == 200 and result["correction"]["status"] == "active")
+            code, replacement = request("/api/corrections", {**payload, "answer": "Violet", "supersedes": first_id})
+            active_id, before = replacement["correction"]["id"], replacement["revision"]
+            code, result = request(f"/api/corrections/{active_id}/rollback", {})
+            check("atomic_rollback_one_revision", code == 200 and result["revision"] == before + 1 and result["correction"]["id"] == first_id)
+            last_events = app.store.list_events()[-2:]
+            check("rollback_two_audit_events_same_revision", [(row["action"], row["revision"]) for row in last_events] == [("withdrawn", before + 1), ("restored", before + 1)])
+            code, result = request(f"/api/corrections/{active_id}/rollback", {})
+            check("rollback_is_idempotent", code == 200 and result["revision"] == before + 1)
             code, snapshot = request("/api/workspace/export")
             check("portable_text_snapshot_export", code == 200 and snapshot["schema"] == "editguard-workspace-v1")
             code, _ = request("/api/workspace/restore", {"snapshot": snapshot})

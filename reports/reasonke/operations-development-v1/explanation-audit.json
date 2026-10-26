@@ -1,0 +1,1174 @@
+{
+  "schema": "editguard-explanation-support-audit-v1",
+  "phase": "development",
+  "execution_status": "completed",
+  "created_utc": "2026-10-26T15:43:08.276937+00:00",
+  "receipt_sha256": "24883b0147cf00baaa3aceda8020ed74f485bb0190d903530939b277e3b7ca65",
+  "protocol_sha256": null,
+  "audit_script_sha256": "251919d3d530704506a89fbe58dd9718866c910d1a22ca588d1dc6b9d19fbf17",
+  "assigned_traces": 12,
+  "by_condition": {
+    "R-RAG": {
+      "assigned_traces": 6,
+      "trace_status_counts": {
+        "inspected": 6
+      },
+      "extracted_indexed_claims": 12,
+      "supplied_support_counts": {
+        "supported": 12,
+        "contradicted": 0,
+        "unsupported": 0,
+        "unassessable": 0
+      },
+      "current_fact_counts": {
+        "supported": 12,
+        "contradicted": 0,
+        "unsupported": 0,
+        "unassessable": 0
+      },
+      "traces_with_current_fact_contradictions": 0,
+      "unassessable_segments_retained": 24,
+      "fully_verified_traces": 0
+    },
+    "R-ALL": {
+      "assigned_traces": 6,
+      "trace_status_counts": {
+        "inspected": 6
+      },
+      "extracted_indexed_claims": 12,
+      "supplied_support_counts": {
+        "supported": 10,
+        "contradicted": 2,
+        "unsupported": 0,
+        "unassessable": 0
+      },
+      "current_fact_counts": {
+        "supported": 10,
+        "contradicted": 2,
+        "unsupported": 0,
+        "unassessable": 0
+      },
+      "traces_with_current_fact_contradictions": 2,
+      "unassessable_segments_retained": 24,
+      "fully_verified_traces": 0
+    }
+  },
+  "traces": [
+    {
+      "id": "R-RAG:ops-003-two_hop",
+      "question_id": "ops-003-two_hop",
+      "lineage_id": "ops-003",
+      "condition": "R-RAG",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Orin Dane",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "resolved_question": "Which team owns Dahlia Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Copper unit 74",
+          "raw_action_statements": [
+            "According to the updated information, Dahlia Relay in release 2 is owned by Copper unit 74, so the answer is \\boxed{Copper unit 74}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for [sub answer 1]?",
+          "resolved_question": "Who is the on-call contact for Copper unit 74?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Orin Dane",
+          "raw_action_statements": [
+            "The on-call contact for Copper unit 74 is provided as Orin Dane, so the answer is \\boxed{Orin Dane}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, Dahlia Relay in release 2 is owned by Copper unit 74, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "The on-call contact for Copper unit 74 is provided as Orin Dane, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay and related teams, along with the on-call contacts for those teams. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Orin Dane</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay and related teams, along with the on-call contacts for those teams. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, Dahlia Relay in release 2 is owned by Copper unit 74, so the answer is \\boxed{Copper unit 74}.\n[Sub question 2]The on-call contact for Copper unit 74 is provided as Orin Dane, so the answer is \\boxed{Orin Dane}.</action>\n</think>\n<answer>Orin Dane</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "f210053c6cf76e41615eaa6d07af7f1e55ef8e9882ac7bdfbda38ac13688efb7"
+    },
+    {
+      "id": "R-RAG:ops-003-two_hop_paraphrase",
+      "question_id": "ops-003-two_hop_paraphrase",
+      "lineage_id": "ops-003",
+      "condition": "R-RAG",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Orin Dane",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "resolved_question": "Which team owns Dahlia Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Copper unit 74",
+          "raw_action_statements": [
+            "According to the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is \\boxed{Copper unit 74}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for [sub answer 1]?",
+          "resolved_question": "Who is the on-call contact for Copper unit 74?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Orin Dane",
+          "raw_action_statements": [
+            "Using the information from the updated facts, the on-call contact for Copper unit 74 is Orin Dane, so the answer is \\boxed{Orin Dane}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "Using the information from the updated facts, the on-call contact for Copper unit 74 is Orin Dane, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides specific details about Dahlia Relay in release 2, including the owning team and the on-call contact. The query asks for the name of the on-call person for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Orin Dane</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides specific details about Dahlia Relay in release 2, including the owning team and the on-call contact. The query asks for the name of the on-call person for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is \\boxed{Copper unit 74}.\n[Sub question 2]Using the information from the updated facts, the on-call contact for Copper unit 74 is Orin Dane, so the answer is \\boxed{Orin Dane}.</action>\n</think>\n<answer>Orin Dane</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "85acf14343c4d032b66bf4b827b3ce8bb80a9b9101ce14480ad43c020d1363da"
+    },
+    {
+      "id": "R-RAG:ops-004-two_hop",
+      "question_id": "ops-004-two_hop",
+      "lineage_id": "ops-004",
+      "condition": "R-RAG",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Lina Dane",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Ember Relay in release 2?",
+          "resolved_question": "Which team owns Ember Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Willow unit 75",
+          "raw_action_statements": [
+            "According to the updated information, the team that owns Ember Relay in release 2 is Willow unit 75, so the answer is \\boxed{Willow unit 75}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for [sub answer 1]?",
+          "resolved_question": "Who is the on-call contact for Willow unit 75?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Lina Dane",
+          "raw_action_statements": [
+            "The on-call contact for Willow unit 75 is provided as Lina Dane, so the answer is \\boxed{Lina Dane}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, the team that owns Ember Relay in release 2 is Willow unit 75, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "The on-call contact for Willow unit 75 is provided as Lina Dane, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership of Ember Relay in release 2, as well as the on-call contact for Willow unit 75. The query asks for the on-call contact for the team that owns Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Lina Dane</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Ember Relay in release 2, as well as the on-call contact for Willow unit 75. The query asks for the on-call contact for the team that owns Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Ember Relay in release 2 is Willow unit 75, so the answer is \\boxed{Willow unit 75}.\n[Sub question 2]The on-call contact for Willow unit 75 is provided as Lina Dane, so the answer is \\boxed{Lina Dane}.</action>\n</think>\n<answer>Lina Dane</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "3fd1a5ec64e72126146771240e13b6d5ec832f5a94e42c32ed5fe7ff62f2bc3f"
+    },
+    {
+      "id": "R-RAG:ops-004-two_hop_paraphrase",
+      "question_id": "ops-004-two_hop_paraphrase",
+      "lineage_id": "ops-004",
+      "condition": "R-RAG",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Lina Dane",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Ember Relay in release 2?",
+          "resolved_question": "Which team owns Ember Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Willow unit 75",
+          "raw_action_statements": [
+            "According to the updated information, the answer is \\boxed{Willow unit 75}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for that team?",
+          "resolved_question": "Who is the on-call contact for Willow unit 75?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Lina Dane",
+          "raw_action_statements": [
+            "Using the information provided, the on-call contact for Willow unit 75 is \\boxed{Lina Dane}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "Using the information provided, the on-call contact for Willow unit 75 is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership of Ember Relay in release 2, along with the on-call contact for Willow unit 75. The query asks for the owning team of Ember Relay in release 2 and the name of their on-call person.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Lina Dane</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Ember Relay in release 2, along with the on-call contact for Willow unit 75. The query asks for the owning team of Ember Relay in release 2 and the name of their on-call person.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the answer is \\boxed{Willow unit 75}.\n[Sub question 2]Using the information provided, the on-call contact for Willow unit 75 is \\boxed{Lina Dane}.</action>\n</think>\n<answer>Lina Dane</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "ec4baa92fe86fff3e24cf0881ae2c2d78096370664e1b5e26977821e104f26b1"
+    },
+    {
+      "id": "R-RAG:ops-009-two_hop",
+      "question_id": "ops-009-two_hop",
+      "lineage_id": "ops-009",
+      "condition": "R-RAG",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Ilan Reeve",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Juniper Relay in release 2?",
+          "resolved_question": "Which team owns Juniper Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Amber unit 80",
+          "raw_action_statements": [
+            "According to the updated information, the team that owns Juniper Relay in release 2 is Amber unit 80, so the answer is \\boxed{Amber unit 80}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for [sub answer 1]?",
+          "resolved_question": "Who is the on-call contact for Amber unit 80?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Ilan Reeve",
+          "raw_action_statements": [
+            "The on-call contact for Amber unit 80 is Ilan Reeve, so the answer is \\boxed{Ilan Reeve}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, the team that owns Juniper Relay in release 2 is Amber unit 80, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "The on-call contact for Amber unit 80 is Ilan Reeve, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership of Juniper Relay and related units in different releases. The query asks for the on-call contact for the team that owns Juniper Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Ilan Reeve</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Juniper Relay and related units in different releases. The query asks for the on-call contact for the team that owns Juniper Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Juniper Relay in release 2 is Amber unit 80, so the answer is \\boxed{Amber unit 80}.\n[Sub question 2]The on-call contact for Amber unit 80 is Ilan Reeve, so the answer is \\boxed{Ilan Reeve}.</action>\n</think>\n<answer>Ilan Reeve</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "51542f94b6ca525872b12ed83894eee74fad7d45d5f7d7e3735400c215fd1323"
+    },
+    {
+      "id": "R-RAG:ops-009-two_hop_paraphrase",
+      "question_id": "ops-009-two_hop_paraphrase",
+      "lineage_id": "ops-009",
+      "condition": "R-RAG",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Ilan Reeve",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Juniper Relay in release 2?",
+          "resolved_question": "Which team owns Juniper Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Amber unit 80",
+          "raw_action_statements": [
+            "According to the updated information, the answer is \\boxed{Amber unit 80}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for that team?",
+          "resolved_question": "Who is the on-call contact for Amber unit 80?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Ilan Reeve",
+          "raw_action_statements": [
+            "Using the information from the updated facts, the on-call contact for Amber unit 80 is \\boxed{Ilan Reeve}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "Using the information from the updated facts, the on-call contact for Amber unit 80 is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership of Juniper Relay in release 2, along with the on-call contact for the relevant team. The query asks for the owning team of Juniper Relay in release 2 and the name of their on-call person.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Ilan Reeve</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Juniper Relay in release 2, along with the on-call contact for the relevant team. The query asks for the owning team of Juniper Relay in release 2 and the name of their on-call person.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the answer is \\boxed{Amber unit 80}.\n[Sub question 2]Using the information from the updated facts, the on-call contact for Amber unit 80 is \\boxed{Ilan Reeve}.</action>\n</think>\n<answer>Ilan Reeve</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "00e9ef7b70c370c78efe80a0f3bc9dd713df4ad9c73c0d2be48ce5578b419e2d"
+    },
+    {
+      "id": "R-ALL:ops-003-two_hop",
+      "question_id": "ops-003-two_hop",
+      "lineage_id": "ops-003",
+      "condition": "R-ALL",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Orin Dane",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "resolved_question": "Which team owns Dahlia Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Copper unit 74",
+          "raw_action_statements": [
+            "From the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is \\boxed{Copper unit 74}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for [sub answer 1]?",
+          "resolved_question": "Who is the on-call contact for Copper unit 74?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Orin Dane",
+          "raw_action_statements": [
+            "The on-call contact for Copper unit 74 is Orin Dane, so the answer is \\boxed{Orin Dane}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "From the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "The on-call contact for Copper unit 74 is Orin Dane, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about various units, their functions, and the teams that own them in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Orin Dane</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about various units, their functions, and the teams that own them in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is \\boxed{Copper unit 74}.\n[Sub question 2]The on-call contact for Copper unit 74 is Orin Dane, so the answer is \\boxed{Orin Dane}.</action>\n</think>\n<answer>Orin Dane</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "4a6c6d063f703184355ef2f019b0b179739413c168262f6634bc2d56cdd7a402"
+    },
+    {
+      "id": "R-ALL:ops-003-two_hop_paraphrase",
+      "question_id": "ops-003-two_hop_paraphrase",
+      "lineage_id": "ops-003",
+      "condition": "R-ALL",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Orin Dane",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "resolved_question": "Which team owns Dahlia Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Copper unit 74",
+          "raw_action_statements": [
+            "From the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is \\boxed{Copper unit 74}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f1"
+            ],
+            "fact_answers": [
+              "Copper unit 74"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for that team?",
+          "resolved_question": "Who is the on-call contact for Copper unit 74?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Orin Dane",
+          "raw_action_statements": [
+            "The on-call contact for Copper unit 74 is Orin Dane, so the answer is \\boxed{Orin Dane}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-003-f3"
+            ],
+            "fact_answers": [
+              "Orin Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "From the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "The on-call contact for Copper unit 74 is Orin Dane, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about various units and their functions, along with information regarding the owning teams and on-call contacts. The query asks for the on-call person's name associated with the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Orin Dane</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about various units and their functions, along with information regarding the owning teams and on-call contacts. The query asks for the on-call person's name associated with the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, Dahlia Relay is owned by Copper unit 74 in release 2, so the answer is \\boxed{Copper unit 74}.\n[Sub question 2]The on-call contact for Copper unit 74 is Orin Dane, so the answer is \\boxed{Orin Dane}.</action>\n</think>\n<answer>Orin Dane</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "461caf350499d9075fd32c579f61aeadf11317853cb35dfb17634f00d436ac1d"
+    },
+    {
+      "id": "R-ALL:ops-004-two_hop",
+      "question_id": "ops-004-two_hop",
+      "lineage_id": "ops-004",
+      "condition": "R-ALL",
+      "primary_outcome_unchanged": "wrong",
+      "final_answer_unchanged": "Ilan Voss",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Ember Relay in release 2?",
+          "resolved_question": "Which team owns Ember Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Willow unit 75",
+          "raw_action_statements": [
+            "According to the updated information, Ember Relay is owned by Willow unit 75 in release 2, so the answer is \\boxed{Willow unit 75}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for [sub answer 1]?",
+          "resolved_question": "Who is the on-call contact for Willow unit 75?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Ilan Voss",
+          "raw_action_statements": [
+            "The on-call contact for Willow unit 75 is Ilan Voss, so the answer is \\boxed{Ilan Voss}."
+          ],
+          "supplied_fact_support": {
+            "label": "contradicted",
+            "reason": "Known fact-question has a different authoritative answer",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "contradicted",
+            "reason": "Known fact-question has a different authoritative answer",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, Ember Relay is owned by Willow unit 75 in release 2, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "The on-call contact for Willow unit 75 is Ilan Voss, so the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and regions related to Ember Relay. The query asks for the on-call contact for the team that owns Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Ilan Voss</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and regions related to Ember Relay. The query asks for the on-call contact for the team that owns Ember Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, Ember Relay is owned by Willow unit 75 in release 2, so the answer is \\boxed{Willow unit 75}.\n[Sub question 2]The on-call contact for Willow unit 75 is Ilan Voss, so the answer is \\boxed{Ilan Voss}.</action>\n</think>\n<answer>Ilan Voss</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "318c148106fe28f850d2650b5c4e944736c4641eeb69fc26dddc41740e13baea"
+    },
+    {
+      "id": "R-ALL:ops-004-two_hop_paraphrase",
+      "question_id": "ops-004-two_hop_paraphrase",
+      "lineage_id": "ops-004",
+      "condition": "R-ALL",
+      "primary_outcome_unchanged": "wrong",
+      "final_answer_unchanged": "Ilan Voss",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Ember Relay in release 2?",
+          "resolved_question": "Which team owns Ember Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Willow unit 75",
+          "raw_action_statements": [
+            "From the updated information, the answer is \\boxed{Willow unit 75}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-004-f1"
+            ],
+            "fact_answers": [
+              "Willow unit 75"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for that team?",
+          "resolved_question": "Who is the on-call contact for Willow unit 75?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Ilan Voss",
+          "raw_action_statements": [
+            "Using the information from the updated facts, the on-call contact for Willow unit 75 is \\boxed{Ilan Voss}."
+          ],
+          "supplied_fact_support": {
+            "label": "contradicted",
+            "reason": "Known fact-question has a different authoritative answer",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "contradicted",
+            "reason": "Known fact-question has a different authoritative answer",
+            "matching_fact_ids": [
+              "ops-004-f3"
+            ],
+            "fact_answers": [
+              "Lina Dane"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "From the updated information, the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "Using the information from the updated facts, the on-call contact for Willow unit 75 is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and relays in different releases. The query asks for the owning team of Ember Relay in release 2 and the on-call person's name associated with that team.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Ilan Voss</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and relays in different releases. The query asks for the owning team of Ember Relay in release 2 and the on-call person's name associated with that team.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Ember Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, the answer is \\boxed{Willow unit 75}.\n[Sub question 2]Using the information from the updated facts, the on-call contact for Willow unit 75 is \\boxed{Ilan Voss}.</action>\n</think>\n<answer>Ilan Voss</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "1cf6089ceb68bfd4d56078799eb8cbbb7b115985fee928c9fa9c2847fa4ba0e1"
+    },
+    {
+      "id": "R-ALL:ops-009-two_hop",
+      "question_id": "ops-009-two_hop",
+      "lineage_id": "ops-009",
+      "condition": "R-ALL",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Ilan Reeve",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Juniper Relay in release 2?",
+          "resolved_question": "Which team owns Juniper Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Amber unit 80",
+          "raw_action_statements": [
+            "From the updated information, the answer is \\boxed{Amber unit 80}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for this team?",
+          "resolved_question": "Who is the on-call contact for Amber unit 80?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Ilan Reeve",
+          "raw_action_statements": [
+            "Using the controlled fictional internal operations handbook, the on-call contact for Amber unit 80 is \\boxed{Ilan Reeve}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "From the updated information, the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "Using the controlled fictional internal operations handbook, the on-call contact for Amber unit 80 is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and relays in different releases. The query asks for the on-call contact for the team that owns Juniper Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for this team?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Ilan Reeve</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units and relays in different releases. The query asks for the on-call contact for the team that owns Juniper Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for this team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]From the updated information, the answer is \\boxed{Amber unit 80}.\n[Sub question 2]Using the controlled fictional internal operations handbook, the on-call contact for Amber unit 80 is \\boxed{Ilan Reeve}.</action>\n</think>\n<answer>Ilan Reeve</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "90139f4b9c4aeeb64feb05152e79462be1aea9781ea3e6563aa7142cb9833370"
+    },
+    {
+      "id": "R-ALL:ops-009-two_hop_paraphrase",
+      "question_id": "ops-009-two_hop_paraphrase",
+      "lineage_id": "ops-009",
+      "condition": "R-ALL",
+      "primary_outcome_unchanged": "correct",
+      "final_answer_unchanged": "Ilan Reeve",
+      "claims": [
+        {
+          "subquestion_index": 1,
+          "question": "Which team owns Juniper Relay in release 2?",
+          "resolved_question": "Which team owns Juniper Relay in release 2?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Amber unit 80",
+          "raw_action_statements": [
+            "According to the updated information, the answer is \\boxed{Amber unit 80}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f1"
+            ],
+            "fact_answers": [
+              "Amber unit 80"
+            ]
+          }
+        },
+        {
+          "subquestion_index": 2,
+          "question": "Who is the on-call contact for that team?",
+          "resolved_question": "Who is the on-call contact for Amber unit 80?",
+          "resolution_rule": "Indexed-reference substitution; that/this team resolves only at step 2 to boxed step 1",
+          "boxed_answer": "Ilan Reeve",
+          "raw_action_statements": [
+            "Using the information from the updated facts, the on-call contact for Amber unit 80 is \\boxed{Ilan Reeve}."
+          ],
+          "supplied_fact_support": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          },
+          "current_fact_correctness": {
+            "label": "supported",
+            "reason": "Exact resolved fact-question and answer match",
+            "matching_fact_ids": [
+              "ops-009-f3"
+            ],
+            "fact_answers": [
+              "Ilan Reeve"
+            ]
+          }
+        }
+      ],
+      "unassessable_segments": [
+        {
+          "reason": "Action preamble retained without semantic certification",
+          "text": "Answer sub questions based on updated knowledge:"
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "According to the updated information, the answer is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Surrounding action prose is retained without semantic claim certification",
+          "text": "Using the information from the updated facts, the on-call contact for Amber unit 80 is [boxed subanswer audited separately]."
+        },
+        {
+          "reason": "Raw text outside action block is retained; not semantically audited",
+          "text": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units in different releases. The query asks for the owning team of Juniper Relay in release 2 and the on-call person's name associated with that team.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n[indexed action block audited separately]\n</think>\n<answer>Ilan Reeve</answer>"
+        }
+      ],
+      "raw_output": "<think>\n<acknowledge>The updated information provides details about the ownership and functions of various units in different releases. The query asks for the owning team of Juniper Relay in release 2 and the on-call person's name associated with that team.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Juniper Relay in release 2?\n[Sub question 2]Who is the on-call contact for that team?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the answer is \\boxed{Amber unit 80}.\n[Sub question 2]Using the information from the updated facts, the on-call contact for Amber unit 80 is \\boxed{Ilan Reeve}.</action>\n</think>\n<answer>Ilan Reeve</answer>",
+      "trace_fully_verified": false,
+      "trace_status": "inspected",
+      "raw_sha256": "a9f0ea6d552afaec2a97a620b643cb7310db3a3188408d22768ac17794b80d11"
+    }
+  ],
+  "model_generations": 0,
+  "human_reviewed": false,
+  "primary_scores_modified": false,
+  "population": "All assigned development two-hop question IDs crossed with R-RAG/R-ALL; separate parser diagnostic",
+  "denominators": "Assigned traces include errors/unexecuted/no-raw-trace outcomes. Claim labels cover only extracted indexed boxed propositions; unparsed prose is not silently credited.",
+  "limitations": [
+    "Automated narrow-format support audit, not independent human semantic review",
+    "Exact resolved fact-question/answer matching with one declared team-anaphora rule",
+    "Surrounding action prose and all text outside action blocks remain unassessable",
+    "Unsupported means no fact for a recognized query in that view, not proof the claim is false",
+    "Supported explicit subanswers do not certify the complete explanation or internal reasoning faithfulness"
+  ]
+}

@@ -9,7 +9,7 @@ from scripts.build_reasonke_notebook import build as base_notebook, cell
 def build(commit):
     base = base_notebook(commit)
     base["cells"] = [cell("markdown", """
-        # EditGuard — controlled operations benchmark
+        # EditGuard â€” controlled operations benchmark
 
         This notebook profiles and evaluates the implemented five-condition
         comparison. No training runs. The author ReasonKE checkpoint and official

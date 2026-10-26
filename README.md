@@ -15,6 +15,14 @@ figures. Read [the complete operations demo](docs/OPERATIONS_DEMO.md),
 [API documentation](docs/CHAT_API.md), and
 [implemented evaluation workflow](docs/OPERATIONS_BENCHMARK.md).
 
+The [architecture and invariants](docs/CURRENT_ARCHITECTURE.md) explain the
+system's interfaces and guarantees. The [contribution/evidence map](docs/CONTRIBUTIONS_AND_EVIDENCE.md)
+links substantial implementation packages to working code and verification,
+without inventing authorship. The result explorer exposes raw model answers,
+sources, scope, tokens and unverified traces; its filters never alter denominators.
+An [explicit claim-support audit](docs/EXPLANATION_AUDIT.md) checks bounded
+intermediate subanswers separately from final-answer accuracy.
+
 The controlled dataset contains 48 fictional edit lineages and 384 questions,
 split before wording augmentation. The matched **120-request development run**
 is complete: ReasonKE with updated retrieval scored 24/24, versus 21/24 with full
@@ -31,8 +39,8 @@ The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains 
 dated planning record; current implementation and measured evidence are linked above.
 
 The current text-editing website uses the author's trained **ReasonKE_plus**
-checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/f6983b695ec2796de49026ac7e6361e51d9fbee9/notebooks/04_reasonke_chat.ipynb),
-select T4, and run the cells in order. The launcher waits for the model before
+checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/08f7c05bfa8917bb7393ff0d808946191f8fae98/notebooks/04_reasonke_chat.ipynb),
+select T4, and run the cells in order. Its source is pinned to edb7131; the complete editing workflow and saved development study are included. The launcher waits for the model before
 opening the website and includes an optional seven-generation editing,
 comparison and withdrawal check. Keep the Colab runtime connected while using
 its temporary website URL. No per-correction training is launched.
