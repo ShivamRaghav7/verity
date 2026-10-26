@@ -23,6 +23,11 @@ Keep the ZIP. Code is already pushed on `codex/reasonke-integration`. In a fresh
 T4 Colab runtime, use the pinned setup from notebook 05, upload this ZIP, and
 restore it into a new directory using:
 
+For that setup, set `SOURCE_COMMIT` in the first code cell to
+`7ff2925571da709e0d15f5533da93793685ab165` before running the setup cell. This
+commit includes the restore tool and has the same frozen inference hashes.
+Skip the profile/development/freeze cells; the ZIP already preserves their inputs.
+
 ```text
 python -m scripts.restore_operations_checkpoint /content/editguard-paused-evaluation.zip --directory /content/editguard-reasonke/artifacts/operations-resumed
 python -u -m scripts.run_operations_pipeline --phase final --protocol /content/editguard-reasonke/artifacts/operations-resumed/protocol.json --directory /content/editguard-reasonke/artifacts/operations-resumed
