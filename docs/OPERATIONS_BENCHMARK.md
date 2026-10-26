@@ -159,3 +159,19 @@ three development worlds sequentially, measures direct/paraphrase/two-hop answer
 restores each original owner, and measures the restored answer. Its HTTP latency
 includes SQLite and website/worker communication. It is not a new independent
 held-out sample, and its software fixtures are not neural results.
+
+A further **four-generation** operational check runs in a different empty
+workspace using `python -m scripts.verify_operations_history --output <new-file.json>`.
+It asks the initial two-hop contact question, compares approved memory at revision
+9 against the ownership update at revision 10 (two fresh generations), atomically
+rolls back to revision 11, and asks for the restored contact. It checks model and
+memory provenance, rollback events and every assigned answer, without retries.
+Failures, abstentions and unavailable comparison results retain their denominator.
+
+After both final model jobs finish, `scripts.finalize_operations_release` performs
+integrity and claim-support audits, generates measured charts, runs the twelve-
+request and four-generation website checks sequentially against the same loaded
+checkpoint, then serves a fresh demo. It refuses incomplete final ledgers,
+existing output directories and occupied ports. Its evidence bundle includes no
+user chat database, model weights or session credentials. Final study accuracy
+and the sixteen operational generations remain separate populations.

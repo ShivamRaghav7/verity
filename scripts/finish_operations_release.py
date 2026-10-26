@@ -1,4 +1,4 @@
-"""After completed final inference, run 12 real website checks and leave the demo ready.
+"""After completed final inference, run 16 real website generations and leave the demo ready.
 
 Never starts while a final receipt is incomplete. No training, benchmark retry,
 token disclosure or modification of an existing user workspace occurs.
@@ -69,7 +69,8 @@ def launch(directory, benchmark_directory, *, trusted_origin=None, python=sys.ex
                 raise ValueError("Port " + str(port) + " is occupied; no service was stopped or replaced")
     directory.mkdir(parents=True)
     atomic_write(directory / "prelaunch-audit.json", audit)
-    state = {"schema": "editguard-release-launch-v1", "status": "starting", "assigned_http_generations": 12,
+    state = {"schema": "editguard-release-launch-v1", "status": "starting", "assigned_http_generations": 16,
+             "http_population": {"direct_paraphrase_two_hop_restore": 12, "historical_comparison_atomic_rollback": 4},
              "benchmark_retried": False, "training_steps": 0, "session_tokens_recorded": False,
              "notice": "Operational development supplement; not extra independent held-out facts",
              "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()}
@@ -106,6 +107,26 @@ def launch(directory, benchmark_directory, *, trusted_origin=None, python=sys.ex
         # silently be promoted to an operationally complete release.
         if completed.returncode:
             raise RuntimeError("HTTP workload stopped or cleanup failed; all outcomes and logs preserved")
+        # Historical comparison needs an entirely separate empty knowledge
+        # history, so the earlier measurement workspace is never reset.
+        with (directory / "history-site.log").open("a", encoding="utf-8") as log:
+            measurement_site = subprocess.Popen([python, "-u", "-m", "editguard_chat.server", "--backend", "reasonke",
+                "--context-policy", "retrieved", "--port", "8008", "--storage", str(directory / "history-workspace")],
+                cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
+        wait_ready(measurement_site, "http://127.0.0.1:8008/api/status", seconds=30)
+        state["status"] = "four_history_generations"; atomic_write(receipt_path, state)
+        with (directory / "history-acceptance.log").open("a", encoding="utf-8") as log:
+            completed = subprocess.run([python, "-u", "-m", "scripts.verify_operations_history", "--base-url",
+                "http://127.0.0.1:8008", "--output", str(directory / "history-acceptance.json")], cwd=ROOT,
+                env=env, stdout=log, stderr=subprocess.STDOUT, timeout=1200)
+        stop_owned(measurement_site); measurement_site = None
+        if (directory / "history-acceptance.json").exists():
+            history = json.loads((directory / "history-acceptance.json").read_text())
+            state["history_outcome_counts"] = history["outcome_counts"]
+            state["history_consistency_checks"] = history["consistency_checks"]
+        state["history_command_exit"] = completed.returncode
+        if completed.returncode:
+            raise RuntimeError("History/rollback workload stopped or consistency failed; evidence preserved")
         command = [python, "-u", "-m", "editguard_chat.server", "--backend", "reasonke", "--context-policy", "retrieved",
                    "--port", "8005", "--storage", str(directory / "demo-workspace")]
         if origin: command += ["--trusted-origin", origin]

@@ -34,11 +34,27 @@ def finalize(benchmark_directory, run_directory, *, trusted_origin=None):
             shutil.copyfile(source / name, destination)
     paths = [target / ("final-" + model + ".json") for model in ("reasonke", "instruction")]
     atomic_write(target / "host-audit.json", audit)
-    atomic_write(target / "results.json", aggregate(paths))
-    atomic_write(target / "explanation-audit.json", audit_receipt(paths[0], protocol=source / "protocol.json"))
+    results = aggregate(paths)
+    atomic_write(target / "results.json", results)
+    explanation = audit_receipt(paths[0], protocol=source / "protocol.json")
+    atomic_write(target / "explanation-audit.json", explanation)
     generate(paths, target / "derived")
     state = launch(run_directory, source, trusted_origin=trusted_origin)
     shutil.copyfile(run_directory / "http-acceptance.json", target / "http-acceptance.json")
+    shutil.copyfile(run_directory / "history-acceptance.json", target / "history-acceptance.json")
+    lines = ["# Completed frozen operations evaluation", "",
+        f"Execution: {results['execution_status']}; {results['assigned_records']} assigned generations across {results['independent_lineages']} held-out fictional edit lineages.", "",
+        "Settings, source/data identities and scoring were frozen before final inference. All wrong answers, abstentions, execution errors and unexecuted records retain denominator credit. No benchmark question was retried for a better answer.", "",
+        "| Condition | Correct / assigned | Wrong | Abstained | Errors | Unexecuted |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |"]
+    for name, condition in results["conditions"].items():
+        metric = condition["overall"]; count = metric["counts"]
+        lines.append(f"| {name} | {count['correct']}/{metric['assigned']} | {count['wrong']} | {count['abstain']} | {count['execution_error']} | {count['unexecuted']} |")
+    lines += ["", f"The separate explanation audit retains {explanation['assigned_traces']} preselected traces. Only bounded explicit indexed subanswers are assessed; surrounding prose and internal reasoning are not certified.", "",
+        "`final-reasonke.json` and `final-instruction.json` preserve all outputs; `protocol.json` identifies the actual frozen inputs. `host-audit.json` checks identities, extraction and scoring without a model call. `derived/` contains the measured report, CSV and scientific PNG/SVG figures.", "",
+        "`http-acceptance.json` contains twelve development-world website requests. `history-acceptance.json` contains four further generations for historical comparison and atomic rollback. These operational workloads are not extra independent held-out data and do not alter the primary scorecard. Dataset review and explanation review are automated, without independent human semantic review.", "",
+        "Both checkpoints were trained upstream. Current deployment context was selected on development before final inference. No universal accuracy, arbitrary-edit safety, faithful explanation or ReasonKE superiority is assumed."]
+    (target / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     bundle = run_directory / "completed-project-evidence.zip"
     with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(target.rglob("*")):
@@ -48,7 +64,7 @@ def finalize(benchmark_directory, run_directory, *, trusted_origin=None):
             archive.write(run_directory / name, "website/" + name)
     completion = {"schema": "editguard-release-finalization-v1", "status": state["status"],
                   "bundle": str(bundle), "sha256": hashlib.sha256(bundle.read_bytes()).hexdigest(),
-                  "assigned_http_generations": 12, "training_steps": 0, "benchmark_retried": False,
+                  "assigned_http_generations": 16, "training_steps": 0, "benchmark_retried": False,
                   "primary_scoring_changed": False, "user_chat_database_exported": False}
     atomic_write(run_directory / "completion.json", completion)
     return completion

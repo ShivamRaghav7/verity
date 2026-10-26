@@ -1,6 +1,7 @@
 "use strict";
 
 const $ = id => document.getElementById(id);
+const CATEGORY_LABELS = {direct: "Direct correction", direct_paraphrase: "Direct paraphrase", two_hop: "Two-hop question", two_hop_paraphrase: "Two-hop paraphrase", same_entity_other_relation: "Same service, another property", similar_entity_same_relation: "Similarly named service", wrong_version_or_tier: "Older release", unrelated: "Unrelated fact"};
 const state = {token: "", status: null, chatId: null, chats: [], messages: [], corrections: [], revision: 0, busy: false, attachment: null, resultsLoaded: false};
 let toastTimer;
 
@@ -531,7 +532,7 @@ async function addAnswerExplorer(target, report) {
     const label = element("label", "", name[0].toUpperCase() + name.slice(1));
     const select = element("select"); select.setAttribute("aria-label", "Saved answer " + name);
     const all = element("option", "", "All " + (name === "category" ? "categories" : name + "s")); all.value = ""; select.append(all);
-    values.forEach(value => { const option = element("option", "", value.replaceAll("_", " ")); option.value = value; select.append(option); });
+    values.forEach(value => { const option = element("option", "", name === "category" ? CATEGORY_LABELS[value] || value : value.replaceAll("_", " ")); option.value = value; select.append(option); });
     controls[name] = select; label.append(select); filters.append(label);
   }
   const load = element("button", "quiet-button", "Show saved answers"); load.type = "button"; filters.append(load);
@@ -586,7 +587,7 @@ async function loadResults() {
     target.append(element("h2", "", "Accuracy by question category"));
     const names = Object.keys(report.conditions).filter(name => !name.endsWith("ORACLE"));
     const categories = Object.keys(report.conditions[names[0]].by_category);
-    target.append(evidenceTable(["Category", ...names], categories.map(category => [category, ...names.map(name => {
+    target.append(evidenceTable(["Category", ...names], categories.map(category => [CATEGORY_LABELS[category] || category, ...names.map(name => {
       const metric = report.conditions[name].by_category[category]; return metric.counts.correct + "/" + metric.assigned;
     })])));
     target.append(element("h2", "", "Warm pipeline latency"));
