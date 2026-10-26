@@ -6,6 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from scripts.finish_operations_release import launch, require_completed
+from scripts.finalize_operations_release import finalize
 
 
 class OperationsReleaseTests(unittest.TestCase):
@@ -33,6 +34,14 @@ class OperationsReleaseTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary, patch("scripts.finish_operations_release.require_completed", return_value={}), patch("scripts.finish_operations_release.subprocess.Popen") as starter:
             with self.assertRaisesRegex(ValueError, "never overwritten"):
                 launch(Path(temporary), Path(temporary) / "benchmark")
+            starter.assert_not_called()
+
+    def test_finalization_cannot_write_or_launch_before_integrity_gate(self):
+        with tempfile.TemporaryDirectory() as temporary, patch("scripts.finalize_operations_release.require_completed", side_effect=ValueError("Incomplete final run")), patch("scripts.finalize_operations_release.launch") as starter:
+            path = Path(temporary) / "new-run"
+            with self.assertRaisesRegex(ValueError, "Incomplete"):
+                finalize(Path(temporary) / "benchmark", path)
+            self.assertFalse(path.exists())
             starter.assert_not_called()
 
 

@@ -39,8 +39,8 @@ The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains 
 dated planning record; current implementation and measured evidence are linked above.
 
 The current text-editing website uses the author's trained **ReasonKE_plus**
-checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/08f7c05bfa8917bb7393ff0d808946191f8fae98/notebooks/04_reasonke_chat.ipynb),
-select T4, and run the cells in order. Its source is pinned to edb7131; the complete editing workflow and saved development study are included. The launcher waits for the model before
+checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/635582c3577bfd31cbb6d6988a7b942fcd3bc5c0/notebooks/04_reasonke_chat.ipynb),
+select T4, and run the cells in order. Its source is pinned to 6475e5d; the complete editing workflow and saved development study are included. The launcher waits for the model before
 opening the website and includes an optional seven-generation editing,
 comparison and withdrawal check. Keep the Colab runtime connected while using
 its temporary website URL. No per-correction training is launched.

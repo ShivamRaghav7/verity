@@ -10,6 +10,10 @@ The Research results tab rendered the actual 120-request development study,
 including all five conditions, category counts, retrieval/preservation tables,
 latency and scientific figures. No frontend errors were recorded in the browser
 log during these checks. `development-dashboard.jpg` captures the actual page.
+`saved-answer-explorer.jpg` shows the later bounded raw-answer explorer filtered
+to the three R-ALL development failures, with expected/generated answers,
+requested scope and all supplied facts. The page explicitly labels saved output
+and unverified explanation text; filters do not modify scoring or denominators.
 
 This was a **software/UI verification**, not a model-answer measurement. The
 local website deliberately had no inference worker while the T4 was occupied

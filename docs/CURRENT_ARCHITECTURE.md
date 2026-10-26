@@ -113,6 +113,9 @@ The application lock prevents a chat, comparison, edit or workspace export from
 capturing a partially completed application operation. SQLite uses explicit
 transactions, foreign keys and a thread-safe connection. This is a local
 single-operator design, not a distributed transaction service.
+The generated user/assistant pair and conversation title/timestamps also commit
+in one transaction. An injected failure after the second insert leaves neither
+message or metadata change. This is separate from factual answer correctness.
 
 ## History, rollback and comparison consistency
 
@@ -142,6 +145,9 @@ between replayed history and final statuses. Bounds are 6 MiB and 10,000 rows pe
 table. Import inserts data, never executable SQL, in one transaction and refuses
 to overwrite a nonempty target. Image conversations require a private database
 and image-directory backup; JSON export refuses their local image paths.
+Export enforces the same portable limits as restore. Lineage edges must remain
+within the same root and move monotonically through version numbers, so a
+recomputed checksum cannot authorize a cyclic predecessor chain.
 
 A digest detects corruption, not factual truth, authorship or protection against
 someone deliberately recomputing a digest. Restore and fictional-handbook loading
