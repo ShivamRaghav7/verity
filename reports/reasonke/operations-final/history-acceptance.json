@@ -1,0 +1,3356 @@
+{
+  "schema": "editguard-operations-history-v1",
+  "status": "completed",
+  "started_utc": "2026-10-27T11:45:31.718099+00:00",
+  "dataset": {
+    "categories": [
+      "direct",
+      "direct_paraphrase",
+      "two_hop",
+      "two_hop_paraphrase",
+      "same_entity_other_relation",
+      "similar_entity_same_relation",
+      "wrong_version_or_tier",
+      "unrelated"
+    ],
+    "dataset_id": "editguard-operations-v1",
+    "development_lineages": 16,
+    "files": {
+      "audit.json": "906d50cac913e4391b7ecb67831c3f790b61da6af539ba919930f5cb7a56da57",
+      "lineages.jsonl": "0f0ac594246aec7afb36ee5e3a4732e2a351c3edaee34663f29a8f2c72b2ef57",
+      "questions.jsonl": "8fe52ae1ea13aa4b0c75f78bde1949e7b50b33a3fb485e896e5db14a9087157e"
+    },
+    "final_lineages": 32,
+    "generated_model_answers": 0,
+    "generator_sha256": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+    "lineages": 48,
+    "questions": 384,
+    "schema": "editguard-operations-benchmark-v1",
+    "seed": 42,
+    "split_unit": "edit_lineage_before_wording_augmentation",
+    "status": "authored_not_final_evaluation_frozen",
+    "truth_source": "Curated deterministic fictional graph; automated audit explicitly disclosed"
+  },
+  "assigned_model_generations": 4,
+  "neural_accuracy_denominator": 4,
+  "independent_development_lineages": 1,
+  "cases": [
+    {
+      "id": "initial_contact",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Mara Voss"
+        ],
+        "expected_answer": "Mara Voss",
+        "id": "ops-003-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "response": {
+        "id": "f071e75e5f9544f2a92dd8691e7a2934",
+        "chat_id": "feabdd99db35402285523cff341f9f8c",
+        "position": 2,
+        "role": "assistant",
+        "content": "Mara Voss",
+        "knowledge_revision": 9,
+        "created_at": "2026-10-27T11:45:48.843285+00:00",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "method": "two_stage_lexical_approved_memory",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "question_only_approved_fact_retrieval",
+          "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+          "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+          "active_correction_count": 9,
+          "memory_record_limit": 200,
+          "supplied_fact_count": 4,
+          "corrections": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 9,
+          "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 17.008667078000144,
+            "input_tokens": 487,
+            "output_tokens": 211,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5781180416,
+            "peak_reserved_bytes": 7207911424,
+            "fact_ids": [
+              "586d4652055d4889b60169d61ea65f29",
+              "9d72a17a0328423c802bbea8a65aa290",
+              "56c7ea6988d74be7832581fcf11dae1c",
+              "77e5995dc5c84eebb03776d055f04f1b"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information provides details about which teams own Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Dahlia Relay in release 2 is Saffron unit 14, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "edited"
+      },
+      "revision": 9,
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "historical_comparison",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Mara Voss"
+        ],
+        "expected_answer": "Mara Voss",
+        "id": "ops-003-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "response": {
+        "content": "Mara Voss",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "method": "two_stage_lexical_approved_memory",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "question_only_approved_fact_retrieval",
+          "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+          "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+          "active_correction_count": 9,
+          "memory_record_limit": 200,
+          "supplied_fact_count": 4,
+          "corrections": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 9,
+          "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 16.724110655000004,
+            "input_tokens": 487,
+            "output_tokens": 211,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5781180416,
+            "peak_reserved_bytes": 7207911424,
+            "fact_ids": [
+              "586d4652055d4889b60169d61ea65f29",
+              "9d72a17a0328423c802bbea8a65aa290",
+              "56c7ea6988d74be7832581fcf11dae1c",
+              "77e5995dc5c84eebb03776d055f04f1b"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information provides details about which teams own Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Dahlia Relay in release 2 is Saffron unit 14, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          },
+          "historical_snapshot": true,
+          "snapshot_revision": 9
+        }
+      },
+      "revision": 9,
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "current_comparison",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Orin Dane"
+        ],
+        "expected_answer": "Orin Dane",
+        "id": "ops-003-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "response": {
+        "content": "Orin Dane",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "85b9b57e00b940499e7b443f5fedf2f7",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Copper unit 74",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+              "version": 2
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "a72f15778c554eefa4ee658931dfbda2",
+              "question": "Who is the on-call contact for Copper unit 74?",
+              "answer": "Orin Dane",
+              "scope": "Who is the on-call contact for Copper unit 74; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "85b9b57e00b940499e7b443f5fedf2f7",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Copper unit 74",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+              "version": 2
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "a72f15778c554eefa4ee658931dfbda2",
+              "question": "Who is the on-call contact for Copper unit 74?",
+              "answer": "Orin Dane",
+              "scope": "Who is the on-call contact for Copper unit 74; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "method": "two_stage_lexical_approved_memory",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "question_only_approved_fact_retrieval",
+          "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+          "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+          "active_correction_count": 9,
+          "memory_record_limit": 200,
+          "supplied_fact_count": 4,
+          "corrections": [
+            {
+              "id": "85b9b57e00b940499e7b443f5fedf2f7",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Copper unit 74",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+              "version": 2
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "a72f15778c554eefa4ee658931dfbda2",
+              "question": "Who is the on-call contact for Copper unit 74?",
+              "answer": "Orin Dane",
+              "scope": "Who is the on-call contact for Copper unit 74; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 10,
+          "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 16.619428580000204,
+            "input_tokens": 486,
+            "output_tokens": 205,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5781031936,
+            "peak_reserved_bytes": 7207911424,
+            "fact_ids": [
+              "85b9b57e00b940499e7b443f5fedf2f7",
+              "9d72a17a0328423c802bbea8a65aa290",
+              "a72f15778c554eefa4ee658931dfbda2",
+              "77e5995dc5c84eebb03776d055f04f1b"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, Dahlia Relay in release 2 is owned by Copper unit 74, so the answer is \\boxed{Copper unit 74}.\n[Sub question 2]The on-call contact for Copper unit 74 is provided as Orin Dane, so the answer is \\boxed{Orin Dane}.</action>\n</think>\n<answer>Orin Dane</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        }
+      },
+      "revision": 10,
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "after_atomic_rollback",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "expected_aliases": [
+          "Mara Voss"
+        ],
+        "expected_answer": "Mara Voss",
+        "id": "ops-003-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Mara Voss",
+        "lineage_id": "ops-003",
+        "question": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+        "requested_entity": "ops-003-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "ops-003-f1",
+          "ops-003-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_audit"
+        },
+        "split": "development"
+      },
+      "outcome": "correct",
+      "response": {
+        "id": "bd23cba41a554f33a4e765ea38de81dd",
+        "chat_id": "feabdd99db35402285523cff341f9f8c",
+        "position": 4,
+        "role": "assistant",
+        "content": "Mara Voss",
+        "knowledge_revision": 11,
+        "created_at": "2026-10-27T11:46:38.683299+00:00",
+        "evidence": {
+          "accepted": true,
+          "selected": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "candidates": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "method": "two_stage_lexical_approved_memory",
+          "threshold": null,
+          "score_is_probability": false,
+          "clarification_required": false,
+          "reason": "question_only_approved_fact_retrieval",
+          "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+          "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+          "active_correction_count": 9,
+          "memory_record_limit": 200,
+          "supplied_fact_count": 4,
+          "corrections": [
+            {
+              "id": "586d4652055d4889b60169d61ea65f29",
+              "question": "Which team owns Dahlia Relay in release 2?",
+              "answer": "Saffron unit 14",
+              "scope": "Which team owns Dahlia Relay in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "9d72a17a0328423c802bbea8a65aa290",
+              "question": "Which team owns Dahlia Relay Pro in release 2?",
+              "answer": "Cedar unit 134",
+              "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "56c7ea6988d74be7832581fcf11dae1c",
+              "question": "Who is the on-call contact for Saffron unit 14?",
+              "answer": "Mara Voss",
+              "scope": "Who is the on-call contact for Saffron unit 14; current",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            },
+            {
+              "id": "77e5995dc5c84eebb03776d055f04f1b",
+              "question": "Which team owns Dahlia Relay in release 1?",
+              "answer": "Silver unit 194",
+              "scope": "Which team owns Dahlia Relay in release 1; release-1",
+              "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+              "version": 1
+            }
+          ],
+          "mode": "edited",
+          "knowledge_revision": 11,
+          "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+          "generation_kind": "model",
+          "weights_changed": false,
+          "correction_application_verified": false,
+          "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+          "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+          "generation": {
+            "model": "YukinoKaren/ReasonKE_plus",
+            "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+            "seconds": 16.376935958000104,
+            "input_tokens": 487,
+            "output_tokens": 211,
+            "max_new_tokens": 512,
+            "max_input_tokens": 4096,
+            "quantization": "NF4 double quantization, FP16 compute",
+            "do_sample": false,
+            "token_budget_reached": false,
+            "time_budget_seconds": 120.0,
+            "time_budget_reached": false,
+            "peak_allocated_bytes": 5781180416,
+            "peak_reserved_bytes": 7207911424,
+            "fact_ids": [
+              "586d4652055d4889b60169d61ea65f29",
+              "9d72a17a0328423c802bbea8a65aa290",
+              "56c7ea6988d74be7832581fcf11dae1c",
+              "77e5995dc5c84eebb03776d055f04f1b"
+            ],
+            "weights_changed_by_facts": false
+          },
+          "raw_model_output": "<think>\n<acknowledge>The updated information provides details about which teams own Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Dahlia Relay in release 2 is Saffron unit 14, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+          "output_format": {
+            "answer_tag_found": true,
+            "multiple_answer_tags": false,
+            "raw_fallback": false,
+            "verified": false
+          }
+        },
+        "image_url": null,
+        "mode": "edited"
+      },
+      "revision": 11,
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    }
+  ],
+  "operations": [
+    {
+      "name": "inspect_ready_pinned_model",
+      "path": "/api/status",
+      "status": "completed",
+      "response": {
+        "model": {
+          "name": "YukinoKaren/ReasonKE_plus",
+          "backend": "Reason-KE trained checkpoint worker",
+          "ready": true,
+          "supports_images": false,
+          "embedding_ready": false,
+          "error": null,
+          "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+          "weights_changed_by_corrections": false,
+          "published_metric_reproduced": false,
+          "hardware": {
+            "name": "Tesla T4",
+            "total_vram_bytes": 15637086208,
+            "compute_capability": [
+              7,
+              5
+            ],
+            "load_peak_allocated_bytes": 7071596544,
+            "load_peak_reserved_bytes": 7140802560,
+            "torch": "2.11.0+cu130",
+            "cuda": "13.0",
+            "python": "3.13.16",
+            "packages": {
+              "transformers": "4.56.1",
+              "accelerate": "1.10.1",
+              "bitsandbytes": "0.48.1"
+            }
+          },
+          "quantization": "NF4 double quantization, FP16 compute"
+        },
+        "revision": 0,
+        "busy": false,
+        "retrieval": {
+          "method": "two_stage_lexical_approved_memory",
+          "threshold": null,
+          "threshold_calibrated": false,
+          "limitation": "Question-only retrieval supplies at most four facts from up to 200 active records. Neural accuracy at that storage bound has not been established."
+        },
+        "method": "Upstream ReasonKE_plus trained edit-conditioned reasoner; new corrections update external fact memory, not model weights",
+        "comparison_label": "Same trained checkpoint without correction context"
+      },
+      "seconds": 0.031632246999834024
+    },
+    {
+      "name": "inspect_empty_knowledge_history",
+      "path": "/api/corrections",
+      "status": "completed",
+      "response": {
+        "corrections": [],
+        "revision": 0,
+        "events": []
+      },
+      "seconds": 0.0014828079993094434
+    },
+    {
+      "name": "inspect_empty_conversation_history",
+      "path": "/api/chats",
+      "status": "completed",
+      "response": {
+        "chats": []
+      },
+      "seconds": 0.0011796200005846913
+    },
+    {
+      "name": "approve_fictional_handbook",
+      "path": "/api/examples/operations/approve",
+      "status": "completed",
+      "response": {
+        "revision": 9,
+        "counts": {
+          "chats": 0,
+          "messages": 0,
+          "corrections": 9,
+          "events": 9
+        },
+        "sha256": "f0c9ff7e129c748e0fdbdcdcea55519770bc79522c071a3b45e865ee08b41322",
+        "notice": "Fictional example handbook. Approving it adds nine versioned facts; no model is trained and no answer is generated.",
+        "example": {
+          "entity": "Dahlia Relay",
+          "questions": [
+            "Which team owns Dahlia Relay in release 2?",
+            "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+            "Which region hosts Dahlia Relay in release 2?",
+            "Which team owns Dahlia Relay in release 1?"
+          ]
+        },
+        "suggested_edit": {
+          "id": "586d4652055d4889b60169d61ea65f29",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "lineage_id": "586d4652055d4889b60169d61ea65f29",
+          "version": 1,
+          "status": "active",
+          "supersedes": "586d4652055d4889b60169d61ea65f29",
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.791738+00:00",
+          "created_at": "2026-10-27T11:45:31.791738+00:00",
+          "updated_at": "2026-10-27T11:45:31.791738+00:00",
+          "knowledge_revision": 5,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        }
+      },
+      "seconds": 0.027730162000807468
+    },
+    {
+      "name": "record_created_fact_ids",
+      "path": "/api/corrections",
+      "status": "completed",
+      "response": {
+        "corrections": [
+          {
+            "id": "9d72a17a0328423c802bbea8a65aa290",
+            "question": "Which team owns Dahlia Relay Pro in release 2?",
+            "answer": "Cedar unit 134",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+            "lineage_id": "9d72a17a0328423c802bbea8a65aa290",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.792180+00:00",
+            "created_at": "2026-10-27T11:45:31.792180+00:00",
+            "updated_at": "2026-10-27T11:45:31.792180+00:00",
+            "knowledge_revision": 9,
+            "identity": {
+              "entity_id": "ops-003-pro-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "22368acf5822463dbdeed9984242f296",
+            "question": "In which city is Ibis records office 4?",
+            "answer": "Kelm",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "In which city is Ibis records office 4; current",
+            "lineage_id": "22368acf5822463dbdeed9984242f296",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.792071+00:00",
+            "created_at": "2026-10-27T11:45:31.792071+00:00",
+            "updated_at": "2026-10-27T11:45:31.792071+00:00",
+            "knowledge_revision": 8,
+            "identity": {
+              "entity_id": "ops-003-archive",
+              "relation_id": "city",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "question": "Which region hosts Dahlia Relay in release 2?",
+            "answer": "West sector",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+            "lineage_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791959+00:00",
+            "created_at": "2026-10-27T11:45:31.791959+00:00",
+            "updated_at": "2026-10-27T11:45:31.791959+00:00",
+            "knowledge_revision": 7,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "region",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "a72f15778c554eefa4ee658931dfbda2",
+            "question": "Who is the on-call contact for Copper unit 74?",
+            "answer": "Orin Dane",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Who is the on-call contact for Copper unit 74; current",
+            "lineage_id": "a72f15778c554eefa4ee658931dfbda2",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791852+00:00",
+            "created_at": "2026-10-27T11:45:31.791852+00:00",
+            "updated_at": "2026-10-27T11:45:31.791852+00:00",
+            "knowledge_revision": 6,
+            "identity": {
+              "entity_id": "ops-003-new-team",
+              "relation_id": "on_call_contact",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "586d4652055d4889b60169d61ea65f29",
+            "question": "Which team owns Dahlia Relay in release 2?",
+            "answer": "Saffron unit 14",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay in release 2; release-2",
+            "lineage_id": "586d4652055d4889b60169d61ea65f29",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791738+00:00",
+            "created_at": "2026-10-27T11:45:31.791738+00:00",
+            "updated_at": "2026-10-27T11:45:31.791738+00:00",
+            "knowledge_revision": 5,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "77e5995dc5c84eebb03776d055f04f1b",
+            "question": "Which team owns Dahlia Relay in release 1?",
+            "answer": "Silver unit 194",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay in release 1; release-1",
+            "lineage_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791612+00:00",
+            "created_at": "2026-10-27T11:45:31.791612+00:00",
+            "updated_at": "2026-10-27T11:45:31.791612+00:00",
+            "knowledge_revision": 4,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-1",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "56c7ea6988d74be7832581fcf11dae1c",
+            "question": "Who is the on-call contact for Saffron unit 14?",
+            "answer": "Mara Voss",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Who is the on-call contact for Saffron unit 14; current",
+            "lineage_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791477+00:00",
+            "created_at": "2026-10-27T11:45:31.791477+00:00",
+            "updated_at": "2026-10-27T11:45:31.791477+00:00",
+            "knowledge_revision": 3,
+            "identity": {
+              "entity_id": "ops-003-old-team",
+              "relation_id": "on_call_contact",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "7620b78201784d778df22e8544349418",
+            "question": "What is the function of Silver unit 194?",
+            "answer": "Telemetry processing",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "What is the function of Silver unit 194; current",
+            "lineage_id": "7620b78201784d778df22e8544349418",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791328+00:00",
+            "created_at": "2026-10-27T11:45:31.791328+00:00",
+            "updated_at": "2026-10-27T11:45:31.791328+00:00",
+            "knowledge_revision": 2,
+            "identity": {
+              "entity_id": "ops-003-historic-team",
+              "relation_id": "charter",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "question": "What is the function of Cedar unit 134?",
+            "answer": "Archive synchronization",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "What is the function of Cedar unit 134; current",
+            "lineage_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.790970+00:00",
+            "created_at": "2026-10-27T11:45:31.790970+00:00",
+            "updated_at": "2026-10-27T11:45:31.790970+00:00",
+            "knowledge_revision": 1,
+            "identity": {
+              "entity_id": "ops-003-neighbor-team",
+              "relation_id": "charter",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          }
+        ],
+        "revision": 9,
+        "events": [
+          {
+            "sequence": 1,
+            "correction_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "action": "published",
+            "revision": 1,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.790970+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 2,
+            "correction_id": "7620b78201784d778df22e8544349418",
+            "action": "published",
+            "revision": 2,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791328+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 3,
+            "correction_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "action": "published",
+            "revision": 3,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791477+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 4,
+            "correction_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "action": "published",
+            "revision": 4,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791612+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 5,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "published",
+            "revision": 5,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791738+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 6,
+            "correction_id": "a72f15778c554eefa4ee658931dfbda2",
+            "action": "published",
+            "revision": 6,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791852+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 7,
+            "correction_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "action": "published",
+            "revision": 7,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791959+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 8,
+            "correction_id": "22368acf5822463dbdeed9984242f296",
+            "action": "published",
+            "revision": 8,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.792071+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 9,
+            "correction_id": "9d72a17a0328423c802bbea8a65aa290",
+            "action": "published",
+            "revision": 9,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.792180+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          }
+        ]
+      },
+      "seconds": 0.0014422429994738195
+    },
+    {
+      "name": "create_history_measurement_chat",
+      "path": "/api/chats",
+      "status": "completed",
+      "response": {
+        "chat": {
+          "id": "feabdd99db35402285523cff341f9f8c",
+          "title": "New chat",
+          "created_at": "2026-10-27T11:45:31.820989+00:00",
+          "updated_at": "2026-10-27T11:45:31.820989+00:00"
+        }
+      },
+      "seconds": 0.003864997000164294
+    },
+    {
+      "name": "generate_initial_contact",
+      "path": "/api/chat",
+      "status": "completed",
+      "response": {
+        "user": {
+          "id": "030c03c402664b97a2d4a660b58a0b0b",
+          "chat_id": "feabdd99db35402285523cff341f9f8c",
+          "position": 1,
+          "role": "user",
+          "content": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+          "knowledge_revision": 9,
+          "created_at": "2026-10-27T11:45:48.843179+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "f071e75e5f9544f2a92dd8691e7a2934",
+          "chat_id": "feabdd99db35402285523cff341f9f8c",
+          "position": 2,
+          "role": "assistant",
+          "content": "Mara Voss",
+          "knowledge_revision": 9,
+          "created_at": "2026-10-27T11:45:48.843285+00:00",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "method": "two_stage_lexical_approved_memory",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "question_only_approved_fact_retrieval",
+            "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+            "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+            "active_correction_count": 9,
+            "memory_record_limit": 200,
+            "supplied_fact_count": 4,
+            "corrections": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 9,
+            "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 17.008667078000144,
+              "input_tokens": 487,
+              "output_tokens": 211,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5781180416,
+              "peak_reserved_bytes": 7207911424,
+              "fact_ids": [
+                "586d4652055d4889b60169d61ea65f29",
+                "9d72a17a0328423c802bbea8a65aa290",
+                "56c7ea6988d74be7832581fcf11dae1c",
+                "77e5995dc5c84eebb03776d055f04f1b"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information provides details about which teams own Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Dahlia Relay in release 2 is Saffron unit 14, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 9
+      },
+      "seconds": 17.021351042000788
+    },
+    {
+      "name": "approve_ownership_revision",
+      "path": "/api/corrections",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "85b9b57e00b940499e7b443f5fedf2f7",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "lineage_id": "586d4652055d4889b60169d61ea65f29",
+          "version": 2,
+          "status": "active",
+          "supersedes": "586d4652055d4889b60169d61ea65f29",
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:48.866371+00:00",
+          "created_at": "2026-10-27T11:45:48.866371+00:00",
+          "updated_at": "2026-10-27T11:45:48.866371+00:00",
+          "knowledge_revision": 10,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 10
+      },
+      "seconds": 0.005504093000126886
+    },
+    {
+      "name": "generate_historical_and_current_comparison",
+      "path": "/api/compare",
+      "status": "completed",
+      "response": {
+        "original": {
+          "content": "Mara Voss",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "method": "two_stage_lexical_approved_memory",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "question_only_approved_fact_retrieval",
+            "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+            "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+            "active_correction_count": 9,
+            "memory_record_limit": 200,
+            "supplied_fact_count": 4,
+            "corrections": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 9,
+            "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 16.724110655000004,
+              "input_tokens": 487,
+              "output_tokens": 211,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5781180416,
+              "peak_reserved_bytes": 7207911424,
+              "fact_ids": [
+                "586d4652055d4889b60169d61ea65f29",
+                "9d72a17a0328423c802bbea8a65aa290",
+                "56c7ea6988d74be7832581fcf11dae1c",
+                "77e5995dc5c84eebb03776d055f04f1b"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information provides details about which teams own Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Dahlia Relay in release 2 is Saffron unit 14, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            },
+            "historical_snapshot": true,
+            "snapshot_revision": 9
+          }
+        },
+        "edited": {
+          "content": "Orin Dane",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "85b9b57e00b940499e7b443f5fedf2f7",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Copper unit 74",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+                "version": 2
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "a72f15778c554eefa4ee658931dfbda2",
+                "question": "Who is the on-call contact for Copper unit 74?",
+                "answer": "Orin Dane",
+                "scope": "Who is the on-call contact for Copper unit 74; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "85b9b57e00b940499e7b443f5fedf2f7",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Copper unit 74",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+                "version": 2
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "a72f15778c554eefa4ee658931dfbda2",
+                "question": "Who is the on-call contact for Copper unit 74?",
+                "answer": "Orin Dane",
+                "scope": "Who is the on-call contact for Copper unit 74; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "method": "two_stage_lexical_approved_memory",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "question_only_approved_fact_retrieval",
+            "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+            "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+            "active_correction_count": 9,
+            "memory_record_limit": 200,
+            "supplied_fact_count": 4,
+            "corrections": [
+              {
+                "id": "85b9b57e00b940499e7b443f5fedf2f7",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Copper unit 74",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+                "version": 2
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "a72f15778c554eefa4ee658931dfbda2",
+                "question": "Who is the on-call contact for Copper unit 74?",
+                "answer": "Orin Dane",
+                "scope": "Who is the on-call contact for Copper unit 74; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 10,
+            "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Matched comparison history excludes all correction-conditioned pairs from both generations; full history remains visible.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 16.619428580000204,
+              "input_tokens": 486,
+              "output_tokens": 205,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5781031936,
+              "peak_reserved_bytes": 7207911424,
+              "fact_ids": [
+                "85b9b57e00b940499e7b443f5fedf2f7",
+                "9d72a17a0328423c802bbea8a65aa290",
+                "a72f15778c554eefa4ee658931dfbda2",
+                "77e5995dc5c84eebb03776d055f04f1b"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information provides details about the ownership of Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, Dahlia Relay in release 2 is owned by Copper unit 74, so the answer is \\boxed{Copper unit 74}.\n[Sub question 2]The on-call contact for Copper unit 74 is provided as Orin Dane, so the answer is \\boxed{Orin Dane}.</action>\n</think>\n<answer>Orin Dane</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          }
+        },
+        "revision": 10,
+        "baseline_label": "APPROVED MEMORY r9",
+        "notice": "Two fresh model generations from matched pre-question history; compare does not modify conversation history."
+      },
+      "seconds": 33.355588081999485
+    },
+    {
+      "name": "atomic_rollback_ownership",
+      "path": "/api/corrections/85b9b57e00b940499e7b443f5fedf2f7/rollback",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "586d4652055d4889b60169d61ea65f29",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Saffron unit 14",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "lineage_id": "586d4652055d4889b60169d61ea65f29",
+          "version": 1,
+          "status": "active",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:46:22.261530+00:00",
+          "created_at": "2026-10-27T11:45:31.791738+00:00",
+          "updated_at": "2026-10-27T11:46:22.261530+00:00",
+          "knowledge_revision": 11,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 11
+      },
+      "seconds": 0.005513774000064586
+    },
+    {
+      "name": "inspect_atomic_rollback_events",
+      "path": "/api/corrections",
+      "status": "completed",
+      "response": {
+        "corrections": [
+          {
+            "id": "85b9b57e00b940499e7b443f5fedf2f7",
+            "question": "Which team owns Dahlia Relay in release 2?",
+            "answer": "Copper unit 74",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+            "scope": "Which team owns Dahlia Relay in release 2; release-2",
+            "lineage_id": "586d4652055d4889b60169d61ea65f29",
+            "version": 2,
+            "status": "withdrawn",
+            "supersedes": "586d4652055d4889b60169d61ea65f29",
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:48.866371+00:00",
+            "created_at": "2026-10-27T11:45:48.866371+00:00",
+            "updated_at": "2026-10-27T11:46:22.261530+00:00",
+            "knowledge_revision": 11,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "9d72a17a0328423c802bbea8a65aa290",
+            "question": "Which team owns Dahlia Relay Pro in release 2?",
+            "answer": "Cedar unit 134",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+            "lineage_id": "9d72a17a0328423c802bbea8a65aa290",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.792180+00:00",
+            "created_at": "2026-10-27T11:45:31.792180+00:00",
+            "updated_at": "2026-10-27T11:45:31.792180+00:00",
+            "knowledge_revision": 9,
+            "identity": {
+              "entity_id": "ops-003-pro-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "22368acf5822463dbdeed9984242f296",
+            "question": "In which city is Ibis records office 4?",
+            "answer": "Kelm",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "In which city is Ibis records office 4; current",
+            "lineage_id": "22368acf5822463dbdeed9984242f296",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.792071+00:00",
+            "created_at": "2026-10-27T11:45:31.792071+00:00",
+            "updated_at": "2026-10-27T11:45:31.792071+00:00",
+            "knowledge_revision": 8,
+            "identity": {
+              "entity_id": "ops-003-archive",
+              "relation_id": "city",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "question": "Which region hosts Dahlia Relay in release 2?",
+            "answer": "West sector",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+            "lineage_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791959+00:00",
+            "created_at": "2026-10-27T11:45:31.791959+00:00",
+            "updated_at": "2026-10-27T11:45:31.791959+00:00",
+            "knowledge_revision": 7,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "region",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "a72f15778c554eefa4ee658931dfbda2",
+            "question": "Who is the on-call contact for Copper unit 74?",
+            "answer": "Orin Dane",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Who is the on-call contact for Copper unit 74; current",
+            "lineage_id": "a72f15778c554eefa4ee658931dfbda2",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791852+00:00",
+            "created_at": "2026-10-27T11:45:31.791852+00:00",
+            "updated_at": "2026-10-27T11:45:31.791852+00:00",
+            "knowledge_revision": 6,
+            "identity": {
+              "entity_id": "ops-003-new-team",
+              "relation_id": "on_call_contact",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "586d4652055d4889b60169d61ea65f29",
+            "question": "Which team owns Dahlia Relay in release 2?",
+            "answer": "Saffron unit 14",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay in release 2; release-2",
+            "lineage_id": "586d4652055d4889b60169d61ea65f29",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:46:22.261530+00:00",
+            "created_at": "2026-10-27T11:45:31.791738+00:00",
+            "updated_at": "2026-10-27T11:46:22.261530+00:00",
+            "knowledge_revision": 11,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "77e5995dc5c84eebb03776d055f04f1b",
+            "question": "Which team owns Dahlia Relay in release 1?",
+            "answer": "Silver unit 194",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay in release 1; release-1",
+            "lineage_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791612+00:00",
+            "created_at": "2026-10-27T11:45:31.791612+00:00",
+            "updated_at": "2026-10-27T11:45:31.791612+00:00",
+            "knowledge_revision": 4,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-1",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "56c7ea6988d74be7832581fcf11dae1c",
+            "question": "Who is the on-call contact for Saffron unit 14?",
+            "answer": "Mara Voss",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Who is the on-call contact for Saffron unit 14; current",
+            "lineage_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791477+00:00",
+            "created_at": "2026-10-27T11:45:31.791477+00:00",
+            "updated_at": "2026-10-27T11:45:31.791477+00:00",
+            "knowledge_revision": 3,
+            "identity": {
+              "entity_id": "ops-003-old-team",
+              "relation_id": "on_call_contact",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "7620b78201784d778df22e8544349418",
+            "question": "What is the function of Silver unit 194?",
+            "answer": "Telemetry processing",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "What is the function of Silver unit 194; current",
+            "lineage_id": "7620b78201784d778df22e8544349418",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791328+00:00",
+            "created_at": "2026-10-27T11:45:31.791328+00:00",
+            "updated_at": "2026-10-27T11:45:31.791328+00:00",
+            "knowledge_revision": 2,
+            "identity": {
+              "entity_id": "ops-003-historic-team",
+              "relation_id": "charter",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "question": "What is the function of Cedar unit 134?",
+            "answer": "Archive synchronization",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "What is the function of Cedar unit 134; current",
+            "lineage_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "version": 1,
+            "status": "active",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.790970+00:00",
+            "created_at": "2026-10-27T11:45:31.790970+00:00",
+            "updated_at": "2026-10-27T11:45:31.790970+00:00",
+            "knowledge_revision": 1,
+            "identity": {
+              "entity_id": "ops-003-neighbor-team",
+              "relation_id": "charter",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          }
+        ],
+        "revision": 11,
+        "events": [
+          {
+            "sequence": 1,
+            "correction_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "action": "published",
+            "revision": 1,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.790970+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 2,
+            "correction_id": "7620b78201784d778df22e8544349418",
+            "action": "published",
+            "revision": 2,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791328+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 3,
+            "correction_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "action": "published",
+            "revision": 3,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791477+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 4,
+            "correction_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "action": "published",
+            "revision": 4,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791612+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 5,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "published",
+            "revision": 5,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791738+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 6,
+            "correction_id": "a72f15778c554eefa4ee658931dfbda2",
+            "action": "published",
+            "revision": 6,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791852+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 7,
+            "correction_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "action": "published",
+            "revision": 7,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791959+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 8,
+            "correction_id": "22368acf5822463dbdeed9984242f296",
+            "action": "published",
+            "revision": 8,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.792071+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 9,
+            "correction_id": "9d72a17a0328423c802bbea8a65aa290",
+            "action": "published",
+            "revision": 9,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.792180+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 10,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "superseded",
+            "revision": 10,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:48.866371+00:00",
+            "detail": {
+              "superseded_by": "85b9b57e00b940499e7b443f5fedf2f7"
+            }
+          },
+          {
+            "sequence": 11,
+            "correction_id": "85b9b57e00b940499e7b443f5fedf2f7",
+            "action": "published",
+            "revision": 10,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:48.866371+00:00",
+            "detail": {
+              "supersedes": "586d4652055d4889b60169d61ea65f29",
+              "version": 2,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 12,
+            "correction_id": "85b9b57e00b940499e7b443f5fedf2f7",
+            "action": "withdrawn",
+            "revision": 11,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:22.261530+00:00",
+            "detail": {
+              "rollback": true,
+              "restored_correction_id": "586d4652055d4889b60169d61ea65f29"
+            }
+          },
+          {
+            "sequence": 13,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "restored",
+            "revision": 11,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:22.261530+00:00",
+            "detail": {
+              "previous_status": "superseded",
+              "rollback_of": "85b9b57e00b940499e7b443f5fedf2f7"
+            }
+          }
+        ]
+      },
+      "seconds": 0.0016047359995354782
+    },
+    {
+      "name": "generate_restored_contact",
+      "path": "/api/chat",
+      "status": "completed",
+      "response": {
+        "user": {
+          "id": "6a8b4e55459f4cf994560bb3ad10e7ec",
+          "chat_id": "feabdd99db35402285523cff341f9f8c",
+          "position": 3,
+          "role": "user",
+          "content": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+          "knowledge_revision": 11,
+          "created_at": "2026-10-27T11:46:38.683194+00:00",
+          "evidence": [],
+          "image_url": null,
+          "mode": "edited"
+        },
+        "assistant": {
+          "id": "bd23cba41a554f33a4e765ea38de81dd",
+          "chat_id": "feabdd99db35402285523cff341f9f8c",
+          "position": 4,
+          "role": "assistant",
+          "content": "Mara Voss",
+          "knowledge_revision": 11,
+          "created_at": "2026-10-27T11:46:38.683299+00:00",
+          "evidence": {
+            "accepted": true,
+            "selected": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "candidates": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "method": "two_stage_lexical_approved_memory",
+            "threshold": null,
+            "score_is_probability": false,
+            "clarification_required": false,
+            "reason": "question_only_approved_fact_retrieval",
+            "notice": "Up to four approved facts were selected by question-only two-stage lexical retrieval. Selection scores are not confidence probabilities; retrieved sources do not verify generated prose.",
+            "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee.",
+            "active_correction_count": 9,
+            "memory_record_limit": 200,
+            "supplied_fact_count": 4,
+            "corrections": [
+              {
+                "id": "586d4652055d4889b60169d61ea65f29",
+                "question": "Which team owns Dahlia Relay in release 2?",
+                "answer": "Saffron unit 14",
+                "scope": "Which team owns Dahlia Relay in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "9d72a17a0328423c802bbea8a65aa290",
+                "question": "Which team owns Dahlia Relay Pro in release 2?",
+                "answer": "Cedar unit 134",
+                "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "56c7ea6988d74be7832581fcf11dae1c",
+                "question": "Who is the on-call contact for Saffron unit 14?",
+                "answer": "Mara Voss",
+                "scope": "Who is the on-call contact for Saffron unit 14; current",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              },
+              {
+                "id": "77e5995dc5c84eebb03776d055f04f1b",
+                "question": "Which team owns Dahlia Relay in release 1?",
+                "answer": "Silver unit 194",
+                "scope": "Which team owns Dahlia Relay in release 1; release-1",
+                "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+                "version": 1
+              }
+            ],
+            "mode": "edited",
+            "knowledge_revision": 11,
+            "retrieval_query": "Who is the on-call contact for the team that owns Dahlia Relay in release 2?",
+            "generation_kind": "model",
+            "weights_changed": false,
+            "correction_application_verified": false,
+            "context_policy": "Normal edited chat retains complete current-revision pairs. Without-context mode excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied.",
+            "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project",
+            "generation": {
+              "model": "YukinoKaren/ReasonKE_plus",
+              "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+              "seconds": 16.376935958000104,
+              "input_tokens": 487,
+              "output_tokens": 211,
+              "max_new_tokens": 512,
+              "max_input_tokens": 4096,
+              "quantization": "NF4 double quantization, FP16 compute",
+              "do_sample": false,
+              "token_budget_reached": false,
+              "time_budget_seconds": 120.0,
+              "time_budget_reached": false,
+              "peak_allocated_bytes": 5781180416,
+              "peak_reserved_bytes": 7207911424,
+              "fact_ids": [
+                "586d4652055d4889b60169d61ea65f29",
+                "9d72a17a0328423c802bbea8a65aa290",
+                "56c7ea6988d74be7832581fcf11dae1c",
+                "77e5995dc5c84eebb03776d055f04f1b"
+              ],
+              "weights_changed_by_facts": false
+            },
+            "raw_model_output": "<think>\n<acknowledge>The updated information provides details about which teams own Dahlia Relay and Dahlia Relay Pro in different releases. The query asks for the on-call contact for the team that owns Dahlia Relay in release 2.</acknowledge>\n<decompose>Break down the original problem into:\n[Sub question 1]Which team owns Dahlia Relay in release 2?\n[Sub question 2]Who is the on-call contact for [sub answer 1]?</decompose>\n<action>Answer sub questions based on updated knowledge:\n[Sub question 1]According to the updated information, the team that owns Dahlia Relay in release 2 is Saffron unit 14, so the answer is \\boxed{Saffron unit 14}.\n[Sub question 2]The on-call contact for Saffron unit 14 is Mara Voss, so the answer is \\boxed{Mara Voss}.</action>\n</think>\n<answer>Mara Voss</answer>",
+            "output_format": {
+              "answer_tag_found": true,
+              "multiple_answer_tags": false,
+              "raw_fallback": false,
+              "verified": false
+            }
+          },
+          "image_url": null,
+          "mode": "edited"
+        },
+        "revision": 11
+      },
+      "seconds": 16.388955761000034
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/9d72a17a0328423c802bbea8a65aa290/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "9d72a17a0328423c802bbea8a65aa290",
+          "question": "Which team owns Dahlia Relay Pro in release 2?",
+          "answer": "Cedar unit 134",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+          "lineage_id": "9d72a17a0328423c802bbea8a65aa290",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.792180+00:00",
+          "created_at": "2026-10-27T11:45:31.792180+00:00",
+          "updated_at": "2026-10-27T11:46:38.703813+00:00",
+          "knowledge_revision": 12,
+          "identity": {
+            "entity_id": "ops-003-pro-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 12
+      },
+      "seconds": 0.004387155000586063
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/22368acf5822463dbdeed9984242f296/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "22368acf5822463dbdeed9984242f296",
+          "question": "In which city is Ibis records office 4?",
+          "answer": "Kelm",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "In which city is Ibis records office 4; current",
+          "lineage_id": "22368acf5822463dbdeed9984242f296",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.792071+00:00",
+          "created_at": "2026-10-27T11:45:31.792071+00:00",
+          "updated_at": "2026-10-27T11:46:38.715489+00:00",
+          "knowledge_revision": 13,
+          "identity": {
+            "entity_id": "ops-003-archive",
+            "relation_id": "city",
+            "scope_id": "current",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 13
+      },
+      "seconds": 0.00419486099963251
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/b7ef4f5dc0b148d281b051d08174f5eb/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "b7ef4f5dc0b148d281b051d08174f5eb",
+          "question": "Which region hosts Dahlia Relay in release 2?",
+          "answer": "West sector",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+          "lineage_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.791959+00:00",
+          "created_at": "2026-10-27T11:45:31.791959+00:00",
+          "updated_at": "2026-10-27T11:46:38.728255+00:00",
+          "knowledge_revision": 14,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "region",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 14
+      },
+      "seconds": 0.00422735600022861
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/a72f15778c554eefa4ee658931dfbda2/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "a72f15778c554eefa4ee658931dfbda2",
+          "question": "Who is the on-call contact for Copper unit 74?",
+          "answer": "Orin Dane",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Who is the on-call contact for Copper unit 74; current",
+          "lineage_id": "a72f15778c554eefa4ee658931dfbda2",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.791852+00:00",
+          "created_at": "2026-10-27T11:45:31.791852+00:00",
+          "updated_at": "2026-10-27T11:46:38.739957+00:00",
+          "knowledge_revision": 15,
+          "identity": {
+            "entity_id": "ops-003-new-team",
+            "relation_id": "on_call_contact",
+            "scope_id": "current",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 15
+      },
+      "seconds": 0.004331185999944864
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/586d4652055d4889b60169d61ea65f29/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "586d4652055d4889b60169d61ea65f29",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Saffron unit 14",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "lineage_id": "586d4652055d4889b60169d61ea65f29",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:46:22.261530+00:00",
+          "created_at": "2026-10-27T11:45:31.791738+00:00",
+          "updated_at": "2026-10-27T11:46:38.751869+00:00",
+          "knowledge_revision": 16,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 16
+      },
+      "seconds": 0.004032269000163069
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/77e5995dc5c84eebb03776d055f04f1b/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "77e5995dc5c84eebb03776d055f04f1b",
+          "question": "Which team owns Dahlia Relay in release 1?",
+          "answer": "Silver unit 194",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Which team owns Dahlia Relay in release 1; release-1",
+          "lineage_id": "77e5995dc5c84eebb03776d055f04f1b",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.791612+00:00",
+          "created_at": "2026-10-27T11:45:31.791612+00:00",
+          "updated_at": "2026-10-27T11:46:38.762815+00:00",
+          "knowledge_revision": 17,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "owner",
+            "scope_id": "release-1",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 17
+      },
+      "seconds": 0.004251500000464148
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/56c7ea6988d74be7832581fcf11dae1c/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "56c7ea6988d74be7832581fcf11dae1c",
+          "question": "Who is the on-call contact for Saffron unit 14?",
+          "answer": "Mara Voss",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "Who is the on-call contact for Saffron unit 14; current",
+          "lineage_id": "56c7ea6988d74be7832581fcf11dae1c",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.791477+00:00",
+          "created_at": "2026-10-27T11:45:31.791477+00:00",
+          "updated_at": "2026-10-27T11:46:38.774332+00:00",
+          "knowledge_revision": 18,
+          "identity": {
+            "entity_id": "ops-003-old-team",
+            "relation_id": "on_call_contact",
+            "scope_id": "current",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 18
+      },
+      "seconds": 0.003907145999619388
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/7620b78201784d778df22e8544349418/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "7620b78201784d778df22e8544349418",
+          "question": "What is the function of Silver unit 194?",
+          "answer": "Telemetry processing",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "What is the function of Silver unit 194; current",
+          "lineage_id": "7620b78201784d778df22e8544349418",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.791328+00:00",
+          "created_at": "2026-10-27T11:45:31.791328+00:00",
+          "updated_at": "2026-10-27T11:46:38.785868+00:00",
+          "knowledge_revision": 19,
+          "identity": {
+            "entity_id": "ops-003-historic-team",
+            "relation_id": "charter",
+            "scope_id": "current",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 19
+      },
+      "seconds": 0.003981885000030161
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/b9120072dc1b4c42bf334b41665ff0c5/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "b9120072dc1b4c42bf334b41665ff0c5",
+          "question": "What is the function of Cedar unit 134?",
+          "answer": "Archive synchronization",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+          "scope": "What is the function of Cedar unit 134; current",
+          "lineage_id": "b9120072dc1b4c42bf334b41665ff0c5",
+          "version": 1,
+          "status": "withdrawn",
+          "supersedes": null,
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:31.790970+00:00",
+          "created_at": "2026-10-27T11:45:31.790970+00:00",
+          "updated_at": "2026-10-27T11:46:38.797013+00:00",
+          "knowledge_revision": 20,
+          "identity": {
+            "entity_id": "ops-003-neighbor-team",
+            "relation_id": "charter",
+            "scope_id": "current",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 20
+      },
+      "seconds": 0.0038062209996496676
+    },
+    {
+      "name": "withdraw_owned_fact",
+      "path": "/api/corrections/85b9b57e00b940499e7b443f5fedf2f7/withdraw",
+      "status": "completed",
+      "response": {
+        "correction": {
+          "id": "85b9b57e00b940499e7b443f5fedf2f7",
+          "question": "Which team owns Dahlia Relay in release 2?",
+          "answer": "Copper unit 74",
+          "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+          "scope": "Which team owns Dahlia Relay in release 2; release-2",
+          "lineage_id": "586d4652055d4889b60169d61ea65f29",
+          "version": 2,
+          "status": "withdrawn",
+          "supersedes": "586d4652055d4889b60169d61ea65f29",
+          "superseded_by": null,
+          "approved_by": "local_research_operator",
+          "approved_at": "2026-10-27T11:45:48.866371+00:00",
+          "created_at": "2026-10-27T11:45:48.866371+00:00",
+          "updated_at": "2026-10-27T11:46:22.261530+00:00",
+          "knowledge_revision": 11,
+          "identity": {
+            "entity_id": "ops-003-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "aliases": []
+          },
+          "approved": true
+        },
+        "revision": 20
+      },
+      "seconds": 0.0010246430001643603
+    },
+    {
+      "name": "confirm_owned_facts_inactive",
+      "path": "/api/corrections",
+      "status": "completed",
+      "response": {
+        "corrections": [
+          {
+            "id": "85b9b57e00b940499e7b443f5fedf2f7",
+            "question": "Which team owns Dahlia Relay in release 2?",
+            "answer": "Copper unit 74",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope. Approved ownership revision 2.",
+            "scope": "Which team owns Dahlia Relay in release 2; release-2",
+            "lineage_id": "586d4652055d4889b60169d61ea65f29",
+            "version": 2,
+            "status": "withdrawn",
+            "supersedes": "586d4652055d4889b60169d61ea65f29",
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:48.866371+00:00",
+            "created_at": "2026-10-27T11:45:48.866371+00:00",
+            "updated_at": "2026-10-27T11:46:22.261530+00:00",
+            "knowledge_revision": 11,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "9d72a17a0328423c802bbea8a65aa290",
+            "question": "Which team owns Dahlia Relay Pro in release 2?",
+            "answer": "Cedar unit 134",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay Pro in release 2; release-2",
+            "lineage_id": "9d72a17a0328423c802bbea8a65aa290",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.792180+00:00",
+            "created_at": "2026-10-27T11:45:31.792180+00:00",
+            "updated_at": "2026-10-27T11:46:38.703813+00:00",
+            "knowledge_revision": 12,
+            "identity": {
+              "entity_id": "ops-003-pro-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "22368acf5822463dbdeed9984242f296",
+            "question": "In which city is Ibis records office 4?",
+            "answer": "Kelm",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "In which city is Ibis records office 4; current",
+            "lineage_id": "22368acf5822463dbdeed9984242f296",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.792071+00:00",
+            "created_at": "2026-10-27T11:45:31.792071+00:00",
+            "updated_at": "2026-10-27T11:46:38.715489+00:00",
+            "knowledge_revision": 13,
+            "identity": {
+              "entity_id": "ops-003-archive",
+              "relation_id": "city",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "question": "Which region hosts Dahlia Relay in release 2?",
+            "answer": "West sector",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which region hosts Dahlia Relay in release 2; release-2",
+            "lineage_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791959+00:00",
+            "created_at": "2026-10-27T11:45:31.791959+00:00",
+            "updated_at": "2026-10-27T11:46:38.728255+00:00",
+            "knowledge_revision": 14,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "region",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "a72f15778c554eefa4ee658931dfbda2",
+            "question": "Who is the on-call contact for Copper unit 74?",
+            "answer": "Orin Dane",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Who is the on-call contact for Copper unit 74; current",
+            "lineage_id": "a72f15778c554eefa4ee658931dfbda2",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791852+00:00",
+            "created_at": "2026-10-27T11:45:31.791852+00:00",
+            "updated_at": "2026-10-27T11:46:38.739957+00:00",
+            "knowledge_revision": 15,
+            "identity": {
+              "entity_id": "ops-003-new-team",
+              "relation_id": "on_call_contact",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "586d4652055d4889b60169d61ea65f29",
+            "question": "Which team owns Dahlia Relay in release 2?",
+            "answer": "Saffron unit 14",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay in release 2; release-2",
+            "lineage_id": "586d4652055d4889b60169d61ea65f29",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:46:22.261530+00:00",
+            "created_at": "2026-10-27T11:45:31.791738+00:00",
+            "updated_at": "2026-10-27T11:46:38.751869+00:00",
+            "knowledge_revision": 16,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-2",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "77e5995dc5c84eebb03776d055f04f1b",
+            "question": "Which team owns Dahlia Relay in release 1?",
+            "answer": "Silver unit 194",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Which team owns Dahlia Relay in release 1; release-1",
+            "lineage_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791612+00:00",
+            "created_at": "2026-10-27T11:45:31.791612+00:00",
+            "updated_at": "2026-10-27T11:46:38.762815+00:00",
+            "knowledge_revision": 17,
+            "identity": {
+              "entity_id": "ops-003-service",
+              "relation_id": "owner",
+              "scope_id": "release-1",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "56c7ea6988d74be7832581fcf11dae1c",
+            "question": "Who is the on-call contact for Saffron unit 14?",
+            "answer": "Mara Voss",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "Who is the on-call contact for Saffron unit 14; current",
+            "lineage_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791477+00:00",
+            "created_at": "2026-10-27T11:45:31.791477+00:00",
+            "updated_at": "2026-10-27T11:46:38.774332+00:00",
+            "knowledge_revision": 18,
+            "identity": {
+              "entity_id": "ops-003-old-team",
+              "relation_id": "on_call_contact",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "7620b78201784d778df22e8544349418",
+            "question": "What is the function of Silver unit 194?",
+            "answer": "Telemetry processing",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "What is the function of Silver unit 194; current",
+            "lineage_id": "7620b78201784d778df22e8544349418",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.791328+00:00",
+            "created_at": "2026-10-27T11:45:31.791328+00:00",
+            "updated_at": "2026-10-27T11:46:38.785868+00:00",
+            "knowledge_revision": 19,
+            "identity": {
+              "entity_id": "ops-003-historic-team",
+              "relation_id": "charter",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          },
+          {
+            "id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "question": "What is the function of Cedar unit 134?",
+            "answer": "Archive synchronization",
+            "source": "Controlled fictional internal operations handbook. This record defines the fact in its stated release scope.",
+            "scope": "What is the function of Cedar unit 134; current",
+            "lineage_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "version": 1,
+            "status": "withdrawn",
+            "supersedes": null,
+            "superseded_by": null,
+            "approved_by": "local_research_operator",
+            "approved_at": "2026-10-27T11:45:31.790970+00:00",
+            "created_at": "2026-10-27T11:45:31.790970+00:00",
+            "updated_at": "2026-10-27T11:46:38.797013+00:00",
+            "knowledge_revision": 20,
+            "identity": {
+              "entity_id": "ops-003-neighbor-team",
+              "relation_id": "charter",
+              "scope_id": "current",
+              "aliases": []
+            },
+            "approved": true
+          }
+        ],
+        "revision": 20,
+        "events": [
+          {
+            "sequence": 1,
+            "correction_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "action": "published",
+            "revision": 1,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.790970+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 2,
+            "correction_id": "7620b78201784d778df22e8544349418",
+            "action": "published",
+            "revision": 2,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791328+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 3,
+            "correction_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "action": "published",
+            "revision": 3,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791477+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 4,
+            "correction_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "action": "published",
+            "revision": 4,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791612+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 5,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "published",
+            "revision": 5,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791738+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 6,
+            "correction_id": "a72f15778c554eefa4ee658931dfbda2",
+            "action": "published",
+            "revision": 6,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791852+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 7,
+            "correction_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "action": "published",
+            "revision": 7,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.791959+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 8,
+            "correction_id": "22368acf5822463dbdeed9984242f296",
+            "action": "published",
+            "revision": 8,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.792071+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 9,
+            "correction_id": "9d72a17a0328423c802bbea8a65aa290",
+            "action": "published",
+            "revision": 9,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:31.792180+00:00",
+            "detail": {
+              "supersedes": null,
+              "version": 1,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 10,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "superseded",
+            "revision": 10,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:48.866371+00:00",
+            "detail": {
+              "superseded_by": "85b9b57e00b940499e7b443f5fedf2f7"
+            }
+          },
+          {
+            "sequence": 11,
+            "correction_id": "85b9b57e00b940499e7b443f5fedf2f7",
+            "action": "published",
+            "revision": 10,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:45:48.866371+00:00",
+            "detail": {
+              "supersedes": "586d4652055d4889b60169d61ea65f29",
+              "version": 2,
+              "notice": "Operator approval does not independently verify factual truth"
+            }
+          },
+          {
+            "sequence": 12,
+            "correction_id": "85b9b57e00b940499e7b443f5fedf2f7",
+            "action": "withdrawn",
+            "revision": 11,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:22.261530+00:00",
+            "detail": {
+              "rollback": true,
+              "restored_correction_id": "586d4652055d4889b60169d61ea65f29"
+            }
+          },
+          {
+            "sequence": 13,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "restored",
+            "revision": 11,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:22.261530+00:00",
+            "detail": {
+              "previous_status": "superseded",
+              "rollback_of": "85b9b57e00b940499e7b443f5fedf2f7"
+            }
+          },
+          {
+            "sequence": 14,
+            "correction_id": "9d72a17a0328423c802bbea8a65aa290",
+            "action": "withdrawn",
+            "revision": 12,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.703813+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 15,
+            "correction_id": "22368acf5822463dbdeed9984242f296",
+            "action": "withdrawn",
+            "revision": 13,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.715489+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 16,
+            "correction_id": "b7ef4f5dc0b148d281b051d08174f5eb",
+            "action": "withdrawn",
+            "revision": 14,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.728255+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 17,
+            "correction_id": "a72f15778c554eefa4ee658931dfbda2",
+            "action": "withdrawn",
+            "revision": 15,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.739957+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 18,
+            "correction_id": "586d4652055d4889b60169d61ea65f29",
+            "action": "withdrawn",
+            "revision": 16,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.751869+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 19,
+            "correction_id": "77e5995dc5c84eebb03776d055f04f1b",
+            "action": "withdrawn",
+            "revision": 17,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.762815+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 20,
+            "correction_id": "56c7ea6988d74be7832581fcf11dae1c",
+            "action": "withdrawn",
+            "revision": 18,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.774332+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 21,
+            "correction_id": "7620b78201784d778df22e8544349418",
+            "action": "withdrawn",
+            "revision": 19,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.785868+00:00",
+            "detail": {}
+          },
+          {
+            "sequence": 22,
+            "correction_id": "b9120072dc1b4c42bf334b41665ff0c5",
+            "action": "withdrawn",
+            "revision": 20,
+            "actor": "local_research_operator",
+            "created_at": "2026-10-27T11:46:38.797013+00:00",
+            "detail": {}
+          }
+        ]
+      },
+      "seconds": 0.0014405869997062837
+    }
+  ],
+  "consistency_checks": {
+    "pinned_ready_model": true,
+    "retrieved_policy": true,
+    "fresh_workspace": true,
+    "exact_approved_example": true,
+    "initial_example_entity": true,
+    "replace_owned_initial_fact": true,
+    "ownership_revision_is_ten": true,
+    "comparison_preserves_current_revision": true,
+    "rollback_single_revision_restores_predecessor": true,
+    "rollback_memory_consistent": true,
+    "rollback_audit_events_same_revision": true
+  },
+  "owned_fact_ids": [
+    "9d72a17a0328423c802bbea8a65aa290",
+    "22368acf5822463dbdeed9984242f296",
+    "b7ef4f5dc0b148d281b051d08174f5eb",
+    "a72f15778c554eefa4ee658931dfbda2",
+    "586d4652055d4889b60169d61ea65f29",
+    "77e5995dc5c84eebb03776d055f04f1b",
+    "56c7ea6988d74be7832581fcf11dae1c",
+    "7620b78201784d778df22e8544349418",
+    "b9120072dc1b4c42bf334b41665ff0c5",
+    "85b9b57e00b940499e7b443f5fedf2f7"
+  ],
+  "owned_chat_ids": [
+    "feabdd99db35402285523cff341f9f8c"
+  ],
+  "script_sha256": "44d151049a7a5f5ae62b3c0f0251136578141cd6d62f5aa77ca6d1c66cf0f420",
+  "model_id": "YukinoKaren/ReasonKE_plus",
+  "model_revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+  "authorization_headers_recorded": false,
+  "notice": "Four assigned generations on one previously used development-world question, not four new independent held-out facts. Automated strict alias scoring; no human-review claim.",
+  "comparison_failure_policy": "If the two-generation comparison request fails, both unavailable results are execution errors. A partial generation may have occurred but is not recovered or retried.",
+  "cleanup_policy": "Withdraw only explicitly recorded fact IDs created by this workload; preserve chats, audit events and every model answer.",
+  "owned_facts_inactive_at_end": true,
+  "completed_utc": "2026-10-27T11:46:38.826778+00:00",
+  "total_seconds": 67.1084694430001,
+  "outcome_counts": {
+    "correct": 4,
+    "wrong": 0,
+    "abstain": 0,
+    "execution_error": 0,
+    "unexecuted": 0
+  },
+  "cleanup_errors": [],
+  "all_consistency_checks_passed": true
+}

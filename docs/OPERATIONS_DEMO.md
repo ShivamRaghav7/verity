@@ -108,8 +108,29 @@ value endorsements, warm latency, scientific figures, SVGs, a CSV and JSON expor
 The archived visual study uses a different model and dataset. Its accuracy is
 never substituted for the current assistant's performance.
 
-For the completed development study and its limitations, read
-[the measured evidence](../reports/reasonke/operations-development-v1/README.md).
+The [completed final study](../reports/reasonke/operations-final/README.md) records
+all 1,312 assigned requests. ReasonKE with updated retrieval answered 256/256
+main questions correctly; Qwen with the same retrieval answered 241/256 and
+abstained fifteen times, with no wrong nonabstaining answers. This is measured
+performance on 32 controlled fictional lineages, not a guarantee for every live
+question. Full-memory conditions retain their wrong answers in the report.
+The [failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md) distinguishes false associations from
+strict short-answer mismatches; a response containing the correct person plus
+extra owner text can fail the frozen rule. Scores are not changed after testing.
+The earlier [development evidence](../reports/reasonke/operations-development-v1/README.md)
+documents how the retrieved policy was selected before final inference.
+
+The separate operational supplement completed on development worlds:
+[12/12 website answers](../reports/reasonke/operations-final/http-acceptance.json)
+and [4/4 historical-comparison/rollback answers](../reports/reasonke/operations-final/history-acceptance.json)
+were correct under the fixed short-answer rule. All eleven history consistency
+checks passed, with zero execution, unexecuted or cleanup errors. An
+[independent host audit](../reports/reasonke/operations-final/operational-host-audit.json)
+replayed the sixteen saved answers without new model calls. The twelve-request
+HTTP p50/p95 was 15.42/18.78 seconds. These reused development-world generations
+are separate from the held-out denominator. The release started a fresh ready
+demo; a live demonstration generates new answers and can differ from saved
+records, and its availability depends on the Colab runtime remaining connected.
 For schemas and endpoints see [the API](CHAT_API.md). The local administrator
 website is a single-operator research application; it does not provide a hosted
 multi-user authorization service.

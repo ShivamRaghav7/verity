@@ -3,9 +3,11 @@
 The current branch now implements canonical fact identity, portable **text**
 workspace snapshots, a current-model evidence dashboard, a controlled operations
 dataset, and bounded two-model evaluation. This document describes runnable
-implementation. The matched development run is complete; the larger frozen
-final inference was launched on 26 October 2026 and has its own receipt ledger.
-Only a completed saved final report is presented as final accuracy.
+implementation. The matched development run and the **1,312-request frozen
+held-out benchmark** are complete. The final receipts were independently replayed
+on the host for source, task, extraction and scoring integrity. The separate
+sixteen-generation website/rollback supplement also completed; its own receipts
+are not part of the 1,312-request held-out total.
 
 ## Application
 
@@ -34,12 +36,12 @@ Portable JSON snapshots intentionally refuse conversations with local images;
 back up their SQLite database plus images directory privately. Current ReasonKE
 chat is text-only. Export before a temporary Colab runtime terminates.
 
-Research results opens **current text-model evidence**, including the five-condition
-matched development scorecard, category outcomes, preservation, retrieval and
+Research results opens **current text-model evidence**, including the completed
+five-condition final scorecard, category outcomes, preservation, retrieval and
 latency. The five exportable PNG/SVG figures and CSV/report are derived from the
-actual 120 requests. Development results are explicitly labelled as such. The
-older visual study is behind an archive button. A completed final result is read from
-`reports/reasonke/operations-final/results.json`; missing results are never invented.
+actual final receipts. The earlier 120-request development study remains separately
+labelled and preserved. The older visual study is behind an archive button. The
+current final result is read from `reports/reasonke/operations-final/results.json`.
 
 The Knowledge tab can explicitly approve a nine-fact fictional example handbook,
 then draft an ownership change for a second explicit approval. Search the library
@@ -72,6 +74,10 @@ instruction use. It is a same-size comparison; exact ancestry of the released
 ReasonKE checkpoint remains unverified.
 
 ## Run stages
+
+The commands below document reproduction. The completed study is already saved;
+do not rerun completed questions to improve an answer or change the frozen scorer.
+Use new output paths for a separate reproduction; existing evidence is preserved.
 
 Use the isolated CUDA environment from the ReasonKE launcher. Both models are
 loaded sequentially, never together. `configs/operations-evaluation.json` fixes
@@ -150,9 +156,73 @@ This postprocessing does not load either model. Figure manifests bind raw input
 hashes and plotting-source identity. The report retains failed outcomes and
 documents latency scope, strict answer matching and the small controlled sample.
 
-See [the completed development evidence](../reports/reasonke/operations-development-v1/README.md)
-for actual scores, model revisions, failures and measured T4 resource use. A
-separate twelve-request website workload is available as
+## Completed held-out results
+
+The [final evidence](../reports/reasonke/operations-final/README.md) contains all
+1,312 outcomes from 32 held-out fictional lineages: 256 questions per main
+condition and sixteen oracle-support questions per model. There were **zero
+execution errors and zero unexecuted records**. Wrong answers and abstentions
+remain in the accuracy denominator.
+
+| Condition | Correct / assigned | Wrong under strict scoring | Abstained |
+| --- | ---: | ---: | ---: |
+| R0: ReasonKE, initial facts | 136/256 | 120 | 0 |
+| R-RAG: ReasonKE, updated retrieval | 256/256 | 0 | 0 |
+| R-ALL: ReasonKE, full current memory | 231/256 | 25 | 0 |
+| G-RAG: Qwen, same updated retrieval | 241/256 | 0 | 15 |
+| G-ALL: Qwen, full current memory | 241/256 | 13 | 2 |
+
+Both oracle diagnostics scored 16/16. Shared retrieval found 320/320 required
+facts and complete support for 64/64 two-hop questions. These are one shared
+retrieval experiment used by two generators, not independent retrieval successes.
+
+ReasonKE retrieval's observed advantage over Qwen retrieval was **5.86 percentage
+points**, with a 95% paired lineage-bootstrap interval of **[3.91, 8.20]** over
+32 lineages. The entire answer-count difference comes from Qwen's fifteen
+abstentions; Qwen's 241 nonabstaining answers matched the fixed aliases. All
+fifteen abstentions occurred on two-hop paraphrases, where G-RAG matched 17/32
+targets despite receiving the required facts. Both retrieved
+conditions answered all 128 locality questions correctly. This is an accuracy
+and coverage difference under fixed prompts on this controlled dataset, not a
+causal estimate of upstream training or a universal reliability guarantee.
+
+Warm pipeline p50/p95 was **15.06/16.71 seconds** for R-RAG and **0.92/1.20
+seconds** for G-RAG, each with 256 generated requests. Qwen was faster in this
+matched workload. Full-memory ReasonKE scored below full-memory Qwen, so the
+results do not support a claim that ReasonKE is best under every context policy.
+Here, "wrong" means a mismatch under the frozen whole-endorsed-answer rule,
+not necessarily an entirely false response. Three G-ALL outputs concatenate a
+team and contact; two contain the correct requested person but extra owner text
+and fail the requested short-answer format. The primary score remains unchanged.
+The [failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md) distinguishes these cases from wrong
+associations and preserves the raw outputs.
+The [raw aggregate](../reports/reasonke/operations-final/results.json),
+[independent host audit](../reports/reasonke/operations-final/host-audit.json) and
+[derived report](../reports/reasonke/operations-final/derived/REPORT.md) preserve
+the denominators, uncertainty, category failures and resource measurements.
+
+## Separate website measurements
+
+The [twelve-request HTTP receipt](../reports/reasonke/operations-final/http-acceptance.json)
+records **12/12 correct generated answers**. The
+[historical comparison and atomic rollback receipt](../reports/reasonke/operations-final/history-acceptance.json)
+records **4/4 correct generated answers** and all **eleven consistency checks
+passing**. Both workloads completed with zero wrong answers, abstentions,
+execution errors, unexecuted cases or cleanup errors. These are sixteen real
+model generations on reused development worlds, not sixteen independent held-out
+facts or an addition to primary accuracy.
+
+HTTP p50/p95 was **15.42/18.78 seconds** over twelve generated requests, including
+website handling, SQLite and worker HTTP. This differs from the benchmark's
+local-IPC timing and does not measure an external browser network round trip.
+An [independent operational host audit](../reports/reasonke/operations-final/operational-host-audit.json)
+replayed all sixteen saved scores, raw-answer extraction and model revision
+checks without generating new answers. The release left a fresh demo ready;
+continued availability still depends on the serving Colab runtime.
+
+The [completed development evidence](../reports/reasonke/operations-development-v1/README.md)
+preserves the earlier policy-selection comparison. A separate twelve-request
+website workload is available as
 `python -m scripts.verify_operations_http --base-url http://127.0.0.1:8005 --output <new-file.json>`.
 It requires a ready model and an isolated empty active memory; it publishes the
 three development worlds sequentially, measures direct/paraphrase/two-hop answers,

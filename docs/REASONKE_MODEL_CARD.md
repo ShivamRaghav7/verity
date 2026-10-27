@@ -47,6 +47,44 @@ retrieved policy was selected before final inference; see
 [actual development evidence](../reports/reasonke/operations-development-v1/README.md).
 These are three independent development lineages, not held-out final accuracy.
 
+The subsequent [frozen held-out study](../reports/reasonke/operations-final/README.md)
+completed all 1,312 requests across 32 lineages. ReasonKE with updated retrieval
+answered 256/256 main questions correctly; Qwen with identical retrieved fact IDs
+matched 241/256 fixed targets and abstained on fifteen, with no wrong nonabstaining
+answers. All fifteen abstentions were two-hop paraphrases (17/32 correct in that
+category), despite the required facts being supplied. The observed
+5.86-percentage-point difference has a 95% paired
+lineage-bootstrap interval of [3.91, 8.20]. It reflects answer coverage in this
+controlled workload; it does not isolate the causal effect of ReasonKE training.
+Both retrieved configurations answered all 128 locality questions correctly.
+
+Full-memory ReasonKE answered 231/256 correctly with 25 wrong answers;
+full-memory Qwen matched 241/256 with thirteen strict mismatches and two abstentions.
+The initial-fact ReasonKE diagnostic scored 136/256 against updated truth. Both
+sixteen-question oracle diagnostics scored 16/16. No final request was unexecuted
+or an execution error. These sample results do not guarantee arbitrary questions,
+unfamiliar natural-language formulations or larger fact stores.
+The [failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md) separates factual errors from
+strict-format failures: two G-ALL mismatches include the correct requested person
+alongside extra owner text. The fixed primary scores are not revised afterward.
+
+Warm pipeline p50/p95 was 15.06/16.71 seconds for retrieved ReasonKE versus
+0.92/1.20 seconds for retrieved Qwen (256 generated requests each), excluding
+cold loading and browser networking. Qwen was faster on this measured workload.
+See the [full aggregate](../reports/reasonke/operations-final/results.json) for
+all conditions, paired uncertainty, resources and failures. The separate sixteen
+website/rollback generations also completed: the
+[HTTP receipt](../reports/reasonke/operations-final/http-acceptance.json) records
+12/12 correct answers, and the
+[history/rollback receipt](../reports/reasonke/operations-final/history-acceptance.json)
+records 4/4 correct answers with all eleven consistency checks passing. Both have
+zero execution, unexecuted or cleanup errors. The twelve-request HTTP p50/p95 was
+15.42/18.78 seconds. An
+[independent host replay](../reports/reasonke/operations-final/operational-host-audit.json)
+checked all sixteen outcomes without new model calls. These reused development
+worlds are a distinct operational population, not additional independent held-out
+questions or a guarantee for future live requests.
+
 ReasonKE uses the upstream updated-information/query prompt structure with
 approved facts serialized as JSON. The instruction baseline uses its official
 chat template with explicit short-answer/context instructions. The configurations

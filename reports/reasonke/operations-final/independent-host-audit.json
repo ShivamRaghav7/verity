@@ -1,0 +1,48 @@
+{
+  "schema": "editguard-operations-host-audit-v1",
+  "status": "passed",
+  "created_utc": "2026-10-27T11:42:14.185708+00:00",
+  "receipts": [
+    {
+      "receipt": "artifacts\\operations-recovery\\completed-primary-study\\final\\final-reasonke.json",
+      "sha256": "d6d8cad4a87e6036c2bd3ff0bb9cfd21fa15c2a37b7a801eb7b03ed15ca0af4b",
+      "phase": "final",
+      "model": "reasonke",
+      "assigned": 784,
+      "attempted": 784,
+      "generated": 784,
+      "unexecuted": 0,
+      "status": "completed"
+    },
+    {
+      "receipt": "artifacts\\operations-recovery\\completed-primary-study\\final\\final-instruction.json",
+      "sha256": "e107071887e094ef5a633c72a67a85e89fe4ea7800b8106236f619429cc04d07",
+      "phase": "final",
+      "model": "instruction",
+      "assigned": 528,
+      "attempted": 528,
+      "generated": 528,
+      "unexecuted": 0,
+      "status": "completed"
+    }
+  ],
+  "phase": "final",
+  "assigned": 1312,
+  "independent_lineages": 32,
+  "verified": [
+    "source/config/data hashes",
+    "complete assigned task identities",
+    "question labels",
+    "request digest and supplied facts",
+    "retrieval without gold support except oracle",
+    "pinned generation provenance",
+    "raw-output extraction",
+    "frozen answer scoring",
+    "aggregate denominators and paired comparisons"
+  ],
+  "protocol_sha256": "23914664df3378be46be463ea60cd8b5b258eb13b6b55c68b38f76d3b15c94c5",
+  "audit_script_sha256": "2584a8c69196c641eaa71e423f85066be5a61ee54b513e460a94f972c960e41f",
+  "new_model_generations": 0,
+  "human_reviewed": false,
+  "notice": "Mechanical integrity/scoring audit; does not independently establish semantic labels or faithful explanations."
+}

@@ -162,11 +162,30 @@ def create(directory, output):
     table(["Case / condition", "Expected", "Actual / outcome"], [[row["question"]["id"] + " / " + row["condition"], row["question"]["expected_answer"],
         str(row.get("response", {}).get("content", row.get("error", row["outcome"])))[:100]] for row in failures[:6]], [.43, .24, .33])
     small("Deterministic first-six failure subset in record-ID order. All failures remain in raw receipts. Absence of a failure in this subset is not evidence that it did not occur.")
-    para("A correct final answer does not verify its generated explanation. Prior development traces contained unsupported claims and incorrect intermediate associations. Explanation support must be audited separately; generated traces do not prove faithful internal reasoning.")
+    para("A correct final answer does not verify its generated explanation. Explanation support is audited separately; generated traces do not prove faithful internal reasoning.")
+    explanation_path = directory / "explanation-audit.json"
+    if explanation_path.exists():
+        explanation = json.loads(explanation_path.read_text())
+        retrieved_claims = explanation["by_condition"]["R-RAG"]
+        full_claims = explanation["by_condition"]["R-ALL"]
+        labels = full_claims["current_fact_counts"]
+        para(f"The separate {explanation['assigned_traces']}-trace {phase} audit found {retrieved_claims['current_fact_counts']['supported']}/{retrieved_claims['extracted_indexed_claims']} supported extracted claims with retrieval. Full memory had {labels['supported']} supported, {labels['contradicted']} contradicted and {labels['unsupported']} unsupported extracted claims. Surrounding prose stays unassessed; no whole explanation is certified.")
+    if phase == "final":
+        page()
+        title("Concrete outcome and measured tradeoffs")
     sub("What the product delivers")
     para("A working conversational editing interface with explicit fact approval, canonical scope identities, conflict resolution, version history, historical comparison, withdrawal/restoration, text-workspace export/restore, result exports and scientific graphs. Model output, deterministic state-machine checks and source context remain visibly distinct.")
     sub("What the evidence supports")
-    para("The result is the measured scorecard in this report, on this controlled dataset, plus a reproducible reversible editing workflow. It does not require beating every baseline. The current deployment selected retrieved context from development before final inference (ReasonKE 24/24 versus 21/24 with full memory); Qwen retrieved context also scored 24/24. No universal accuracy or superiority is inferred.")
+    if phase == "final":
+        retrieved = report["conditions"]["R-RAG"]
+        general = report["conditions"]["G-RAG"]
+        difference = report["paired_differences"]["R-RAG minus G-RAG"]
+        para(f"The selected ReasonKE retrieval configuration answered {retrieved['overall']['counts']['correct']}/{n} held-out questions correctly: {retrieved['applicable']['counts']['correct']}/{retrieved['applicable']['assigned']} applicable questions and {retrieved['locality']['counts']['correct']}/{retrieved['locality']['assigned']} locality questions. Qwen with the same retrieved facts scored {general['overall']['counts']['correct']}/{n}, with {general['overall']['counts']['abstain']} abstentions and {general['overall']['counts']['wrong']} wrong final spans. Every abstention remained in the denominator.")
+        low, high = difference["ci95"]
+        para(f"The paired retrieval accuracy difference was {100*difference['left_minus_right']:.2f} percentage points (95% lineage-bootstrap interval {100*low:.2f} to {100*high:.2f}). The cost was higher warm latency: ReasonKE retrieval p50 {retrieved['overall']['generated_latency']['p50_seconds']:.2f} s versus Qwen {general['overall']['generated_latency']['p50_seconds']:.2f} s. Under full memory, ReasonKE scored {report['conditions']['R-ALL']['overall']['counts']['correct']}/{n}, versus Qwen {report['conditions']['G-ALL']['overall']['counts']['correct']}/{n}; the specialized checkpoint was not best under every context policy.")
+        para("The bounded objective was achieved by the selected configuration: changed facts propagated to direct and connected answers while locality answers stayed correct in this test. Context selection and the accuracy/coverage/latency tradeoff are the concrete experimental findings. The deployment policy was selected on development before these held-out answers. Shared templates, automated labels and strict short-answer matching limit the conclusion; the comparison does not isolate the causal effect of upstream training or establish arbitrary-language reliability.")
+    else:
+        para("The result is the measured scorecard in this report, on this controlled dataset, plus a reproducible reversible editing workflow. It does not require beating every baseline. The current deployment selected retrieved context from development before final inference (ReasonKE 24/24 versus 21/24 with full memory); Qwen retrieved context also scored 24/24. No universal accuracy or superiority is inferred.")
     small("Limits: shared wording templates, a small fictional population, automated labels, strict alias scoring, no calibrated neural confidence, identity-based rather than complete semantic conflict detection, nine-fact evaluated worlds, and no production multi-user authorization. Checkpoint training and research algorithms are upstream contributions.")
     page()
 

@@ -193,12 +193,24 @@ supplies identical fact IDs to both generators. R0 is scored against updated
 truth and therefore diagnoses staleness; it is not the untouched pre-SFT model.
 
 The completed development comparison has 120 requests: the same 24 questions per
-main condition across three predetermined development lineages. The final
-protocol assigns 1,312 requests: five 256-question conditions from 32 held-out
-lineages plus 16 oracle-support questions per model. Profiles and development
-results remain distinct from held-out measurements. The final protocol is
-[preserved here](../reports/reasonke/operations-final/protocol.json); completed
-accuracy requires completed receipts and an aggregate, not just this protocol.
+main condition across three predetermined development lineages. The
+[completed frozen final study](../reports/reasonke/operations-final/README.md)
+records all 1,312 requests: five 256-question conditions from 32 held-out lineages
+plus sixteen oracle-support questions per model. Source identities and scoring
+were [independently replayed on the host](../reports/reasonke/operations-final/host-audit.json).
+Profiles, development and held-out results remain distinct. The original
+[frozen protocol](../reports/reasonke/operations-final/protocol.json) is preserved.
+
+R-RAG answered 256/256, G-RAG 241/256 with fifteen abstentions and no wrong
+nonabstaining answers, R-ALL 231/256, G-ALL 241/256, and the initial-fact diagnostic
+R0 136/256 against updated truth. Both oracle diagnostics answered 16/16. No final
+record was an execution error or unexecuted. The retrieved-condition difference
+is an observed accuracy/coverage tradeoff under the fixed prompts, not a causal
+ablation of model training; Qwen was faster, and full-memory Qwen scored higher
+than full-memory ReasonKE. These outcomes describe frozen short-answer scoring
+on this bounded dataset. The [failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md) separates
+abstentions, factual mistakes and strict-format mismatches instead of treating
+every score mismatch as an entirely false response.
 
 The runner uses isolated spawned workers and local interprocess communication,
 not the website HTTP path. Each request has a hard 240-second parent watchdog;
@@ -223,6 +235,20 @@ generation, excluding cold loading and browser/network time. The separate
 including storage and worker HTTP; its fixtures are software checks, not neural
 accuracy. Raw model output, extracted answers, model revision, token counts,
 supplied fact IDs, prompt digest, errors and CUDA resources remain in the receipts.
+
+The operational supplement also completed with real ReasonKE generations:
+[twelve HTTP answers](../reports/reasonke/operations-final/http-acceptance.json)
+matched 12/12 targets, and the
+[four history/rollback answers](../reports/reasonke/operations-final/history-acceptance.json)
+matched 4/4 with all eleven consistency checks passing. There were no execution,
+unexecuted or cleanup errors. An
+[independent host audit](../reports/reasonke/operations-final/operational-host-audit.json)
+replayed all sixteen records without new model calls. The twelve-request HTTP
+p50/p95 was 15.42/18.78 seconds. These reused development-world requests validate
+the serving and revision workflow separately; they are not extra independent
+held-out lineages and do not change the primary study's denominator. A fresh demo
+was started ready at release completion; runtime availability remains separate
+from those durable recorded results.
 
 ## Source and validation map
 

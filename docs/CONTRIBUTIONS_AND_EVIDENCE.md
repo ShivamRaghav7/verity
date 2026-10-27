@@ -44,25 +44,56 @@ final accuracy claim, and do not establish a ReasonKE advantage.
 
 The retrieval policy was selected from that development evidence before final
 inference. The [final protocol](../reports/reasonke/operations-final/protocol.json)
-assigns 1,312 requests with source/data/configuration identities. A protocol and
-launched workload are not completed results: final numerical claims require
-the completed raw receipts, audit and aggregate. The current dashboard selects
-saved evidence with explicit phase and execution-state labels rather than
-inventing missing scores.
+bound source/data/configuration identities before the **completed 1,312-request
+held-out study** across 32 fictional lineages. The
+[final scorecard](../reports/reasonke/operations-final/README.md),
+[raw aggregate](../reports/reasonke/operations-final/results.json) and
+[independent host replay](../reports/reasonke/operations-final/host-audit.json)
+now preserve all outcomes. R-RAG scored 256/256; G-RAG scored 241/256 with fifteen
+abstentions and no wrong nonabstaining answers; R-ALL scored 231/256 with 25 wrong
+answers; G-ALL scored 241/256 with thirteen strict mismatches and two abstained answers; R0
+scored 136/256 against updated truth. Both oracle diagnostics scored 16/16. No
+final execution error or unexecuted record was removed: there were zero of each.
+
+R-RAG minus G-RAG was 5.86 percentage points with a 95% paired lineage-bootstrap
+interval of [3.91, 8.20]. The difference reflects Qwen's fifteen abstentions under
+the fixed context/prompt conditions; all fifteen occurred on two-hop paraphrases
+despite retrieved support being present. This is not a demonstrated causal effect of upstream
+training. Qwen generated much faster in the matched workload, and full-memory
+Qwen scored higher than full-memory ReasonKE. Our conclusion therefore reports
+the measured configuration tradeoffs and controlled scope, rather than universal
+superiority. The current dashboard selects this saved final experiment and keeps
+development and archived visual evidence distinct.
+The [failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md) distinguishes wrong factual associations
+from fixed-format mismatches, including G-ALL answers with a correct person plus
+extra owner text. These distinctions explain failures without changing scores.
 
 The [software deployment receipt](../reports/reasonke/engineering/workspace-deployment-3.json)
 records 24 real HTTP/SQLite contract checks with **zero model generations** and
 `model_accuracy: null`. Its passing status supports transaction, identity,
 rollback and recovery behavior, not answer-model accuracy. Unit fixtures and
 browser checks have the same distinction. The separate
-[twelve-request HTTP workload](../scripts/verify_operations_http.py) prepares
-actual website latency and post-restoration answer measurements; its fixtures
-are not substituted for an executed GPU receipt.
+[twelve-request HTTP workload](../scripts/verify_operations_http.py) and
+[four-generation history/rollback workload](../scripts/verify_operations_history.py)
+completed the website path on development worlds. Their actual
+[HTTP receipt](../reports/reasonke/operations-final/http-acceptance.json) records
+12/12 correct answers and p50/p95 of 15.42/18.78 seconds; the
+[history/rollback receipt](../reports/reasonke/operations-final/history-acceptance.json)
+records 4/4 correct answers and all eleven consistency checks passing. Both have
+zero errors, unexecuted records or cleanup errors. The
+[operational host audit](../reports/reasonke/operations-final/operational-host-audit.json)
+replayed all sixteen saved outcomes without new generations. Their fixtures are
+not substituted for these measurements, and the sixteen reused development-world
+generations are not included in the primary 1,312-request held-out population.
 
 The [typeset development report](../output/pdf/editguard-development-study.pdf)
 and [derived figures](../reports/reasonke/operations-development-v1/derived)
 come from those recorded outputs. No model generation occurs during plotting,
 typesetting or host integrity replay.
+The [final scientific figures and report](../reports/reasonke/operations-final/derived)
+are derived separately from the completed frozen receipts. The
+[32-trace final support audit](../reports/reasonke/operations-final/explanation-audit.json)
+checks bounded explicit subanswers; no complete explanation is labelled verified.
 
 ## How earlier training contributes without being misrepresented
 

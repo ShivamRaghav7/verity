@@ -1,0 +1,11 @@
+{
+  "schema": "editguard-study-pdf-v1",
+  "phase": "final",
+  "pdf_sha256": "b806dba03f16387c9b6eaa54487999fd3459e99d68734be487321a1e3f1637bd",
+  "result_sha256": "6bd7a1185644109982a5c7e636287616edb227ab4edac113d408d33a1c5effbe",
+  "script_sha256": "42b43366578bd066a72d74ad024532a33146f609404b56679062172318890960",
+  "rendered_pages": 10,
+  "visual_qa": "All ten final pages rendered with Poppler and visually inspected by the assistant. Overlapping scatter labels removed; no clipped tables or overlapping text observed.",
+  "human_reviewed": false,
+  "model_generations": 0
+}

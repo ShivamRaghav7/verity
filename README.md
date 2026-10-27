@@ -32,17 +32,44 @@ for the actual development timeline, plain-language model/metric explanations,
 the complete website workflow, and what our evidence does and does not establish.
 
 The controlled dataset contains 48 fictional edit lineages and 384 questions,
-split before wording augmentation. The matched **120-request development run**
-is complete: ReasonKE with updated retrieval scored 24/24, versus 21/24 with full
-memory; Qwen with the same retrieval also scored 24/24. These three-development-
-lineage results guided context-policy selection and do not establish general
-accuracy or a ReasonKE advantage. The separate **1,312-request frozen held-out
-run** was launched on the T4; unfinished inference is never presented as a final
-score. Every wrong answer, abstention and execution failure stays in its denominator.
+split before wording augmentation. The **1,312-request frozen held-out study is
+complete**, with all raw outputs independently replay-audited on the laptop.
+Each main condition uses the same 256 questions over 32 held-out lineages;
+abstentions receive zero primary credit.
 
-Inspect [raw development evidence and measured timings](reports/reasonke/operations-development-v1/README.md),
-[the nine-page measured study](output/pdf/editguard-development-study.pdf), and
-[the actual frozen final protocol](reports/reasonke/operations-final/protocol.json).
+| Configuration | Correct / assigned | Scored wrong | Abstained |
+| --- | ---: | ---: | ---: |
+| ReasonKE / initial facts, scored against updated truth | 136/256 | 120 | 0 |
+| ReasonKE / updated retrieved facts | 256/256 | 0 | 0 |
+| ReasonKE / updated full memory | 231/256 | 25 | 0 |
+| Qwen / same updated retrieved facts | 241/256 | 0 | 15 |
+| Qwen / updated full memory | 241/256 | 13 | 2 |
+
+Both preselected oracle diagnostics scored 16/16. No primary request had an
+execution error or remained unexecuted. ReasonKE retrieval retained 124/124
+baseline-correct locality answers and answered all 128 locality questions
+correctly. Its +5.86 percentage-point retrieval difference over Qwen had a 95%
+lineage-bootstrap interval of +3.91 to +8.20 points. All fifteen Qwen retrieval
+abstentions were two-hop paraphrases with necessary support supplied. ReasonKE
+also had higher warm latency: p50/p95 15.06/16.71 s versus Qwen 0.92/1.20 s.
+These are bounded short-answer results with automated labels and shared wording
+templates, not arbitrary-language reliability or a causal training claim.
+
+The **120-request development study** selected retrieved context before final
+inference: ReasonKE scored 24/24 versus 21/24 with full memory, while Qwen
+retrieval also scored 24/24. No final answers were used to change settings or
+scoring. The separate website workload completed **12/12 workflow answers and
+4/4 historical-comparison/rollback answers**, with all eleven recorded rollback
+consistency checks passing. Its actual twelve-request website p50/p95 was
+15.42/18.78 s, including storage and worker HTTP. These development-world checks
+are separate from held-out accuracy; see the
+[operational replay audit](reports/reasonke/operations-final/operational-host-audit.json).
+
+Read [the full final evidence](reports/reasonke/operations-final/README.md),
+[the typeset final report](output/pdf/editguard-final-study.pdf),
+[failure analysis and scoring limits](reports/reasonke/operations-final/FAILURE_ANALYSIS.md),
+and [the frozen protocol](reports/reasonke/operations-final/protocol.json).
+[Development evidence](reports/reasonke/operations-development-v1/README.md) stays separate.
 The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains a
 dated planning record; current implementation and measured evidence are linked above.
 

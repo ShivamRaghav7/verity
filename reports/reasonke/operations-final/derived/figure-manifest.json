@@ -1,0 +1,22 @@
+{
+  "schema": "editguard-operations-figures-v1",
+  "source_receipts": {
+    "reports/reasonke/operations-final/final-reasonke.json": "d6d8cad4a87e6036c2bd3ff0bb9cfd21fa15c2a37b7a801eb7b03ed15ca0af4b",
+    "reports/reasonke/operations-final/final-instruction.json": "e107071887e094ef5a633c72a67a85e89fe4ea7800b8106236f619429cc04d07"
+  },
+  "script_sha256": "0eed733af1dfe5769a86ce04f8ad87308b7e56eb5d7be7d3dd9c8679d55c3451",
+  "model_inference_executed": false,
+  "matplotlib_version": "3.10.7",
+  "figures": {
+    "category-accuracy.png": "bfd7d175c1dd82a9b526b9ad73a347e992a7dac332f3324d42173acdc1812833",
+    "category-accuracy.svg": "d5c7e0cf3eefa9f01821c0ee69a2bb87ac7a5c041674b797e6ae85d2f4ab2351",
+    "efficacy-locality.png": "79fefb1a87e759587faf9b5b6d8d5e9e090234c138853e6763c96ddd7a7ee826",
+    "efficacy-locality.svg": "3a2b7601866ce06ea532b1ddcd1cadd4db01ce184ffd74eff6ff789f4ab7266f",
+    "outcome-composition.png": "aa1f6b2a043986e35443207054031d26619ef99b06a40ce40b9d8cdd42776912",
+    "outcome-composition.svg": "8a6013902f8ed6e7b23c5d273223d3cd536af00d788904d0974579a017f12201",
+    "paired-differences.png": "8182e621ef3f1075cc15fcfc842603d4678bec221df243100ad18a6f476fe882",
+    "paired-differences.svg": "ca374b2c7ee330a7fcd27c762bc051b6c7c7da456d7665db2386d2e0bb0a3473",
+    "latency.png": "5126875ef07912524bb56244e13d8a556237ff16adf134fb6470d342265348f9",
+    "latency.svg": "97434d4a1178ef4d455fc7fcdd264ea2f3c7987f6aca6ace729d63ab8f7413b2"
+  }
+}

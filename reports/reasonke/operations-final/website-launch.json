@@ -1,0 +1,48 @@
+{
+  "schema": "editguard-release-launch-v1",
+  "status": "demo_ready",
+  "assigned_http_generations": 16,
+  "http_population": {
+    "direct_paraphrase_two_hop_restore": 12,
+    "historical_comparison_atomic_rollback": 4
+  },
+  "benchmark_retried": false,
+  "training_steps": 0,
+  "session_tokens_recorded": false,
+  "notice": "Operational development supplement; not extra independent held-out facts",
+  "source_commit": "7ff2925571da709e0d15f5533da93793685ab165",
+  "worker_pid": 27848,
+  "http_outcome_counts": {
+    "correct": 12,
+    "wrong": 0,
+    "abstain": 0,
+    "execution_error": 0,
+    "unexecuted": 0
+  },
+  "http_cleanup_errors": [],
+  "http_command_exit": 0,
+  "history_outcome_counts": {
+    "correct": 4,
+    "wrong": 0,
+    "abstain": 0,
+    "execution_error": 0,
+    "unexecuted": 0
+  },
+  "history_consistency_checks": {
+    "pinned_ready_model": true,
+    "retrieved_policy": true,
+    "fresh_workspace": true,
+    "exact_approved_example": true,
+    "initial_example_entity": true,
+    "replace_owned_initial_fact": true,
+    "ownership_revision_is_ten": true,
+    "comparison_preserves_current_revision": true,
+    "rollback_single_revision_restores_predecessor": true,
+    "rollback_memory_consistent": true,
+    "rollback_audit_events_same_revision": true
+  },
+  "history_command_exit": 0,
+  "demo_pid": 29558,
+  "website_port": 8005,
+  "demo_memory": "Empty; fictional handbook requires explicit approval in Knowledge"
+}

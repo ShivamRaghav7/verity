@@ -66,14 +66,24 @@ deterministic controls and show a saved failure honestly. Start with the
 [server](../editguard_chat/server.py) and
 [browser evidence](../output/operations-2026-10-26/ui/README.md).
 
-## Useful team work while final inference runs
+## Review and rehearsal after the primary evaluation
 
-The benchmark protocol is frozen. Review and rehearsal can proceed without
-changing its models, dataset, retrieval, generation settings or scoring rules.
+The frozen primary benchmark is complete: all 1,312 outputs were recorded and
+independently host-audited. Review and rehearsal use that saved evidence without
+changing the models, dataset, retrieval, generation settings or scoring rules.
+The separate sixteen-generation website/rollback supplement also completed:
+[12/12 HTTP answers](../reports/reasonke/operations-final/http-acceptance.json)
+and [4/4 history/rollback answers](../reports/reasonke/operations-final/history-acceptance.json)
+were correct, all eleven consistency checks passed, and neither workload had
+execution, unexecuted or cleanup errors. Their
+[independent host audit](../reports/reasonke/operations-final/operational-host-audit.json)
+uses saved outputs without new model calls. Reusing development worlds does not
+expand the held-out study's population.
 
-1. **1 + 2:** Reconstruct a development example end to end, using saved outputs.
+1. **1 + 2:** Reconstruct a saved final example end to end, using its actual facts
+   and output.
    Write a short explanation of one direct question, one two-hop question and
-   one failure. Do not tune against partial final answers.
+   one failure. Do not tune settings or aliases against final answers.
 2. **4 + 5:** Rehearse approval, conflict, historical comparison, rollback and
    restoration in an isolated local workspace. Record the state/revision before
    and after each operation. CPU software checks need no competing GPU worker.
@@ -81,15 +91,22 @@ changing its models, dataset, retrieval, generation settings or scoring rules.
    and the difference between preservation and factual correctness. Check that
    report wording matches those definitions.
 4. **3 + 5:** Rehearse dashboard navigation and explain a raw response beside its
-   score. Prepare report/presentation structure using development evidence;
-   insert final numbers only after completion and audit.
+   score. Present the audited final counts, with development kept as the earlier
+   policy-selection stage. Explain that R-RAG's 256/256 versus G-RAG's 241/256
+   reflects fifteen Qwen two-hop-paraphrase abstentions with support present,
+   not fifteen incorrect nonabstaining answers. Use the
+   [failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md) to distinguish factual mistakes from
+   strict-format mismatches while retaining the frozen scores.
 5. **Everyone:** Read [the beginner guide](UNDERSTAND_THE_CURRENT_PROJECT.md),
    perform the full demo once, and answer questions outside the primary role.
 
-After final inference, 2 and 3 validate model execution and resources; 1 and 3
-audit the fixed populations and outcomes; 4 and 5 validate the real website
-editing/rollback supplement; 3 and 5 finish verified exports and the demo.
-All members review the resulting conclusion and its limitations.
+Members 2 and 3 explain the actual model execution and resource evidence; 1 and 3
+review the fixed populations and outcomes; 4 and 5 inspect the real website
+editing/rollback supplement's own completion and consistency receipts; 3 and 5
+check exports and rehearse the demo. All members review the resulting conclusion
+and its limitations. Explain the difference between the 1,312 held-out requests,
+the sixteen development-world website generations and the zero-generation
+software checks instead of combining their scores.
 
 ## Record actual contributions before presenting
 
@@ -105,7 +122,10 @@ restoration tests.” Say “implemented” or “trained” only when that desc
 person's actual work. The current ReasonKE checkpoint and Qwen baseline require
 upstream attribution; our earlier auxiliary-model training is a separate study.
 
-The shared conclusion will follow the completed evidence: a working governed
-knowledge-editing product, measured behavior on a bounded controlled dataset,
-fair comparisons and documented limits. It does not depend on claiming that
-every question succeeds or that ReasonKE beats every baseline.
+The shared primary-study conclusion follows the
+[completed evidence](../reports/reasonke/operations-final/README.md): an implemented
+governed knowledge-editing product, measured behavior on a bounded controlled
+dataset, fair comparisons and documented limits. It does not depend on claiming
+that every question succeeds or that ReasonKE beats every baseline. The separate
+completed operational receipts establish measured website/rollback behavior;
+continued live demo access depends on the serving runtime.

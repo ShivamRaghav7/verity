@@ -69,7 +69,10 @@ def generate(receipts, output):
         ax.scatter(l, a, s=110, color=COLORS[name], label=NAMES[name], edgecolor="white")
         coordinates.setdefault((l, a), []).append(name)
     for (l, a), labels in coordinates.items():
-        ax.annotate(" / ".join(labels), (l, a), xytext=(-10, -20 if a > 95 else 10), textcoords="offset points", fontsize=10, ha="right")
+        # The legend identifies distinct points. Label only exact overlaps;
+        # individual labels collide when several methods are near 100 percent.
+        if len(labels) > 1:
+            ax.annotate(" / ".join(labels), (l, a), xytext=(-10, -20 if a > 95 else 10), textcoords="offset points", fontsize=10, ha="right")
     ax.set_xlim(-3, 105); ax.set_ylim(-3, 105); ax.set_xlabel(f"Locality factual accuracy · {assigned // 2} assigned questions (%)")
     ax.set_ylabel(f"Applicable-edit accuracy · {assigned // 2} assigned questions (%)")
     ax.set_title("Correction success and locality are separate outcomes")

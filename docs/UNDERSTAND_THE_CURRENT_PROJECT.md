@@ -67,6 +67,7 @@ The repository records several iterations, rather than one uninterrupted success
 | 21–24 October | Explored visual editing and ran a comparative visual study. Some methods matched edited targets while damaging unrelated answers, showing why edit success alone was insufficient. The visual evidence remains separately archived. |
 | 25 October | Built ordinary conversational interaction, persistent history, sourced approvals and before/after comparison; corrected stale-history behavior. Integrated the released ReasonKE checkpoint with pinned revisions and recorded real T4 website generations. |
 | 26 October | Authored the connected operations dataset, profiled both checkpoints, completed the matched development comparison, selected retrieved context, and froze a larger held-out evaluation. Expanded canonical identities, historical comparison, atomic rollback, recovery, raw-answer inspection and scientific exports. |
+| 27 October | Restored the user-requested pause checkpoint, verified that all 483 saved outputs stayed unchanged, completed the remaining 301 ReasonKE and 528 Qwen requests, independently replay-audited the full study on the laptop, and generated final scientific reports. No completed failure was retried for a better answer. |
 
 The [evidence-backed history](PROJECT_JOURNEY_AND_FINISH_PLAN.md) links earlier
 commits and studies. It is a dated planning/history document; current behavior is
@@ -102,7 +103,7 @@ and one revision. If a late database write fails, neither half is committed.
 These deterministic guarantees concern state changes; they do not guarantee a
 correct generated answer.
 
-## The dataset and the completed development results
+## The dataset and our measured results
 
 We independently authored **48 fictional fact worlds**, each with nine facts,
 one ownership change and eight questions. This gives **384 question records**.
@@ -136,12 +137,55 @@ applied the new owner to an older release once. Qwen full memory chose the
 similarly named service once and abstained once. All outcomes remain in
 [the raw development evidence](../reports/reasonke/operations-development-v1/README.md).
 
-The **1,312-request final run is in progress**, separately from these completed
-development results. Its planned population is five main conditions × 256
-questions, plus 16 oracle questions per model. Each main condition has 128
-applicable and 128 locality questions from 32 held-out lineages. Those are
-assigned denominators, not final accuracy. Settings and scoring were fixed
-before inference; final answers must not be used to improve them.
+### The completed held-out study
+
+The **1,312-request final run completed** under the frozen settings. It asked the
+same 256 held-out questions in five main configurations (1,280 calls), plus the
+same sixteen preselected oracle questions to each model (32 calls). Therefore
+1,312 is the number of model calls, not 1,312 independent questions. Each main
+condition contains 128 applicable and 128 locality questions from 32 held-out
+lineages. Test answers were not used to change settings or scoring.
+
+| Configuration | Correct / assigned | Scored wrong | Abstained |
+| --- | ---: | ---: | ---: |
+| R0: ReasonKE, initial facts against updated targets | 136/256 | 120 | 0 |
+| R-RAG: ReasonKE, updated retrieved facts | 256/256 | 0 | 0 |
+| R-ALL: ReasonKE, full updated memory | 231/256 | 25 | 0 |
+| G-RAG: Qwen, same updated retrieved facts | 241/256 | 0 | 15 |
+| G-ALL: Qwen, full updated memory | 241/256 | 13 | 2 |
+
+Both oracle diagnostics scored 16/16. All 1,312 requests generated outputs;
+execution errors and unexecuted cases were zero. Wrong answers and abstentions
+remain in their denominators. Here 256/256 means every assigned answer matched
+our fixed short-answer rules on this dataset. It does not mean every future
+natural-language question will succeed.
+
+The retrieval comparison's 15-answer difference came entirely from Qwen saying
+`UNKNOWN` on fifteen two-hop paraphrases. Qwen's other 241 retrieved-context
+answers were correct. Necessary supporting facts were supplied in all fifteen
+cases. This distinguishes abstaining from confidently answering incorrectly.
+Some full-memory scored failures also contain a correct person plus extra team
+text; the fixed only-name/whole-answer rule still rejects them. We disclose that
+scoring limitation without changing aliases after testing.
+
+R0's final locality accuracy was 124/128. ReasonKE retrieval retained all those
+124 correct answers and also answered the four previously wrong locality cases
+correctly, giving 128/128 locality accuracy. ReasonKE full memory retained
+117/124 baseline-correct locality answers and scored 119/128 on all locality
+questions. Preserving an error would not count as factual success.
+
+Read the [final study](../reports/reasonke/operations-final/README.md) and
+[inspectable failure analysis](../reports/reasonke/operations-final/FAILURE_ANALYSIS.md).
+
+We also completed a separate **16-generation real website workload**: twelve
+direct/paraphrase/connected/restoration answers and four historical-comparison/
+atomic-rollback answers. All sixteen matched their targets, with all eleven
+recorded history/rollback consistency checks passing and no cleanup errors.
+The laptop independently replayed their raw-output extraction, model identity
+and scores. These use development worlds, so they demonstrate the integrated
+workflow rather than adding sixteen independent held-out facts. The twelve
+website requests had p50/p95 15.42/18.78 seconds, including storage and worker
+HTTP. The primary benchmark's warm pipeline times have a different scope.
 
 ## What the numbers mean
 
@@ -163,13 +207,15 @@ available without changing test aliases afterward.
 
 **Paired bootstrap uncertainty** compares methods on the same questions, then
 resamples whole lineages to estimate an interval for their difference. Questions
-sharing a fact are correlated. Three development lineages provide limited
-evidence; even a zero-width interval from two perfect sampled methods does not
-imply certainty on other questions.
+sharing a fact are correlated. The final study has 32 independent lineages,
+compared with three in the bounded development run. ReasonKE retrieval minus
+Qwen retrieval was +5.86 percentage points, with a 95% interval of +3.91 to
++8.20 points. This estimates a matched configuration difference in this bounded
+population, not confidence that an individual future answer is correct.
 
 **p50 latency** is the median request time; **p95** is the time below which roughly
-95% of measured requests fall. Development ReasonKE R-RAG had 15.03/16.05 seconds,
-versus Qwen G-RAG 0.81/1.02 seconds, with 24 requests each. These warm pipeline
+95% of measured requests fall. Final ReasonKE R-RAG had 15.06/16.71 seconds,
+versus Qwen G-RAG 0.92/1.20 seconds, with 256 requests each. These warm pipeline
 measurements include retrieval, local worker communication and generation, not
 cold loading or the browser round trip. The separate HTTP workload measures the
 website path. Different latency scopes must not be mixed.
@@ -232,10 +278,12 @@ experiment outputs, not fresh live chat responses.
 The **explicit subanswer-support audit** checks recognizable indexed, boxed
 subanswers against supplied/current facts. It labels claims supported,
 contradicted, unsupported or unassessable, retaining surrounding unassessed prose.
-The development audit inspected 12 traces: retrieved-context claims had 12
-supported; full-memory claims had 10 supported and two contradicted. It never
-certifies the whole explanation or faithful internal reasoning, and it changes
-no primary answer scores. Read [the complete audit](../reports/reasonke/operations-development-v1/explanation-audit.json).
+The final audit inspected 32 preselected traces, sixteen per context policy.
+Retrieved context had 32/32 extracted claims supported. Full memory had 26
+supported, three contradicted and three unsupported extracted claims. All 128
+surrounding/preamble/outside-action segments remain unassessed. This never
+certifies the whole explanation or faithful internal reasoning, and changes no
+primary answer scores. Read [the complete final audit](../reports/reasonke/operations-final/explanation-audit.json).
 
 ## What we contributed, and what remains limited
 
@@ -252,5 +300,11 @@ retain. The current system has automated labels, shared templates, bounded
 contexts, strict short-answer scoring, no calibrated answer-confidence probability
 and a single-operator deployment. Retrieved sources show what information was
 supplied, not that all generated prose is verified. The defensible outcome is a
-working reversible editing product and its actual measured behavior, with final
-claims added only after the frozen evaluation completes.
+working reversible editing product and its actual measured behavior: the selected
+retrieval configuration met the direct/connected-answer and locality objective
+on the frozen controlled test, with higher answer coverage and higher latency
+than the instruction-model retrieval baseline. The full-memory ReasonKE
+configuration scored below Qwen full memory, so the specialized checkpoint was
+not best under every policy. This is a concrete bounded conclusion, not a claim
+of universal accuracy. Live editing and rollback are supported separately by
+the operational website receipts rather than folded into the test score.

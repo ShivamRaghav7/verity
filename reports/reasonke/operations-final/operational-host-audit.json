@@ -1,0 +1,44 @@
+{
+  "schema": "editguard-operational-host-audit-v1",
+  "created_utc": "2026-10-27T11:54:11.112371+00:00",
+  "status": "passed",
+  "receipts": [
+    {
+      "receipt": "http-acceptance.json",
+      "sha256": "e469efbb2ee929e26bdfae769ace54e2cf97d471c2bee343d7b20c5766c12f2d",
+      "assigned": 12,
+      "score_and_raw_extraction_replayed": 12,
+      "outcome_counts": {
+        "correct": 12,
+        "wrong": 0,
+        "abstain": 0,
+        "execution_error": 0,
+        "unexecuted": 0
+      },
+      "cleanup_errors": []
+    },
+    {
+      "receipt": "history-acceptance.json",
+      "sha256": "1816eec7a50a05f4618e841ea59b3d5d9fdd16240bef11c31504400f4b549cd9",
+      "assigned": 4,
+      "score_and_raw_extraction_replayed": 4,
+      "outcome_counts": {
+        "correct": 4,
+        "wrong": 0,
+        "abstain": 0,
+        "execution_error": 0,
+        "unexecuted": 0
+      },
+      "cleanup_errors": []
+    }
+  ],
+  "http_latency": {
+    "n": 12,
+    "p50_seconds": 15.419500005999907,
+    "p95_seconds": 18.775829456100155,
+    "definition": "Actual website request including storage and worker HTTP; twelve development-world requests, not extra held-out data"
+  },
+  "model_generations_in_audit": 0,
+  "human_reviewed": false,
+  "primary_scores_modified": false
+}
