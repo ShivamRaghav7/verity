@@ -13,7 +13,8 @@ It includes a three-hop service-to-team-to-person-to-office-city question.
 Use [the India demonstration guide](docs/INDIA_DEMO.md). These display facts do
 not rename or rescore the completed benchmark. A separate depth challenge adds
 new graphs and held-out wording for one-, two- and three-hop evaluation; its
-results will remain separate from the completed study.
+results will remain separate from the completed study. Read the
+[finite depth-run plan](docs/DEPTH_RUN_PLAN.md) before running its staged notebook.
 
 The application includes explicit approval, canonical entity/property/scope
 identity, conflict resolution, searchable fact versions, an approval/rollback

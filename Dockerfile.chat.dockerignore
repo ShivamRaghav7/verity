@@ -5,6 +5,9 @@
 !editguard_chat/**
 !editguard_benchmark/
 !editguard_benchmark/**
+!editguard_depth/
+!editguard_depth/__init__.py
+!editguard_depth/retrieval.py
 !data/
 !data/reasonke/
 !data/reasonke/operations-v1/

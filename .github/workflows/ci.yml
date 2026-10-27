@@ -18,6 +18,7 @@ jobs:
       - run: python -m unittest tests.test_operations_explanations tests.test_operations_notebooks tests.test_operations_release -v
       - run: python -m unittest tests.test_operations_history -v
       - run: python -m unittest tests.test_operations_checkpoint -v
+      - run: python -m unittest tests.test_india_demo tests.test_chat_iterative tests.test_depth_data tests.test_depth_retrieval tests.test_depth_runner tests.test_depth_notebook -v
       - run: python -m unittest tests.test_chat_workspace tests.test_operations_benchmark -v
       - run: python -m editguard_benchmark.run --help
       - uses: actions/setup-node@v4
@@ -28,6 +29,8 @@ jobs:
         run: docker build --file Dockerfile.chat --tag editguard-chat:ci .
       - name: Check the CLI without Ollama
         run: docker run --rm --network none editguard-chat:ci python -m editguard_chat.server --help
+      - name: Verify optional iterative selector is packaged without a GPU
+        run: docker run --rm --network none editguard-chat:ci python -c "from editguard_chat.reasonke_backend import IterativeFactContext; c=IterativeFactContext(); assert (c.fact_limit,c.seed_count,c.expansion_rounds)==(4,2,3); print('Bounded iterative selector available')"
       - name: Verify container HTTP, fact identity and workspace restoration without a model
         run: docker run --rm --network none editguard-chat:ci python -m editguard_chat.check_deployment
       - name: Serve the website without inventing a ready model

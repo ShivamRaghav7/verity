@@ -85,6 +85,42 @@ class RetrievedFactContext(ApprovedFactContext):
                 "limitation": "The model benchmark uses nine-fact worlds. The 200-record storage/retrieval bound is not a measured neural accuracy guarantee."}
 
 
+class IterativeFactContext(ApprovedFactContext):
+    """Optional bounded expansion policy, separate from the frozen study's RAG."""
+
+    method = "bounded_iterative_lexical_approved_memory"
+    max_memory_records = 200
+    max_memory_characters = 1000000
+
+    def __init__(self):
+        # Import only when requested: the legacy policies keep their dependency
+        # and retrieval behavior, including their exact four-fact selection.
+        from editguard_depth.retrieval import DEFAULT_K, SEED_COUNT, EXPANSION_ROUNDS
+        self.fact_limit = DEFAULT_K
+        self.seed_count = SEED_COUNT
+        self.expansion_rounds = EXPANSION_ROUNDS
+
+    def rank(self, question, corrections):
+        from editguard_depth.retrieval import retrieve_iterative
+        result = super().rank(question, corrections)
+        if result.get("clarification_required"):
+            return {**result, "context_policy": "iterative", "selection_k": self.fact_limit}
+        selected = retrieve_iterative(question, result["selected"], k=self.fact_limit) if result["selected"] else []
+        if sum(len(str(value)) for row in selected for value in row.values()) > MAX_FACT_CHARACTERS:
+            raise ModelError("The selected facts exceed the model's 12,000-character context limit; shorten their source or answer fields.")
+        return {**result, "method": self.method, "selected": selected, "candidates": selected,
+                "accepted": bool(selected), "reason": "bounded_iterative_approved_fact_retrieval" if selected else "no_active_corrections",
+                "context_policy": "iterative", "selection_k": self.fact_limit,
+                "retrieval_seed_count": self.seed_count,
+                "retrieval_expansion_rounds": self.expansion_rounds,
+                "notice": f"Up to {self.fact_limit} approved facts were selected by bounded iterative lexical expansion from the question. "
+                          "Only approved question/answer text drives retrieval; no expected answer or gold support is used. "
+                          "The neural model generates the answer; retrieved sources do not verify its prose.",
+                "memory_record_limit": self.max_memory_records, "supplied_fact_count": len(selected),
+                "limitation": "This optional policy is separate from the original frozen two-stage study. "
+                              "A storage or retrieval bound is not a neural accuracy guarantee or calibrated confidence."}
+
+
 class ReasonKEClient:
     """Authenticated HTTP connection to a separately loaded inference worker."""
 

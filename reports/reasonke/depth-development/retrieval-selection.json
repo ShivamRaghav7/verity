@@ -1,0 +1,758 @@
+{
+  "schema": "editguard-depth-retrieval-selection-v1",
+  "split": "development",
+  "selection_revision": 2,
+  "revision_reason": "Before neural profiling/freezing, an India display-development starter exposed a one-seed distractor. The same six candidates were reassessed with both explicit display states.",
+  "dataset_id": "editguard-depth-v1",
+  "independent_lineages": 16,
+  "dataset_manifest_sha256": "4c761895a637924ef14e5e0d464ec5ebb4a7c9423efcac560e4f8cbbca69d76f",
+  "method_source_sha256": "7f15a2b2d7665a31e1d2ca002f12d42b21ce79704d91ef78e0e7921e4f725fa0",
+  "shared_rank_source_sha256": "d3c3ceb196f653fab9f201c4f93315d297ba06346822b856e1e5fafe6b344d33",
+  "method": "bounded_iterative_answer_frontier_lexical",
+  "baseline_two_stage_k4": {
+    "assigned": 128,
+    "complete": 96,
+    "found": 192,
+    "required": 224,
+    "by_depth": {
+      "0": {
+        "assigned": 32,
+        "complete": 32,
+        "found": 32,
+        "required": 32
+      },
+      "1": {
+        "assigned": 32,
+        "complete": 32,
+        "found": 32,
+        "required": 32
+      },
+      "2": {
+        "assigned": 32,
+        "complete": 32,
+        "found": 64,
+        "required": 64
+      },
+      "3": {
+        "assigned": 32,
+        "complete": 0,
+        "found": 64,
+        "required": 96
+      }
+    }
+  },
+  "baseline_display_development": {
+    "assigned": 2,
+    "complete": 0,
+    "found": 4,
+    "required": 6,
+    "by_depth": {
+      "0": {
+        "assigned": 0,
+        "complete": 0,
+        "found": 0,
+        "required": 0
+      },
+      "1": {
+        "assigned": 0,
+        "complete": 0,
+        "found": 0,
+        "required": 0
+      },
+      "2": {
+        "assigned": 0,
+        "complete": 0,
+        "found": 0,
+        "required": 0
+      },
+      "3": {
+        "assigned": 2,
+        "complete": 0,
+        "found": 4,
+        "required": 6
+      }
+    }
+  },
+  "display_fixture": {
+    "dataset_id": "editguard-india-display-v1",
+    "purpose": "Separate display-development control, not a held-out result",
+    "source_sha256": "7874266f89464c15615f7ec55591f8903b8cb5f889f5335d799be388f0dd0f7a",
+    "worlds": {
+      "display-development-initial_facts": {
+        "current_facts": [
+          {
+            "id": "india-demo-001-f1",
+            "entity_id": "india-demo-001-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "question": "Which team owns Kaveri Payment Gateway in release 2?",
+            "answer": "Bengaluru Platform Team",
+            "scope": "Which team owns Kaveri Payment Gateway in release 2; release-2",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f2",
+            "entity_id": "india-demo-001-old-team",
+            "relation_id": "on_call_contact",
+            "scope_id": "current",
+            "question": "Who is the on-call contact for Bengaluru Platform Team?",
+            "answer": "Meera Iyer",
+            "scope": "Who is the on-call contact for Bengaluru Platform Team; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f3",
+            "entity_id": "india-demo-001-new-team",
+            "relation_id": "on_call_contact",
+            "scope_id": "current",
+            "question": "Who is the on-call contact for Pune Reliability Team?",
+            "answer": "Arjun Deshmukh",
+            "scope": "Who is the on-call contact for Pune Reliability Team; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f4",
+            "entity_id": "india-demo-001-service",
+            "relation_id": "hosting_city",
+            "scope_id": "release-2",
+            "question": "Which Indian city hosts Kaveri Payment Gateway in release 2?",
+            "answer": "Bengaluru",
+            "scope": "Which Indian city hosts Kaveri Payment Gateway in release 2; release-2",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f5",
+            "entity_id": "india-demo-001-pro-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "question": "Which team owns Kaveri Payment Gateway Pro in release 2?",
+            "answer": "Hyderabad Integration Team",
+            "scope": "Which team owns Kaveri Payment Gateway Pro in release 2; release-2",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f6",
+            "entity_id": "india-demo-001-service",
+            "relation_id": "owner",
+            "scope_id": "release-1",
+            "question": "Which team owns Kaveri Payment Gateway in release 1?",
+            "answer": "Chennai Legacy Team",
+            "scope": "Which team owns Kaveri Payment Gateway in release 1; release-1",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f7",
+            "entity_id": "india-demo-001-archive",
+            "relation_id": "city",
+            "scope_id": "current",
+            "question": "In which Indian city is Konkan Records Office?",
+            "answer": "New Delhi",
+            "scope": "In which Indian city is Konkan Records Office; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f8",
+            "entity_id": "india-demo-001-old-contact",
+            "relation_id": "office_city",
+            "scope_id": "current",
+            "question": "In which Indian city is Meera Iyer's office?",
+            "answer": "Chennai",
+            "scope": "In which Indian city is Meera Iyer's office; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f9",
+            "entity_id": "india-demo-001-new-contact",
+            "relation_id": "office_city",
+            "scope_id": "current",
+            "question": "In which Indian city is Arjun Deshmukh's office?",
+            "answer": "Hyderabad",
+            "scope": "In which Indian city is Arjun Deshmukh's office; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          }
+        ]
+      },
+      "display-development-current_facts": {
+        "current_facts": [
+          {
+            "id": "india-demo-001-f1",
+            "entity_id": "india-demo-001-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "question": "Which team owns Kaveri Payment Gateway in release 2?",
+            "answer": "Pune Reliability Team",
+            "scope": "Which team owns Kaveri Payment Gateway in release 2; release-2",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service. Approved demonstration ownership revision 2."
+          },
+          {
+            "id": "india-demo-001-f2",
+            "entity_id": "india-demo-001-old-team",
+            "relation_id": "on_call_contact",
+            "scope_id": "current",
+            "question": "Who is the on-call contact for Bengaluru Platform Team?",
+            "answer": "Meera Iyer",
+            "scope": "Who is the on-call contact for Bengaluru Platform Team; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f3",
+            "entity_id": "india-demo-001-new-team",
+            "relation_id": "on_call_contact",
+            "scope_id": "current",
+            "question": "Who is the on-call contact for Pune Reliability Team?",
+            "answer": "Arjun Deshmukh",
+            "scope": "Who is the on-call contact for Pune Reliability Team; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f4",
+            "entity_id": "india-demo-001-service",
+            "relation_id": "hosting_city",
+            "scope_id": "release-2",
+            "question": "Which Indian city hosts Kaveri Payment Gateway in release 2?",
+            "answer": "Bengaluru",
+            "scope": "Which Indian city hosts Kaveri Payment Gateway in release 2; release-2",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f5",
+            "entity_id": "india-demo-001-pro-service",
+            "relation_id": "owner",
+            "scope_id": "release-2",
+            "question": "Which team owns Kaveri Payment Gateway Pro in release 2?",
+            "answer": "Hyderabad Integration Team",
+            "scope": "Which team owns Kaveri Payment Gateway Pro in release 2; release-2",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f6",
+            "entity_id": "india-demo-001-service",
+            "relation_id": "owner",
+            "scope_id": "release-1",
+            "question": "Which team owns Kaveri Payment Gateway in release 1?",
+            "answer": "Chennai Legacy Team",
+            "scope": "Which team owns Kaveri Payment Gateway in release 1; release-1",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f7",
+            "entity_id": "india-demo-001-archive",
+            "relation_id": "city",
+            "scope_id": "current",
+            "question": "In which Indian city is Konkan Records Office?",
+            "answer": "New Delhi",
+            "scope": "In which Indian city is Konkan Records Office; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f8",
+            "entity_id": "india-demo-001-old-contact",
+            "relation_id": "office_city",
+            "scope_id": "current",
+            "question": "In which Indian city is Meera Iyer's office?",
+            "answer": "Chennai",
+            "scope": "In which Indian city is Meera Iyer's office; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          },
+          {
+            "id": "india-demo-001-f9",
+            "entity_id": "india-demo-001-new-contact",
+            "relation_id": "office_city",
+            "scope_id": "current",
+            "question": "In which Indian city is Arjun Deshmukh's office?",
+            "answer": "Hyderabad",
+            "scope": "In which Indian city is Arjun Deshmukh's office; current",
+            "source": "Controlled fictional India-themed operations handbook. Service, teams, people and assignments are invented for this demonstration. Indian city names are illustrative locations; this is not a claim about any real company or government service."
+          }
+        ]
+      }
+    },
+    "questions": [
+      {
+        "id": "display-development-initial_facts-three-hop",
+        "lineage_id": "display-development-initial_facts",
+        "depth": 3,
+        "question": "In which Indian city is the office of the on-call contact for the team that owns Kaveri Payment Gateway in release 2?",
+        "required_fact_ids": [
+          "india-demo-001-f1",
+          "india-demo-001-f2",
+          "india-demo-001-f8"
+        ]
+      },
+      {
+        "id": "display-development-current_facts-three-hop",
+        "lineage_id": "display-development-current_facts",
+        "depth": 3,
+        "question": "In which Indian city is the office of the on-call contact for the team that owns Kaveri Payment Gateway in release 2?",
+        "required_fact_ids": [
+          "india-demo-001-f1",
+          "india-demo-001-f3",
+          "india-demo-001-f9"
+        ]
+      }
+    ]
+  },
+  "selection_populations": {
+    "depth_packet_development_questions": 128,
+    "display_memory_states": 2,
+    "selection_paths": 130,
+    "display_states_are_independent_held_out_questions": false
+  },
+  "candidate_family": [
+    {
+      "seed_count": 1,
+      "expansion_rounds": 3,
+      "cap": 4,
+      "assigned": 128,
+      "complete": 128,
+      "found": 224,
+      "required": 224,
+      "by_depth": {
+        "0": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "1": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "2": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 64,
+          "required": 64
+        },
+        "3": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 96,
+          "required": 96
+        }
+      },
+      "display_development": {
+        "assigned": 2,
+        "complete": 0,
+        "found": 2,
+        "required": 6,
+        "by_depth": {
+          "0": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "1": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "2": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "3": {
+            "assigned": 2,
+            "complete": 0,
+            "found": 2,
+            "required": 6
+          }
+        }
+      },
+      "all_development": {
+        "assigned": 130,
+        "complete": 128,
+        "found": 226,
+        "required": 230
+      }
+    },
+    {
+      "seed_count": 2,
+      "expansion_rounds": 3,
+      "cap": 4,
+      "assigned": 128,
+      "complete": 128,
+      "found": 224,
+      "required": 224,
+      "by_depth": {
+        "0": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "1": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "2": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 64,
+          "required": 64
+        },
+        "3": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 96,
+          "required": 96
+        }
+      },
+      "display_development": {
+        "assigned": 2,
+        "complete": 2,
+        "found": 6,
+        "required": 6,
+        "by_depth": {
+          "0": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "1": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "2": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "3": {
+            "assigned": 2,
+            "complete": 2,
+            "found": 6,
+            "required": 6
+          }
+        }
+      },
+      "all_development": {
+        "assigned": 130,
+        "complete": 130,
+        "found": 230,
+        "required": 230
+      }
+    },
+    {
+      "seed_count": 1,
+      "expansion_rounds": 3,
+      "cap": 5,
+      "assigned": 128,
+      "complete": 128,
+      "found": 224,
+      "required": 224,
+      "by_depth": {
+        "0": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "1": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "2": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 64,
+          "required": 64
+        },
+        "3": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 96,
+          "required": 96
+        }
+      },
+      "display_development": {
+        "assigned": 2,
+        "complete": 1,
+        "found": 4,
+        "required": 6,
+        "by_depth": {
+          "0": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "1": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "2": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "3": {
+            "assigned": 2,
+            "complete": 1,
+            "found": 4,
+            "required": 6
+          }
+        }
+      },
+      "all_development": {
+        "assigned": 130,
+        "complete": 129,
+        "found": 228,
+        "required": 230
+      }
+    },
+    {
+      "seed_count": 2,
+      "expansion_rounds": 3,
+      "cap": 5,
+      "assigned": 128,
+      "complete": 128,
+      "found": 224,
+      "required": 224,
+      "by_depth": {
+        "0": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "1": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "2": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 64,
+          "required": 64
+        },
+        "3": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 96,
+          "required": 96
+        }
+      },
+      "display_development": {
+        "assigned": 2,
+        "complete": 2,
+        "found": 6,
+        "required": 6,
+        "by_depth": {
+          "0": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "1": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "2": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "3": {
+            "assigned": 2,
+            "complete": 2,
+            "found": 6,
+            "required": 6
+          }
+        }
+      },
+      "all_development": {
+        "assigned": 130,
+        "complete": 130,
+        "found": 230,
+        "required": 230
+      }
+    },
+    {
+      "seed_count": 1,
+      "expansion_rounds": 3,
+      "cap": 6,
+      "assigned": 128,
+      "complete": 128,
+      "found": 224,
+      "required": 224,
+      "by_depth": {
+        "0": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "1": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "2": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 64,
+          "required": 64
+        },
+        "3": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 96,
+          "required": 96
+        }
+      },
+      "display_development": {
+        "assigned": 2,
+        "complete": 1,
+        "found": 5,
+        "required": 6,
+        "by_depth": {
+          "0": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "1": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "2": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "3": {
+            "assigned": 2,
+            "complete": 1,
+            "found": 5,
+            "required": 6
+          }
+        }
+      },
+      "all_development": {
+        "assigned": 130,
+        "complete": 129,
+        "found": 229,
+        "required": 230
+      }
+    },
+    {
+      "seed_count": 2,
+      "expansion_rounds": 3,
+      "cap": 6,
+      "assigned": 128,
+      "complete": 128,
+      "found": 224,
+      "required": 224,
+      "by_depth": {
+        "0": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "1": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 32,
+          "required": 32
+        },
+        "2": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 64,
+          "required": 64
+        },
+        "3": {
+          "assigned": 32,
+          "complete": 32,
+          "found": 96,
+          "required": 96
+        }
+      },
+      "display_development": {
+        "assigned": 2,
+        "complete": 2,
+        "found": 6,
+        "required": 6,
+        "by_depth": {
+          "0": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "1": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "2": {
+            "assigned": 0,
+            "complete": 0,
+            "found": 0,
+            "required": 0
+          },
+          "3": {
+            "assigned": 2,
+            "complete": 2,
+            "found": 6,
+            "required": 6
+          }
+        }
+      },
+      "all_development": {
+        "assigned": 130,
+        "complete": 130,
+        "found": 230,
+        "required": 230
+      }
+    }
+  ],
+  "selection_rule": "Complete support on all128 packet development questions and both display states; smallest cap, then fewest seeds",
+  "selected": {
+    "seed_count": 2,
+    "expansion_rounds": 3,
+    "cap": 4
+  },
+  "neural_model_calls": 0,
+  "human_reviewed": false,
+  "used_final_labels_for_selection": false,
+  "used_final_model_outputs": false,
+  "loader_note": "The dataset loader audits the whole packet, then returns development rows only; no final questions are evaluated for this selection.",
+  "limitations": [
+    "Development-only retrieval diagnostic, not answer-model accuracy",
+    "Fact ID ties and lexical text matching; no semantic scope oracle",
+    "Additional supplied facts can harm generated answers",
+    "No held-out final retrieval or generation outcome used for selection"
+  ]
+}

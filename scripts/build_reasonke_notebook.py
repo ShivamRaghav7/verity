@@ -20,9 +20,11 @@ def cell(kind, source):
     return result
 
 
-def build(commit):
+def build(commit, *, context_policy="retrieved"):
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
         raise ValueError("Supply the full committed source SHA")
+    if context_policy not in ("retrieved", "iterative"):
+        raise ValueError("Supported launcher policies are retrieved and iterative")
     cells = [cell("markdown", """
         # EditGuard — Released ReasonKE model
 
@@ -235,8 +237,44 @@ def build(commit):
         from google.colab import files
         files.download(str(bundle))
     """)]
+    notebook_name = "04_reasonke_chat.ipynb"
+    if context_policy == "iterative":
+        notebook_name = "07_india_chat.ipynb"
+        cells[0] = cell("markdown", """
+            # EditGuard — India-themed editable-knowledge chat
+
+            This launcher serves the pinned upstream ReasonKE checkpoint through
+            the EditGuard website, using a bounded iterative fact selector:
+            four facts, two lexical seeds and up to three expansion rounds.
+            The fictional India handbook has a service -> team -> on-call person
+            -> office city path. Real city names are illustrative; assignments
+            are fictional. Approve the handbook in Knowledge before asking these
+            questions. An ownership correction changes the appropriate chain;
+            comparison and withdrawal expose its history.
+
+            This new serving policy is separate from the completed operations-v1
+            benchmark's two-stage retrieval. It has development support-recall
+            evidence, not a new held-out neural accuracy result. The original
+            04 launcher remains available for the earlier policy.
+
+            Select a T4 GPU and run cells in order, without another GPU worker.
+            Loading transfers approximately 15.23 GB of source tensors. It uses
+            NF4 weights and FP16 computation, launches no training, and does not
+            establish an accuracy guarantee. Optional generation checks remain
+            disabled. The upstream model/algorithm are credited separately from
+            our application, approval, retrieval and evaluation contributions.
+        """)
+        for item in cells:
+            if item["cell_type"] != "code":
+                continue
+            text = "".join(item["source"])
+            text = text.replace("'artifacts/reasonke/colab-development-1'",
+                                "'artifacts/reasonke/india-chat-1'")
+            text = text.replace("'--context-policy', 'retrieved'",
+                                "'--context-policy', 'iterative'")
+            item["source"] = text.splitlines(keepends=True)
     return {"cells": cells, "metadata": {"accelerator": "GPU",
-        "colab": {"name": "04_reasonke_chat.ipynb", "provenance": []},
+        "colab": {"name": notebook_name, "provenance": []},
         "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
         "language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 5}
 
@@ -244,9 +282,11 @@ def build(commit):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--commit", required=True)
+    parser.add_argument("--context-policy", choices=("retrieved", "iterative"), default="retrieved")
     args = parser.parse_args(argv)
-    path = ROOT / 'notebooks/04_reasonke_chat.ipynb'
-    path.write_text(json.dumps(build(args.commit), indent=1) + '\n', encoding='utf-8')
+    notebook = build(args.commit, context_policy=args.context_policy)
+    path = ROOT / "notebooks" / notebook["metadata"]["colab"]["name"]
+    path.write_bytes((json.dumps(notebook, indent=1) + '\n').encode('utf-8'))
     print(path)
 
 

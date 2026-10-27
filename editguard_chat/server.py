@@ -16,7 +16,7 @@ import time
 from urllib.parse import parse_qs, urlsplit
 
 from .backend import ModelError, OllamaClient, OllamaEncoder
-from .reasonke_backend import ApprovedFactContext, RetrievedFactContext, ReasonKEClient
+from .reasonke_backend import ApprovedFactContext, RetrievedFactContext, IterativeFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
 from .results import current_results, experiment_artifact, experiment_cases
@@ -45,15 +45,19 @@ def required(value, name, limit):
 class ChatApplication:
     def __init__(self, storage, *, backend=None, retriever=None, trusted_origin=None, context_policy="all"):
         self.trusted_origin = validate_trusted_origin(trusted_origin)
+        self.backend = backend or OllamaClient()
+        if context_policy not in ("all", "retrieved", "iterative"):
+            raise ValueError("Choose all, retrieved or iterative context policy")
+        self.fact_conditioned = callable(getattr(self.backend, "answer_with_facts", None))
+        self.context_policy = context_policy
+        if context_policy == "iterative" and not self.fact_conditioned:
+            raise ValueError("The iterative approved-fact policy requires a fact-conditioned ReasonKE backend")
+        context_types = {"all": ApprovedFactContext, "retrieved": RetrievedFactContext, "iterative": IterativeFactContext}
+        self.retriever = retriever or (context_types[context_policy]() if self.fact_conditioned else
+                                      CorrectionRetriever(OllamaEncoder(self.backend)))
         self.storage = Path(storage)
         self.storage.mkdir(parents=True, exist_ok=True)
         self.store = ChatStore(self.storage / "chat.sqlite3")
-        self.backend = backend or OllamaClient()
-        if context_policy not in ("all", "retrieved"):
-            raise ValueError("Choose all or retrieved context policy")
-        self.fact_conditioned = callable(getattr(self.backend, "answer_with_facts", None))
-        self.retriever = retriever or ((RetrievedFactContext() if context_policy == "retrieved" else ApprovedFactContext()) if self.fact_conditioned else
-                                       CorrectionRetriever(OllamaEncoder(self.backend)))
         self.token = secrets.token_urlsafe(32)
         self.lock = threading.Lock()
 
@@ -62,8 +66,12 @@ class ChatApplication:
             return {"model": self.backend.status(), "token": self.token,
                 "revision": self.store.get_revision(), "busy": self.lock.locked(),
                 "retrieval": {"method": self.retriever.method, "threshold": None,
+                    "context_policy": self.context_policy,
                     "threshold_calibrated": False,
-                    "limitation": ("Question-only retrieval supplies at most four facts from up to 200 active records. "
+                    "limitation": (f"Bounded iterative retrieval supplies at most {self.retriever.fact_limit} facts from up to 200 active records. "
+                                   "Its depth-challenge evidence is separate from the original frozen two-stage study; "
+                                   "retrieved context does not certify a generated answer." if self.context_policy == "iterative" else
+                                   "Question-only retrieval supplies at most four facts from up to 200 active records. "
                                    "Neural accuracy at that storage bound has not been established." if
                                    self.retriever.method == "two_stage_lexical_approved_memory" else
                                    "All active approved facts are supplied, up to 20 records. "
@@ -236,6 +244,10 @@ class ChatApplication:
                                "Normal edited chat retains complete current-revision pairs. Without-context mode "
                                "excludes correction-conditioned pairs. Prior revisions remain visible but are not supplied."),
             "model_origin": "Author-released trained ReasonKE_plus checkpoint; not trained by this project"}
+        if self.context_policy == "iterative":
+            evidence["history_policy"] = evidence["context_policy"]
+            evidence["context_policy"] = "iterative" if mode == "edited" else "without_correction_context"
+            evidence["configured_context_policy"] = "iterative"
         if routing.get("clarification_required"):
             evidence["generation_kind"] = "deterministic_clarification"
             return {"content": "The approved memory contains contradictory corrections for the same "
@@ -513,7 +525,7 @@ def main(argv=None):
     parser.add_argument("--storage", type=Path, default=ROOT / "runtime/chat")
     parser.add_argument("--model", default="qwen3-vl:2b-instruct")
     parser.add_argument("--backend", choices=("ollama", "reasonke"), default="ollama")
-    parser.add_argument("--context-policy", choices=("all", "retrieved"), default="retrieved", help="ReasonKE approved-memory policy; retrieved was selected on the matched development comparison")
+    parser.add_argument("--context-policy", choices=("all", "retrieved", "iterative"), default="retrieved", help="ReasonKE approved-memory policy; retrieved preserves the original study, iterative is the separate bounded depth policy")
     parser.add_argument("--trusted-origin", help="Exact HTTPS Colab proxy origin; local-only access remains the default")
     args = parser.parse_args(argv)
     if not 1024 <= args.port <= 65535:

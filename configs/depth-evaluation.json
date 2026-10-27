@@ -1,0 +1,13 @@
+{
+  "schema": "editguard-depth-config-v1",
+  "dataset": "data/reasonke/depth-v1",
+  "reasonke_manifest": "configs/reasonke-model.json",
+  "instruction_manifest": "configs/instruction-model.json",
+  "retrieval_k": 4,
+  "retrieval_method": "iterative_frontier_v1",
+  "retrieval_selection": "reports/reasonke/depth-development/retrieval-selection.json",
+  "max_new_tokens": 512,
+  "request_watchdog_seconds": 240,
+  "model_load_watchdog_seconds": 1800,
+  "final_wall_budget_seconds_per_model": 28800
+}

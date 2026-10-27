@@ -54,9 +54,18 @@ answer requires the office fact rather than a team-name shortcut.
    owner at revision 11, so the intended contact and office become Meera/Chennai.
 
 These targets are controlled facts, not a promise that a generation will match.
-Inspect actual answers and supplied facts. The existing bounded retriever may
-omit a required third-hop fact; a failure can come from retrieval or generation.
-Never substitute the table's deterministic target for the model's response.
+Inspect actual answers and supplied facts. The bounded retriever may omit a
+required third-hop fact; a failure can come from retrieval or generation. Never
+substitute the table's deterministic target for the model's response.
+
+The optional `--context-policy iterative` setting uses the same bounded lexical
+answer-text expansion function as the separate depth challenge. Its fact cap is
+selected on development data and reported in each answer's evidence. It supplies
+approved facts to the neural generator, without reading an expected answer or
+gold support IDs. The CLI default remains `retrieved`, preserving the original
+study's two-stage four-fact policy. Use `--backend reasonke --context-policy
+iterative` explicitly for the new depth-oriented demonstration; it is a separate
+serving policy, not a retroactive change to the 1,312-request study.
 
 ## API compatibility
 

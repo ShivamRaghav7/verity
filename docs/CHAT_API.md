@@ -29,6 +29,16 @@ Customer chat does not publish corrections.
 | POST | `/api/examples/india/approve` | Explicit approval into empty knowledge history only; never replaces an existing handbook or customer facts |
 | GET | `/api/results` | Explicitly archived visual-study JSON, a separate model/protocol |
 
+Optional ReasonKE serving policy: `--context-policy iterative` selects the bounded
+answer-text expansion retriever used by the separate depth challenge. Existing
+`all` and `retrieved` policies retain their behavior; the CLI default is still
+`retrieved`. `GET /api/status` exposes `retrieval.context_policy`. Edited answer
+evidence reports `context_policy: "iterative"`, the selected `selection_k`, seed
+count and expansion-round limit, while `history_policy` describes conversation
+filtering. Without-context comparisons report `without_correction_context` and
+retain `configured_context_policy: "iterative"`. These are policy labels, not
+calibrated scope probabilities or verification of the generated answer.
+
 ## Approve an identified fact
 
 ```json

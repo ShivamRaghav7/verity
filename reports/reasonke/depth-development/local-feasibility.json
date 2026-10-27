@@ -1,0 +1,67 @@
+{
+  "schema": "editguard-depth-local-feasibility-v1",
+  "observed_utc": "2026-10-27T14:04:11.241952+00:00",
+  "purpose": "Read-only local deployment feasibility; no model download, loading or generation",
+  "local": {
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "total_vram_bytes": 6438780928,
+    "cuda_available": true,
+    "compute_capability": [
+      8,
+      9
+    ],
+    "python": "3.14.3",
+    "cuda_toolkit_torch": "13.0",
+    "packages": {
+      "torch": "2.9.0+cu130",
+      "transformers": "5.16.1",
+      "accelerate": null,
+      "bitsandbytes": null,
+      "safetensors": "0.8.0"
+    },
+    "workspace_drive_free_bytes": 20900917248,
+    "models": [
+      {
+        "name": "reasonke",
+        "model_id": "YukinoKaren/ReasonKE_plus",
+        "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+        "default_huggingface_cache_directory_present": false,
+        "source_tensor_bytes": 15231233024
+      },
+      {
+        "name": "instruction",
+        "model_id": "Qwen/Qwen2.5-7B-Instruct",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "default_huggingface_cache_directory_present": false,
+        "source_tensor_bytes": 15231233024
+      }
+    ]
+  },
+  "existing_measured_evidence": {
+    "path": "reports/reasonke/t4-development-1/acceptance.json",
+    "sha256": "12484efd4e40d29ff478d4957f7d1a54d6d90da5b80ded346ee8de1d98206a4c",
+    "hardware": "Tesla T4",
+    "load_peak_allocated_bytes": 7071596544,
+    "load_peak_reserved_bytes": 7140802560,
+    "load_seconds": 338.676004699,
+    "source_tensor_total_bytes_two_models": 30462466048,
+    "generation_peak_allocated_bytes_max": 5728592384
+  },
+  "current_loader": {
+    "path": "editguard_reasonke/runtime.py",
+    "device_map": {
+      "": "cuda:0"
+    },
+    "cpu_offload_enabled": false,
+    "quantization": "NF4 double quantization; FP16 computation"
+  },
+  "assessment": {
+    "unchanged_configuration_safe_to_launch_locally": false,
+    "reason": "Existing measured model-loading allocation exceeds the laptop total VRAM; current fixed loader places all modules on GPU. Required packages and both checkpoint caches are absent. Available disk is smaller than both source tensor sets combined.",
+    "local_depth_inference_run": false,
+    "local_runtime_estimate_seconds": null,
+    "under_two_hours_supported_by_measurement": false,
+    "next_step": "Use the prepared idle T4 launcher for the 16-request depth profile, then decide the larger run from measured time and memory.",
+    "limitation": "Measurements came from a T4, not an attempted laptop load. Allocator and platform behavior can differ; this does not prove every 7B quantized implementation is impossible on 6GB. A different loader/offload or smaller model is a separate configuration requiring fresh profiling."
+  }
+}
