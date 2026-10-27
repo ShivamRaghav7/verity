@@ -82,14 +82,20 @@ and [the frozen protocol](reports/reasonke/operations-final/protocol.json).
 The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains a
 dated planning record; current implementation and measured evidence are linked above.
 
-The current text-editing website uses the author's trained **ReasonKE_plus**
-checkpoint. [Open the pinned Colab launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/d99374bacc821da277e57240830cb4df64479290/notebooks/04_reasonke_chat.ipynb),
-select T4, and run the cells in order. Its source is pinned to a552490, which
-includes the completed final study, scientific figures and checked ten-page PDF.
-Launching the website does not repeat the 1,312-request benchmark. The launcher waits for the model before
-opening the website and includes an optional seven-generation editing,
-comparison and withdrawal check. Keep the Colab runtime connected while using
-its temporary website URL. No per-correction training is launched.
+The text-editing website uses the author's trained **ReasonKE_plus** checkpoint.
+Use [the India chat launcher](notebooks/07_india_chat.ipynb) for the new handbook
+and iterative selector, or [the depth challenge launcher](notebooks/06_depth_challenge.ipynb)
+for a separate staged experiment. Both pin source 7da6d1d. Select an idle T4;
+the depth notebook initially starts only its sixteen-request timing profile.
+Development, freeze, final evaluation and scoring have disabled switches.
+The [original pinned launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/d99374bacc821da277e57240830cb4df64479290/notebooks/04_reasonke_chat.ipynb)
+preserves the earlier two-stage serving policy and completed-study source.
+Launching either website does not repeat the 1,312-request benchmark. The
+launcher waits for the model before opening the website. Keep the Colab runtime
+connected while using its temporary URL, and export the workspace before it
+ends. No per-correction training is launched. The laptop check did not support
+running the fixed 7B configuration locally within two hours; see the
+[measured feasibility record](reports/reasonke/depth-development/local-feasibility.json).
 
 The released ReasonKE checkpoint integration is on `codex/reasonke-integration`.
 Its [first real T4 deployment check](reports/reasonke/t4-development-1/README.md)
