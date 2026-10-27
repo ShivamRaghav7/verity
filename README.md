@@ -23,6 +23,10 @@ sources, scope, tokens and unverified traces; its filters never alter denominato
 An [explicit claim-support audit](docs/EXPLANATION_AUDIT.md) checks bounded
 intermediate subanswers separately from final-answer accuracy.
 
+The [five-person responsibility map](docs/TEAM_RESPONSIBILITIES.md) groups the
+implemented work into dataset, model, evaluation, backend and application
+ownership, with shared tasks and concrete demonstrations for each member.
+
 New to the project? Read [Understanding EditGuard from the beginning](docs/UNDERSTAND_THE_CURRENT_PROJECT.md)
 for the actual development timeline, plain-language model/metric explanations,
 the complete website workflow, and what our evidence does and does not establish.
