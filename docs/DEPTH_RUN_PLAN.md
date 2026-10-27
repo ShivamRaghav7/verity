@@ -76,8 +76,9 @@ either website does not run the new evaluation.
 | Development | Does the fixed method handle the declared development wording and controls? | 24 per checkpoint; 48 total | Two development ledgers and separate audited summary; stop after 48 outcomes |
 | Freeze | Are source, data, scoring, measured budgets and populations fixed? | Zero generations | Protocol identifying all source/data/configuration hashes and four complete input receipts |
 | Final | What is held-out performance by depth and wording, with routing isolated? | 272 per checkpoint; 544 total | Two complete final ledgers, protocol-bound audit and depth scorecard; stop after 544 outcomes |
+| Score | Do the saved outputs reproduce the declared scoring and denominators? | Zero generations | Audited `results.json`; refuses running/failed jobs and preserves existing results |
 
-Only profile is enabled initially. Later phases have explicit switches. Review
+Only profile is enabled initially. Later phases, including scoring, have explicit switches. Review
 the completed profile before enabling development, and finalise settings before
 freezing. No final answers may guide settings or aliases. A disappointing result
 is retained; it does not trigger an unbounded search for a better score.
@@ -87,7 +88,9 @@ is retained; it does not trigger an unbounded search for a better score.
 There is **no measured depth-run estimate yet**. The older two-hop T4 profiles
 do not establish three-hop runtime or memory. Loading pinned NF4 checkpoints
 uses FP16 computation and transfers approximately 15.23 GB of source tensors per
-checkpoint; fresh downloads vary. The notebook inventories the actual GPU.
+checkpoint; fresh downloads vary. Both checkpoints remain cached for exact-plan
+resume. The notebook requires at least 36 GiB free disk for those tensors and
+the isolated environment, and inventories the actual GPU.
 
 The profile records actual load time, per-request pipeline time, token counts
 and CUDA allocation/reservation. Freeze computes 272-request extrapolations

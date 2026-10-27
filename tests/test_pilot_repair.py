@@ -15,14 +15,11 @@ from scripts.repair_pilot import (_legacy_correction, _legacy_fact, _semantic_re
 from scripts.review_dataset import build_pilot, checked_rows, file_hash, read_json
 
 
-ROOT = Path(__file__).resolve().parents[1]
-
-
 class PilotRepairTests(unittest.TestCase):
     def setUp(self):
-        temporary_root = ROOT / "runtime/test-pilot-repair"
-        temporary_root.mkdir(parents=True, exist_ok=True)
-        self.temporary = tempfile.TemporaryDirectory(dir=temporary_root)
+        # Keep generated fixtures in the OS temporary directory. A checkout may
+        # live in a synced folder whose scanner briefly locks publication paths.
+        self.temporary = tempfile.TemporaryDirectory(prefix="editguard-pilot-repair-")
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         full_source = self.root / "synthetic-full"

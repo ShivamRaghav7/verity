@@ -34,7 +34,7 @@ def build(commit):
         owned = [p.pid for p in psutil.process_iter(['cmdline']) if any(x in (p.info['cmdline'] or [])
             for x in ('editguard_depth.run', 'editguard_benchmark.run', 'editguard_reasonke'))]
         if owned: raise RuntimeError('Use an idle runtime; existing model/evaluation processes: ' + str(owned))
-        if shutil.disk_usage('/content').free < 24*1024**3: raise RuntimeError('At least 24 GiB free disk required.')
+        if shutil.disk_usage('/content').free < 36*1024**3: raise RuntimeError('At least 36 GiB free disk required for both cached checkpoints and the isolated environment.')
         print('CUDA:', torch.version.cuda, '| GPU:', torch.cuda.get_device_name(0), '| source:', SOURCE_COMMIT)
     '''), cell('code', '''
         if REPO.exists():
