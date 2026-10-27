@@ -83,8 +83,8 @@ The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains 
 dated planning record; current implementation and measured evidence are linked above.
 
 The text-editing website uses the author's trained **ReasonKE_plus** checkpoint.
-Use [the India chat launcher](notebooks/07_india_chat.ipynb) for the new handbook
-and iterative selector, or [the depth challenge launcher](notebooks/06_depth_challenge.ipynb)
+Use [the India chat launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/fb0278512c47395032545338dad2db780356007f/notebooks/07_india_chat.ipynb) for the new handbook
+and iterative selector, or [the depth challenge launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/fb0278512c47395032545338dad2db780356007f/notebooks/06_depth_challenge.ipynb)
 for a separate staged experiment. Both pin source 7da6d1d. Select an idle T4;
 the depth notebook initially starts only its sixteen-request timing profile.
 Development, freeze, final evaluation and scoring have disabled switches.
