@@ -311,8 +311,8 @@ class ChatApplication:
                 result = self.store.import_snapshot(payload.get("snapshot"))
                 self.retriever.clear_cache()
                 return result
-            if path == "/api/examples/operations/approve":
-                example = catalogue(ROOT)
+            if path in ("/api/examples/operations/approve", "/api/examples/india/approve"):
+                example = catalogue(ROOT, locale="india" if path == "/api/examples/india/approve" else "legacy")
                 snapshot, suggested_edit = approved_snapshot(example)
                 result = self.store.import_snapshot(snapshot, allow_existing_chats=True)
                 self.retriever.clear_cache()
@@ -432,8 +432,8 @@ def handler_for(app):
                     kinds = {".png": "image/png", ".svg": "image/svg+xml", ".csv": "text/csv; charset=utf-8",
                              ".md": "text/markdown; charset=utf-8", ".json": "application/json", ".pdf": "application/pdf"}
                     return self.reply(200, artifact.read_bytes(), kinds[artifact.suffix])
-                if path == "/api/examples/operations":
-                    return self.reply(200, catalogue(ROOT))
+                if path in ("/api/examples/operations", "/api/examples/india"):
+                    return self.reply(200, catalogue(ROOT, locale="india" if path == "/api/examples/india" else "legacy"))
                 match = re.fullmatch(r"/api/messages/([a-f0-9]{32})/image", path)
                 if match:
                     for chat in app.store.list_chats():

@@ -25,6 +25,8 @@ Customer chat does not publish corrections.
 | GET | `/api/experiments/artifacts/{name}` | Allowlisted current PNG/SVG figures, report, scorecard and figure provenance |
 | GET | `/api/examples/operations` | Fictional development catalogue and example questions, without approving anything |
 | POST | `/api/examples/operations/approve` | Explicitly approve nine fictional initial facts only when knowledge history is empty; existing chats are preserved |
+| GET | `/api/examples/india` | Display-only fictional India-themed nine-fact handbook; the website's default starter example, separate from benchmark data |
+| POST | `/api/examples/india/approve` | Explicit approval into empty knowledge history only; never replaces an existing handbook or customer facts |
 | GET | `/api/results` | Explicitly archived visual-study JSON, a separate model/protocol |
 
 ## Approve an identified fact

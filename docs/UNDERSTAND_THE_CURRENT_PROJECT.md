@@ -7,6 +7,12 @@ experiment to measure when those answers are correct. This guide explains the
 actual system and development history, without inventing a past plan or claiming
 that every question succeeds.
 
+The current website's default display facts are the clearly fictional
+[India-themed handbook](INDIA_DEMO.md). The Dahlia examples below explain the
+completed original benchmark and remain available through its legacy API.
+Changing display names does not change the measured results. A new depth study
+adds three-hop paths and held-out wording; it is reported separately.
+
 ## The problem, using one concrete example
 
 Imagine an internal operations handbook with these facts:

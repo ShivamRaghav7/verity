@@ -446,7 +446,7 @@ let exampleEdit = null;
 let exampleDefinition = null;
 async function refreshExampleHelper() {
   $("approve-example").disabled = state.revision !== 0;
-  exampleDefinition ||= await api("/api/examples/operations");
+  exampleDefinition ||= await api("/api/examples/india");
   const definition = exampleDefinition.world;
   const active = state.corrections.find(row => row.status === "active" && row.identity?.entity_id === definition.edit.entity_id && row.identity?.relation_id === definition.edit.relation_id && row.identity?.scope_id === definition.edit.scope_id);
   if (active) {
@@ -459,13 +459,13 @@ async function refreshExampleHelper() {
       button.addEventListener("click", () => { showView("chat"); $("chat-input").value = question; resizeComposer(); }); links.append(button);
     });
     $("example-status").textContent = "Fictional handbook for " + definition.entity + ". The active ownership answer is " + active.answer + ". Compare with an earlier revision to inspect a published change.";
-  } else { exampleEdit = null; $("draft-example-edit").hidden = true; $("example-questions").replaceChildren(); $("example-status").textContent = state.revision ? "This workspace has knowledge history. Your existing facts remain in place; use the correction library below." : "No fictional facts are active until you approve the handbook."; }
+  } else { exampleEdit = null; $("draft-example-edit").hidden = true; $("example-questions").replaceChildren(); $("example-status").textContent = state.revision ? "This workspace has knowledge history. Existing facts stay unchanged. Use a fresh workspace for the India-themed example, or edit the library below." : "No fictional facts are active until you approve the handbook."; }
 }
 $("approve-example").addEventListener("click", async () => {
   if (state.busy) return;
   $("approve-example").disabled = true;
   try {
-    const result = await api("/api/examples/operations/approve", {});
+    const result = await api("/api/examples/india/approve", {});
     setRevision(result.revision); await loadCorrections();
     exampleEdit = result.suggested_edit;
     $("draft-example-edit").hidden = false;

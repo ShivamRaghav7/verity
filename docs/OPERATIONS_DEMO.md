@@ -1,4 +1,8 @@
-# The current application: a complete ownership-change demonstration
+# Original benchmark handbook: ownership-change demonstration
+
+The website now defaults to [the India-themed display example](INDIA_DEMO.md).
+This guide preserves the original Dahlia handbook used by operations-v1 and its
+legacy example API, so the completed study can still be reproduced exactly.
 
 Start the pinned ReasonKE Colab launcher from the repository README. Use a T4,
 run the setup and worker cells, and wait until the model status is ready before

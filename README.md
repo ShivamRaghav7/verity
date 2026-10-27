@@ -7,6 +7,14 @@ similarly named services and historical releases. The current deployment uses
 the attributed upstream-trained ReasonKE checkpoint with versioned external
 memory; individual corrections do not modify model weights.
 
+The website's starter handbook now uses a clearly fictional Indian operations
+example: Kaveri Payment Gateway, Bengaluru/Pune teams and named on-call contacts.
+It includes a three-hop service-to-team-to-person-to-office-city question.
+Use [the India demonstration guide](docs/INDIA_DEMO.md). These display facts do
+not rename or rescore the completed benchmark. A separate depth challenge adds
+new graphs and held-out wording for one-, two- and three-hop evaluation; its
+results will remain separate from the completed study.
+
 The application includes explicit approval, canonical entity/property/scope
 identity, conflict resolution, searchable fact versions, an approval/rollback
 timeline, historical before/after comparisons, transactional text-workspace
