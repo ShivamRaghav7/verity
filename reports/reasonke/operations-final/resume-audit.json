@@ -1,0 +1,11 @@
+{
+  "schema": "editguard-completed-resume-audit-v1",
+  "preserved_completed_rows": 483,
+  "changed_completed_rows": 0,
+  "newly_completed_rows": 301,
+  "final_recorded_rows": 784,
+  "paused_receipt_sha256": "3e976daa1d60edf8cdc22809f804d65d238c79c8df9dba90d0a5c66b28c63d63",
+  "completed_receipt_sha256": "d6d8cad4a87e6036c2bd3ff0bb9cfd21fa15c2a37b7a801eb7b03ed15ca0af4b",
+  "new_model_generations": 0,
+  "notice": "Exact row equality, not merely unchanged aggregate accuracy. Original correct/wrong/abstained/error rows were preserved."
+}
