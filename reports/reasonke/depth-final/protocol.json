@@ -1,0 +1,58 @@
+{
+  "schema": "editguard-depth-protocol-v1",
+  "status": "frozen",
+  "created_utc": "2026-10-28T14:30:03.027687+00:00",
+  "sources": {
+    "editguard_depth/__init__.py": "32ec55ba5a0e1374540fb498d0e2d5853f271e017c3e70426a896b72d7b7de15",
+    "editguard_depth/data.py": "3146c7811174f9643a1ca75eb6805fe181bb8fa719dfc0774420fcdd9af67dd2",
+    "editguard_depth/metrics.py": "3006642b243f1787e77bc2b2e82833fe99ec50d5d81218f4bacbe4bc74f8b1d2",
+    "editguard_depth/retrieval.py": "7f15a2b2d7665a31e1d2ca002f12d42b21ce79704d91ef78e0e7921e4f725fa0",
+    "editguard_depth/run.py": "d3dc2abd3eb9d6a716482e2bfef58117583ec8dec943f6f65d8be658553aa9f1",
+    "editguard_benchmark/__init__.py": "4c9de9a5b3ec589c0f9ff91552fc876f72ce13bf734155e779b10707ba879b36",
+    "editguard_benchmark/data.py": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+    "editguard_benchmark/metrics.py": "61b8a7261a42a829cf4c86af3ab24ed2a08d83e005dd47e129f758f096c0ca52",
+    "editguard_benchmark/models.py": "2f51a9b2c1264a8fb655cad1c79b3c3765b782e522a2d83820afa580705a51ad",
+    "editguard_benchmark/retrieval.py": "d3c3ceb196f653fab9f201c4f93315d297ba06346822b856e1e5fafe6b344d33",
+    "editguard_benchmark/run.py": "1c69717786d06d61eaaa2d21b19e90aff3f2b0d5a9a7690daa8db64788c4376d",
+    "editguard_benchmark/scoring.py": "8a3a824acb37a5134d2e13fea181c898728c543b378426045176b27bac958f1e",
+    "editguard_reasonke/runtime.py": "411d685a703f00e22f86a4de5c02b53b549683ae0b59a78fa9af61c581c4306c",
+    "configs/depth-evaluation.json": "bfe37e5586f80a736c6b4aaa9ad94cca45a3a506d87905bdfc84c9ed20a715b1",
+    "configs/reasonke-model.json": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+    "configs/instruction-model.json": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+    "data/reasonke/depth-v1/manifest.json": "4c761895a637924ef14e5e0d464ec5ebb4a7c9423efcac560e4f8cbbca69d76f",
+    "reports/reasonke/depth-development/retrieval-selection.json": "b00d12e4f6dda0cf9a9e40747152ce35cb3506ee511c64bf51818e9573e828d3"
+  },
+  "input_receipts": {
+    "profile-reasonke.json": "dff5425f601c024a5220cb716e91afd87149907431750aa640841b8afd5f6921",
+    "development-reasonke.json": "592c706eb807564dc181931be032ef38606ea4a2855a79870dfa1c6e7d459a66",
+    "profile-instruction.json": "e3dc6bac9e72a42ff67b20777c97da6e7ac6ab9b0db6a9413cdb4ccfefaf1a17",
+    "development-instruction.json": "6cb86a217402ea2dcff5301b8beb5ec4ae1660799d8d258e1534c4f1f542a677"
+  },
+  "profiles": {
+    "reasonke": {
+      "n": 8,
+      "mean_seconds": 15.974209872124995,
+      "max_seconds": 17.907201455999996,
+      "final_assigned": 272,
+      "forecast_seconds_mean": 4344.985085217999,
+      "forecast_seconds_max": 4870.758796031999,
+      "limitation": "Eight development requests; uncertain extrapolation excluding fresh loading/downloads"
+    },
+    "instruction": {
+      "n": 8,
+      "mean_seconds": 1.0889268938749836,
+      "max_seconds": 2.4863965539999526,
+      "final_assigned": 272,
+      "forecast_seconds_mean": 296.18811513399555,
+      "forecast_seconds_max": 676.2998626879871,
+      "limitation": "Eight development requests; uncertain extrapolation excluding fresh loading/downloads"
+    }
+  },
+  "final_assigned": 544,
+  "per_main_condition": 256,
+  "oracle_per_model": 16,
+  "question": "Do the development-selected iterative retrieval policy and each checkpoint support three-hop edits on new graphs and held-out wording families?",
+  "policy": "Iterative answer-frontier retrieval: four facts, two lexical seeds, three expansion rounds selected on development; shared across models. Matched model budgets and fixed whole-answer scoring; no post-test tuning. Completed operations-v1 is unchanged.",
+  "review": "Automated controlled graph audit; no independent human semantic review",
+  "not_combined_with": "Completed operations-v1 scorecard"
+}

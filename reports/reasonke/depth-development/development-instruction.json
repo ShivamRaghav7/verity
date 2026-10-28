@@ -1,0 +1,3035 @@
+{
+  "schema": "editguard-depth-inference-v1",
+  "status": "completed",
+  "started_utc": "2026-10-28T14:24:21.520404+00:00",
+  "plan": {
+    "model": "instruction",
+    "phase": "development",
+    "sources": {
+      "editguard_depth/__init__.py": "32ec55ba5a0e1374540fb498d0e2d5853f271e017c3e70426a896b72d7b7de15",
+      "editguard_depth/data.py": "3146c7811174f9643a1ca75eb6805fe181bb8fa719dfc0774420fcdd9af67dd2",
+      "editguard_depth/metrics.py": "3006642b243f1787e77bc2b2e82833fe99ec50d5d81218f4bacbe4bc74f8b1d2",
+      "editguard_depth/retrieval.py": "7f15a2b2d7665a31e1d2ca002f12d42b21ce79704d91ef78e0e7921e4f725fa0",
+      "editguard_depth/run.py": "d3dc2abd3eb9d6a716482e2bfef58117583ec8dec943f6f65d8be658553aa9f1",
+      "editguard_benchmark/__init__.py": "4c9de9a5b3ec589c0f9ff91552fc876f72ce13bf734155e779b10707ba879b36",
+      "editguard_benchmark/data.py": "e389a4bf76f78bf266ef8bd8cba7fe6c065d84604eb97d8924cff55df4d9a6bb",
+      "editguard_benchmark/metrics.py": "61b8a7261a42a829cf4c86af3ab24ed2a08d83e005dd47e129f758f096c0ca52",
+      "editguard_benchmark/models.py": "2f51a9b2c1264a8fb655cad1c79b3c3765b782e522a2d83820afa580705a51ad",
+      "editguard_benchmark/retrieval.py": "d3c3ceb196f653fab9f201c4f93315d297ba06346822b856e1e5fafe6b344d33",
+      "editguard_benchmark/run.py": "1c69717786d06d61eaaa2d21b19e90aff3f2b0d5a9a7690daa8db64788c4376d",
+      "editguard_benchmark/scoring.py": "8a3a824acb37a5134d2e13fea181c898728c543b378426045176b27bac958f1e",
+      "editguard_reasonke/runtime.py": "411d685a703f00e22f86a4de5c02b53b549683ae0b59a78fa9af61c581c4306c",
+      "configs/depth-evaluation.json": "bfe37e5586f80a736c6b4aaa9ad94cca45a3a506d87905bdfc84c9ed20a715b1",
+      "configs/reasonke-model.json": "0054ab3f4af9471c38f6087075ec6cd954ed58e422863871addd18be150e7c4f",
+      "configs/instruction-model.json": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+      "data/reasonke/depth-v1/manifest.json": "4c761895a637924ef14e5e0d464ec5ebb4a7c9423efcac560e4f8cbbca69d76f",
+      "reports/reasonke/depth-development/retrieval-selection.json": "b00d12e4f6dda0cf9a9e40747152ce35cb3506ee511c64bf51818e9573e828d3"
+    },
+    "task_ids_sha256": "b107d99d913db9889ce6465b636f0aacb1150705c59cd305dce8be0aad995335",
+    "protocol_sha256": null
+  },
+  "dataset": {
+    "categories": [
+      "direct",
+      "direct_paraphrase",
+      "two_hop",
+      "two_hop_paraphrase",
+      "three_hop",
+      "three_hop_paraphrase",
+      "wrong_version_or_tier",
+      "same_entity_other_relation"
+    ],
+    "dataset_id": "editguard-depth-v1",
+    "development_lineages": 16,
+    "facts_per_world": 12,
+    "factual_inputs_sha256": "a2ba30b0322d4d33469b80225161f54fe767d90937327af5705224c2f43ac60a",
+    "files": {
+      "audit.json": "232f8f2fc1967e13f52da33a5d5c590ad45538bf8349d164e4e4c3c97847177e",
+      "lineages.jsonl": "95354815a5a4cf9f6f59271bdcdfd81968c6fe477bdf4192917aa0e0234ac237",
+      "questions.jsonl": "3d909fd51a1e0f20fb0f0c26157fef733b06ebfd7cd2e7c26f85dd82ebd8ef54"
+    },
+    "final_lineages": 32,
+    "generated_model_answers": 0,
+    "generator_sha256": "3146c7811174f9643a1ca75eb6805fe181bb8fa719dfc0774420fcdd9af67dd2",
+    "human_reviewed_data": false,
+    "labels_sha256": "2c9d566c177b9860c69745379e9019c274a888d72e20b911a35dd78eeaf312a2",
+    "lineages": 48,
+    "question_depths": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "questions": 384,
+    "schema": "editguard-depth-dataset-v1",
+    "seed": 43,
+    "split_unit": "edit_lineage_before_wording_augmentation",
+    "status": "authored_awaiting_separate_protocol_freeze",
+    "truth_source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations.",
+    "wording_split": "disjoint_template_banks_development_and_final",
+    "wording_templates_sha256": "e3ad2252b36e4749f883047e2194c820b5bd6a10efca701683dedeb6e3b23c74"
+  },
+  "records": [
+    {
+      "id": "G-RAG:depth-000-direct",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "depth": 1,
+        "expected_aliases": [
+          "Malwa unit 110"
+        ],
+        "expected_answer": "Malwa unit 110",
+        "id": "depth-000-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Sahyadri unit 10",
+        "initial_required_fact_ids": [
+          "depth-000-f1"
+        ],
+        "lineage_id": "depth-000",
+        "question": "Which team owns Kaveri Gateway in release 2?",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:direct:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:19.191512+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f7",
+          "question": "Which team owns Kaveri Gateway Pro in release 2?",
+          "answer": "Deccan unit 210",
+          "scope": "Which team owns Kaveri Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f7",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "b6c331714929ed18522efb18825900a0deff6184649b4ae84d3000d628cc33bd",
+      "response": {
+        "content": "Malwa unit 110",
+        "raw_output": "Malwa unit 110",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 2.5491412290000426,
+          "input_tokens": 506,
+          "output_tokens": 8,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786457600,
+          "peak_reserved_bytes": 7184842752,
+          "fact_ids": [
+            "depth-000-f1",
+            "depth-000-f7",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 2.576614242000005,
+      "completed_utc": "2026-10-28T14:28:21.767421+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-direct_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "depth": 1,
+        "expected_aliases": [
+          "Malwa unit 110"
+        ],
+        "expected_answer": "Malwa unit 110",
+        "id": "depth-000-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Sahyadri unit 10",
+        "initial_required_fact_ids": [
+          "depth-000-f1"
+        ],
+        "lineage_id": "depth-000",
+        "question": "For release 2 of Kaveri Gateway, give only the responsible team's name.",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:direct_paraphrase:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:21.773770+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f7",
+          "question": "Which team owns Kaveri Gateway Pro in release 2?",
+          "answer": "Deccan unit 210",
+          "scope": "Which team owns Kaveri Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f7",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "c422be1def0e64b7166eb60d4d233e09c5cab38d46ef53a2d8d21a4167fd77ed",
+      "response": {
+        "content": "Malwa unit 110",
+        "raw_output": "Malwa unit 110",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.0792563499999233,
+          "input_tokens": 512,
+          "output_tokens": 8,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787345408,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f1",
+            "depth-000-f7",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.0835364900001423,
+      "completed_utc": "2026-10-28T14:28:22.856571+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-same_entity_other_relation",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": false,
+        "category": "same_entity_other_relation",
+        "depth": 0,
+        "expected_aliases": [
+          "Hyderabad hosting zone"
+        ],
+        "expected_answer": "Hyderabad hosting zone",
+        "id": "depth-000-same_entity_other_relation",
+        "inapplicable_edit_aliases": [
+          "Malwa unit 110",
+          "Aarav Desai",
+          "Kolkata"
+        ],
+        "initial_answer": "Hyderabad hosting zone",
+        "initial_required_fact_ids": [
+          "depth-000-f6"
+        ],
+        "lineage_id": "depth-000",
+        "question": "Which hosting zone serves Kaveri Gateway in release 2?",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "hosting_zone",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f6"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:same_entity_other_relation:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:22.862547+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f6",
+          "question": "Which hosting zone serves Kaveri Gateway in release 2?",
+          "answer": "Hyderabad hosting zone",
+          "scope": "Which hosting zone serves Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f6",
+          "depth-000-f1",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "e567d784a17b6da04efd635a513f450d510cd67d15e6a819bc89e9f619fe9ade",
+      "response": {
+        "content": "Hyderabad hosting zone",
+        "raw_output": "Hyderabad hosting zone",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.9008708259998457,
+          "input_tokens": 503,
+          "output_tokens": 5,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786014208,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f6",
+            "depth-000-f1",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.9046061629999258,
+      "completed_utc": "2026-10-28T14:28:23.766652+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-three_hop",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "three_hop",
+        "depth": 3,
+        "expected_aliases": [
+          "Kolkata"
+        ],
+        "expected_answer": "Kolkata",
+        "id": "depth-000-three_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Bengaluru",
+        "initial_required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f2",
+          "depth-000-f4"
+        ],
+        "lineage_id": "depth-000",
+        "question": "In which city is the office of the on-call contact for the team that owns Kaveri Gateway in release 2?",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner_contact_office_city",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:three_hop:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:23.773114+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f7",
+          "question": "Which team owns Kaveri Gateway Pro in release 2?",
+          "answer": "Deccan unit 210",
+          "scope": "Which team owns Kaveri Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 3,
+        "found": 3,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f7",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "6021ee7d3826702e479a7bb6f6e19baa43b52dd337e3c9afc8189a69e8da52c3",
+      "response": {
+        "content": "Kolkata",
+        "raw_output": "Kolkata",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.8339800389999255,
+          "input_tokens": 519,
+          "output_tokens": 3,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787860992,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f1",
+            "depth-000-f7",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.8378339989999404,
+      "completed_utc": "2026-10-28T14:28:24.610212+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-three_hop_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "three_hop_paraphrase",
+        "depth": 3,
+        "expected_aliases": [
+          "Kolkata"
+        ],
+        "expected_answer": "Kolkata",
+        "id": "depth-000-three_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Bengaluru",
+        "initial_required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f2",
+          "depth-000-f4"
+        ],
+        "lineage_id": "depth-000",
+        "question": "Find Kaveri Gateway's release-2 owning team and that team's on-call contact. Give only the contact's office city.",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner_contact_office_city",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:three_hop_paraphrase:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:24.616309+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f7",
+          "question": "Which team owns Kaveri Gateway Pro in release 2?",
+          "answer": "Deccan unit 210",
+          "scope": "Which team owns Kaveri Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 3,
+        "found": 3,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f7",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "2fe523fbba39ab7415ac7d08f8eb28a13d02083c228ef2caa747567d22180515",
+      "response": {
+        "content": "Kolkata",
+        "raw_output": "Kolkata",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.8375118139999813,
+          "input_tokens": 521,
+          "output_tokens": 3,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5788171264,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f1",
+            "depth-000-f7",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.8411739770001532,
+      "completed_utc": "2026-10-28T14:28:25.456915+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-two_hop",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "depth": 2,
+        "expected_aliases": [
+          "Aarav Desai"
+        ],
+        "expected_answer": "Aarav Desai",
+        "id": "depth-000-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Aarav Mehta",
+        "initial_required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f2"
+        ],
+        "lineage_id": "depth-000",
+        "question": "Who is the on-call contact for the team that owns Kaveri Gateway in release 2?",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:two_hop:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:25.463977+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f7",
+          "question": "Which team owns Kaveri Gateway Pro in release 2?",
+          "answer": "Deccan unit 210",
+          "scope": "Which team owns Kaveri Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f7",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "20be4369308cd48cdf64945878764190e0d2688981f232940c4adc217c124b38",
+      "response": {
+        "content": "Aarav Desai",
+        "raw_output": "Aarav Desai",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.0614073510000708,
+          "input_tokens": 514,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787084800,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f1",
+            "depth-000-f7",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.0652070660000845,
+      "completed_utc": "2026-10-28T14:28:26.528480+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-two_hop_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "depth": 2,
+        "expected_aliases": [
+          "Aarav Desai"
+        ],
+        "expected_answer": "Aarav Desai",
+        "id": "depth-000-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Aarav Mehta",
+        "initial_required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f2"
+        ],
+        "lineage_id": "depth-000",
+        "question": "Look up Kaveri Gateway's release-2 owner, then return only that team's on-call person's name.",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:two_hop_paraphrase:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:26.535327+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f7",
+          "question": "Which team owns Kaveri Gateway Pro in release 2?",
+          "answer": "Deccan unit 210",
+          "scope": "Which team owns Kaveri Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f3",
+          "question": "Who is the on-call contact for Malwa unit 110?",
+          "answer": "Aarav Desai",
+          "scope": "Who is the on-call contact for Malwa unit 110; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f5",
+          "question": "In which city is Aarav Desai's office?",
+          "answer": "Kolkata",
+          "scope": "In which city is Aarav Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f1",
+          "depth-000-f7",
+          "depth-000-f3",
+          "depth-000-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "c87d2bedbb0a5dc6d8432fecf4f82dda467514894c119f56ee82da45ec999603",
+      "response": {
+        "content": "Aarav Desai",
+        "raw_output": "Aarav Desai",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.0556538719999935,
+          "input_tokens": 518,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787705344,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f1",
+            "depth-000-f7",
+            "depth-000-f3",
+            "depth-000-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.0594699559999299,
+      "completed_utc": "2026-10-28T14:28:27.594282+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-000-wrong_version_or_tier",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": false,
+        "category": "wrong_version_or_tier",
+        "depth": 0,
+        "expected_aliases": [
+          "Nilgiri unit 310"
+        ],
+        "expected_answer": "Nilgiri unit 310",
+        "id": "depth-000-wrong_version_or_tier",
+        "inapplicable_edit_aliases": [
+          "Malwa unit 110",
+          "Aarav Desai",
+          "Kolkata"
+        ],
+        "initial_answer": "Nilgiri unit 310",
+        "initial_required_fact_ids": [
+          "depth-000-f8"
+        ],
+        "lineage_id": "depth-000",
+        "question": "Which team owns Kaveri Gateway in release 1?",
+        "requested_entity": "depth-000-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-1",
+        "required_fact_ids": [
+          "depth-000-f8"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:wrong_version_or_tier:0",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:27.601352+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-000-f8",
+          "question": "Which team owns Kaveri Gateway in release 1?",
+          "answer": "Nilgiri unit 310",
+          "scope": "Which team owns Kaveri Gateway in release 1; release-1",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f1",
+          "question": "Which team owns Kaveri Gateway in release 2?",
+          "answer": "Malwa unit 110",
+          "scope": "Which team owns Kaveri Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-000-f11",
+          "question": "Who is the on-call contact for Nilgiri unit 310?",
+          "answer": "Aarav Joshi",
+          "scope": "Who is the on-call contact for Nilgiri unit 310; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-000-f12",
+          "question": "In which city is Aarav Joshi's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Aarav Joshi's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-000-f8",
+          "depth-000-f1",
+          "depth-000-f11",
+          "depth-000-f12"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "85fbbb3c4ddc7a55a995dd946a6898e361cc2a42bd384518ee78360329dc0391",
+      "response": {
+        "content": "Nilgiri unit 310",
+        "raw_output": "Nilgiri unit 310",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.196482966000076,
+          "input_tokens": 509,
+          "output_tokens": 9,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786902016,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-000-f8",
+            "depth-000-f1",
+            "depth-000-f11",
+            "depth-000-f12"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.2002305829998932,
+      "completed_utc": "2026-10-28T14:28:28.801079+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-direct",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "depth": 1,
+        "expected_aliases": [
+          "Konkan unit 117"
+        ],
+        "expected_answer": "Konkan unit 117",
+        "id": "depth-007-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Satpura unit 17",
+        "initial_required_fact_ids": [
+          "depth-007-f1"
+        ],
+        "lineage_id": "depth-007",
+        "question": "What is the owning team for Sabarmati Gateway, release 2?",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:direct:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:28.807482+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f7",
+          "question": "Which team owns Sabarmati Gateway Pro in release 2?",
+          "answer": "Vindhya unit 217",
+          "scope": "Which team owns Sabarmati Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f7",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "f079ef20ed678e8391e5a6d32dd3ac6a2504c95af07d3255a88d8af8cf82cbc6",
+      "response": {
+        "content": "Konkan unit 117",
+        "raw_output": "Konkan unit 117",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.1060917940001218,
+          "input_tokens": 508,
+          "output_tokens": 8,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786753536,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f1",
+            "depth-007-f7",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.1098677100001169,
+      "completed_utc": "2026-10-28T14:28:29.916848+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-direct_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "depth": 1,
+        "expected_aliases": [
+          "Konkan unit 117"
+        ],
+        "expected_answer": "Konkan unit 117",
+        "id": "depth-007-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Satpura unit 17",
+        "initial_required_fact_ids": [
+          "depth-007-f1"
+        ],
+        "lineage_id": "depth-007",
+        "question": "Who maintains team ownership of Sabarmati Gateway for release 2?",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:direct_paraphrase:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:29.923817+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f7",
+          "question": "Which team owns Sabarmati Gateway Pro in release 2?",
+          "answer": "Vindhya unit 217",
+          "scope": "Which team owns Sabarmati Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f7",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "409b330edc7a64c5162f8d223038f349992b51940dce6ffc56160ece5ca342b1",
+      "response": {
+        "content": "Konkan unit 117",
+        "raw_output": "Konkan unit 117",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.1157181839998884,
+          "input_tokens": 507,
+          "output_tokens": 8,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786606080,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f1",
+            "depth-007-f7",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.1196266580000156,
+      "completed_utc": "2026-10-28T14:28:31.042823+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-same_entity_other_relation",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": false,
+        "category": "same_entity_other_relation",
+        "depth": 0,
+        "expected_aliases": [
+          "Ahmedabad hosting zone"
+        ],
+        "expected_answer": "Ahmedabad hosting zone",
+        "id": "depth-007-same_entity_other_relation",
+        "inapplicable_edit_aliases": [
+          "Konkan unit 117",
+          "Ishita Desai",
+          "Nagpur"
+        ],
+        "initial_answer": "Ahmedabad hosting zone",
+        "initial_required_fact_ids": [
+          "depth-007-f6"
+        ],
+        "lineage_id": "depth-007",
+        "question": "What is the hosting zone of Sabarmati Gateway, release 2?",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "hosting_zone",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f6"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:same_entity_other_relation:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:31.050158+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f6",
+          "question": "Which hosting zone serves Sabarmati Gateway in release 2?",
+          "answer": "Ahmedabad hosting zone",
+          "scope": "Which hosting zone serves Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f6",
+          "depth-007-f1",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "81f8417c8bb6f396746011196f214d128998aa583bf5bca1d60e98bea73b9c32",
+      "response": {
+        "content": "Ahmedabad hosting zone",
+        "raw_output": "Ahmedabad hosting zone",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.979475020000109,
+          "input_tokens": 505,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786310144,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f6",
+            "depth-007-f1",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.9831418969999959,
+      "completed_utc": "2026-10-28T14:28:32.032756+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-three_hop",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "three_hop",
+        "depth": 3,
+        "expected_aliases": [
+          "Nagpur"
+        ],
+        "expected_answer": "Nagpur",
+        "id": "depth-007-three_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Kochi",
+        "initial_required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f2",
+          "depth-007-f4"
+        ],
+        "lineage_id": "depth-007",
+        "question": "For Sabarmati Gateway in release 2, name the office city of its owner's on-call person.",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner_contact_office_city",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:three_hop:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:32.043014+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f7",
+          "question": "Which team owns Sabarmati Gateway Pro in release 2?",
+          "answer": "Vindhya unit 217",
+          "scope": "Which team owns Sabarmati Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 3,
+        "found": 3,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f7",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "258a134ef2b6c9122c9a245e0f761911aec7380105318a95730fd4d475389ce8",
+      "response": {
+        "content": "Nagpur",
+        "raw_output": "Nagpur",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.9443128790001083,
+          "input_tokens": 515,
+          "output_tokens": 4,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787240448,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f1",
+            "depth-007-f7",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.9497082220000266,
+      "completed_utc": "2026-10-28T14:28:32.991864+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-three_hop_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "three_hop_paraphrase",
+        "depth": 3,
+        "expected_aliases": [
+          "Nagpur"
+        ],
+        "expected_answer": "Nagpur",
+        "id": "depth-007-three_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Kochi",
+        "initial_required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f2",
+          "depth-007-f4"
+        ],
+        "lineage_id": "depth-007",
+        "question": "Follow ownership and on-call responsibility for Sabarmati Gateway in release 2, then report the person's office city.",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner_contact_office_city",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:three_hop_paraphrase:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:32.999392+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f7",
+          "question": "Which team owns Sabarmati Gateway Pro in release 2?",
+          "answer": "Vindhya unit 217",
+          "scope": "Which team owns Sabarmati Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 3,
+        "found": 3,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f7",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "931ef2d9108c72517e4310b1a00af5bf269a22ddd04a6f64042e724dc9d563e5",
+      "response": {
+        "content": "Nagpur",
+        "raw_output": "Nagpur",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.9200416449998556,
+          "input_tokens": 517,
+          "output_tokens": 4,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787550720,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f1",
+            "depth-007-f7",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.9238629720000517,
+      "completed_utc": "2026-10-28T14:28:33.922672+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-two_hop",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "depth": 2,
+        "expected_aliases": [
+          "Ishita Desai"
+        ],
+        "expected_answer": "Ishita Desai",
+        "id": "depth-007-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ishita Mehta",
+        "initial_required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f2"
+        ],
+        "lineage_id": "depth-007",
+        "question": "Name the on-call person of Sabarmati Gateway's release-2 owner team.",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:two_hop:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:33.930825+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f7",
+          "question": "Which team owns Sabarmati Gateway Pro in release 2?",
+          "answer": "Vindhya unit 217",
+          "scope": "Which team owns Sabarmati Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f7",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "ed15691e3b441be4fc4af7b871e12bdc6e5bdae35e89384e23e4824b92f2740d",
+      "response": {
+        "content": "Ishita Desai",
+        "raw_output": "Ishita Desai",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.979233608999948,
+          "input_tokens": 510,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787049472,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f1",
+            "depth-007-f7",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.9829920859999675,
+      "completed_utc": "2026-10-28T14:28:34.913163+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-two_hop_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "depth": 2,
+        "expected_aliases": [
+          "Ishita Desai"
+        ],
+        "expected_answer": "Ishita Desai",
+        "id": "depth-007-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ishita Mehta",
+        "initial_required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f2"
+        ],
+        "lineage_id": "depth-007",
+        "question": "Find the team responsible for Sabarmati Gateway in release 2. Who is that team's on-call contact?",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:two_hop_paraphrase:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:34.920750+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f7",
+          "question": "Which team owns Sabarmati Gateway Pro in release 2?",
+          "answer": "Vindhya unit 217",
+          "scope": "Which team owns Sabarmati Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f3",
+          "question": "Who is the on-call contact for Konkan unit 117?",
+          "answer": "Ishita Desai",
+          "scope": "Who is the on-call contact for Konkan unit 117; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f5",
+          "question": "In which city is Ishita Desai's office?",
+          "answer": "Nagpur",
+          "scope": "In which city is Ishita Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f1",
+          "depth-007-f7",
+          "depth-007-f3",
+          "depth-007-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "2e5954208afc85cc0a5da7ec643af048c1d263efcb74cc7403b7dcf18063babe",
+      "response": {
+        "content": "Ishita Desai",
+        "raw_output": "Ishita Desai",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.0844977080000717,
+          "input_tokens": 516,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787395072,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f1",
+            "depth-007-f7",
+            "depth-007-f3",
+            "depth-007-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.0883366460000161,
+      "completed_utc": "2026-10-28T14:28:36.008440+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-007-wrong_version_or_tier",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": false,
+        "category": "wrong_version_or_tier",
+        "depth": 0,
+        "expected_aliases": [
+          "Aravalli unit 317"
+        ],
+        "expected_answer": "Aravalli unit 317",
+        "id": "depth-007-wrong_version_or_tier",
+        "inapplicable_edit_aliases": [
+          "Konkan unit 117",
+          "Ishita Desai",
+          "Nagpur"
+        ],
+        "initial_answer": "Aravalli unit 317",
+        "initial_required_fact_ids": [
+          "depth-007-f8"
+        ],
+        "lineage_id": "depth-007",
+        "question": "Name the owning team for release 1 of Sabarmati Gateway.",
+        "requested_entity": "depth-007-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-1",
+        "required_fact_ids": [
+          "depth-007-f8"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:wrong_version_or_tier:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:36.016191+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-007-f8",
+          "question": "Which team owns Sabarmati Gateway in release 1?",
+          "answer": "Aravalli unit 317",
+          "scope": "Which team owns Sabarmati Gateway in release 1; release-1",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f1",
+          "question": "Which team owns Sabarmati Gateway in release 2?",
+          "answer": "Konkan unit 117",
+          "scope": "Which team owns Sabarmati Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-007-f11",
+          "question": "Who is the on-call contact for Aravalli unit 317?",
+          "answer": "Ishita Joshi",
+          "scope": "Who is the on-call contact for Aravalli unit 317; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-007-f12",
+          "question": "In which city is Ishita Joshi's office?",
+          "answer": "Hyderabad",
+          "scope": "In which city is Ishita Joshi's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-007-f8",
+          "depth-007-f1",
+          "depth-007-f11",
+          "depth-007-f12"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "caa79879a6fc1a99ebb3fee8b0330722849f2640140f1f735d8fa2a215bc7997",
+      "response": {
+        "content": "Aravalli unit 317",
+        "raw_output": "Aravalli unit 317",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.2045430909997776,
+          "input_tokens": 508,
+          "output_tokens": 9,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786753536,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-007-f8",
+            "depth-007-f1",
+            "depth-007-f11",
+            "depth-007-f12"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.2080517009999312,
+      "completed_utc": "2026-10-28T14:28:37.223766+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-direct",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "direct",
+        "depth": 1,
+        "expected_aliases": [
+          "Deccan unit 120"
+        ],
+        "expected_answer": "Deccan unit 120",
+        "id": "depth-010-direct",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Malwa unit 20",
+        "initial_required_fact_ids": [
+          "depth-010-f1"
+        ],
+        "lineage_id": "depth-010",
+        "question": "What is the owning team for Mandovi Gateway, release 2?",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:direct:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:37.231821+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f7",
+          "question": "Which team owns Mandovi Gateway Pro in release 2?",
+          "answer": "Nilgiri unit 220",
+          "scope": "Which team owns Mandovi Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f7",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "2bd48489ab77a21f09db4d011729c55b90df944411e89d6c30e403f97ad30760",
+      "response": {
+        "content": "Deccan unit 120",
+        "raw_output": "Deccan unit 120",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.2216868100001648,
+          "input_tokens": 512,
+          "output_tokens": 9,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787345408,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f1",
+            "depth-010-f7",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.225570087999813,
+      "completed_utc": "2026-10-28T14:28:38.456744+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-direct_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "direct_paraphrase",
+        "depth": 1,
+        "expected_aliases": [
+          "Deccan unit 120"
+        ],
+        "expected_answer": "Deccan unit 120",
+        "id": "depth-010-direct_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Malwa unit 20",
+        "initial_required_fact_ids": [
+          "depth-010-f1"
+        ],
+        "lineage_id": "depth-010",
+        "question": "Who maintains team ownership of Mandovi Gateway for release 2?",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f1"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:direct_paraphrase:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:38.464702+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f7",
+          "question": "Which team owns Mandovi Gateway Pro in release 2?",
+          "answer": "Nilgiri unit 220",
+          "scope": "Which team owns Mandovi Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f7",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "7d888e1503654fe650cc792581f01fe34d0d92dbdda1f04db04aeb5a6acd5702",
+      "response": {
+        "content": "Deccan unit 120",
+        "raw_output": "Deccan unit 120",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.2084549239998523,
+          "input_tokens": 511,
+          "output_tokens": 9,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787197952,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f1",
+            "depth-010-f7",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.2121724189998986,
+      "completed_utc": "2026-10-28T14:28:39.676287+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-same_entity_other_relation",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": false,
+        "category": "same_entity_other_relation",
+        "depth": 0,
+        "expected_aliases": [
+          "Indore hosting zone"
+        ],
+        "expected_answer": "Indore hosting zone",
+        "id": "depth-010-same_entity_other_relation",
+        "inapplicable_edit_aliases": [
+          "Deccan unit 120",
+          "Aditya Desai",
+          "Thiruvananthapuram"
+        ],
+        "initial_answer": "Indore hosting zone",
+        "initial_required_fact_ids": [
+          "depth-010-f6"
+        ],
+        "lineage_id": "depth-010",
+        "question": "What is the hosting zone of Mandovi Gateway, release 2?",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "hosting_zone",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f6"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:same_entity_other_relation:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:39.684166+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f6",
+          "question": "Which hosting zone serves Mandovi Gateway in release 2?",
+          "answer": "Indore hosting zone",
+          "scope": "Which hosting zone serves Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f6",
+          "depth-010-f1",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "efec6adb4547f67760c3b441bf59a08c588a393fadfafbc88160988f86db5610",
+      "response": {
+        "content": "Indore hosting zone",
+        "raw_output": "Indore hosting zone",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 0.9253989940000338,
+          "input_tokens": 508,
+          "output_tokens": 5,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5786753536,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f6",
+            "depth-010-f1",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 0.9290029280000454,
+      "completed_utc": "2026-10-28T14:28:40.612583+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-three_hop",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "three_hop",
+        "depth": 3,
+        "expected_aliases": [
+          "Thiruvananthapuram"
+        ],
+        "expected_answer": "Thiruvananthapuram",
+        "id": "depth-010-three_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ahmedabad",
+        "initial_required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f2",
+          "depth-010-f4"
+        ],
+        "lineage_id": "depth-010",
+        "question": "For Mandovi Gateway in release 2, name the office city of its owner's on-call person.",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner_contact_office_city",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:three_hop:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:40.620783+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f7",
+          "question": "Which team owns Mandovi Gateway Pro in release 2?",
+          "answer": "Nilgiri unit 220",
+          "scope": "Which team owns Mandovi Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 3,
+        "found": 3,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f7",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "35f918e16ec8f0e47f8ecc43b243441443349c49ecb7b23fb1af84f95593b9bf",
+      "response": {
+        "content": "Thiruvananthapuram",
+        "raw_output": "Thiruvananthapuram",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.2582625630000166,
+          "input_tokens": 519,
+          "output_tokens": 8,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787860992,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f1",
+            "depth-010-f7",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.261821598999859,
+      "completed_utc": "2026-10-28T14:28:41.882025+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-three_hop_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "three_hop_paraphrase",
+        "depth": 3,
+        "expected_aliases": [
+          "Thiruvananthapuram"
+        ],
+        "expected_answer": "Thiruvananthapuram",
+        "id": "depth-010-three_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Ahmedabad",
+        "initial_required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f2",
+          "depth-010-f4"
+        ],
+        "lineage_id": "depth-010",
+        "question": "Follow ownership and on-call responsibility for Mandovi Gateway in release 2, then report the person's office city.",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner_contact_office_city",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:three_hop_paraphrase:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:41.890535+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f7",
+          "question": "Which team owns Mandovi Gateway Pro in release 2?",
+          "answer": "Nilgiri unit 220",
+          "scope": "Which team owns Mandovi Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 3,
+        "found": 3,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f7",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "d68ae4cdafa05534588d035ec2b540e64093cd4ae49fd3c1fd58293fa0afd319",
+      "response": {
+        "content": "Thiruvananthapuram",
+        "raw_output": "Thiruvananthapuram",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.2763695500000267,
+          "input_tokens": 521,
+          "output_tokens": 8,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5788171264,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f1",
+            "depth-010-f7",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.2806312050001907,
+      "completed_utc": "2026-10-28T14:28:43.170531+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-two_hop",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "two_hop",
+        "depth": 2,
+        "expected_aliases": [
+          "Aditya Desai"
+        ],
+        "expected_answer": "Aditya Desai",
+        "id": "depth-010-two_hop",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Aditya Mehta",
+        "initial_required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f2"
+        ],
+        "lineage_id": "depth-010",
+        "question": "Name the on-call person of Mandovi Gateway's release-2 owner team.",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:two_hop:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:43.179362+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f7",
+          "question": "Which team owns Mandovi Gateway Pro in release 2?",
+          "answer": "Nilgiri unit 220",
+          "scope": "Which team owns Mandovi Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f7",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "f35a5f1bc22bf1ee8c08611a9d948380233fefd4e2445789dba873614f417c4e",
+      "response": {
+        "content": "Aditya Desai",
+        "raw_output": "Aditya Desai",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.10753371099986,
+          "input_tokens": 514,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787084800,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f1",
+            "depth-010-f7",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.1114076889998614,
+      "completed_utc": "2026-10-28T14:28:44.290167+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-two_hop_paraphrase",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": true,
+        "category": "two_hop_paraphrase",
+        "depth": 2,
+        "expected_aliases": [
+          "Aditya Desai"
+        ],
+        "expected_answer": "Aditya Desai",
+        "id": "depth-010-two_hop_paraphrase",
+        "inapplicable_edit_aliases": [],
+        "initial_answer": "Aditya Mehta",
+        "initial_required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f2"
+        ],
+        "lineage_id": "depth-010",
+        "question": "Find the team responsible for Mandovi Gateway in release 2. Who is that team's on-call contact?",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner_contact",
+        "requested_scope": "release-2",
+        "required_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f3"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:two_hop_paraphrase:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:44.298776+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f7",
+          "question": "Which team owns Mandovi Gateway Pro in release 2?",
+          "answer": "Nilgiri unit 220",
+          "scope": "Which team owns Mandovi Gateway Pro in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f3",
+          "question": "Who is the on-call contact for Deccan unit 120?",
+          "answer": "Aditya Desai",
+          "scope": "Who is the on-call contact for Deccan unit 120; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f5",
+          "question": "In which city is Aditya Desai's office?",
+          "answer": "Thiruvananthapuram",
+          "scope": "In which city is Aditya Desai's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 2,
+        "found": 2,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f1",
+          "depth-010-f7",
+          "depth-010-f3",
+          "depth-010-f5"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "abb752a65ea8a4baa72fea2fb091a4bfe7b64644c96e4df7b48fcee0cb282fa0",
+      "response": {
+        "content": "Aditya Desai",
+        "raw_output": "Aditya Desai",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.1144355819999419,
+          "input_tokens": 520,
+          "output_tokens": 6,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5788015616,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f1",
+            "depth-010-f7",
+            "depth-010-f3",
+            "depth-010-f5"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.1181667599998946,
+      "completed_utc": "2026-10-28T14:28:45.416329+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": false,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    },
+    {
+      "id": "G-RAG:depth-010-wrong_version_or_tier",
+      "condition": "G-RAG",
+      "question": {
+        "applicable": false,
+        "category": "wrong_version_or_tier",
+        "depth": 0,
+        "expected_aliases": [
+          "Sahyadri unit 320"
+        ],
+        "expected_answer": "Sahyadri unit 320",
+        "id": "depth-010-wrong_version_or_tier",
+        "inapplicable_edit_aliases": [
+          "Deccan unit 120",
+          "Aditya Desai",
+          "Thiruvananthapuram"
+        ],
+        "initial_answer": "Sahyadri unit 320",
+        "initial_required_fact_ids": [
+          "depth-010-f8"
+        ],
+        "lineage_id": "depth-010",
+        "question": "Name the owning team for release 1 of Mandovi Gateway.",
+        "requested_entity": "depth-010-service",
+        "requested_relation": "owner",
+        "requested_scope": "release-1",
+        "required_fact_ids": [
+          "depth-010-f8"
+        ],
+        "review": {
+          "human_reviewed": false,
+          "policy": "deterministic_graph_path_audit"
+        },
+        "split": "development",
+        "template_id": "development:wrong_version_or_tier:1",
+        "wording_family": "development"
+      },
+      "outcome": "correct",
+      "started_utc": "2026-10-28T14:28:45.424861+00:00",
+      "supplied_facts": [
+        {
+          "id": "depth-010-f8",
+          "question": "Which team owns Mandovi Gateway in release 1?",
+          "answer": "Sahyadri unit 320",
+          "scope": "Which team owns Mandovi Gateway in release 1; release-1",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f1",
+          "question": "Which team owns Mandovi Gateway in release 2?",
+          "answer": "Deccan unit 120",
+          "scope": "Which team owns Mandovi Gateway in release 2; release-2",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations. Approved fictional ownership revision 2."
+        },
+        {
+          "id": "depth-010-f11",
+          "question": "Who is the on-call contact for Sahyadri unit 320?",
+          "answer": "Aditya Joshi",
+          "scope": "Who is the on-call contact for Sahyadri unit 320; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        },
+        {
+          "id": "depth-010-f12",
+          "question": "In which city is Aditya Joshi's office?",
+          "answer": "Jaipur",
+          "scope": "In which city is Aditya Joshi's office; current",
+          "source": "Controlled fictional Indian-context operations handbook. Service, team, person and office assignments are invented for this experiment; city names are illustrative labels, not claims about real organizations."
+        }
+      ],
+      "retrieval": {
+        "required": 1,
+        "found": 1,
+        "complete": true,
+        "selected_fact_ids": [
+          "depth-010-f8",
+          "depth-010-f1",
+          "depth-010-f11",
+          "depth-010-f12"
+        ],
+        "gold_support_used": false
+      },
+      "request_sha256": "25696dfe13f2fa69892f6404e5bd04bc0daa010fcdf8e5798ecd7fc68cc3ea9c",
+      "response": {
+        "content": "Sahyadri unit 320",
+        "raw_output": "Sahyadri unit 320",
+        "format": {
+          "answer_tag_found": false,
+          "multiple_answer_tags": false,
+          "raw_fallback": true,
+          "verified": false
+        },
+        "generation": {
+          "model": "Qwen/Qwen2.5-7B-Instruct",
+          "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+          "seconds": 1.386396662999914,
+          "input_tokens": 510,
+          "output_tokens": 11,
+          "max_new_tokens": 512,
+          "max_input_tokens": 4096,
+          "quantization": "NF4 double quantization, FP16 compute",
+          "do_sample": false,
+          "token_budget_reached": false,
+          "time_budget_seconds": 120.0,
+          "time_budget_reached": false,
+          "peak_allocated_bytes": 5787049472,
+          "peak_reserved_bytes": 7186939904,
+          "fact_ids": [
+            "depth-010-f8",
+            "depth-010-f1",
+            "depth-010-f11",
+            "depth-010-f12"
+          ],
+          "weights_changed_by_facts": false
+        }
+      },
+      "pipeline_seconds": 1.3899755799998275,
+      "completed_utc": "2026-10-28T14:28:46.814301+00:00",
+      "correct": true,
+      "answered": true,
+      "false_correction_application": false,
+      "initial_truth_match": true,
+      "semantic_review": "Not performed; strict frozen whole-final-span aliases"
+    }
+  ],
+  "sessions": [
+    {
+      "started_utc": "2026-10-28T14:24:21.520427+00:00",
+      "remaining_at_start": 24,
+      "runtime": {
+        "ready": true,
+        "model_id": "Qwen/Qwen2.5-7B-Instruct",
+        "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+        "backend": "Official Qwen instruction checkpoint, 4-bit inference adaptation",
+        "supports_images": false,
+        "quantization": "NF4 double quantization, FP16 compute",
+        "load_seconds": 229.81550253199998,
+        "hardware": {
+          "name": "Tesla T4",
+          "total_vram_bytes": 15637086208,
+          "compute_capability": [
+            7,
+            5
+          ],
+          "load_peak_allocated_bytes": 7071596544,
+          "load_peak_reserved_bytes": 7140802560,
+          "torch": "2.11.0+cu130",
+          "cuda": "13.0",
+          "python": "3.13.16",
+          "packages": {
+            "transformers": "4.56.1",
+            "accelerate": "1.10.1",
+            "bitsandbytes": "0.48.1"
+          }
+        },
+        "busy": false,
+        "manifest_sha256": "afd61c45ae76adf00d700265c853f85b1da725d765ee0faec7b74e542b74d267",
+        "checkpoint_matches_published_95_48_verified": false,
+        "weights_changed_by_new_facts": false,
+        "checkpoint_trained_by_this_project": false,
+        "exact_parent_of_reasonke_verified": false
+      },
+      "load_wall_seconds": 237.65727960000004,
+      "completed_utc": "2026-10-28T14:28:50.071858+00:00",
+      "wall_seconds": 268.54356617100007
+    }
+  ],
+  "notice": "Separate depth challenge. All outcomes retained. No paper scores, answer retries or training.",
+  "recorded": 24,
+  "unexecuted": 0
+}

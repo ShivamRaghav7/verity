@@ -1,7 +1,23 @@
 # Separate depth challenge: development preparation
 
-No neural depth profile, development or final inference is reported here.
+The replacement development evaluation completed on 28 October 2026. Both
+checkpoints scored **24/24**, with zero wrong answers, abstentions, execution
+errors or unexecuted rows. The same 24 questions cover three development
+lineages, including six questions at each depth/control group. These are
+development measurements, not held-out accuracy. Raw ledgers and the replayed
+`development-results.json` retain every answer and its provenance.
+
+ReasonKE's warm p50/p95 was 15.25/17.99 seconds; Qwen's was 1.10/1.37 seconds
+(24 generated requests each; includes retrieval/IPC, excludes model loading).
+The [sixteen-request profiles](../depth-profiles-v1/README.md) and measured
+budgets remain separate. No final results guided configuration or scoring.
 The completed operations-v1 study and its results are preserved unchanged.
+
+An earlier development session expired before results were downloaded. Its
+actual outcomes are unavailable and are not claimed as evidence. The saved
+profiles were restored unchanged, and the declared development population was
+run again as an explicitly disclosed replacement rather than an outcome-based
+retry. The final protocol binds only the complete replacement ledgers.
 
 `retrieval-selection.json` records a reproducible development-only comparison
 of six bounded lexical policies. The selected policy supplies at most four
