@@ -13,8 +13,24 @@ It includes a three-hop service-to-team-to-person-to-office-city question.
 Use [the India demonstration guide](docs/INDIA_DEMO.md). These display facts do
 not rename or rescore the completed benchmark. A separate depth challenge adds
 new graphs and held-out wording for one-, two- and three-hop evaluation; its
-results will remain separate from the completed study. Read the
+results are complete and remain separate from the earlier study. Read the
 [finite depth-run plan](docs/DEPTH_RUN_PLAN.md) before running its staged notebook.
+
+The **544-request depth challenge is complete and replay-audited**. ReasonKE
+with iterative retrieval scored **256/256** main answers; Qwen with the same
+retrieval scored **248/256**, with eight abstentions retained in the denominator.
+Three-hop accuracy was **64/64 versus 63/64**; both separate gold-support
+diagnostics scored **16/16**. All required support was retrieved for the main
+questions. ReasonKE's main paired difference was **+3.125 percentage points**
+(95% lineage-bootstrap interval **+1.5625 to +5.078125**), with higher warm
+p50/p95 latency: **15.94/19.28 s** versus **1.12/1.38 s**. The three-hop
+difference interval includes zero. Read the
+[complete depth evidence](reports/reasonke/depth-final/README.md),
+[five-page depth report](output/pdf/editguard-depth-study.pdf),
+[all eight abstentions and limits](reports/reasonke/depth-final/FAILURE_ANALYSIS.md)
+and [plain-language extension guide](docs/UNDERSTAND_DEPTH_EXTENSION.md).
+The new result covers 32 held-out fictional lineages with shared within-split
+templates and automated labels; it does not establish universal accuracy.
 
 The application includes explicit approval, canonical entity/property/scope
 identity, conflict resolution, searchable fact versions, an approval/rollback

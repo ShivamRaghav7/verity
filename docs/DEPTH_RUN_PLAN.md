@@ -5,9 +5,13 @@ retrieval result is an actual result on controlled, correlated questions, not
 universal language accuracy. We add depth and new wording to measure a different
 generalization question, not to manufacture a lower score.
 
-**Current state, 28 October 2026: profiles and replacement development complete;
-the frozen final evaluation is running.** Both checkpoints scored 8/8 on their
-profiles and 24/24 on development. Those populations are not final accuracy.
+**Current state, 28 October 2026: all 544 frozen final assignments are complete,
+backed up and replay-audited.** ReasonKE scored 256/256 main answers; Qwen scored
+248/256 with eight abstentions. Both separate gold-support diagnostics scored
+16/16. There are no execution errors or unexecuted final assignments. See the
+[complete evidence](../reports/reasonke/depth-final/README.md). Both checkpoints
+also scored 8/8 on profiles and 24/24 on development; these earlier populations
+are separate from final accuracy.
 The protocol was published in commit `08d274e` before final inference, with
 SHA-256 `df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941`.
 An earlier development session expired before its outcomes were downloaded;

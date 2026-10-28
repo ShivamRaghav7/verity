@@ -7,8 +7,11 @@ they do not assert a real company's operations or a government policy.
 
 This display example is separate from the completed operations-v1 benchmark.
 Changing it does not rename or rescore any of the 1,312 recorded model requests.
-The separate 544-request depth evaluation is in progress at this checkpoint
-(28 October 2026); the display walkthrough below is not its final scorecard.
+The separate 544-request depth evaluation is complete and replay-audited at this
+checkpoint (28 October 2026): ReasonKE scored 256/256 and Qwen 248/256 on the
+main retrieval questions. The display walkthrough below is a separate
+application workflow. Its prepared 14-generation live acceptance check has not
+yet been executed, so the benchmark does not establish all of these live answers.
 
 ## Open the website
 
@@ -106,10 +109,13 @@ is an explicit administrator action into an empty workspace. Experiment ledgers
 and scorecards are exported separately; restoring a chat is not an evaluation.
 
 In Research results, keep the original operations scorecard and the separate
-depth view distinct. Until both final depth ledgers pass replay audit, the depth
-view reports an unmeasured state. A software regression test proves that an API
-or transaction behaves as specified; only a saved actual model response can
-establish a neural answer outcome. The wider interpretation is explained in
+depth view distinct. A deployment containing the new audited evidence displays
+256/256 ReasonKE main answers, 248/256 Qwen main answers and their separate
+16-request gold-support diagnostics. An older pinned notebook may not package
+the new scorecard and can therefore display an unmeasured state. A software
+regression test proves that an API or transaction behaves as specified; only a
+saved actual model response can establish a neural answer outcome. The wider
+interpretation, including abstentions and the slower ReasonKE latency, is explained in
 [Understanding the three-hop extension](UNDERSTAND_DEPTH_EXTENSION.md).
 
 ## API compatibility

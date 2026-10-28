@@ -1,0 +1,56 @@
+{
+  "schema": "editguard-depth-preservation-audit-v1",
+  "status": "passed",
+  "created_utc": "2026-10-28T15:55:25.516289+00:00",
+  "model_calls": 0,
+  "source_files": {
+    "final-reasonke.json": "97c6d5ce305aa9cd0f60e8e7cbbbaa36c1ae57dd29a41441069e9e91dff8c172",
+    "final-instruction.json": "79fc5fa02607b3bbe37eb043030a140806df2378790fd59e90ed65f142c89c99",
+    "protocol.json": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941",
+    "profile-reasonke.json": "dff5425f601c024a5220cb716e91afd87149907431750aa640841b8afd5f6921",
+    "profile-instruction.json": "e3dc6bac9e72a42ff67b20777c97da6e7ac6ab9b0db6a9413cdb4ccfefaf1a17",
+    "development-reasonke.json": "592c706eb807564dc181931be032ef38606ea4a2855a79870dfa1c6e7d459a66",
+    "development-instruction.json": "6cb86a217402ea2dcff5301b8beb5ec4ae1660799d8d258e1534c4f1f542a677"
+  },
+  "completed_assignments_audited": 544,
+  "final_reasonke_recorded": 272,
+  "final_instruction_recorded": 272,
+  "latest_intermediate_checkpoint_compared": 11,
+  "latest_intermediate_recorded_reasonke": 247,
+  "checkpoint_comparisons": [
+    {
+      "checkpoint": 8,
+      "receipt_sha256": "310584a2a4fd5f82f18c665b6433a05419cd5b57449899ac62850a5ebbb42678",
+      "recorded_rows_compared": 174,
+      "all_recorded_rows_preserved": true,
+      "plan_dataset_start_task_order_protocol_and_bound_inputs_identical": true
+    },
+    {
+      "checkpoint": 9,
+      "receipt_sha256": "872bd21c6be5ab479065c065ea308b698fd2642aee688084464f62295f92d01d",
+      "recorded_rows_compared": 197,
+      "all_recorded_rows_preserved": true,
+      "plan_dataset_start_task_order_protocol_and_bound_inputs_identical": true
+    },
+    {
+      "checkpoint": 10,
+      "receipt_sha256": "ca8ed5b6e91d4a86bf80a0d9a70198def35c7a1827ae662014dc228cb8b4018a",
+      "recorded_rows_compared": 235,
+      "all_recorded_rows_preserved": true,
+      "plan_dataset_start_task_order_protocol_and_bound_inputs_identical": true
+    },
+    {
+      "checkpoint": 11,
+      "receipt_sha256": "512043d3039f649441bab9eb17806aa1750eed441f07641eaacee318784486ac",
+      "recorded_rows_compared": 247,
+      "all_recorded_rows_preserved": true,
+      "plan_dataset_start_task_order_protocol_and_bound_inputs_identical": true
+    }
+  ],
+  "actual_model_sessions_in_final_receipts": {
+    "reasonke": 1,
+    "instruction": 1
+  },
+  "evidence_scope": "CPU replay audit of completed frozen final ledgers and exact preservation of previously recorded rows across saved intermediate checkpoints. Same ReasonKE final start time and plan are retained. This file is not an additional inference run or evidence about unobserved external activity.",
+  "resume_note": "The final evaluator survived the observed accidental browser disconnection. No restart was required for that event. The earlier expired development runtime is separately disclosed and its unavailable outcomes are not reconstructed."
+}

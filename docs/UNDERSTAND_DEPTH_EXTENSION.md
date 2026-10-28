@@ -7,10 +7,13 @@ invented development story. For the full earlier project, start with
 
 **Status at this checkpoint, 28 October 2026:** the 16 GPU profiling requests and
 48 replacement development requests are complete and backed up. The final
-protocol was frozen and published before final inference began; its 544 assigned
-requests are now running. The final scorecard is not yet complete, so this guide
-claims no final held-out three-hop answer accuracy. The completed earlier study
-remains a separate result.
+protocol was frozen and published before final inference began. All **544 final
+requests have completed**, and their saved outputs have been replay-audited on
+the laptop. ReasonKE with iterative retrieval scored **256/256** on the main
+questions; Qwen with the same retrieval scored **248/256**, with eight
+abstentions. The completed earlier study remains a separate result. The new
+14-generation India website acceptance check is prepared but has not yet run;
+its outcome must not be inferred from this benchmark.
 
 An earlier temporary Colab runtime expired before its development outputs were
 exported. Those unknown outcomes are disclosed rather than counted as measured
@@ -65,7 +68,9 @@ about an actual company or government service.
 | 28 October: freeze and publish | Bound source, data, settings, scoring and all four profile/development ledgers in a protocol, and published it before starting final inference. | Final answers cannot legitimately guide a change to this configuration or its scoring rules. |
 | 28 October: start the separate final run | Started the fixed 272 requests per checkpoint sequentially on the T4, with atomic outcome saves. | All 544 assigned outcomes must remain in the evidence, including failures and abstentions. |
 | 28 October: recover a page disconnection | Reattached the notebook to the still-running evaluator and saved another laptop backup. | A disconnected browser page is different from an expired or terminated compute runtime; this event required no restart. |
-| Next stages | Finish both final ledgers, replay-audit the outputs, publish the separate scorecard/figures and check the India website with the actual model. | A partially executed test and a software-only website check are not final neural accuracy evidence. |
+| 28 October: complete final inference | Recorded all 272 requests per model, retaining Qwen's eight abstentions. No request remained unexecuted or had an execution error. | A completed experiment includes unsuccessful answers rather than only its successful examples. |
+| 28 October: audit and report | Recomputed scores from both complete raw ledgers, checked frozen input hashes and produced a separate scorecard and scientific figures. | The measured results can be traced to saved outputs rather than copied from the upstream paper. |
+| Next application check | Run the prepared 14-generation India website acceptance workflow with the actual model. | A benchmark score and a software-only website check do not establish every live website response. |
 
 The run plan is in [DEPTH_RUN_PLAN.md](DEPTH_RUN_PLAN.md). Recovery did not
 change the approved facts, question labels or model settings. The frozen
@@ -146,6 +151,10 @@ does not train their weights. We also cannot claim that a difference between
 them is caused solely by ReasonKE training, because an exact parent-checkpoint
 relationship has not been verified.
 
+The model sources are [YukinoKaren/ReasonKE_plus](https://huggingface.co/YukinoKaren/ReasonKE_plus)
+and [Qwen/Qwen2.5-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct).
+The frozen protocol binds their exact revisions and runtime configuration.
+
 The deployment uses NF4 quantized weights with FP16 computation. Quantization
 reduces memory use. An approved correction changes external memory and the
 context supplied to the generator; it does not rewrite the model's weights.
@@ -181,6 +190,12 @@ oracle diagnostics**: 272 requests per model and **544 assigned requests**
 across the two models. The same question appearing under two models does not
 become two independent questions.
 
+**Why the main accuracy denominator is 256, not 272:** the extra sixteen
+requests deliberately receive gold support, whereas the main questions use
+ordinary retrieval. Pooling these easier diagnostic conditions would change
+the question being measured. Similarly, 544 counts model requests, not 544
+different questions or independently authored graphs.
+
 An oracle diagnostic supplies the known required supporting facts. It helps
 separate generation from retrieval failure. It does not directly supply a
 target answer field, and it must never be described as ordinary retrieval
@@ -210,11 +225,62 @@ whole lineages. A narrow or zero-width interval on a small controlled packet
 does not establish universal certainty. Retrieved provenance also does not
 verify all generated explanation text.
 
-**Final measurement section: in progress at this checkpoint.** The frozen
-protocol and its profile/development inputs are under
-`reports/reasonke/depth-final/`. A released final scorecard additionally requires
-both completed final ledgers and a hash-bound replay audit. The folder's
-existence, or a perfect partial run, does not establish a completed final score.
+### The completed final results
+
+| Matched condition | Correct / assigned | Accuracy | Wrong | Abstained | Errors / unexecuted |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| ReasonKE + iterative retrieval | 256/256 | 100% | 0 | 0 | 0 / 0 |
+| Qwen + the same iterative retrieval | 248/256 | 96.875% | 0 | 8 | 0 / 0 |
+| ReasonKE + preselected gold support | 16/16 | 100% | 0 | 0 | 0 / 0 |
+| Qwen + preselected gold support | 16/16 | 100% | 0 | 0 | 0 / 0 |
+
+The main questions break down as follows:
+
+| Question group | ReasonKE correct / assigned | Qwen correct / assigned |
+| --- | ---: | ---: |
+| Locality controls: another property or historical scope | 64/64 | 64/64 |
+| One hop: owner team | 64/64 | 64/64 |
+| Two hops: on-call person | 64/64 | 57/64 |
+| Three hops: office city | 64/64 | 63/64 |
+
+All eight Qwen failures were abstentions: seven direct two-hop questions and
+one paraphrased three-hop question. **Every main question received all its
+required support**: 256/256 complete paths per model, or 512/512 model-request
+paths. There are 448/448 required fact occurrences per model. This repeated
+retrieval outcome comes from one shared selector, not two independent retrieval
+experiments. Missing retrieval support therefore does not explain these eight
+abstentions. The gold-support subset was preselected and contains different
+context conditions; its 16/16 result must not be presented as a retry that fixed
+the eight failures.
+
+ReasonKE's observed main accuracy advantage is **3.125 percentage points**.
+Resampling the 32 paired lineages gives a 95% interval of **+1.5625 to +5.078125
+points**. This describes uncertainty across this controlled lineage population;
+it is not a guarantee for arbitrary questions or an isolated effect of model
+training. ReasonKE's three-hop advantage is only 1/64, and its corresponding
+paired interval includes zero. The evidence does not establish that one model
+is universally better at every three-hop task.
+
+The cost is higher latency: ReasonKE's main-request p50/p95 was
+**15.94/19.28 seconds**, versus **1.12/1.38 seconds** for Qwen, with 256 generated
+requests per model. These warm pipeline times include retrieval, local worker
+communication and generation. They exclude model loading, downloads and browser
+network time. Accuracy and speed are separate product tradeoffs.
+
+The practical conclusion is bounded: the selected four-fact retrieval policy
+and ReasonKE checkpoint handled every assigned question in this new controlled
+packet, including 64 three-hop questions and all locality controls. A ceiling
+score leaves the model's failure boundary unresolved. The packet still uses
+fictional short facts, repeated within-split templates, automated labels and
+32 held-out graph lineages. It does not measure unrestricted dialogue, messy
+documents, arbitrary editing scopes or four-hop reasoning. We did not modify
+test questions or aliases after seeing the results, and we did not invent
+failures to make the graph look realistic.
+
+Inspect the [audited scorecard](../reports/reasonke/depth-final/results.json),
+[host audit](../reports/reasonke/depth-final/host-audit.json) and
+[measured report and figures](../reports/reasonke/depth-final/derived/REPORT.md).
+These results remain separate from the completed operations-v1 experiment.
 
 ## 7. How to demonstrate it on the website
 
@@ -236,10 +302,11 @@ badge is an infrastructure state, not a generated answer.
 5. Use historical comparison against revision 9, then roll back the replacement.
    The transaction restores the previous owner and retains the audit trail.
    Inspect actual generated responses and supplied facts throughout.
-6. In **Research results**, use the separate depth-challenge view. Until audited
-   final evidence is released, it displays an explicit unmeasured state. Once
-   released, it shows depth groups, outcome counts, retrieval support, latency
-   and exports separately from the original operations scorecard.
+6. In **Research results**, use the separate depth-challenge view. A deployment
+   containing the completed depth evidence shows the audited depth groups,
+   outcome counts, retrieval support, latency and exports separately from the
+   original operations scorecard. An older pinned launcher may lack this new
+   evidence; its unmeasured display is not a new failed evaluation.
 
 For the comparison in step 5, open **Compare original & corrected**, choose
 **Approved memory at a revision**, enter `9`, and choose **Run comparison**.

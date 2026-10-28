@@ -253,9 +253,10 @@ def build(commit, *, context_policy="retrieved"):
             comparison and withdrawal expose its history.
 
             This new serving policy is separate from the completed operations-v1
-            benchmark's two-stage retrieval. It has development support-recall
-            evidence, not a new held-out neural accuracy result. The original
-            04 launcher remains available for the earlier policy.
+            benchmark's two-stage retrieval. The released source includes the
+            separate completed 544-request depth study in Research results;
+            its saved measurements do not score your new chat questions.
+            The original 04 launcher remains available for the earlier policy.
 
             Select a T4 GPU and run cells in order, without another GPU worker.
             Loading transfers approximately 15.23 GB of source tensors. It uses
