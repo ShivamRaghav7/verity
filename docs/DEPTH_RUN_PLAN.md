@@ -5,9 +5,17 @@ retrieval result is an actual result on controlled, correlated questions, not
 universal language accuracy. We add depth and new wording to measure a different
 generalization question, not to manufacture a lower score.
 
-**Current state: prepared and CPU-tested; no depth-model profile, development or
-final inference has run.** Colab refused GPU allocation because of its usage
-limit. A read-only laptop check also found that the fixed loader's previously
+**Current state, 28 October 2026: profiles and replacement development complete;
+the frozen final evaluation is running.** Both checkpoints scored 8/8 on their
+profiles and 24/24 on development. Those populations are not final accuracy.
+The protocol was published in commit `08d274e` before final inference, with
+SHA-256 `df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941`.
+An earlier development session expired before its outcomes were downloaded;
+those unavailable outcomes are not claimed as evidence. The preserved profiles
+were restored unchanged for the disclosed replacement development run.
+
+Colab had initially refused GPU allocation because of its usage limit. A
+read-only laptop check also found that the fixed loader's previously
 measured 6.59 GiB peak allocation exceeds the RTX 4050's approximately 6 GiB
 capacity. Both checkpoints are uncached and their combined source tensors exceed
 currently free disk space. No measured local runtime supports the user's
@@ -85,8 +93,18 @@ is retained; it does not trigger an unbounded search for a better score.
 
 ### Runtime and memory
 
-There is **no measured depth-run estimate yet**. The older two-hop T4 profiles
-do not establish three-hop runtime or memory. Loading pinned NF4 checkpoints
+The new T4 profiles supply a measured, uncertain depth-run estimate:
+
+| Checkpoint | Requests profiled | Mean / maximum seconds | 272-request mean / maximum extrapolation |
+| --- | ---: | ---: | ---: |
+| ReasonKE | 8 | 15.97 / 17.91 | 72.42 / 81.18 minutes |
+| Qwen | 8 | 1.09 / 2.49 | 4.94 / 11.27 minutes |
+
+These request-only extrapolations exclude loading and downloads. With cached
+reloading, approximately 80-95 minutes was budgeted for the two-model final run;
+later variation can exceed this estimate. Both loading peaks allocated 6.59 GiB.
+See the [raw measured profiles](../reports/reasonke/depth-profiles-v1/README.md).
+Loading pinned NF4 checkpoints
 uses FP16 computation and transfers approximately 15.23 GB of source tensors per
 checkpoint; fresh downloads vary. Both checkpoints remain cached for exact-plan
 resume. The notebook requires at least 36 GiB free disk for those tensors and
