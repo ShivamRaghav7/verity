@@ -19,7 +19,7 @@ from .backend import ModelError, OllamaClient, OllamaEncoder
 from .reasonke_backend import ApprovedFactContext, RetrievedFactContext, IterativeFactContext, ReasonKEClient
 from .retrieval import CorrectionRetriever, build_context
 from .store import ChatStore, StoreError
-from .results import current_results, experiment_artifact, experiment_cases
+from .results import current_results, experiment_artifact, experiment_cases, depth_results, depth_artifact
 from .examples import approved_snapshot, catalogue
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -424,6 +424,17 @@ def handler_for(app):
                     return self.reply(200, report.read_bytes())
                 if path == "/api/experiments":
                     return self.reply(200, current_results(ROOT))
+                if path == "/api/experiments/depth":
+                    return self.reply(200, depth_results(ROOT))
+                if path.startswith("/api/experiments/depth/artifacts/"):
+                    name = path.removeprefix("/api/experiments/depth/artifacts/")
+                    try:
+                        artifact = depth_artifact(ROOT, name)
+                    except (ValueError, FileNotFoundError) as exc:
+                        raise StoreError(str(exc), 404) from exc
+                    kinds = {".png": "image/png", ".svg": "image/svg+xml", ".csv": "text/csv; charset=utf-8",
+                             ".md": "text/markdown; charset=utf-8", ".json": "application/json"}
+                    return self.reply(200, artifact.read_bytes(), kinds[artifact.suffix])
                 if path == "/api/experiments/cases":
                     query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
                     if any(len(value) != 1 for value in query.values()):

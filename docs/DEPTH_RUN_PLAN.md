@@ -112,6 +112,10 @@ wrong, abstained or error result. Only `unexecuted` rows can run. Preserve all
 profile/development receipts beside `protocol.json`: final verification checks
 their hashes and measured timings as well.
 
+Interrupted ledgers are audited individually during resume. Publish the combined
+paired scorecard after both final ledgers finish; partial combined paired
+statistics are not a supported report in this frozen runner.
+
 Download the notebook's whitelisted evidence ZIP after each phase, before
 closing a temporary runtime. It contains JSON receipts/protocol, not model
 weights, tokens or customer chats. Resumption requires the same pinned source

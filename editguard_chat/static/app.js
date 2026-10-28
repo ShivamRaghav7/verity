@@ -2,7 +2,7 @@
 
 const $ = id => document.getElementById(id);
 const CATEGORY_LABELS = {direct: "Direct correction", direct_paraphrase: "Direct paraphrase", two_hop: "Two-hop question", two_hop_paraphrase: "Two-hop paraphrase", same_entity_other_relation: "Same service, another property", similar_entity_same_relation: "Similarly named service", wrong_version_or_tier: "Older release", unrelated: "Unrelated fact"};
-const state = {token: "", status: null, chatId: null, chats: [], messages: [], corrections: [], revision: 0, busy: false, attachment: null, resultsLoaded: false};
+const state = {token: "", status: null, chatId: null, chats: [], messages: [], corrections: [], revision: 0, busy: false, attachment: null, resultsLoaded: false, experiment: "operations"};
 let toastTimer;
 
 class ApiError extends Error {
@@ -570,6 +570,8 @@ async function addAnswerExplorer(target, report) {
 
 async function loadResults() {
   const evidence = await api("/api/experiments"), target = $("results-content"); target.replaceChildren();
+  state.experiment = "operations";
+  $("download-results").hidden = false;
   const controlled = evidence.kind.startsWith("controlled_");
   $("experiment-kind").textContent = evidence.kind === "controlled_final_benchmark" ? "Controlled final experiment" : controlled ? "Controlled development experiment" : "Development acceptance · real generated answers";
   $("experiment-notice").textContent = evidence.notice;
@@ -647,16 +649,70 @@ async function loadResults() {
   state.resultsLoaded = true;
 }
 
+async function loadDepthResults() {
+  const evidence = await api("/api/experiments/depth"), target = $("results-content"); target.replaceChildren();
+  state.experiment = "depth";
+  $("download-results").hidden = false;
+  $("experiment-kind").textContent = "Separate depth challenge · " + (evidence.available ? "Held-out final results" : evidence.status === "unmeasured" ? "Not measured" : "Evidence unavailable");
+  $("experiment-notice").textContent = evidence.notice;
+  if (!evidence.available) {
+    const panel = element("section", "result-panel");
+    panel.append(element("h2", "", "One edit, a longer chain"), element("p", "", "Service → owner team → on-call person → office city. The new fictional Indian-context graphs and wording are evaluated separately from the original study."), element("p", "muted", evidence.notice));
+    target.append(panel); state.resultsLoaded = true; return;
+  }
+  const report = evidence.report, labels = {"R-RAG": "ReasonKE · iterative retrieval", "G-RAG": "Qwen · same retrieval", "R-ORACLE": "ReasonKE · oracle support", "G-ORACLE": "Qwen · oracle support"};
+  const cards = element("div", "results-cards");
+  cards.append(resultCard(report.independent_lineages, "Independent held-out graph lineages"), resultCard(256, "Unique main questions per checkpoint"), resultCard(64, "Three-hop questions per checkpoint"), resultCard(report.assigned_records, "Assigned generations including oracle diagnostics")); target.append(cards);
+  target.append(element("h2", "", "Every assigned outcome"));
+  target.append(evidenceTable(["Condition", "Correct / assigned", "Wrong", "Abstain", "Errors", "Unexecuted", "Coverage"], Object.entries(report.conditions).map(([name, condition]) => {
+    const m = condition.overall, c = m.counts;
+    return [labels[name] || name, c.correct + "/" + m.assigned, c.wrong, c.abstain, c.execution_error, c.unexecuted, (100 * m.coverage).toFixed(1) + "%"];
+  })));
+  target.append(element("p", "result-footnote", "Primary accuracy includes all assigned questions; abstentions, errors and unexecuted requests receive zero credit. Oracle uses sixteen preselected three-hop questions with gold supporting facts and remains a separate diagnostic."));
+  const names = ["R-RAG", "G-RAG"], depths = [["0", "Locality controls"], ["1", "One hop · owner team"], ["2", "Two hops · on-call person"], ["3", "Three hops · office city"]];
+  target.append(element("h2", "", "Does accuracy change with depth?"));
+  target.append(evidenceTable(["Question group", ...names.map(name => labels[name])], depths.map(([depth, label]) => [label, ...names.map(name => {
+    const m = report.conditions[name].by_depth[depth]; return m.counts.correct + "/" + m.assigned;
+  })])));
+  target.append(element("h2", "", "Retrieval support, measured separately"));
+  target.append(evidenceTable(["Condition", "Question group", "Required facts retrieved", "Complete support / assigned"], names.flatMap(name => depths.map(([depth, label]) => {
+    const r = report.conditions[name].retrieval_by_depth[depth]; return [labels[name], label, r.found + "/" + r.required, r.complete + "/" + r.assigned];
+  }))));
+  target.append(element("p", "result-footnote", "The checkpoints receive the same bounded selection policy. Repeated support counts across checkpoints are not independent retrieval experiments. Complete support does not establish a correct model answer or verify generated explanations."));
+  target.append(element("h2", "", "Warm pipeline latency"));
+  target.append(evidenceTable(["Condition", "Generated n", "p50 seconds", "p95 seconds"], names.map(name => {
+    const l = report.conditions[name].overall.generated_latency; return [labels[name], l.n, l.p50_seconds?.toFixed(2) ?? "Undefined", l.p95_seconds?.toFixed(2) ?? "Undefined"];
+  })));
+  target.append(element("p", "result-footnote", "Timing includes context selection, local worker communication and generation, excluding model loading and browser network latency. Scores and latency belong to this depth population and cannot be pooled with the original experiment."));
+  const artifacts = new Set(evidence.artifacts || []), figures = element("div", "scientific-figures");
+  for (const [name, title] of [["depth-accuracy", "Accuracy by hop depth"], ["category-accuracy", "Direct questions and held-out wording"], ["outcome-composition", "All assigned outcomes"], ["retrieval-and-answer", "Support retrieval and generated answers"], ["latency", "Warm request latency"]]) {
+    if (!artifacts.has(name + ".png")) continue;
+    const figure = element("figure", "scientific-figure"), image = element("img");
+    image.src = "/api/experiments/depth/artifacts/" + name + ".png"; image.alt = title; image.loading = "lazy";
+    const caption = element("figcaption", "", title + " · "), link = element("a", "text-link", "Open exportable SVG");
+    link.href = "/api/experiments/depth/artifacts/" + name + ".svg"; link.target = "_blank"; link.rel = "noopener"; caption.append(link); figure.append(image, caption); figures.append(figure);
+  }
+  target.append(figures);
+  const downloads = element("div", "message-actions");
+  for (const [name, label] of [["results.json", "Audited scorecard JSON"], ["protocol.json", "Frozen depth protocol"], ["host-audit.json", "Host integrity audit"], ["REPORT.md", "Measured depth report"], ["scorecard.csv", "Export scorecard CSV"], ["figure-manifest.json", "Figure provenance"]]) {
+    if (!artifacts.has(name) && !["results.json", "protocol.json", "host-audit.json"].includes(name)) continue;
+    const link = element("a", "text-link", label); link.href = "/api/experiments/depth/artifacts/" + name; link.target = "_blank"; link.rel = "noopener"; downloads.append(link);
+  }
+  target.append(downloads); state.resultsLoaded = true;
+}
+
 $("current-results").addEventListener("click", () => loadResults().catch(showError));
+$("depth-results").addEventListener("click", () => loadDepthResults().catch(showError));
 $("archived-results").addEventListener("click", () => {
+  $("download-results").hidden = true;
   $("experiment-kind").textContent = "Archived visual-model study";
   $("experiment-notice").textContent = "BLIP-2 experiment with a different model, dataset and protocol. Its scores are not current text-chat accuracy.";
   loadArchivedResults().catch(showError);
 });
 $("download-results").addEventListener("click", async () => {
   try {
-    const result = await api("/api/experiments"), url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], {type: "application/json"}));
-    const link = element("a"); link.href = url; link.download = "editguard-current-experiment.json"; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    const depth = state.experiment === "depth", result = await api(depth ? "/api/experiments/depth" : "/api/experiments"), url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], {type: "application/json"}));
+    const link = element("a"); link.href = url; link.download = depth ? "editguard-depth-study.json" : "editguard-current-experiment.json"; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   } catch (error) { showError(error); }
 });
 

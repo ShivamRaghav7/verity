@@ -21,6 +21,8 @@ Customer chat does not publish corrections.
 | GET | `/api/workspace/export` | Consistent checksummed text snapshot, refused during a mutation/model operation |
 | POST | `/api/workspace/restore` | Validate and atomically import `{ "snapshot": ... }` into an empty workspace |
 | GET | `/api/experiments` | Typed current ReasonKE development or controlled-final evidence |
+| GET | `/api/experiments/depth` | Separate depth-study scorecard, requiring released hash-bound receipts and host audit; otherwise explicitly unmeasured/unavailable |
+| GET | `/api/experiments/depth/artifacts/{name}` | Allowlisted audited depth JSON, CSV, Markdown and scientific PNG/SVG exports; never pools the two studies |
 | GET | `/api/experiments/cases` | Saved raw-answer explorer, up to 20 records/page; optional `condition`, `category`, `outcome`, `offset` filters |
 | GET | `/api/experiments/artifacts/{name}` | Allowlisted current PNG/SVG figures, report, scorecard and figure provenance |
 | GET | `/api/examples/operations` | Fictional development catalogue and example questions, without approving anything |

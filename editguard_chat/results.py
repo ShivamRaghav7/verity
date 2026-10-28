@@ -1,6 +1,8 @@
 """Serve current-backend measured evidence separately from earlier visual experiments."""
 import json
 import hashlib
+import math
+from functools import lru_cache
 from pathlib import Path
 
 from .reasonke_backend import MODEL_ID, MODEL_REVISION
@@ -8,6 +10,127 @@ from .reasonke_backend import MODEL_ID, MODEL_REVISION
 ARTIFACTS = {name + extension for name in ("category-accuracy", "efficacy-locality", "outcome-composition",
               "paired-differences", "latency") for extension in (".png", ".svg")} | {"REPORT.md", "scorecard.csv", "figure-manifest.json", "study.pdf", "study-manifest.json"}
 AUDIT_ARTIFACTS = {"explanation-audit.json", "host-audit.json"}
+DEPTH_INPUTS = {f"{phase}-{model}.json" for phase in ("profile", "development", "final")
+                for model in ("reasonke", "instruction")} | {"protocol.json", "results.json"}
+DEPTH_FIGURES = {name + extension for name in ("depth-accuracy", "category-accuracy", "outcome-composition",
+                "retrieval-and-answer", "latency") for extension in (".png", ".svg")}
+DEPTH_EXPORTS = DEPTH_FIGURES | {"REPORT.md", "scorecard.csv", "retrieval.csv", "latency.csv", "figure-manifest.json"}
+DEPTH_NOTICE = ("Separate controlled depth challenge with a new fictional Indian-context population and iterative retrieval. "
+                "Its scores are not pooled with the original operations study. Labels were audited automatically; "
+                "no independent human semantic review or verification of generated explanatory prose is claimed.")
+
+
+def _sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def _depth_signature(directory):
+    paths = [directory / name for name in sorted(DEPTH_INPUTS | {"host-audit.json"})]
+    paths += [directory / "derived" / name for name in sorted(DEPTH_EXPORTS)]
+    return tuple((str(path), path.stat().st_size, path.stat().st_mtime_ns) if path.is_file()
+                 else (str(path), None, None) for path in paths)
+
+
+def _validate_depth_counts(metric, assigned):
+    outcomes = ("correct", "wrong", "abstain", "execution_error", "unexecuted")
+    counts = metric.get("counts", {})
+    if (metric.get("assigned") != assigned or set(counts) != set(outcomes)
+            or any(type(counts[key]) is not int or counts[key] < 0 for key in outcomes)
+            or sum(counts.values()) != assigned
+            or metric.get("accuracy") != counts["correct"] / assigned
+            or metric.get("coverage") != (counts["correct"] + counts["wrong"]) / assigned):
+        raise ValueError("Depth scorecard denominator or outcome counts differ")
+    latency = metric.get("generated_latency", {})
+    n = latency.get("n")
+    if type(n) is not int or not 0 <= n <= assigned:
+        raise ValueError("Depth generated-latency population differs")
+    if n and any(not isinstance(latency.get(key), (int, float)) or not math.isfinite(latency[key])
+                 or latency[key] < 0 for key in ("p50_seconds", "p95_seconds")):
+        raise ValueError("Depth latency must be finite and nonnegative")
+
+
+@lru_cache(maxsize=4)
+def _depth_verified(directory_text, signature):
+    """Check saved audit/digests once per observed file state, without a model."""
+    directory = Path(directory_text)
+    audit = json.loads((directory / "host-audit.json").read_text(encoding="utf-8"))
+    if (audit.get("schema") != "editguard-depth-host-audit-v1" or audit.get("status") != "passed"
+            or audit.get("model_calls") != 0 or set(audit.get("files", {})) != DEPTH_INPUTS):
+        raise ValueError("A complete saved depth host audit is required")
+    hashes = audit["files"]
+    if any(_sha(directory / name) != checksum for name, checksum in hashes.items()):
+        raise ValueError("Depth evidence differs from the saved host audit")
+    if (audit.get("results_sha256") != hashes["results.json"]
+            or audit.get("protocol_sha256") != hashes["protocol.json"]):
+        raise ValueError("Depth audit does not bind the displayed results and protocol")
+    report = json.loads((directory / "results.json").read_text(encoding="utf-8"))
+    if (report.get("schema") != "editguard-depth-results-v1" or report.get("phase") != "final"
+            or report.get("execution_status") != "completed" or report.get("assigned_records") != 544
+            or report.get("independent_lineages") != 32
+            or set(report.get("conditions", {})) != {"R-RAG", "G-RAG", "R-ORACLE", "G-ORACLE"}):
+        raise ValueError("Depth scorecard does not match the declared final population")
+    for name, condition in report["conditions"].items():
+        oracle = name.endswith("ORACLE")
+        _validate_depth_counts(condition["overall"], 16 if oracle else 256)
+        expected_depths = {"3": 16} if oracle else {str(depth): 64 for depth in (0, 1, 2, 3)}
+        if set(condition["by_depth"]) != set(expected_depths):
+            raise ValueError("Depth groups differ from the declared population")
+        for depth, assigned in expected_depths.items():
+            _validate_depth_counts(condition["by_depth"][depth], assigned)
+            retrieved = condition["retrieval_by_depth"][depth]
+            required = assigned * max(1, int(depth))
+            if (retrieved.get("assigned") != assigned or retrieved.get("required") != required
+                    or type(retrieved.get("found")) is not int or not 0 <= retrieved["found"] <= required
+                    or type(retrieved.get("complete")) is not int or not 0 <= retrieved["complete"] <= assigned):
+                raise ValueError("Depth retrieval-support denominator differs")
+        if any(sum(metric["counts"][key] for metric in condition["by_depth"].values()) != count
+               for key, count in condition["overall"]["counts"].items()):
+            raise ValueError("Depth groups do not reproduce their overall outcomes")
+    exports = []
+    manifest_path = directory / "derived/figure-manifest.json"
+    if manifest_path.is_file():
+        if audit.get("figure_manifest_sha256") != _sha(manifest_path):
+            raise ValueError("Depth figure manifest differs from the saved audit")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if (manifest.get("schema") != "editguard-depth-figures-v1"
+                or manifest.get("protocol_sha256") != hashes["protocol.json"]
+                or manifest.get("files", {}).get("results.json") != hashes["results.json"]):
+            raise ValueError("Depth figures identify a different scorecard")
+        for name in sorted(DEPTH_EXPORTS - {"figure-manifest.json"}):
+            path = directory / "derived" / name
+            if path.is_file():
+                if manifest.get("files", {}).get(name) != _sha(path):
+                    raise ValueError("Depth artifact differs from the figure manifest")
+                exports.append(name)
+        exports.append("figure-manifest.json")
+    return json.dumps({"kind": "separate_depth_study", "status": "completed", "available": True,
+                       "report": report, "artifacts": exports, "notice": DEPTH_NOTICE})
+
+
+def depth_results(root):
+    """Optional independent scorecard; absent/unaudited data never becomes a score."""
+    directory = Path(root).resolve() / "reports/reasonke/depth-final"
+    if not (directory / "results.json").is_file():
+        return {"kind": "separate_depth_study", "status": "unmeasured", "available": False,
+                "notice": "The separate one-, two- and three-hop challenge has no released final measurements yet. "
+                          "The original operations study remains unchanged. No accuracy is inferred from retrieval-only checks."}
+    try:
+        return json.loads(_depth_verified(str(directory), _depth_signature(directory)))
+    except (ValueError, KeyError, OSError, TypeError):
+        return {"kind": "separate_depth_study", "status": "unavailable", "available": False,
+                "notice": "The saved depth evidence is incomplete or differs from its audit. No numerical depth results are displayed."}
+
+
+def depth_artifact(root, name):
+    evidence = depth_results(root)
+    if not evidence["available"]:
+        raise FileNotFoundError("Audited final depth evidence is unavailable")
+    directory = Path(root).resolve() / "reports/reasonke/depth-final"
+    if name in {"results.json", "protocol.json", "host-audit.json"}:
+        return directory / name
+    if name in evidence["artifacts"]:
+        return directory / "derived" / name
+    raise ValueError("Unknown depth artifact")
 
 
 def benchmark_location(root):
