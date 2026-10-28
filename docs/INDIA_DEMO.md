@@ -7,6 +7,21 @@ they do not assert a real company's operations or a government policy.
 
 This display example is separate from the completed operations-v1 benchmark.
 Changing it does not rename or rescore any of the 1,312 recorded model requests.
+The separate 544-request depth evaluation is in progress at this checkpoint
+(28 October 2026); the display walkthrough below is not its final scorecard.
+
+## Open the website
+
+Use the [India notebook](../notebooks/07_india_chat.ipynb) on an idle T4 and wait
+for its model-ready check before opening the website link. Do not launch its
+model worker alongside the depth evaluation in the same runtime. A page that
+loads with an unavailable model can display the interface and stored facts, but
+cannot demonstrate a real neural answer.
+
+The sidebar contains **Chat**, **Knowledge** and **Research results**. Knowledge
+controls the approved facts; Chat uses the model to answer; Research results
+shows saved experiment evidence rather than evaluating the current conversation.
+The knowledge revision badge identifies the memory state, not a model version.
 
 ## Start in a fresh workspace
 
@@ -53,6 +68,21 @@ answer requires the office fact rather than a team-name shortcut.
    then **Roll back to previous version**. Atomic rollback restores the original
    owner at revision 11, so the intended contact and office become Meera/Chennai.
 
+To compare a historical state, choose **Compare original & corrected** under an
+answer, set **Compare against** to **Approved memory at a revision**, enter `9`,
+and choose **Run comparison**. Each side is a fresh model generation with the
+same question and different approved memory. **Without correction context**
+removes this fictional handbook instead; it is not the pre-edit revision.
+
+To publish a different correction, enter its question/fact, corrected answer,
+scope and source in Knowledge's editor, then choose **Approve & publish**.
+Expand **Canonical fact identity** for entity, property and version/plan IDs;
+fill all three together for catalogue facts so paraphrased corrections share
+the same version history. A draft is not authoritative. An unresolved overlapping
+conflict needs administrator resolution; the assistant should not silently
+choose one answer. Inspect **Approval and rollback history** to see revisions
+and retained fact versions.
+
 These targets are controlled facts, not a promise that a generation will match.
 Inspect actual answers and supplied facts. The bounded retriever may omit a
 required third-hop fact; a failure can come from retrieval or generation. Never
@@ -66,6 +96,21 @@ gold support IDs. The CLI default remains `retrieved`, preserving the original
 study's two-stage four-fact policy. Use `--backend reasonke --context-policy
 iterative` explicitly for the new depth-oriented demonstration; it is a separate
 serving policy, not a retroactive change to the 1,312-request study.
+
+## Save and interpret the demonstration
+
+Before ending the temporary runtime, open Knowledge's **Keep your workspace**
+area and choose **Export workspace JSON**. Store this file privately: it contains
+text conversations as well as approved facts, versions and history. Restoration
+is an explicit administrator action into an empty workspace. Experiment ledgers
+and scorecards are exported separately; restoring a chat is not an evaluation.
+
+In Research results, keep the original operations scorecard and the separate
+depth view distinct. Until both final depth ledgers pass replay audit, the depth
+view reports an unmeasured state. A software regression test proves that an API
+or transaction behaves as specified; only a saved actual model response can
+establish a neural answer outcome. The wider interpretation is explained in
+[Understanding the three-hop extension](UNDERSTAND_DEPTH_EXTENSION.md).
 
 ## API compatibility
 

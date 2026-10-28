@@ -5,13 +5,19 @@ how to demonstrate the work. It describes the actual work rather than an
 invented development story. For the full earlier project, start with
 [Understanding the current project](UNDERSTAND_THE_CURRENT_PROJECT.md).
 
-**Status at this checkpoint, 28 October 2026:** both eight-request GPU profiles
-completed and were backed up. A subsequent development run lost its temporary
-Colab runtime before its results were downloaded. Its last observed ledger had
-0/24 ReasonKE requests recorded. Those missing outcomes cannot be treated as
-measured results. We are restoring the profiles and preparing a replacement
-development run. The new final evaluation has not run, so this document claims
-no held-out three-hop answer accuracy.
+**Status at this checkpoint, 28 October 2026:** the 16 GPU profiling requests and
+48 replacement development requests are complete and backed up. The final
+protocol was frozen and published before final inference began; its 544 assigned
+requests are now running. The final scorecard is not yet complete, so this guide
+claims no final held-out three-hop answer accuracy. The completed earlier study
+remains a separate result.
+
+An earlier temporary Colab runtime expired before its development outputs were
+exported. Those unknown outcomes are disclosed rather than counted as measured
+results. Its saved profiles were restored unchanged for the replacement run.
+A later accidental browser disconnection did **not** stop the final evaluator:
+the same GPU process and saved ledger were still active when checked. We
+reconnected to it and backed up the evidence without restarting inference.
 
 ## 1. Why extend a system that scored 100%?
 
@@ -55,13 +61,17 @@ about an actual company or government service.
 | 27 October: prepare the experiment | Added source/data hashes, exact-plan resume, fixed scoring, staged notebooks and regression tests. | An interrupted run should not become a reason to silently discard bad outcomes. |
 | 28 October morning: profile on a T4 | Ran eight development questions per checkpoint and saved both raw ledgers locally. | Actual time and GPU allocation can guide the larger run. |
 | 28 October: recover an interruption | The later temporary runtime expired. The profiles survived locally; development outputs were not backed up. | We disclose the evidence gap and do not claim the missing run succeeded. |
-| Next stages | Complete replacement development, freeze its inputs, then run the separate final population once and audit the saved outputs. | Final results must follow the frozen plan rather than guide settings or scoring. |
+| 28 October: complete replacement development | Restored the saved profiles byte-for-byte, then recorded all 24 development requests per model. Both models answered 24/24 correctly. | These small development checks establish that the declared workflow executes; they are not held-out accuracy. |
+| 28 October: freeze and publish | Bound source, data, settings, scoring and all four profile/development ledgers in a protocol, and published it before starting final inference. | Final answers cannot legitimately guide a change to this configuration or its scoring rules. |
+| 28 October: start the separate final run | Started the fixed 272 requests per checkpoint sequentially on the T4, with atomic outcome saves. | All 544 assigned outcomes must remain in the evidence, including failures and abstentions. |
+| 28 October: recover a page disconnection | Reattached the notebook to the still-running evaluator and saved another laptop backup. | A disconnected browser page is different from an expired or terminated compute runtime; this event required no restart. |
+| Next stages | Finish both final ledgers, replay-audit the outputs, publish the separate scorecard/figures and check the India website with the actual model. | A partially executed test and a software-only website check are not final neural accuracy evidence. |
 
-The run plan is in [DEPTH_RUN_PLAN.md](DEPTH_RUN_PLAN.md). Recovery does not
-change the approved facts, question labels or model settings. The completed
-profiles should be restored rather than regenerated. The replacement
-development execution must be identified as such; the lost execution is not
-part of a claimed successful denominator.
+The run plan is in [DEPTH_RUN_PLAN.md](DEPTH_RUN_PLAN.md). Recovery did not
+change the approved facts, question labels or model settings. The frozen
+[protocol](../reports/reasonke/depth-final/protocol.json) records the exact input
+hashes. The replacement development execution is identified as such; the lost
+execution is not part of a claimed successful denominator.
 
 ## 3. What is in the dataset?
 
@@ -200,10 +210,11 @@ whole lineages. A narrow or zero-width interval on a small controlled packet
 does not establish universal certainty. Retrieved provenance also does not
 verify all generated explanation text.
 
-**Final measurement section: unmeasured at this checkpoint.** The eventual
-separate scorecard, raw receipts, audit and figures belong under
-`reports/reasonke/depth-final/`. That output location is not evidence that the
-run has already completed.
+**Final measurement section: in progress at this checkpoint.** The frozen
+protocol and its profile/development inputs are under
+`reports/reasonke/depth-final/`. A released final scorecard additionally requires
+both completed final ledgers and a hash-bound replay audit. The folder's
+existence, or a perfect partial run, does not establish a completed final score.
 
 ## 7. How to demonstrate it on the website
 
@@ -229,6 +240,18 @@ badge is an infrastructure state, not a generated answer.
    final evidence is released, it displays an explicit unmeasured state. Once
    released, it shows depth groups, outcome counts, retrieval support, latency
    and exports separately from the original operations scorecard.
+
+For the comparison in step 5, open **Compare original & corrected**, choose
+**Approved memory at a revision**, enter `9`, and choose **Run comparison**.
+This asks the model afresh using the same question with two approved-memory
+states. It does not simply replay the answer shown earlier in the chat. Choosing
+**Without correction context** is a different comparison: the model is asked
+without the fictional handbook, so it may not know these invented facts.
+
+In Chat, ordinary conversation is also generated by the model. The controlled
+factual benchmark does not score every possible conversational response. Expand
+the supplied-fact evidence to inspect what reached the model; a retrieved source
+supports a fact but does not certify every sentence in a generated explanation.
 
 The [India demonstration guide](INDIA_DEMO.md) gives the exact example questions.
 Export the workspace before ending a temporary Colab runtime. Export experiment
