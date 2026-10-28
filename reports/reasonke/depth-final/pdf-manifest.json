@@ -1,0 +1,12 @@
+{
+  "schema": "editguard-depth-pdf-v1",
+  "pdf": "output/pdf/editguard-depth-study.pdf",
+  "sha256": "4fd265431b8d71cc2422e45dc5b3589e2621dcc4a3ddcf30a4217edaa9fd92de",
+  "results_sha256": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7",
+  "script_sha256": "e02ff084c26f6c7dba5b0483373b1342db88af9a5779808af201087ddfdf8775",
+  "model_generations": 0,
+  "page_count": 5,
+  "rendered_pages_visually_inspected": 5,
+  "graphs_visually_inspected": 5,
+  "independent_human_review": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "editguard-depth-host-audit-v1",
+  "status": "passed",
+  "model_calls": 0,
+  "results_sha256": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7",
+  "protocol_sha256": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941",
+  "exporter_sha256": "20a882cdd1267f517391a3fdd6c889d2498e8540deadca5488e9ea4799195a14",
+  "files": {
+    "protocol.json": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941",
+    "profile-reasonke.json": "dff5425f601c024a5220cb716e91afd87149907431750aa640841b8afd5f6921",
+    "development-reasonke.json": "592c706eb807564dc181931be032ef38606ea4a2855a79870dfa1c6e7d459a66",
+    "profile-instruction.json": "e3dc6bac9e72a42ff67b20777c97da6e7ac6ab9b0db6a9413cdb4ccfefaf1a17",
+    "development-instruction.json": "6cb86a217402ea2dcff5301b8beb5ec4ae1660799d8d258e1534c4f1f542a677",
+    "final-reasonke.json": "97c6d5ce305aa9cd0f60e8e7cbbbaa36c1ae57dd29a41441069e9e91dff8c172",
+    "final-instruction.json": "79fc5fa02607b3bbe37eb043030a140806df2378790fd59e90ed65f142c89c99",
+    "results.json": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7"
+  },
+  "source_receipts": {
+    "reports\\reasonke\\depth-final\\final-reasonke.json": "97c6d5ce305aa9cd0f60e8e7cbbbaa36c1ae57dd29a41441069e9e91dff8c172",
+    "reports\\reasonke\\depth-final\\final-instruction.json": "79fc5fa02607b3bbe37eb043030a140806df2378790fd59e90ed65f142c89c99"
+  },
+  "assigned": 544,
+  "independent_lineages": 32,
+  "human_reviewed": false,
+  "notice": "Protocol-bound mechanical identity/extraction/scoring audit; no independent semantic review or generated-prose verification",
+  "figure_manifest_sha256": "e2462bdf4a26acea4168b0dc425fe813fe5203e3ac65f0af9505faf15f0bfa54"
+}

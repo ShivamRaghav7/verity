@@ -1,0 +1,41 @@
+{
+  "schema": "editguard-depth-figures-v1",
+  "source_receipts": {
+    "reports\\reasonke\\depth-final\\final-reasonke.json": "97c6d5ce305aa9cd0f60e8e7cbbbaa36c1ae57dd29a41441069e9e91dff8c172",
+    "reports\\reasonke\\depth-final\\final-instruction.json": "79fc5fa02607b3bbe37eb043030a140806df2378790fd59e90ed65f142c89c99"
+  },
+  "protocol_sha256": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941",
+  "script_sha256": "20a882cdd1267f517391a3fdd6c889d2498e8540deadca5488e9ea4799195a14",
+  "model_inference_executed": false,
+  "human_reviewed": false,
+  "matplotlib_version": "3.10.7",
+  "figure_files": [
+    "depth-accuracy.png",
+    "depth-accuracy.svg",
+    "category-accuracy.png",
+    "category-accuracy.svg",
+    "outcome-composition.png",
+    "outcome-composition.svg",
+    "retrieval-and-answer.png",
+    "retrieval-and-answer.svg",
+    "latency.png",
+    "latency.svg"
+  ],
+  "files": {
+    "category-accuracy.png": "299afb2ecc9c7b4954480e69c2d0f9ba4071cf1764261eafbe7dad59024ba7b1",
+    "category-accuracy.svg": "480a63967a1dc77ef0034cb9219be6e407daea591279ae767928db7d9b5e9620",
+    "depth-accuracy.png": "a64d6f8051880d787384f44c0004389ed2ffd554a2adebb2de697bbc0ade8ca2",
+    "depth-accuracy.svg": "3507d7ea0ac7cdf21e884cbb77ed857bd8d7c80fdba31715a144895aaf835ca3",
+    "latency.csv": "ffd105a0e1032c248cef0a5f08b19ef9598b913483450fb57af52406f1580fed",
+    "latency.png": "50e14171c19e1a6148c7bcefe94219dc23cd935154e0bdc9c7d004de827c33ff",
+    "latency.svg": "6f1643f153e03d52a9c3f744e5aa1a9ebb5c2d2366856d655d24538f1b8ab0bd",
+    "outcome-composition.png": "c16c02f3d43bcfccbd47306bc2b89f6c090c6c128779f550aae4dc5f18a98411",
+    "outcome-composition.svg": "5b4fc2a1a05fddbd80daceef212dabf801dfb80bb678fe503cf4582a4aee8021",
+    "REPORT.md": "8f6777f0f45ce859f0485c98bca381fa7af8d7c4cb44d971adea7b5313d364db",
+    "results.json": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7",
+    "retrieval-and-answer.png": "fc42e38753485f68b33280ec9c03012b9b46ffb6adecc7bb4f1292b458aeafd1",
+    "retrieval-and-answer.svg": "7e5db8f1f8dc83aa7081593a0af395e6e9c99f12e28eccb49db0273071ac8741",
+    "retrieval.csv": "af7548196eabc8a3526d94486dbf9dab345c5bb496acc1ff85f1f8e144515f57",
+    "scorecard.csv": "852123976b1638cbe80687690e59de9640d6432de21ccdc26eba5b9800f86537"
+  }
+}

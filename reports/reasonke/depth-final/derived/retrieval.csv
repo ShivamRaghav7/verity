@@ -1,0 +1,11 @@
+condition,depth,found_fact_occurrences,required_fact_occurrences,complete_paths,assigned,gold_support_diagnostic
+R-RAG,0,64,64,64,64,False
+R-RAG,1,64,64,64,64,False
+R-RAG,2,128,128,64,64,False
+R-RAG,3,192,192,64,64,False
+G-RAG,0,64,64,64,64,False
+G-RAG,1,64,64,64,64,False
+G-RAG,2,128,128,64,64,False
+G-RAG,3,192,192,64,64,False
+R-ORACLE,3,48,48,16,16,True
+G-ORACLE,3,48,48,16,16,True
