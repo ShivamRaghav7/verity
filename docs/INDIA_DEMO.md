@@ -10,8 +10,12 @@ Changing it does not rename or rescore any of the 1,312 recorded model requests.
 The separate 544-request depth evaluation is complete and replay-audited at this
 checkpoint (28 October 2026): ReasonKE scored 256/256 and Qwen 248/256 on the
 main retrieval questions. The display walkthrough below is a separate
-application workflow. Its prepared 14-generation live acceptance check has not
-yet been executed, so the benchmark does not establish all of these live answers.
+application workflow. Its live acceptance check completed **14/14 actual model
+answers** and all **12 consistency checks**, including conflict rejection and
+atomic rollback. The [raw receipt](../reports/reasonke/depth-final/india-acceptance.json)
+and [separate replay audit](../reports/reasonke/depth-final/india-host-audit.json)
+retain the evidence. This is one fictional display lineage, not fourteen new
+held-out factual lineages or an arbitrary-language guarantee.
 
 ## Open the website
 

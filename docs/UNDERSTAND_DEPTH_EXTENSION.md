@@ -12,8 +12,10 @@ requests have completed**, and their saved outputs have been replay-audited on
 the laptop. ReasonKE with iterative retrieval scored **256/256** on the main
 questions; Qwen with the same retrieval scored **248/256**, with eight
 abstentions. The completed earlier study remains a separate result. The new
-14-generation India website acceptance check is prepared but has not yet run;
-its outcome must not be inferred from this benchmark.
+14-generation India website acceptance check also completed: 14/14 actual model
+answers matched, all twelve consistency checks passed, and rollback restored the
+nine initial facts. Its raw outputs were replay-audited separately on the laptop;
+this one display lineage adds no held-out benchmark observations.
 
 An earlier temporary Colab runtime expired before its development outputs were
 exported. Those unknown outcomes are disclosed rather than counted as measured
@@ -70,7 +72,7 @@ about an actual company or government service.
 | 28 October: recover a page disconnection | Reattached the notebook to the still-running evaluator and saved another laptop backup. | A disconnected browser page is different from an expired or terminated compute runtime; this event required no restart. |
 | 28 October: complete final inference | Recorded all 272 requests per model, retaining Qwen's eight abstentions. No request remained unexecuted or had an execution error. | A completed experiment includes unsuccessful answers rather than only its successful examples. |
 | 28 October: audit and report | Recomputed scores from both complete raw ledgers, checked frozen input hashes and produced a separate scorecard and scientific figures. | The measured results can be traced to saved outputs rather than copied from the upstream paper. |
-| Next application check | Run the prepared 14-generation India website acceptance workflow with the actual model. | A benchmark score and a software-only website check do not establish every live website response. |
+| 28 October: complete the application check | Recorded 14/14 correct actual model answers through the website; all twelve consistency checks passed, including rejected conflict and atomic rollback. Replayed the receipt on the laptop and opened the model-ready website with its completed depth dashboard. | Live application evidence is retained separately from benchmark accuracy; state checks do not become neural answers. |
 
 The run plan is in [DEPTH_RUN_PLAN.md](DEPTH_RUN_PLAN.md). Recovery did not
 change the approved facts, question labels or model settings. The frozen

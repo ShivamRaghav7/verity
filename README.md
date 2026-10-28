@@ -99,9 +99,11 @@ The [earlier journey proposal](docs/PROJECT_JOURNEY_AND_FINISH_PLAN.md) remains 
 dated planning record; current implementation and measured evidence are linked above.
 
 The text-editing website uses the author's trained **ReasonKE_plus** checkpoint.
-Use [the India chat launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/fb0278512c47395032545338dad2db780356007f/notebooks/07_india_chat.ipynb) for the new handbook
+Use [the India chat launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/9893475495ea7a85a85237132f1501fac9505a18/notebooks/07_india_chat.ipynb) for the new handbook
 and iterative selector, or [the depth challenge launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/fb0278512c47395032545338dad2db780356007f/notebooks/06_depth_challenge.ipynb)
-for a separate staged experiment. Both pin source 7da6d1d. Select an idle T4;
+for a separate staged experiment. The India chat pins released application source
+`ba012a6`, including the completed dashboard; the depth notebook preserves frozen
+inference source `7da6d1d`. Select an idle T4;
 the depth notebook initially starts only its sixteen-request timing profile.
 Development, freeze, final evaluation and scoring have disabled switches.
 The [original pinned launcher](https://colab.research.google.com/github/ShivamRaghav7/verity/blob/d99374bacc821da277e57240830cb4df64479290/notebooks/04_reasonke_chat.ipynb)
@@ -112,6 +114,14 @@ connected while using its temporary URL, and export the workspace before it
 ends. No per-correction training is launched. The laptop check did not support
 running the fixed 7B configuration locally within two hours; see the
 [measured feasibility record](reports/reasonke/depth-development/local-feasibility.json).
+
+The India website's separate acceptance check completed **14/14 actual neural
+answers** and all **12 consistency checks**, including explicit conflict
+rejection, historical comparison and atomic rollback. Its
+[raw receipt](reports/reasonke/depth-final/india-acceptance.json) and
+[CPU replay audit](reports/reasonke/depth-final/india-host-audit.json) remain
+separate from the 544 held-out depth assignments. New chat responses remain
+unscored model generations; no universal answer guarantee is implied.
 
 The released ReasonKE checkpoint integration is on `codex/reasonke-integration`.
 Its [first real T4 deployment check](reports/reasonke/t4-development-1/README.md)

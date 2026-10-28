@@ -1,0 +1,40 @@
+{
+  "schema": "editguard-depth-release-launch-v1",
+  "status": "demo_ready",
+  "assigned_http_generations": 14,
+  "context_policy": "iterative",
+  "benchmark_retried": false,
+  "primary_scoring_changed": false,
+  "training_steps": 0,
+  "session_tokens_recorded": false,
+  "notice": "Separate India demonstration acceptance, not additional held-out benchmark evidence",
+  "source_commit": "78c5daafe1396aaf191beea4fb07b70717908355",
+  "worker_pid": 29116,
+  "http_command_exit": 0,
+  "http_outcome_counts": {
+    "correct": 14,
+    "wrong": 0,
+    "abstain": 0,
+    "execution_error": 0,
+    "unexecuted": 0
+  },
+  "http_verified_neural_response_count": 14,
+  "http_consistency_checks": {
+    "ready_pinned_model": true,
+    "iterative_serving_policy": true,
+    "fresh_separate_workspace": true,
+    "exact_nine_fictional_initial_facts": true,
+    "update_replaces_owned_predecessor": true,
+    "conflicting_approval_rejected": true,
+    "rejected_conflict_preserves_revision_and_ids": true,
+    "replacement_is_revision_ten": true,
+    "comparison_preserves_live_revision": true,
+    "rollback_restores_predecessor_in_one_revision": true,
+    "initial_facts_restored_with_history_retained": true,
+    "rollback_audit_events_share_revision": true
+  },
+  "http_initial_handbook_restored": true,
+  "demo_pid": 30761,
+  "website_port": 8005,
+  "demo_memory": "Empty; approve the nine fictional India facts explicitly in Knowledge"
+}

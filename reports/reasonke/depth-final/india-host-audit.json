@@ -1,0 +1,51 @@
+{
+  "schema": "editguard-india-http-host-audit-v1",
+  "status": "passed",
+  "created_utc": "2026-10-28T16:04:23.178902+00:00",
+  "receipt_sha256": "0b671f5a76786681620a8d57b0d298cb4b54f7ae3f5cede84ab1c9947407a862",
+  "workload_script_sha256": "0bc17b0216c124b57c9c4efe73b610f963462bd9ed65a924aaf15842d4659aef",
+  "plan_sha256": "c4fd72081e21026a0ab0512396f5bf99c5cf82f478c854f05be9d6ff1be49f36",
+  "audit_script_sha256": "211833ac2a89dc4aee5b6e5e2db9df2c4088cae340c52bd31ab7ec6095d10926",
+  "assigned_model_generations": 14,
+  "verified_neural_response_count": 14,
+  "outcome_counts": {
+    "correct": 14,
+    "wrong": 0,
+    "abstain": 0,
+    "execution_error": 0,
+    "unexecuted": 0
+  },
+  "primary_accuracy": 1.0,
+  "generation_requests": 13,
+  "independent_display_lineages": 1,
+  "held_out_benchmark_generations": 0,
+  "model_calls": 0,
+  "human_reviewed": false,
+  "transaction_checks": {
+    "ready_pinned_model": true,
+    "iterative_serving_policy": true,
+    "fresh_separate_workspace": true,
+    "exact_nine_fictional_initial_facts": true,
+    "update_replaces_owned_predecessor": true,
+    "conflicting_approval_rejected": true,
+    "rejected_conflict_preserves_revision_and_ids": true,
+    "replacement_is_revision_ten": true,
+    "comparison_preserves_live_revision": true,
+    "rollback_restores_predecessor_in_one_revision": true,
+    "initial_facts_restored_with_history_retained": true,
+    "rollback_audit_events_share_revision": true
+  },
+  "transaction_checks_all_passed": true,
+  "initial_handbook_restored": true,
+  "verified": [
+    "fixed fourteen-case identities and labels",
+    "workload source and plan hashes",
+    "raw-output extraction",
+    "pinned neural and memory provenance",
+    "whole-final-answer scoring",
+    "all outcome denominators",
+    "finite request accounting",
+    "conflict rejection and rollback snapshots"
+  ],
+  "notice": "Mechanical audit of one display handbook; no independent semantic review or generated-prose verification. Transaction correctness is separate from neural answer accuracy."
+}

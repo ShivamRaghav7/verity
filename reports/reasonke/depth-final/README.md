@@ -51,3 +51,22 @@ them with versioned external memory and does not claim new checkpoint training,
 per-correction weight updates, universal accuracy or faithful reproduction of a
 published paper score. The India website acceptance workload is a separate
 development demonstration, not extra held-out benchmark evidence.
+
+## Completed India website acceptance
+
+The separate fictional display workload completed **14/14 neural answers** and
+all **12 transaction/provenance consistency checks**. It covers initial direct,
+two-hop and three-hop answers; an approved ownership replacement; paraphrase,
+locality and historical-release questions; historical/current office comparison;
+and atomic rollback followed by restored answers. An unresolved competing
+approval was rejected without changing memory. The initial nine facts were
+restored at revision 11, with versions and conversations retained.
+
+The [raw website receipt](india-acceptance.json) was mechanically replayed on the
+laptop by the [India host audit](india-host-audit.json), checking pinned model
+identity, raw-output extraction, iterative memory provenance and all scores
+without model calls. Fourteen generations used thirteen HTTP generation requests
+because one comparison generated two answers. Loopback request p50/p95 was
+17.11/33.39 seconds (n=13), including the two-generation comparison. This is not
+per-generation latency or fourteen independent factual lineages. It adds no
+held-out benchmark observations and does not certify arbitrary generated prose.
