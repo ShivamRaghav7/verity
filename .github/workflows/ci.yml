@@ -20,6 +20,7 @@ jobs:
       - run: python -m unittest tests.test_operations_checkpoint -v
       - run: python -m unittest tests.test_india_demo tests.test_chat_iterative tests.test_depth_data tests.test_depth_retrieval tests.test_depth_runner tests.test_depth_notebook -v
       - run: python -m unittest tests.test_depth_dashboard tests.test_depth_report -v
+      - run: python -m unittest tests.test_depth_checkpoint -v
       - run: python -m unittest tests.test_chat_workspace tests.test_operations_benchmark -v
       - run: python -m editguard_benchmark.run --help
       - uses: actions/setup-node@v4
