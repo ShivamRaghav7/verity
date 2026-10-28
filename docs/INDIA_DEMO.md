@@ -106,6 +106,14 @@ serving policy, not a retroactive change to the 1,312-request study.
 
 ## Save and interpret the demonstration
 
+The final experiment and application receipts, audits, graphs and PDF are now
+saved on the laptop and in Git. You can close Colab without losing those
+measurements. Live chat stops when its runtime ends. To use it again, open the
+released India notebook on an available T4 and run its cells; this loads the
+pinned checkpoint and website without repeating the benchmark. Approve the
+fictional handbook again in a fresh workspace, or restore your private exported
+workspace to recover its conversations and edit history.
+
 Before ending the temporary runtime, open Knowledge's **Keep your workspace**
 area and choose **Export workspace JSON**. Store this file privately: it contains
 text conversations as well as approved facts, versions and history. Restoration

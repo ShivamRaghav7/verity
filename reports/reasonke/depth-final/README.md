@@ -42,6 +42,11 @@ and [figure provenance](derived/figure-manifest.json). The plain-language
 [extension guide](../../../docs/UNDERSTAND_DEPTH_EXTENSION.md) explains the
 timeline, metrics and India website workflow.
 
+The [portable evidence ZIP](../../../output/depth-2026-10-28/editguard-depth-evidence.zip)
+and [file-hash manifest](../../../output/depth-2026-10-28/manifest.json) contain
+the released evidence, report and reproduction helpers. Model weights, access
+tokens and the user chat database are excluded.
+
 This study does not replace or pool the completed operations-v1 results. These
 short fictional assignments, repeated within-split templates, automated labels
 and twelve-fact worlds limit generalization. There was no independent human
