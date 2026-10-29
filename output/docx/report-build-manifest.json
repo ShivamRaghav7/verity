@@ -1,0 +1,165 @@
+{
+  "schema": "editguard-complete-docx-report-v1",
+  "created_utc": "2026-10-29T06:54:43.889584+00:00",
+  "output": "output\\docx\\EditGuard_Project_Report.docx",
+  "sha256_before_layout_refresh": "80e4b24cfb0e3d71cfa43248d0f8af0d5c2fc96fe852597b8a371dcaff10259a",
+  "model_calls": 0,
+  "builder_sha256": "3e9baa1508514f31c0b73bfc1feb89c07e4b60c528332c582bf3d545d48a658a",
+  "inputs": {
+    "reports\\reasonke\\operations-final\\results.json": "6bd7a1185644109982a5c7e636287616edb227ab4edac113d408d33a1c5effbe",
+    "reports\\reasonke\\operations-final\\protocol.json": "23914664df3378be46be463ea60cd8b5b258eb13b6b55c68b38f76d3b15c94c5",
+    "reports\\reasonke\\depth-final\\results.json": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7",
+    "reports\\reasonke\\depth-final\\protocol.json": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941",
+    "reports\\reasonke\\depth-final\\india-acceptance.json": "0b671f5a76786681620a8d57b0d298cb4b54f7ae3f5cede84ab1c9947407a862",
+    "reports\\reasonke\\depth-final\\india-host-audit.json": "7e6da2f67fa9048b75baba01848b53fe79b110d927fbaa252dcc711e9fdb9091"
+  },
+  "figures": [
+    {
+      "number": 1,
+      "path": "output\\docx\\assets\\editguard-architecture.png",
+      "sha256": "6f690cebe54144d646a0177e5a8fe9014a4c76566fb84eb93656f69adf4cce3f",
+      "caption": "Implemented online data flow and separate evaluation path. This is an architecture schematic, not a performance measurement."
+    },
+    {
+      "number": 2,
+      "path": "reports\\reasonke\\operations-final\\derived\\outcome-composition.png",
+      "sha256": "aa1f6b2a043986e35443207054031d26619ef99b06a40ce40b9d8cdd42776912",
+      "caption": "Original study outcome composition with 256 assigned questions per main condition. R0 is a stale diagnostic. All updated conditions receive the approved correction."
+    },
+    {
+      "number": 3,
+      "path": "reports\\reasonke\\operations-final\\derived\\paired-differences.png",
+      "sha256": "8182e621ef3f1075cc15fcfc842603d4678bec221df243100ad18a6f476fe882",
+      "caption": "Paired original accuracy differences with 95 percent intervals from resampling 32 whole lineages. Negative values mean the first listed condition scored lower."
+    },
+    {
+      "number": 4,
+      "path": "reports\\reasonke\\depth-final\\derived\\depth-accuracy.png",
+      "sha256": "a64d6f8051880d787384f44c0004389ed2ffd554a2adebb2de697bbc0ade8ca2",
+      "caption": "Separate depth accuracy by relation count. Every group contains 64 assigned questions per model. Zero denotes locality controls requiring an independent fact."
+    },
+    {
+      "number": 5,
+      "path": "reports\\reasonke\\depth-final\\derived\\retrieval-and-answer.png",
+      "sha256": "fc42e38753485f68b33280ec9c03012b9b46ffb6adecc7bb4f1292b458aeafd1",
+      "caption": "Required support versus final answer success in the depth study. The same selector supplies complete paths for both models; Qwen still abstains on eight main questions."
+    },
+    {
+      "number": 6,
+      "path": "reports\\reasonke\\depth-final\\derived\\latency.png",
+      "sha256": "50e14171c19e1a6148c7bcefe94219dc23cd935154e0bdc9c7d004de827c33ff",
+      "caption": "Depth pipeline latency distributions. The main conditions each have 256 generated responses; oracle conditions each have sixteen. Abstentions remain in the measured latency population."
+    }
+  ],
+  "tables": 15,
+  "scope": "Final ReasonKE platform with original and separate depth studies; no invented project training losses",
+  "publication": {
+    "final_docx_sha256": "d60bb34fceb27e0867c22f7effedfaf51a2454788269c2cea516523eb9c0f9e5",
+    "published_utc": "2026-10-29T06:57:50.284185+00:00",
+    "pages": 23,
+    "tables": 15,
+    "figures": 6,
+    "word_count_including_tables_and_cached_contents": 7161,
+    "model_calls": 0,
+    "layout_engine": "Microsoft Word document page enhanced metafiles rendered to PNG",
+    "all_pages_visually_reviewed": true,
+    "reviewed_pages": [
+      {
+        "page": 1,
+        "png_sha256": "cab9d575a86eebcb8ab7cd4a7e6fd65aa3e2c49de0469775401f93baa2b7ca97"
+      },
+      {
+        "page": 2,
+        "png_sha256": "21c7677a7dbe209ec322bc5b06cbceb71b99ce1cba1533d5222713c6bbf7ed27"
+      },
+      {
+        "page": 3,
+        "png_sha256": "6f1fc0c9ebd3263e40e87c312472206c396ee441a99f430b19b780c1738fb6d8"
+      },
+      {
+        "page": 4,
+        "png_sha256": "b3ab20f48c1e44baa6e5cb9983234d4088b1ada448f99d45b433a8d2d18b5103"
+      },
+      {
+        "page": 5,
+        "png_sha256": "ca18a0ed2001aa3e10a2d10169d88473e26e5ae813d883a42f99167c9dfda688"
+      },
+      {
+        "page": 6,
+        "png_sha256": "b79b73c971ebd400352049b9fcf1a97bf96d0d40a46a7c25529afb35bb53031d"
+      },
+      {
+        "page": 7,
+        "png_sha256": "e7ea106ad7633ecd336962a0bad977c699ece2822e277bf989cb0147f9ffcbfb"
+      },
+      {
+        "page": 8,
+        "png_sha256": "0f51d2c61c6412ad42970990279b4dd9547982f19a73cb13e24728fe47f28348"
+      },
+      {
+        "page": 9,
+        "png_sha256": "d4ab7183ca248b5ae1b68f6452e9d1bdb99d11daac4b139abc76c0a202ac4d4a"
+      },
+      {
+        "page": 10,
+        "png_sha256": "e54847bf8c1da91b43b862f13c6553c802140ec749cd93576c65840a41a62c30"
+      },
+      {
+        "page": 11,
+        "png_sha256": "84635fe25988c72f5def123ae4d053b21de0ac7e2821548b6d3bc529e055fc86"
+      },
+      {
+        "page": 12,
+        "png_sha256": "41e970c34bc31f9e929e0c21d0e43bb6081d79cd482d8469febea7020f2a6093"
+      },
+      {
+        "page": 13,
+        "png_sha256": "2a74fd132d82d623913ba180ef0ab32f785d5e28bf48047f08ab79f98b71df88"
+      },
+      {
+        "page": 14,
+        "png_sha256": "c8e3d2037a372b26f06b180512a0263149ba2ffb7d32ee970aedac9fb7b0c923"
+      },
+      {
+        "page": 15,
+        "png_sha256": "6ef9e3cbc00045566fb572d232bbe5ab82b8de06aad71fae6b7b6a5a64bde860"
+      },
+      {
+        "page": 16,
+        "png_sha256": "84d93f65907bf467caffb58ed8e43725fade1acd7988f1265b7a05c172d45407"
+      },
+      {
+        "page": 17,
+        "png_sha256": "dec5cda08f63d9419f95431d70a341d0cb2aeed7049c671b79cf6d315fe7cc79"
+      },
+      {
+        "page": 18,
+        "png_sha256": "0d53377093ede683b0410c44acd756d5a084e0c4369126706cdb430583d646ba"
+      },
+      {
+        "page": 19,
+        "png_sha256": "4e80318cb090c73e59cf24437b701469df42b973ae9fc24156b9c672e87e27d9"
+      },
+      {
+        "page": 20,
+        "png_sha256": "9334903adeb22ce08d53d7f6d005bd10f37142d581f0d677ced2b108e60acc84"
+      },
+      {
+        "page": 21,
+        "png_sha256": "8e77835582856b34dab6d3873a1e1ea37b30bd650d159c96cc5d74651324d6f0"
+      },
+      {
+        "page": 22,
+        "png_sha256": "ffaa7efd7704f735b0fed0f1fc2318d19a8d99c78966cc2855c7043caa0c67c3"
+      },
+      {
+        "page": 23,
+        "png_sha256": "e4572acc4dff0de4f232febb0f308b6920643be1c1489489e5b13cb41ffcc854"
+      }
+    ],
+    "qa_intermediates_delivered": false,
+    "contents_fields_refreshed": true,
+    "rendering_limitations": "Canonical renderer could not locate bundled LibreOffice on this Windows host. Word PDF export stalled. Direct Word page rendering succeeded and was reviewed; no PDF export is claimed.",
+    "frozen_experiment_files_modified": false
+  }
+}
