@@ -1,0 +1,57 @@
+{
+  "schema": "verity-technical-presentation-v1",
+  "created_utc": "2026-10-30T06:04:43.167809+00:00",
+  "live_artifact": "artifact_Vyen7kwRFbkWcWHANBxRvNkBKK9-PEta",
+  "live_state_version": 4,
+  "slides": 12,
+  "native_tables": 3,
+  "native_charts": 2,
+  "speakers": 5,
+  "speaking_distribution": [
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      8,
+      9,
+      10
+    ],
+    [
+      11,
+      12
+    ]
+  ],
+  "spoken_words": 1258,
+  "handbook_words": 10730,
+  "model_calls": 0,
+  "all_slide_previews_visually_reviewed": true,
+  "speaker_notes_match_script": true,
+  "native_chart_workbooks_validated": true,
+  "native_powerpoint_open_verified": false,
+  "local_markdown_links_checked": 65,
+  "cpu_regression_tests_passed": 32,
+  "saved_india_audit_passed": true,
+  "saved_depth_audit_completed_records": 544,
+  "frozen_evidence_unchanged": true,
+  "historical_identifiers_preserved": true,
+  "files": {
+    "output\\presentation\\Verity_Technical_Presentation.pptx": "bd057e91dad293fbc2a702998427c56f66cdc15149d5f17fd56e43cef22533f9",
+    "docs\\presentation\\VERITY_SPEAKER_SCRIPT.md": "52c881996e3aedf46dc29557371294f4d7212189c202d9e6ea06bb3a1556381c",
+    "docs\\presentation\\VERITY_TEAM_HANDBOOK.md": "6016d28dda408f8737fd8c5dee29811aaa398489517ae15d2cb2e67d46030991",
+    "scripts\\build_verity_presentation_session.mjs": "22d0d3dba169fd52cc87431b1c3ff0004deac4e533de2a19ccf3a09bf05a969c",
+    "reports\\reasonke\\operations-final\\results.json": "6bd7a1185644109982a5c7e636287616edb227ab4edac113d408d33a1c5effbe",
+    "reports\\reasonke\\operations-final\\protocol.json": "23914664df3378be46be463ea60cd8b5b258eb13b6b55c68b38f76d3b15c94c5",
+    "reports\\reasonke\\depth-final\\results.json": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7",
+    "reports\\reasonke\\depth-final\\protocol.json": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941"
+  }
+}

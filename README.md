@@ -1,6 +1,6 @@
-# EditGuard: Chat & Knowledge
+# Verity: Chat and Knowledge
 
-EditGuard is a runnable knowledge-maintenance platform for a conversational
+Verity, previously called EditGuard, is a runnable knowledge-maintenance platform for a conversational
 assistant. An approved service-ownership change should update both the owner
 answer and the connected on-call contact, while preserving other properties,
 similarly named services and historical releases. The current deployment uses
@@ -62,11 +62,16 @@ graphs, retained failures and application workflow together. Its metric glossary
 and discussion of the observed 100% scores explain the limits of the findings.
 See the [report build and verification notes](output/docx/README.md).
 
-For the panel, use the [ten-slide presentation](output/presentation/EditGuard_Presentation.pptx)
-and [five-speaker rehearsal script](output/presentation/EditGuard_Speaker_Script.docx).
-The script includes timings, handovers, panel questions and a contribution
-allocation at the end. The [presentation guide](output/presentation/README.md)
-explains the eight to nine minute speaking order and optional demonstration.
+For the panel, use the [technical Verity presentation](output/presentation/Verity_Technical_Presentation.pptx)
+and [updated five-speaker Markdown script](docs/presentation/VERITY_SPEAKER_SCRIPT.md).
+The twelve slides cover model configuration, retrieval algorithms, database
+invariants, experimental protocols and measured findings. The script includes
+timings, handovers, panel questions and a contribution allocation at the end.
+New teammates should read the [complete technical handbook](docs/presentation/VERITY_TEAM_HANDBOOK.md)
+for the full pipeline, worked metric examples, demo instructions and detailed Q&A.
+Historical source packages, UI screenshots and frozen reports retain their
+EditGuard identifiers. The [presentation guide](output/presentation/README.md)
+distinguishes the current material from the earlier introductory deck.
 
 The controlled dataset contains 48 fictional edit lineages and 384 questions,
 split before wording augmentation. The **1,312-request frozen held-out study is

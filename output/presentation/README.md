@@ -1,53 +1,64 @@
-# Five speaker EditGuard presentation
+# Verity technical presentation
 
-The deck has ten slides for an approximately eight to nine minute talk. Each
-member presents two consecutive slides. A live application demonstration can
-add about two minutes after slide 9.
+The current deck has twelve slides for approximately eleven minutes of speech,
+plus an optional two-minute live demonstration after slide 12. It retains the
+five-speaker format and uses the new Verity name.
 
-- `EditGuard_Presentation.pptx` is the portable PowerPoint backup of the live
-  presentation. Its charts and text remain editable. Each slide's notes contain
-  the exact speech and relevant source references.
-- `EditGuard_Speaker_Script.docx` is the printable nine-page rehearsal script.
-  It includes speaking order, timings, exact speech, handovers, an optional demo,
-  short panel answers and the contribution allocation at the end.
-- `../../docs/presentation/SPEAKER_SCRIPT.md` is the versioned script source.
+## Current materials
 
-Use Member 1 through Member 5 until the team assigns names. Presentation order
-and contribution ownership are separate. Confirm actual implementation, review,
-test reproduction and documentation before recording each person's contribution.
+- `Verity_Technical_Presentation.pptx`: portable backup of the revised live deck.
+  Text, three technical tables and two scientific charts remain native and
+  editable. The chart data workbooks contain snapshots of the displayed values.
+- [Verity speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact
+  speech, timings, visual cues, handovers, optional demo and contribution map.
+- [Verity team handbook](../../docs/presentation/VERITY_TEAM_HANDBOOK.md): a
+  standalone technical onboarding reference covering the method, implementation,
+  datasets, scoring, results, limitations, operation, glossary and panel Q&A.
 
-## Narrative
+| Speaker | Slides | Focus |
+| --- | --- | --- |
+| Member 1 | 1–2 | Problem and edit contract |
+| Member 2 | 3–5 | Architecture, model configuration and retrieval |
+| Member 3 | 6–7 | Transaction invariants and data construction |
+| Member 4 | 8–10 | Experimental protocol and measured findings |
+| Member 5 | 11–12 | Failure analysis, product evidence and conclusion |
 
-1. Project and goal
-2. A connected ownership correction
-3. Model and approved external memory
-4. Approval, conflicts, history and rollback
-5. Independent controlled datasets
-6. Fair comparisons and fixed scoring
-7. Original study findings
-8. Separate depth findings and latency cost
-9. Application workflow and recorded acceptance
-10. Bounded conclusion and project contribution
+Speaking assignments are independent of contribution ownership. Confirm each
+member's actual work before assigning names to the contribution allocation.
 
-The perfect observed scores remain explicitly bounded. The deck retains the
-full-memory failures and baseline abstentions, separates both studies and the
-website workload, and attributes the final checkpoints' training upstream.
+## Technical coverage
 
-## Authoring
+1. Verity and the bounded goal
+2. The edit contract and three-hop dependency
+3. Inference architecture and evidence boundary
+4. Frozen checkpoints, quantization and measured hardware
+5. Two-stage versus iterative answer-frontier retrieval
+6. Canonical keys, conflict rejection and atomic rollback
+7. Lineage-first data splits and label limitations
+8. Frozen comparisons, oracle diagnostics and endorsed-answer scoring
+9. Original study, full-memory failures and locality measures
+10. Depth results, paired uncertainty and latency
+11. Failure analysis and the limits of 100%
+12. Website acceptance and the project's contribution
 
-`../../scripts/build_presentation_session.mjs` exports a `build(presentation)`
-function. Invoke it on an empty presentation inside an Artifact Session callback
-so that edits sync to the live viewer. It reads local screenshots and the script
-source, adds two native charts and attaches the exact speech to the slide notes.
-Render and review the live slides before exporting the portable backup.
+## Authoring and evidence
 
-Rebuild the printable script with an isolated Python that has `python-docx`:
+`../../scripts/build_verity_presentation_session.mjs` exports
+`build(presentation)`. Invoke it inside an Artifact Session callback on an empty
+presentation. It reads the Markdown script and attaches the speech and evidence
+references to every slide's notes. The live slides were rendered and inspected
+before exporting the portable backup. Package checks additionally verify the
+native chart values against their workbook snapshots. Native PowerPoint opening
+is a separate application check and is not claimed by those validations.
 
-```powershell
-python -m scripts.build_speaker_script_docx
-```
+No training or inference ran to create the revision. The documented evidence
+replay commands and software regression commands were checked on the CPU.
+Protocol-bound source, labels, raw outputs and scoring remain unchanged.
 
-A rebuilt document requires refreshed Word fields and another layout review.
-The published copy already contains refreshed page numbers. Both deliverables
-use saved evidence and make zero model calls. Neither authoring workflow changes
-the frozen experiments, labels or scoring rules.
+## Earlier introductory version
+
+`EditGuard_Presentation.pptx`, `EditGuard_Speaker_Script.docx` and
+`presentation-manifest.json` preserve the earlier ten-slide introductory package.
+Use the Verity material above for the technical presentation. Existing reports,
+source modules and saved UI screenshots can retain the historical EditGuard
+name without changing their measured result or protocol identity.
