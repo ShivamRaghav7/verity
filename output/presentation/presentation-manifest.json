@@ -1,0 +1,62 @@
+{
+  "schema": "editguard-five-speaker-presentation-v1",
+  "created_utc": "2026-10-30T05:11:21.174258+00:00",
+  "live_artifact": "artifact_Vyen7kwRFbkWcWHANBxRvNkBKK9-PEta",
+  "live_state_version": 3,
+  "slides": 10,
+  "speakers": 5,
+  "spoken_words": 961,
+  "estimated_talk_minutes": "8 to 9",
+  "optional_demo_minutes": 2,
+  "script_pages": 9,
+  "model_calls": 0,
+  "frozen_evidence_unchanged": true,
+  "outputs": {
+    "EditGuard_Presentation.pptx": "3b20aaae5f69f6d721509bf7d028b738d13cf5cd11483764988900414e6555a3",
+    "EditGuard_Speaker_Script.docx": "aad442f4578021af92ec2459b68f9913cf279757315b6e7bef43c616bafce439"
+  },
+  "sources": {
+    "docs\\presentation\\SPEAKER_SCRIPT.md": "0df8e448a802ed40a8d60d3c1539de544743f3142fba7db1ef34a1e3d0aa5ee8",
+    "scripts\\build_presentation_session.mjs": "6f9eddfeda4c8434689e73638c7dbe08eb90cbd3a3a91d6a85cbf8c31940c8a4",
+    "scripts\\build_speaker_script_docx.py": "f560eed75251c2e37c1fa4131a74b4decd7e23eeb8fb15dc965f3b47a7d425d8",
+    "reports\\reasonke\\operations-final\\results.json": "6bd7a1185644109982a5c7e636287616edb227ab4edac113d408d33a1c5effbe",
+    "reports\\reasonke\\operations-final\\protocol.json": "23914664df3378be46be463ea60cd8b5b258eb13b6b55c68b38f76d3b15c94c5",
+    "reports\\reasonke\\depth-final\\results.json": "3501e711f6213b9984b115d354c87ed6b2ab6c2b50d53a85f693b9e7f2dc7db7",
+    "reports\\reasonke\\depth-final\\protocol.json": "df120622131d617b37b7bfdfdfd141cbe23fe07fa5bf9ff914732d99dcfe1941"
+  },
+  "native_chart_values_verified": [
+    [
+      [
+        256,
+        231
+      ],
+      [
+        241,
+        241
+      ]
+    ],
+    [
+      [
+        64,
+        64,
+        64,
+        64
+      ],
+      [
+        64,
+        64,
+        57,
+        63
+      ]
+    ]
+  ],
+  "native_chart_workbook_snapshots": 2,
+  "speaker_notes_match_script": true,
+  "all_slides_visually_reviewed_in_session": true,
+  "all_script_pages_visually_reviewed": true,
+  "script_render_engine": "Microsoft Word direct enhanced metafile pages",
+  "canonical_docx_renderer": "Unavailable LibreOffice on host; direct Word rendering used instead",
+  "portable_pptx_import_validation_passed": true,
+  "native_powerpoint_open_verified": false,
+  "contribution_ownership": "Allocation for team confirmation, not invented historical authorship"
+}

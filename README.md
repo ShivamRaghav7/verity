@@ -62,6 +62,12 @@ graphs, retained failures and application workflow together. Its metric glossary
 and discussion of the observed 100% scores explain the limits of the findings.
 See the [report build and verification notes](output/docx/README.md).
 
+For the panel, use the [ten-slide presentation](output/presentation/EditGuard_Presentation.pptx)
+and [five-speaker rehearsal script](output/presentation/EditGuard_Speaker_Script.docx).
+The script includes timings, handovers, panel questions and a contribution
+allocation at the end. The [presentation guide](output/presentation/README.md)
+explains the eight to nine minute speaking order and optional demonstration.
+
 The controlled dataset contains 48 fictional edit lineages and 384 questions,
 split before wording augmentation. The **1,312-request frozen held-out study is
 complete**, with all raw outputs independently replay-audited on the laptop.
