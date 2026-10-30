@@ -4,7 +4,7 @@ This is the technical onboarding and presentation reference for all five team me
 
 **The conclusion:** an approved ownership correction can change a frozen model system's direct and connected answers through versioned external memory. Our controlled experiments measure that behaviour and its costs. The final model was trained upstream. We built the governed application, context-selection adaptations, independent fictional data, matched evaluation and evidence tooling. Selected-context ReasonKE scored every main question correctly in both small controlled tests, while its full-memory condition made errors and its responses were much slower than Qwen's. These are measured boundaries, not unfinished failures to delete.
 
-Verity is the new presentation and documentation name. Existing application screens, code modules, archived reports and frozen evidence can still say EditGuard. We preserve those historical identities and protocol hashes. This documentation change does not claim a newly trained checkpoint or a new experiment, and it does not silently rename the running application's historical UI.
+Verity is the current presentation and website display name. The frontend now shows Verity in its title, navigation and assistant labels. Code modules, workspace schemas, archived reports and frozen evidence retain their historical EditGuard identities. The branding change leaves protocol-bound sources and measured results unchanged. It does not represent a newly trained checkpoint or a new experiment.
 
 ## Reading map
 
@@ -35,7 +35,7 @@ Verity is the new presentation and documentation name. Existing application scre
 
 ## Part A The system
 
-This material explains the final text system that the team is presenting. The project now uses the display name **Verity**. Earlier files, Python packages, saved screenshots and frozen experiment schemas still use **EditGuard**. Those names identify the same development history. Renaming a presentation does not change model identities, experimental outcomes or the files bound by a frozen protocol.
+This material explains the final text system that the team is presenting. The current website and presentation use the display name **Verity**. Earlier files, Python packages, historical screenshots and frozen experiment schemas still use **EditGuard**. Those names identify the same development history. Renaming a presentation does not change model identities, experimental outcomes or the files bound by a frozen protocol.
 
 ### 1 What problem are we actually solving
 
@@ -464,7 +464,7 @@ The dated history is in [Understanding the current project](../UNDERSTAND_THE_CU
 5. Use a fresh demonstration storage directory. In Knowledge explicitly approve the fictional India handbook. Nine approvals produce revision 9. Withdrawing every old fact does not erase history or make a previously used workspace fresh.
 6. Keep the GPU runtime active during live generation. If you close or lose it, the committed results survive, but live chat needs a worker again. Export the private text workspace before ending a temporary runtime if you want its current conversations and fact history later.
 
-These instructions identify the existing pinned launcher. They do not claim to have rerun GPU readiness today. The notebook and older UI can retain their historical EditGuard branding. Check [the detailed India demo guide](../INDIA_DEMO.md) for its exact controls.
+These instructions identify the existing pinned launcher. They do not claim to have rerun GPU readiness today. Pinned historical notebooks and older screenshots can retain their EditGuard branding. The current local frontend displays Verity. Check [the detailed India demo guide](../INDIA_DEMO.md) for its exact controls.
 
 ### Where each website tab fits
 
@@ -515,6 +515,21 @@ Useful software regression commands are below. Their fixtures verify code behavi
 ```
 
 Do not run training or the full GPU benchmark simply to show the website. A scientific rerun needs the exact pinned source, data, protocol, environment and finite plan. A modern checkout used for presentation documentation is not automatically identical to the source hashed by an earlier protocol.
+
+### Displaying recorded conversations for screenshots
+
+The presentation website captures use the current Verity frontend with actual saved responses from the [India acceptance receipt](../../reports/reasonke/depth-final/india-acceptance.json). The [screenshot workspace utility](../../scripts/prepare_verity_screenshot_workspace.py) first audits that receipt, then restores its approved facts, revision history and twelve recorded conversations into a fresh isolated workspace. It preserves response text, timestamps, memory revisions and generation provenance. The final memory is revision 11, after rollback. Chat titles begin with `Recorded:`.
+
+This preparation makes **zero model calls**. Reopening these conversations displays previously measured neural output. It neither generates a fresh answer nor adds benchmark observations. The screenshot caption and speaker must identify a displayed response as recorded. A worker status that says unavailable remains truthful; a screenshot of a saved answer does not establish live GPU readiness. Knowledge and Research results show the restored state and saved scorecards respectively.
+
+To create another isolated capture workspace, choose a directory that does not exist:
+
+```powershell
+.\.venv-chat\Scripts\python.exe -m scripts.prepare_verity_screenshot_workspace --output runtime/verity-captures-new
+.\.venv-chat\Scripts\python.exe -m editguard_chat.server --backend reasonke --context-policy iterative --port 8031 --storage runtime/verity-captures-new
+```
+
+Open `http://127.0.0.1:8031`. The utility refuses an existing output directory, preserving any current user conversations. Its `replay-manifest.json` records the source receipt hash and the zero-call disclosure. For a fresh neural demonstration, use the GPU-backed launcher described above.
 
 ### Common demonstration problems
 

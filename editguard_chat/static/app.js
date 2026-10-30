@@ -200,11 +200,11 @@ function renderMessages() {
   state.messages.forEach((message, index) => {
     const user = message.role === "user";
     const article = element("article", "message " + (user ? "user" : "assistant"));
-    if (!user) article.append(element("span", "assistant-avatar", "eg"));
+    if (!user) article.append(element("span", "assistant-avatar", "V"));
     const body = element("div", "message-body");
     if (!user) {
       const heading = element("div", "message-heading");
-      heading.append(element("strong", "", "EditGuard"));
+      heading.append(element("strong", "", "Verity"));
       const used = evidenceRows(message.evidence).length > 0;
       const clarification = message.evidence?.generation_kind === "deterministic_clarification";
       heading.append(element("span", "message-mode", clarification ? "Scope clarification · rule-based" : message.mode === "original" ? (message.evidence?.method === "without_correction_context" ? "Without correction context" : "Original model") : used ? "Correction context supplied" : "Model response"));
@@ -497,7 +497,7 @@ $("workspace-file").addEventListener("change", async event => {
     const file = event.target.files[0]; if (!file) return;
     if (file.size > 6 * 1024 * 1024) throw new Error("Choose a workspace JSON file up to 6 MiB.");
     const value = JSON.parse(await file.text());
-    if (value.schema !== "editguard-workspace-v1" || !value.tables || !Array.isArray(value.tables.chats) || !Array.isArray(value.tables.corrections)) throw new Error("Choose an EditGuard workspace snapshot.");
+    if (value.schema !== "editguard-workspace-v1" || !value.tables || !Array.isArray(value.tables.chats) || !Array.isArray(value.tables.corrections)) throw new Error("Choose a Verity workspace snapshot.");
     workspaceImport = value;
     $("workspace-preview").textContent = value.tables.chats.length + " conversations, " + value.tables.corrections.length + " fact versions; revision " + value.revision + ". The server checks integrity and all references before import.";
     $("workspace-restore").disabled = false;

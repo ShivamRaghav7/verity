@@ -1,0 +1,54 @@
+{
+  "schema": "verity-website-screenshots-v1",
+  "captured_local_date": "2026-10-30",
+  "brand": "Verity",
+  "capture_method": "cua_repl in-app-browser screenshot",
+  "processing": "None. Full viewport screenshots, no pixel editing.",
+  "source_receipt": "reports\\reasonke\\depth-final\\india-acceptance.json",
+  "source_receipt_sha256": "0b671f5a76786681620a8d57b0d298cb4b54f7ae3f5cede84ab1c9947407a862",
+  "workspace_restoration": "scripts/prepare_verity_screenshot_workspace.py",
+  "knowledge_revision": 11,
+  "model_calls_for_capture": 0,
+  "live_worker_ready_during_capture": false,
+  "accuracy_observations_added": 0,
+  "images": [
+    {
+      "file": "verity-knowledge-editor.jpg",
+      "slide": 6,
+      "route": "#knowledge",
+      "sha256": "22f331ed474401d8df68bcb3d6df339d722f439982bfe6cf93ebe057de287f20",
+      "pixels": [
+        1265,
+        712
+      ],
+      "notice": "Current Verity UI with audited restored revision-11 approved state and an unapproved replacement draft. No approval performed for capture."
+    },
+    {
+      "file": "verity-recorded-chat.jpg",
+      "slide": 12,
+      "route": "#chat",
+      "sha256": "0ff98788cdd64829ab82bce1f39d229df4d9735b79afa50926bc82d923c5c19d",
+      "pixels": [
+        1280,
+        720
+      ],
+      "notice": "Actual saved generate_rollback_three_hop response from the India receipt. Not a fresh neural response."
+    },
+    {
+      "file": "verity-research-results.jpg",
+      "slide": null,
+      "route": "#results",
+      "sha256": "d2a3ef15f871092cef05a8c93f218367d8d489cbd48f07e235ff052a35c5185e",
+      "pixels": [
+        1265,
+        712
+      ],
+      "notice": "Current Verity UI displaying the released original operations experiment. Supplementary image, not embedded in the deck."
+    }
+  ],
+  "frontend_sources": {
+    "editguard_chat\\static\\index.html": "b27bf49f99f0ec9d7c65a8a353a2e5b86be46dd6da070b3f7ee02942ea94ed96",
+    "editguard_chat\\static\\app.js": "097d6ab57d10053d5eae599236abb37c52919cbe6faa7eee19fc9c106646c19e",
+    "editguard_chat\\static\\style.css": "6f1480a154625ba612ed7dccfeaa9e9a28bdf9681989eb53358aa4040b80a7c8"
+  }
+}

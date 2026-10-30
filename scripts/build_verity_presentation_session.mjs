@@ -138,5 +138,59 @@ export async function build(p){
   if(speech.length!==12)throw Error('Expected twelve exact speech blocks');
   const speakers=[1,1,2,2,2,3,3,4,4,4,5,5];
   p.slides.items.forEach((slide,i)=>{slide.speakerNotes.text=`Member ${speakers[i]}\n\n${speech[i]}\n\nEvidence\n${refs[i]}`;});
+  await applyWebsiteScreenshots(p);
   return {slides:12,modelCalls:0};
+}
+
+// A focused edit for the existing live deck. Other slides, charts and tables stay intact.
+export async function applyWebsiteScreenshots(p){
+  if(p.slides.items.length!==12)throw Error('Expected the twelve-slide technical deck');
+  const set=(s,name,text,position,size,color=C.ink,bold=false,font='Calibri')=>{
+    const matches=s.shapes.items.filter(x=>x.name.startsWith(name.slice(0,45)));
+    if(matches.length!==1)throw Error(`Expected one existing shape: ${name}`);
+    const a=matches[0];a.text=text;a.position=position;
+    a.text.style={fontSize:size,typeface:font,color,bold,autoFit:'none',wrap:'square',insets:0};
+  };
+  const image=async(s,file,alt)=>{
+    const bytes=await fs.readFile(path.join(ROOT,'output/presentation/screenshots',file));
+    const options={dataUrl:'data:image/jpeg;base64,'+bytes.toString('base64'),contentType:'image/jpeg',alt,fit:'contain',position:{left:421,top:168,width:791,height:445}};
+    if(s.images.items.length>1)throw Error('Unexpected pre-existing slide images');
+    if(s.images.items.length)s.images.items[0].replace(options);
+    else s.images.add(options);
+  };
+  let s=p.slides.items[5];
+  set(s,'State invariants','State invariants',{left:68,top:188,width:325,height:42},29,C.teal,true);
+  set(s,'At most one active version per key.\nA replacement names ',
+    'One active version per key.\nNamed predecessor.\nHTTP 409 for conflicts.\nLineage and provenance.',
+    {left:68,top:247,width:325,height:155},25);
+  set(s,'Rollback transaction','Atomic rollback',{left:68,top:425,width:325,height:40},29,C.teal,true);
+  set(s,'BEGIN IMMEDIATE\nwithdraw(replacement)\nrestore(predecesso',
+    'BEGIN IMMEDIATE\nwithdraw(new)\nrestore(previous)\nwrite_events(revision)\nCOMMIT',
+    {left:68,top:478,width:325,height:133},21,C.ink,false,'Consolas');
+  set(s,'Rollback pseudocode. Two audit events share one revision.',
+    'Current Verity interface with a replacement draft. Approval remains explicit.\nRollback writes two audit events at one revision. Historical reads leave live memory unchanged.',
+    {left:66,top:632,width:1100,height:56},21,C.muted);
+  await image(s,'verity-knowledge-editor.jpg','Verity correction library and unapproved Pune ownership replacement draft at restored revision 11');
+
+  s=p.slides.items[11];
+  set(s,'Measured correction workflow','Measured workflow',{left:68,top:177,width:325,height:48},30,C.teal,true);
+  set(s,'Initial memory r9. Ownership replacement r10. Atomic roll',
+    'r9  Initial memory\nr10  Ownership edit\nr11  Atomic rollback\n\n14/14 neural answers\n12 consistency checks',
+    {left:68,top:245,width:325,height:234},27);
+  set(s,'Engineering contribution','Our contribution',{left:68,top:491,width:325,height:43},29,C.ink,true);
+  set(s,'Versioned memory and history, context selection adaptatio',
+    'Governed memory, retrieval,\nindependent data and\nreproducible evaluation.',
+    {left:68,top:545,width:325,height:89},24);
+  set(s,'One fictional display lineage, separate from held out acc',
+    'Recorded model response in the current UI, not fresh inference. One fictional display lineage.\nSeparate from held-out accuracy. Upstream authors trained the model.',
+    {left:66,top:640,width:1100,height:53},21,C.muted);
+  await image(s,'verity-recorded-chat.jpg','Verity displays the actual recorded Chennai three-hop model answer after revision 11 rollback; live worker unavailable');
+
+  const script=await fs.readFile(path.join(ROOT,'docs/presentation/VERITY_SPEAKER_SCRIPT.md'),'utf8');
+  const speech=[...script.matchAll(/^> (.+)$/gm)].map(m=>m[1]);
+  if(speech.length!==12)throw Error('Expected twelve exact speech blocks');
+  const provenance='Screenshots: actual local Verity website, captured 2026-10-30. The screenshot workspace restores saved India acceptance responses, not new inference. The worker status remains unavailable.\nhttps://github.com/ShivamRaghav7/verity/blob/codex/reasonke-integration/output/presentation/screenshots/provenance.json';
+  p.slides.items[5].speakerNotes.text=`Member 3\n\n${speech[5]}\n\nEvidence\n${URL}editguard_chat/store.py\n${URL}docs/CHAT_API.md\n${provenance}`;
+  p.slides.items[11].speakerNotes.text=`Member 5\n\n${speech[11]}\n\nEvidence\n${URL}reports/reasonke/depth-final/india-acceptance.json\n${URL}docs/CONTRIBUTIONS_AND_EVIDENCE.md\n${provenance}`;
+  return {slidesChanged:[6,12],websiteScreenshots:2,modelCalls:0};
 }

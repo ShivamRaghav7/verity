@@ -9,6 +9,8 @@ five-speaker format and uses the new Verity name.
 - `Verity_Technical_Presentation.pptx`: portable backup of the revised live deck.
   Text, three technical tables and two scientific charts remain native and
   editable. The chart data workbooks contain snapshots of the displayed values.
+  Slides 6 and 12 include genuine Verity website screenshots of the correction
+  editor and a recorded three-hop response after rollback.
 - [Verity speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact
   speech, timings, visual cues, handovers, optional demo and contribution map.
 - [Verity team handbook](../../docs/presentation/VERITY_TEAM_HANDBOOK.md): a
@@ -54,6 +56,25 @@ is a separate application check and is not claimed by those validations.
 No training or inference ran to create the revision. The documented evidence
 replay commands and software regression commands were checked on the CPU.
 Protocol-bound source, labels, raw outputs and scoring remain unchanged.
+
+## Website screenshot provenance
+
+The current frontend displays **Verity**. Historical Python package names,
+workspace schemas and frozen receipts retain their EditGuard identities.
+Website captures display approved facts, saved results and actual recorded India
+acceptance responses in the current interface. The isolated workspace comes from
+[scripts/prepare_verity_screenshot_workspace.py](../../scripts/prepare_verity_screenshot_workspace.py),
+which audits the published receipt and preserves response text, timestamps,
+memory revisions and generation provenance. Recorded chat titles identify the
+replay. This creates zero model calls and no additional accuracy observations.
+A displayed saved response does not establish live model readiness. Captions and
+speaker notes must distinguish recorded output from a fresh neural demonstration.
+
+The full-resolution [knowledge editor](screenshots/verity-knowledge-editor.jpg),
+[recorded chat](screenshots/verity-recorded-chat.jpg) and supplementary
+[research results](screenshots/verity-research-results.jpg) captures are available
+separately. [Capture provenance](screenshots/provenance.json) records their hashes,
+receipt source and offline worker status.
 
 ## Earlier introductory version
 

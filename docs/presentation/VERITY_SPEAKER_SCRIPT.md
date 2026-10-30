@@ -2,7 +2,7 @@
 
 Twelve slides for five speakers. Plan for approximately eleven minutes of speech, with an optional two minute demonstration after slide 12. Read the quoted paragraphs aloud. The timing and visual cues are rehearsal instructions. Replace Member 1 through Member 5 with names. Speaking assignments and contribution ownership are separate.
 
-Verity is the current presentation name. Older source modules, evidence receipts and screenshots retain the earlier EditGuard name so their recorded identities remain traceable.
+Verity is the current website and presentation name. Older source modules, evidence receipts and historical screenshots retain the earlier EditGuard name so their recorded identities remain traceable.
 
 ## Speaking order
 
@@ -56,7 +56,7 @@ Verity is the current presentation name. Older source modules, evidence receipts
 
 ### Slide 6 Transactional knowledge lifecycle
 
-**Time:** about 55 seconds. **Visual cue:** identify the canonical key, active version invariant and atomic rollback.
+**Time:** about 55 seconds. **Visual cue:** show the active Bengaluru ownership record beside the unapproved Pune replacement draft, then explain the atomic rollback pseudocode.
 
 > Each fact uses the canonical key entity identifier, relation identifier and scope identifier. A partial unique database index permits at most one active version for that key. To replace a fact, the request must name the current predecessor through supersedes. An unresolved competing approval receives HTTP 409 and leaves memory unchanged. Rollback uses a BEGIN IMMEDIATE transaction: withdraw the replacement, restore its direct predecessor, and write two audit events at one new revision. The whole change commits or rolls back together. Historical reads replay events without changing live memory. These rules protect represented identities. Two contradictory statements under unrelated keys can still require administrator judgement.
 
@@ -100,9 +100,9 @@ Verity is the current presentation name. Older source modules, evidence receipts
 
 ### Slide 12 Application evidence and conclusion
 
-**Time:** about 50 seconds, excluding the optional demonstration. **Visual cue:** show the approval, fresh answer, historical comparison and rollback sequence.
+**Time:** about one minute, excluding the optional demonstration. **Visual cue:** identify the recorded Chennai answer after rollback, then distinguish the application acceptance counts from held-out results.
 
-> The completed website supports chat, explicit approval, conflict resolution, historical comparison and rollback. The finite India application workload produced fourteen correct neural answers and passed twelve provenance and transaction consistency checks. It represents one fictional display lineage and remains separate from held out accuracy. Our contribution is the governed application, versioned memory, retrieval adaptation, independent datasets and reproducible evaluation. The upstream authors supply the learned checkpoint and training. The evidence supports this system's defined short factual contract under the tested conditions. Larger memories, ambiguous scopes, missing evidence and independently reviewed operational language need further validation. We can now demonstrate a correction and its reversal. Thank you.
+> The completed website supports chat, explicit approval, conflict resolution, historical comparison and rollback. The screenshot displays a saved three hop answer after rollback, rather than a fresh generation. The finite India application workload produced fourteen correct neural answers and passed twelve provenance and transaction consistency checks. It represents one fictional display lineage and remains separate from held out accuracy. Our contribution is the governed application, versioned memory, retrieval adaptation, independent datasets and reproducible evaluation. The upstream authors supply the learned checkpoint and training. The evidence supports this system's defined short factual contract under the tested conditions. Larger memories, ambiguous scopes, missing evidence and independently reviewed operational language need further validation. We can now demonstrate a correction and its reversal. Thank you.
 
 ## Optional live demonstration
 
