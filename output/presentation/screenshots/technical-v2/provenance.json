@@ -1,0 +1,61 @@
+{
+  "schema": "verity-technical-screenshots-v2",
+  "captured_local_date": "2026-10-30",
+  "brand": "Verity",
+  "capture_tool": "cua_repl browser screenshot",
+  "processing": "No pixel editing. Original viewport captures are embedded as JPEG bytes.",
+  "source_receipt": "reports\\reasonke\\depth-final\\india-acceptance.json",
+  "source_receipt_sha256": "0b671f5a76786681620a8d57b0d298cb4b54f7ae3f5cede84ab1c9947407a862",
+  "restoration_utility": "scripts/prepare_verity_screenshot_workspace.py",
+  "approved_memory_revision": 11,
+  "worker_ready_during_capture": false,
+  "new_model_calls": 0,
+  "new_benchmark_observations": 0,
+  "images": [
+    {
+      "slide": 24,
+      "file": "../verity-knowledge-editor.jpg",
+      "sha256": "22f331ed474401d8df68bcb3d6df339d722f439982bfe6cf93ebe057de287f20",
+      "pixels": [
+        1265,
+        712
+      ],
+      "notice": "Existing genuine Verity editor capture from 2026-10-30. Unapproved replacement draft against restored r11 memory."
+    },
+    {
+      "slide": 25,
+      "file": "verity-history.jpg",
+      "sha256": "75a2705ce3ff512e77cc4d88f41ae274960a86b17125a5ff494c7f976ba822a9",
+      "pixels": [
+        1265,
+        712
+      ],
+      "notice": "Actual restored approved-source/history view. R10 supersession/publication and r11 withdrawal/restoration events."
+    },
+    {
+      "slide": 26,
+      "file": "verity-recorded-r10.jpg",
+      "sha256": "27b744f9fbdad491ea6400e930d4167434d062ce3b7ea99b976abd4001447185",
+      "pixels": [
+        1280,
+        720
+      ],
+      "notice": "Actual saved generate_edited_three_hop answer Hyderabad at r10, displayed with current restored memory r11."
+    },
+    {
+      "slide": 27,
+      "file": "verity-results-explorer.jpg",
+      "sha256": "3ccb825395232845fc92f4974bafcbc0599552e91847e3f782985ca22d8792a4",
+      "pixels": [
+        1265,
+        712
+      ],
+      "notice": "Actual released original-study R-ALL wrong-answer filter, 25 matching records, first wrong-release answer expanded."
+    }
+  ],
+  "frontend_sources": {
+    "editguard_chat\\static\\index.html": "b27bf49f99f0ec9d7c65a8a353a2e5b86be46dd6da070b3f7ee02942ea94ed96",
+    "editguard_chat\\static\\app.js": "097d6ab57d10053d5eae599236abb37c52919cbe6faa7eee19fc9c106646c19e",
+    "editguard_chat\\static\\style.css": "6f1480a154625ba612ed7dccfeaa9e9a28bdf9681989eb53358aa4040b80a7c8"
+  }
+}

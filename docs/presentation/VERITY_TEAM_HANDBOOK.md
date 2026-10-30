@@ -1,10 +1,12 @@
 # Verity team handbook
 
-This is the technical onboarding and presentation reference for all five team members. It describes the completed system and evidence behind the twelve-slide **Verity** presentation. You can start without knowing machine learning, retrieval or databases. Read Part A for the mechanism, Part B for the evidence, then Part C for operating and defending the project. The separate [speaker script](VERITY_SPEAKER_SCRIPT.md) gives the exact words, timings and handovers.
+This is the technical onboarding and presentation reference for all five team members. It describes the completed system and evidence behind the **Verity** presentation, now expanded to 29 core slides and three optional technical backup slides. You can start without knowing machine learning, retrieval or databases. Read Part A for the mechanism, Part B for the evidence, then Part C for operating and defending the project. The matching [speaker script](VERITY_SPEAKER_SCRIPT.md) gives exact speech, technical notes and handovers. The earlier twelve-slide version remains backed up under `output/presentation/backups/438aa6c-before-technical-rework/`.
 
 **The conclusion:** an approved ownership correction can change a frozen model system's direct and connected answers through versioned external memory. Our controlled experiments measure that behaviour and its costs. The final model was trained upstream. We built the governed application, context-selection adaptations, independent fictional data, matched evaluation and evidence tooling. Selected-context ReasonKE scored every main question correctly in both small controlled tests, while its full-memory condition made errors and its responses were much slower than Qwen's. These are measured boundaries, not unfinished failures to delete.
 
 Verity is the current presentation and website display name. The frontend now shows Verity in its title, navigation and assistant labels. Code modules, workspace schemas, archived reports and frozen evidence retain their historical EditGuard identities. The branding change leaves protocol-bound sources and measured results unchanged. It does not represent a newly trained checkpoint or a new experiment.
+
+The method name is **Reason-KE++**. `ReasonKE`, `ReasonKE_plus` and older R-prefixed condition labels identify the deployed checkpoint and its historical naming. The exact immutable model ID/revision remain authoritative. See the [verified training-method note](REASONKE_PLUS_PLUS_TECHNICAL_NOTES.md) for SFT/PPO, process rewards, paper/code differences and attribution. The supplemental [63-record failure diagnosis](../../output/presentation/analysis/README.md) describes saved nonsuccesses without changing their scores.
 
 ## Reading map
 
@@ -20,18 +22,16 @@ Verity is the current presentation and website display name. The frontend now sh
 
 | Slide | What to understand before speaking | Main reading |
 | --- | --- | --- |
-| 1 Verity | The problem, final method and bounded goal | Part A sections 1 and 2 |
-| 2 Edit contract | Entity, relation, scope, locality and the three-hop example | Part A sections 6 and 7 |
-| 3 Architecture | How a question reaches the model and how evidence is stored | Part A section 4 |
-| 4 Model configuration | Frozen weights, tokens, quantization, compute precision and hardware | Part A section 3 and Part B resources |
-| 5 Context selection | BM25-style ranking, seeds, answer frontier and development selection | Part A section 5 |
-| 6 Transactions | Active-version invariant, conflict, events, revision and atomic rollback | Part A section 6 |
-| 7 Dataset | Lineages, variants, split controls and automated labels | Part B experimental data |
-| 8 Protocol | Matched baselines, request counts, oracle and scoring | Part B fair comparisons and scoring |
-| 9 Original results | Full-memory reversal, preservation versus correctness | Part B original results |
-| 10 Depth results | Per-depth scores, uncertainty and latency | Part B depth results and bootstrap |
-| 11 Failure analysis | Why perfect observed scores are limited and explanations remain unchecked | Part B limits and evidence questions |
-| 12 Product and conclusion | The actual website workflow, acceptance population and our contribution | Part A example, Part B acceptance and Part C |
+| 1–3 Problem and contract | Approved correction, three-hop example, locality and acceptance criteria | Part A sections 1, 6 and 7 |
+| 4–6 Method and learning | Documented selection, Reason-KE++ SFT/PPO and reward design | Part A section 2 and training-method note |
+| 7–10 Architecture and state | Request path, canonical identity, approval and atomic rollback | Part A sections 4 and 6 |
+| 11–12 Retrieval | BM25-style seeds, answer frontier and development selection | Part A section 5 |
+| 13–14 Serving | Prompt/history rules, frozen checkpoint, quantization and extraction | Part A sections 3 and 4 |
+| 15–17 Experiment design | Lineage splits, matched conditions, scoring and paired uncertainty | Part B data, comparisons and scoring |
+| 18–23 Findings | Original/depth results, all failure patterns, support, preservation and latency | Part B results and supplemental failure diagnosis |
+| 24–27 Product | Genuine editor, history, recorded chat and results explorer | Part A example, Part B acceptance and Part C |
+| 28–29 Contribution and conclusion | Concrete artifacts, achieved contract, speed cost and bounded evidence | Part B limits and evidence questions |
+| 30–32 Optional backup | PPO objective, strict mismatches and evidence map | Script backup sections and technical Q&A |
 
 ## Part A The system
 

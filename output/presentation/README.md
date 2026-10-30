@@ -1,85 +1,43 @@
 # Verity technical presentation
 
-The current deck has twelve slides for approximately eleven minutes of speech,
-plus an optional two-minute live demonstration after slide 12. It retains the
-five-speaker format and uses the new Verity name.
+The current deck has **29 core slides and three optional technical backup slides**. Allow approximately **24–26 minutes**, including transitions, for five speakers. The model identifier is `YukinoKaren/ReasonKE_plus`; the method name is **Reason-KE++**. Runtime corrections change approved external memory while checkpoint weights remain frozen.
 
 ## Current materials
 
-- `Verity_Technical_Presentation.pptx`: portable backup of the revised live deck.
-  Text, three technical tables and two scientific charts remain native and
-  editable. The chart data workbooks contain snapshots of the displayed values.
-  Slides 6 and 12 include genuine Verity website screenshots of the correction
-  editor and a recorded three-hop response after rollback.
-- [Verity speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact
-  speech, timings, visual cues, handovers, optional demo and contribution map.
-- [Verity team handbook](../../docs/presentation/VERITY_TEAM_HANDBOOK.md): a
-  standalone technical onboarding reference covering the method, implementation,
-  datasets, scoring, results, limitations, operation, glossary and panel Q&A.
+- `Verity_Technical_Presentation.pptx`: expanded deck with editable architecture/sequence diagrams, tables and five native scientific charts.
+- [Matching five-speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact speech, detailed rehearsal notes, sources, optional backups, technical Q&A and contribution allocation at the end.
+- [Team handbook](../../docs/presentation/VERITY_TEAM_HANDBOOK.md): standalone system, data, findings, operation and limitations.
+- [Reason-KE++ verification](../../docs/presentation/REASONKE_PLUS_PLUS_TECHNICAL_NOTES.md): primary-paper and official-code references for learning and identity.
+- [Failure diagnosis](analysis/README.md), [audit JSON](analysis/failure-audit.json) and [63-record ledger](analysis/failure-ledger.csv): saved nonsuccesses, zero new inference and unchanged frozen scores.
 
-| Speaker | Slides | Focus |
+| Speaker | Core slides | Focus |
 | --- | --- | --- |
-| Member 1 | 1–2 | Problem and edit contract |
-| Member 2 | 3–5 | Architecture, model configuration and retrieval |
-| Member 3 | 6–7 | Transaction invariants and data construction |
-| Member 4 | 8–10 | Experimental protocol and measured findings |
-| Member 5 | 11–12 | Failure analysis, product evidence and conclusion |
+| Member 1 | 1–6 | Problem, contract, method and Reason-KE++ learning |
+| Member 2 | 7–12 | Architecture, transactions and retrieval |
+| Member 3 | 13–18 | Serving, data, protocol, scoring and original findings |
+| Member 4 | 19–23 | Depth results, failure diagnosis, preservation and latency |
+| Member 5 | 24–29 | Product, acceptance, contribution and conclusion |
 
-Speaking assignments are independent of contribution ownership. Confirm each
-member's actual work before assigning names to the contribution allocation.
+Backup slides cover PPO, strict mismatch cases and evidence provenance. Speaking roles are independent of contribution ownership. Confirm each person's actual implementation/review/reproduction before attaching names.
 
 ## Technical coverage
 
-1. Verity and the bounded goal
-2. The edit contract and three-hop dependency
-3. Inference architecture and evidence boundary
-4. Frozen checkpoints, quantization and measured hardware
-5. Two-stage versus iterative answer-frontier retrieval
-6. Canonical keys, conflict rejection and atomic rollback
-7. Lineage-first data splits and label limitations
-8. Frozen comparisons, oracle diagnostics and endorsed-answer scoring
-9. Original study, full-memory failures and locality measures
-10. Depth results, paired uncertainty and latency
-11. Failure analysis and the limits of 100%
-12. Website acceptance and the project's contribution
+The revision separates the published SFT/PPO design from runtime editing, traces the actual request/transaction path and links aggregate results to individual failures. Graphs show development support recall, original outcome composition, depth accuracy, locality preservation and latency. Controlled populations, automated review, repeated wording and the perfect score's limits remain explicit. No new training, inference, prompt tuning or test rescoring was performed for this deck.
 
-## Authoring and evidence
+## Genuine website views
 
-`../../scripts/build_verity_presentation_session.mjs` exports
-`build(presentation)`. Invoke it inside an Artifact Session callback on an empty
-presentation. It reads the Markdown script and attaches the speech and evidence
-references to every slide's notes. The live slides were rendered and inspected
-before exporting the portable backup. Package checks additionally verify the
-native chart values against their workbook snapshots. Native PowerPoint opening
-is a separate application check and is not claimed by those validations.
+Slides 24–27 show the editor, source/history view, recorded three-hop chat and saved-results explorer. [Capture provenance](screenshots/technical-v2/provenance.json) records original JPEG hashes, slide mapping and audited receipt source. The worker was unavailable during capture. Saved responses and restored state are labelled as recorded evidence.
 
-No training or inference ran to create the revision. The documented evidence
-replay commands and software regression commands were checked on the CPU.
-Protocol-bound source, labels, raw outputs and scoring remain unchanged.
+[The replay utility](../../scripts/prepare_verity_screenshot_workspace.py) audits the actual India receipt and restores message text, timestamps, revisions, identities and generation provenance into a fresh isolated workspace. It creates no extra accuracy observations.
 
-## Website screenshot provenance
+## Authoring and verification
 
-The current frontend displays **Verity**. Historical Python package names,
-workspace schemas and frozen receipts retain their EditGuard identities.
-Website captures display approved facts, saved results and actual recorded India
-acceptance responses in the current interface. The isolated workspace comes from
-[scripts/prepare_verity_screenshot_workspace.py](../../scripts/prepare_verity_screenshot_workspace.py),
-which audits the published receipt and preserves response text, timestamps,
-memory revisions and generation provenance. Recorded chat titles identify the
-replay. This creates zero model calls and no additional accuracy observations.
-A displayed saved response does not establish live model readiness. Captions and
-speaker notes must distinguish recorded output from a fresh neural demonstration.
+[Canonical slide content](../../docs/presentation/verity-technical-content.json) drives speaker notes and the Markdown script. Run `python -m scripts.render_verity_speaker_script` to regenerate the script. [The native builder](../../scripts/build_verity_technical.mjs) exports `build(presentation)` for the bundled `@oai/artifact-tool` runtime and reads released metrics directly. This authoring dependency is separate from the lightweight application environment.
 
-The full-resolution [knowledge editor](screenshots/verity-knowledge-editor.jpg),
-[recorded chat](screenshots/verity-recorded-chat.jpg) and supplementary
-[research results](screenshots/verity-research-results.jpg) captures are available
-separately. [Capture provenance](screenshots/provenance.json) records their hashes,
-receipt source and offline worker status.
+Every slide is rendered and checked for readability, directions, data, images and note/script agreement. Native chart workbooks contain numeric snapshots derived from the receipts, rounded to twelve significant digits for Excel compatibility. Displayed labels use fewer digits. Original measurements remain unchanged. Package/import checks alone do not establish target-application rendering; the manifest distinguishes them from actual PowerPoint inspection.
 
-## Earlier introductory version
+Reproduce failure analysis with `python -m scripts.analyze_presentation_failures --output NEW_DIRECTORY`. Existing destinations are refused. Frozen sources, raw outputs and protocols stay intact. The original and depth studies remain separate populations.
 
-`EditGuard_Presentation.pptx`, `EditGuard_Speaker_Script.docx` and
-`presentation-manifest.json` preserve the earlier ten-slide introductory package.
-Use the Verity material above for the technical presentation. Existing reports,
-source modules and saved UI screenshots can retain the historical EditGuard
-name without changing their measured result or protocol identity.
+## Preserved versions
+
+The preceding twelve-slide package is in [backups/438aa6c-before-technical-rework/](backups/438aa6c-before-technical-rework/) with byte-for-byte copies and a hash manifest. The earlier `EditGuard_Presentation.pptx` remains. The user-edited historical Word script has not been replaced.
