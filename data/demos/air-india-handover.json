@@ -1,0 +1,31 @@
+{
+  "schema": "verity-sourced-demonstration-v1",
+  "id": "air-india-handover-2022",
+  "title": "Air India: the January 2022 handover",
+  "verified_on": "2026-10-31",
+  "purpose": "Sourced website demonstration, separate from the controlled benchmark datasets",
+  "notice": "The selected ownership snapshot advances from 20 December 2021 to the completed handover on 27 January 2022. It is a historical example, not a statement of today's ownership. Rollback restores the local reference snapshot, not the real-world event.",
+  "sources": {
+    "before": {"title": "CCI approves Talace acquisition; Air India is government-owned", "date": "2021-12-20", "url": "https://www.pib.gov.in/pressreleasepage.aspx?lang=2&prid=1783550&reg=48"},
+    "handover": {"title": "Air India strategic disinvestment completed", "date": "2022-01-27", "url": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1792950&lang=2&reg=48"},
+    "tata": {"title": "Tata Group Onboards Air India", "date": "2022-01-27", "url": "https://www.tata.com/newsroom/business/air-india-handover"},
+    "contact": {"title": "Tata group official contact: Tata Sons, Bombay House, Mumbai", "accessed": "2026-10-31", "url": "https://www.tata.com/contact-us"},
+    "later_scope": {"title": "Air India completes merger with Vistara", "date": "2024-11-12", "url": "https://www.tata.com/newsroom/business/air-india-vistara-merger-completion"}
+  },
+  "facts": [
+    {"key": "selected_owner", "question": "Who owns Air India in the selected reference snapshot?", "answer": "Government of India", "scope": "Selected reference snapshot: 20 December 2021, before the January 2022 handover", "source_id": "before", "identity": {"entity_id": "air-india", "relation_id": "owner", "scope_id": "selected-reference-snapshot", "aliases": ["Air India Limited"]}},
+    {"key": "talace_parent", "question": "Which company is the parent of Talace Private Limited, Air India's January 2022 buyer?", "answer": "Tata Sons Private Limited", "scope": "Talace parent in the 27 January 2022 handover", "source_id": "handover", "identity": {"entity_id": "talace", "relation_id": "parent_company", "scope_id": "handover-2022-01-27", "aliases": ["Talace Pvt Ltd"]}},
+    {"key": "tata_city", "question": "Which city does the official Tata contact page list for Tata Sons Private Limited?", "answer": "Mumbai", "scope": "Tata Sons official contact page, checked 31 October 2026", "source_id": "contact", "identity": {"entity_id": "tata-sons", "relation_id": "contact_city", "scope_id": "official-contact-2026-10-31", "aliases": ["Tata Sons"]}},
+    {"key": "historical_owner", "question": "Who owned Air India before the January 2022 handover?", "answer": "Government of India", "scope": "Historical government ownership, as reported on 20 December 2021", "source_id": "before", "identity": {"entity_id": "air-india", "relation_id": "owner", "scope_id": "before-2022-handover", "aliases": ["Air India Limited"]}},
+    {"key": "handover_date", "question": "On what date was Air India's strategic disinvestment completed?", "answer": "27 January 2022", "scope": "Completed historical handover event", "source_id": "handover", "identity": {"entity_id": "air-india-handover", "relation_id": "completion_date", "scope_id": "historical-event", "aliases": []}}
+  ],
+  "replacement": {"question": "Who owns Air India in the selected reference snapshot?", "answer": "Talace Private Limited", "scope": "Selected reference snapshot: 27 January 2022, immediately after the completed handover", "source_id": "handover", "identity": {"entity_id": "air-india", "relation_id": "owner", "scope_id": "selected-reference-snapshot", "aliases": ["Air India Limited"]}},
+  "questions": {
+    "direct": "Who owns Air India in the selected reference snapshot?",
+    "connected": "Which company is the parent of Air India's owner in the selected reference snapshot? Give only the company name.",
+    "three_hop": "Which city does the official Tata contact page list for the parent of Air India's owner in the selected reference snapshot? Give only the city.",
+    "historical_control": "Who owned Air India before the January 2022 handover?",
+    "unchanged_control": "Which city does the official Tata contact page list for Tata Sons Private Limited?"
+  },
+  "expected_after": {"direct": ["Talace Private Limited", "Talace Pvt Ltd", "Talace Pvt. Ltd."], "connected": ["Tata Sons Private Limited", "Tata Sons", "Tata Sons Pvt Ltd"], "three_hop": ["Mumbai"], "historical_control": ["Government of India", "Indian government"], "unchanged_control": ["Mumbai"]}
+}
