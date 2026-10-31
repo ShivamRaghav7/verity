@@ -1,0 +1,59 @@
+{
+  "schema": "verity-sourced-website-captures-v1",
+  "captured_on": "2026-10-31",
+  "site": "Verity Chat & Knowledge",
+  "fixture": "data/demos/air-india-handover.json",
+  "source_commit": "e5aba47",
+  "receipt": "output/presentation/midproject/air-india-demo-receipt.json",
+  "receipt_sha256": "f6fa5ee9c2cb8a9a24f837535bfb852e37d2961d7b53b4354d243e19ead8fa98",
+  "model": {
+    "name": "YukinoKaren/ReasonKE_plus",
+    "revision": "ceaedc2ae7c8fed6257953587d991ce550db6106",
+    "quantization": "NF4 double quantization, FP16 compute",
+    "hardware": {
+      "name": "Tesla T4",
+      "total_vram_bytes": 15637086208,
+      "compute_capability": [
+        7,
+        5
+      ],
+      "load_peak_allocated_bytes": 7071596544,
+      "load_peak_reserved_bytes": 7140802560,
+      "torch": "2.11.0+cu130",
+      "cuda": "13.0",
+      "python": "3.13.16",
+      "packages": {
+        "transformers": "4.56.1",
+        "accelerate": "1.10.1",
+        "bitsandbytes": "0.48.1"
+      }
+    }
+  },
+  "model_calls": 7,
+  "target_matches": 7,
+  "benchmark_observations": 0,
+  "views": [
+    {
+      "file": "output/presentation/midproject/screenshots/air-india-editor.jpg",
+      "sha256": "ddadbdddb57a9a9ae412c67de53fe2bedf21d81e44f0be83c77fadce171c8093",
+      "captured_utc": "2026-10-31T09:31:30.728315+00:00",
+      "kind": "unaltered genuine website screenshot",
+      "slide": 6
+    },
+    {
+      "file": "output/presentation/midproject/screenshots/air-india-chat.jpg",
+      "sha256": "db1a65e991735614751e92a12f3f81c9bdf1a64eaa29e58ed5e28d07e8c68be4",
+      "captured_utc": "2026-10-31T09:40:43.062164+00:00",
+      "kind": "unaltered genuine website screenshot",
+      "slide": 7
+    },
+    {
+      "file": "output/presentation/midproject/screenshots/air-india-history.jpg",
+      "sha256": "60b2224e82a55f95b4b5c244c1b3e92c881135b9cbc9b01dc64d25b4eed2354b",
+      "captured_utc": "2026-10-31T09:41:36.063273+00:00",
+      "kind": "unaltered genuine website screenshot",
+      "slide": 8
+    }
+  ],
+  "notice": "Recorded sourced historical Air India demonstration, separate from controlled fictional benchmark. Editor shows a draft; API workflow performs approval. Other views show actual persisted model output and audit state. Original screenshot pixels preserved."
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "verity-midproject-presentation-v1",
+  "created_utc": "2026-10-31T09:52:53.108469+00:00",
+  "source_backup_commit": "72ff983",
+  "demo_source_commit": "e5aba47",
+  "delivery_kind": "local_pptx",
+  "slides": 13,
+  "total_seconds": 600,
+  "speakers": 5,
+  "seconds_per_speaker": 120,
+  "native_slide_advance_timings": true,
+  "spoken_words": 970,
+  "current_architecture": "Governed retrieval augmented generation with frozen generators",
+  "next_milestone": "Planned matched SFT/PPO adaptation and broader fresh evaluation",
+  "training_executed_for_this_revision": false,
+  "new_benchmark_observations": 0,
+  "new_sourced_demonstration_model_calls": 7,
+  "new_sourced_demonstration_target_matches": 7,
+  "real_example": "Dated Air India handover; separate official contact-city fact",
+  "benchmark_population": "Controlled fictional operations fact worlds; original/depth studies remain separate",
+  "recorded_demonstrations_labelled": true,
+  "native_charts": [
+    10,
+    11
+  ],
+  "native_table_slides": [
+    9
+  ],
+  "website_screenshot_slides": [
+    6,
+    7,
+    8
+  ],
+  "official_photo_slide": 2,
+  "all_13_final_renders_visually_reviewed": true,
+  "render_review": "Full-size Artifact Tool renders inspected; all 13 final-package renders byte-identical to inspected candidate renders",
+  "native_powerpoint_open_verified": true,
+  "native_powerpoint_visually_checked_slides": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "native_powerpoint_repair_prompt_observed": false,
+  "native_powerpoint_check_scope": "Representative native charts, table and recorded website slide. Every slide separately rendered and inspected with Artifact Tool. No ten-minute real-time stopwatch rehearsal claimed.",
+  "regression_tests": {
+    "count": 40,
+    "status": "passed",
+    "modules": [
+      "tests.test_chat_store",
+      "tests.test_chat_workspace",
+      "tests.test_chat_iterative",
+      "tests.test_depth_retrieval"
+    ]
+  },
+  "backup_folder": "output/presentation/backups/72ff983-before-midproject",
+  "verification": {
+    "status": "passed",
+    "slides": 13,
+    "seconds": 600,
+    "speakers": 5,
+    "notes_match_script": true,
+    "embedded_screenshots_match_original_bytes": true,
+    "chart_values_match_results": true,
+    "verified_backup_files": 9,
+    "unchanged_released_evidence_files": 55,
+    "documentation_with_checkout_newlines_normalized_for_hash": [
+      "docs/CONTRIBUTIONS_AND_EVIDENCE.md",
+      "docs/CURRENT_ARCHITECTURE.md"
+    ],
+    "frozen_source_files_verified": 20,
+    "demo_generations": 7,
+    "demo_target_matches": 7,
+    "validated_demo_snapshots": 4,
+    "new_benchmark_observations": 0,
+    "pptx_sha256": "7da707b0b2a0e2c25f7dfe3eedd18c4daf5257b2e1ab3d7fc25da32263d50738"
+  },
+  "files": {
+    "data/demos/air-india-handover.json": "5336b4cd4a518de9542c39ad6c1bb747a0fd460043734dbd45d048fa38948bb9",
+    "docs/presentation/VERITY_MIDPROJECT_RESEARCH_ROADMAP.md": "015eaee0d03c51bf47034b5c93325e573c5d176ea71ff2d24a7566656eedf41b",
+    "docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md": "24a1835da4cf8cdaae929db86631f7d141aa621586f29fba765cfff99ac9847c",
+    "docs/presentation/VERITY_SPEAKER_SCRIPT.md": "d3b3e01d4ae58bbfc72f3d7684ca40ee414f075f94629be5379b0b0f4dec9087",
+    "docs/presentation/verity-midproject-content.json": "f02a6bf99b3ff52793b3243d9c205778b37629080d5904e2dbf6cbe96fc09ff8",
+    "output/presentation/README.md": "68c7064ff06bfe95bdfb9aebc29de894c432e38799e5f46e06cf3c68e78808a3",
+    "output/presentation/Verity_Mid_Project_Presentation.pptx": "7da707b0b2a0e2c25f7dfe3eedd18c4daf5257b2e1ab3d7fc25da32263d50738",
+    "output/presentation/midproject/air-india-demo-receipt.json": "f6fa5ee9c2cb8a9a24f837535bfb852e37d2961d7b53b4354d243e19ead8fa98",
+    "output/presentation/midproject/assets/air-india-handover-pib.jpg": "41beb9b3e85546f4d2e4fc657764b567f3d142ddec58c46e5d879be1849d5f39",
+    "output/presentation/midproject/assets/photo-provenance.json": "c0aba241718872d042789585554e55c0f513f071a59528432365aac05071db2d",
+    "output/presentation/midproject/screenshots/air-india-chat.jpg": "db1a65e991735614751e92a12f3f81c9bdf1a64eaa29e58ed5e28d07e8c68be4",
+    "output/presentation/midproject/screenshots/air-india-editor.jpg": "ddadbdddb57a9a9ae412c67de53fe2bedf21d81e44f0be83c77fadce171c8093",
+    "output/presentation/midproject/screenshots/air-india-history.jpg": "60b2224e82a55f95b4b5c244c1b3e92c881135b9cbc9b01dc64d25b4eed2354b",
+    "output/presentation/midproject/screenshots/provenance.json": "2dc1aef368e9001e065ffdf2247d44f7a6e2a38334f40dbbdf090b65f99054c4",
+    "scripts/build_verity_midproject.mjs": "ae842ff7175f9bc756ad5ecf4514993680cb00a082a2b45562edcce7958fdb19",
+    "scripts/prepare_sourced_demo.py": "b878001b742d513cbc3fc2812a1da86a21318f5010cf2bd4a4dcf2c1f55fe725",
+    "scripts/render_verity_midproject_script.py": "92459bc2ae51b97f0f2aee3bb4c92ed8c8270bb4d7ba7b84be6e32b2b0f7ff96",
+    "scripts/run_sourced_demo.py": "1b0eaeacde2a94822c86c31126c3b10b666bf38be8539e5e3fe1bf8da953b3be",
+    "scripts/time_verity_midproject.py": "1aa54e5c528443c2ab8298ffe11e2f1828d3f87bec427a41c0cc2769e71e9516",
+    "scripts/verify_verity_midproject.py": "cb5b76d01be67cc128b66ed14052e09b43776b0fae5cbc12b9b322088514ebca"
+  },
+  "preserved_evidence_reference": "output/presentation/verity-technical-manifest.json#evidence_sources",
+  "frozen_scores_changed": false,
+  "package_integrity_passed": true,
+  "chart_workbook_checks_passed": true,
+  "first_party_import_passed": true,
+  "claim_boundary": "Presentation and demonstration revision. No new model training, benchmark inference or final rescoring. Demonstration matches are selected acceptance cases, not held-out accuracy."
+}

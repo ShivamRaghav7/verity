@@ -1,0 +1,61 @@
+{
+  "source_commit": "72ff983f953830e40bb7fd9505add6f9650ea57c",
+  "created_utc": "2026-10-31T09:07:02.028170+00:00",
+  "files": [
+    {
+      "original_path": "output/presentation/Verity_Technical_Presentation.pptx",
+      "backup_file": "Verity_Technical_Presentation.pptx",
+      "sha256": "b455cc02adf13bac8e3e15b4beb3bc0b3c071edc5b385837065eba0fb3c54e14",
+      "basis": "HEAD blob; clean tracked PowerPoint file open in desktop"
+    },
+    {
+      "original_path": "docs/presentation/VERITY_SPEAKER_SCRIPT.md",
+      "backup_file": "VERITY_SPEAKER_SCRIPT.md",
+      "sha256": "543f89b152ede773b7261aca264081a45bf3a439f09c7f97c910586b38e160ac",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md",
+      "backup_file": "VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md",
+      "sha256": "abeb97682fc1c5fd9d7c0da2e793ab98bc7986f50d303ad818ad4960641a44d8",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "docs/presentation/VERITY_TEAM_HANDBOOK.md",
+      "backup_file": "VERITY_TEAM_HANDBOOK.md",
+      "sha256": "20dc3850cae645d6bfa21ba86cbbe5f1013ef15da3aa01f67ab64d72114001eb",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "docs/presentation/verity-technical-content.json",
+      "backup_file": "verity-technical-content.json",
+      "sha256": "22f422d2bf9f6363f58673a851e0ca0002bedaf00e1bb8be118575e8725c0311",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "output/presentation/verity-technical-manifest.json",
+      "backup_file": "verity-technical-manifest.json",
+      "sha256": "0080f2da30caf186c4397af19d5854870a94f56dc422f6beb67be73e8de89440",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "output/presentation/README.md",
+      "backup_file": "README.md",
+      "sha256": "d6638954638ed52e0c17e8c582dcb390749b91af3467d88d99803ce1e9e48529",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "scripts/build_verity_technical.mjs",
+      "backup_file": "build_verity_technical.mjs",
+      "sha256": "ff2cfbdeb13bb430500a2550c37b07a017bb15c217408918e6daee409cb34165",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "scripts/render_verity_speaker_script.py",
+      "backup_file": "render_verity_speaker_script.py",
+      "sha256": "d9c0084878666030400c03353e3e25196d3c7fba21122077060cbd92aa027345",
+      "basis": "workspace bytes"
+    }
+  ],
+  "user_modified_historical_docx": "Left untouched in its existing location"
+}

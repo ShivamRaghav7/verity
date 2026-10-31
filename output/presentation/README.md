@@ -1,43 +1,53 @@
-# Verity technical presentation
+# Verity mid-project presentation
 
-The current deck has **29 core slides and three optional technical backup slides**. Allow approximately **24–26 minutes**, including transitions, for five speakers. The model identifier is `YukinoKaren/ReasonKE_plus`; the method name is **Reason-KE++**. Runtime corrections change approved external memory while checkpoint weights remain frozen.
+Current deliverable: **13 slides, exactly 10:00, five two-minute speaking slots.**
 
-## Current materials
+- [Presentation](Verity_Mid_Project_Presentation.pptx): editable diagrams, one table, two native charts, genuine sourced website captures and detailed notes.
+- [Timed five-speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact speech, clock marks, rehearsal cues, Q&A and evidence-based responsibility allocation.
+- [Updated study guide](../../docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md): explains every slide, mechanisms, choices, findings and likely panel questions.
+- [Next research milestone](../../docs/presentation/VERITY_MIDPROJECT_RESEARCH_ROADMAP.md): reviewed data, profiled SFT/PPO adaptation, matched training-stage comparisons and fresh broader evaluation.
+- [Release manifest](midproject/manifest.json): package, assets, evidence hashes and verification boundaries.
 
-- `Verity_Technical_Presentation.pptx`: expanded deck with editable architecture/sequence diagrams, tables and five native scientific charts.
-- [Matching five-speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact speech, detailed rehearsal notes, sources, optional backups, technical Q&A and contribution allocation at the end.
-- [Team handbook](../../docs/presentation/VERITY_TEAM_HANDBOOK.md): standalone system, data, findings, operation and limitations.
-- [Reason-KE++ verification](../../docs/presentation/REASONKE_PLUS_PLUS_TECHNICAL_NOTES.md): primary-paper and official-code references for learning and identity.
-- [Failure diagnosis](analysis/README.md), [audit JSON](analysis/failure-audit.json) and [63-record ledger](analysis/failure-ledger.csv): saved nonsuccesses, zero new inference and unchanged frozen scores.
+## Story and timing
 
-| Speaker | Core slides | Focus |
-| --- | --- | --- |
-| Member 1 | 1–6 | Problem, contract, method and Reason-KE++ learning |
-| Member 2 | 7–12 | Architecture, transactions and retrieval |
-| Member 3 | 13–18 | Serving, data, protocol, scoring and original findings |
-| Member 4 | 19–23 | Depth results, failure diagnosis, preservation and latency |
-| Member 5 | 24–29 | Product, acceptance, contribution and conclusion |
+| Speaker | Slides | Clock | Focus |
+| --- | --- | --- | --- |
+| Member 1 | 1–2 | 00:00–02:00 | Objective and verified Air India handover example |
+| Member 2 | 3–4 | 02:00–04:00 | Implemented architecture and connected retrieval |
+| Member 3 | 5–8 | 04:00–06:00 | Approval, history, conflicts, rollback and recorded walkthrough |
+| Member 4 | 9–11 | 06:00–08:00 | Controlled experiments, measured findings and latency |
+| Member 5 | 12–13 | 08:00–10:00 | Engineering conclusion and next milestone |
 
-Backup slides cover PPO, strict mismatch cases and evidence provenance. Speaking roles are independent of contribution ownership. Confirm each person's actual implementation/review/reproduction before attaching names.
+PowerPoint slide advance timings total 600 seconds and match the script. Use the recorded walkthrough within the clock; fresh GPU inference is optional after the talk. Rehearse with a timer. PowerPoint's Use Timings setting controls whether the native schedule is followed.
 
-## Technical coverage
+The completed architecture is governed retrieval augmented generation with frozen generators. The reused `YukinoKaren/ReasonKE_plus` identity is stated in configuration notes. Model-training adaptation is the next milestone. The main deck omits the detailed upstream training tutorial.
 
-The revision separates the published SFT/PPO design from runtime editing, traces the actual request/transaction path and links aggregate results to individual failures. Graphs show development support recall, original outcome composition, depth accuracy, locality preservation and latency. Controlled populations, automated review, repeated wording and the perfect score's limits remain explicit. No new training, inference, prompt tuning or test rescoring was performed for this deck.
+## Sourced real website demonstration
 
-## Genuine website views
+The real example concerns the **27 January 2022 Air India handover**, with earlier government ownership retained in historical scope. The selected local snapshot advances from December 2021 to the handover. The Tata Sons contact-city record is from its official page checked on 31 October 2026; it is not a claim about a historical 2022 office. Government and Tata sources are recorded in [the fixture](../../data/demos/air-india-handover.json).
 
-Slides 24–27 show the editor, source/history view, recorded three-hop chat and saved-results explorer. [Capture provenance](screenshots/technical-v2/provenance.json) records original JPEG hashes, slide mapping and audited receipt source. The worker was unavailable during capture. Saved responses and restored state are labelled as recorded evidence.
+A fresh isolated workspace ran seven actual model requests through the application API on a Colab T4. All seven matched the declared demonstration targets. A competing publication returned HTTP 409 without changing the revision; rollback restored the predecessor; the handover was reapplied for the active demo. These are selected product acceptance cases, **not a new held-out real-world accuracy benchmark**.
 
-[The replay utility](../../scripts/prepare_verity_screenshot_workspace.py) audits the actual India receipt and restores message text, timestamps, revisions, identities and generation provenance into a fresh isolated workspace. It creates no extra accuracy observations.
+- [Complete receipt and exported state snapshots](midproject/air-india-demo-receipt.json).
+- [Original screenshot provenance](midproject/screenshots/provenance.json).
+- [Official photo provenance](midproject/assets/photo-provenance.json).
+- Preparation: `python -m scripts.prepare_sourced_demo --output NEW_WORKSPACE`.
+- Finite recording: `python -m scripts.run_sourced_demo --base-url LOCAL_WEBSITE --manifest NEW_WORKSPACE/sourced-demo-manifest.json --output NEW_RECEIPT.json`.
 
-## Authoring and verification
+The editor screenshot is a prepared draft; the recorded API workflow performs approval. Chat and history show actual persisted generation and events. Original screenshot pixels remain unaltered; slide annotations are separate editable text. Stored responses are labelled recorded and are not described as fresh generation.
 
-[Canonical slide content](../../docs/presentation/verity-technical-content.json) drives speaker notes and the Markdown script. Run `python -m scripts.render_verity_speaker_script` to regenerate the script. [The native builder](../../scripts/build_verity_technical.mjs) exports `build(presentation)` for the bundled `@oai/artifact-tool` runtime and reads released metrics directly. This authoring dependency is separate from the lightweight application environment.
+## Experimental evidence
 
-Every slide is rendered and checked for readability, directions, data, images and note/script agreement. Native chart workbooks contain numeric snapshots derived from the receipts, rounded to twelve significant digits for Excel compatibility. Displayed labels use fewer digits. Original measurements remain unchanged. Package/import checks alone do not establish target-application rendering; the manifest distinguishes them from actual PowerPoint inspection.
+The unchanged original and depth studies use controlled fictional operations handbooks. Main conditions have 256 assigned questions each. The deck compares actual generator/context configurations and preserves abstentions in the denominator. Full-memory ReasonKE_plus failures and Qwen abstentions remain visible. The perfect retrieved scores are scoped to small controlled worlds and wording.
 
-Reproduce failure analysis with `python -m scripts.analyze_presentation_failures --output NEW_DIRECTORY`. Existing destinations are refused. Frozen sources, raw outputs and protocols stay intact. The original and depth studies remain separate populations.
+[Failure diagnosis](analysis/README.md), [audit JSON](analysis/failure-audit.json), and [63-record ledger](analysis/failure-ledger.csv) retain the individual nonsuccesses. No benchmark inference, test rescoring or training was performed for this revision. The seven sourced demonstration calls are separate.
+
+## Authoring and checks
+
+[Canonical content](../../docs/presentation/verity-midproject-content.json) drives speaker notes and script. Regenerate the script with `python -m scripts.render_verity_midproject_script`. [The native builder](../../scripts/build_verity_midproject.mjs) exports `build(presentation)` for the bundled first-party Artifact Tool runtime and reads released metrics directly. [The timing utility](../../scripts/time_verity_midproject.py) applies the declared native PowerPoint schedule to a fresh exported package.
+
+Charts have embedded editable numeric workbook snapshots derived from unchanged receipts. Every slide is rendered and visually reviewed. Structural, font, geometry, chart/workbook and first-party import checks are recorded separately from actual PowerPoint inspection. Rendering/structure checks alone do not prove factual validity.
 
 ## Preserved versions
 
-The preceding twelve-slide package is in [backups/438aa6c-before-technical-rework/](backups/438aa6c-before-technical-rework/) with byte-for-byte copies and a hash manifest. The earlier `EditGuard_Presentation.pptx` remains. The user-edited historical Word script has not been replaced.
+[The immediate backup](backups/72ff983-before-midproject/) contains the old technical deck, content, script, guide, handbook, builders and hash manifest. `Verity_Technical_Presentation.pptx` also remains at its original path as an older edition. Its upstream tutorial is not part of the current mid-project deck. Earlier backups remain in place. The user-edited historical Word script was not replaced.
