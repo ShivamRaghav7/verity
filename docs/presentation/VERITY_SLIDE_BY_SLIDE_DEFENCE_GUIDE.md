@@ -1,308 +1,716 @@
-# Verity: slide-by-slide study and defence guide
+# Verity: technical slide-by-slide study and defence guide
 
-Companion to **Verity_Mid_Project_Presentation.pptx**, 31 October 2026. This guide follows the thirteen-slide, ten-minute mid-project deck. The preceding deck and guide are preserved in `output/presentation/backups/72ff983-before-midproject/`.
+Matches [the technical mid-project presentation](../../output/presentation/Verity_Technical_Mid_Project_Presentation.pptx), 31 October 2026: **16 timed main slides plus 4 hidden Q&A backups**. Previous editions are preserved in `output/presentation/backups/c9d4713-before-technical-expansion/`.
 
-Read this for understanding; rehearse from [the timed five-speaker script](VERITY_SPEAKER_SCRIPT.md). Presentation roles are independent of contribution ownership.
+Read this to understand the system and findings. Rehearse from [the timed script](VERITY_SPEAKER_SCRIPT.md). Speaking roles are independent of contribution ownership.
 
-## Understand the project first
+## The central explanation
 
-An AI assistant can answer from outdated or inappropriate reference information. Verity lets an operator publish approved facts, retrieve relevant records for questions, generate answers and inspect the information supplied. The system keeps versions, sources, scopes and audit events. A correction can be superseded or rolled back without rewriting old chat messages.
+The current implementation is governed retrieval augmented generation with frozen alternative generators. An operator approves versioned reference facts. A deterministic selector supplies bounded context, and a reused neural checkpoint generates an answer. The application retains revision, fact and model evidence. Approval changes memory, not weights. The technical contribution is the maintenance system, retrieval adaptation, datasets, controlled comparisons, reproducible ledgers, failure diagnosis and product delivery. Our own matched SFT/PPO adaptation is the next milestone.
 
-The current implementation is **a governed retrieval-augmented assistant evaluated with two frozen generators**. One is the author-published `YukinoKaren/ReasonKE_plus`; the other is `Qwen/Qwen2.5-7B-Instruct`. An approval changes external memory, not model weights. Our contribution is the integrated application, maintenance rules, retrieval adaptation, datasets, evaluation and diagnosis. Our own SFT/PPO adaptation is the next milestone. These fixed-system results are not a causal evaluation of training performed by our team.
+The initial R0 benchmark reference uses the **initial full handbook**, as confirmed in the runner. It is distinct from the application’s optional empty-memory comparison. This corrects the preceding short guide’s R0 label. Updated retrieved and full-memory arms receive current facts. No benchmark evidence or scoring has changed.
 
-A panel member may call the mechanism RAG. Answer directly, then explain the concrete governance and connected-question mechanisms. External-memory editing and parametric weight editing solve related maintenance problems through different mechanisms. The current system does not secretly rewrite parameters.
+## Presentation map
 
-A website remains a good way to publish facts. The project is useful where an assistant already answers natural-language questions spanning changing records. It does not assume every company needs a chatbot or that a database lookup requires a language model.
-
-## The ten-minute delivery
-
-| Member | Slides | Clock | Focus |
+| Member | Clock | Main slides | Focus |
 |---|---|---|---|
-| 1 | 1–2 | 00:00–02:00 | Objective and sourced Air India example |
-| 2 | 3–4 | 02:00–04:00 | Architecture and connected retrieval |
-| 3 | 5–8 | 04:00–06:00 | Lifecycle and recorded website walkthrough |
-| 4 | 9–11 | 06:00–08:00 | Experimental design, findings and latency |
-| 5 | 12–13 | 08:00–10:00 | Contribution, conclusion and training roadmap |
+| 1 | 00:00–02:00 | 1–3 | Objective and request architecture |
+| 2 | 02:00–04:00 | 4–6 | Transactions, retrieval and development finding |
+| 3 | 04:00–06:00 | 7–9 | Data, matched conditions and original outcomes |
+| 4 | 06:00–08:00 | 10–12 | Depth, failure diagnosis and preservation |
+| 5 | 08:00–10:00 | 13–16 | Latency, product, conclusion and roadmap |
 
-The walkthrough uses genuine recorded website states. It does not wait for GPU inference inside the ten-minute clock. Opening a stored conversation is replay; sending a new question causes fresh generation. An optional live demonstration can follow the timed talk.
+The Air India introduction supplies relatability. It is not the dataset or the main technical narrative. The six scientific charts isolate retrieval support, original outcome composition, depth, failure associations, locality and latency. Hidden backups 17–20 support questions after 10:00.
 
 ## Slide 1 — Verity
 
-**What:** controlled factual updates with source, history and reversal. An approved change should transfer to direct and connected questions while preserving other properties and historical scopes.
+**Role:** Main presentation.
 
-**Why:** retraining a large model after every fact changes is costly. Supplying approved reference records is practical, but introduces retrieval, association and state-management problems. Verity studies and exposes these components.
+### What the slide says
 
-**How:** keep approved records outside the model; select bounded context; generate an answer; persist the response together with the supplied facts and revision.
+Verity studies how an assistant can use approved factual updates across connected questions while keeping its knowledge state inspectable and reversible. We will explain the implementation, the experiments and six findings, then define the next training milestone.
 
-There are two acceptance layers. Application checks test explicit approval, conflict rejection, supersession, transaction consistency, historical replay and rollback. Model evaluation measures correct final answers on assigned direct, paraphrased, connected and out-of-scope questions. Passing a database test is not model accuracy. A correct generated answer does not prove a transaction is atomic.
+### How it works and what the numbers mean
 
-**Questions to expect**
+Current system: governed external memory, bounded deterministic retrieval and alternative frozen generators. Corrections alter approved memory; they do not update the deployed weights. The reused ReasonKE_plus checkpoint is an upstream model, while our contribution is the maintenance, retrieval, application and evaluation system. Technical depth comes from implemented mechanisms and evidence, not a claim of a new trained checkpoint.
 
-- **Did you train the current model?** The deployed checkpoints are reused and frozen. SFT/PPO adaptation is the next milestone. Earlier separate experiments are not training evidence for this deployment.
-- **Is this a new foundation model?** No. The completed contribution is the maintenance and experimental platform, including its retrieval adaptation.
-- **What is the bounded task?** Short factual and connected questions over approved records, with declared context and memory limits. Arbitrary conversation is outside the accuracy guarantee.
-- **What does success mean now?** A working maintenance workflow and reproducible evidence on the declared task; no universal perfect score is claimed.
+### Why this step matters
 
-## Slide 2 — Air India: one dated update, connected questions
+A maintenance system must coordinate authority, retrieval, generation and history. Measuring only a direct edited answer would miss connected failures and state inconsistencies.
 
-### Verified real sources
+### Likely questions
 
-The [CCI/PIB release of 20 December 2021](https://www.pib.gov.in/pressreleasepage.aspx?lang=2&prid=1783550&reg=48) describes Air India as government-owned. The [Ministry of Finance release of 27 January 2022](https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1792950&lang=2&reg=48) says the completed disinvestment transferred 100% of its shares to Talace Private Limited, a wholly owned subsidiary of Tata Sons Private Limited. [Tata's handover announcement](https://www.tata.com/newsroom/business/air-india-handover) corroborates it. The slide photograph is the genuine government announcement image.
+**What is the task?**
+Short factual and connected questions over approved records, with locality and version boundaries.
 
-The [official Tata contact page](https://www.tata.com/contact-us), checked on 31 October 2026, lists Tata Sons at Bombay House, Mumbai. That is a separately dated contact fact, not proof of its historical 2022 office address. [Tata's later merger release](https://www.tata.com/newsroom/business/air-india-vistara-merger-completion) records subsequent ownership arrangements. Therefore always say **the 2022 handover snapshot**, not present-day ownership.
+**Is this RAG?**
+Yes. The current answering mechanism is retrieval augmented generation; our SFT/PPO adaptation is a separate future milestone.
 
-### Trace the connected facts
 
-The selected local reference initially describes December 2021. Its approved replacement describes the January 2022 handover. A separate historical government-ownership record stays available.
+Evidence:
 
-- Direct: “Who owns Air India in the selected reference snapshot?” → Talace after the update.
-- Two edges: Air India → selected owner Talace → parent Tata Sons.
-- Three edges: add Tata Sons → official contact city Mumbai.
-- Historical control: “Who owned Air India before the January 2022 handover?” → Government of India.
+- [docs/CURRENT_ARCHITECTURE.md](../../docs/CURRENT_ARCHITECTURE.md)
+- [docs/CONTRIBUTIONS_AND_EVIDENCE.md](../../docs/CONTRIBUTIONS_AND_EVIDENCE.md)
 
-A hop is one represented relation lookup. This chain is not evidence of unrestricted reasoning. The familiar example may be in model pretraining; it demonstrates product operation rather than unseen-entity generalisation.
+## Slide 2 — A factual change can affect a chain
 
-**Why choose it?** It is familiar to an Indian panel, publicly sourced and clearly dated. It illustrates how updating one selected reference should affect connected questions while a different historical scope remains intact.
+**Role:** Main presentation.
 
-**Questions to expect**
+### What the slide says
 
-- **Was the old government answer false?** It was correct for the old snapshot. The selected reference changes; the historical fact remains.
-- **Does rollback undo the real handover?** It restores an earlier local memory state, not real-world history.
-- **Does the system infer dates automatically?** The operator supplies scope and canonical identity. This is not a general temporal reasoning engine.
-- **What if the model knows the answer already?** The product test still shows which authoritative reference was supplied and how it was maintained. It is not a claim that this familiar event necessarily produces a stale unassisted answer.
+Air India gives a familiar motivation. The completed handover on twenty-seven January 2022 transferred its shares to Talace, a Tata Sons subsidiary. An older government-ownership record and that handover record answer different dated questions. Connected questions must follow the applicable owner to its parent, while unrelated facts stay intact. Our bounded objective is consistent reference updating: explicit approval, correct direct and connected answers, locality preservation and atomic rollback. The example motivates the problem; our controlled experiments measure the system.
 
-## Slide 3 — Implemented architecture
+### How it works and what the numbers mean
 
-### One request, end to end
+Government/CCI reporting on 20 December 2021 describes government ownership. The Ministry of Finance/PIB release of 27 January 2022 documents completion and Talace’s Tata Sons parent. This is a historical handover snapshot, not present-day shareholding; subsequent arrangements changed. The previously recorded sourced demo also links the parent to its official contact city, checked separately on 31 October 2026. The current introduction does not use a current contact page to infer a historical address. The official photograph is from the PIB handover release. Application acceptance and neural accuracy are separate criteria: transaction tests establish state consistency, while assigned-question evaluation establishes observed answer quality.
 
-1. The browser submits a bounded question to the Python API. Mutations use a session token and origin checks.
-2. The application captures the current memory revision under its operation lock and reads active approved records.
-3. The selector constructs context. Compatible complete user/assistant history pairs are retained; older-revision conditioned messages are excluded from a new request.
-4. The backend assembles the prompt and calls a separate authenticated GPU worker.
-5. The worker generates output and extracts a final answer. The application saves the question/response pair, supplied fact identifiers, sources, model identity and revision transactionally.
-6. The interface shows the answer and its evidence. Evidence records the supplied inputs; it is not a certificate for every generated sentence.
+### Why this step matters
 
-The operation lock prevents a question or edit from capturing a partially completed application operation. It spans generation; SQLite transactions remain short. These are local-process consistency mechanisms, not distributed consensus.
+One dated change makes scope and connectedness understandable before introducing the general architecture. It is an introduction, not the experimental dataset or an unseen-entity claim.
 
-### Deterministic versus neural work
+### Likely questions
 
-Validation, identity keys, version state, audit replay, bounds, lexical ranking and persistence are deterministic application operations. The frozen transformer generates tokens. Greedy decoding chooses the highest-scoring next token, but does not guarantee factual truth. The website refuses to count a deterministic fallback as a successful neural answer when its worker is unavailable.
+**Was the government answer false?**
+It was correct for the earlier snapshot. Historical scope must remain distinct.
 
-### Actual configuration
+**What does rollback mean?**
+Restoring an earlier local approved-memory state, not reversing real history.
 
-| Setting | Recorded configuration |
-|---|---|
-| Reused generator | `YukinoKaren/ReasonKE_plus` |
-| Revision | `ceaedc2ae7c8fed6257953587d991ce550db6106` |
-| Comparison | `Qwen/Qwen2.5-7B-Instruct` |
-| Comparison revision | `a09a35458c702b33eeacc393d103063234e8bc28` |
-| Parameter count, each | 7,615,616,512 |
-| Inference | NF4 double quantisation; FP16 compute; SDPA |
-| Limits | 4,096 input tokens; up to 512 new tokens |
-| Decoding/hardware | Greedy; Colab T4; one model at a time |
+**Why an assistant rather than a page?**
+The use case is an existing assistant answering questions spanning changing records; a page remains appropriate for simple publication.
 
-Four-bit quantisation compresses stored weights. FP16 is the computation precision. Total runtime memory also includes activations, cache and overhead. A model fitting for inference does not establish its training requirements. Use actual resource receipts for numerical memory claims.
 
-The `_plus` identity is exact. Its correspondence to a particular paper-headline score is undocumented; our deck uses our measured scores. The two models are alternative generators, not jointly trained modules. This is a research workspace with token/origin controls, not a hosted multi-user role-management service.
+Evidence:
 
-## Slide 4 — Retrieval across connected facts
+- [https://www.pib.gov.in/pressreleasepage.aspx?lang=2&prid=1783550&reg=48](https://www.pib.gov.in/pressreleasepage.aspx?lang=2&prid=1783550&reg=48)
+- [https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1792950&lang=2&reg=48](https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1792950&lang=2&reg=48)
+- [https://www.tata.com/newsroom/business/air-india-handover](https://www.tata.com/newsroom/business/air-india-handover)
+- [data/demos/air-india-handover.json](../../data/demos/air-india-handover.json)
 
-### Why expand the query?
+## Slide 3 — Revision-consistent request architecture
 
-A question mentioning Air India may omit Talace or Tata Sons. Ranking only the original question can miss those bridge records. Supplying all memory includes support but adds distractors. The experiment separates those alternatives.
+**Role:** Main presentation.
 
-The iterative selector ranks approved records using the existing BM25-style lexical scorer and selects two seeds. It joins their stored answer text as a frontier, ranks remaining records against that frontier, adds the best unseen fact and continues from its answer. It stops at the cap, an empty remaining set or the round bound. If slots remain after the rounds, it fills them from the last frontier ranking. Ties follow the existing fact-ID order.
+### What the slide says
 
-```text
-selected = top two records ranked by question
-frontier = answer text of selected records
-for at most three expansion rounds:
-    stop if four records selected or none remain
-    next = best unseen record ranked by frontier
-    add next; frontier = next.answer
-fill unused slots from the last frontier ranking
-return at most four original fact records
-```
+The API captures a memory revision under an application operation lock. It retrieves active approved records and keeps only compatible conversation pairs. A private GPU worker generates the answer. The application stores raw output, extracted answer, supplied fact identifiers, model identity and revision together. This separates deterministic state management and retrieval from neural generation. We compare two frozen seven-billion-class checkpoints with pinned identities, four-bit weights, FP16 computation and matched input and output ceilings. Source evidence records the model inputs; it does not automatically certify generated prose.
 
-Normal retrieval receives no hidden target answer, gold support IDs or question-depth metadata. Its scores are relevance scores, not probabilities. It retrieves records; it does not deterministically compute the final answer.
+### How it works and what the numbers mean
 
-The original operations study retains its two-stage selector. The depth study/application uses the iterative policy. These must not be relabelled as the same algorithm. On depth development questions, complete paths improved from **96/128 to 128/128** before final inference. This is retrieval development evidence, separate from final neural accuracy. Final depth support was **448/448 required occurrences** and **256/256 complete question paths**; original support was **320/320 occurrences** and **64/64 complete two-hop paths**.
+The browser, loopback application API, SQLite store and authenticated GPU worker are separate components. The operation lock spans generation, preventing a concurrent approval/export from capturing a half-completed application operation; short SQLite transactions persist state and message pairs. Current-revision compatible complete history pairs are retained; old correction-conditioned context is excluded. Historical comparisons use matched pre-question history and exclude correction-conditioned pairs from both sides. Worker failure is reported explicitly rather than replaced with a template counted as neural success. ReasonKE_plus and Qwen2.5-7B-Instruct each contain 7,615,616,512 parameters. Both use NF4 double quantisation, FP16 compute, SDPA, greedy decoding, 4,096 input tokens and up to 512 new tokens on T4, one model at a time.
 
-A wrong seed can lead to an irrelevant chain. A four-fact budget may omit support in a larger memory. The current software guard allows at most 200 active records, but the benchmark measures 9- or 12-fact worlds, not accuracy at 200 records. More depth, larger memories and adversarial distractors belong in broader evaluation.
+### Why this step matters
 
-## Slide 5 — A correction has an explicit lifecycle
+Capturing revision and evidence lets us diagnose whether a bad answer used wrong state, missing support or complete support but wrong generation. The process boundary keeps the lightweight application independent of GPU loading.
 
-A record includes question, answer, readable scope, source and canonical identity `(entity_id, relation_id, scope_id)`. Versions retain lineage, supersession links and timestamps. The source enables inspection; the explicit operator approval gives the record authority in this workspace. Source text is not automatically verified by SQLite.
+### Likely questions
 
-A partial unique index permits one active version per represented key. A replacement must name the active predecessor in the same key. A competing publication is rejected. Separate historical scopes can coexist. Two semantically conflicting statements assigned different keys may escape same-key detection, so identity/scope review matters.
+**What is deterministic?**
+Validation, state transitions, lexical selection, history filtering and persistence. The frozen transformer generates tokens.
 
-Rollback groups withdrawal of the replacement, restoration of its predecessor, one revision increment and both audit events in `BEGIN IMMEDIATE`. All commit or all roll back. Injected late-event failure tests check this transaction boundary. Repeated/obsolete operations have explicit preconditions rather than blindly overwriting newer state.
+**Do two models cooperate?**
+They are alternative comparison generators, not jointly trained components.
 
-**Questions to expect**
+**Does a source prove the answer?**
+It proves what was supplied, not which relation the model actually followed.
 
-- **Can a customer make a fact authoritative?** Customer messages remain conversation input. Explicit publication is required.
-- **Does rollback erase messages or events?** Earlier versions and messages remain inspectable with their original revisions.
-- **Why not two separate updates?** An interruption between withdrawal and restoration could leave inconsistent state. One transaction prevents that partial outcome.
-- **Does an export checksum prove truth?** It detects corruption. It does not establish truth or authorship, and a malicious actor could recompute it.
 
-## Slide 6 — Website: approve the sourced update
+Evidence:
 
-The screenshot is the genuine Verity editor with the Air India question, Talace answer, dated PIB source and explicit approval control. It shows a prepared draft. The recorded workflow publishes through the same application API; a screenshot itself does not execute a change.
+- [editguard_chat/server.py](../../editguard_chat/server.py)
+- [editguard_chat/store.py](../../editguard_chat/store.py)
+- [editguard_chat/reasonke_backend.py](../../editguard_chat/reasonke_backend.py)
+- [editguard_reasonke/runtime.py](../../editguard_reasonke/runtime.py)
+- [configs/reasonke-model.json](../../configs/reasonke-model.json)
+- [configs/instruction-model.json](../../configs/instruction-model.json)
 
-Navigate through **Knowledge**, locate the selected-reference owner and choose **Publish a new version**. Inspect answer, scope, source and canonical identity. **Approve & replace version** names the predecessor and activates the replacement. Merely typing draft text changes no authoritative fact.
+## Slide 4 — Fact identity and atomic rollback
 
-The isolated sourced workspace starts with five records: selected owner, historical owner, Talace parent, Tata Sons contact city and handover date. `scripts/prepare_sourced_demo.py` creates it only in a fresh directory. `scripts/run_sourced_demo.py` records seven actual requests, saves every outcome and exports initial, updated, rollback and active snapshots. Do not load the separate fictional starter handbook into this sourced demo.
+**Role:** Main presentation.
 
-This run completed seven target-matching answers, conflict rejection and restored-predecessor rollback. It is acceptance evidence on selected examples, not a new held-out real-world accuracy estimate. The complete receipt preserves raw outputs and context.
+### What the slide says
 
-## Slide 7 — Website: ask a connected question
+A represented fact is keyed by entity, relation and scope. A partial unique index permits one active version per key. Replacement names the active predecessor. A competing publication returns conflict instead of silently choosing a value. Rollback withdraws the replacement, restores its predecessor, increments the revision once and writes both audit events inside one immediate transaction. Fault-injection tests check that a late event-write failure restores the entire previous state. Historical versions and messages remain available for inspection.
 
-The actual recorded question asks for the parent of Air India's owner in the selected snapshot. The supplied records link Air India to Talace and Talace to Tata Sons. The displayed answer is genuinely generated; it has not been replaced with a painted target string.
+### How it works and what the numbers mean
 
-Use **Chat** to open the recorded conversation. Inspect the response and its supplied-source section. A saved message's revision can differ from the current header after later edits. That difference describes history. A fresh Send uses the current reference state and compatible history.
+Canonical identity is the tuple (entity_id, relation_id, scope_id), normalised by the store. Alias metadata is not a learned resolver. Legacy records use normalised question/scope identity. Approval stores answer, provenance, scope, lineage, version and links. BEGIN IMMEDIATE groups updates, revision and events. An active replacement must own the direct predecessor in the same key; obsolete rollback cannot overwrite a newer unrelated state. Restore refuses a competing active version. Event replay reconstructs the approved set at historical revision r. User and assistant message insertion is separately atomic. Same-key conflict rejection does not solve arbitrary semantic contradiction under distinct operator-assigned keys.
 
-The receipt also includes the three-hop official-contact-city question and historical control. The talk uses the parent question for readability. Familiar sourced examples remain separate from the controlled benchmark totals.
+### Why this step matters
 
-If the GPU worker is unavailable during the panel, recorded views still show what actually ran. State that fresh generation needs the worker. Do not describe replay as fresh inference or source retrieval as independent factual verification.
+Without a single transaction, interruption between withdrawal and restore could produce missing knowledge or an audit/state disagreement. A visible version chain makes recovery reviewable.
 
-## Slide 8 — Website: history and reversible state
+### Likely questions
 
-Open **Knowledge → Approval and rollback history**. The sourced workflow approves a replacement, attempts a competing publication, rolls back and reapplies the handover for the active demonstration. The competing attempt returns HTTP 409 without changing the revision. Rollback restores the owned predecessor and records the withdrawal/restoration pair.
+**Why an index as well as Python checks?**
+The database enforces the one-active-version invariant at commit, while application checks provide explicit errors.
 
-The active demo can therefore show the handover state while the audit contains an earlier rollback. Explain the chronological sequence. The receipt contains each state snapshot. Rollback restores the local selected reference, not the real historical event.
+**Are conflicts detected semantically?**
+Only within the represented key and declared state rules; identity/scope review remains necessary.
 
-Historical comparison can generate answers against an earlier approved revision and the current revision using the same checkpoint and matched compatible history. It is not two model weight snapshots. Stored responses remain stored; comparison requests are fresh inference.
+**Can a customer approve facts?**
+Customer text is conversation input. Publication is an explicit operator action.
 
-The engineering depth is consistency: lineage validation, audit replay, import validation, rejection of overwrite into a nonempty workspace and all-or-nothing event/state writes. These are separate from generated-answer correctness.
 
-## Slide 9 — Experimental design
+Evidence:
 
-### Populations and splits
+- [editguard_chat/store.py](../../editguard_chat/store.py)
+- [editguard_chat/workspace.py](../../editguard_chat/workspace.py)
+- [tests/test_chat_store.py](../../tests/test_chat_store.py)
+- [tests/test_chat_workspace.py](../../tests/test_chat_workspace.py)
 
-Original operations uses fictional 9-fact worlds, up to two hops. The separate depth challenge uses 12-fact worlds, up to three hops. Each study has 48 worlds: 16 development and 32 final lineages. Eight variants per lineage yield 128 development and 256 final questions.
+## Slide 5 — Bounded answer-frontier retrieval
 
-A lineage groups an underlying world/edit and related question variants. Splitting before augmentation prevents paraphrases of one fact appearing across development and final partitions. Labels and graph structure were automatically audited; independent human semantic review is not claimed. Small memories, templated wording and controlled ground truth make reproducibility easier and limit external validity.
+**Role:** Main presentation.
 
-The existing final tests have now been inspected. Future training must use a fresh frozen test, with these released tests retained as regression evidence.
+### What the slide says
 
-### Actual matched conditions
+Our ranker uses a BM25-style lexical score over question, scope and answer text. We select two seeds. Their answer text forms the search frontier; each expansion adds the highest-ranked unseen record and advances that frontier. The iterative policy stops at four records, with at most three rounds. Neither gold support identifiers nor expected answers enter normal retrieval. This makes connected selection transparent and independently measurable. The original study keeps its two-stage selector; the separate depth challenge evaluates the iterative adaptation.
 
-| Code | Generator | Context |
-|---|---|---|
-| R0 | ReasonKE_plus | No supplied corrections; diagnostic reference |
-| R-RAG | ReasonKE_plus | Retrieved approved current facts |
-| R-ALL | ReasonKE_plus | All current facts in the bounded original world |
-| G-RAG | Qwen2.5-7B | Same retrieval/current information |
-| G-ALL | Qwen2.5-7B | All current facts |
-| Oracle | Each generator | Gold support on a declared 16-question diagnostic subset |
+### How it works and what the numbers mean
 
-Original workload: `5 × 256 + 2 × 16 = 1,312` generations. Depth: `2 × 256 + 2 × 16 = 544`. Main denominators remain 256 per condition. Oracle subsets are diagnostic, not extra main successes. Updated full-memory baselines receive current facts; they are not deliberately stale.
+Tokenisation lowercases alphanumeric words and removes the fixed stop list. The score uses k1=1.2 and b=0.75 with log(1+(N-df+0.5)/(df+0.5)); query tokens are a set. Ties use fact ID. Original retrieval chooses two question-ranked seeds, re-ranks using original question plus seed answers and fills to four. Iterative retrieval chooses two seeds, searches from their joined answers, adds the best remaining record each round, then optionally fills unused slots from the last frontier. Scores are relevance values, not confidence probabilities. The active-memory guard is 200 records, but measured worlds are 9 or 12 records. With this unoptimised small-memory scorer, each ranking recomputes document frequencies; the cap makes the chosen workload finite rather than establishing large-scale performance.
 
-### Scoring and uncertainty
+### Why this step matters
 
-Accuracy = correct endorsed final answers / **all assigned questions**. UNKNOWN abstentions count as unsuccessful for accuracy. The frozen scorer checks extracted final spans against reviewed/declared aliases; merely mentioning the right value as a rejected possibility is insufficient. Strict mismatches remain visible.
+A connected question may not mention bridge entity names. Answer-text expansion introduces those names without using evaluation targets. Separating retrieval from generation prevents crediting a generator for support that a normal retriever could not find.
 
-Preservation asks whether reference-correct locality answers stay correct. Factual locality accuracy asks whether all out-of-scope answers are true. Preserving an already wrong answer cannot establish correctness.
+### Likely questions
 
-Paired bootstrap intervals resample whole lineages while keeping each system's outcomes paired. Variants from one world are related; treating them as independent would overstate precision. Such intervals describe sampling uncertainty within this design, not every uncertainty in real deployment.
+**Why not embeddings?**
+The released comparison uses a minimal reproducible lexical baseline; a semantic retriever would be a new controlled comparison.
 
-## Slide 10 — Measured answers on controlled fact worlds
+**Can a wrong seed propagate?**
+Yes. It may lead to irrelevant records, which broader adversarial-memory tests should expose.
 
-| Retrieved configuration | Original | Depth |
-|---|---:|---:|
-| ReasonKE_plus | 256/256 | 256/256 |
-| Qwen2.5-7B | 241/256 | 248/256 |
-| Qwen abstentions | 15 | 8 |
+**Why four records?**
+It is the smallest context cap selected in the declared development family, not a universal optimum.
 
-The perfect observed scores mean all assigned final answers passed the scorer on these controlled worlds. They do not imply universal accuracy, production reliability or guaranteed success on unfamiliar unrestricted language. Do not silently pool the studies into a claim about a different population.
 
-The paired retrieved difference is **+5.86 percentage points**, 95% lineage interval **[3.91, 8.20]**, in original operations; depth is **+3.13 points [1.56, 5.08]**. These compare fixed systems, not the causal effect of an upstream training stage.
+Evidence:
 
-### Diagnose the failures
+- [editguard_benchmark/retrieval.py](../../editguard_benchmark/retrieval.py)
+- [editguard_depth/retrieval.py](../../editguard_depth/retrieval.py)
+- [reports/reasonke/depth-development/retrieval-selection.json](../../reports/reasonke/depth-development/retrieval-selection.json)
 
-Original full-memory ReasonKE_plus scored **231/256**. Its 25 wrong final values all matched another supplied fact value. Fifteen matched Pro-owner values; others were neighbouring owner, release, office, contact or hosting values. In two cases an expected value appeared in an intermediate box but the final endorsed answer was wrong. This demonstrates why a target appearing somewhere in a response is not enough.
+## Slide 6 — Retrieval development recovered three-hop support
 
-Original retrieved Qwen's 15 nonsuccesses were UNKNOWN. Depth Qwen's eight were UNKNOWN: seven in the direct two-hop template category and one in a three-hop paraphrase category. Hop count alone does not determine difficulty; wording and response behaviour matter. None of those eight is in the oracle subset, so that small subset cannot individually explain them.
+**Role:** Main presentation.
 
-Original full-memory Qwen has 13 strict mismatches and two abstentions. The released updated-method audit covers **63 nonsuccesses**: `25 + 15 + 13 + 2 + 8`. All have complete required support and no recorded budget-hit flag. Missing supplied support is therefore not the immediate explanation for these cases. The audit identifies observable wrong associations and abstention, not an unmeasured internal neural cause.
+### What the slide says
 
-**Questions to expect**
+On 128 development questions, the original selector completed 96 paths and missed every three-hop path. Iterative expansion completed all 128, including all thirty-two three-hop paths. Selection used the declared candidate family before neural profiling and final freeze. This is a retrieval improvement, not an accuracy gain inferred from model outputs.
 
-- **Why can more context hurt?** Full memory adds distractors. Availability of the right value and correct association to the requested relation are different.
-- **Is UNKNOWN a wrong fact?** It is an abstention, which fails the answer-accuracy task but avoids asserting a false value. Report both categories.
-- **Does 100% look suspicious?** Small controlled worlds can be easy. State the population, preserve every receipt and expand a fresh challenge; do not manufacture failures.
-- **Where are training losses?** These are frozen-checkpoint inference comparisons. Training curves belong to the planned adaptation study.
+### How it works and what the numbers mean
 
-## Slide 11 — The accuracy–latency tradeoff
+The baseline found 192/224 required fact occurrences, completing 96/128 questions. Each depth group has 32 questions; the baseline completes [32,32,32,0] and the selected iterative policy [32,32,32,32]. All six declared seed/cap candidates completed the packet. Before neural profiling, two separate display-development states revealed a one-seed distractor; the final two-seed/four-record choice completed packet and display supports. The displayed chart covers the 128-question packet only. Final depth retrieval later supplied 448/448 required occurrences with 256/256 complete question paths, including 192/192 occurrences for 64 three-hop paths. These are shared selector outcomes, not independent duplicate samples for each model.
 
-Depth warm timing includes all 256 assigned outcomes per arm, including abstentions:
+### Why this step matters
 
-| Generator + iterative retrieval | p50 | p95 |
-|---|---:|---:|
-| ReasonKE_plus | 15.94 s | 19.28 s |
-| Qwen2.5-7B | 1.12 s | 1.38 s |
+The graph isolates a mechanism change with an explicit support metric. It explains what the retrieval adaptation fixed before looking at generated answers.
 
-p50 is the median. p95 describes slower requests: 95% of measured latencies lie at or below that quantile. The timing covers selection, local IPC and generation. It excludes downloads, cold loading and browser-network delay. It is not a hosted-service latency promise.
+### Likely questions
 
-ReasonKE_plus answers eight additional depth requests correctly but takes longer. Median output lengths are 212 tokens versus six, consistent with a cost from longer responses. This is not a causal decomposition of all latency sources. A ratio of these medians is not a measured paired per-request speedup.
+**Was this tuned on final answers?**
+The declared retrieval selection precedes final freeze and uses development support labels.
 
-**Which is best?** It depends on answered coverage versus response-time priorities. The measured conclusion is a tradeoff on this workload, not a universal winner. Training is not promised to improve both.
+**Does complete support guarantee success?**
+No. Later full-memory failures and Qwen abstentions occur with complete support.
 
-## Slide 12 — Our engineering contribution
 
-Completed strands:
+Evidence:
 
-1. Governed memory: canonical identity, source/scope, approval, version links, conflicts, audit replay and atomic rollback.
-2. Context handling: bounded retrieval, answer-text expansion and revision-compatible history.
-3. Evidence: controlled data, lineage splits, fixed protocols, per-request ledgers, scoring, paired uncertainty and failure diagnosis.
-4. Delivery: chat, correction editor, source/history inspection, results explorer, export/restore, regression tests, CI, containers and notebooks.
+- [reports/reasonke/depth-development/retrieval-selection.json](../../reports/reasonke/depth-development/retrieval-selection.json)
+- [reports/reasonke/depth-final/results.json](../../reports/reasonke/depth-final/results.json)
 
-Original retrieved ReasonKE_plus retained **124/124 reference-correct locality answers**. Its factual locality accuracy was **128/128**. Four locality questions were incorrect in the reference condition, so those denominators differ. Preservation and factual correctness must remain separate.
+## Slide 7 — Controlled worlds and leakage controls
 
-The current conclusion is definite: the implemented platform completes the maintenance workflow and performs accurately on its measured bounded task, with an observed accuracy–latency tradeoff. The contribution is inspectable code and evidence, not ownership of upstream weights.
+**Role:** Main presentation.
 
-The script ends with an evidence-based five-person responsibility allocation. Each member should inspect/reproduce the assigned components and record actual work before attaching their name. Presentation assignments do not prove historical implementation ownership. Do not invent a retrospective research journey or labour history.
+### What the slide says
 
-## Slide 13 — Next Milestone: Model Training and Broader Evaluation
+We constructed two controlled fictional handbook studies with explicit ground truth. Each has forty-eight edit lineages, split into sixteen development and thirty-two final worlds before question variants. The original uses nine facts and reaches two hops; the depth challenge uses twelve facts and reaches three. Each final condition has 256 assigned questions. Labels were automatically audited. The split protects against sharing an edit’s variants across partitions, while controlled wording and small memories remain limits.
 
-The new question is whether **our own adaptation** improves transfer and robustness under matched conditions. That requires a common verified parent checkpoint, reviewed data and fresh evaluation, rather than relabelling two unrelated frozen checkpoints as training stages.
+### How it works and what the numbers mean
 
-1. Construct source-grounded edits, connected questions, difficult negatives and reviewed intermediate steps. Include similar names, wrong relations, older scopes, ambiguity and missing support.
-2. Split entities/edit lineages before wording augmentation. Keep fresh development and final partitions; existing tests become regression evidence.
-3. Profile a compact pilot before choosing adapter settings, total run size or GPU budget. Verify checkpoint/resume behaviour.
-4. Perform SFT from the common instruction checkpoint. Supervised fine-tuning learns from input/target pairs; use development evidence for selection.
-5. Begin PPO from the selected SFT stage, using a declared process/final-answer reward contract. PPO is a constrained policy update from generated-response feedback. Validate rewards against formatting shortcuts and plausible but wrong intermediate steps; reward is not a truth certificate.
-6. Compare instruction baseline, SFT and SFT+PPO with matched data access, retrieval, inference budgets and scoring. Keep reused ReasonKE_plus as a separate reference.
-7. Evaluate new wording/entities, larger distractor memories, greater depth, locality, abstention, latency and resources. Preserve negative outcomes.
+Each study has 384 authored question records: 128 development and 256 final, eight variants per lineage. Original worlds separate current/previous ownership, related properties, other tier, other entity and version controls. The depth study adds a contact-office-city relation for a third edge. Template and relation vocabulary can repeat; the depth challenge uses separate development/final wording banks, while the original shares template families. Automated structural/graph review is not independent human semantic review. Final configurations and scorer identities were frozen before final inference. Because the released tests are now inspected, the next training study requires fresh unseen held-out material. The sourced introduction/demo is a separate population, not the dataset behind these charts.
 
-The goal is an interpretable comparison, not a guaranteed gain. Before a substantial user-run training command, provide the concrete question, inputs, expected artifacts, measured profile-based time/memory estimate with uncertainty, resume behaviour and finite stopping rule. No speculative runtime is promised.
+### Why this step matters
 
-See [the focused research roadmap](VERITY_MIDPROJECT_RESEARCH_ROADMAP.md). The slide deliberately avoids the upstream training tutorial and does not imply future stages have run.
+Controlled worlds provide known answers for direct, paraphrased, connected and locality questions. Splitting the underlying edit rather than individual rows prevents paraphrase leakage and supports lineage-based uncertainty.
 
-## Quick panel answers
+### Likely questions
 
-**“So it is RAG?”** Yes, the current answering mechanism is retrieval augmented generation. Verity adds governed memory, connected retrieval, revision-aware evidence and reversible maintenance. The next milestone studies training separately.
+**Why fictional data?**
+It gives complete controllable truth and counterfactual edits, while limiting claims about uncontrolled real data.
 
-**“Why use a model over structured facts?”** Deterministic structured answers are useful for direct lookups. The measured model task is natural-language factual/connected answering. A database-template answer must not count as neural accuracy.
+**Are 256 questions independent?**
+There are 32 final lineage clusters with eight related variants each.
 
-**“Can sources verify any answer?”** They identify what was supplied. A model can still associate the wrong property or generate unsupported prose.
+**Were labels reviewed by people?**
+The released label audit is automated; independent human semantic review is not claimed.
 
-**“Why not report the upstream score?”** It comes from another dataset and protocol. We identify the reused checkpoint and report our actual released receipts.
 
-**“What would you improve first?”** Independently reviewed challenge wording, larger/adversarial memory and a matched adaptation pilot. These address the evidence's real limits while preserving the working baseline.
+Evidence:
 
-**“Can every fact be edited successfully?”** A valid represented record can be approved/versioned under tested rules. Retrieval and generation remain empirical components; arbitrary natural-language success is not guaranteed.
+- [docs/OPERATIONS_DATASET_CARD.md](../../docs/OPERATIONS_DATASET_CARD.md)
+- [editguard_benchmark/data.py](../../editguard_benchmark/data.py)
+- [editguard_depth/data.py](../../editguard_depth/data.py)
+- [reports/reasonke/operations-final/protocol.json](../../reports/reasonke/operations-final/protocol.json)
+- [reports/reasonke/depth-final/protocol.json](../../reports/reasonke/depth-final/protocol.json)
 
-## Evidence map
+## Slide 8 — Matched conditions and strict scoring
 
-- Architecture/transactions: [current architecture](../CURRENT_ARCHITECTURE.md), `editguard_chat/server.py`, `store.py`, `reasonke_backend.py`.
-- Selectors: `editguard_benchmark/retrieval.py`, `editguard_depth/retrieval.py`.
-- Checkpoints: `configs/reasonke-model.json`, `configs/instruction-model.json`.
-- Sourced demo: `data/demos/air-india-handover.json`; prepare/run scripts; `output/presentation/midproject/air-india-demo-receipt.json`.
-- Frozen protocols/results: `reports/reasonke/operations-final/`, `reports/reasonke/depth-final/`.
-- Retrieval development: `reports/reasonke/depth-development/`.
-- Failure audit: `output/presentation/analysis/failure-audit.json`.
-- Inventory: [contributions and evidence](../CONTRIBUTIONS_AND_EVIDENCE.md).
-- Exact order/speech: [timed script](VERITY_SPEAKER_SCRIPT.md); canonical `verity-midproject-content.json`.
+**Role:** Main presentation.
 
-When answering, state the mechanism, the population and denominator, then what the evidence establishes. That is more defensible than a larger-sounding label.
+### What the slide says
+
+The initial ReasonKE reference receives the old full handbook. Updated conditions receive either retrieved current facts or the full current handbook; Qwen uses the same approved information. Every assigned question stays in the denominator, including UNKNOWN. The scorer checks the endorsed final span against declared aliases, rather than accepting any target mention. Original and depth studies contain 1,312 and 544 generations respectively, including smaller oracle diagnostics. These compare fixed systems, not stages of our own training.
+
+### How it works and what the numbers mean
+
+R0 is the initial-full-memory stale reference, confirmed by request_for in editguard_benchmark/run.py. It is not the application’s empty-memory comparison mode. R-RAG/R-ALL use ReasonKE_plus with updated retrieved/full context; G-RAG/G-ALL use Qwen with matching retrieval or updated full context. The original has five main arms ×256 plus two preselected oracle arms ×16 =1,312. Depth has two ×256 plus two ×16=544. Fact IDs match across generators in retrieved conditions. Model-appropriate response-format prompts differ, so describe matched information and budgets rather than identical prompts. Accuracy=correct/all assigned. UNKNOWN, execution error and unexecuted outcomes get zero primary credit. Oracle support uses gold IDs only on the diagnostic subset; it is not arbitrary-chat retrieval. Whole-final-span scoring is stricter than accepting a correct token anywhere.
+
+### Why this step matters
+
+Fairly updated baselines distinguish the benefit of current information, selection policy and checkpoint behaviour. Fixed denominators prevent abstention from making accuracy look artificially high.
+
+### Likely questions
+
+**Is R0 empty context?**
+No. It uses the initial full handbook. Empty context exists as a separate application comparison option.
+
+**Are oracle answers a new main sample?**
+No. They are declared 16-question diagnostics, kept separate.
+
+**Is every strict mismatch semantically false?**
+Some full-memory Qwen cases have correct chains plus extra final text; they remain frozen strict mismatches and are disclosed.
+
+
+Evidence:
+
+- [editguard_benchmark/run.py](../../editguard_benchmark/run.py)
+- [editguard_benchmark/models.py](../../editguard_benchmark/models.py)
+- [editguard_benchmark/scoring.py](../../editguard_benchmark/scoring.py)
+- [editguard_benchmark/metrics.py](../../editguard_benchmark/metrics.py)
+- [editguard_depth/metrics.py](../../editguard_depth/metrics.py)
+
+## Slide 9 — Original study: context changes the outcome
+
+**Role:** Main presentation.
+
+### What the slide says
+
+With updated retrieved facts, ReasonKE_plus scored 256 of 256, compared with 231 using full updated memory. Qwen scored 241 in both modes, but retrieval changed its failures from mostly wrong final spans to fifteen UNKNOWN responses. The initial handbook reference scored 136. Current information matters, yet more context is not automatically better. This chart preserves every assigned outcome and distinguishes wrong answers from abstention.
+
+### How it works and what the numbers mean
+
+Original main outcomes: R0 136 correct/120 wrong; R-RAG 256/0; R-ALL 231 correct/25 wrong; G-RAG 241 correct/15 UNKNOWN; G-ALL 241 correct/13 strict wrong/2 UNKNOWN. All have 256 assigned, zero execution errors and zero unexecuted. R0 is a staleness diagnostic, not a deliberately stale updated RAG baseline. The paired R-RAG minus G-RAG difference is +5.859375 percentage points, 95% lineage-bootstrap interval [3.90625,8.203125]. R-ALL minus R-RAG is −9.765625 points, interval [−13.671875,−6.25]. The former compares fixed generators/configurations and the latter a same-checkpoint context policy. Neither isolates the causal effect of upstream training. Perfect observed scores are bounded by 32 small final worlds and controlled wording.
+
+### Why this step matters
+
+Outcome composition answers more than an aggregate success percentage. Equal accuracy can conceal different wrong-versus-abstain behaviour, while full memory reveals distractor sensitivity.
+
+### Likely questions
+
+**Which method is best?**
+Retrieved ReasonKE_plus has highest observed answer accuracy here; Qwen is faster. The tradeoff is workload-specific.
+
+**Did full memory lack facts?**
+The audited updated-method failures have complete required support.
+
+**Why not merge all percentages?**
+Conditions and separate studies answer different comparisons and must keep their denominators.
+
+
+Evidence:
+
+- [reports/reasonke/operations-final/results.json](../../reports/reasonke/operations-final/results.json)
+- [output/presentation/analysis/failure-audit.json](../../output/presentation/analysis/failure-audit.json)
+
+## Slide 10 — Depth challenge: wording still matters
+
+**Role:** Main presentation.
+
+### What the slide says
+
+The separate depth challenge has sixty-four questions per group. ReasonKE_plus answered every group correctly. Qwen answered 64, 64, 57 and 63 across locality, one, two and three hops. Its eight nonsuccesses were UNKNOWN. Seven cluster in one direct two-hop wording family; only one occurs in a three-hop paraphrase. Greater hop count alone therefore does not explain difficulty. The three-hop difference is one question, with an interval that includes zero.
+
+### How it works and what the numbers mean
+
+Depth totals are 256/256 versus 248/256. Paired advantage +3.125 points has 95% lineage interval [1.5625,5.078125]. On three-hop questions alone, +1.5625 points has interval [0,4.6875]. The seven two-hop abstentions are in a direct-template subgroup with 9 assigned and 2 correct; other direct two-hop templates have 23/23 correct. Three-hop paraphrases have 31/32 correct. These are frozen, post-hoc wording subgroups, not a randomised causal experiment. None of the eight failures belongs to the 16-question oracle subset; its 16/16 results cannot explain these cases individually. Final iterative retrieval supplied complete support to every main depth question.
+
+### Why this step matters
+
+A depth breakdown prevents the misleading inference that three-hop performance proves all simpler wording is solved. It also scopes the perfect observed score to the controlled challenge.
+
+### Likely questions
+
+**Does this prove three-hop superiority?**
+Only one observed difference on 64 questions; its paired interval includes zero.
+
+**Are UNKNOWNs hidden?**
+No. They remain zero-credit accuracy outcomes and are identified as abstentions.
+
+**Did an oracle fix these exact failures?**
+They are outside the oracle subset; no such paired claim is made.
+
+
+Evidence:
+
+- [reports/reasonke/depth-final/results.json](../../reports/reasonke/depth-final/results.json)
+- [output/presentation/analysis/failure-audit.json](../../output/presentation/analysis/failure-audit.json)
+
+## Slide 11 — Failure audit: the right facts, wrong association
+
+**Role:** Main presentation.
+
+### What the slide says
+
+We traced all twenty-five full-memory ReasonKE failures. Each had complete support, but its wrong final value matched another supplied record. Fifteen selected a Pro-service owner; other errors crossed version, property or contact boundaries. For Garnet Relay, the requested owner was Silver unit 77, but the model endorsed the Pro-service value Saffron unit 137. Across the released updated conditions, all sixty-three nonsuccesses had complete support and no recorded budget-hit flag. Retrieval success is necessary here, but not sufficient for a correct generated association.
+
+### How it works and what the numbers mean
+
+R-ALL off-target roles are Pro-service owner 15, release-2 owner 3, unrelated office city 3, previous-owner contact 2, hosting region 1 and current-owner contact 1, summing to25. The concrete Garnet case is R-ALL:ops-006-direct; requested f1 is Silver unit 77, selected wrong value matches f5 Saffron unit 137. This is observed output/value association, not proof of an internal attention mechanism. Two R-ALL cases mention an expected intermediate boxed value but endorse a wrong final. The 63 updated-method nonsuccesses comprise 25 R-ALL wrong +15 G-RAG UNKNOWN +13 G-ALL strict mismatches +2 G-ALL UNKNOWN +8 depth G-RAG UNKNOWN. G-ALL includes10 off-target values,2 correct owner/contact chains with extra final text and1 contaminated chain. Their frozen scores stay unchanged. R0 is excluded because it is the stale-reference diagnostic.
+
+### Why this step matters
+
+A complete support path does not ensure the model selects the requested subject/relation. Auditing raw values and exact record IDs turns a small failure count into a concrete engineering finding.
+
+### Likely questions
+
+**Did you inspect every failure?**
+The released63-record ledger classifies every updated-method nonsuccess, preserving raw receipts and scoring.
+
+**Is this caused by attention?**
+The measured diagnosis is wrong association; the experiment does not isolate an internal cause.
+
+**Could formatting explain some errors?**
+Two full-memory Qwen strict mismatches have correct chains plus extra text. They remain failures under the declared scorer.
+
+
+Evidence:
+
+- [output/presentation/analysis/failure-audit.json](../../output/presentation/analysis/failure-audit.json)
+- [output/presentation/analysis/failure-ledger.csv](../../output/presentation/analysis/failure-ledger.csv)
+- [reports/reasonke/operations-final/REASONKE_FAILURE_ANALYSIS.md](../../reports/reasonke/operations-final/REASONKE_FAILURE_ANALYSIS.md)
+
+## Slide 12 — Preservation and factual correctness differ
+
+**Role:** Main presentation.
+
+### What the slide says
+
+The initial reference got 124 of 128 locality questions right. Retrieved ReasonKE_plus retained all 124 and answered all 128 correctly. Full memory retained 117 of the 124, with 119 of 128 correct overall. The denominators distinguish retaining previously correct answers from factual correctness on all out-of-scope questions. Preserving an old mistake is not factual correctness. The depth study has no separate initial reference for a new preservation estimate.
+
+### How it works and what the numbers mean
+
+Original R-RAG baseline-correct retention124/124=100%, locality factual accuracy128/128=100%. R-ALL retention117/124=94.3548%, factual locality119/128=92.96875%. R0 locality124/128=96.875%. Four reference locality mistakes are excluded from the preservation denominator but included in factual correctness. Qwen original locality is128/128 retrieved and126/128 full (one wrong and one abstain). Depth locality is64/64 for both generators; there is no depth R0 arm, so do not infer a separately measured depth retention rate. These are dataset-defined locality controls, not proof that arbitrary unrelated knowledge is unchanged.
+
+### Why this step matters
+
+The distinction prevents a common editing-evaluation error: rewarding a system merely for retaining an answer that was already incorrect.
+
+### Likely questions
+
+**Why124 rather than128?**
+Only124 locality answers were correct in the initial reference.
+
+**Why can factual accuracy exceed retention count?**
+The retrieved system also answers the four initially incorrect locality questions correctly.
+
+**Is locality the same as false correction application?**
+No. A narrow edited-value application count and all locality errors are different measures.
+
+
+Evidence:
+
+- [reports/reasonke/operations-final/results.json](../../reports/reasonke/operations-final/results.json)
+- [reports/reasonke/depth-final/results.json](../../reports/reasonke/depth-final/results.json)
+- [editguard_benchmark/metrics.py](../../editguard_benchmark/metrics.py)
+
+## Slide 13 — Higher answer coverage has a latency cost
+
+**Role:** Main presentation.
+
+### What the slide says
+
+Depth median latency is fifteen point nine four seconds for ReasonKE_plus and one point one two for Qwen; the ninety-fifth percentiles are nineteen point two eight and one point three eight. ReasonKE_plus answered eight more questions, with median output length 212 tokens versus six. This exposes the accuracy–latency tradeoff. Timing includes selection, local communication and generation, including abstentions, but excludes cold loading and browser network delay.
+
+### How it works and what the numbers mean
+
+The chart uses depth final generated_latency for 256 assigned generated responses per condition. p50/p95: Reason15.93582438600015/19.282786326999826 seconds; Qwen1.1189718869995886/1.3847337005004192. Original retrieved timings are15.056786640499883/16.71352412099983 and0.9161561650001246/1.1980873600000268. Median output tokens are204/5.5 original and212/6 depth. Longer output is consistent with increased decoding time, but does not causally decompose every latency source. A ratio of separate medians is not a paired per-question speedup. Resource receipts distinguish PyTorch allocation from total device usage; inference fit does not imply training fit.
+
+### Why this step matters
+
+Accuracy alone is insufficient for a user-facing assistant. The measured workload exposes a practical response-time cost for the higher-coverage configuration.
+
+### Likely questions
+
+**What is p95?**
+The latency quantile at which95% of measured requests are at or below the value.
+
+**Does this include downloads?**
+No. It is warm pipeline timing, with cold start excluded.
+
+**Will training make it faster?**
+That is unmeasured. The next stage must report the tradeoff rather than assume it improves.
+
+
+Evidence:
+
+- [reports/reasonke/depth-final/results.json](../../reports/reasonke/depth-final/results.json)
+- [reports/reasonke/operations-final/results.json](../../reports/reasonke/operations-final/results.json)
+- [output/presentation/analysis/failure-audit.json](../../output/presentation/analysis/failure-audit.json)
+
+## Slide 14 — Product: evidence remains inspectable
+
+**Role:** Main presentation.
+
+### What the slide says
+
+Chat retains model and revision evidence. Knowledge manages versions and rollback. The results explorer exposes wrong answers and their supplied facts. This genuine recorded view shows the full-memory failure cohort. Stored responses are distinct from fresh generation. An optional walkthrough can follow the talk.
+
+### How it works and what the numbers mean
+
+The main screenshot is the existing genuine Verity-branded results explorer, captured30 October2026 from released evidence. It filters25 original R-ALL wrong records and expands a wrong-release case. No pixel editing or new model call is needed. Stored responses retain the original generation/revision; a header may show a newer current state. Historical comparison invokes fresh requests with the same checkpoint and matched pre-question history against an earlier approved revision and current context. It does not compare trained weight snapshots. Hidden backup 20 contains the recorded correction editor and rollback-history interface. Existing sourced Air India acceptance is7 selected requests, separate from the controlled benchmark.
+
+### Why this step matters
+
+A filterable receipt view makes an aggregate graph auditable. The product supports investigation as well as a successful demonstration.
+
+### Likely questions
+
+**Is this a live answer?**
+The slide shows a recorded genuine interface; fresh generation requires a ready worker.
+
+**Are failures hidden behind the dashboard?**
+The wrong-answer filter exposes their questions, answers and supplied records.
+
+
+Evidence:
+
+- [output/presentation/screenshots/technical-v2/provenance.json](../../output/presentation/screenshots/technical-v2/provenance.json)
+- [editguard_chat/results.py](../../editguard_chat/results.py)
+- [editguard_chat/static/app.js](../../editguard_chat/static/app.js)
+- [output/presentation/midproject/air-india-demo-receipt.json](../../output/presentation/midproject/air-india-demo-receipt.json)
+
+## Slide 15 — Engineering contribution and current conclusion
+
+**Role:** Main presentation.
+
+### What the slide says
+
+Our contribution combines transactional memory, connected retrieval, revision-aware chat, recoverable inference and failure diagnosis. The measured conclusion is clear: selected current context supports accurate bounded answers; full memory exposes association failures; higher answer coverage costs latency. This establishes a working baseline for the next study.
+
+### How it works and what the numbers mean
+
+Completed work spans memory/store invariants, retrieval, model transport, context/history policy, controlled datasets, fixed protocols, checkpointed per-request execution, source/config/data identities, strict scoring, paired uncertainty, raw-output inspection, website, export/restore, containers, notebooks and CI. The method does not require a new claim of ownership of upstream weights to be technically substantial. Original and depth evidence remain separate and unchanged. Application acceptance and transactional regression checks establish different properties from neural factual evaluation. Small templated worlds, automatic labels and bounded memories constrain the conclusion; larger real-world accuracy is not established.
+
+### Why this step matters
+
+The conclusion should answer the objective using observed mechanisms and tradeoffs, rather than equating a perfect controlled score with universal reliability.
+
+### Likely questions
+
+**What is yours?**
+The governed platform, retrieval adaptation, datasets, evaluation/audits and delivery are our concrete contributions. The checkpoint is reused.
+
+**What makes the project defensible?**
+Traceable implementation, matched configurations and inspectable success/failure evidence under explicit bounds.
+
+
+Evidence:
+
+- [docs/CONTRIBUTIONS_AND_EVIDENCE.md](../../docs/CONTRIBUTIONS_AND_EVIDENCE.md)
+- [docs/CURRENT_ARCHITECTURE.md](../../docs/CURRENT_ARCHITECTURE.md)
+- [Dockerfile.chat](../../Dockerfile.chat)
+- [.github/workflows/ci.yml](../../.github/workflows/ci.yml)
+
+## Slide 16 — Next milestone: model training and broader evaluation
+
+**Role:** Main presentation.
+
+### What the slide says
+
+Next, we will compare a common instruction baseline, supervised adaptation and SFT plus PPO under matched retrieval and inference budgets. We will start with reviewed source-grounded edit data, fresh lineage-separated tests and a profiled pilot. Broader evaluation will vary wording, entities, memory size and depth while measuring accuracy, locality, abstention, latency and resources. The research question is whether adaptation improves transfer and robustness; gains and runtime remain to be measured.
+
+### How it works and what the numbers mean
+
+This is planned work. Establish a verified common instruction parent; adapt SFT, then PPO from the selected SFT stage. Do not describe the reused ReasonKE_plus as the verified causal parent of this study. Review final and intermediate targets, validate process/final rewards against plausible wrong chains and formatting shortcuts, and preserve a fresh frozen test because previous tests have been inspected. Before a substantial user-run GPU command, supply the concrete question, inputs/artifacts, profiled time/memory uncertainty, exact resume behaviour and finite stopping cap. Completion is an interpretable matched study, not a predetermined gain. The detailed upstream training tutorial remains outside this presentation.
+
+### Why this step matters
+
+The current platform already supplies the stable governance, retrieval and scoring controls needed for a focused adaptation experiment.
+
+### Likely questions
+
+**What will you train?**
+A verified common instruction checkpoint via SFT, followed by PPO adaptation, after profiling determines the feasible setup.
+
+**What counts as success?**
+A reproducible matched comparison and honest interpretation, even without an improvement.
+
+
+Evidence:
+
+- [docs/presentation/VERITY_MIDPROJECT_RESEARCH_ROADMAP.md](../../docs/presentation/VERITY_MIDPROJECT_RESEARCH_ROADMAP.md)
+- [configs/reasonke-model.json](../../configs/reasonke-model.json)
+- [configs/instruction-model.json](../../configs/instruction-model.json)
+
+## Slide 17 — Backup: schema and transaction contract
+
+**Role:** Hidden, untimed Q&A backup.
+
+### What the slide says
+
+Optional Q&A: use this slide to show the exact represented key and transaction boundary.
+
+### How it works and what the numbers mean
+
+Fact key=(entity_id,relation_id,scope_id). Approved versions retain immutable identity, question, answer, scope, source, lineage/version, predecessor and timestamps. Partial unique index: at most one active record per key. Rollback pseudocode: BEGIN IMMEDIATE; validate active replacement and same-key predecessor; withdraw replacement; restore predecessor; increment revision once; append withdrawn/restored audit events; COMMIT. Any exception rolls back state, revision and events together. The operation lock is a separate process-level guard spanning generation; it is not a long-held SQLite transaction. Store tests inject a failure late in the event write and assert the entire prior state survives. Snapshot validation checks digest, references, bounds, lineage monotonicity, event order and agreement between replayed and current state. A digest is corruption detection, not authenticity.
+
+### Why this step matters
+
+The backup separates database invariants from model accuracy and supports concrete implementation questions.
+
+### Likely questions
+
+**Can versions be deleted by rollback?**
+Rollback changes active state and appends events; it preserves history.
+
+**What is the failure boundary?**
+A late SQL/event exception must leave no partial state or revision increment.
+
+
+Evidence:
+
+- [editguard_chat/store.py](../../editguard_chat/store.py)
+- [editguard_chat/workspace.py](../../editguard_chat/workspace.py)
+- [tests/test_chat_store.py](../../tests/test_chat_store.py)
+- [tests/test_chat_workspace.py](../../tests/test_chat_workspace.py)
+
+## Slide 18 — Backup: scoring and paired uncertainty
+
+**Role:** Hidden, untimed Q&A backup.
+
+### What the slide says
+
+Optional Q&A: explain exact denominators and the lineage bootstrap.
+
+### How it works and what the numbers mean
+
+Accuracy=correct/all assigned. Coverage=answered/all assigned. Answered-only precision is conditional on answering and must not replace primary accuracy. UNKNOWN, errors and unexecuted assignments remain zero-credit outcomes. Final extraction retains raw output/format flags and scores a whole endorsed span against the requested subject/relation target and declared aliases. Two G-ALL examples have correct chains but extra final text and remain strict mismatches. Paired bootstrap: draw 32 lineage IDs with replacement; include all related variants per selected lineage; compute the paired accuracy difference; repeat 10,000 draws at seed 42; use2.5th/97.5th percentiles. Original retrieved difference+5.86pp[3.91,8.20]; depth+3.125pp[1.56,5.08]; three-hop+1.5625pp[0,4.6875]. These are within-design uncertainty estimates, not a cure for template dependence or external-validity limits.
+
+### Why this step matters
+
+Related variants are correlated. Pairing and cluster resampling preserve the experimental unit instead of treating256 questions as independent worlds.
+
+### Likely questions
+
+**Why not an LLM judge alone?**
+Explicit ground truth and deterministic scoring make the rule reproducible. Semantic review is needed where that strict rule is too narrow.
+
+**Why can a three-hop interval include zero?**
+Only one observed difference among64 related questions, giving insufficient separation in this sampling design.
+
+
+Evidence:
+
+- [editguard_benchmark/scoring.py](../../editguard_benchmark/scoring.py)
+- [editguard_benchmark/metrics.py](../../editguard_benchmark/metrics.py)
+- [reports/reasonke/operations-final/results.json](../../reports/reasonke/operations-final/results.json)
+- [reports/reasonke/depth-final/results.json](../../reports/reasonke/depth-final/results.json)
+
+## Slide 19 — Backup: pinned worker and resource boundary
+
+**Role:** Hidden, untimed Q&A backup.
+
+### What the slide says
+
+Optional Q&A: identify the reused checkpoint, exact settings and measured hardware.
+
+### How it works and what the numbers mean
+
+ReasonKE model: YukinoKaren/ReasonKE_plus at ceaedc2ae7c8fed6257953587d991ce550db6106. Instruction baseline: Qwen/Qwen2.5-7B-Instruct at a09a35458c702b33eeacc393d103063234e8bc28. Each has 7,615,616,512 parameters. NF4 double quantisation, FP16 compute, SDPA, greedy decoding,4096 input and512 new-token ceilings. One loaded model at a time on T4. The saved sourced demo inventory records total device15,637,086,208 bytes, load peak allocated7,071,596,544 bytes=6.59 GiB and reserved7,140,802,560 bytes=6.65 GiB. Allocation excludes other device usage and is a specific measured load, not a training estimate. Source weight tensor bytes15,231,233,024=15.23 decimalGB are larger than the quantised loaded weights; cold transfer/loading is outside warm latency. Exact mapping of the plus artifact to a headline paper score is undocumented, so we report our own receipts.
+
+### Why this step matters
+
+Pinned source/model settings and explicit timing/memory boundaries make the deployment reproducible without guessing GPU requirements.
+
+### Likely questions
+
+**Does four-bit mean all computation is four-bit?**
+Weights are quantised; computation uses FP16 and other runtime memory remains.
+
+**Does T4 inference fit prove PPO fits?**
+No. Training must be profiled separately, including optimiser, rollout and reference/critic costs.
+
+
+Evidence:
+
+- [configs/reasonke-model.json](../../configs/reasonke-model.json)
+- [configs/instruction-model.json](../../configs/instruction-model.json)
+- [editguard_reasonke/runtime.py](../../editguard_reasonke/runtime.py)
+- [output/presentation/midproject/air-india-demo-receipt.json](../../output/presentation/midproject/air-india-demo-receipt.json)
+- [output/presentation/midproject/screenshots/provenance.json](../../output/presentation/midproject/screenshots/provenance.json)
+
+## Slide 20 — Backup: correction editor and audit evidence
+
+**Role:** Hidden, untimed Q&A backup.
+
+### What the slide says
+
+Optional Q&A: show the recorded editor and the rollback event pair.
+
+### How it works and what the numbers mean
+
+Two genuine Verity captures show the sourced correction draft and actual rollback/reapproval history. The editor draft advances a selected historical reference from December2021 to the January2022 Air India handover, with dated official source and explicit approval. The finite API workflow makes7 actual neural requests: initial direct, updated direct, connected parent, three-hop contact city, historical control, restored direct and final active connected. All7matched their declared targets; competing approval returned409 without revision change; rollback restored the predecessor. Reapproval leaves active demo r8 while history retains r7 rollback. These are selected acceptance cases, not a held-out accuracy population. Screenshots/receipts preserve their actual outputs and original pixels. Rollback reverses local memory, not the historical event; source evidence is not an arbitrary-prose verifier.
+
+### Why this step matters
+
+This backup supports an optional website walkthrough while leaving the timed talk focused on the general system and findings.
+
+### Likely questions
+
+**Why do saved and current revisions differ?**
+Messages preserve the reference used at generation; the header can show a later memory state.
+
+**Is replay fresh generation?**
+No. Opening a saved conversation reads persisted output. A new request or comparison invokes the worker.
+
+
+Evidence:
+
+- [output/presentation/midproject/screenshots/provenance.json](../../output/presentation/midproject/screenshots/provenance.json)
+- [output/presentation/midproject/air-india-demo-receipt.json](../../output/presentation/midproject/air-india-demo-receipt.json)
+- [scripts/run_sourced_demo.py](../../scripts/run_sourced_demo.py)
+
+## Terms you should be able to explain
+
+- **Fact world:** one controlled handbook containing a coherent set of reference records.
+- **Edit lineage:** related versions and question variants of the same underlying update/world. It is the uncertainty cluster.
+- **Hop:** one represented relation edge, such as service→owner. It is not a universal measure of language difficulty.
+- **Gold support:** labelled records needed to answer a question. It is used for evaluation/oracle diagnostics, not normal selection.
+- **Complete-path recall:** fraction of questions for which all required records were selected.
+- **Fact-occurrence recall:** required selected fact occurrences divided by all required occurrences. A record can contribute to multiple questions.
+- **Accuracy:** correct endorsed final spans divided by all assigned questions.
+- **Coverage:** non-abstained answered questions divided by all assigned questions. It is not the same as accuracy.
+- **Locality:** questions outside the edit’s intended change. Factual locality and baseline-correct retention use different denominators.
+- **Percentage point:** an absolute difference between percentages; 5.86 points is not a 5.86-percent relative gain.
+- **Paired lineage interval:** an uncertainty interval from resampling whole related clusters while retaining paired system outcomes.
+- **p50/p95:** median/tail latency quantiles within the declared warm timing boundary.
+- **NF4/FP16:** quantised weight representation and half-precision computation; total memory also includes runtime allocations.
+- **SFT/PPO:** planned supervised adaptation followed by policy optimisation from declared feedback, under a matched experiment.
+
+## Website operation and evidence
+
+Chat sends a new question to the configured worker and stores its generated output with revision and facts. Knowledge drafts and explicitly approves a replacement. The source/history controls expose versions and events; rollback restores the owned predecessor transactionally. Research results selects a released study/condition and filters saved records. Filtering does not change denominators. Reopening a saved answer is replay; comparison and Send invoke fresh generation.
+
+Use the genuine recorded views within the ten-minute talk. A fresh GPU worker is required for optional live answers. Existing Air India acceptance uses seven selected source-backed requests; it is not the controlled benchmark. The results explorer shows controlled fictional records and keeps them labelled accordingly.
+
+## What can and cannot be concluded
+
+The evidence supports the implemented maintenance workflow and its measured bounded answer quality. It shows that selected current context outperformed full memory for ReasonKE_plus on the original packet, complete support did not prevent every generator failure, locality preservation differs from factual correctness, and higher answered coverage came with substantial latency. It does not establish unrestricted reliability, a causal upstream-training benefit, or performance at the 200-record software guard. Future work has a focused matched question rather than a promised gain.
+
+Consult [the next-milestone contract](VERITY_MIDPROJECT_RESEARCH_ROADMAP.md) before substantial training. The existing frozen tests are inspected regression evidence; new adaptation needs fresh held-out material.

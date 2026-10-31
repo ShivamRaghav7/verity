@@ -1,53 +1,54 @@
-# Verity mid-project presentation
+# Verity technical mid-project presentation
 
-Current deliverable: **13 slides, exactly 10:00, five two-minute speaking slots.**
+Current deliverable: **16 timed main slides, 10:00 total, five two-minute speaking slots**, followed by **four hidden, untimed technical Q&A backups**.
 
-- [Presentation](Verity_Mid_Project_Presentation.pptx): editable diagrams, one table, two native charts, genuine sourced website captures and detailed notes.
-- [Timed five-speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact speech, clock marks, rehearsal cues, Q&A and evidence-based responsibility allocation.
-- [Updated study guide](../../docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md): explains every slide, mechanisms, choices, findings and likely panel questions.
-- [Next research milestone](../../docs/presentation/VERITY_MIDPROJECT_RESEARCH_ROADMAP.md): reviewed data, profiled SFT/PPO adaptation, matched training-stage comparisons and fresh broader evaluation.
-- [Release manifest](midproject/manifest.json): package, assets, evidence hashes and verification boundaries.
+- [Presentation](Verity_Technical_Mid_Project_Presentation.pptx): native editable diagrams, three tables and six scientific charts, with genuine Verity screenshots and detailed notes.
+- [Timed five-speaker script](../../docs/presentation/VERITY_SPEAKER_SCRIPT.md): exact speech, clock marks, technical rehearsal, Q&A and evidence-based responsibility allocation.
+- [Slide-by-slide study guide](../../docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md): mechanisms, choices, numerical interpretation and likely questions for all twenty slides.
+- [Next research milestone](../../docs/presentation/VERITY_MIDPROJECT_RESEARCH_ROADMAP.md): reviewed data, profiled SFT/PPO adaptation, matched stages and fresh broader evaluation.
+- [Release manifest](technical-midproject/manifest.json): evidence identities, chart values, captures, backups and verification boundaries.
 
-## Story and timing
+## Narrative and timing
 
-| Speaker | Slides | Clock | Focus |
-| --- | --- | --- | --- |
-| Member 1 | 1–2 | 00:00–02:00 | Objective and verified Air India handover example |
-| Member 2 | 3–4 | 02:00–04:00 | Implemented architecture and connected retrieval |
-| Member 3 | 5–8 | 04:00–06:00 | Approval, history, conflicts, rollback and recorded walkthrough |
-| Member 4 | 9–11 | 06:00–08:00 | Controlled experiments, measured findings and latency |
-| Member 5 | 12–13 | 08:00–10:00 | Engineering conclusion and next milestone |
+| Member | Main slides | Clock | Focus |
+|---|---|---|---|
+| 1 | 1–3 | 00:00–02:00 | Objective, brief real introduction and request architecture |
+| 2 | 4–6 | 02:00–04:00 | Canonical facts, transactions, retrieval and development result |
+| 3 | 7–9 | 04:00–06:00 | Dataset, fair configurations, scoring and original outcomes |
+| 4 | 10–12 | 06:00–08:00 | Depth, complete-support failures and locality preservation |
+| 5 | 13–16 | 08:00–10:00 | Latency, product evidence, contribution and training roadmap |
 
-PowerPoint slide advance timings total 600 seconds and match the script. Use the recorded walkthrough within the clock; fresh GPU inference is optional after the talk. Rehearse with a timer. PowerPoint's Use Timings setting controls whether the native schedule is followed.
+The Air India handover appears as one short introduction. The technical story then uses general system mechanisms and the controlled experiments. The main product view is the recorded failure explorer. Optional backups cover transaction pseudocode, paired uncertainty, pinned runtime/chat, and the sourced editor/history workflow. They are hidden from the normal timed slide show.
 
-The completed architecture is governed retrieval augmented generation with frozen generators. The reused `YukinoKaren/ReasonKE_plus` identity is stated in configuration notes. Model-training adaptation is the next milestone. The main deck omits the detailed upstream training tutorial.
+Native advance timings sum to 600 seconds for slides 1–16. Use PowerPoint's Use Timings option and rehearse with a timer. Do not add live GPU inference to the strict slot. The 1067-word script includes room for reading figures and handing over.
 
-## Sourced real website demonstration
+## Six scientific findings
 
-The real example concerns the **27 January 2022 Air India handover**, with earlier government ownership retained in historical scope. The selected local snapshot advances from December 2021 to the handover. The Tata Sons contact-city record is from its official page checked on 31 October 2026; it is not a claim about a historical 2022 office. Government and Tata sources are recorded in [the fixture](../../data/demos/air-india-handover.json).
+| Main slide | Question answered | Evidence |
+|---|---|---|
+| 6 | Did iterative retrieval recover connected support? | Development complete paths 96/128→128/128; three-hop 0/32→32/32 |
+| 9 | How do information and context affect outcomes? | Five original arms, correct/mismatch/UNKNOWN composition, 256 assigned each |
+| 10 | Does hop count alone explain failures? | Depth groups 64 each; Qwen 57/64 two-hop versus 63/64 three-hop |
+| 11 | What went wrong with complete support? | All 25 ReasonKE full-memory wrong finals map to supplied distractors ; 15 Pro-owner values |
+| 12 | Are preserved answers also factual? | Retention 124/124 versus 117/124; locality 128/128 versus 119/128 |
+| 13 | What is the response-time cost? | Warm p50/p95 and output-length evidence, 256 outcomes per arm |
 
-A fresh isolated workspace ran seven actual model requests through the application API on a Colab T4. All seven matched the declared demonstration targets. A competing publication returned HTTP 409 without changing the revision; rollback restored the predecessor; the handover was reapplied for the active demo. These are selected product acceptance cases, **not a new held-out real-world accuracy benchmark**.
+Every chart is native and has an embedded numeric workbook snapshot derived directly from released JSON. Scientific evidence, raw receipts, protocols, scores and failure classification remain unchanged. No model call, new training, benchmark inference or rescoring was needed for this revision.
 
-- [Complete receipt and exported state snapshots](midproject/air-india-demo-receipt.json).
-- [Original screenshot provenance](midproject/screenshots/provenance.json).
-- [Official photo provenance](midproject/assets/photo-provenance.json).
-- Preparation: `python -m scripts.prepare_sourced_demo --output NEW_WORKSPACE`.
-- Finite recording: `python -m scripts.run_sourced_demo --base-url LOCAL_WEBSITE --manifest NEW_WORKSPACE/sourced-demo-manifest.json --output NEW_RECEIPT.json`.
+**Configuration correction:** R0 receives the initial full handbook, as implemented by the frozen runner. It is distinct from the application's optional empty-memory comparison. Updated retrieved/full-memory arms receive current facts. This corrects the preceding short guide's R0 wording without changing any measurement.
 
-The editor screenshot is a prepared draft; the recorded API workflow performs approval. Chat and history show actual persisted generation and events. Original screenshot pixels remain unaltered; slide annotations are separate editable text. Stored responses are labelled recorded and are not described as fresh generation.
+The completed architecture is governed retrieval augmented generation with fixed alternative generators. The author-published `YukinoKaren/ReasonKE_plus` checkpoint is identified accurately. Our own matched SFT/PPO study remains planned. The detailed upstream training tutorial is absent from the current main deck.
 
-## Experimental evidence
+## Genuine product evidence
 
-The unchanged original and depth studies use controlled fictional operations handbooks. Main conditions have 256 assigned questions each. The deck compares actual generator/context configurations and preserves abstentions in the denominator. Full-memory ReasonKE_plus failures and Qwen abstentions remain visible. The perfect retrieved scores are scoped to small controlled worlds and wording.
+The recorded results explorer is from [the earlier genuine capture set](screenshots/technical-v2/provenance.json); it shows the original full-memory wrong-answer filter and raw supplied records. Backups use [the sourced editor, chat and history captures](midproject/screenshots/provenance.json), with their original pixels unchanged. Reopening stored output is replay; a fresh Send/comparison invokes the worker.
 
-[Failure diagnosis](analysis/README.md), [audit JSON](analysis/failure-audit.json), and [63-record ledger](analysis/failure-ledger.csv) retain the individual nonsuccesses. No benchmark inference, test rescoring or training was performed for this revision. The seven sourced demonstration calls are separate.
+[The Air India receipt](midproject/air-india-demo-receipt.json) contains seven selected source-backed acceptance requests, all target-matching, plus conflict rejection and restored-predecessor rollback. It is a separate historical product demonstration, not the dataset behind the held-out accuracy plots. Government/Tata sources and date scopes remain in [the fixture](../../data/demos/air-india-handover.json). The controlled experimental datasets remain explicitly fictional.
 
-## Authoring and checks
+## Reproduction and archives
 
-[Canonical content](../../docs/presentation/verity-midproject-content.json) drives speaker notes and script. Regenerate the script with `python -m scripts.render_verity_midproject_script`. [The native builder](../../scripts/build_verity_midproject.mjs) exports `build(presentation)` for the bundled first-party Artifact Tool runtime and reads released metrics directly. [The timing utility](../../scripts/time_verity_midproject.py) applies the declared native PowerPoint schedule to a fresh exported package.
+[Canonical content](../../docs/presentation/verity-midproject-content.json) drives the notes, timed script and study guide. Regenerate both Markdown materials with `python -m scripts.render_verity_midproject_script`. [The new native builder](../../scripts/build_verity_technical_midproject.mjs) exports `build(presentation)` for the bundled Artifact Tool runtime. [The timing utility](../../scripts/time_verity_midproject.py) applies main-slide timings and hides Q&A backups in a fresh package. Verify sources, notes, chart numbers, original image bytes and snapshots with `python -m scripts.verify_verity_midproject`.
 
-Charts have embedded editable numeric workbook snapshots derived from unchanged receipts. Every slide is rendered and visually reviewed. Structural, font, geometry, chart/workbook and first-party import checks are recorded separately from actual PowerPoint inspection. Rendering/structure checks alone do not prove factual validity.
+All twenty slides are rendered and inspected. Package/import, geometry/font and chart/workbook checks are separate from native PowerPoint inspection. Neither structural validation nor a source card automatically verifies arbitrary generated prose.
 
-## Preserved versions
-
-[The immediate backup](backups/72ff983-before-midproject/) contains the old technical deck, content, script, guide, handbook, builders and hash manifest. `Verity_Technical_Presentation.pptx` also remains at its original path as an older edition. Its upstream tutorial is not part of the current mid-project deck. Earlier backups remain in place. The user-edited historical Word script was not replaced.
+[The immediate backup](backups/c9d4713-before-technical-expansion/) preserves the preceding thirteen-slide presentation, notes/content, script, guide, builders and hash manifest. The previous presentation files remain at their existing paths. [Earlier backups](backups/72ff983-before-midproject/) retain the thirty-two-slide edition. User-edited historical Word material is untouched.

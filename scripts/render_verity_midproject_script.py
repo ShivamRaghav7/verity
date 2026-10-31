@@ -1,78 +1,38 @@
-"""Render the timed five-speaker script from the current mid-project slide content."""
+"""Render the timed technical script and matching slide-by-slide study guide."""
 import json
 from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-
-
-def clock(seconds):
-    return f"{seconds//60:02d}:{seconds%60:02d}"
-
-
+ROOT=Path(__file__).resolve().parents[1]
+def clock(n):return f'{n//60:02d}:{n%60:02d}'
+def evidence(out,sources):
+ out+=['','Evidence:','']
+ out += [f'- [{s}]({s if s.startswith("https:") else "../../"+s})' for s in sources]
+ out.append('')
 def render():
-    content = json.loads((ROOT / "docs/presentation/verity-midproject-content.json").read_text(encoding="utf-8"))
-    rows = content["slides"]
-    if sum(row["seconds"] for row in rows) != 600:
-        raise ValueError("The presentation must total exactly ten minutes")
-    for speaker in range(1, 6):
-        if sum(row["seconds"] for row in rows if row["speaker"] == speaker) != 120:
-            raise ValueError("Each speaker must have a two-minute slot")
-    out = ["# Verity mid-project review: timed five-speaker script", "",
-           "**Total: 10:00. Five speakers, 2:00 each. Thirteen slides, no extra introduction or closing slide.**", "",
-           "Read only the quoted speech. The remaining text is rehearsal guidance. The schedule includes visual reading, pointing and handovers. Rehearse at about 125 words/minute and keep a visible timer. Q&A follows the ten-minute presentation. The website section uses genuine recorded captures; fresh GPU generation is an optional demonstration afterward.", "",
-           "Replace Member 1–5 with names. Presentation assignments need not match contribution ownership. Identify the reused checkpoint once in configuration/Q&A. The main story is our approved-memory application and measured comparisons.", "",
-           "## Fixed speaking order", "", "| Speaker | Clock | Slides | Main subject |", "| --- | --- | --- | --- |",
-           "| Member 1 | 00:00–02:00 | 1–2 | Objective and sourced Air India motivation |",
-           "| Member 2 | 02:00–04:00 | 3–4 | Implemented architecture and retrieval |",
-           "| Member 3 | 04:00–06:00 | 5–8 | Governed corrections and website walkthrough |",
-           "| Member 4 | 06:00–08:00 | 9–11 | Experimental design, findings and latency |",
-           "| Member 5 | 08:00–10:00 | 12–13 | Engineering conclusion and next research milestone |", ""]
-    elapsed = 0
-    words_total = 0
-    for row in rows:
-        words = len(row["speech"].split())
-        speech_seconds = words * 60 / 125
-        if speech_seconds > row["seconds"] - 1:
-            raise ValueError(f"Slide {row['n']} needs a shorter speech")
-        if row["n"] == 1 or row["speaker"] != rows[row["n"]-2]["speaker"]:
-            out += [f"## Member {row['speaker']}", ""]
-        out += [f"### Slide {row['n']}: {row['title']}", "",
-                f"**Clock: {clock(elapsed)}–{clock(elapsed + row['seconds'])}. Slot: {row['seconds']} seconds. Speech: {words} words.**", "",
-                "> " + row["speech"], "",
-                f"**Visual action and pacing:** {row['cue']} At 125 words/minute, leave approximately {row['seconds']-speech_seconds:.0f} seconds for visual reading/pointing and any handover. Do not fill that time with extra unscripted material.", "",
-                "**Rehearsal detail:** " + row["detail"], "", "**Evidence:**", ""]
-        out += [f"- [{source}]({source if source.startswith('https:') else '../../'+source})" for source in row["sources"]]
-        out.append("")
-        elapsed += row["seconds"]
-        words_total += words
-    out += ["## Clock discipline", "",
-            "- At 01:55, 03:55, 05:55 and 07:55, the next speaker gets ready. Hand over on the two-minute boundary.",
-            "- Advance on the listed clock marks. The final milestone slide ends at 10:00.",
-            "- Use the captured website views during the timed presentation. Do not launch an unbounded live generation or perform a fresh model download in the slot.",
-            "- If the panel interrupts, ask whether to pause the presentation clock. Do not silently add Q&A time to a strict ten-minute slot.", "",
-            "## Short technical Q&A", "",
-            "**Is the current implementation RAG?** Yes. It combines approved external memory, bounded lexical retrieval and fixed generators. Our implemented contribution is governance, context/history handling, the application, independent controlled evaluation and evidence engineering.", "",
-            "**Which model is reused?** `YukinoKaren/ReasonKE_plus`, pinned at `ceaedc2ae7c8fed6257953587d991ce550db6106`. The comparison is `Qwen/Qwen2.5-7B-Instruct` at its pinned revision. The detailed upstream training tutorial is outside this review.", "",
-            "**Where is our new model training?** SFT/PPO adaptation is the next milestone. The slide describes a matched study, beginning with reviewed data and profiling, then a fresh frozen broader evaluation.", "",
-            "**Is the Air India example current ownership?** It is explicitly a dated historical snapshot around the 27 January 2022 handover. Later arrangements changed. The corporate-contact fact comes from the official page checked on 31 October 2026.", "",
-            "**Does 256/256 guarantee arbitrary questions?** It is the observed final-span score on a controlled packet with 32 final lineages and small worlds. The broader next study addresses generalisation and larger memory.", "",
-            "**Why does full memory fail?** All 25 original ReasonKE_plus wrong finals match other supplied values despite complete required support. That describes visible wrong associations; it does not prove an internal causal mechanism.", "",
-            "**Does rollback change neural weights?** It atomically restores approved memory and events. Fresh requests use that state. Saved messages retain their original revision and output.", "",
-            "**Will training beat the baseline?** That is the research question. We will measure accuracy, coverage, locality, latency and resources under matched conditions rather than promise a gain.", "",
-            "## Evidence-based contribution allocation", "",
-            "Attach names only to implementation, reproduction, review, analysis or documentation actually performed. These work areas can overlap and are independent of speaking roles.", "",
-            "Proposed lead allocation for implementation/review/reproduction. Confirm actual work before treating this as historical credit; members can collaborate across rows.", "",
-            "| Lead | Work area | Concrete contribution | Reviewable evidence |", "| --- | --- | --- | --- |",
-            "| Member 1 | Data and sources | Controlled worlds, questions, splits, label audits and the sourced Air India fixture | data modules, dataset cards, data/demos/air-india-handover.json |",
-            "| Member 2 | Retrieval and model integration | Pinned GPU worker, bounded context selection, iterative expansion and prompt/history interfaces | runtime, reasonke_backend.py, retrieval modules |",
-            "| Member 3 | Backend reliability | Canonical identity, explicit approval, supersession/conflicts, events and atomic rollback | store.py, workspace.py, server.py, regression tests |",
-            "| Member 4 | Evaluation and analysis | Fixed matched protocols, ledgers/resume, scoring, uncertainty, latency and failure diagnosis | benchmark/depth packages, raw receipts and audit scripts |",
-            "| Member 5 | Product and reproducibility | Verity chat/editor/explorer, real-source walkthrough, containers/notebooks, CI and presentation material | static/, results.py, sourced-demo scripts and docs |", ""]
-    target = ROOT / "docs/presentation/VERITY_SPEAKER_SCRIPT.md"
-    target.write_text("\n".join(out), encoding="utf-8", newline="\n")
-    print(json.dumps({"slides": len(rows), "seconds": elapsed, "speakers": 5, "spoken_words": words_total,
-                      "script": str(target)}, indent=2))
-
-
-if __name__ == "__main__":
-    render()
+ c=json.loads((ROOT/'docs/presentation/verity-midproject-content.json').read_text(encoding='utf-8'))
+ rows=c['slides'];core=[r for r in rows if r['core']]
+ assert len(rows)==20 and len(core)==16 and sum(r['seconds'] for r in core)==600
+ assert all(sum(r['seconds'] for r in core if r['speaker']==s)==120 for s in range(1,6))
+ schedule=['| Member | Clock | Main slides | Focus |','|---|---|---|---|','| 1 | 00:00–02:00 | 1–3 | Objective and request architecture |','| 2 | 02:00–04:00 | 4–6 | Transactions, retrieval and development finding |','| 3 | 04:00–06:00 | 7–9 | Data, matched conditions and original outcomes |','| 4 | 06:00–08:00 | 10–12 | Depth, failure diagnosis and preservation |','| 5 | 08:00–10:00 | 13–16 | Latency, product, conclusion and roadmap |']
+ out=['# Verity: timed five-speaker technical script','','**Ten minutes: 16 main slides, five two-minute slots. Four hidden Q&A backups are outside the clock.**','','Read the quoted speech. Notes and questions are rehearsal material. Rehearse at approximately 125 words/minute, including pauses and handovers. Do not add a separate greeting, live model download or long generation inside the timed slot. Website views are genuine recorded states; optional fresh generation follows the talk.','','## Speaking order','',*schedule,'']
+ guide=['# Verity: technical slide-by-slide study and defence guide','','Matches [the technical mid-project presentation](../../output/presentation/Verity_Technical_Mid_Project_Presentation.pptx), 31 October 2026: **16 timed main slides plus 4 hidden Q&A backups**. Previous editions are preserved in `output/presentation/backups/c9d4713-before-technical-expansion/`.','','Read this to understand the system and findings. Rehearse from [the timed script](VERITY_SPEAKER_SCRIPT.md). Speaking roles are independent of contribution ownership.','','## The central explanation','','The current implementation is governed retrieval augmented generation with frozen alternative generators. An operator approves versioned reference facts. A deterministic selector supplies bounded context, and a reused neural checkpoint generates an answer. The application retains revision, fact and model evidence. Approval changes memory, not weights. The technical contribution is the maintenance system, retrieval adaptation, datasets, controlled comparisons, reproducible ledgers, failure diagnosis and product delivery. Our own matched SFT/PPO adaptation is the next milestone.','','The initial R0 benchmark reference uses the **initial full handbook**, as confirmed in the runner. It is distinct from the application’s optional empty-memory comparison. This corrects the preceding short guide’s R0 label. Updated retrieved and full-memory arms receive current facts. No benchmark evidence or scoring has changed.','','## Presentation map','',*schedule,'','The Air India introduction supplies relatability. It is not the dataset or the main technical narrative. The six scientific charts isolate retrieval support, original outcome composition, depth, failure associations, locality and latency. Hidden backups 17–20 support questions after 10:00.','']
+ elapsed=0;previous=None;words=0
+ for r in rows:
+  if r['core']:
+   if r['speaker']!=previous:out += [f'## Member {r["speaker"]}',''];previous=r['speaker']
+   speech_words=len(r['speech'].split());speech_seconds=speech_words*60/125
+   assert speech_seconds<r['seconds']-1
+   out += [f'### Slide {r["n"]}: {r["title"]}','',f'**{clock(elapsed)}–{clock(elapsed+r["seconds"])} · {r["seconds"]} seconds · {speech_words} spoken words**','','> '+r['speech'],'',f'Pacing: approximately {r["seconds"]-speech_seconds:.1f} seconds remain for reading the graphic, pointing and handover. Advance on the clock mark.','','Technical rehearsal: '+r['detail'],'','Why this slide: '+r['why']]
+   elapsed+=r['seconds'];words+=speech_words
+  else:
+   if r['n']==17:out+=['## Hidden technical Q&A backups','', 'Do not include these in the timed talk. Select a backup only when it answers a panel question.','']
+   out += [f'### Slide {r["n"]}: {r["title"]}','','**Untimed.** '+r['speech'],'',r['detail']]
+  evidence(out,r['sources'])
+  guide += [f'## Slide {r["n"]} — {r["title"]}','','**Role:** '+('Main presentation.' if r['core'] else 'Hidden, untimed Q&A backup.'),'','### What the slide says','',''+r['speech'],'','### How it works and what the numbers mean','',r['detail'],'','### Why this step matters','',r['why'],'','### Likely questions','']
+  for q,a in r['qa']:guide += [f'**{q}**',a,'']
+  evidence(guide,r['sources'])
+ out += ['## Clock discipline','','Prepare handovers at 01:55, 03:55, 05:55 and 07:55. End slide 16 at 10:00. Hidden slides 17–20 have no automatic timings. If the panel interrupts, ask whether to pause the talk’s clock. The script’s 1067 words leave time for figures; extra unscripted explanations use that margin.','','## Cross-cutting Q&A','','**Is the current system RAG?** Yes. Explain the governed memory, bounded selector, revision consistency and measured failure behaviour directly.','','**Did we train ReasonKE_plus?** It is a reused author-published checkpoint. Our own adaptation is planned. These are fixed-system comparisons, not our training-stage ablation.','','**Does 256/256 establish universal accuracy?** It establishes the observed final-span result on the stated controlled population. The original full-memory failures, Qwen abstentions and broader-evaluation roadmap show its boundary.','','**Are sources verification?** They identify model inputs. Wrong associations remain possible with complete support.','','**Why no training-loss chart?** This completed experiment measures frozen-model inference. Training curves will come from the planned adaptation study.','','## Evidence-based contribution allocation','','These are proposed lead areas for implementation, reproduction, review and analysis. Attach names only to work actually performed and documented. Members can collaborate across areas; speaking order does not establish historical authorship.','','| Lead | Work area | Concrete evidence |','|---|---|---|','| Member 1 | Data and label/split audit | Fact-world modules, dataset cards, split identities and source fixture |','| Member 2 | Retrieval and model integration | Lexical ranker, iterative selector, worker, pinned configs and context/history policy |','| Member 3 | Backend reliability | Canonical keys, constraints, event replay, atomic transitions and regression tests |','| Member 4 | Evaluation and failure analysis | Frozen protocols, per-request ledgers, strict scoring, paired bootstrap and 63-record audit |','| Member 5 | Product and reproducibility | Chat/editor/explorer, export/restore, containers, notebooks, CI and presentation |','']
+ guide += ['## Terms you should be able to explain','','- **Fact world:** one controlled handbook containing a coherent set of reference records.','- **Edit lineage:** related versions and question variants of the same underlying update/world. It is the uncertainty cluster.','- **Hop:** one represented relation edge, such as service→owner. It is not a universal measure of language difficulty.','- **Gold support:** labelled records needed to answer a question. It is used for evaluation/oracle diagnostics, not normal selection.','- **Complete-path recall:** fraction of questions for which all required records were selected.','- **Fact-occurrence recall:** required selected fact occurrences divided by all required occurrences. A record can contribute to multiple questions.','- **Accuracy:** correct endorsed final spans divided by all assigned questions.','- **Coverage:** non-abstained answered questions divided by all assigned questions. It is not the same as accuracy.','- **Locality:** questions outside the edit’s intended change. Factual locality and baseline-correct retention use different denominators.','- **Percentage point:** an absolute difference between percentages; 5.86 points is not a 5.86-percent relative gain.','- **Paired lineage interval:** an uncertainty interval from resampling whole related clusters while retaining paired system outcomes.','- **p50/p95:** median/tail latency quantiles within the declared warm timing boundary.','- **NF4/FP16:** quantised weight representation and half-precision computation; total memory also includes runtime allocations.','- **SFT/PPO:** planned supervised adaptation followed by policy optimisation from declared feedback, under a matched experiment.','','## Website operation and evidence','','Chat sends a new question to the configured worker and stores its generated output with revision and facts. Knowledge drafts and explicitly approves a replacement. The source/history controls expose versions and events; rollback restores the owned predecessor transactionally. Research results selects a released study/condition and filters saved records. Filtering does not change denominators. Reopening a saved answer is replay; comparison and Send invoke fresh generation.','','Use the genuine recorded views within the ten-minute talk. A fresh GPU worker is required for optional live answers. Existing Air India acceptance uses seven selected source-backed requests; it is not the controlled benchmark. The results explorer shows controlled fictional records and keeps them labelled accordingly.','','## What can and cannot be concluded','','The evidence supports the implemented maintenance workflow and its measured bounded answer quality. It shows that selected current context outperformed full memory for ReasonKE_plus on the original packet, complete support did not prevent every generator failure, locality preservation differs from factual correctness, and higher answered coverage came with substantial latency. It does not establish unrestricted reliability, a causal upstream-training benefit, or performance at the 200-record software guard. Future work has a focused matched question rather than a promised gain.','','Consult [the next-milestone contract](VERITY_MIDPROJECT_RESEARCH_ROADMAP.md) before substantial training. The existing frozen tests are inspected regression evidence; new adaptation needs fresh held-out material.']
+ (ROOT/'docs/presentation/VERITY_SPEAKER_SCRIPT.md').write_text('\n'.join(out),encoding='utf-8',newline='\n')
+ (ROOT/'docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md').write_text('\n'.join(guide)+'\n',encoding='utf-8',newline='\n')
+ print(json.dumps({'slides':len(rows),'main':len(core),'seconds':elapsed,'speakers':5,'spoken_words':words,'guide_words':len(' '.join(guide).split())}))
+if __name__=='__main__':render()

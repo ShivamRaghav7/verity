@@ -1,0 +1,65 @@
+{
+  "source_commit": "c9d47137e68b51c690fc9fc8eba035b486879793",
+  "files": [
+    {
+      "original_path": "output/presentation/Verity_Mid_Project_Presentation.pptx",
+      "backup_file": "Verity_Mid_Project_Presentation.pptx",
+      "sha256": "7da707b0b2a0e2c25f7dfe3eedd18c4daf5257b2e1ab3d7fc25da32263d50738",
+      "basis": "clean HEAD blob; file open in PowerPoint"
+    },
+    {
+      "original_path": "docs/presentation/VERITY_SPEAKER_SCRIPT.md",
+      "backup_file": "VERITY_SPEAKER_SCRIPT.md",
+      "sha256": "d3b3e01d4ae58bbfc72f3d7684ca40ee414f075f94629be5379b0b0f4dec9087",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md",
+      "backup_file": "VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md",
+      "sha256": "24a1835da4cf8cdaae929db86631f7d141aa621586f29fba765cfff99ac9847c",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "docs/presentation/verity-midproject-content.json",
+      "backup_file": "verity-midproject-content.json",
+      "sha256": "f02a6bf99b3ff52793b3243d9c205778b37629080d5904e2dbf6cbe96fc09ff8",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "output/presentation/README.md",
+      "backup_file": "README.md",
+      "sha256": "68c7064ff06bfe95bdfb9aebc29de894c432e38799e5f46e06cf3c68e78808a3",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "output/presentation/midproject/manifest.json",
+      "backup_file": "manifest.json",
+      "sha256": "f4be58ea4a6d403413ad6a7fdf896eacde26df3a3b3380b7c7fce46bc96134af",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "scripts/build_verity_midproject.mjs",
+      "backup_file": "build_verity_midproject.mjs",
+      "sha256": "ae842ff7175f9bc756ad5ecf4514993680cb00a082a2b45562edcce7958fdb19",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "scripts/render_verity_midproject_script.py",
+      "backup_file": "render_verity_midproject_script.py",
+      "sha256": "92459bc2ae51b97f0f2aee3bb4c92ed8c8270bb4d7ba7b84be6e32b2b0f7ff96",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "scripts/time_verity_midproject.py",
+      "backup_file": "time_verity_midproject.py",
+      "sha256": "1aa54e5c528443c2ab8298ffe11e2f1828d3f87bec427a41c0cc2769e71e9516",
+      "basis": "workspace bytes"
+    },
+    {
+      "original_path": "scripts/verify_verity_midproject.py",
+      "backup_file": "verify_verity_midproject.py",
+      "sha256": "cb5b76d01be67cc128b66ed14052e09b43776b0fae5cbc12b9b322088514ebca",
+      "basis": "workspace bytes"
+    }
+  ]
+}

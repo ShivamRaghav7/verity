@@ -1,0 +1,101 @@
+{
+  "schema": "verity-technical-midproject-release-v2",
+  "created_utc": "2026-10-31T10:28:24.608664+00:00",
+  "source_backup_commit": "c9d4713",
+  "slides": 20,
+  "timed_main_slides": 16,
+  "hidden_untimed_backups": [
+    17,
+    18,
+    19,
+    20
+  ],
+  "total_seconds": 600,
+  "speakers": 5,
+  "seconds_per_speaker": 120,
+  "spoken_words": 1067,
+  "scientific_charts": {
+    "6": "Development retrieval support",
+    "9": "Original outcome composition",
+    "10": "Depth and wording",
+    "11": "Complete-support wrong associations",
+    "12": "Retention versus factual locality",
+    "13": "Warm latency and output length"
+  },
+  "native_tables": [
+    7,
+    8,
+    19
+  ],
+  "all_20_final_renders_visually_reviewed": true,
+  "render_review": "All final slides inspected full size; unchanged rendered content byte-compared to inspected candidates. Horizontal chart reimport rendering separately inspected.",
+  "native_powerpoint_qa_copy_opened": true,
+  "native_powerpoint_chart_slides_visually_checked": [
+    9,
+    11
+  ],
+  "native_chart_resize_test_completed": false,
+  "native_chart_resize_limitation": "Chart object and values were exposed in native accessibility, but automated chart selection did not complete the resize test. Final file unchanged.",
+  "native_powerpoint_repair_prompt_observed": false,
+  "checkpoint": "YukinoKaren/ReasonKE_plus",
+  "current_architecture": "Governed retrieval augmented generation with alternative frozen generators",
+  "next_milestone": "Planned matched SFT/PPO adaptation and fresh broader evaluation",
+  "R0_context_label": "Initial full handbook, confirmed against frozen runner; distinct from application empty-memory comparison",
+  "training_performed_for_this_revision": false,
+  "new_model_calls": 0,
+  "new_benchmark_observations": 0,
+  "frozen_scores_changed": false,
+  "evidence_population": "Controlled fictional fact worlds; sourced real introduction and recorded product acceptance are separate",
+  "original_capture_bytes_preserved": true,
+  "asset_hashes": {
+    "output/presentation/midproject/assets/air-india-handover-pib.jpg": "41beb9b3e85546f4d2e4fc657764b567f3d142ddec58c46e5d879be1849d5f39",
+    "output/presentation/screenshots/technical-v2/verity-results-explorer.jpg": "3ccb825395232845fc92f4974bafcbc0599552e91847e3f782985ca22d8792a4",
+    "output/presentation/midproject/screenshots/air-india-chat.jpg": "db1a65e991735614751e92a12f3f81c9bdf1a64eaa29e58ed5e28d07e8c68be4",
+    "output/presentation/midproject/screenshots/air-india-editor.jpg": "ddadbdddb57a9a9ae412c67de53fe2bedf21d81e44f0be83c77fadce171c8093",
+    "output/presentation/midproject/screenshots/air-india-history.jpg": "60b2224e82a55f95b4b5c244c1b3e92c881135b9cbc9b01dc64d25b4eed2354b"
+  },
+  "backup_folder": "output/presentation/backups/c9d4713-before-technical-expansion",
+  "verification": {
+    "status": "passed",
+    "slides": 20,
+    "main_slides": 16,
+    "hidden_untimed_backups": 4,
+    "seconds": 600,
+    "speakers": 5,
+    "notes_match_script": true,
+    "embedded_screenshots_match_original_bytes": true,
+    "chart_values_match_results": true,
+    "verified_backup_files": 10,
+    "unchanged_released_evidence_files": 55,
+    "documentation_with_checkout_newlines_normalized_for_hash": [
+      "docs/CONTRIBUTIONS_AND_EVIDENCE.md",
+      "docs/CURRENT_ARCHITECTURE.md"
+    ],
+    "frozen_source_files_verified": 20,
+    "demo_generations": 7,
+    "demo_target_matches": 7,
+    "validated_demo_snapshots": 4,
+    "new_benchmark_observations": 0,
+    "pptx_sha256": "fea567f44eb013c2c0d5706cea4b318c902c8a851f75d549d554f214c40aace8"
+  },
+  "package_integrity_passed": true,
+  "native_chart_workbooks_validated": true,
+  "first_party_import_passed": true,
+  "files": {
+    "output/presentation/Verity_Technical_Mid_Project_Presentation.pptx": "fea567f44eb013c2c0d5706cea4b318c902c8a851f75d549d554f214c40aace8",
+    "docs/presentation/VERITY_SPEAKER_SCRIPT.md": "1afbfa756228f20acdf07d18114375e73a8dec2e32d3088394e2f72b6f431736",
+    "docs/presentation/VERITY_SLIDE_BY_SLIDE_DEFENCE_GUIDE.md": "2a9a8197b63c88ab5875114c8c6b8887806894e191b18bf55913e6a5db1274c3",
+    "docs/presentation/verity-midproject-content.json": "78dbaaa2be406d1bb48fdd194c71f78e6eca3de601ebfb1473cb450d2e04d01e",
+    "scripts/build_verity_technical_midproject.mjs": "0a3d208b9ee7519c35b224d8dadceb07f408b271bb9a9b63a4105e4d20a50233",
+    "scripts/render_verity_midproject_script.py": "dec80c1901d95e415d5cfd02e27a38799d9afd0c4af8b912fe52739e11e36b5e",
+    "scripts/time_verity_midproject.py": "3979e8c363767b9722d50d25fed976a197e4af40cf2cb58be3d449679794faca",
+    "scripts/verify_verity_midproject.py": "53bd800bb7040f1771de8dac061f8d4f0bf23e65d35a218ab2f68a4a35acef60",
+    "output/presentation/README.md": "612ca941a925d91cd916b0251d639cd41b311879eb6aeccdc39973a6dc680df2",
+    "output/presentation/technical-midproject/preview-failure-analysis.png": "ab027509666f339996e954905a42645ca55bc6432dcdb4f99aca6843034d5d65"
+  },
+  "timing_authority": "Declared script plus native 600-second advances; no real-time stopwatch rehearsal claimed",
+  "timing_format_sources": [
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.presentation.slide.show?view=openxml-3.0.1",
+    "https://support.microsoft.com/en-us/powerpoint/hide-or-show-a-slide"
+  ]
+}
