@@ -1,0 +1,6 @@
+{
+  "source": "output/presentation/sec.pptx",
+  "sha256": "c7fb124e8f69f0948a36829adda38357d0299b135ace9bc62d5caae3dc8d64d7",
+  "bytes": 409263,
+  "purpose": "Exact user-edited current deck before retrieval and comparison slide changes"
+}
